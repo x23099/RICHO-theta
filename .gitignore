@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# virtual environment
+theta-env/
+venv/
+.env/
+
+# ROS logs
+.ros/
+log/
+build/
+install/
+
+# editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# media files
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.bag
+*.db3
