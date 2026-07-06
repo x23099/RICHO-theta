@@ -28,7 +28,7 @@ async def run(receiver_ip, window_id, display_id, bitrate, video_size):
 
     pc = RTCPeerConnection()
     
-    # Add video track and configure maximum bitrate.
+    # Add video track.
     sender = pc.addTrack(player.video)
     
     # Parse bitrate string (e.g. 1500k, 4M) to integer bps.
@@ -43,15 +43,26 @@ async def run(receiver_ip, window_id, display_id, bitrate, video_size):
     except Exception:
         logger.warn(f"Failed to parse bitrate '{bitrate}', using default 1.5 Mbps")
 
-    parameters = sender.getParameters()
-    for encoding in parameters.encodings:
-        encoding.maxBitrate = bitrate_bps
-    await sender.setParameters(parameters)
-    logger.info(f"Configured WebRTC encoder max bitrate to {bitrate_bps / 1000:.0f} kbps")
-    
+    # Define SDP munge function to enforce bitrate.
+    def munge_sdp_bitrate(sdp, bps):
+        kbps = int(bps / 1000)
+        lines = sdp.split("\r\n")
+        new_lines = []
+        for line in lines:
+            new_lines.append(line)
+            if line.startswith("m=video"):
+                new_lines.append(f"b=AS:{kbps}")
+        return "\r\n".join(new_lines)
+
     # Create SDP Offer.
     offer = await pc.createOffer()
+    
+    # Apply munged SDP with custom bitrate.
+    munged_sdp = munge_sdp_bitrate(offer.sdp, bitrate_bps)
+    offer = RTCSessionDescription(sdp=munged_sdp, type=offer.type)
+    
     await pc.setLocalDescription(offer)
+    logger.info(f"Configured WebRTC offer with max bitrate to {bitrate_bps / 1000:.0f} kbps")
     
     # Wait for ICE gathering to complete so SDP has all local candidates.
     logger.info("Gathering ICE candidates...")
