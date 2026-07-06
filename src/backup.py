@@ -251,108 +251,6 @@ class OdomSpeedNode(Node):
 
         self.speed_mps = 0.0
         self.linear_x = 0.0
-        self.angular_z = 0.0
-        self.handle_limit_deg = 450.0
-        self.yaw_to_handle_ratio = 450.0 / 360.0
-
-        self.angular_z = 0.0
-
-        # cmd_vel系の入力値.
-        self.cmd_linear_x = 0.0
-        self.cmd_angular_z = 0.0
-
-        # odom実測値.
-        self.odom_linear_x = 0.0
-        self.odom_angular_z = 0.0
-        self.last_odom_time = 0.0
-
-        # yaw差分から角速度を補完するための値.
-        self.previous_yaw_for_prediction = None
-        self.previous_yaw_time_for_prediction = None
-
-        # G923とKobuki yawの対応.
-        self.handle_limit_deg = 450.0
-        self.yaw_to_handle_ratio = 450.0 / 360.0
-
-        # 予測線のしきい値.
-        self.prediction_min_speed = 0.02
-        self.prediction_angular_deadband = 0.03
-        self.prediction_odom_timeout = 0.5
-
-        # デバッグ用.
-        self.prediction_debug_last_log_time = 0.0
-
-        # その場旋回でも予測線を見せるための表示用設定.
-        self.prediction_angular_deadband = 0.03
-        self.prediction_min_visual_speed = 0.18
-
-        # 予測線確認用の内部値.
-        self.prediction_last_handle_deg = 0.0
-        self.prediction_last_yaw_deg = 0.0
-
-        # cmd_vel系の入力値.
-        self.cmd_linear_x = 0.0
-        self.cmd_angular_z = 0.0
-
-        # odom実測値.
-        self.odom_linear_x = 0.0
-        self.odom_angular_z = 0.0
-        self.last_odom_time = 0.0
-
-        # ffb_follow.py と同じyaw累積管理.
-        self.current_yaw = 0.0
-        self.previous_yaw = None
-        self.accumulated_yaw = 0.0
-
-        # G923とKobuki yawの対応.
-        self.handle_limit_deg = 450.0
-        self.yaw_to_handle_ratio = 450.0 / 360.0
-
-        # 予測線のしきい値.
-        self.prediction_min_speed = 0.02
-        self.prediction_angular_deadband = 0.04
-        self.prediction_odom_timeout = 0.5
-
-        # 予測線確認用.
-        self.prediction_last_handle_deg = 0.0
-        self.prediction_last_yaw_deg = 0.0
-        
-        # cmd_vel系の入力値.
-        self.cmd_linear_x = 0.0
-        self.cmd_angular_z = 0.0
-
-        # odom実測値.
-        self.odom_linear_x = 0.0
-        self.odom_angular_z = 0.0
-        self.last_odom_time = 0.0
-
-        # odomのpose差分から速度を補完するための値.
-        self.previous_odom_x = None
-        self.previous_odom_y = None
-        self.previous_odom_time = None
-
-        # ffb_follow.pyと同じyaw累積管理.
-        self.current_yaw = 0.0
-        self.previous_yaw = None
-        self.accumulated_yaw = 0.0
-
-        # G923とKobuki yawの対応.
-        self.handle_limit_deg = 450.0
-        self.yaw_to_handle_ratio = 450.0 / 360.0
-
-        # 予測線のしきい値.
-        self.prediction_min_speed = 0.02
-        self.prediction_angular_deadband = 0.04
-        self.prediction_odom_timeout = 0.5
-
-        # その場旋回でも表示用の短いガイド線を出す.
-        self.prediction_rotation_visual_speed = 0.07
-
-        # デバッグ用.
-        self.prediction_last_handle_deg = 0.0
-        self.prediction_last_yaw_deg = 0.0
-        self.prediction_debug_last_log_time = 0.0
-
         self.gear_text = "--"
         self.pose_x = 0.0
         self.pose_y = 0.0
@@ -560,21 +458,13 @@ class OdomSpeedNode(Node):
 
     def odom_callback(self, msg):
         self.set_velocity(msg.twist.twist.linear)
-        self.update_prediction_motion_from_odom(msg)
         self.set_pose_from_odom(msg)
 
     def pose_callback(self, msg):
-        self.update_prediction_motion_from_odom(msg)
         self.set_pose_from_odom(msg)
 
     def twist_callback(self, msg):
         self.set_velocity(msg.linear)
-
-        self.cmd_linear_x = float(msg.linear.x)
-        self.cmd_angular_z = float(msg.angular.z)
-
-        # 既存処理との互換用.
-        self.angular_z = self.cmd_angular_z
 
     def set_velocity(self, linear):
         vx = linear.x
@@ -597,54 +487,6 @@ class OdomSpeedNode(Node):
 
         self.last_velocity_time = now
         self.last_linear_x = vx
-
-    def update_prediction_motion_from_odom(self, msg):
-        # odomから実測速度と角速度を取得する.
-        raw_v = float(msg.twist.twist.linear.x)
-        raw_w = float(msg.twist.twist.angular.z)
-
-        pose = msg.pose.pose
-        current_yaw = self.quaternion_to_yaw(pose.orientation)
-        now = time.time()
-
-        pose_w = 0.0
-
-        if self.previous_yaw_for_prediction is not None:
-            dt = now - self.previous_yaw_time_for_prediction
-            if dt > 1e-4:
-                yaw_step = self.normalize_angle(
-                    current_yaw - self.previous_yaw_for_prediction
-                )
-                pose_w = yaw_step / dt
-
-        self.previous_yaw_for_prediction = current_yaw
-        self.previous_yaw_time_for_prediction = now
-
-        self.odom_linear_x = raw_v
-
-        # odomのangular.zが有効ならそれを使う.
-        # 0のままならpose yaw差分から補完する.
-        if abs(raw_w) >= 1e-4:
-            self.odom_angular_z = raw_w
-        elif abs(pose_w) >= 1e-4:
-            self.odom_angular_z = pose_w
-        else:
-            self.odom_angular_z = 0.0
-
-        self.last_odom_time = now
-
-        # 1秒に1回だけ状態を出す.
-        if now - self.prediction_debug_last_log_time >= 1.0:
-            self.prediction_debug_last_log_time = now
-            self.get_logger().info(
-                f"prediction motion: "
-                f"odom_v={self.odom_linear_x:.3f}, "
-                f"odom_w={self.odom_angular_z:.3f}, "
-                f"cmd_v={self.cmd_linear_x:.3f}, "
-                f"cmd_w={self.cmd_angular_z:.3f}, "
-                f"raw_w={raw_w:.3f}, "
-                f"pose_w={pose_w:.3f}"
-            )
 
     def set_pose_from_odom(self, msg):
         pose = msg.pose.pose
@@ -680,118 +522,6 @@ class OdomSpeedNode(Node):
         self.last_raw_odom_y = raw_y
         self.set_pose(self.integrated_pose_x, self.integrated_pose_y, yaw)
 
-    def set_odom_motion_from_msg(self, msg):
-        # odomのtwist値を取得する.
-        raw_linear_x = float(msg.twist.twist.linear.x)
-        raw_angular_z = float(msg.twist.twist.angular.z)
-
-        # odomのpose値を取得する.
-        pose = msg.pose.pose
-        odom_x = float(pose.position.x)
-        odom_y = float(pose.position.y)
-        current_yaw = self.quaternion_to_yaw(pose.orientation)
-
-        now = time.time()
-
-        self.current_yaw = current_yaw
-        self.last_odom_time = now
-
-        # 初回だけ初期化する.
-        if self.previous_yaw is None:
-            self.previous_yaw = current_yaw
-            self.previous_odom_x = odom_x
-            self.previous_odom_y = odom_y
-            self.previous_odom_time = now
-            self.accumulated_yaw = 0.0
-            self.odom_linear_x = raw_linear_x
-            self.odom_angular_z = raw_angular_z
-            return
-
-        dt = now - self.previous_odom_time
-        if dt <= 1e-4:
-            dt = 1e-4
-
-        dx = odom_x - self.previous_odom_x
-        dy = odom_y - self.previous_odom_y
-        distance = math.hypot(dx, dy)
-
-        yaw_step = self.normalize_angle(current_yaw - self.previous_yaw)
-        self.accumulated_yaw += yaw_step
-
-        pose_speed = distance / dt
-        pose_angular_z = yaw_step / dt
-
-        # 前後方向の符号を決める.
-        if abs(raw_linear_x) > 1e-4:
-            direction = 1.0 if raw_linear_x >= 0.0 else -1.0
-        elif abs(self.cmd_linear_x) > 1e-4:
-            direction = 1.0 if self.cmd_linear_x >= 0.0 else -1.0
-        else:
-            direction = 1.0
-
-        pose_linear_x = pose_speed * direction
-
-        # twistが有効ならtwistを使う. 0に近い場合はpose差分で補完する.
-        if abs(raw_linear_x) > 1e-4:
-            self.odom_linear_x = raw_linear_x
-        else:
-            self.odom_linear_x = pose_linear_x
-
-        if abs(raw_angular_z) > 1e-4:
-            self.odom_angular_z = raw_angular_z
-        else:
-            self.odom_angular_z = pose_angular_z
-
-        self.previous_yaw = current_yaw
-        self.previous_odom_x = odom_x
-        self.previous_odom_y = odom_y
-        self.previous_odom_time = now
-
-        # 1秒に1回だけ確認ログを出す.
-        if now - self.prediction_debug_last_log_time >= 1.0:
-            self.prediction_debug_last_log_time = now
-            self.get_logger().info(
-                f"prediction odom: "
-                f"v={self.odom_linear_x:.3f}, "
-                f"w={self.odom_angular_z:.3f}, "
-                f"raw_v={raw_linear_x:.3f}, "
-                f"raw_w={raw_angular_z:.3f}, "
-                f"pose_w={pose_angular_z:.3f}"
-            )
-
-    def quaternion_to_yaw(self, orientation):
-        # OdometryのQuaternion姿勢からyaw角だけを取り出す.
-        x = orientation.x
-        y = orientation.y
-        z = orientation.z
-        w = orientation.w
-
-        siny_cosp = 2.0 * (w * z + x * y)
-        cosy_cosp = 1.0 - 2.0 * (y * y + z * z)
-
-        return math.atan2(siny_cosp, cosy_cosp)
-
-
-    def normalize_angle(self, angle):
-        # 角度を-pi〜piの範囲に収める.
-        while angle > math.pi:
-            angle -= 2.0 * math.pi
-
-        while angle < -math.pi:
-            angle += 2.0 * math.pi
-
-        return angle
-
-    def normalize_angle(self, angle):
-        # 角度を-pi〜piの範囲に収める.
-        while angle > math.pi:
-            angle -= 2.0 * math.pi
-
-        while angle < -math.pi:
-            angle += 2.0 * math.pi
-
-        return angle
-
     def set_pose(self, x, y, yaw):
         self.pose_x = x
         self.pose_y = y
@@ -813,71 +543,15 @@ class OdomSpeedNode(Node):
             if len(self.path_points) > self.max_path_points:
                 self.path_points = self.path_points[-self.max_path_points:]
 
-    def normalize_angle(self, angle):
-        # 角度を-pi〜piの範囲に収める.
-        while angle > math.pi:
-            angle -= 2.0 * math.pi
+    def quaternion_to_yaw(self, orientation):
+        x = orientation.x
+        y = orientation.y
+        z = orientation.z
+        w = orientation.w
 
-        while angle < -math.pi:
-            angle += 2.0 * math.pi
-
-        return angle
-
-    def predict_path_points(self, prediction_time=3.5, dt=0.05):
-        """
-        odomを優先し, odom角速度が取れない場合だけcmd_vel_joyを使って予測線を作る.
-        """
-        now = time.time()
-
-        odom_is_recent = (
-            self.last_odom_time > 0.0
-            and now - self.last_odom_time <= self.prediction_odom_timeout
-        )
-
-        if odom_is_recent and abs(self.odom_linear_x) >= self.prediction_min_speed:
-            v = float(self.odom_linear_x)
-        else:
-            v = float(self.cmd_linear_x)
-
-        if odom_is_recent and abs(self.odom_angular_z) >= self.prediction_angular_deadband:
-            w = float(self.odom_angular_z)
-            source = "odom"
-        else:
-            w = float(self.cmd_angular_z)
-            source = "cmd"
-
-        if (
-            abs(v) < self.prediction_min_speed
-            and abs(w) < self.prediction_angular_deadband
-        ):
-            return []
-
-        # ここでwを少し弱める. cmdを直接使うと曲がりすぎやすいため.
-        if source == "cmd":
-            w *= 0.45
-
-        x = 0.0
-        y = 0.0
-        yaw = 0.0
-        points = []
-
-        steps = int(prediction_time / dt)
-
-        for _ in range(steps):
-            x += v * math.cos(yaw) * dt
-            y += v * math.sin(yaw) * dt
-            yaw += w * dt
-            points.append((x, y))
-
-        # 確認用にG923ハンドル角相当へ換算.
-        yaw_deg = math.degrees(yaw)
-        handle_deg = yaw_deg * self.yaw_to_handle_ratio
-        handle_deg = max(
-            -self.handle_limit_deg,
-            min(self.handle_limit_deg, handle_deg)
-        )
-
-        return points
+        siny_cosp = 2.0 * (w * z + x * y)
+        cosy_cosp = 1.0 - 2.0 * (y * y + z * z)
+        return math.atan2(siny_cosp, cosy_cosp)
 
     def gear_callback(self, msg):
         raw = msg.data.strip()
@@ -2326,87 +2000,59 @@ class CenterViewWidget(QWidget):
             max_speed_kmh=max_speed_kmh,
             speed_scale=speed_scale,
         )
-
-        # ミニマップは表示しない.
         self.minimap = None
+        if minimap_enabled:
+            self.minimap = MiniMapWidget(
+                width=minimap_width,
+                height=minimap_height,
+                scale=minimap_scale,
+                course_image=minimap_course_image,
+                origin_x=minimap_origin_x,
+                origin_y=minimap_origin_y,
+                image_zoom=minimap_image_zoom,
+                image_offset_x=minimap_image_offset_x,
+                image_offset_y=minimap_image_offset_y,
+            )
 
-        self.front_width = width
-        self.front_height = height
-        self.rear_width = rear_width
-        self.rear_height = rear_height
-
-        # UI全体を横長にする.
-        # 正面映像は16:9のまま, 左右の黒帯は許可する.
-        self.setMinimumSize(
-            1450,
-            1080,
-        )
+        self.setMinimumSize(width, height)
 
         self.video_label.setParent(self)
         self.rear_label.setParent(self)
         self.dashboard.setParent(self)
+        if self.minimap is not None:
+            self.minimap.setParent(self)
 
         # オーバーレイを前面に出す.
         self.rear_label.raise_()
         self.dashboard.raise_()
+        if self.minimap is not None:
+            self.minimap.raise_()
 
-        self.setStyleSheet("background-color: #050505;")
+        self.rear_width = rear_width
+        self.rear_height = rear_height
 
     def resizeEvent(self, event):
-        # 正面映像を16:9で大きく固定表示する.
+        # 正面映像を全体に広げる.
+        self.video_label.setGeometry(0, 0, self.width(), self.height())
+
+        # バックミラーを上中央に置く.
+        rear_x = int((self.width() - self.rear_width) / 2)
+        rear_y = 14
+        self.rear_label.setGeometry(rear_x, rear_y, self.rear_width, self.rear_height)
+
+        # 3連メーターを下中央に置く.
         dash_w = self.dashboard.width()
         dash_h = self.dashboard.height()
-
-        top_margin = 8
-        gap = 8
-
-        # 1450x800に近い16:9サイズ.
-        target_video_w = 1334
-        target_video_h = 750
-
-        # ウィンドウが小さい場合だけ縮小する.
-        available_w = self.width()
-        available_h = self.height() - dash_h - gap - top_margin - 8
-
-        scale_w = available_w / target_video_w
-        scale_h = available_h / target_video_h
-        scale = min(1.0, scale_w, scale_h)
-
-        video_w = int(target_video_w * scale)
-        video_h = int(target_video_h * scale)
-
-        # 正面映像を上側中央に置く.
-        video_x = int((self.width() - video_w) / 2)
-        video_y = top_margin
-
-        self.video_label.setGeometry(
-            video_x,
-            video_y,
-            video_w,
-            video_h,
-        )
-
-        # バックミラーは正面映像の上中央に置く.
-        rear_x = int(video_x + (video_w - self.rear_width) / 2)
-        rear_y = video_y + 12
-
-        self.rear_label.setGeometry(
-            rear_x,
-            rear_y,
-            self.rear_width,
-            self.rear_height,
-        )
-
-        # メーターは正面映像の下の黒い領域に置く.
         dash_x = int((self.width() - dash_w) / 2)
-        dash_y = int(video_y + video_h + gap)
+        dash_y = int(self.height() - dash_h - 4)
+        self.dashboard.setGeometry(dash_x, dash_y, dash_w, dash_h)
 
-        self.dashboard.setGeometry(
-            dash_x,
-            dash_y,
-            dash_w,
-            dash_h,
-        )
+        if self.minimap is not None:
+            map_w = self.minimap.width()
+            map_h = self.minimap.height()
+            map_x = int(self.width() - map_w - 18)
+            map_y = int(18)
+            self.minimap.setGeometry(map_x, map_y, map_w, map_h)
 
     def set_front_image(self, frame_bgr):
         self.video_label.set_cv_image(frame_bgr)
@@ -2447,8 +2093,9 @@ class CenterViewWidget(QWidget):
         )
 
     def set_minimap_pose(self, x, y, yaw, path_points, has_pose):
-        # ミニマップは消すが, メーター内部のTRIP計算用にはposeを渡す.
         self.dashboard.set_pose_data(x, y, yaw, path_points, has_pose)
+        if self.minimap is not None:
+            self.minimap.set_pose(x, y, yaw, path_points, has_pose)
 
     def change_dashboard_page(self, delta):
         self.dashboard.change_page(delta)
@@ -2701,6 +2348,9 @@ class ThetaDriverUI(QWidget):
         self.setWindowTitle("THETA S Driver View with Classic Analog Cluster")
         self.setStyleSheet("background-color: #050505;")
 
+        self.left_label = VideoLabel("LEFT MIRROR")
+        self.right_label = VideoLabel("RIGHT MIRROR")
+
         self.center_widget = CenterViewWidget(
             width=self.args.front_width,
             height=self.args.front_height,
@@ -2708,7 +2358,7 @@ class ThetaDriverUI(QWidget):
             rear_height=self.args.rear_height,
             max_speed_kmh=self.args.max_speed,
             speed_scale=self.args.speed_scale,
-            minimap_enabled=False,
+            minimap_enabled=self.args.minimap,
             minimap_width=self.args.minimap_width,
             minimap_height=self.args.minimap_height,
             minimap_scale=self.args.minimap_scale,
@@ -2720,19 +2370,24 @@ class ThetaDriverUI(QWidget):
             minimap_image_offset_y=self.args.minimap_image_offset_y,
         )
 
-        self.center_widget.setMinimumSize(
-            1450,
-            1080,
-        )
+        self.left_label.setMinimumSize(self.args.mirror_width, self.args.mirror_height)
+        self.right_label.setMinimumSize(self.args.mirror_width, self.args.mirror_height)
+        self.center_widget.setMinimumSize(self.args.front_width, self.args.front_height)
 
         layout = QHBoxLayout()
-        layout.setContentsMargins(18, 10, 18, 10)
-        layout.setSpacing(0)
+        layout.setContentsMargins(18, 18, 18, 18)
+        layout.setSpacing(12)
 
-        # サイドミラーは表示せず, 正面UIだけを中央に置く.
+        layout.addWidget(self.left_label, alignment=Qt.AlignCenter)
         layout.addWidget(self.center_widget, alignment=Qt.AlignCenter)
+        layout.addWidget(self.right_label, alignment=Qt.AlignCenter)
 
         self.setLayout(layout)
+
+        if self.args.fullscreen:
+            self.showFullScreen()
+        else:
+            self.resize(1650, 850)
 
     def update_input_state(self):
         delta = 0
@@ -2831,74 +2486,6 @@ class ThetaDriverUI(QWidget):
             self.odom_node.has_pose,
         )
 
-    def draw_predicted_path_on_front_view(self, front_view):
-        # 現在の速度指令から予測経路を取得する.
-        points = self.odom_node.predict_path_points(prediction_time=3.5, dt=0.05)
-
-        if len(points) < 2:
-            return front_view
-
-        h, w = front_view.shape[:2]
-
-        # 画面上の車体基準位置を決める.
-        origin_x = int(w * 0.50)
-        origin_y = int(h * 0.90)
-
-        # 表示スケール. 見え方に応じて調整する.
-        max_forward_m = 1.8
-        lateral_scale_px = w * 0.45
-
-        screen_points = []
-
-        for forward_m, lateral_m in points:
-            # 後退時や停止付近は一旦描かない.
-            if forward_m <= 0.0:
-                continue
-
-            # 前方距離を画面上方向に変換する.
-            forward_ratio = min(forward_m / max_forward_m, 1.0)
-            screen_y = origin_y - forward_ratio * h * 0.62
-
-            # 横方向を画面左右に変換する.
-            # ROSでは左旋回が正になりやすいので, lateral_m正を画面左へ出す.
-            perspective = 0.35 + forward_ratio * 0.85
-            screen_x = origin_x - lateral_m * lateral_scale_px * perspective
-
-            if 0 <= screen_x < w and 0 <= screen_y < h:
-                screen_points.append((int(screen_x), int(screen_y)))
-
-        if len(screen_points) < 2:
-            return front_view
-
-        pts = np.array(screen_points, dtype=np.int32).reshape((-1, 1, 2))
-
-        # 半透明の太い下地を描く.
-        overlay = front_view.copy()
-        cv2.polylines(
-            overlay,
-            [pts],
-            isClosed=False,
-            color=(0, 255, 0),
-            thickness=12,
-            lineType=cv2.LINE_AA,
-        )
-        front_view = cv2.addWeighted(overlay, 0.35, front_view, 0.65, 0)
-
-        # 中心の明るい線を描く.
-        cv2.polylines(
-            front_view,
-            [pts],
-            isClosed=False,
-            color=(80, 255, 80),
-            thickness=4,
-            lineType=cv2.LINE_AA,
-        )
-
-        # 先端に点を描く.
-        cv2.circle(front_view, screen_points[-1], 7, (80, 255, 80), -1)
-
-        return front_view
-
     def update_frame(self):
         ret, frame = self.cap.read()
         if not ret:
@@ -2923,15 +2510,34 @@ class ThetaDriverUI(QWidget):
             borderMode=cv2.BORDER_CONSTANT,
         )
 
+        # 左サイドミラービューを作る.
+        left_view = cv2.remap(
+            frame,
+            self.left_mirror_map[0],
+            self.left_mirror_map[1],
+            interpolation=cv2.INTER_LINEAR,
+            borderMode=cv2.BORDER_CONSTANT,
+        )
+
+        # 右サイドミラービューを作る.
+        right_view = cv2.remap(
+            frame,
+            self.right_mirror_map[0],
+            self.right_mirror_map[1],
+            interpolation=cv2.INTER_LINEAR,
+            borderMode=cv2.BORDER_CONSTANT,
+        )
+
         # ミラーらしく左右反転する.
         rear_view = cv2.flip(rear_view, 1)
-
-        # 正面ビューに予測経路を重ねる.
-        front_view = self.draw_predicted_path_on_front_view(front_view)
+        left_view = cv2.flip(left_view, 1)
+        right_view = cv2.flip(right_view, 1)
 
         # 画面に表示する.
         self.center_widget.set_front_image(front_view)
         self.center_widget.set_rear_image(rear_view)
+        self.left_label.set_cv_image(left_view)
+        self.right_label.set_cv_image(right_view)
 
     def keyPressEvent(self, event: QKeyEvent):
         # qかEscで終了する.
