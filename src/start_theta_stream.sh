@@ -1,6 +1,6 @@
 #!/bin/bash
 
-UI_DIR="$HOME/theta_ws/src"
+UI_DIR="$(cd "$(dirname "$0")" && pwd)"
 UI_SCRIPT="zc33s_ui.py"
 
 WINDOW_NAME="THETA S Driver View with Classic Analog Cluster"
