@@ -28,8 +28,26 @@ async def run(receiver_ip, window_id, display_id, bitrate, video_size):
 
     pc = RTCPeerConnection()
     
-    # Add video track.
-    pc.addTrack(player.video)
+    # Add video track and configure maximum bitrate.
+    sender = pc.addTrack(player.video)
+    
+    # Parse bitrate string (e.g. 1500k, 4M) to integer bps.
+    bitrate_bps = 1500000
+    try:
+        if str(bitrate).endswith("k"):
+            bitrate_bps = int(bitrate[:-1]) * 1000
+        elif str(bitrate).endswith("M"):
+            bitrate_bps = int(bitrate[:-1]) * 1000000
+        else:
+            bitrate_bps = int(bitrate)
+    except Exception:
+        logger.warn(f"Failed to parse bitrate '{bitrate}', using default 1.5 Mbps")
+
+    parameters = sender.getParameters()
+    for encoding in parameters.encodings:
+        encoding.maxBitrate = bitrate_bps
+    await sender.setParameters(parameters)
+    logger.info(f"Configured WebRTC encoder max bitrate to {bitrate_bps / 1000:.0f} kbps")
     
     # Create SDP Offer.
     offer = await pc.createOffer()

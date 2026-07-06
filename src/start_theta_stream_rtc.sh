@@ -7,7 +7,7 @@ WINDOW_NAME="THETA S Driver View with Classic Analog Cluster"
 RECEIVER_IP="${1:-150.89.169.70}"
 
 DISPLAY_ID="${DISPLAY:-:1.0}"
-BITRATE="1500k"
+BITRATE="4000k"
 
 UI_ARGS=(
     "--device" "/dev/video0"
