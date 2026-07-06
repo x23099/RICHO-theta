@@ -5,13 +5,9 @@ UI_SCRIPT="zc33s_ui.py"
 
 WINDOW_NAME="THETA S Driver View with Classic Analog Cluster"
 RECEIVER_IP="${1:-150.89.169.70}"
-PORT="5000"
 
 DISPLAY_ID="${DISPLAY:-:1.0}"
-
 BITRATE="1500k"
-MAXRATE="1500k"
-BUFSIZE="300k"
 
 UI_ARGS=(
     "--device" "/dev/video0"
@@ -54,12 +50,8 @@ if [ -z "$WINDOW_ID" ]; then
 fi
 
 echo "[INFO] Found window ID: $WINDOW_ID"
-echo "[INFO] Streaming to udp://$RECEIVER_IP:$PORT"
+echo "[INFO] Streaming via WebRTC to $RECEIVER_IP"
 
-ffmpeg -f x11grab -framerate 30 -window_id "$WINDOW_ID" -i "$DISPLAY_ID" \
--vcodec libx264 -preset ultrafast -tune zerolatency \
--pix_fmt yuv420p \
--b:v "$BITRATE" -maxrate "$MAXRATE" -bufsize "$BUFSIZE" \
--g 30 -bf 0 -f mpegts srt://$RECEIVER_IP:$PORT?mode=caller&latency=50
+"$UI_DIR/theta-env/bin/python" webrtc_stream.py --receiver-ip "$RECEIVER_IP" --window-id "$WINDOW_ID" --display "$DISPLAY_ID" --bitrate "$BITRATE"
 
 echo "[INFO] Stream stopped."
