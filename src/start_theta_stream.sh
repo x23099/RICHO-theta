@@ -18,7 +18,7 @@ UI_ARGS=(
     "--cam-width" "1280"
     "--cam-height" "720"
     "--odom-topic" "/odom"
-    "--speed-topic" "/cmd_vel_joy"
+    "--speed-topic" "/cmd_vel"
     "--speed-msg-type" "twist"
 )
 

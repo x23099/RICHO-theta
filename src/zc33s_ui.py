@@ -252,10 +252,6 @@ class OdomSpeedNode(Node):
         self.speed_mps = 0.0
         self.linear_x = 0.0
         self.angular_z = 0.0
-        self.handle_limit_deg = 450.0
-        self.yaw_to_handle_ratio = 450.0 / 360.0
-
-        self.angular_z = 0.0
 
         # cmd_vel系の入力値.
         self.cmd_linear_x = 0.0
@@ -276,81 +272,27 @@ class OdomSpeedNode(Node):
 
         # 予測線のしきい値.
         self.prediction_min_speed = 0.02
-        self.prediction_angular_deadband = 0.03
+        self.prediction_angular_deadband = 0.02
         self.prediction_odom_timeout = 0.5
 
-        # デバッグ用.
-        self.prediction_debug_last_log_time = 0.0
-
-        # その場旋回でも予測線を見せるための表示用設定.
-        self.prediction_angular_deadband = 0.03
-        self.prediction_min_visual_speed = 0.18
-
-        # 予測線確認用の内部値.
-        self.prediction_last_handle_deg = 0.0
-        self.prediction_last_yaw_deg = 0.0
-
-        # cmd_vel系の入力値.
-        self.cmd_linear_x = 0.0
-        self.cmd_angular_z = 0.0
-
-        # odom実測値.
-        self.odom_linear_x = 0.0
-        self.odom_angular_z = 0.0
-        self.last_odom_time = 0.0
-
-        # ffb_follow.py と同じyaw累積管理.
-        self.current_yaw = 0.0
-        self.previous_yaw = None
-        self.accumulated_yaw = 0.0
-
-        # G923とKobuki yawの対応.
-        self.handle_limit_deg = 450.0
-        self.yaw_to_handle_ratio = 450.0 / 360.0
-
-        # 予測線のしきい値.
-        self.prediction_min_speed = 0.02
-        self.prediction_angular_deadband = 0.04
-        self.prediction_odom_timeout = 0.5
+        # その場旋回でも表示用の短いガイド線を出す.
+        self.prediction_rotation_visual_speed = 0.07
 
         # 予測線確認用.
         self.prediction_last_handle_deg = 0.0
         self.prediction_last_yaw_deg = 0.0
-        
-        # cmd_vel系の入力値.
-        self.cmd_linear_x = 0.0
-        self.cmd_angular_z = 0.0
-
-        # odom実測値.
-        self.odom_linear_x = 0.0
-        self.odom_angular_z = 0.0
-        self.last_odom_time = 0.0
-
-        # odomのpose差分から速度を補完するための値.
-        self.previous_odom_x = None
-        self.previous_odom_y = None
-        self.previous_odom_time = None
 
         # ffb_follow.pyと同じyaw累積管理.
         self.current_yaw = 0.0
         self.previous_yaw = None
         self.accumulated_yaw = 0.0
 
-        # G923とKobuki yawの対応.
-        self.handle_limit_deg = 450.0
-        self.yaw_to_handle_ratio = 450.0 / 360.0
-
-        # 予測線のしきい値.
-        self.prediction_min_speed = 0.02
-        self.prediction_angular_deadband = 0.04
-        self.prediction_odom_timeout = 0.5
-
-        # その場旋回でも表示用の短いガイド線を出す.
-        self.prediction_rotation_visual_speed = 0.07
+        # odomのpose差分から速度を補完するための値.
+        self.previous_odom_x = None
+        self.previous_odom_y = None
+        self.previous_odom_time = None
 
         # デバッグ用.
-        self.prediction_last_handle_deg = 0.0
-        self.prediction_last_yaw_deg = 0.0
         self.prediction_debug_last_log_time = 0.0
 
         self.gear_text = "--"
@@ -605,12 +547,15 @@ class OdomSpeedNode(Node):
 
         pose = msg.pose.pose
         current_yaw = self.quaternion_to_yaw(pose.orientation)
-        now = time.time()
+        
+        # システム時間ではなくメッセージのタイムスタンプを使って時間間隔dtを計算する.
+        stamp = msg.header.stamp
+        msg_time = stamp.sec + stamp.nanosec * 1e-9
 
         pose_w = 0.0
 
         if self.previous_yaw_for_prediction is not None:
-            dt = now - self.previous_yaw_time_for_prediction
+            dt = msg_time - self.previous_yaw_time_for_prediction
             if dt > 1e-4:
                 yaw_step = self.normalize_angle(
                     current_yaw - self.previous_yaw_for_prediction
@@ -618,7 +563,7 @@ class OdomSpeedNode(Node):
                 pose_w = yaw_step / dt
 
         self.previous_yaw_for_prediction = current_yaw
-        self.previous_yaw_time_for_prediction = now
+        self.previous_yaw_time_for_prediction = msg_time
 
         self.odom_linear_x = raw_v
 
@@ -631,9 +576,10 @@ class OdomSpeedNode(Node):
         else:
             self.odom_angular_z = 0.0
 
-        self.last_odom_time = now
+        self.last_odom_time = time.time()
 
         # 1秒に1回だけ状態を出す.
+        now = time.time()
         if now - self.prediction_debug_last_log_time >= 1.0:
             self.prediction_debug_last_log_time = now
             self.get_logger().info(
