@@ -50,8 +50,16 @@ if [ -z "$WINDOW_ID" ]; then
 fi
 
 echo "[INFO] Found window ID: $WINDOW_ID"
+
+# Get the actual size of the window dynamically.
+WINDOW_SIZE=$(xdotool getwindowgeometry "$WINDOW_ID" | grep Geometry | awk '{print $2}')
+if [ -z "$WINDOW_SIZE" ]; then
+    WINDOW_SIZE="1280x720"
+fi
+
+echo "[INFO] Window Size: $WINDOW_SIZE"
 echo "[INFO] Streaming via WebRTC to $RECEIVER_IP"
 
-python3 webrtc_stream.py --receiver-ip "$RECEIVER_IP" --window-id "$WINDOW_ID" --display "$DISPLAY_ID" --bitrate "$BITRATE"
+python3 webrtc_stream.py --receiver-ip "$RECEIVER_IP" --window-id "$WINDOW_ID" --display "$DISPLAY_ID" --bitrate "$BITRATE" --video-size "$WINDOW_SIZE"
 
 echo "[INFO] Stream stopped."

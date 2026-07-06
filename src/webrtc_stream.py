@@ -11,17 +11,17 @@ from aiortc.contrib.media import MediaPlayer
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("webrtc_stream")
 
-async def run(receiver_ip, window_id, display_id, bitrate):
+async def run(receiver_ip, window_id, display_id, bitrate, video_size):
     # FFmpeg x11grab options.
     options = {
-        "video_size": "1280x720",
+        "video_size": video_size,
         "framerate": "30",
         "draw_mouse": "0"
     }
     if window_id:
         options["window_id"] = str(window_id)
 
-    logger.info(f"Opening x11grab on display {display_id} (Window ID: {window_id})")
+    logger.info(f"Opening x11grab on display {display_id} (Window ID: {window_id}, Size: {video_size})")
     
     # Use PyAV's MediaPlayer to grab the display.
     player = MediaPlayer(display_id, format="x11grab", options=options)
@@ -91,6 +91,7 @@ if __name__ == "__main__":
     parser.add_argument("--window-id", help="Window ID to grab")
     parser.add_argument("--display", default=":1.0", help="X11 Display ID")
     parser.add_argument("--bitrate", default="1500k", help="Video Bitrate")
+    parser.add_argument("--video-size", default="1280x720", help="Video capture size (e.g., 1450x1080)")
     
     args = parser.parse_args()
     
@@ -98,4 +99,4 @@ if __name__ == "__main__":
     if not display and "DISPLAY" in os.environ:
         display = os.environ["DISPLAY"]
         
-    asyncio.run(run(args.receiver_ip, args.window_id, display, args.bitrate))
+    asyncio.run(run(args.receiver_ip, args.window_id, display, args.bitrate, args.video_size))
