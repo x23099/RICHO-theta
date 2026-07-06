@@ -52,6 +52,6 @@ fi
 echo "[INFO] Found window ID: $WINDOW_ID"
 echo "[INFO] Streaming via WebRTC to $RECEIVER_IP"
 
-"$UI_DIR/theta-env/bin/python" webrtc_stream.py --receiver-ip "$RECEIVER_IP" --window-id "$WINDOW_ID" --display "$DISPLAY_ID" --bitrate "$BITRATE"
+python3 webrtc_stream.py --receiver-ip "$RECEIVER_IP" --window-id "$WINDOW_ID" --display "$DISPLAY_ID" --bitrate "$BITRATE"
 
 echo "[INFO] Stream stopped."
