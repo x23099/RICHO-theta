@@ -5,18 +5,33 @@ UI_SCRIPT="zc33s_ui.py"
 
 WINDOW_NAME="THETA S Driver View with Classic Analog Cluster"
 RECEIVER_IP="${1:-150.89.169.70}"
+CAMERA_DEVICE="${2:-/dev/video0}"
+SCREEN_SIZE="${3:-large}"  # standard (large) or small (1024x768 optimized)
 
 DISPLAY_ID="${DISPLAY:-:1.0}"
 BITRATE="4000k"
 
 UI_ARGS=(
-    "--device" "/dev/video0"
+    "--device" "$CAMERA_DEVICE"
     "--cam-width" "1280"
     "--cam-height" "720"
     "--odom-topic" "/odom"
     "--speed-topic" "/cmd_vel"
     "--speed-msg-type" "twist"
 )
+
+# 1024x768の小さなモニター用に解像度を縮小するオプション
+if [ "$SCREEN_SIZE" = "small" ] || [ "$SCREEN_SIZE" = "1024" ]; then
+    echo "[INFO] Applying small monitor optimization (800x450 front view)"
+    UI_ARGS+=(
+        "--front-width" "800"
+        "--front-height" "450"
+        "--rear-width" "400"
+        "--rear-height" "95"
+    )
+else
+    echo "[INFO] Applying standard large monitor layout (default sizes)"
+fi
 
 echo "[INFO] Starting THETA UI..."
 

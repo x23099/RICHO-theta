@@ -2395,9 +2395,10 @@ class CenterViewWidget(QWidget):
 
         # UI全体を横長にする.
         # 正面映像は16:9のまま, 左右の黒帯は許可する.
+        # モニターが小さい場合(1024x768等)を考慮し最小サイズを縮小
         self.setMinimumSize(
-            1450,
-            1080,
+            900,
+            700,
         )
 
         self.video_label.setParent(self)
@@ -2810,8 +2811,8 @@ class ThetaDriverUI(QWidget):
         )
 
         self.center_widget.setMinimumSize(
-            1450,
-            1080,
+            900,
+            700,
         )
 
         layout = QHBoxLayout()
