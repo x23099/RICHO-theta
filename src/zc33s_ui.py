@@ -625,7 +625,7 @@ class OdomSpeedNode(Node):
 
         pose = msg.pose.pose
         current_yaw = self.quaternion_to_yaw(pose.orientation)
-        
+
         # システム時間ではなくメッセージのタイムスタンプを使って時間間隔dtを計算する.
         stamp = msg.header.stamp
         msg_time = stamp.sec + stamp.nanosec * 1e-9
@@ -1697,7 +1697,7 @@ class ClassicDashboardWidget(QWidget):
     PAGE_IMU = 1
     PAGE_PEDAL = 2
 
-    def __init__(self, max_speed_kmh=120.0, max_rpm=9000.0, speed_scale=12.0):
+    def __init__(self, max_speed_kmh=120.0, max_rpm=9000.0, speed_scale=12.0, display_scale=0.663):
         super().__init__()
 
         self.speed_mps = 0.0
@@ -1729,7 +1729,7 @@ class ClassicDashboardWidget(QWidget):
         self.idle_rpm = 900.0
         self.logical_width = 980
         self.logical_height = 380
-        self.display_scale = 0.663
+        self.display_scale = display_scale
 
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setFixedSize(
@@ -2379,9 +2379,19 @@ class CenterViewWidget(QWidget):
 
         self.video_label = VideoLabel("FRONT")
         self.rear_label = VideoLabel("BACK MIRROR")
+
+        # 画面幅（フロント解像度）が小さい場合はメーターと俯瞰映像を縮小する
+        if width <= 900:
+            self.display_scale = 0.45
+            self.bev_width = 200
+        else:
+            self.display_scale = 0.663
+            self.bev_width = 300
+
         self.dashboard = ClassicDashboardWidget(
             max_speed_kmh=max_speed_kmh,
             speed_scale=speed_scale,
+            display_scale=self.display_scale,
         )
         self.bev_label = BEVVideoLabel("BIRD'S-EYE VIEW")
 
@@ -2471,8 +2481,8 @@ class CenterViewWidget(QWidget):
         )
 
         # 俯瞰映像はフロントカメラの右端 (video_x + video_w) に揃え、
-        # メーターと同じ高さ (dash_h) で表示する. 幅は300px
-        bev_w = 300
+        # メーターと同じ高さ (dash_h) で表示する.
+        bev_w = self.bev_width
         bev_h = dash_h
         bev_x = video_x + video_w - bev_w
         bev_y = dash_y
@@ -3106,16 +3116,23 @@ def main():
     parser.add_argument("--imu-topic", default="/sensors/imu_data_raw")
     parser.add_argument("--pedal-topic", default="/cmd_vel_joy,/cmd_vel")
     parser.add_argument("--pedal-max-linear", type=float, default=1.0)
-    parser.add_argument("--g923-pages", action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument("--g923-pages", action="store_true", default=True)
+    parser.add_argument("--no-g923-pages", action="store_false", dest="g923_pages")
     parser.add_argument("--g923-device", default="")
-        
+
     parser.add_argument("--max-speed", type=float, default=120.0)
     parser.add_argument("--speed-scale", type=float, default=12.0)
 
     parser.add_argument(
         "--minimap",
-        action=argparse.BooleanOptionalAction,
+        action="store_true",
         default=True,
+    )
+
+    parser.add_argument(
+        "--no-minimap",
+        action="store_false",
+        dest="minimap",
     )
     parser.add_argument("--minimap-width", type=int, default=230)
     parser.add_argument("--minimap-height", type=int, default=230)
