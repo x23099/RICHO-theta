@@ -49,6 +49,7 @@ def make_theta_view_map(
     out_w,
     out_h,
     yaw_deg,
+    pitch_deg=0.0,
     fov_deg=100.0,
     front_lens="left",
     radius_scale=0.96,
@@ -82,11 +83,16 @@ def make_theta_view_map(
     y /= norm
     z /= norm
 
+    # pitch(ピッチ)方向に回す.
+    pitch = np.deg2rad(pitch_deg)
+    y_ptr = np.cos(pitch) * y - np.sin(pitch) * z
+    z_ptr = np.sin(pitch) * y + np.cos(pitch) * z
+
     # yaw方向に視線を回す.
     yaw = np.deg2rad(yaw_deg)
-    world_x = np.cos(yaw) * x + np.sin(yaw) * z
-    world_y = y
-    world_z = -np.sin(yaw) * x + np.cos(yaw) * z
+    world_x = np.cos(yaw) * x + np.sin(yaw) * z_ptr
+    world_y = y_ptr
+    world_z = -np.sin(yaw) * x + np.cos(yaw) * z_ptr
 
     # 前後レンズを方向で選ぶ.
     use_front = world_z >= 0.0
@@ -126,6 +132,78 @@ def make_theta_view_map(
 
     # レンズ範囲外は黒にする.
     invalid = theta > (np.pi / 2.0)
+    map_x[invalid] = -1
+    map_y[invalid] = -1
+
+    return map_x.astype(np.float32), map_y.astype(np.float32)
+
+
+def make_theta_bev_map(
+    in_w,
+    in_h,
+    out_w,
+    out_h,
+    fov_deg=180.0,
+    front_lens="left",
+    radius_scale=0.96,
+):
+    # 魚眼円の中心と半径を決める.
+    radius = min(in_w / 4.0, in_h / 2.0) * radius_scale
+    cy = in_h / 2.0
+    front_cx = in_w * 0.25 if front_lens == "left" else in_w * 0.75
+    back_cx = in_w * 0.75 if front_lens == "left" else in_w * 0.25
+
+    # 出力画像の各ピクセルの中心からの相対座標を求める.
+    xs, ys = np.meshgrid(np.arange(out_w), np.arange(out_h))
+    dx = xs - out_w / 2.0
+    dy = ys - out_h / 2.0
+    r_out = np.sqrt(dx * dx + dy * dy)
+    r_max = min(out_w, out_h) / 2.0
+
+    # 中心からの距離r_outを天頂角theta（真下からの角度）に変換する.
+    # r_out = r_max のときに theta = fov_rad / 2 となるように等距離射影する.
+    fov_rad = np.deg2rad(fov_deg)
+    theta = (r_out / r_max) * (fov_rad / 2.0)
+    phi = np.arctan2(-dx, -dy)  # 上方向が前方
+
+    # 3Dワールド座標系（Z:前, X:右, Y:下）の方向ベクトルを計算する
+    # 真下が theta = 0（中心）
+    world_y = np.cos(theta)
+    world_x = np.sin(theta) * np.sin(phi)
+    world_z = np.sin(theta) * np.cos(phi)
+
+    # 3Dベクトルを規格化
+    norm = np.sqrt(world_x*world_x + world_y*world_y + world_z*world_z)
+    norm = np.where(norm < 1e-6, 1.0, norm)
+    world_x /= norm
+    world_y /= norm
+    world_z /= norm
+
+    use_front = world_z >= 0.0
+    cx = np.where(use_front, front_cx, back_cx)
+    lens_x = np.where(use_front, world_x, -world_x)
+    lens_y = world_y
+    lens_z = np.clip(np.where(use_front, world_z, -world_z), -1.0, 1.0)
+
+    # 魚眼中心からの角度を求める
+    lens_theta = np.arccos(lens_z)
+    sin_lens_theta = np.sin(lens_theta)
+
+    # 等距離魚眼モデルで半径方向に投影する
+    r = radius * lens_theta / (np.pi / 2.0)
+
+    map_dx = np.zeros_like(lens_theta)
+    map_dy = np.zeros_like(lens_theta)
+
+    valid = sin_lens_theta > 1e-6
+    map_dx[valid] = r[valid] * (lens_x[valid] / sin_lens_theta[valid])
+    map_dy[valid] = -r[valid] * (lens_y[valid] / sin_lens_theta[valid])
+
+    map_x = cx + map_dx
+    map_y = cy + map_dy
+
+    # レンズ範囲外は黒にする
+    invalid = (lens_theta > (np.pi / 2.0)) | (r_out > r_max)
     map_x[invalid] = -1
     map_y[invalid] = -1
 
@@ -985,6 +1063,39 @@ class VideoLabel(QLabel):
         )
 
         self.setPixmap(pixmap)
+
+
+class BEVVideoLabel(VideoLabel):
+    def paintEvent(self, event):
+        # まず通常のカメラ背景を描画
+        super().paintEvent(event)
+
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.Antialiasing)
+
+        cx = self.width() / 2.0
+        cy = self.height() / 2.0
+
+        # 車体の大きさ (幅42px, 長さ86pxの角丸矩形)
+        car_w = 42
+        car_h = 86
+
+        # 車体の描画 (透過ダークグレーにシルバー枠)
+        painter.setPen(QPen(QColor(200, 200, 200, 255), 2))
+        painter.setBrush(QColor(25, 25, 25, 220))
+        painter.drawRoundedRect(int(cx - car_w/2), int(cy - car_h/2), car_w, car_h, 8, 8)
+
+        # フロントガラスとリアガラス
+        glass_color = QColor(80, 80, 85, 200)
+        painter.setPen(Qt.NoPen)
+        painter.setBrush(glass_color)
+        painter.drawRect(int(cx - car_w*0.4), int(cy - car_h*0.25), int(car_w*0.8), int(car_h*0.12))
+        painter.drawRect(int(cx - car_w*0.4), int(cy + car_h*0.15), int(car_w*0.8), int(car_h*0.1))
+
+        # カメラ位置 (ルーフ中央の赤い丸)
+        painter.setPen(Qt.NoPen)
+        painter.setBrush(QColor(255, 65, 125, 255))
+        painter.drawEllipse(QPointF(cx, cy - car_h*0.05), 4, 4)
 
 
 class DashboardWidget(QWidget):
@@ -2272,6 +2383,7 @@ class CenterViewWidget(QWidget):
             max_speed_kmh=max_speed_kmh,
             speed_scale=speed_scale,
         )
+        self.bev_label = BEVVideoLabel("BIRD'S-EYE VIEW")
 
         # ミニマップは表示しない.
         self.minimap = None
@@ -2291,10 +2403,12 @@ class CenterViewWidget(QWidget):
         self.video_label.setParent(self)
         self.rear_label.setParent(self)
         self.dashboard.setParent(self)
+        self.bev_label.setParent(self)
 
         # オーバーレイを前面に出す.
         self.rear_label.raise_()
         self.dashboard.raise_()
+        self.bev_label.raise_()
 
         self.setStyleSheet("background-color: #050505;")
 
@@ -2343,8 +2457,9 @@ class CenterViewWidget(QWidget):
             self.rear_height,
         )
 
-        # メーターは正面映像の下の黒い領域に置く.
-        dash_x = int((self.width() - dash_w) / 2)
+        # メーターは正面映像の下の黒い領域の「左側」に寄せて置く.
+        # フロントカメラの左端 (video_x) に合わせる
+        dash_x = video_x
         dash_y = int(video_y + video_h + gap)
 
         self.dashboard.setGeometry(
@@ -2354,11 +2469,28 @@ class CenterViewWidget(QWidget):
             dash_h,
         )
 
+        # 俯瞰映像はフロントカメラの右端 (video_x + video_w) に揃え、
+        # メーターと同じ高さ (dash_h) で表示する. 幅は300px
+        bev_w = 300
+        bev_h = dash_h
+        bev_x = video_x + video_w - bev_w
+        bev_y = dash_y
+
+        self.bev_label.setGeometry(
+            bev_x,
+            bev_y,
+            bev_w,
+            bev_h,
+        )
+
     def set_front_image(self, frame_bgr):
         self.video_label.set_cv_image(frame_bgr)
 
     def set_rear_image(self, frame_bgr):
         self.rear_label.set_cv_image(frame_bgr)
+
+    def set_bev_image(self, frame_bgr):
+        self.bev_label.set_cv_image(frame_bgr)
 
     def set_status(
         self,
@@ -2607,6 +2739,17 @@ class ThetaDriverUI(QWidget):
             fov_deg=args.mirror_fov,
             front_lens=args.front_lens,
             roll_deg=args.roll,
+        )
+
+        # 俯瞰映像用の極座標魚眼投影マップを作る.
+        # サイズはメーターの高さに合わせるため 300x251 とし、視野角はアラウンドビュー用に 180.0 度とする
+        self.bev_map = make_theta_bev_map(
+            self.in_w,
+            self.in_h,
+            out_w=300,
+            out_h=251,
+            fov_deg=180.0,
+            front_lens=args.front_lens,
         )
 
         self.init_ui()
@@ -2872,12 +3015,22 @@ class ThetaDriverUI(QWidget):
         # ミラーらしく左右反転する.
         rear_view = cv2.flip(rear_view, 1)
 
+        # 俯瞰ビューを作る.
+        bev_view = cv2.remap(
+            frame,
+            self.bev_map[0],
+            self.bev_map[1],
+            interpolation=cv2.INTER_LINEAR,
+            borderMode=cv2.BORDER_CONSTANT,
+        )
+
         # 正面ビューに予測経路を重ねる.
         front_view = self.draw_predicted_path_on_front_view(front_view)
 
         # 画面に表示する.
         self.center_widget.set_front_image(front_view)
         self.center_widget.set_rear_image(rear_view)
+        self.center_widget.set_bev_image(bev_view)
 
     def keyPressEvent(self, event: QKeyEvent):
         # qかEscで終了する.
