@@ -2790,7 +2790,7 @@ class ThetaDriverUI(QWidget):
         cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*"MJPG"))
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
         cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
-        cap.set(cv2.CAP_PROP_FPS, 30)
+        cap.set(cv2.CAP_PROP_FPS, 24)
         cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
         if not cap.isOpened():
@@ -3266,7 +3266,7 @@ def main():
     parser.add_argument("--front-lens", choices=["left", "right"], default="left")
     parser.add_argument("--roll", type=float, default=0.0)
 
-    parser.add_argument("--interval-ms", type=int, default=30)
+    parser.add_argument("--interval-ms", type=int, default=41)
     parser.add_argument("--ros-interval-ms", type=int, default=20)
     parser.add_argument("--fullscreen", action="store_true")
 
