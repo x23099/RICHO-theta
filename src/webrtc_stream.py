@@ -16,7 +16,12 @@ async def run(receiver_ip, window_id, display_id, bitrate, video_size):
     options = {
         "video_size": video_size,
         "framerate": "30",
-        "draw_mouse": "0"
+        "draw_mouse": "0",
+        # 低遅延用の追加パラメータ (バッファ最小化)
+        "fflags": "nobuffer",
+        "flags": "low_delay",
+        "probesize": "32",
+        "analyzeduration": "0"
     }
     if window_id:
         options["window_id"] = str(window_id)

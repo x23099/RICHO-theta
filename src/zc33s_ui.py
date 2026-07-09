@@ -891,7 +891,7 @@ class OdomSpeedNode(Node):
             x += v * math.cos(yaw) * dt
             y += v * math.sin(yaw) * dt
             yaw += w * dt
-            points.append((x, y))
+            points.append((x, y, yaw))
 
         # 確認用にG923ハンドル角相当へ換算.
         yaw_deg = math.degrees(yaw)
@@ -2791,6 +2791,7 @@ class ThetaDriverUI(QWidget):
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
         cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
         cap.set(cv2.CAP_PROP_FPS, 30)
+        cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
         if not cap.isOpened():
             raise RuntimeError(f"カメラを開けませんでした: {device}")
@@ -2938,6 +2939,9 @@ class ThetaDriverUI(QWidget):
         if len(points) < 2:
             return front_view
 
+        # ロボットの中心(0,0,0)を先頭に追加して、自車位置の足元からパスを描画する
+        points = [(0.0, 0.0, 0.0)] + points
+
         h, w = front_view.shape[:2]
 
         # 画面上の車体基準位置を決める.
@@ -2948,64 +2952,105 @@ class ThetaDriverUI(QWidget):
         max_forward_m = 1.8
         lateral_scale_px = w * 0.45
 
-        screen_points = []
+        # Kobukiの物理車幅は約0.35mなので、左右に0.175m
+        half_width = 0.175
 
-        for forward_m, lateral_m in points:
-            # 後退時や停止付近は一旦描かない.
-            if forward_m <= 0.0:
-                continue
+        left_screen_points = []
+        right_screen_points = []
 
+        def project_point(forward_m, lateral_m):
             # 前方距離を画面上方向に変換する.
-            forward_ratio = min(forward_m / max_forward_m, 1.0)
+            forward_ratio = min(max(forward_m, 0.0) / max_forward_m, 1.0)
             screen_y = origin_y - forward_ratio * h * 0.62
 
             # 横方向を画面左右に変換する.
             # ROSでは左旋回が正になりやすいので, lateral_m正を画面左へ出す.
             perspective = 0.35 + forward_ratio * 0.85
             screen_x = origin_x - lateral_m * lateral_scale_px * perspective
+            return int(screen_x), int(screen_y)
 
-            if 0 <= screen_x < w and 0 <= screen_y < h:
-                screen_points.append((int(screen_x), int(screen_y)))
+        for x, y, yaw in points:
+            # 左右の境界点を計算
+            # xは前方(longitudinal), yは横方向(lateral, 左が正)
+            x_l = x - half_width * math.sin(yaw)
+            y_l = y + half_width * math.cos(yaw)
 
-        if len(screen_points) < 2:
-            return front_view
+            x_r = x + half_width * math.sin(yaw)
+            y_r = y - half_width * math.cos(yaw)
 
-        pts = np.array(screen_points, dtype=np.int32).reshape((-1, 1, 2))
+            # 画面上に投影
+            px_l, py_l = project_point(x_l, y_l)
+            px_r, py_r = project_point(x_r, y_r)
 
-        # 半透明の太い下地を描く.
+            left_screen_points.append((px_l, py_l))
+            right_screen_points.append((px_r, py_r))
+
+        # ポリゴンを形成する点リスト (左境界を奥へ進み、右境界を手前に戻る)
+        poly_points = left_screen_points + list(reversed(right_screen_points))
+        pts = np.array(poly_points, dtype=np.int32).reshape((-1, 1, 2))
+
+        # 描画用のオーバーレイを作成 (半透明描画のため)
         overlay = front_view.copy()
+
+        # 1. パスの塗りつぶし (美しいエレクトリックブルー / シアン)
+        # BGR: (255, 162, 0)
+        cv2.fillPoly(overlay, [pts], color=(255, 162, 0))
+
+        # 2. 境界線のネオングロー効果 (太めの半透明線)
+        left_pts_arr = np.array(left_screen_points, dtype=np.int32).reshape((-1, 1, 2))
+        right_pts_arr = np.array(right_screen_points, dtype=np.int32).reshape((-1, 1, 2))
+        
         cv2.polylines(
             overlay,
-            [pts],
+            [left_pts_arr],
             isClosed=False,
-            color=(0, 255, 0),
-            thickness=12,
+            color=(255, 200, 100),
+            thickness=8,
             lineType=cv2.LINE_AA,
         )
-        front_view = cv2.addWeighted(overlay, 0.35, front_view, 0.65, 0)
+        cv2.polylines(
+            overlay,
+            [right_pts_arr],
+            isClosed=False,
+            color=(255, 200, 100),
+            thickness=8,
+            lineType=cv2.LINE_AA,
+        )
 
-        # 中心の明るい線を描く.
+        # オーバーレイをブレンド (不透明度 0.4)
+        front_view = cv2.addWeighted(overlay, 0.40, front_view, 0.60, 0)
+
+        # 3. 境界線のシャープな芯線を描画 (ブレンド後の画像の上に白に近いシアンで重ねる)
         cv2.polylines(
             front_view,
-            [pts],
+            [left_pts_arr],
             isClosed=False,
-            color=(80, 255, 80),
-            thickness=4,
+            color=(255, 240, 200),
+            thickness=2,
             lineType=cv2.LINE_AA,
         )
-
-        # 先端に点を描く.
-        cv2.circle(front_view, screen_points[-1], 7, (80, 255, 80), -1)
+        cv2.polylines(
+            front_view,
+            [right_pts_arr],
+            isClosed=False,
+            color=(255, 240, 200),
+            thickness=2,
+            lineType=cv2.LINE_AA,
+        )
 
         return front_view
 
     def update_frame(self):
+        t0 = time.perf_counter()
+
+        # 1. カメラ映像取得
         ret, frame = self.cap.read()
+        t1 = time.perf_counter()
         if not ret:
             print("フレーム取得に失敗しました.")
             return
 
-        # 正面ビューを作る.
+        # 2. フロントビュー再マッピング
         front_view = cv2.remap(
             frame,
             self.front_map[0],
@@ -3013,8 +3058,9 @@ class ThetaDriverUI(QWidget):
             interpolation=cv2.INTER_LINEAR,
             borderMode=cv2.BORDER_CONSTANT,
         )
+        t2 = time.perf_counter()
 
-        # 後方ビューを作る.
+        # 3. リアビュー再マッピング
         rear_view = cv2.remap(
             frame,
             self.rear_map[0],
@@ -3022,11 +3068,10 @@ class ThetaDriverUI(QWidget):
             interpolation=cv2.INTER_LINEAR,
             borderMode=cv2.BORDER_CONSTANT,
         )
-
-        # ミラーらしく左右反転する.
         rear_view = cv2.flip(rear_view, 1)
+        t3 = time.perf_counter()
 
-        # 俯瞰ビューを作る.
+        # 4. 俯瞰ビュー(BEV)再マッピング
         bev_view = cv2.remap(
             frame,
             self.bev_map[0],
@@ -3034,14 +3079,68 @@ class ThetaDriverUI(QWidget):
             interpolation=cv2.INTER_LINEAR,
             borderMode=cv2.BORDER_CONSTANT,
         )
+        t4 = time.perf_counter()
 
-        # 正面ビューに予測経路を重ねる.
+        # 5. 予測経路描画
         front_view = self.draw_predicted_path_on_front_view(front_view)
+        t5 = time.perf_counter()
 
-        # 画面に表示する.
+        # ミリ秒精度のタイムスタンプを描画 (受信側での遅延測定用)
+        now_ms = int(time.time() * 1000) % 100000
+        timestamp_str = f"TIME: {time.strftime('%H:%M:%S')}.{now_ms:05d}"
+        cv2.putText(
+            front_view,
+            timestamp_str,
+            (10, front_view.shape[0] - 20),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.5,
+            (0, 255, 0),
+            1,
+            cv2.LINE_AA,
+        )
+
+        # 6. GUIへの画像セット
         self.center_widget.set_front_image(front_view)
         self.center_widget.set_rear_image(rear_view)
         self.center_widget.set_bev_image(bev_view)
+        t6 = time.perf_counter()
+
+        # レイテンシ統計の記録 (30フレームごとに平均値を出力)
+        if not hasattr(self, 'frame_count_for_log'):
+            self.frame_count_for_log = 0
+            self.latency_stats = {
+                'cap': 0.0, 'remap_f': 0.0, 'remap_r': 0.0, 'remap_b': 0.0, 'path': 0.0, 'gui': 0.0, 'total': 0.0
+            }
+        
+        self.frame_count_for_log += 1
+        self.latency_stats['cap'] += (t1 - t0)
+        self.latency_stats['remap_f'] += (t2 - t1)
+        self.latency_stats['remap_r'] += (t3 - t2)
+        self.latency_stats['remap_b'] += (t4 - t3)
+        self.latency_stats['path'] += (t5 - t4)
+        self.latency_stats['gui'] += (t6 - t5)
+        self.latency_stats['total'] += (t6 - t0)
+
+        if self.frame_count_for_log >= 30:
+            avg_cap = (self.latency_stats['cap'] / 30) * 1000
+            avg_rf = (self.latency_stats['remap_f'] / 30) * 1000
+            avg_rr = (self.latency_stats['remap_r'] / 30) * 1000
+            avg_rb = (self.latency_stats['remap_b'] / 30) * 1000
+            avg_path = (self.latency_stats['path'] / 30) * 1000
+            avg_gui = (self.latency_stats['gui'] / 30) * 1000
+            avg_total = (self.latency_stats['total'] / 30) * 1000
+            
+            print(f"[LATENCY] Avg Processing (30 frames): "
+                  f"Cap: {avg_cap:.1f}ms | "
+                  f"Remap(F/R/B): {avg_rf:.1f}/{avg_rr:.1f}/{avg_rb:.1f}ms | "
+                  f"PathDraw: {avg_path:.1f}ms | "
+                  f"GuiUpdate: {avg_gui:.1f}ms | "
+                  f"Total: {avg_total:.1f}ms")
+            
+            self.frame_count_for_log = 0
+            self.latency_stats = {
+                'cap': 0.0, 'remap_f': 0.0, 'remap_r': 0.0, 'remap_b': 0.0, 'path': 0.0, 'gui': 0.0, 'total': 0.0
+            }
 
     def keyPressEvent(self, event: QKeyEvent):
         # qかEscで終了する.
