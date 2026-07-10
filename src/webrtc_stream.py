@@ -31,10 +31,20 @@ async def run(receiver_ip, window_id, display_id, bitrate, video_size):
     # Use PyAV's MediaPlayer to grab the display.
     player = MediaPlayer(display_id, format="x11grab", options=options)
 
+    from aiortc import RTCRtpSender
+
     pc = RTCPeerConnection()
     
-    # Add video track.
-    sender = pc.addTrack(player.video)
+    # Video トラックをトランスシーバー経由で追加し、VP8 コーデックを優先設定する
+    transceiver = pc.addTransceiver(player.video, direction="sendonly")
+    capabilities = RTCRtpSender.getCapabilities("video")
+    vp8_codecs = [c for c in capabilities.codecs if c.name == "VP8"]
+    if vp8_codecs:
+        try:
+            transceiver.setCodecPreferences(vp8_codecs)
+            logger.info("Enforced VP8 codec preference for ultra-low latency")
+        except Exception as e:
+            logger.warn(f"Failed to set codec preferences: {e}")
     
     # Parse bitrate string (e.g. 1500k, 4M) to integer bps.
     bitrate_bps = 1500000
