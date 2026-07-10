@@ -5,38 +5,115 @@ import logging
 import os
 import sys
 import aiohttp
-from aiortc import RTCPeerConnection, RTCSessionDescription
-from aiortc.contrib.media import MediaPlayer
+import socket
+import io
+import av
+from aiortc import RTCPeerConnection, RTCSessionDescription, MediaStreamTrack
+from av import VideoFrame
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("webrtc_stream")
 
-async def run(receiver_ip, window_id, display_id, bitrate, video_size):
-    # FFmpeg x11grab options.
-    options = {
-        "video_size": video_size,
-        "framerate": "60",
-        "draw_mouse": "0",
-        # 低遅延用の追加パラメータ (バッファ最小化)
-        "fflags": "nobuffer",
-        "flags": "low_delay",
-        "probesize": "32",
-        "analyzeduration": "0"
-    }
-    if window_id:
-        options["window_id"] = str(window_id)
 
-    logger.info(f"Opening x11grab on display {display_id} (Window ID: {window_id}, Size: {video_size})")
+class SocketVideoTrack(MediaStreamTrack):
+    kind = "video"
+
+    def __init__(self, port=9999):
+        super().__init__()
+        self.port = port
+        self.sock = None
+        self.buffer = b""
+        self._connect()
+
+    def _connect(self):
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        try:
+            self.sock.connect(("127.0.0.1", self.port))
+            self.sock.setblocking(False)
+            logger.info(f"Connected to UI image socket on port {self.port}")
+        except Exception as e:
+            logger.error(f"Failed to connect to UI socket on port {self.port}: {e}")
+            self.sock = None
+
+    async def recv(self):
+        pts, time_base = await self.next_timestamp()
+
+        if self.sock is None:
+            self._connect()
+            if self.sock is None:
+                await asyncio.sleep(0.04)
+                return self._create_dummy_frame(pts, time_base)
+
+        loop = asyncio.get_event_loop()
+
+        try:
+            while len(self.buffer) < 4:
+                data = await loop.run_in_executor(None, self._recv_chunk, 4096)
+                if not data:
+                    raise ConnectionError("Socket closed")
+                self.buffer += data
+
+            length = int.from_bytes(self.buffer[:4], byteorder="big")
+            self.buffer = self.buffer[4:]
+
+            while len(self.buffer) < length:
+                data = await loop.run_in_executor(None, self._recv_chunk, min(4096, length - len(self.buffer)))
+                if not data:
+                    raise ConnectionError("Socket closed")
+                self.buffer += data
+
+            jpeg_data = self.buffer[:length]
+            self.buffer = self.buffer[length:]
+
+            # PyAVでJPEGメモリデータを高速デコード
+            container = av.open(io.BytesIO(jpeg_data), format="mjpeg")
+            frame = next(container.decode(video=0))
+            frame.pts = pts
+            frame.time_base = time_base
+            container.close()
+            return frame
+
+        except Exception as e:
+            logger.warn(f"Socket receive/decode error: {e}, reconnecting...")
+            if self.sock:
+                try:
+                    self.sock.close()
+                except Exception:
+                    pass
+                self.sock = None
+            await asyncio.sleep(0.04)
+            return self._create_dummy_frame(pts, time_base)
+
+    def _recv_chunk(self, size):
+        try:
+            self.sock.setblocking(True)
+            return self.sock.recv(size)
+        except Exception:
+            return b""
+
+    def _create_dummy_frame(self, pts, time_base):
+        # 接続待ちの間のダミー黒画面フレームを作成
+        frame = VideoFrame(width=800, height=450)
+        # 黒でクリア(YUV)
+        for plane in frame.planes:
+            pass
+        frame.pts = pts
+        frame.time_base = time_base
+        return frame
+
+
+async def run(receiver_ip, window_id, display_id, bitrate, video_size):
+    logger.info(f"Setting up WebRTC Stream using Image Socket (Port 9999)...")
     
-    # Use PyAV's MediaPlayer to grab the display.
-    player = MediaPlayer(display_id, format="x11grab", options=options)
+    # x11grabの代わりにローカルソケットから画像を受け取るカスタムトラックを使用
+    video_track = SocketVideoTrack(port=9999)
 
     from aiortc import RTCRtpSender
 
     pc = RTCPeerConnection()
     
     # Video トラックをトランスシーバー経由で追加し、VP8 コーデックを優先設定する
-    transceiver = pc.addTransceiver(player.video, direction="sendonly")
+    transceiver = pc.addTransceiver(video_track, direction="sendonly")
     capabilities = RTCRtpSender.getCapabilities("video")
     vp8_codecs = [c for c in capabilities.codecs if c.name == "VP8"]
     if vp8_codecs:

@@ -27,7 +27,8 @@ from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 from sensor_msgs.msg import Imu
 from std_msgs.msg import String, Int32, Float32
-from PySide6.QtCore import Qt, QTimer, QPointF, QRectF
+import socket
+from PySide6.QtCore import Qt, QTimer, QPointF, QRectF, QByteArray, QBuffer, QIODevice
 from PySide6.QtGui import QImage, QPixmap, QKeyEvent, QPainter, QColor, QPen, QFont, QPolygonF
 from PySide6.QtWidgets import QApplication, QLabel, QWidget, QHBoxLayout
 
@@ -2661,9 +2662,71 @@ class G923InputReader:
                 time.sleep(0.2)
 
 
+class ImageSocketServer(threading.Thread):
+    def __init__(self, ui_window, port=9999):
+        super().__init__(daemon=True)
+        self.ui_window = ui_window
+        self.port = port
+        self.running = True
+
+    def run(self):
+        server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        try:
+            server_sock.bind(("127.0.0.1", self.port))
+            server_sock.listen(1)
+            print(f"[INFO] Image socket server listening on 127.0.0.1:{self.port}")
+        except Exception as e:
+            print(f"[ERROR] Failed to bind image socket on port {self.port}: {e}")
+            return
+
+        while self.running:
+            try:
+                server_sock.settimeout(1.0)
+                conn, addr = server_sock.accept()
+                print(f"[INFO] webrtc_stream connected from {addr}")
+                conn.setblocking(True)
+
+                last_sent_time = 0.0
+                while self.running:
+                    now = time.time()
+                    if now - last_sent_time < 0.038: # 約26fpsの上限
+                        time.sleep(0.005)
+                        continue
+
+                    jpeg_data = None
+                    with self.ui_window.latest_ui_frame_lock:
+                        jpeg_data = self.ui_window.latest_ui_frame_data
+
+                    if jpeg_data is not None:
+                        try:
+                            length = len(jpeg_data)
+                            conn.sendall(length.to_bytes(4, byteorder="big") + jpeg_data)
+                            last_sent_time = now
+                        except (socket.error, ConnectionResetError) as e:
+                            print(f"[INFO] Stream connection closed: {e}")
+                            break
+                conn.close()
+            except socket.timeout:
+                continue
+            except Exception as e:
+                if self.running:
+                    print(f"[WARN] Socket server exception: {e}")
+                time.sleep(0.5)
+        server_sock.close()
+
+    def stop(self):
+        self.running = False
+
+
 class ThetaDriverUI(QWidget):
     def __init__(self, args):
         super().__init__()
+
+        self.latest_ui_frame_lock = threading.Lock()
+        self.latest_ui_frame_data = None
+        self.socket_server = ImageSocketServer(self, port=9999)
+        self.socket_server.start()
 
         self.args = args
         self.start_time = time.time()
@@ -3107,6 +3170,21 @@ class ThetaDriverUI(QWidget):
         # self.center_widget.set_bev_image(bev_view)
         t6 = time.perf_counter()
 
+        # UIウィジェット全体のラスタライズキャプチャ
+        try:
+            pixmap = self.grab()
+            qimg = pixmap.toImage()
+
+            byte_array = QByteArray()
+            buffer = QBuffer(byte_array)
+            buffer.open(QIODevice.WriteOnly)
+            qimg.save(buffer, "JPEG", 80) # 品質 80%
+
+            with self.latest_ui_frame_lock:
+                self.latest_ui_frame_data = byte_array.data()
+        except Exception as e:
+            print(f"[WARN] Failed to grab UI image: {e}")
+
         # レイテンシ統計の記録 (30フレームごとに平均値を出力)
         if not hasattr(self, 'frame_count_for_log'):
             self.frame_count_for_log = 0
@@ -3154,6 +3232,10 @@ class ThetaDriverUI(QWidget):
             self.center_widget.change_dashboard_page(1)
 
     def closeEvent(self, event):
+        # 画像ソケットサーバーを停止
+        if hasattr(self, "socket_server"):
+            self.socket_server.stop()
+
         # タイマーを止める.
         if hasattr(self, "video_timer"):
             self.video_timer.stop()
