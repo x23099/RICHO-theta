@@ -171,6 +171,10 @@ class CameraVideoTrack(MediaStreamTrack):
         self._start_time = None
         self._time_base = Fraction(1, 90000)
 
+        self.latest_frame = np.zeros((self.height, self.width, 3), dtype=np.uint8)
+        self.running = True
+        self.cap = None
+
         if self.is_mock:
             self.cap = MockCapture(width, height)
         else:
@@ -187,6 +191,18 @@ class CameraVideoTrack(MediaStreamTrack):
             if not self.cap.isOpened():
                 raise RuntimeError(f"Failed to open camera: {device}")
 
+        # Start capture thread
+        self.thread = threading.Thread(target=self._capture_loop, daemon=True)
+        self.thread.start()
+
+    def _capture_loop(self):
+        while self.running:
+            ret, frame = self.cap.read()
+            if ret:
+                self.latest_frame = frame
+            else:
+                time.sleep(0.01)
+
     async def recv(self):
         import time
         if self._start_time is None:
@@ -201,15 +217,10 @@ class CameraVideoTrack(MediaStreamTrack):
         pts = int((time.time() - self._start_time) * 90000)
         time_base = self._time_base
 
-        if self.is_mock:
-            ret, frame = self.cap.read()
-        else:
-            ret, frame = self.cap.read()
+        # Get latest frame safely (shallow copy is fine for read-only)
+        frame = self.latest_frame.copy()
 
-        if not ret:
-            frame = np.zeros((self.height, self.width, 3), dtype=np.uint8)
-
-        # BGR -> YUV420p (ゼロコピー用変換)
+        # BGR -> YUV420p
         yuv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2YUV_I420)
         av_frame = av.VideoFrame.from_ndarray(yuv_frame, format="yuv420p")
         av_frame.pts = pts

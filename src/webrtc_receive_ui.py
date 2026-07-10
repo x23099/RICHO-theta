@@ -1916,6 +1916,8 @@ class WebRTCServerThread(threading.Thread):
         self.signals = signals
         self.loop = None
         self.pc = None
+        self.latest_frame = None
+        self.frame_lock = threading.Lock()
 
     def run(self):
         self.loop = asyncio.new_event_loop()
@@ -1970,7 +1972,8 @@ class WebRTCServerThread(threading.Thread):
             try:
                 frame = await track.recv()
                 img = frame.to_ndarray(format="bgr24")
-                self.signals.frame_received.emit(img)
+                with self.frame_lock:
+                    self.latest_frame = img
                 
                 # FPS / タイムスタンプの簡易測定
                 recv_count += 1
@@ -2022,11 +2025,15 @@ class ThetaDriverUI(QWidget):
         
         # WebRTC 受信エンジンの開始
         self.signals = ReceiveSignals()
-        self.signals.frame_received.connect(self.update_frame)
         self.signals.telemetry_received.connect(self.update_telemetry)
         
         self.server_thread = WebRTCServerThread(self.signals)
         self.server_thread.start()
+
+        # 映像表示更新用の定周期タイマー (24FPS = 約41ms)
+        self.video_timer = QTimer(self)
+        self.video_timer.timeout.connect(self.update_frame)
+        self.video_timer.start(41)
 
         # モック速度用タイマー (デモ用)
         if args.mock_speed:
@@ -2348,8 +2355,17 @@ class ThetaDriverUI(QWidget):
 
         return front_view
 
-    @Slot(np.ndarray)
-    def update_frame(self, frame):
+    def update_frame(self):
+        # WebRTCスレッドから最新の画像フレームをスレッドセーフに取得する
+        frame = None
+        if hasattr(self, "server_thread") and self.server_thread is not None:
+            with self.server_thread.frame_lock:
+                if self.server_thread.latest_frame is not None:
+                    frame = self.server_thread.latest_frame.copy()
+
+        if frame is None:
+            return # まだ映像が届いていない場合は何もしない
+
         # 1. フロントビュー展開
         front_view = cv2.remap(
             frame,
