@@ -8,6 +8,7 @@ import aiohttp
 import socket
 import io
 import av
+from fractions import Fraction
 from aiortc import RTCPeerConnection, RTCSessionDescription, MediaStreamTrack
 from av import VideoFrame
 
@@ -23,6 +24,8 @@ class SocketVideoTrack(MediaStreamTrack):
         self.port = port
         self.sock = None
         self.buffer = b""
+        self._pts = 0
+        self._time_base = Fraction(1, 90000)
         self._connect()
 
     def _connect(self):
@@ -36,7 +39,10 @@ class SocketVideoTrack(MediaStreamTrack):
             self.sock = None
 
     async def recv(self):
-        pts, time_base = await self.next_timestamp()
+        # 90000Hz に対して 24 FPS (90000/24 = 3750) ずつ進める
+        self._pts += 3750
+        pts = self._pts
+        time_base = self._time_base
 
         if self.sock is None:
             self._connect()
