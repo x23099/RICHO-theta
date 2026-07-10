@@ -2412,14 +2412,16 @@ class CenterViewWidget(QWidget):
         )
 
         self.video_label.setParent(self)
-        self.rear_label.setParent(self)
         self.dashboard.setParent(self)
+
+        # バックミラーと俯瞰映像(BEV)は非表示にする
+        self.rear_label.setParent(self)
+        self.rear_label.hide()
         self.bev_label.setParent(self)
+        self.bev_label.hide()
 
         # オーバーレイを前面に出す.
-        self.rear_label.raise_()
         self.dashboard.raise_()
-        self.bev_label.raise_()
 
         self.setStyleSheet("background-color: #050505;")
 
@@ -3060,26 +3062,26 @@ class ThetaDriverUI(QWidget):
         )
         t2 = time.perf_counter()
 
-        # 3. リアビュー再マッピング
-        rear_view = cv2.remap(
-            frame,
-            self.rear_map[0],
-            self.rear_map[1],
-            interpolation=cv2.INTER_LINEAR,
-            borderMode=cv2.BORDER_CONSTANT,
-        )
-        rear_view = cv2.flip(rear_view, 1)
-        t3 = time.perf_counter()
+        # 3. リアビュー再マッピング (コメントアウト)
+        # rear_view = cv2.remap(
+        #     frame,
+        #     self.rear_map[0],
+        #     self.rear_map[1],
+        #     interpolation=cv2.INTER_LINEAR,
+        #     borderMode=cv2.BORDER_CONSTANT,
+        # )
+        # rear_view = cv2.flip(rear_view, 1)
+        t3 = t2
 
-        # 4. 俯瞰ビュー(BEV)再マッピング
-        bev_view = cv2.remap(
-            frame,
-            self.bev_map[0],
-            self.bev_map[1],
-            interpolation=cv2.INTER_LINEAR,
-            borderMode=cv2.BORDER_CONSTANT,
-        )
-        t4 = time.perf_counter()
+        # 4. 俯瞰ビュー(BEV)再マッピング (コメントアウト)
+        # bev_view = cv2.remap(
+        #     frame,
+        #     self.bev_map[0],
+        #     self.bev_map[1],
+        #     interpolation=cv2.INTER_LINEAR,
+        #     borderMode=cv2.BORDER_CONSTANT,
+        # )
+        t4 = t3
 
         # 5. 予測経路描画
         front_view = self.draw_predicted_path_on_front_view(front_view)
@@ -3101,8 +3103,8 @@ class ThetaDriverUI(QWidget):
 
         # 6. GUIへの画像セット
         self.center_widget.set_front_image(front_view)
-        self.center_widget.set_rear_image(rear_view)
-        self.center_widget.set_bev_image(bev_view)
+        # self.center_widget.set_rear_image(rear_view)
+        # self.center_widget.set_bev_image(bev_view)
         t6 = time.perf_counter()
 
         # レイテンシ統計の記録 (30フレームごとに平均値を出力)
