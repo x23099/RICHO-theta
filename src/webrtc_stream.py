@@ -24,7 +24,7 @@ class SocketVideoTrack(MediaStreamTrack):
         self.port = port
         self.sock = None
         self.buffer = b""
-        self._pts = 0
+        self._start_time = None
         self._time_base = Fraction(1, 90000)
         self._connect()
 
@@ -39,9 +39,12 @@ class SocketVideoTrack(MediaStreamTrack):
             self.sock = None
 
     async def recv(self):
-        # 90000Hz に対して 24 FPS (90000/24 = 3750) ずつ進める
-        self._pts += 3750
-        pts = self._pts
+        import time
+        if self._start_time is None:
+            self._start_time = time.time()
+            
+        elapsed_seconds = time.time() - self._start_time
+        pts = int(elapsed_seconds * 90000)
         time_base = self._time_base
 
         if self.sock is None:

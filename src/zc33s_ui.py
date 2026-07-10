@@ -28,6 +28,7 @@ from nav_msgs.msg import Odometry
 from sensor_msgs.msg import Imu
 from std_msgs.msg import String, Int32, Float32
 import socket
+import queue
 from PySide6.QtCore import Qt, QTimer, QPointF, QRectF, QByteArray, QBuffer, QIODevice
 from PySide6.QtGui import QImage, QPixmap, QKeyEvent, QPainter, QColor, QPen, QFont, QPolygonF
 from PySide6.QtWidgets import QApplication, QLabel, QWidget, QHBoxLayout
@@ -2687,23 +2688,17 @@ class ImageSocketServer(threading.Thread):
                 print(f"[INFO] webrtc_stream connected from {addr}")
                 conn.setblocking(True)
 
-                last_sent_time = 0.0
                 while self.running:
-                    now = time.time()
-                    if now - last_sent_time < 0.038: # 約26fpsの上限
-                        time.sleep(0.005)
+                    try:
+                        jpeg_data = self.ui_window.image_queue.get(timeout=1.0)
+                    except queue.Empty:
                         continue
-
-                    jpeg_data = None
-                    with self.ui_window.latest_ui_frame_lock:
-                        jpeg_data = self.ui_window.latest_ui_frame_data
 
                     if jpeg_data is not None:
                         try:
                             send_bytes = bytes(jpeg_data)
                             length = len(send_bytes)
                             conn.sendall(length.to_bytes(4, byteorder="big") + send_bytes)
-                            last_sent_time = now
                         except (socket.error, ConnectionResetError) as e:
                             print(f"[INFO] Stream connection closed: {e}")
                             break
@@ -2724,8 +2719,7 @@ class ThetaDriverUI(QWidget):
     def __init__(self, args):
         super().__init__()
 
-        self.latest_ui_frame_lock = threading.Lock()
-        self.latest_ui_frame_data = None
+        self.image_queue = queue.Queue(maxsize=1)
         self.socket_server = ImageSocketServer(self, port=9999)
         self.socket_server.start()
 
@@ -3183,8 +3177,13 @@ class ThetaDriverUI(QWidget):
             buffer = QBuffer(byte_array)
             buffer.open(QIODevice.WriteOnly)
             if qimg.save(buffer, "JPEG", 80): # 品質 80%
-                with self.latest_ui_frame_lock:
-                    self.latest_ui_frame_data = bytes(byte_array.data())
+                jpeg_bytes = bytes(byte_array.data())
+                if self.image_queue.full():
+                    try:
+                        self.image_queue.get_nowait()
+                    except queue.Empty:
+                        pass
+                self.image_queue.put_nowait(jpeg_bytes)
             else:
                 print(f"[DEBUG-GRAB] qimg.save to JPEG failed. Size: {qimg.width()}x{qimg.height()}")
         except Exception as e:
