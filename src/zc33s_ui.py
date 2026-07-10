@@ -3174,6 +3174,9 @@ class ThetaDriverUI(QWidget):
         # UIウィジェット全体のラスタライズキャプチャ
         try:
             pixmap = self.grab()
+            if pixmap.isNull():
+                print("[DEBUG-GRAB] Grab returned Null Pixmap (0x0)")
+            
             qimg = pixmap.toImage()
 
             byte_array = QByteArray()
@@ -3181,8 +3184,9 @@ class ThetaDriverUI(QWidget):
             buffer.open(QIODevice.WriteOnly)
             if qimg.save(buffer, "JPEG", 80): # 品質 80%
                 with self.latest_ui_frame_lock:
-                    # QByteArrayを明示的にPythonのbytesオブジェクトにキャスト
                     self.latest_ui_frame_data = bytes(byte_array.data())
+            else:
+                print(f"[DEBUG-GRAB] qimg.save to JPEG failed. Size: {qimg.width()}x{qimg.height()}")
         except Exception as e:
             print(f"[WARN] Failed to grab UI image: {e}")
 

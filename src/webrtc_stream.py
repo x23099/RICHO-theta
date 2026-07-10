@@ -74,7 +74,9 @@ class SocketVideoTrack(MediaStreamTrack):
             return frame
 
         except Exception as e:
+            import traceback
             logger.warn(f"Socket receive/decode error: {e}, reconnecting...")
+            traceback.print_exc()
             if self.sock:
                 try:
                     self.sock.close()
