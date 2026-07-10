@@ -2700,8 +2700,9 @@ class ImageSocketServer(threading.Thread):
 
                     if jpeg_data is not None:
                         try:
-                            length = len(jpeg_data)
-                            conn.sendall(length.to_bytes(4, byteorder="big") + jpeg_data)
+                            send_bytes = bytes(jpeg_data)
+                            length = len(send_bytes)
+                            conn.sendall(length.to_bytes(4, byteorder="big") + send_bytes)
                             last_sent_time = now
                         except (socket.error, ConnectionResetError) as e:
                             print(f"[INFO] Stream connection closed: {e}")
@@ -3178,10 +3179,10 @@ class ThetaDriverUI(QWidget):
             byte_array = QByteArray()
             buffer = QBuffer(byte_array)
             buffer.open(QIODevice.WriteOnly)
-            qimg.save(buffer, "JPEG", 80) # 品質 80%
-
-            with self.latest_ui_frame_lock:
-                self.latest_ui_frame_data = byte_array.data()
+            if qimg.save(buffer, "JPEG", 80): # 品質 80%
+                with self.latest_ui_frame_lock:
+                    # QByteArrayを明示的にPythonのbytesオブジェクトにキャスト
+                    self.latest_ui_frame_data = bytes(byte_array.data())
         except Exception as e:
             print(f"[WARN] Failed to grab UI image: {e}")
 
