@@ -15,7 +15,7 @@ async def run(receiver_ip, window_id, display_id, bitrate, video_size):
     # FFmpeg x11grab options.
     options = {
         "video_size": video_size,
-        "framerate": "24",
+        "framerate": "60",
         "draw_mouse": "0",
         # 低遅延用の追加パラメータ (バッファ最小化)
         "fflags": "nobuffer",

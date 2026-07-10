@@ -9,7 +9,7 @@ CAMERA_DEVICE="${2:-/dev/video0}"
 SCREEN_SIZE="${3:-large}"  # standard (large) or small (1024x768 optimized)
 
 DISPLAY_ID="${DISPLAY:-:1.0}"
-BITRATE="4000k"
+BITRATE="${4:-30M}"
 
 UI_ARGS=(
     "--device" "$CAMERA_DEVICE"
