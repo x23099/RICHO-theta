@@ -329,6 +329,10 @@ class OdomSpeedNode(Node):
     ):
         super().__init__("theta_driver_ui_odom_node")
 
+        # Publishers for WASD keyboard simulation control
+        self.cmd_vel_joy_pub = self.create_publisher(Twist, '/cmd_vel_joy', 10)
+        self.cmd_vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
+
         self.speed_mps = 0.0
         self.linear_x = 0.0
         self.angular_z = 0.0
@@ -865,7 +869,11 @@ class OdomSpeedNode(Node):
         else:
             v = float(self.cmd_linear_x)
 
-        if odom_is_recent and abs(self.odom_angular_z) >= self.prediction_angular_deadband:
+        # Prioritize commanded steering to ensure instant rotation response on UI
+        if abs(self.cmd_angular_z) >= 1e-4:
+            w = float(self.cmd_angular_z)
+            source = "cmd"
+        elif odom_is_recent and abs(self.odom_angular_z) >= self.prediction_angular_deadband:
             w = float(self.odom_angular_z)
             source = "odom"
         else:
@@ -878,9 +886,9 @@ class OdomSpeedNode(Node):
         ):
             return []
 
-        # ここでwを少し弱める. cmdを直接使うと曲がりすぎやすいため.
+        # Scale down cmd steer slightly for realistic turning path
         if source == "cmd":
-            w *= 0.45
+            w *= 0.85
 
         x = 0.0
         y = 0.0
@@ -2727,6 +2735,14 @@ class ThetaDriverUI(QWidget):
         self.start_time = time.time()
         self.ros_spin_error_reported = False
 
+        # Keyboard steering controller simulation (WASD)
+        self.keys_pressed = {
+            Qt.Key_W: False,
+            Qt.Key_A: False,
+            Qt.Key_S: False,
+            Qt.Key_D: False
+        }
+
         if args.mock_camera:
             print("[INFO] Mock camera mode")
             self.cap = MockCapture(args.cam_width, args.cam_height)
@@ -2906,6 +2922,50 @@ class ThetaDriverUI(QWidget):
         if delta != 0:
             self.center_widget.change_dashboard_page(delta)
 
+        # Process WASD keyboard control
+        self.process_keyboard_control()
+
+    def process_keyboard_control(self):
+        if self.odom_node is None:
+            return
+
+        # Calculate speed and angular velocity based on W, A, S, D states
+        target_v = 0.0
+        target_w = 0.0
+
+        if self.keys_pressed.get(Qt.Key_W, False):
+            target_v = 0.35  # forward speed m/s
+        elif self.keys_pressed.get(Qt.Key_S, False):
+            target_v = -0.25 # backward speed m/s
+
+        if self.keys_pressed.get(Qt.Key_A, False):
+            target_w = 0.55  # turn left rad/s
+        elif self.keys_pressed.get(Qt.Key_D, False):
+            target_w = -0.55 # turn right rad/s
+
+        any_key = any(self.keys_pressed.values())
+        
+        # Override cmd values and publish Twist if keyboard input is active or was active (to send stop command once)
+        if any_key or getattr(self, '_had_keyboard_input', False):
+            self.odom_node.cmd_linear_x = target_v
+            self.odom_node.cmd_angular_z = target_w
+            
+            # Publish Twist message
+            from geometry_msgs.msg import Twist
+            msg = Twist()
+            msg.linear.x = target_v
+            msg.angular.z = target_w
+            
+            if hasattr(self.odom_node, 'cmd_vel_joy_pub'):
+                self.odom_node.cmd_vel_joy_pub.publish(msg)
+            if hasattr(self.odom_node, 'cmd_vel_pub'):
+                self.odom_node.cmd_vel_pub.publish(msg)
+
+            if any_key:
+                self._had_keyboard_input = True
+            else:
+                self._had_keyboard_input = False
+
     def spin_ros_once(self):
         try:
             if self.odom_node is not None and rclpy.ok():
@@ -3052,9 +3112,9 @@ class ThetaDriverUI(QWidget):
         # 描画用のオーバーレイを作成 (半透明描画のため)
         overlay = front_view.copy()
 
-        # 1. パスの塗りつぶし (美しいエレクトリックブルー / シアン)
-        # BGR: (255, 162, 0)
-        cv2.fillPoly(overlay, [pts], color=(255, 162, 0))
+        # 1. パスの塗りつぶし (より濃く美しいダークエレクトリックブルー)
+        # BGR: (180, 50, 0)
+        cv2.fillPoly(overlay, [pts], color=(180, 50, 0))
 
         # 2. 境界線のネオングロー効果 (太めの半透明線)
         left_pts_arr = np.array(left_screen_points, dtype=np.int32).reshape((-1, 1, 2))
@@ -3064,7 +3124,7 @@ class ThetaDriverUI(QWidget):
             overlay,
             [left_pts_arr],
             isClosed=False,
-            color=(255, 200, 100),
+            color=(200, 80, 0),
             thickness=8,
             lineType=cv2.LINE_AA,
         )
@@ -3072,7 +3132,7 @@ class ThetaDriverUI(QWidget):
             overlay,
             [right_pts_arr],
             isClosed=False,
-            color=(255, 200, 100),
+            color=(200, 80, 0),
             thickness=8,
             lineType=cv2.LINE_AA,
         )
@@ -3085,7 +3145,7 @@ class ThetaDriverUI(QWidget):
             front_view,
             [left_pts_arr],
             isClosed=False,
-            color=(255, 240, 200),
+            color=(255, 120, 0),
             thickness=2,
             lineType=cv2.LINE_AA,
         )
@@ -3093,7 +3153,7 @@ class ThetaDriverUI(QWidget):
             front_view,
             [right_pts_arr],
             isClosed=False,
-            color=(255, 240, 200),
+            color=(255, 120, 0),
             thickness=2,
             lineType=cv2.LINE_AA,
         )
@@ -3234,6 +3294,12 @@ class ThetaDriverUI(QWidget):
             self.center_widget.change_dashboard_page(-1)
         elif event.key() == Qt.Key_Right:
             self.center_widget.change_dashboard_page(1)
+        elif event.key() in (Qt.Key_W, Qt.Key_A, Qt.Key_S, Qt.Key_D):
+            self.keys_pressed[event.key()] = True
+
+    def keyReleaseEvent(self, event: QKeyEvent):
+        if event.key() in (Qt.Key_W, Qt.Key_A, Qt.Key_S, Qt.Key_D) and not event.isAutoRepeat():
+            self.keys_pressed[event.key()] = False
 
     def closeEvent(self, event):
         # 画像ソケットサーバーを停止

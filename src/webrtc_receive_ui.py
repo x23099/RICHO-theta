@@ -345,9 +345,14 @@ class OdomSpeedNode:
         self.handle_limit_deg = 450.0
 
     def predict_path_points(self, prediction_time=3.5, dt=0.05):
-        # 受信した速度と角速度から走行予測線を描画
-        v = float(self.linear_x)
-        w = float(self.angular_z)
+        # Use commanded angular velocity and linear velocity if available to ensure instant response
+        v = float(getattr(self.ui_window, "cmd_linear_x", self.linear_x))
+        w = float(getattr(self.ui_window, "cmd_angular_z", self.angular_z))
+        
+        # Scale command steering slightly for visual representation
+        if hasattr(self.ui_window, "cmd_angular_z") and abs(self.ui_window.cmd_angular_z) > 1e-4:
+            w *= 0.85
+
         if abs(v) < 0.05 and abs(w) < 0.05:
             return []
         x = 0.0
@@ -1932,12 +1937,15 @@ class ControlBridgeNode(Node):
         self.ui_window = ui_window
         # ハンコン入力トピックを購読する (depth=1 でパケット詰まりを防止)
         self.create_subscription(Twist, "/cmd_vel_joy", self.control_callback, 1)
+        self.cmd_pub = self.create_publisher(Twist, "/cmd_vel_joy", 10)
 
     def control_callback(self, msg):
         data = {
             "linear_x": msg.linear.x,
             "angular_z": msg.angular.z
         }
+        self.ui_window.cmd_linear_x = msg.linear.x
+        self.ui_window.cmd_angular_z = msg.angular.z
         if hasattr(self.ui_window, "server_thread"):
             self.ui_window.server_thread.send_control_data(data)
 
@@ -2048,8 +2056,19 @@ class ThetaDriverUI(QWidget):
         self.args = args
         self.start_time = time.time()
         
+        # Keyboard steering controller simulation (WASD)
+        self.keys_pressed = {
+            Qt.Key_W: False,
+            Qt.Key_A: False,
+            Qt.Key_S: False,
+            Qt.Key_D: False
+        }
+        self.cmd_linear_x = 0.0
+        self.cmd_angular_z = 0.0
+
         # ダミーのデータストア
         self.odom_node = OdomSpeedNode()
+        self.odom_node.ui_window = self
         
         # 指定された解像度 (デフォルト 1920x960) で展開マップを生成する
         self.in_w = args.cam_width
@@ -2233,6 +2252,44 @@ class ThetaDriverUI(QWidget):
             self.odom_node.has_pose,
         )
 
+        # Process WASD keyboard control
+        self.process_keyboard_control()
+
+    def process_keyboard_control(self):
+        # Calculate speed and angular velocity based on W, A, S, D states
+        target_v = 0.0
+        target_w = 0.0
+
+        if self.keys_pressed.get(Qt.Key_W, False):
+            target_v = 0.35  # forward speed m/s
+        elif self.keys_pressed.get(Qt.Key_S, False):
+            target_v = -0.25 # backward speed m/s
+
+        if self.keys_pressed.get(Qt.Key_A, False):
+            target_w = 0.55  # turn left rad/s
+        elif self.keys_pressed.get(Qt.Key_D, False):
+            target_w = -0.55 # turn right rad/s
+
+        any_key = any(self.keys_pressed.values())
+        
+        # Override cmd values and publish Twist if keyboard input is active or was active (to send stop command once)
+        if any_key or getattr(self, '_had_keyboard_input', False):
+            self.cmd_linear_x = target_v
+            self.cmd_angular_z = target_w
+            
+            # Publish Twist message locally via bridge_node if available
+            if hasattr(self, 'bridge_node') and self.bridge_node is not None:
+                from geometry_msgs.msg import Twist
+                msg = Twist()
+                msg.linear.x = target_v
+                msg.angular.z = target_w
+                self.bridge_node.cmd_pub.publish(msg)
+
+            if any_key:
+                self._had_keyboard_input = True
+            else:
+                self._had_keyboard_input = False
+
     def draw_predicted_path_on_bev_view(self, bev_view):
         # 現在の速度指令から予測経路を取得する.
         points = self.odom_node.predict_path_points(prediction_time=3.5, dt=0.05)
@@ -2284,7 +2341,7 @@ class ThetaDriverUI(QWidget):
             overlay,
             [pts],
             isClosed=False,
-            color=(0, 255, 0),
+            color=(180, 50, 0),
             thickness=40,
             lineType=cv2.LINE_AA,
         )
@@ -2295,7 +2352,7 @@ class ThetaDriverUI(QWidget):
             bev_view,
             [pts],
             isClosed=False,
-            color=(80, 255, 80),
+            color=(255, 120, 0),
             thickness=4,
             lineType=cv2.LINE_AA,
         )
@@ -2362,9 +2419,9 @@ class ThetaDriverUI(QWidget):
         # 描画用のオーバーレイを作成 (半透明描画のため)
         overlay = front_view.copy()
 
-        # 1. パスの塗りつぶし (美しいエレクトリックブルー / シアン)
-        # BGR: (255, 162, 0)
-        cv2.fillPoly(overlay, [pts], color=(255, 162, 0))
+        # 1. パスの塗りつぶし (より濃く美しいダークエレクトリックブルー)
+        # BGR: (180, 50, 0)
+        cv2.fillPoly(overlay, [pts], color=(180, 50, 0))
 
         # 2. 境界線のネオングロー効果 (太めの半透明線)
         left_pts_arr = np.array(left_screen_points, dtype=np.int32).reshape((-1, 1, 2))
@@ -2374,7 +2431,7 @@ class ThetaDriverUI(QWidget):
             overlay,
             [left_pts_arr],
             isClosed=False,
-            color=(255, 200, 100),
+            color=(200, 80, 0),
             thickness=8,
             lineType=cv2.LINE_AA,
         )
@@ -2382,7 +2439,7 @@ class ThetaDriverUI(QWidget):
             overlay,
             [right_pts_arr],
             isClosed=False,
-            color=(255, 200, 100),
+            color=(200, 80, 0),
             thickness=8,
             lineType=cv2.LINE_AA,
         )
@@ -2395,7 +2452,7 @@ class ThetaDriverUI(QWidget):
             front_view,
             [left_pts_arr],
             isClosed=False,
-            color=(255, 240, 200),
+            color=(255, 120, 0),
             thickness=2,
             lineType=cv2.LINE_AA,
         )
@@ -2403,7 +2460,7 @@ class ThetaDriverUI(QWidget):
             front_view,
             [right_pts_arr],
             isClosed=False,
-            color=(255, 240, 200),
+            color=(255, 120, 0),
             thickness=2,
             lineType=cv2.LINE_AA,
         )
@@ -2456,6 +2513,12 @@ class ThetaDriverUI(QWidget):
             self.center_widget.change_dashboard_page(-1)
         elif event.key() == Qt.Key_Right:
             self.center_widget.change_dashboard_page(1)
+        elif event.key() in (Qt.Key_W, Qt.Key_A, Qt.Key_S, Qt.Key_D):
+            self.keys_pressed[event.key()] = True
+
+    def keyReleaseEvent(self, event: QKeyEvent):
+        if event.key() in (Qt.Key_W, Qt.Key_A, Qt.Key_S, Qt.Key_D) and not event.isAutoRepeat():
+            self.keys_pressed[event.key()] = False
 
     def closeEvent(self, event):
         if hasattr(self, "input_timer"):
@@ -2526,6 +2589,7 @@ def main():
 
     # ROS 2スピンスレッドの開始 (ハンコンデータ中継用)
     bridge_node = ControlBridgeNode(window)
+    window.bridge_node = bridge_node
     spin_thread = threading.Thread(target=rclpy.spin, args=(bridge_node,), daemon=True)
     spin_thread.start()
 
