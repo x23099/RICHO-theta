@@ -128,7 +128,9 @@ def make_floor_projection_map(
     back_cx_offset,
     back_cy_offset,
     bowl_curve=0.0,
-    front_lens="left"
+    front_lens="left",
+    camera_offset_x=0.0,
+    camera_offset_z=0.0
 ):
     """
     Computes maps for cv2.remap that project a dual-fisheye image onto a horizontal floor plane.
@@ -153,17 +155,20 @@ def make_floor_projection_map(
     # Target center is (out_w/2, out_h/2).
     # X_w represents right-left axis, Z_w represents forward-backward axis.
     xs, ys = np.meshgrid(np.arange(out_w), np.arange(out_h))
-    X_w = (xs - out_w / 2.0) * scale
-    Z_w = (out_h / 2.0 - ys) * scale
+    X_w_cam = (xs - out_w / 2.0) * scale - camera_offset_x
+    Z_w_cam = (out_h / 2.0 - ys) * scale - camera_offset_z
     
     if bowl_curve > 0.0:
         # X方向（左右）に 1.6 倍の重み、Z方向（前後）に 0.6 倍の重みをかけて d を計算
         # これにより、横方向は素早く立ち上がってお椀壁になり引き伸ばしが緩和され、
         # 正面方向は平らな地面が広く保たれるため直線歪みが小さくなります
-        d = np.sqrt(1.6 * X_w * X_w + 0.6 * Z_w * Z_w)
+        d = np.sqrt(1.6 * X_w_cam * X_w_cam + 0.6 * Z_w_cam * Z_w_cam)
         Y_w = -camera_height * np.exp(-bowl_curve * d)
     else:
-        Y_w = -np.ones_like(X_w) * camera_height
+        Y_w = -np.ones_like(X_w_cam) * camera_height
+
+    X_w = X_w_cam
+    Z_w = Z_w_cam
 
     # 3. Apply Camera Rotation relative to Vehicle: R = Rz(roll) * Rx(pitch) * Ry(yaw)
     yaw = np.deg2rad(yaw_deg)
@@ -582,6 +587,7 @@ class CalibrationWindow(QWidget):
         self.params["car_offset_z"] = self.sl_car_z.value() / 100.0
         self.params["car_width"] = self.sl_car_size.value() / 100.0
         self.params["car_length"] = self.sl_car_size.value() / 100.0
+        self.map_dirty = True
 
     def on_checkbox_changed(self, state):
         self.params["show_circles"] = 1 if self.chk_circles.isChecked() else 0
@@ -640,7 +646,9 @@ class CalibrationWindow(QWidget):
                 front_cy_offset=self.params["front_cy_offset"],
                 back_cx_offset=self.params["back_cx_offset"],
                 back_cy_offset=self.params["back_cy_offset"],
-                bowl_curve=self.params.get("bowl_curve", 0.0)
+                bowl_curve=self.params.get("bowl_curve", 0.0),
+                camera_offset_x=self.params["car_offset_x"],
+                camera_offset_z=self.params["car_offset_z"]
             )
             self.map_dirty = False
 
