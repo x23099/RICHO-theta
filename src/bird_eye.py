@@ -127,6 +127,7 @@ def make_floor_projection_map(
     front_cy_offset,
     back_cx_offset,
     back_cy_offset,
+    bowl_curve=0.0,
     front_lens="left"
 ):
     """
@@ -154,7 +155,12 @@ def make_floor_projection_map(
     xs, ys = np.meshgrid(np.arange(out_w), np.arange(out_h))
     X_w = (xs - out_w / 2.0) * scale
     Z_w = (out_h / 2.0 - ys) * scale
-    Y_w = -np.ones_like(X_w) * camera_height
+    
+    if bowl_curve > 0.0:
+        d = np.sqrt(X_w * X_w + Z_w * Z_w)
+        Y_w = -camera_height * np.exp(-bowl_curve * d)
+    else:
+        Y_w = -np.ones_like(X_w) * camera_height
 
     # 3. Apply Camera Rotation relative to Vehicle: R = Rz(roll) * Rx(pitch) * Ry(yaw)
     yaw = np.deg2rad(yaw_deg)
@@ -259,7 +265,8 @@ class CalibrationWindow(QWidget):
             "car_offset_z": 0.0,
             "car_width": 0.354,
             "car_length": 0.354,
-            "show_circles": 1
+            "show_circles": 1,
+            "bowl_curve": 0.0
         }
         if os.path.exists(self.config_path):
             try:
@@ -295,7 +302,8 @@ class CalibrationWindow(QWidget):
             "car_offset_z": 0.0,
             "car_width": 0.354,
             "car_length": 0.354,
-            "show_circles": 1
+            "show_circles": 1,
+            "bowl_curve": 0.0
         }
         self.update_sliders()
         self.map_dirty = True
@@ -419,6 +427,9 @@ class CalibrationWindow(QWidget):
         self.sl_yaw = self.create_slider(-180, 180, int(self.params["yaw_deg"]), self.on_proj_slider_changed)
         proj_layout.addRow(self.create_slider_label("Yaw (Rotate)", "deg"), self.sl_yaw)
         
+        self.sl_bowl = self.create_slider(0, 200, int(self.params.get("bowl_curve", 0.0) * 100), self.on_proj_slider_changed)
+        proj_layout.addRow(self.create_slider_label("Bowl Distortion", ""), self.sl_bowl)
+        
         proj_group.setLayout(proj_layout)
         right_layout.addWidget(proj_group)
 
@@ -453,6 +464,9 @@ class CalibrationWindow(QWidget):
         
         self.sl_car_z = self.create_slider(-100, 100, int(self.params["car_offset_z"] * 100), self.on_car_slider_changed)
         robot_layout.addRow(self.create_slider_label("Offset Z (Fwd/Bwd)", "cm"), self.sl_car_z)
+        
+        self.sl_car_size = self.create_slider(10, 100, int(self.params["car_width"] * 100), self.on_car_slider_changed)
+        robot_layout.addRow(self.create_slider_label("Chassis Size", "cm"), self.sl_car_size)
         
         robot_group.setLayout(robot_layout)
         right_layout.addWidget(robot_group)
@@ -510,6 +524,8 @@ class CalibrationWindow(QWidget):
         self.sl_bcy.blockSignals(True)
         self.sl_car_x.blockSignals(True)
         self.sl_car_z.blockSignals(True)
+        self.sl_bowl.blockSignals(True)
+        self.sl_car_size.blockSignals(True)
 
         self.sl_height.setValue(int(self.params["camera_height"] * 100))
         self.sl_scale.setValue(int(self.params["scale"] * 1000))
@@ -523,6 +539,8 @@ class CalibrationWindow(QWidget):
         self.sl_bcy.setValue(int(self.params["back_cy_offset"]))
         self.sl_car_x.setValue(int(self.params["car_offset_x"] * 100))
         self.sl_car_z.setValue(int(self.params["car_offset_z"] * 100))
+        self.sl_bowl.setValue(int(self.params.get("bowl_curve", 0.0) * 100))
+        self.sl_car_size.setValue(int(self.params["car_width"] * 100))
 
         self.sl_height.blockSignals(False)
         self.sl_scale.blockSignals(False)
@@ -536,6 +554,8 @@ class CalibrationWindow(QWidget):
         self.sl_bcy.blockSignals(False)
         self.sl_car_x.blockSignals(False)
         self.sl_car_z.blockSignals(False)
+        self.sl_bowl.blockSignals(False)
+        self.sl_car_size.blockSignals(False)
 
     def on_proj_slider_changed(self):
         # Update values from sliders
@@ -549,6 +569,7 @@ class CalibrationWindow(QWidget):
         self.params["front_cy_offset"] = float(self.sl_fcy.value())
         self.params["back_cx_offset"] = float(self.sl_bcx.value())
         self.params["back_cy_offset"] = float(self.sl_bcy.value())
+        self.params["bowl_curve"] = self.sl_bowl.value() / 100.0
         
         # Mark remapping matrices as dirty to force rebuild
         self.map_dirty = True
@@ -556,6 +577,8 @@ class CalibrationWindow(QWidget):
     def on_car_slider_changed(self):
         self.params["car_offset_x"] = self.sl_car_x.value() / 100.0
         self.params["car_offset_z"] = self.sl_car_z.value() / 100.0
+        self.params["car_width"] = self.sl_car_size.value() / 100.0
+        self.params["car_length"] = self.sl_car_size.value() / 100.0
 
     def on_checkbox_changed(self, state):
         self.params["show_circles"] = 1 if self.chk_circles.isChecked() else 0
@@ -613,7 +636,8 @@ class CalibrationWindow(QWidget):
                 front_cx_offset=self.params["front_cx_offset"],
                 front_cy_offset=self.params["front_cy_offset"],
                 back_cx_offset=self.params["back_cx_offset"],
-                back_cy_offset=self.params["back_cy_offset"]
+                back_cy_offset=self.params["back_cy_offset"],
+                bowl_curve=self.params.get("bowl_curve", 0.0)
             )
             self.map_dirty = False
 
