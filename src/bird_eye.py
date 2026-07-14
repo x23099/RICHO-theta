@@ -138,11 +138,11 @@ def make_floor_projection_map(
     cy_base = in_h / 2.0
     
     if front_lens == "left":
-        front_cx_base = in_w * 0.25
-        back_cx_base = in_w * 0.75
+        front_cx_base = in_w * 0.3125
+        back_cx_base = in_w * 0.6875
     else:
-        front_cx_base = in_w * 0.75
-        back_cx_base = in_w * 0.25
+        front_cx_base = in_w * 0.6875
+        back_cx_base = in_w * 0.3125
 
     front_cx = front_cx_base + front_cx_offset
     front_cy = cy_base + front_cy_offset
@@ -674,8 +674,8 @@ class CalibrationWindow(QWidget):
         radius = int(min(w / 4.0, h / 2.0) * self.params["radius_scale"])
         cy_base = h / 2.0
         
-        front_cx_base = w * 0.25
-        back_cx_base = w * 0.75
+        front_cx_base = w * 0.3125
+        back_cx_base = w * 0.6875
         
         fcx = int(front_cx_base + self.params["front_cx_offset"])
         fcy = int(cy_base + self.params["front_cy_offset"])
