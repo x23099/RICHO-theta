@@ -53,6 +53,10 @@ class TelemetryNode(Node):
         self.create_subscription(Imu, imu_topic, self.imu_callback, 10)
         self.create_subscription(Twist, pedal_topic, self.pedal_callback, 10)
         
+        # ローカルパブリッシャー (Wi-Fi経由しないローカルROS 2用、バッファ詰まり防止のため depth=1)
+        self.cmd_pub = self.create_publisher(Twist, "/cmd_vel_joy", 1)
+        self.kobuki_cmd_pub = self.create_publisher(Twist, "/cmd_vel", 1)
+        
         # バッテリーの購読 (トピックの型に合わせて自動分岐する簡易ロジック)
         if "core" in battery_topic:  # kobuki型
             from std_msgs.msg import Float32
@@ -64,6 +68,13 @@ class TelemetryNode(Node):
                 self.create_subscription(Float32, battery_topic, self.float_battery_callback, 10)
         else:
             self.create_subscription(Float32, battery_topic, self.float_battery_callback, 10)
+
+    def publish_control(self, data):
+        twist = Twist()
+        twist.linear.x = float(data.get("linear_x", 0.0))
+        twist.angular.z = float(data.get("angular_z", 0.0))
+        self.cmd_pub.publish(twist)
+        self.kobuki_cmd_pub.publish(twist)
 
     def odom_callback(self, msg):
         self.speed_mps = math.sqrt(msg.twist.twist.linear.x**2 + msg.twist.twist.linear.y**2)
@@ -272,6 +283,17 @@ async def run(args):
 
     telemetry_channel = pc.createDataChannel("telemetry")
     logger.info("Created WebRTC DataChannel: telemetry")
+
+    control_channel = pc.createDataChannel("control")
+    logger.info("Created WebRTC DataChannel: control")
+
+    @control_channel.on("message")
+    def on_control_message(message):
+        try:
+            data = json.loads(message)
+            telemetry_node.publish_control(data)
+        except Exception as e:
+            logger.warning(f"Error handling control message: {e}")
 
     channel_opened = False
 

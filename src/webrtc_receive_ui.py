@@ -18,6 +18,7 @@ from aiohttp import web
 from aiortc import RTCPeerConnection, RTCSessionDescription
 from PySide6.QtCore import Qt, QTimer, QPointF, QRectF, QObject, Signal, Slot
 from PySide6.QtGui import QImage, QPixmap, QKeyEvent, QPainter, QColor, QPen, QFont, QPolygonF
+from PySide6.QtOpenGLWidgets import QOpenGLWidget
 from PySide6.QtWidgets import QApplication, QLabel, QWidget, QHBoxLayout
 
 # logging setup
@@ -376,56 +377,75 @@ class OdomSpeedNode:
         self.pedal_throttle = float(data.get("pedal_throttle", 0.0))
         self.pedal_brake = float(data.get("pedal_brake", 0.0))
 
-class VideoLabel(QLabel):
+class VideoLabel(QOpenGLWidget):
     def __init__(self, title):
         super().__init__()
 
         self.title = title
+        self.image = None
+        self.mutex = threading.Lock()
 
         # ラベルの見た目を設定する.
-        self.setAlignment(Qt.AlignCenter)
         self.setMinimumSize(120, 90)
-        self.setStyleSheet("""
-            QLabel {
-                background-color: #111111;
-                color: white;
-                border: 2px solid #444444;
-                border-radius: 12px;
-                font-size: 16px;
-                font-weight: bold;
-            }
-        """)
-        self.setText(title)
 
     def set_cv_image(self, frame_bgr):
-        # OpenCV画像をQt画像に変換する.
-        frame_rgb = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2RGB)
+        with self.mutex:
+            # 高速な参照渡しコピー
+            self.image = frame_bgr.copy()
+        self.update()
 
-        h, w, ch = frame_rgb.shape
-        bytes_per_line = ch * w
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.SmoothPixmapTransform, False) # 高速ニアレスト隣接スケーリング相当
 
-        qimg = QImage(
-            frame_rgb.data,
-            w,
-            h,
-            bytes_per_line,
-            QImage.Format_RGB888,
-        ).copy()
+        # 背景色を塗りつぶす
+        painter.fillRect(self.rect(), QColor("#111111"))
 
-        pixmap = QPixmap.fromImage(qimg)
-        pixmap = pixmap.scaled(
-            self.width(),
-            self.height(),
-            Qt.KeepAspectRatio,
-            Qt.SmoothTransformation,
-        )
+        frame_bgr = None
+        with self.mutex:
+            frame_bgr = self.image
 
-        self.setPixmap(pixmap)
+        if frame_bgr is not None:
+            # BGRからRGBへの高速変換
+            frame_rgb = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2RGB)
+            h, w, ch = frame_rgb.shape
+            bytes_per_line = ch * w
+
+            qimg = QImage(
+                frame_rgb.data,
+                w,
+                h,
+                bytes_per_line,
+                QImage.Format_RGB888,
+            )
+
+            # アスペクト比を維持した描画矩形の計算
+            rect = self.rect()
+            scale_w = rect.width() / w
+            scale_h = rect.height() / h
+            scale = min(scale_w, scale_h)
+
+            draw_w = int(w * scale)
+            draw_h = int(h * scale)
+            draw_x = int((rect.width() - draw_w) / 2)
+            draw_y = int((rect.height() - draw_h) / 2)
+
+            target_rect = QRectF(draw_x, draw_y, draw_w, draw_h)
+            
+            # GPU側で自動的にテクスチャアップロードされて超高速描画されます
+            painter.drawImage(target_rect, qimg)
+        else:
+            # 接続待ち時は白文字でタイトルを表示
+            painter.setPen(QColor("white"))
+            painter.setFont(QFont("Arial", 16, QFont.Bold))
+            painter.drawText(self.rect(), Qt.AlignCenter, self.title)
+
+        painter.end()
 
 
 class BEVVideoLabel(VideoLabel):
     def paintEvent(self, event):
-        # まず通常のカメラ背景を描画
+        # まず通常のカメラ背景（GPU描画）を描画
         super().paintEvent(event)
 
         painter = QPainter(self)
@@ -435,7 +455,6 @@ class BEVVideoLabel(VideoLabel):
         cy = self.height() / 2.0
 
         # Kobukiの大きさ (半径約27px of 円形)
-        # ※カメラ高さ0.5mの等距離射影において、直径354mmにほぼ対応
         kobuki_r = 27
 
         # Kobuki車体の描画 (透過ダークグレーにシルバー枠)
@@ -456,6 +475,8 @@ class BEVVideoLabel(VideoLabel):
         painter.setPen(Qt.NoPen)
         painter.setBrush(QColor(255, 65, 125, 255))
         painter.drawEllipse(QPointF(cx, cy), 4, 4)
+        
+        painter.end()
 
 
 class DashboardWidget(QWidget):
@@ -1905,6 +1926,22 @@ class CenterViewWidget(QWidget):
         self.dashboard.change_page(delta)
 
 
+class ControlBridgeNode(Node):
+    def __init__(self, ui_window):
+        super().__init__("theta_control_bridge_node")
+        self.ui_window = ui_window
+        # ハンコン入力トピックを購読する (depth=1 でパケット詰まりを防止)
+        self.create_subscription(Twist, "/cmd_vel_joy", self.control_callback, 1)
+
+    def control_callback(self, msg):
+        data = {
+            "linear_x": msg.linear.x,
+            "angular_z": msg.angular.z
+        }
+        if hasattr(self.ui_window, "server_thread"):
+            self.ui_window.server_thread.send_control_data(data)
+
+
 class ReceiveSignals(QObject):
     frame_received = Signal(np.ndarray)
     telemetry_received = Signal(dict)
@@ -1918,6 +1955,20 @@ class WebRTCServerThread(threading.Thread):
         self.pc = None
         self.latest_frame = None
         self.frame_lock = threading.Lock()
+        self.control_channel = None
+
+    def send_control_data(self, data_dict):
+        if self.control_channel and self.control_channel.readyState == "open":
+            asyncio.run_coroutine_threadsafe(
+                self._async_send(self.control_channel, json.dumps(data_dict)),
+                self.loop
+            )
+
+    async def _async_send(self, channel, message):
+        try:
+            channel.send(message)
+        except Exception as e:
+            logger.warning(f"Failed to send control message: {e}")
 
     def run(self):
         self.loop = asyncio.new_event_loop()
@@ -1948,14 +1999,18 @@ class WebRTCServerThread(threading.Thread):
 
         @self.pc.on("datachannel")
         def on_datachannel(channel):
-            logger.info("DataChannel received")
-            @channel.on("message")
-            def on_message(message):
-                try:
-                    data = json.loads(message)
-                    self.signals.telemetry_received.emit(data)
-                except Exception as e:
-                    logger.error(f"Failed to parse telemetry DataChannel: {e}")
+            logger.info(f"DataChannel received: {channel.label}")
+            if channel.label == "telemetry":
+                @channel.on("message")
+                def on_message(message):
+                    try:
+                        data = json.loads(message)
+                        self.signals.telemetry_received.emit(data)
+                    except Exception as e:
+                        logger.error(f"Failed to parse telemetry DataChannel: {e}")
+            elif channel.label == "control":
+                self.control_channel = channel
+                logger.info("DataChannel 'control' bound successfully")
 
         await self.pc.setRemoteDescription(offer)
         answer = await self.pc.createAnswer()
@@ -2367,11 +2422,12 @@ class ThetaDriverUI(QWidget):
             return # まだ映像が届いていない場合は何もしない
 
         # 1. フロントビュー展開
+        interp = cv2.INTER_NEAREST if self.args.interpolation == "nearest" else cv2.INTER_LINEAR
         front_view = cv2.remap(
             frame,
             self.front_map[0],
             self.front_map[1],
-            interpolation=cv2.INTER_LINEAR,
+            interpolation=interp,
             borderMode=cv2.BORDER_CONSTANT,
         )
 
@@ -2380,7 +2436,7 @@ class ThetaDriverUI(QWidget):
             frame,
             self.bev_map[0],
             self.bev_map[1],
-            interpolation=cv2.INTER_LINEAR,
+            interpolation=interp,
             borderMode=cv2.BORDER_CONSTANT,
         )
 
@@ -2433,6 +2489,7 @@ def main():
     parser.add_argument("--max-speed", type=float, default=120.0)
     parser.add_argument("--speed-scale", type=float, default=12.0)
     parser.add_argument("--fullscreen", action="store_true")
+    parser.add_argument("--interpolation", choices=["linear", "nearest"], default="nearest")
     
     # Dummy args
     parser.add_argument("--device", default="/dev/video0")
@@ -2462,8 +2519,15 @@ def main():
     QSurfaceFormat.setDefaultFormat(fmt)
     logger.info("Disabled V-Sync (swapInterval = 0) for ultra-low latency")
 
+    rclpy.init()
+
     window = ThetaDriverUI(args)
     window.show()
+
+    # ROS 2スピンスレッドの開始 (ハンコンデータ中継用)
+    bridge_node = ControlBridgeNode(window)
+    spin_thread = threading.Thread(target=rclpy.spin, args=(bridge_node,), daemon=True)
+    spin_thread.start()
 
     signal.signal(signal.SIGINT, lambda signum, frame: window.close())
 
@@ -2471,7 +2535,13 @@ def main():
     interrupt_timer.timeout.connect(lambda: None)
     interrupt_timer.start(100)
 
-    sys.exit(app.exec())
+    try:
+        sys.exit(app.exec())
+    finally:
+        try:
+            rclpy.shutdown()
+        except Exception:
+            pass
 
 if __name__ == "__main__":
     main()
