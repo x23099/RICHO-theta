@@ -354,6 +354,17 @@ async def run(args):
                 answer = RTCSessionDescription(sdp=answer_data["sdp"], type=answer_data["type"])
                 await pc.setRemoteDescription(answer)
                 logger.info("WebRTC Session connected successfully!")
+
+                # Set sender parameters (maxBitrate)
+                try:
+                    sender = transceiver.sender
+                    parameters = sender.getParameters()
+                    if parameters.encodings:
+                        parameters.encodings[0].maxBitrate = bitrate_bps
+                        await sender.setParameters(parameters)
+                        logger.info(f"Set RTCRtpSender maxBitrate to {bitrate_bps / 1000000:.1f} Mbps")
+                except Exception as e:
+                    logger.warning(f"Failed to set sender parameters: {e}")
         except Exception as e:
             logger.error(f"Signaling failed: {e}")
             return
@@ -385,8 +396,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Integrated birds-eye-view WebRTC Streamer (Zero-copy)")
     parser.add_argument("--receiver-ip", default="127.0.0.1", help="Receiver IP address")
     parser.add_argument("--device", default="/dev/video0", help="Camera video device file or RTSP stream")
-    parser.add_argument("--cam-width", type=int, default=1280)
-    parser.add_argument("--cam-height", type=int, default=720)
+    parser.add_argument("--cam-width", type=int, default=1920)
+    parser.add_argument("--cam-height", type=int, default=960)
     parser.add_argument("--fps", type=int, default=24)
     parser.add_argument("--bitrate", default="15M", help="VP8 transmission bitrate (e.g. 15M, 1500k)")
     parser.add_argument("--telemetry-hz", type=int, default=24, help="Frequency of telemetry updates")

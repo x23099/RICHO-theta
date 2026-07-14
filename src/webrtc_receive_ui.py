@@ -396,7 +396,7 @@ class VideoLabel(QOpenGLWidget):
 
     def paintEvent(self, event):
         painter = QPainter(self)
-        painter.setRenderHint(QPainter.SmoothPixmapTransform, False) # 高速ニアレスト隣接スケーリング相当
+        painter.setRenderHint(QPainter.SmoothPixmapTransform, True) # バイリニア補間（GPU処理のため超高速）
 
         # 背景色を塗りつぶす
         painter.fillRect(self.rect(), QColor("#111111"))
@@ -2051,9 +2051,9 @@ class ThetaDriverUI(QWidget):
         # ダミーのデータストア
         self.odom_node = OdomSpeedNode()
         
-        # 固定解像度 1280x720 で展開マップを生成する
-        self.in_w = 1280
-        self.in_h = 720
+        # 指定された解像度 (デフォルト 1920x960) で展開マップを生成する
+        self.in_w = args.cam_width
+        self.in_h = args.cam_height
         
         # 各ビューの展開マップの初期化
         self.front_map = make_theta_view_map(
@@ -2489,12 +2489,12 @@ def main():
     parser.add_argument("--max-speed", type=float, default=120.0)
     parser.add_argument("--speed-scale", type=float, default=12.0)
     parser.add_argument("--fullscreen", action="store_true")
-    parser.add_argument("--interpolation", choices=["linear", "nearest"], default="nearest")
+    parser.add_argument("--interpolation", choices=["linear", "nearest"], default="linear")
     
     # Dummy args
     parser.add_argument("--device", default="/dev/video0")
-    parser.add_argument("--cam-width", type=int, default=1280)
-    parser.add_argument("--cam-height", type=int, default=720)
+    parser.add_argument("--cam-width", type=int, default=1920)
+    parser.add_argument("--cam-height", type=int, default=960)
     parser.add_argument("--mock-camera", action="store_true")
     parser.add_argument("--mock-speed", action="store_true")
     

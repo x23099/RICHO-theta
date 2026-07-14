@@ -26,8 +26,8 @@ echo "[INFO] Bitrate: $BITRATE"
 ${PYTHON_CMD} webrtc_stream.py \
     --receiver-ip "$RECEIVER_IP" \
     --device "$CAMERA_DEVICE" \
-    --cam-width 1280 \
-    --cam-height 720 \
+    --cam-width 1920 \
+    --cam-height 960 \
     --fps 24 \
     --bitrate "$BITRATE" \
     --telemetry-hz 24 \

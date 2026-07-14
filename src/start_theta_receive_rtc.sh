@@ -15,6 +15,8 @@ echo "[INFO] Running webrtc_receive_ui.py using ${PYTHON_CMD}"
 
 # Run new low-latency receiver UI
 ${PYTHON_CMD} webrtc_receive_ui.py \
+    --cam-width 1920 \
+    --cam-height 960 \
     --front-width 1120 \
     --front-height 720 \
     --front-fov 100.0 \
