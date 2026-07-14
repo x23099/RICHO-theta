@@ -157,7 +157,10 @@ def make_floor_projection_map(
     Z_w = (out_h / 2.0 - ys) * scale
     
     if bowl_curve > 0.0:
-        d = np.sqrt(X_w * X_w + Z_w * Z_w)
+        # X方向（左右）に 1.6 倍の重み、Z方向（前後）に 0.6 倍の重みをかけて d を計算
+        # これにより、横方向は素早く立ち上がってお椀壁になり引き伸ばしが緩和され、
+        # 正面方向は平らな地面が広く保たれるため直線歪みが小さくなります
+        d = np.sqrt(1.6 * X_w * X_w + 0.6 * Z_w * Z_w)
         Y_w = -camera_height * np.exp(-bowl_curve * d)
     else:
         Y_w = -np.ones_like(X_w) * camera_height
@@ -465,7 +468,7 @@ class CalibrationWindow(QWidget):
         self.sl_car_z = self.create_slider(-100, 100, int(self.params["car_offset_z"] * 100), self.on_car_slider_changed)
         robot_layout.addRow(self.create_slider_label("Offset Z (Fwd/Bwd)", "cm"), self.sl_car_z)
         
-        self.sl_car_size = self.create_slider(10, 100, int(self.params["car_width"] * 100), self.on_car_slider_changed)
+        self.sl_car_size = self.create_slider(10, 300, int(self.params["car_width"] * 100), self.on_car_slider_changed)
         robot_layout.addRow(self.create_slider_label("Chassis Size", "cm"), self.sl_car_size)
         
         robot_group.setLayout(robot_layout)
