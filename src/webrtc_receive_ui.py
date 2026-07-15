@@ -2277,6 +2277,8 @@ class ThetaDriverUI(QWidget):
             self.cmd_linear_x = target_v
             self.cmd_angular_z = target_w
             
+            logger.info(f"[KEYBOARD-CONTROL] Command: linear_x={target_v:.2f} m/s, angular_z={target_w:.2f} rad/s")
+            
             # Publish Twist message locally via bridge_node if available
             if hasattr(self, 'bridge_node') and self.bridge_node is not None:
                 from geometry_msgs.msg import Twist
@@ -2515,10 +2517,12 @@ class ThetaDriverUI(QWidget):
             self.center_widget.change_dashboard_page(1)
         elif event.key() in (Qt.Key_W, Qt.Key_A, Qt.Key_S, Qt.Key_D):
             self.keys_pressed[event.key()] = True
+            self.process_keyboard_control()
 
     def keyReleaseEvent(self, event: QKeyEvent):
         if event.key() in (Qt.Key_W, Qt.Key_A, Qt.Key_S, Qt.Key_D) and not event.isAutoRepeat():
             self.keys_pressed[event.key()] = False
+            self.process_keyboard_control()
 
     def closeEvent(self, event):
         if hasattr(self, "input_timer"):
