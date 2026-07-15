@@ -2394,7 +2394,7 @@ class ThetaDriverUI(QWidget):
 
             # 横方向を画面左右に変換する.
             # ROSでは左旋回が正になりやすいので, lateral_m正を画面左へ出す.
-            perspective = 0.35 + forward_ratio * 0.85
+            perspective = 0.45 - forward_ratio * 0.35
             screen_x = origin_x - lateral_m * lateral_scale_px * perspective
             return int(screen_x), int(screen_y)
 
