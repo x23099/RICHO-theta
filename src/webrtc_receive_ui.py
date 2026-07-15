@@ -2423,7 +2423,7 @@ class ThetaDriverUI(QWidget):
 
         # 1. パスの塗りつぶし (より濃く美しいダークエレクトリックブルー)
         # BGR: (180, 50, 0)
-        cv2.fillPoly(overlay, [pts], color=(180, 50, 0))
+        cv2.fillPoly(overlay, [pts], color=(250, 0, 0))
 
         # 2. 境界線のネオングロー効果 (太めの半透明線)
         left_pts_arr = np.array(left_screen_points, dtype=np.int32).reshape((-1, 1, 2))
@@ -2447,7 +2447,7 @@ class ThetaDriverUI(QWidget):
         )
 
         # オーバーレイをブレンド (不透明度 0.4)
-        front_view = cv2.addWeighted(overlay, 0.40, front_view, 0.60, 0)
+        front_view = cv2.addWeighted(overlay, 0.7, front_view, 0.30, 0)
 
         # 3. 境界線のシャープな芯線を描画 (ブレンド後の画像の上に白に近いシアンで重ねる)
         cv2.polylines(
