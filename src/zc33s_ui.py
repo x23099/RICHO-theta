@@ -886,9 +886,9 @@ class OdomSpeedNode(Node):
         ):
             return []
 
-        # Scale down cmd steer slightly for realistic turning path
+        # Scale down cmd steer slightly for realistic turning path (milder gain)
         if source == "cmd":
-            w *= 0.85
+            w *= 0.70
 
         x = 0.0
         y = 0.0
@@ -896,12 +896,17 @@ class OdomSpeedNode(Node):
         points = []
 
         steps = int(prediction_time / dt)
+        
+        # 回り込みすぎ防止：最大100度に制限
+        max_yaw_limit = math.radians(100.0)
 
         for _ in range(steps):
             x += v * math.cos(yaw) * dt
             y += v * math.sin(yaw) * dt
             yaw += w * dt
             points.append((x, y, yaw))
+            if abs(yaw) >= max_yaw_limit:
+                break
 
         # 確認用にG923ハンドル角相当へ換算.
         yaw_deg = math.degrees(yaw)
@@ -3100,8 +3105,8 @@ class ThetaDriverUI(QWidget):
         offset_x = getattr(self, 'car_offset_x', 0.0)
         offset_z = getattr(self, 'car_offset_z', 0.0)
 
-        # Kobukiの物理車幅は約0.354mなので、左右に 0.177m
-        half_width = 0.177
+        # 走行予測線を少し細め（車体幅約33cm相当）にするため、左右に 0.165m
+        half_width = 0.165
 
         left_screen_points = []
         right_screen_points = []

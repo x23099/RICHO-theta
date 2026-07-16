@@ -345,26 +345,42 @@ class OdomSpeedNode:
         self.handle_limit_deg = 450.0
 
     def predict_path_points(self, prediction_time=3.5, dt=0.05):
-        # Use commanded angular velocity and linear velocity if available to ensure instant response
-        v = float(getattr(self.ui_window, "cmd_linear_x", self.linear_x))
-        w = float(getattr(self.ui_window, "cmd_angular_z", self.angular_z))
-        
-        # Scale command steering slightly for visual representation
-        if hasattr(self.ui_window, "cmd_angular_z") and abs(self.ui_window.cmd_angular_z) > 1e-4:
-            w *= 0.85
+        v_cmd = 0.0
+        w_cmd = 0.0
+        if hasattr(self, "ui_window") and self.ui_window is not None:
+            v_cmd = getattr(self.ui_window, "cmd_linear_x", 0.0)
+            w_cmd = getattr(self.ui_window, "cmd_angular_z", 0.0)
 
-        if abs(v) < 0.02 and abs(w) < 0.02:
+        v_odom = float(self.linear_x)
+        w_odom = float(self.angular_z)
+
+        # 動き出しラグ解消：指令値があれば最優先、なければオドメトリにフォールバック
+        v = v_cmd if abs(v_cmd) >= 0.01 else v_odom
+        w = w_cmd if abs(w_cmd) >= 0.01 else w_odom
+
+        # 急旋回時の感度マイルド化
+        if abs(w_cmd) >= 0.01:
+            w = w_cmd * 0.70
+
+        if abs(v) < 0.01 and abs(w) < 0.01:
             return []
+
         x = 0.0
         y = 0.0
         yaw = 0.0
         points = []
         steps = int(prediction_time / dt)
+        
+        # 回り込みすぎ防止：最大100度 (約1.75 rad) に制限
+        max_yaw_limit = math.radians(100.0)
+
         for _ in range(steps):
             x += v * math.cos(yaw) * dt
             y += v * math.sin(yaw) * dt
             yaw += w * dt
             points.append((x, y, yaw))
+            if abs(yaw) >= max_yaw_limit:
+                break
         return points
 
     def update_telemetry(self, data):
@@ -2408,8 +2424,8 @@ class ThetaDriverUI(QWidget):
         offset_x = getattr(self, 'car_offset_x', 0.0)
         offset_z = getattr(self, 'car_offset_z', 0.0)
 
-        # Kobukiの物理車幅は約0.354mなので、左右に 0.177m
-        half_width = 0.177
+        # 走行予測線を少し細め（車体幅約33cm相当）にするため、左右に 0.165m
+        half_width = 0.165
 
         left_screen_points = []
         right_screen_points = []
