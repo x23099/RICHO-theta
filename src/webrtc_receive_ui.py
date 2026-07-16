@@ -353,7 +353,7 @@ class OdomSpeedNode:
         if hasattr(self.ui_window, "cmd_angular_z") and abs(self.ui_window.cmd_angular_z) > 1e-4:
             w *= 0.85
 
-        if abs(v) < 0.05 and abs(w) < 0.05:
+        if abs(v) < 0.02 and abs(w) < 0.02:
             return []
         x = 0.0
         y = 0.0
@@ -2068,6 +2068,32 @@ class ThetaDriverUI(QWidget):
 
         # ダミーのデータストア
         self.odom_node = OdomSpeedNode()
+
+        # デフォルトのカメラパラメータとオフセット
+        self.camera_height = 0.55
+        self.camera_pitch_deg = 6.0
+        self.car_offset_x = 0.0
+        self.car_offset_z = 0.0
+
+        # bird_eye_config.json があれば読み込んでパラメータを上書きする
+        config_candidates = [
+            "bird_eye_config.json",
+            "src/bird_eye_config.json",
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), "bird_eye_config.json")
+        ]
+        for path in config_candidates:
+            if os.path.exists(path):
+                try:
+                    with open(path, "r") as f:
+                        config = json.load(f)
+                        self.camera_height = config.get("camera_height", self.camera_height)
+                        self.camera_pitch_deg = config.get("pitch_deg", self.camera_pitch_deg)
+                        self.car_offset_x = config.get("car_offset_x", self.car_offset_x)
+                        self.car_offset_z = config.get("car_offset_z", self.car_offset_z)
+                        logger.info(f"Loaded camera config from {path}: height={self.camera_height}, pitch={self.camera_pitch_deg}, offset_x={self.car_offset_x}, offset_z={self.car_offset_z}")
+                        break
+                except Exception as e:
+                    logger.warning(f"Failed to load camera config from {path}: {e}")
         self.odom_node.ui_window = self
         
         # 指定された解像度 (デフォルト 1920x960) で展開マップを生成する
@@ -2373,30 +2399,43 @@ class ThetaDriverUI(QWidget):
 
         h, w = front_view.shape[:2]
 
-        # 画面上の車体基準位置を決める.
-        origin_x = int(w * 0.50)
-        origin_y = int(h * 0.90)
+        # 3Dカメラ投影用パラメータの設定 (設定ファイルから読み込まれた値を使用)
+        camera_height = getattr(self, 'camera_height', 0.55)
+        pitch_offset = math.radians(getattr(self, 'camera_pitch_deg', 6.0))
+        fov_rad = math.radians(self.args.front_fov)
+        focal = (w / 2.0) / math.tan(fov_rad / 2.0)
+        
+        offset_x = getattr(self, 'car_offset_x', 0.0)
+        offset_z = getattr(self, 'car_offset_z', 0.0)
 
-        # 表示スケール. 見え方に応じて調整する.
-        max_forward_m = 1.8
-        lateral_scale_px = w * 0.45
-
-        # Kobukiの物理車幅は約0.35mなので、左右に0.175m
-        half_width = 0.175
+        # Kobukiの物理車幅は約0.354mなので、左右に 0.177m
+        half_width = 0.177
 
         left_screen_points = []
         right_screen_points = []
 
-        def project_point(forward_m, lateral_m):
-            # 前方距離を画面上方向に変換する.
-            forward_ratio = min(max(forward_m, 0.0) / max_forward_m, 1.0)
-            screen_y = origin_y - forward_ratio * h * 0.62
+        def project_point(x_p, y_p):
+            # 1. カメラ座標系への変換
+            X_c = offset_x - y_p   # カメラの右方向
+            Y_c = -camera_height   # カメラの上方向
+            Z_c = x_p - offset_z   # カメラの前方方向
 
-            # 横方向を画面左右に変換する.
-            # ROSでは左旋回が正になりやすいので, lateral_m正を画面左へ出す.
-            perspective = 0.45 - forward_ratio * 0.35
-            screen_x = origin_x - lateral_m * lateral_scale_px * perspective
-            return int(screen_x), int(screen_y)
+            # 2. カメラの下向きチルト（ピッチ角）の適用
+            cos_p = math.cos(pitch_offset)
+            sin_p = math.sin(pitch_offset)
+            
+            Z_rot = Z_c * cos_p - Y_c * sin_p
+            Y_rot = Z_c * sin_p + Y_c * cos_p
+            X_rot = X_c
+
+            # カメラの後方にある点は投影不可
+            if Z_rot < 0.05:
+                return None
+
+            # 3. 2D画面座標への透視投影
+            u = w / 2.0 + focal * (X_rot / Z_rot)
+            v = h / 2.0 - focal * (Y_rot / Z_rot)
+            return int(u), int(v)
 
         for x, y, yaw in points:
             # 左右の境界点を計算
@@ -2408,11 +2447,17 @@ class ThetaDriverUI(QWidget):
             y_r = y - half_width * math.cos(yaw)
 
             # 画面上に投影
-            px_l, py_l = project_point(x_l, y_l)
-            px_r, py_r = project_point(x_r, y_r)
+            pt_l = project_point(x_l, y_l)
+            pt_r = project_point(x_r, y_r)
 
-            left_screen_points.append((px_l, py_l))
-            right_screen_points.append((px_r, py_r))
+            # 画面内に収まる投影点のみ追加
+            if pt_l is not None and 0 <= pt_l[0] < w and 0 <= pt_l[1] < h:
+                left_screen_points.append(pt_l)
+            if pt_r is not None and 0 <= pt_r[0] < w and 0 <= pt_r[1] < h:
+                right_screen_points.append(pt_r)
+
+        if len(left_screen_points) < 2 or len(right_screen_points) < 2:
+            return front_view
 
         # ポリゴンを形成する点リスト (左境界を奥へ進み、右境界を手前に戻る)
         poly_points = left_screen_points + list(reversed(right_screen_points))
@@ -2421,51 +2466,12 @@ class ThetaDriverUI(QWidget):
         # 描画用のオーバーレイを作成 (半透明描画のため)
         overlay = front_view.copy()
 
-        # 1. パスの塗りつぶし (より濃く美しいダークエレクトリックブルー)
-        # BGR: (180, 50, 0)
-        cv2.fillPoly(overlay, [pts], color=(250, 0, 0))
+        # 1. パスの塗りつぶし (テスラ風の濃く均一な青色)
+        # BGR: (240, 110, 0)
+        cv2.fillPoly(overlay, [pts], color=(240, 110, 0))
 
-        # 2. 境界線のネオングロー効果 (太めの半透明線)
-        left_pts_arr = np.array(left_screen_points, dtype=np.int32).reshape((-1, 1, 2))
-        right_pts_arr = np.array(right_screen_points, dtype=np.int32).reshape((-1, 1, 2))
-        
-        cv2.polylines(
-            overlay,
-            [left_pts_arr],
-            isClosed=False,
-            color=(200, 80, 0),
-            thickness=8,
-            lineType=cv2.LINE_AA,
-        )
-        cv2.polylines(
-            overlay,
-            [right_pts_arr],
-            isClosed=False,
-            color=(200, 80, 0),
-            thickness=8,
-            lineType=cv2.LINE_AA,
-        )
-
-        # オーバーレイをブレンド (不透明度 0.4)
-        front_view = cv2.addWeighted(overlay, 0.7, front_view, 0.30, 0)
-
-        # 3. 境界線のシャープな芯線を描画 (ブレンド後の画像の上に白に近いシアンで重ねる)
-        cv2.polylines(
-            front_view,
-            [left_pts_arr],
-            isClosed=False,
-            color=(255, 120, 0),
-            thickness=2,
-            lineType=cv2.LINE_AA,
-        )
-        cv2.polylines(
-            front_view,
-            [right_pts_arr],
-            isClosed=False,
-            color=(255, 120, 0),
-            thickness=2,
-            lineType=cv2.LINE_AA,
-        )
+        # オーバーレイをブレンド (不透明度 0.70)
+        front_view = cv2.addWeighted(overlay, 0.70, front_view, 0.30, 0)
 
         return front_view
 
