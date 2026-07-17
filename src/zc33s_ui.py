@@ -2774,6 +2774,7 @@ class ThetaDriverUI(QWidget):
             Qt.Key_S: False,
             Qt.Key_D: False
         }
+        self.show_path = not args.hide_path
 
         if args.mock_camera:
             print("[INFO] Mock camera mode")
@@ -3214,7 +3215,8 @@ class ThetaDriverUI(QWidget):
         t4 = t3
 
         # 5. 予測経路描画
-        front_view = self.draw_predicted_path_on_front_view(front_view)
+        if self.show_path:
+            front_view = self.draw_predicted_path_on_front_view(front_view)
         t5 = time.perf_counter()
 
         # ミリ秒精度のタイムスタンプを描画 (受信側での遅延測定用)
@@ -3308,6 +3310,9 @@ class ThetaDriverUI(QWidget):
             self.center_widget.change_dashboard_page(1)
         elif event.key() in (Qt.Key_W, Qt.Key_A, Qt.Key_S, Qt.Key_D):
             self.keys_pressed[event.key()] = True
+        elif event.key() == Qt.Key_P:
+            self.show_path = not self.show_path
+            print(f"[INFO] Toggle path display: {self.show_path}")
 
     def keyReleaseEvent(self, event: QKeyEvent):
         if event.key() in (Qt.Key_W, Qt.Key_A, Qt.Key_S, Qt.Key_D) and not event.isAutoRepeat():
@@ -3354,6 +3359,7 @@ def main():
 
     parser.add_argument("--mock-camera", action="store_true")
     parser.add_argument("--mock-speed", action="store_true")
+    parser.add_argument("--hide-path", action="store_true", help="Hide predicted path on startup")
 
     parser.add_argument("--odom-topic", default="/odom")
     parser.add_argument(

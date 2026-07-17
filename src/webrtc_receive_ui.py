@@ -2081,6 +2081,7 @@ class ThetaDriverUI(QWidget):
         }
         self.cmd_linear_x = 0.0
         self.cmd_angular_z = 0.0
+        self.show_path = not args.hide_path
 
         # ダミーのデータストア
         self.odom_node = OdomSpeedNode()
@@ -2522,9 +2523,10 @@ class ThetaDriverUI(QWidget):
         )
 
         # 3. 走行予測線の描画
-        points = self.odom_node.predict_path_points(prediction_time=3.5, dt=0.05)
-        front_view = self.draw_predicted_path_on_front_view(front_view)
-        bev_view = self.draw_predicted_path_on_bev_view(bev_view)
+        if self.show_path:
+            points = self.odom_node.predict_path_points(prediction_time=3.5, dt=0.05)
+            front_view = self.draw_predicted_path_on_front_view(front_view)
+            bev_view = self.draw_predicted_path_on_bev_view(bev_view)
 
         # 4. GUIへのセット
         self.center_widget.set_front_image(front_view)
@@ -2540,6 +2542,9 @@ class ThetaDriverUI(QWidget):
         elif event.key() in (Qt.Key_W, Qt.Key_A, Qt.Key_S, Qt.Key_D):
             self.keys_pressed[event.key()] = True
             self.process_keyboard_control()
+        elif event.key() == Qt.Key_P:
+            self.show_path = not self.show_path
+            logger.info(f"Toggle path display: {self.show_path}")
 
     def keyReleaseEvent(self, event: QKeyEvent):
         if event.key() in (Qt.Key_W, Qt.Key_A, Qt.Key_S, Qt.Key_D) and not event.isAutoRepeat():
@@ -2578,6 +2583,7 @@ def main():
     parser.add_argument("--max-speed", type=float, default=120.0)
     parser.add_argument("--speed-scale", type=float, default=12.0)
     parser.add_argument("--fullscreen", action="store_true")
+    parser.add_argument("--hide-path", action="store_true", help="Hide predicted path on startup")
     parser.add_argument("--interpolation", choices=["linear", "nearest"], default="linear")
     
     # Dummy args
