@@ -886,9 +886,21 @@ class OdomSpeedNode(Node):
         ):
             return []
 
-        # Scale down cmd steer slightly for realistic turning path (milder gain)
+        # Scale down cmd steer for realistic turning path based on G923 steering wheel angle.
+        # Kobuki turns 90 degrees when steering is 112.5 degrees (ratio = 112.5 / 90 = 1.25).
+        # We reverse-engineer the steering wheel angle from cmd_angular_z and apply the ratio.
         if source == "cmd":
-            w *= 0.70
+            abs_cmd_w = abs(w)
+            if abs_cmd_w > 1e-4:
+                # cmd_angular_z = (effective_deg / 112.5)**0.6 * 0.8
+                # -> effective_deg = 112.5 * (abs_cmd_w / 0.8)**(1/0.6)
+                # -> target_yaw_deg = effective_deg / 1.25 = 90.0 * (abs_cmd_w / 0.8)**(1/0.6)
+                target_yaw_deg = 90.0 * ((abs_cmd_w / 0.8) ** (1.0 / 0.60))
+                target_yaw_deg = min(360.0, target_yaw_deg) # Clamp to max steering 450 deg -> yaw 360 deg
+                target_yaw_rad = math.radians(target_yaw_deg)
+                w = math.copysign(target_yaw_rad / prediction_time, w)
+            else:
+                w = 0.0
 
         x = 0.0
         y = 0.0
