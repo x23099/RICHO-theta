@@ -354,32 +354,45 @@ class OdomSpeedNode:
         v_odom = float(self.linear_x)
         w_odom = float(self.angular_z)
 
-        # 動き出しラグ解消：指令値があれば最優先、なければオドメトリにフォールバック（閾値を1e-4に引き下げ）
+        # 動き出しラグ解消：指令値優先、なければオドメトリにフォールバック
         use_cmd = abs(v_cmd) >= 1e-4 or abs(w_cmd) >= 1e-4
         v = v_cmd if use_cmd else v_odom
         w = w_cmd if use_cmd else w_odom
 
-        # ハンコン入力（cmd）による旋回指示がある場合、G923ステアリングの物理特性に合わせてスケール調整
+        v_abs = abs(v)
+        # 完全に停止している場合のみ処理をスキップ
+        if v_abs < 1e-4 and abs(w) < 1e-4:
+            return []
+
+        # 1. アッカーマン特性（速度比例）を考慮した旋回角速度wの再計算
         if use_cmd:
             abs_cmd_w = abs(w)
             if abs_cmd_w > 1e-4:
-                # G923ステアリング特性（最大450度操舵時目標ヨー角360度）に合わせたリバースエンジニアリング
+                # G923操舵特性に基づく目標ヨー角
                 target_yaw_deg = 90.0 * ((abs_cmd_w / 0.8) ** (1.0 / 0.60))
                 target_yaw_deg = min(360.0, target_yaw_deg)
                 target_yaw_rad = math.radians(target_yaw_deg)
-                w = math.copysign(target_yaw_rad / prediction_time, w)
+                
+                # 基準速度 0.8 m/s に対する比率を掛けることで、超低速時でも旋回半径を一定に維持する
+                w_base = target_yaw_rad / prediction_time
+                v_ref = 0.8
+                w = math.copysign(w_base * (v_abs / v_ref), w)
             else:
                 w = 0.0
 
-        # 低速走行時でも描画が途切れないよう最小速度閾値を1e-4に引き下げ
-        if abs(v) < 1e-4 and abs(w) < 1e-4:
-            return []
+        # 2. 低速時の死角対策：前方 1.5 メートルを確保するように予測時間を動的に延長
+        min_distance = 1.5
+        if v_abs > 1e-4:
+            required_time = max(prediction_time, min_distance / v_abs)
+            required_time = min(15.0, required_time)  # 無限ループ防止のため最大15秒に制限
+        else:
+            required_time = prediction_time
 
         x = 0.0
         y = 0.0
         yaw = 0.0
         points = []
-        steps = int(prediction_time / dt)
+        steps = int(required_time / dt)
         
         # 回り込みすぎ防止：最大100度 (約1.75 rad) に制限
         max_yaw_limit = math.radians(100.0)

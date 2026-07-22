@@ -880,8 +880,9 @@ class OdomSpeedNode(Node):
             w = float(self.cmd_angular_z)
             source = "cmd"
 
+        v_abs = abs(v)
         if (
-            abs(v) < self.prediction_min_speed
+            v_abs < self.prediction_min_speed
             and abs(w) < self.prediction_angular_deadband
         ):
             return []
@@ -898,16 +899,28 @@ class OdomSpeedNode(Node):
                 target_yaw_deg = 90.0 * ((abs_cmd_w / 0.8) ** (1.0 / 0.60))
                 target_yaw_deg = min(360.0, target_yaw_deg) # Clamp to max steering 450 deg -> yaw 360 deg
                 target_yaw_rad = math.radians(target_yaw_deg)
-                w = math.copysign(target_yaw_rad / prediction_time, w)
+                
+                # 基準速度 0.8 m/s に対する比率を掛けることで、超低速時でも旋回半径を一定に維持する（アッカーマン特性）
+                w_base = target_yaw_rad / prediction_time
+                v_ref = 0.8
+                w = math.copysign(w_base * (v_abs / v_ref), w)
             else:
                 w = 0.0
+
+        # 低速時の死角対策：前方 1.5 メートルを確保するように予測時間を動的に延長
+        min_distance = 1.5
+        if v_abs > 1e-4:
+            required_time = max(prediction_time, min_distance / v_abs)
+            required_time = min(15.0, required_time)  # 無限ループ防止のため最大15秒に制限
+        else:
+            required_time = prediction_time
 
         x = 0.0
         y = 0.0
         yaw = 0.0
         points = []
 
-        steps = int(prediction_time / dt)
+        steps = int(required_time / dt)
         
         # 回り込みすぎ防止：最大100度に制限
         max_yaw_limit = math.radians(100.0)
