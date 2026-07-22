@@ -354,15 +354,25 @@ class OdomSpeedNode:
         v_odom = float(self.linear_x)
         w_odom = float(self.angular_z)
 
-        # 動き出しラグ解消：指令値があれば最優先、なければオドメトリにフォールバック
-        v = v_cmd if abs(v_cmd) >= 0.01 else v_odom
-        w = w_cmd if abs(w_cmd) >= 0.01 else w_odom
+        # 動き出しラグ解消：指令値があれば最優先、なければオドメトリにフォールバック（閾値を1e-4に引き下げ）
+        use_cmd = abs(v_cmd) >= 1e-4 or abs(w_cmd) >= 1e-4
+        v = v_cmd if use_cmd else v_odom
+        w = w_cmd if use_cmd else w_odom
 
-        # 急旋回時の感度マイルド化
-        if abs(w_cmd) >= 0.01:
-            w = w_cmd * 0.70
+        # ハンコン入力（cmd）による旋回指示がある場合、G923ステアリングの物理特性に合わせてスケール調整
+        if use_cmd:
+            abs_cmd_w = abs(w)
+            if abs_cmd_w > 1e-4:
+                # G923ステアリング特性（最大450度操舵時目標ヨー角360度）に合わせたリバースエンジニアリング
+                target_yaw_deg = 90.0 * ((abs_cmd_w / 0.8) ** (1.0 / 0.60))
+                target_yaw_deg = min(360.0, target_yaw_deg)
+                target_yaw_rad = math.radians(target_yaw_deg)
+                w = math.copysign(target_yaw_rad / prediction_time, w)
+            else:
+                w = 0.0
 
-        if abs(v) < 0.01 and abs(w) < 0.01:
+        # 低速走行時でも描画が途切れないよう最小速度閾値を1e-4に引き下げ
+        if abs(v) < 1e-4 and abs(w) < 1e-4:
             return []
 
         x = 0.0
