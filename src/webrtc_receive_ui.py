@@ -1776,6 +1776,7 @@ class CenterViewWidget(QWidget):
         minimap_image_zoom,
         minimap_image_offset_x,
         minimap_image_offset_y,
+        aiformula_mode=False,
     ):
         super().__init__()
 
@@ -1799,6 +1800,7 @@ class CenterViewWidget(QWidget):
 
         # ミニマップは表示しない.
         self.minimap = None
+        self.aiformula_mode = aiformula_mode
 
         self.front_width = width
         self.front_height = height
@@ -1845,7 +1847,11 @@ class CenterViewWidget(QWidget):
 
         scale_w = available_w / target_video_w
         scale_h = available_h / target_video_h
-        scale = min(1.0, scale_w, scale_h)
+        
+        if self.aiformula_mode:
+            scale = min(1.0, scale_w, scale_h)
+        else:
+            scale = min(scale_w, scale_h)
 
         video_w = int(target_video_w * scale)
         video_h = int(target_video_h * scale)
@@ -2211,6 +2217,7 @@ class ThetaDriverUI(QWidget):
             minimap_image_zoom=self.args.minimap_image_zoom,
             minimap_image_offset_x=self.args.minimap_image_offset_x,
             minimap_image_offset_y=self.args.minimap_image_offset_y,
+            aiformula_mode=self.args.aiformula,
         )
 
         self.center_widget.setMinimumSize(self.args.front_width, self.args.front_height)
@@ -2218,7 +2225,12 @@ class ThetaDriverUI(QWidget):
         layout = QHBoxLayout()
         layout.setContentsMargins(18, 18, 18, 18)
         layout.setSpacing(12)
-        layout.addWidget(self.center_widget, alignment=Qt.AlignCenter)
+        
+        # 通常モード時はアライメント指定なし、aiformulaモード時は中央固定
+        if self.args.aiformula:
+            layout.addWidget(self.center_widget, alignment=Qt.AlignCenter)
+        else:
+            layout.addWidget(self.center_widget)
 
         self.setLayout(layout)
 
@@ -2545,6 +2557,11 @@ class ThetaDriverUI(QWidget):
         elif event.key() == Qt.Key_P:
             self.show_path = not self.show_path
             logger.info(f"Toggle path display: {self.show_path}")
+        elif event.key() == Qt.Key_F11:
+            if self.isFullScreen():
+                self.showNormal()
+            else:
+                self.showFullScreen()
 
     def keyReleaseEvent(self, event: QKeyEvent):
         if event.key() in (Qt.Key_W, Qt.Key_A, Qt.Key_S, Qt.Key_D) and not event.isAutoRepeat():
@@ -2583,6 +2600,7 @@ def main():
     parser.add_argument("--max-speed", type=float, default=120.0)
     parser.add_argument("--speed-scale", type=float, default=12.0)
     parser.add_argument("--fullscreen", action="store_true")
+    parser.add_argument("--aiformula", action="store_true", help="Run in aiformula mode with smaller window size constraints")
     parser.add_argument("--hide-path", action="store_true", help="Hide predicted path on startup")
     parser.add_argument("--interpolation", choices=["linear", "nearest"], default="linear")
     
