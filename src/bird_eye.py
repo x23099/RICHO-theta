@@ -418,17 +418,17 @@ class CalibrationWindow(QWidget):
         left_layout.addWidget(self.bev_label)
         main_layout.addLayout(left_layout)
 
-        # 2. Center Layout - Fisheye Label
+        # 2. Center Layout - Lane Detection & Occupancy Mask
         center_layout = QVBoxLayout()
-        fisheye_title = QLabel("RAW DUAL-FISHEYE FEED & CALIBRATION SECTIONS")
-        fisheye_title.setFont(QFont("Arial", 11, QFont.Bold))
-        fisheye_title.setStyleSheet("color: #00e5ff;")
-        center_layout.addWidget(fisheye_title)
+        lane_mask_title = QLabel("WHITE LANE DETECTION & OCCUPANCY MASK")
+        lane_mask_title.setFont(QFont("Arial", 11, QFont.Bold))
+        lane_mask_title.setStyleSheet("color: #00e5ff;")
+        center_layout.addWidget(lane_mask_title)
 
-        self.fisheye_label = QLabel()
-        self.fisheye_label.setFixedSize(640, 360)
-        self.fisheye_label.setStyleSheet("border: 2px solid #282830; background-color: #050508;")
-        center_layout.addWidget(self.fisheye_label)
+        self.lane_mask_label = QLabel()
+        self.lane_mask_label.setFixedSize(self.bev_w, self.bev_h)
+        self.lane_mask_label.setStyleSheet("border: 2px solid #282830; background-color: #050508;")
+        center_layout.addWidget(self.lane_mask_label)
 
         # Bottom info section
         info_box = QGroupBox("Kobuki Robot Specifications")
@@ -681,8 +681,8 @@ class CalibrationWindow(QWidget):
             )
             self.map_dirty = False
 
-        # Apply floor projection mapping
-        bev_img = cv2.remap(
+        # Process STEP 1: White Lane Detection & Mask Generation
+        clean_bev = cv2.remap(
             frame,
             self.map_x,
             self.map_y,
@@ -690,18 +690,120 @@ class CalibrationWindow(QWidget):
             borderMode=cv2.BORDER_CONSTANT,
             borderValue=(0, 0, 0)
         )
+        lane_mask_visual = self.process_white_lane_detection(clean_bev)
 
-        # Draw overlays on BEV and Fisheye
+        # Draw overlays on BEV
         self.draw_bev_overlays(bev_img)
-        
-        # Display Raw Fisheye View
-        raw_display = frame.copy()
-        if self.params["show_circles"] == 1:
-            self.draw_fisheye_calibration_circles(raw_display)
 
-        # Convert to QPixmap and display
+        # Display images to UI
         self.display_image(self.bev_label, bev_img)
-        self.display_image(self.fisheye_label, raw_display)
+        self.display_image(self.lane_mask_label, lane_mask_visual)
+
+    def process_white_lane_detection(self, bev_img):
+        """
+        STEP 1 Prototype: Detects white lane markings (solid, dashed, curves) from BEV image,
+        applies sliding window polynomial fitting, and returns a binary/color mask image.
+        """
+        h, w = bev_img.shape[:2]
+
+        # 1. Convert to HLS color space and isolate Lightness (L) channel
+        hls = cv2.cvtColor(bev_img, cv2.COLOR_BGR2HLS)
+        l_channel = hls[:, :, 1]
+
+        # 2. Contrast Limited Adaptive Histogram Equalization (CLAHE) for illumination robustness
+        clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))
+        l_enhanced = clahe.apply(l_channel)
+
+        # 3. Binary thresholding to extract bright white features
+        _, binary_mask = cv2.threshold(l_enhanced, 190, 255, cv2.THRESH_BINARY)
+
+        # Morphological close to bridge dashed lines
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 7))
+        binary_mask = cv2.morphologyEx(binary_mask, cv2.MORPH_CLOSE, kernel)
+
+        # 4. Create visual output image (BGR)
+        mask_visual = cv2.cvtColor(binary_mask, cv2.COLOR_GRAY2BGR)
+
+        # 5. Sliding Window Polynomial Fitting for Left/Right Lane Curves
+        # Histogram on lower half to find lane base X coordinates
+        histogram = np.sum(binary_mask[h // 2:, :], axis=0)
+        midpoint = int(w // 2)
+        leftx_base = np.argmax(histogram[:midpoint])
+        rightx_base = np.argmax(histogram[midpoint:]) + midpoint
+
+        nwindows = 9
+        window_height = int(h // nwindows)
+        nonzero = binary_mask.nonzero()
+        nonzeroy = np.array(nonzero[0])
+        nonzerox = np.array(nonzero[1])
+
+        leftx_current = leftx_base
+        rightx_current = rightx_base
+        margin = 40
+        minpix = 25
+
+        left_lane_inds = []
+        right_lane_inds = []
+
+        for window in range(nwindows):
+            win_y_low = h - (window + 1) * window_height
+            win_y_high = h - window * window_height
+            
+            # Left window
+            win_xleft_low = leftx_current - margin
+            win_xleft_high = leftx_current + margin
+            # Right window
+            win_xright_low = rightx_current - margin
+            win_xright_high = rightx_current + margin
+
+            # Draw window boxes on mask visualization
+            cv2.rectangle(mask_visual, (win_xleft_low, win_y_low), (win_xleft_high, win_y_high), (0, 255, 120), 1)
+            cv2.rectangle(mask_visual, (win_xright_low, win_y_low), (win_xright_high, win_y_high), (0, 255, 120), 1)
+
+            good_left_inds = (
+                (nonzeroy >= win_y_low) & (nonzeroy < win_y_high) &
+                (nonzerox >= win_xleft_low) & (nonzerox < win_xleft_high)
+            ).nonzero()[0]
+            good_right_inds = (
+                (nonzeroy >= win_y_low) & (nonzeroy < win_y_high) &
+                (nonzerox >= win_xright_low) & (nonzerox < win_xright_high)
+            ).nonzero()[0]
+
+            left_lane_inds.append(good_left_inds)
+            right_lane_inds.append(good_right_inds)
+
+            if len(good_left_inds) > minpix:
+                leftx_current = int(np.mean(nonzerox[good_left_inds]))
+            if len(good_right_inds) > minpix:
+                rightx_current = int(np.mean(nonzerox[good_right_inds]))
+
+        left_lane_inds = np.concatenate(left_lane_inds)
+        right_lane_inds = np.concatenate(right_lane_inds)
+
+        # Fit 2nd order polynomial if points detected
+        ploty = np.linspace(0, h - 1, h)
+
+        if len(left_lane_inds) > 50:
+            leftx = nonzerox[left_lane_inds]
+            lefty = nonzeroy[left_lane_inds]
+            left_fit = np.polyfit(lefty, leftx, 2)
+            left_fitx = left_fit[0] * ploty ** 2 + left_fit[1] * ploty + left_fit[2]
+            pts_left = np.array([np.transpose(np.vstack([left_fitx, ploty]))], dtype=np.int32)
+            cv2.polylines(mask_visual, pts_left, isClosed=False, color=(0, 229, 255), thickness=3)
+
+        if len(right_lane_inds) > 50:
+            rightx = nonzerox[right_lane_inds]
+            righty = nonzeroy[right_lane_inds]
+            right_fit = np.polyfit(righty, rightx, 2)
+            right_fitx = right_fit[0] * ploty ** 2 + right_fit[1] * ploty + right_fit[2]
+            pts_right = np.array([np.transpose(np.vstack([right_fitx, ploty]))], dtype=np.int32)
+            cv2.polylines(mask_visual, pts_right, isClosed=False, color=(0, 229, 255), thickness=3)
+
+        # Header info overlay
+        cv2.putText(mask_visual, "STEP 1: WHITE LANE & CURVE SLIDING WINDOW FIT", (15, 25),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 255, 120), 1, cv2.LINE_AA)
+
+        return mask_visual
 
     def draw_fisheye_calibration_circles(self, frame):
         """
