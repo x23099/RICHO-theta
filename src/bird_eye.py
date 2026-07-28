@@ -706,16 +706,19 @@ class CalibrationWindow(QWidget):
         """
         h, w = bev_img.shape[:2]
 
-        # 1. Convert to HLS color space and isolate Lightness (L) channel
+        # 1. Convert to HLS color space (L: Lightness, S: Saturation)
         hls = cv2.cvtColor(bev_img, cv2.COLOR_BGR2HLS)
         l_channel = hls[:, :, 1]
+        s_channel = hls[:, :, 2]
 
-        # 2. Contrast Limited Adaptive Histogram Equalization (CLAHE) for illumination robustness
-        clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))
-        l_enhanced = clahe.apply(l_channel)
+        # 2. Strict thresholding on Lightness (L >= 220) to ignore grey floor
+        _, l_mask = cv2.threshold(l_channel, 220, 255, cv2.THRESH_BINARY)
 
-        # 3. Binary thresholding to extract bright white features
-        _, binary_mask = cv2.threshold(l_enhanced, 190, 255, cv2.THRESH_BINARY)
+        # 3. Saturation filter (S < 60) to exclude colored reflections
+        _, s_mask = cv2.threshold(s_channel, 60, 255, cv2.THRESH_BINARY_INV)
+
+        # Combine L and S masks (pure bright white line only)
+        binary_mask = cv2.bitwise_and(l_mask, s_mask)
 
         # Morphological close to bridge dashed lines
         kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 7))
