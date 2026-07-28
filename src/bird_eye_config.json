@@ -1,18 +1,18 @@
 {
-    "camera_height": 0.96,
-    "scale": 0.01,
-    "pitch_deg": -22.0,
-    "roll_deg": -1.0,
+    "camera_height": 1.0,
+    "scale": 0.009,
+    "pitch_deg": -20.0,
+    "roll_deg": 1.0,
     "yaw_deg": 1.0,
     "radius_scale": 0.83,
     "front_cx_offset": -91.0,
     "front_cy_offset": -9.0,
     "back_cx_offset": 79.0,
     "back_cy_offset": -12.0,
-    "car_offset_x": -0.08,
+    "car_offset_x": -0.11,
     "car_offset_z": -1.0,
-    "car_width": 1.2,
-    "car_length": 1.2,
+    "car_width": 1.33,
+    "car_length": 1.33,
     "show_circles": 1,
-    "bowl_curve": 1.2
+    "bowl_curve": 0.0
 }
