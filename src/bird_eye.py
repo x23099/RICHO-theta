@@ -456,10 +456,10 @@ class CalibrationWindow(QWidget):
         self.sl_height = self.create_slider(20, 200, int(self.params["camera_height"] * 100), self.on_proj_slider_changed)
         proj_layout.addRow(self.create_slider_label("Cam Height (H)", "m"), self.sl_height)
         
-        self.sl_scale = self.create_slider(1, 20, int(self.params["scale"] * 1000), self.on_proj_slider_changed)
+        self.sl_scale = self.create_slider(1, 50, int(self.params["scale"] * 1000), self.on_proj_slider_changed)
         proj_layout.addRow(self.create_slider_label("Scale (mm/px)", "mm"), self.sl_scale)
         
-        self.sl_pitch = self.create_slider(-30, 30, int(self.params["pitch_deg"]), self.on_proj_slider_changed)
+        self.sl_pitch = self.create_slider(-45, 45, int(self.params["pitch_deg"]), self.on_proj_slider_changed)
         proj_layout.addRow(self.create_slider_label("Pitch (Tilt Forward)", "deg"), self.sl_pitch)
         
         self.sl_roll = self.create_slider(-30, 30, int(self.params["roll_deg"]), self.on_proj_slider_changed)
@@ -468,7 +468,7 @@ class CalibrationWindow(QWidget):
         self.sl_yaw = self.create_slider(-180, 180, int(self.params["yaw_deg"]), self.on_proj_slider_changed)
         proj_layout.addRow(self.create_slider_label("Yaw (Rotate)", "deg"), self.sl_yaw)
         
-        self.sl_bowl = self.create_slider(0, 200, int(self.params.get("bowl_curve", 0.0) * 100), self.on_proj_slider_changed)
+        self.sl_bowl = self.create_slider(0, 1000, int(self.params.get("bowl_curve", 0.0) * 100), self.on_proj_slider_changed)
         proj_layout.addRow(self.create_slider_label("Bowl Distortion", ""), self.sl_bowl)
         
         proj_group.setLayout(proj_layout)
