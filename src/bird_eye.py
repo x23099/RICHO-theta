@@ -245,6 +245,18 @@ class CalibrationWindow(QWidget):
         self.bev_w = 500
         self.bev_h = 600
 
+        # Prediction path variables (matching zc33s_ui.py)
+        self.last_odom_time = 0.0
+        self.prediction_odom_timeout = 0.5
+        self.prediction_min_speed = 0.01
+        self.prediction_angular_deadband = 0.005
+        self.odom_linear_x = 0.0
+        self.odom_angular_z = 0.0
+        self.cmd_linear_x = 0.3
+        self.cmd_angular_z = 0.0
+        self.yaw_to_handle_ratio = 1.25
+        self.handle_limit_deg = 450.0
+
         # Camera streams setup
         self.cap = None
         self.timer = QTimer(self)
@@ -739,7 +751,10 @@ class CalibrationWindow(QWidget):
                 end_y = int(start_y + uy * 500)
                 cv2.line(bev_img, (start_x, start_y), (end_x, end_y), (100, 100, 100), 1, cv2.LINE_AA)
 
-        # 2. Draw Kobuki Mobile Robot in the center (overwriting the blind spot)
+        # 2. Draw Predicted Trajectory Path (Tesla style translucent blue band)
+        self.draw_predicted_path_on_bev(bev_img)
+
+        # 3. Draw Kobuki Mobile Robot in the center (overwriting the blind spot)
         # Apply robot center offset
         rob_offset_x_px = int(self.params["car_offset_x"] / self.params["scale"])
         rob_offset_z_px = int(self.params["car_offset_z"] / self.params["scale"])
@@ -787,6 +802,142 @@ class CalibrationWindow(QWidget):
         # Text indicating camera center crosshair
         cv2.drawMarker(bev_img, (center_x, center_y), (0, 0, 255), 
                        cv2.MARKER_CROSS, markerSize=12, thickness=1, line_type=cv2.LINE_AA)
+
+    def predict_path_points(self, prediction_time=3.5, dt=0.05):
+        """
+        Calculates predicted path points identical to zc33s_ui.py logic.
+        """
+        now = time.time()
+        odom_is_recent = (
+            self.last_odom_time > 0.0
+            and now - self.last_odom_time <= self.prediction_odom_timeout
+        )
+
+        if odom_is_recent and abs(self.odom_linear_x) >= self.prediction_min_speed:
+            v = float(self.odom_linear_x)
+        else:
+            v = float(self.cmd_linear_x)
+
+        if abs(self.cmd_angular_z) >= 1e-4:
+            w = float(self.cmd_angular_z)
+            source = "cmd"
+        elif odom_is_recent and abs(self.odom_angular_z) >= self.prediction_angular_deadband:
+            w = float(self.odom_angular_z)
+            source = "odom"
+        else:
+            w = float(self.cmd_angular_z)
+            source = "cmd"
+
+        v_abs = abs(v)
+        if (
+            v_abs < self.prediction_min_speed
+            and abs(w) < self.prediction_angular_deadband
+        ):
+            return []
+
+        if source == "cmd":
+            abs_cmd_w = abs(w)
+            if abs_cmd_w > 1e-4:
+                target_yaw_deg = 90.0 * ((abs_cmd_w / 0.8) ** (1.0 / 0.60))
+                target_yaw_deg = min(360.0, target_yaw_deg)
+                target_yaw_rad = math.radians(target_yaw_deg)
+                
+                w_base = target_yaw_rad / prediction_time
+                v_ref = 0.8
+                w = math.copysign(w_base * (v_abs / v_ref), w)
+            else:
+                w = 0.0
+
+        min_distance = 1.5
+        if v_abs > 1e-4:
+            required_time = max(prediction_time, min_distance / v_abs)
+            required_time = min(15.0, required_time)
+        else:
+            required_time = prediction_time
+
+        x = 0.0
+        y = 0.0
+        yaw = 0.0
+        points = []
+
+        steps = int(required_time / dt)
+        max_yaw_limit = math.radians(100.0)
+
+        for _ in range(steps):
+            x += v * math.cos(yaw) * dt
+            y += v * math.sin(yaw) * dt
+            yaw += w * dt
+            points.append((x, y, yaw))
+            if abs(yaw) >= max_yaw_limit:
+                break
+
+        return points
+
+    def draw_predicted_path_on_bev(self, bev_img):
+        """
+        Draws Tesla-style translucent blue path polygon on Bird's Eye View image.
+        """
+        # For mock demo testing: fluctuate cmd_angular_z periodically if in mock camera mode
+        if self.args.mock_camera:
+            self.cmd_angular_z = 0.5 * math.sin(time.time() * 1.5)
+
+        points = self.predict_path_points(prediction_time=3.5, dt=0.05)
+        if len(points) < 2:
+            return
+
+        points = [(0.0, 0.0, 0.0)] + points
+
+        h, w = bev_img.shape[:2]
+        center_x = w // 2
+        center_y = h // 2
+
+        rob_offset_x_px = int(self.params["car_offset_x"] / self.params["scale"])
+        rob_offset_z_px = int(self.params["car_offset_z"] / self.params["scale"])
+        rx = center_x + rob_offset_x_px
+        ry = center_y - rob_offset_z_px
+
+        scale = float(self.params["scale"])
+        if scale <= 0:
+            return
+
+        # Width of trajectory line (matching vehicle body width)
+        half_width = float(self.params.get("car_width", 0.354)) / 2.0
+
+        left_screen_points = []
+        right_screen_points = []
+
+        for x, y, yaw in points:
+            # x is forward (longitudinal), y is lateral (positive left)
+            x_l = x - half_width * math.sin(yaw)
+            y_l = y + half_width * math.cos(yaw)
+
+            x_r = x + half_width * math.sin(yaw)
+            y_r = y - half_width * math.cos(yaw)
+
+            # Map to BEV pixels
+            # +x (forward) -> -Y on screen
+            # +y (left) -> -X on screen
+            px_l = int(rx - y_l / scale)
+            py_l = int(ry - x_l / scale)
+
+            px_r = int(rx - y_r / scale)
+            py_r = int(ry - x_r / scale)
+
+            left_screen_points.append((px_l, py_l))
+            right_screen_points.append((px_r, py_r))
+
+        if len(left_screen_points) < 2 or len(right_screen_points) < 2:
+            return
+
+        poly_points = left_screen_points + list(reversed(right_screen_points))
+        pts = np.array(poly_points, dtype=np.int32).reshape((-1, 1, 2))
+
+        overlay = bev_img.copy()
+        # Tesla-style deep solid blue color BGR: (240, 110, 0)
+        cv2.fillPoly(overlay, [pts], color=(240, 110, 0))
+
+        # Blend with opacity 0.70
+        cv2.addWeighted(overlay, 0.70, bev_img, 0.30, 0, dst=bev_img)
 
     def display_image(self, label, img):
         h, w, c = img.shape
