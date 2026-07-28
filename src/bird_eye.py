@@ -727,73 +727,49 @@ class CalibrationWindow(QWidget):
         # 4. Create visual output image (BGR)
         mask_visual = cv2.cvtColor(binary_mask, cv2.COLOR_GRAY2BGR)
 
-        # 5. Robust Contour-based Lane Fitting (Replaces rigid sliding window)
-        # Find all white line contours in the binary mask
+        # 5. Robust Localized Fitting using cv2.fitLine (Prevents wild screen-wide crossing lines)
         contours, _ = cv2.findContours(binary_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-        left_points = []
-        right_points = []
-        midpoint = w // 2
-
         for cnt in contours:
-            # Filter out tiny noise dots
-            if cv2.contourArea(cnt) < 25:
+            area = cv2.contourArea(cnt)
+            # Ignore noise dots
+            if area < 30:
                 continue
 
-            # Draw green bounding box around detected white line segments
+            # Bounding box of the detected tape segment
             x_box, y_box, w_box, h_box = cv2.boundingRect(cnt)
             cv2.rectangle(mask_visual, (x_box, y_box), (x_box + w_box, y_box + h_box), (0, 255, 120), 1)
 
-            # Classify points into left or right side of vehicle
-            for pt in cnt:
-                px, py = pt[0]
-                if px < midpoint:
-                    left_points.append((px, py))
-                else:
-                    right_points.append((px, py))
+            # Require minimum height or width to avoid fitting random small spots
+            if h_box < 15 and w_box < 15:
+                continue
 
-        ploty = np.linspace(0, h - 1, h)
-
-        # Fit left lane curve
-        if len(left_points) > 15:
-            left_pts = np.array(left_points)
-            leftx = left_pts[:, 0]
-            lefty = left_pts[:, 1]
+            # Fit straight line direction vector (vx, vy) and point (x0, y0) for THIS contour only
+            [vx, vy, x0, y0] = cv2.fitLine(cnt, cv2.DIST_L2, 0, 0.01, 0.01)
             
-            deg = 1 if len(leftx) < 40 else 2
-            left_fit = np.polyfit(lefty, leftx, deg)
-            if deg == 1:
-                left_fitx = left_fit[0] * ploty + left_fit[1]
-            else:
-                left_fit[0] = np.clip(left_fit[0], -2e-4, 2e-4)
-                left_fitx = left_fit[0] * ploty ** 2 + left_fit[1] * ploty + left_fit[2]
+            vx = float(vx[0])
+            vy = float(vy[0])
+            x0 = float(x0[0])
+            y0 = float(y0[0])
 
-            valid_mask = (left_fitx >= 0) & (left_fitx < w)
-            pts_left = np.array([np.transpose(np.vstack([left_fitx[valid_mask], ploty[valid_mask]]))], dtype=np.int32)
-            if len(pts_left[0]) > 2:
-                cv2.polylines(mask_visual, pts_left, isClosed=False, color=(0, 229, 255), thickness=3)
+            # Calculate line endpoints restricted strictly to the Y-span of this contour segment
+            if abs(vy) > 1e-4:
+                y1 = float(y_box)
+                y2 = float(y_box + h_box)
+                x1 = x0 + (y1 - y0) * (vx / vy)
+                x2 = x0 + (y2 - y0) * (vx / vy)
 
-        # Fit right lane curve
-        if len(right_points) > 15:
-            right_pts = np.array(right_points)
-            rightx = right_pts[:, 0]
-            righty = right_pts[:, 1]
+                # Clamp endpoints to image boundaries
+                x1 = max(0, min(w - 1, int(x1)))
+                x2 = max(0, min(w - 1, int(x2)))
+                y1 = int(y1)
+                y2 = int(y2)
 
-            deg = 1 if len(rightx) < 40 else 2
-            right_fit = np.polyfit(righty, rightx, deg)
-            if deg == 1:
-                right_fitx = right_fit[0] * ploty + right_fit[1]
-            else:
-                right_fit[0] = np.clip(right_fit[0], -2e-4, 2e-4)
-                right_fitx = right_fit[0] * ploty ** 2 + right_fit[1] * ploty + right_fit[2]
-
-            valid_mask = (right_fitx >= 0) & (right_fitx < w)
-            pts_right = np.array([np.transpose(np.vstack([right_fitx[valid_mask], ploty[valid_mask]]))], dtype=np.int32)
-            if len(pts_right[0]) > 2:
-                cv2.polylines(mask_visual, pts_right, isClosed=False, color=(0, 229, 255), thickness=3)
+                # Draw fitted yellow line segment OVER the actual detected tape region only
+                cv2.line(mask_visual, (x1, y1), (x2, y2), (0, 229, 255), 3, cv2.LINE_AA)
 
         # Header info overlay
-        cv2.putText(mask_visual, "STEP 1: CONTOUR CLUSTERING LANE FIT", (15, 25),
+        cv2.putText(mask_visual, "STEP 1: LOCALIZED CONTOUR FITLINE (STABLE)", (15, 25),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 255, 120), 1, cv2.LINE_AA)
 
         return mask_visual
