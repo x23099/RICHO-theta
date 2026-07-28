@@ -307,7 +307,7 @@ class CalibrationWindow(QWidget):
             "car_width": 0.354,
             "car_length": 0.354,
             "show_circles": 1,
-            "bowl_curve": 0.0
+            "bowl_curve": 1.2
         }
         if os.path.exists(self.config_path):
             try:
@@ -344,7 +344,7 @@ class CalibrationWindow(QWidget):
             "car_width": 0.354,
             "car_length": 0.354,
             "show_circles": 1,
-            "bowl_curve": 0.0
+            "bowl_curve": 1.2
         }
         self.update_sliders()
         self.map_dirty = True

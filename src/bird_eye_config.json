@@ -14,5 +14,5 @@
     "car_width": 1.2,
     "car_length": 1.2,
     "show_circles": 1,
-    "bowl_curve": 0.0
+    "bowl_curve": 1.2
 }
