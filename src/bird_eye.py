@@ -257,7 +257,16 @@ class CalibrationWindow(QWidget):
         self.yaw_to_handle_ratio = 1.25
         self.handle_limit_deg = 450.0
 
-        # WASD keyboard state
+        # WASD & Gear keyboard state
+        self.current_gear = 1
+        self.gear_speeds = {
+            1: 0.35,
+            2: 0.70,
+            3: 1.20,
+            4: 1.80,
+            5: 2.50,
+            6: 3.50,
+        }
         self.keys_pressed = {
             Qt.Key_W: False,
             Qt.Key_A: False,
@@ -811,6 +820,11 @@ class CalibrationWindow(QWidget):
         cv2.drawMarker(bev_img, (center_x, center_y), (0, 0, 255), 
                        cv2.MARKER_CROSS, markerSize=12, thickness=1, line_type=cv2.LINE_AA)
 
+        # Draw Gear & Speed status overlay on BEV
+        speed_max = self.gear_speeds[self.current_gear]
+        gear_info = f"GEAR: {self.current_gear} | MAX V: {speed_max:.2f} m/s [Q:ShiftDown / E:ShiftUp]"
+        cv2.putText(bev_img, gear_info, (15, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 229, 255), 1, cv2.LINE_AA)
+
     def predict_path_points(self, prediction_time=3.5, dt=0.05):
         """
         Calculates predicted path points identical to zc33s_ui.py logic.
@@ -883,16 +897,17 @@ class CalibrationWindow(QWidget):
 
     def update_keyboard_input(self):
         """
-        Updates cmd_linear_x and cmd_angular_z based on W, A, S, D key status.
+        Updates cmd_linear_x and cmd_angular_z based on W, A, S, D key status and gear.
         Matches zc33s_ui.py keyboard driving logic.
         """
         target_v = 0.0
         target_w = 0.0
+        gear_speed = self.gear_speeds[self.current_gear]
 
         if self.keys_pressed.get(Qt.Key_W, False):
-            target_v = 0.35  # Forward speed (m/s)
+            target_v = gear_speed  # Forward speed (m/s) based on gear
         elif self.keys_pressed.get(Qt.Key_S, False):
-            target_v = -0.25 # Backward speed (m/s)
+            target_v = -gear_speed * 0.7 # Backward speed (m/s)
 
         if self.keys_pressed.get(Qt.Key_A, False):
             target_w = 0.55  # Turn left (rad/s)
@@ -905,6 +920,14 @@ class CalibrationWindow(QWidget):
     def keyPressEvent(self, event: QKeyEvent):
         if event.key() in (Qt.Key_W, Qt.Key_A, Qt.Key_S, Qt.Key_D):
             self.keys_pressed[event.key()] = True
+        elif event.key() == Qt.Key_Q:
+            # Shift Down
+            self.current_gear = max(1, self.current_gear - 1)
+            print(f"[INFO] Shift Down -> Gear {self.current_gear} ({self.gear_speeds[self.current_gear]} m/s)")
+        elif event.key() == Qt.Key_E:
+            # Shift Up
+            self.current_gear = min(6, self.current_gear + 1)
+            print(f"[INFO] Shift Up -> Gear {self.current_gear} ({self.gear_speeds[self.current_gear]} m/s)")
         else:
             super().keyPressEvent(event)
 
