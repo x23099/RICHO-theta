@@ -712,7 +712,7 @@ class CalibrationWindow(QWidget):
         s_channel = hls[:, :, 2]
 
         # 2. Strict thresholding on Lightness (L >= 220) to ignore grey floor
-        _, l_mask = cv2.threshold(l_channel, 220, 255, cv2.THRESH_BINARY)
+        _, l_mask = cv2.threshold(l_channel, 185, 255, cv2.THRESH_BINARY)
 
         # 3. Saturation filter (S < 60) to exclude colored reflections
         _, s_mask = cv2.threshold(s_channel, 60, 255, cv2.THRESH_BINARY_INV)
