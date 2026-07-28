@@ -274,6 +274,10 @@ class CalibrationWindow(QWidget):
             Qt.Key_D: False,
         }
 
+        # STEP 2: Local Occupancy Grid Map Memory (Accumulated map)
+        self.occupancy_map = np.zeros((self.bev_h, self.bev_w), dtype=np.float32)
+        self.last_map_update_time = time.time()
+
         # Camera streams setup
         self.cap = None
         self.timer = QTimer(self)
@@ -772,7 +776,83 @@ class CalibrationWindow(QWidget):
         cv2.putText(mask_visual, "STEP 1: LOCALIZED CONTOUR FITLINE (STABLE)", (15, 25),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 255, 120), 1, cv2.LINE_AA)
 
-        return mask_visual
+        # STEP 2: Update persistent local occupancy grid map memory with vehicle motion
+        accumulated_map_visual = self.update_occupancy_map(binary_mask)
+
+        # Blend accumulated persistent map with current frame's fitted lines
+        final_visual = cv2.addWeighted(accumulated_map_visual, 0.65, mask_visual, 0.35, 0)
+        cv2.putText(final_visual, "STEP 2: LOCAL OCCUPANCY MAP ACCUMULATION (TESLA STYLE)", (15, 25),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 229, 255), 1, cv2.LINE_AA)
+
+        return final_visual
+
+    def update_occupancy_map(self, binary_mask):
+        """
+        STEP 2: Accumulates detected white lines into a persistent local occupancy grid map,
+        and scrolls/rotates the map matrix according to vehicle odometry (v, w) velocity commands.
+        """
+        now = time.time()
+        dt = now - self.last_map_update_time
+        self.last_map_update_time = now
+
+        # Prevent large jump on first frame
+        if dt > 0.2:
+            dt = 0.04
+
+        h, w = binary_mask.shape[:2]
+        center_x = w / 2.0
+        center_y = h / 2.0
+        scale = float(self.params["scale"])
+        if scale <= 0:
+            scale = 0.005
+
+        # Robot vehicle velocities (WASD commands or odom)
+        v = float(self.cmd_linear_x)
+        w_rad = float(self.cmd_angular_z)
+
+        # 1. Calculate map scroll shift & rotation based on vehicle motion over dt
+        # Forward displacement in meters
+        d_s = v * dt
+        # Pixel shift (Forward motion moves background map downwards)
+        dy_px = d_s / scale
+
+        # Heading angle rotation in degrees
+        d_yaw_deg = math.degrees(w_rad * dt)
+
+        # Rotation center at vehicle position
+        rob_offset_x_px = int(self.params["car_offset_x"] / scale)
+        rob_offset_z_px = int(self.params["car_offset_z"] / scale)
+        rx = center_x + rob_offset_x_px
+        ry = center_y - rob_offset_z_px
+
+        # Compute affine transformation matrix for map scrolling & rotation
+        # Note: If vehicle turns left (+w), background map rotates right (-d_yaw_deg)
+        M = cv2.getRotationMatrix2D((rx, ry), -d_yaw_deg, 1.0)
+        M[1, 2] += dy_px  # Scroll map downwards when moving forward
+
+        # Apply warpAffine to scroll existing map memory
+        self.occupancy_map = cv2.warpAffine(
+            self.occupancy_map, M, (w, h),
+            borderMode=cv2.BORDER_CONSTANT, borderValue=0.0
+        )
+
+        # 2. Apply decay filter to gradually fade out stale noise (decay factor = 0.985)
+        self.occupancy_map *= 0.985
+
+        # 3. Fuse current frame binary mask into accumulated map
+        current_mask = (binary_mask.astype(np.float32) / 255.0)
+        self.occupancy_map = np.clip(self.occupancy_map + current_mask * 0.45, 0.0, 1.0)
+
+        # 4. Generate color visualization for accumulated map (Glowing Cyan/Blue)
+        map_uint8 = (self.occupancy_map * 255).astype(np.uint8)
+        accumulated_visual = cv2.cvtColor(map_uint8, cv2.COLOR_GRAY2BGR)
+        
+        active_mask = map_uint8 > 25
+        accumulated_visual[active_mask, 0] = np.clip(map_uint8[active_mask] * 1.0, 0, 255) # B
+        accumulated_visual[active_mask, 1] = np.clip(map_uint8[active_mask] * 0.8, 0, 255) # G
+        accumulated_visual[active_mask, 2] = np.clip(map_uint8[active_mask] * 0.2, 0, 255) # R
+
+        return accumulated_visual
 
     def draw_fisheye_calibration_circles(self, frame):
         """
