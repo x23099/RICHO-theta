@@ -11,7 +11,7 @@ import cv2
 import numpy as np
 
 from PySide6.QtCore import Qt, QTimer, QPoint, QRectF
-from PySide6.QtGui import QImage, QPixmap, QPainter, QColor, QPen, QBrush, QFont
+from PySide6.QtGui import QImage, QPixmap, QPainter, QColor, QPen, QBrush, QFont, QKeyEvent
 from PySide6.QtWidgets import (
     QApplication, QWidget, QLabel, QSlider, QGridLayout, QVBoxLayout,
     QHBoxLayout, QPushButton, QGroupBox, QFormLayout, QFileDialog, QCheckBox
@@ -252,10 +252,18 @@ class CalibrationWindow(QWidget):
         self.prediction_angular_deadband = 0.005
         self.odom_linear_x = 0.0
         self.odom_angular_z = 0.0
-        self.cmd_linear_x = 0.3
+        self.cmd_linear_x = 0.0
         self.cmd_angular_z = 0.0
         self.yaw_to_handle_ratio = 1.25
         self.handle_limit_deg = 450.0
+
+        # WASD keyboard state
+        self.keys_pressed = {
+            Qt.Key_W: False,
+            Qt.Key_A: False,
+            Qt.Key_S: False,
+            Qt.Key_D: False,
+        }
 
         # Camera streams setup
         self.cap = None
@@ -873,13 +881,45 @@ class CalibrationWindow(QWidget):
 
         return points
 
+    def update_keyboard_input(self):
+        """
+        Updates cmd_linear_x and cmd_angular_z based on W, A, S, D key status.
+        Matches zc33s_ui.py keyboard driving logic.
+        """
+        target_v = 0.0
+        target_w = 0.0
+
+        if self.keys_pressed.get(Qt.Key_W, False):
+            target_v = 0.35  # Forward speed (m/s)
+        elif self.keys_pressed.get(Qt.Key_S, False):
+            target_v = -0.25 # Backward speed (m/s)
+
+        if self.keys_pressed.get(Qt.Key_A, False):
+            target_w = 0.55  # Turn left (rad/s)
+        elif self.keys_pressed.get(Qt.Key_D, False):
+            target_w = -0.55 # Turn right (rad/s)
+
+        self.cmd_linear_x = target_v
+        self.cmd_angular_z = target_w
+
+    def keyPressEvent(self, event: QKeyEvent):
+        if event.key() in (Qt.Key_W, Qt.Key_A, Qt.Key_S, Qt.Key_D):
+            self.keys_pressed[event.key()] = True
+        else:
+            super().keyPressEvent(event)
+
+    def keyReleaseEvent(self, event: QKeyEvent):
+        if event.key() in (Qt.Key_W, Qt.Key_A, Qt.Key_S, Qt.Key_D) and not event.isAutoRepeat():
+            self.keys_pressed[event.key()] = False
+        else:
+            super().keyReleaseEvent(event)
+
     def draw_predicted_path_on_bev(self, bev_img):
         """
         Draws Tesla-style translucent blue path polygon on Bird's Eye View image.
         """
-        # For mock demo testing: fluctuate cmd_angular_z periodically if in mock camera mode
-        if self.args.mock_camera:
-            self.cmd_angular_z = 0.5 * math.sin(time.time() * 1.5)
+        # Update velocities based on keyboard input
+        self.update_keyboard_input()
 
         points = self.predict_path_points(prediction_time=3.5, dt=0.05)
         if len(points) < 2:
