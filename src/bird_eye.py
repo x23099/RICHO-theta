@@ -682,7 +682,7 @@ class CalibrationWindow(QWidget):
             self.map_dirty = False
 
         # Process STEP 1: White Lane Detection & Mask Generation
-        clean_bev = cv2.remap(
+        bev_img = cv2.remap(
             frame,
             self.map_x,
             self.map_y,
@@ -690,7 +690,7 @@ class CalibrationWindow(QWidget):
             borderMode=cv2.BORDER_CONSTANT,
             borderValue=(0, 0, 0)
         )
-        lane_mask_visual = self.process_white_lane_detection(clean_bev)
+        lane_mask_visual = self.process_white_lane_detection(bev_img)
 
         # Draw overlays on BEV
         self.draw_bev_overlays(bev_img)
