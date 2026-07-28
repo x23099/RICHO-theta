@@ -727,99 +727,73 @@ class CalibrationWindow(QWidget):
         # 4. Create visual output image (BGR)
         mask_visual = cv2.cvtColor(binary_mask, cv2.COLOR_GRAY2BGR)
 
-        # 5. Sliding Window Fitting (Robust for both straight lines and curves)
-        # Scan bottom 35% of the image to find accurate base points
-        bottom_region = binary_mask[int(h * 0.65):, :]
-        histogram = np.sum(bottom_region, axis=0)
-        midpoint = int(w // 2)
+        # 5. Robust Contour-based Lane Fitting (Replaces rigid sliding window)
+        # Find all white line contours in the binary mask
+        contours, _ = cv2.findContours(binary_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-        leftx_base = np.argmax(histogram[:midpoint]) if np.max(histogram[:midpoint]) > 0 else int(w * 0.25)
-        rightx_base = np.argmax(histogram[midpoint:]) + midpoint if np.max(histogram[midpoint:]) > 0 else int(w * 0.75)
+        left_points = []
+        right_points = []
+        midpoint = w // 2
 
-        nwindows = 10
-        window_height = int(h // nwindows)
-        nonzero = binary_mask.nonzero()
-        nonzeroy = np.array(nonzero[0])
-        nonzerox = np.array(nonzero[1])
+        for cnt in contours:
+            # Filter out tiny noise dots
+            if cv2.contourArea(cnt) < 25:
+                continue
 
-        leftx_current = leftx_base
-        rightx_current = rightx_base
-        margin = 35
-        minpix = 15
+            # Draw green bounding box around detected white line segments
+            x_box, y_box, w_box, h_box = cv2.boundingRect(cnt)
+            cv2.rectangle(mask_visual, (x_box, y_box), (x_box + w_box, y_box + h_box), (0, 255, 120), 1)
 
-        left_lane_inds = []
-        right_lane_inds = []
-
-        for window in range(nwindows):
-            win_y_low = h - (window + 1) * window_height
-            win_y_high = h - window * window_height
-            
-            # Left window
-            win_xleft_low = leftx_current - margin
-            win_xleft_high = leftx_current + margin
-            # Right window
-            win_xright_low = rightx_current - margin
-            win_xright_high = rightx_current + margin
-
-            # Draw window boxes on mask visualization
-            cv2.rectangle(mask_visual, (win_xleft_low, win_y_low), (win_xleft_high, win_y_high), (0, 255, 120), 1)
-            cv2.rectangle(mask_visual, (win_xright_low, win_y_low), (win_xright_high, win_y_high), (0, 255, 120), 1)
-
-            good_left_inds = (
-                (nonzeroy >= win_y_low) & (nonzeroy < win_y_high) &
-                (nonzerox >= win_xleft_low) & (nonzerox < win_xleft_high)
-            ).nonzero()[0]
-            good_right_inds = (
-                (nonzeroy >= win_y_low) & (nonzeroy < win_y_high) &
-                (nonzerox >= win_xright_low) & (nonzerox < win_xright_high)
-            ).nonzero()[0]
-
-            left_lane_inds.append(good_left_inds)
-            right_lane_inds.append(good_right_inds)
-
-            if len(good_left_inds) > minpix:
-                leftx_current = int(np.mean(nonzerox[good_left_inds]))
-            if len(good_right_inds) > minpix:
-                rightx_current = int(np.mean(nonzerox[good_right_inds]))
-
-        left_lane_inds = np.concatenate(left_lane_inds) if len(left_lane_inds) > 0 else np.array([])
-        right_lane_inds = np.concatenate(right_lane_inds) if len(right_lane_inds) > 0 else np.array([])
+            # Classify points into left or right side of vehicle
+            for pt in cnt:
+                px, py = pt[0]
+                if px < midpoint:
+                    left_points.append((px, py))
+                else:
+                    right_points.append((px, py))
 
         ploty = np.linspace(0, h - 1, h)
 
-        # Fit polynomial or line with fallback
-        if len(left_lane_inds) > 30:
-            leftx = nonzerox[left_lane_inds]
-            lefty = nonzeroy[left_lane_inds]
-            # Use 1st order (straight line) if points are few or almost straight, else 2nd order
-            deg = 1 if len(leftx) < 80 else 2
+        # Fit left lane curve
+        if len(left_points) > 15:
+            left_pts = np.array(left_points)
+            leftx = left_pts[:, 0]
+            lefty = left_pts[:, 1]
+            
+            deg = 1 if len(leftx) < 40 else 2
             left_fit = np.polyfit(lefty, leftx, deg)
             if deg == 1:
                 left_fitx = left_fit[0] * ploty + left_fit[1]
             else:
-                # Clamp curvature coefficient to prevent wild warping
-                left_fit[0] = np.clip(left_fit[0], -1e-4, 1e-4)
+                left_fit[0] = np.clip(left_fit[0], -2e-4, 2e-4)
                 left_fitx = left_fit[0] * ploty ** 2 + left_fit[1] * ploty + left_fit[2]
-            
-            pts_left = np.array([np.transpose(np.vstack([left_fitx, ploty]))], dtype=np.int32)
-            cv2.polylines(mask_visual, pts_left, isClosed=False, color=(0, 229, 255), thickness=3)
 
-        if len(right_lane_inds) > 30:
-            rightx = nonzerox[right_lane_inds]
-            righty = nonzeroy[right_lane_inds]
-            deg = 1 if len(rightx) < 80 else 2
+            valid_mask = (left_fitx >= 0) & (left_fitx < w)
+            pts_left = np.array([np.transpose(np.vstack([left_fitx[valid_mask], ploty[valid_mask]]))], dtype=np.int32)
+            if len(pts_left[0]) > 2:
+                cv2.polylines(mask_visual, pts_left, isClosed=False, color=(0, 229, 255), thickness=3)
+
+        # Fit right lane curve
+        if len(right_points) > 15:
+            right_pts = np.array(right_points)
+            rightx = right_pts[:, 0]
+            righty = right_pts[:, 1]
+
+            deg = 1 if len(rightx) < 40 else 2
             right_fit = np.polyfit(righty, rightx, deg)
             if deg == 1:
                 right_fitx = right_fit[0] * ploty + right_fit[1]
             else:
-                right_fit[0] = np.clip(right_fit[0], -1e-4, 1e-4)
+                right_fit[0] = np.clip(right_fit[0], -2e-4, 2e-4)
                 right_fitx = right_fit[0] * ploty ** 2 + right_fit[1] * ploty + right_fit[2]
-                
-            pts_right = np.array([np.transpose(np.vstack([right_fitx, ploty]))], dtype=np.int32)
-            cv2.polylines(mask_visual, pts_right, isClosed=False, color=(0, 229, 255), thickness=3)
+
+            valid_mask = (right_fitx >= 0) & (right_fitx < w)
+            pts_right = np.array([np.transpose(np.vstack([right_fitx[valid_mask], ploty[valid_mask]]))], dtype=np.int32)
+            if len(pts_right[0]) > 2:
+                cv2.polylines(mask_visual, pts_right, isClosed=False, color=(0, 229, 255), thickness=3)
 
         # Header info overlay
-        cv2.putText(mask_visual, "STEP 1: WHITE LANE & CURVE SLIDING WINDOW FIT", (15, 25),
+        cv2.putText(mask_visual, "STEP 1: CONTOUR CLUSTERING LANE FIT", (15, 25),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 255, 120), 1, cv2.LINE_AA)
 
         return mask_visual
