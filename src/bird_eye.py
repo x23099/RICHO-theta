@@ -727,14 +727,16 @@ class CalibrationWindow(QWidget):
         # 4. Create visual output image (BGR)
         mask_visual = cv2.cvtColor(binary_mask, cv2.COLOR_GRAY2BGR)
 
-        # 5. Sliding Window Polynomial Fitting for Left/Right Lane Curves
-        # Histogram on lower half to find lane base X coordinates
-        histogram = np.sum(binary_mask[h // 2:, :], axis=0)
+        # 5. Sliding Window Fitting (Robust for both straight lines and curves)
+        # Scan bottom 35% of the image to find accurate base points
+        bottom_region = binary_mask[int(h * 0.65):, :]
+        histogram = np.sum(bottom_region, axis=0)
         midpoint = int(w // 2)
-        leftx_base = np.argmax(histogram[:midpoint])
-        rightx_base = np.argmax(histogram[midpoint:]) + midpoint
 
-        nwindows = 9
+        leftx_base = np.argmax(histogram[:midpoint]) if np.max(histogram[:midpoint]) > 0 else int(w * 0.25)
+        rightx_base = np.argmax(histogram[midpoint:]) + midpoint if np.max(histogram[midpoint:]) > 0 else int(w * 0.75)
+
+        nwindows = 10
         window_height = int(h // nwindows)
         nonzero = binary_mask.nonzero()
         nonzeroy = np.array(nonzero[0])
@@ -742,8 +744,8 @@ class CalibrationWindow(QWidget):
 
         leftx_current = leftx_base
         rightx_current = rightx_base
-        margin = 40
-        minpix = 25
+        margin = 35
+        minpix = 15
 
         left_lane_inds = []
         right_lane_inds = []
@@ -780,25 +782,39 @@ class CalibrationWindow(QWidget):
             if len(good_right_inds) > minpix:
                 rightx_current = int(np.mean(nonzerox[good_right_inds]))
 
-        left_lane_inds = np.concatenate(left_lane_inds)
-        right_lane_inds = np.concatenate(right_lane_inds)
+        left_lane_inds = np.concatenate(left_lane_inds) if len(left_lane_inds) > 0 else np.array([])
+        right_lane_inds = np.concatenate(right_lane_inds) if len(right_lane_inds) > 0 else np.array([])
 
-        # Fit 2nd order polynomial if points detected
         ploty = np.linspace(0, h - 1, h)
 
-        if len(left_lane_inds) > 50:
+        # Fit polynomial or line with fallback
+        if len(left_lane_inds) > 30:
             leftx = nonzerox[left_lane_inds]
             lefty = nonzeroy[left_lane_inds]
-            left_fit = np.polyfit(lefty, leftx, 2)
-            left_fitx = left_fit[0] * ploty ** 2 + left_fit[1] * ploty + left_fit[2]
+            # Use 1st order (straight line) if points are few or almost straight, else 2nd order
+            deg = 1 if len(leftx) < 80 else 2
+            left_fit = np.polyfit(lefty, leftx, deg)
+            if deg == 1:
+                left_fitx = left_fit[0] * ploty + left_fit[1]
+            else:
+                # Clamp curvature coefficient to prevent wild warping
+                left_fit[0] = np.clip(left_fit[0], -1e-4, 1e-4)
+                left_fitx = left_fit[0] * ploty ** 2 + left_fit[1] * ploty + left_fit[2]
+            
             pts_left = np.array([np.transpose(np.vstack([left_fitx, ploty]))], dtype=np.int32)
             cv2.polylines(mask_visual, pts_left, isClosed=False, color=(0, 229, 255), thickness=3)
 
-        if len(right_lane_inds) > 50:
+        if len(right_lane_inds) > 30:
             rightx = nonzerox[right_lane_inds]
             righty = nonzeroy[right_lane_inds]
-            right_fit = np.polyfit(righty, rightx, 2)
-            right_fitx = right_fit[0] * ploty ** 2 + right_fit[1] * ploty + right_fit[2]
+            deg = 1 if len(rightx) < 80 else 2
+            right_fit = np.polyfit(righty, rightx, deg)
+            if deg == 1:
+                right_fitx = right_fit[0] * ploty + right_fit[1]
+            else:
+                right_fit[0] = np.clip(right_fit[0], -1e-4, 1e-4)
+                right_fitx = right_fit[0] * ploty ** 2 + right_fit[1] * ploty + right_fit[2]
+                
             pts_right = np.array([np.transpose(np.vstack([right_fitx, ploty]))], dtype=np.int32)
             cv2.polylines(mask_visual, pts_right, isClosed=False, color=(0, 229, 255), thickness=3)
 
