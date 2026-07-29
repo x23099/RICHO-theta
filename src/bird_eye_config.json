@@ -15,5 +15,6 @@
     "car_length": 2.16,
     "show_circles": 1,
     "bowl_curve": 0.11,
-    "forward_stretch": 0.0
+    "forward_stretch": 0.0,
+    "backward_stretch": 0.0
 }
