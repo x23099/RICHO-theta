@@ -14,7 +14,8 @@ from PySide6.QtCore import Qt, QTimer, QPoint, QRectF
 from PySide6.QtGui import QImage, QPixmap, QPainter, QColor, QPen, QBrush, QFont, QKeyEvent
 from PySide6.QtWidgets import (
     QApplication, QWidget, QLabel, QSlider, QGridLayout, QVBoxLayout,
-    QHBoxLayout, QPushButton, QGroupBox, QFormLayout, QFileDialog, QCheckBox
+    QHBoxLayout, QPushButton, QGroupBox, QFormLayout, QFileDialog, QCheckBox,
+    QDoubleSpinBox, QSpinBox
 )
 
 # Configuration file name
@@ -325,7 +326,9 @@ class CalibrationWindow(QWidget):
             "show_circles": 1,
             "bowl_curve": 1.2,
             "forward_stretch": 0.0,
-            "backward_stretch": 0.0
+            "backward_stretch": 0.0,
+            "white_thresh": 185,
+            "sat_thresh": 60
         }
         if os.path.exists(self.config_path):
             try:
@@ -364,7 +367,9 @@ class CalibrationWindow(QWidget):
             "show_circles": 1,
             "bowl_curve": 1.2,
             "forward_stretch": 0.0,
-            "backward_stretch": 0.0
+            "backward_stretch": 0.0,
+            "white_thresh": 185,
+            "sat_thresh": 60
         }
         self.update_sliders()
         self.map_dirty = True
@@ -469,33 +474,88 @@ class CalibrationWindow(QWidget):
         right_layout = QVBoxLayout()
         right_layout.setContentsMargins(10, 0, 10, 0)
         
+        # Helper method to create synced slider + spinbox row
+        self.control_widgets = {} # Stores (slider, spinbox, multiplier) for update_sliders
+        
+        def add_control(group_layout, name, unit, key, min_val, max_val, init_val, decimals, multiplier, callback):
+            label = QLabel(f"{name} ({unit}):")
+            label.setMinimumWidth(120)
+            
+            slider = QSlider(Qt.Horizontal)
+            slider.setMinimum(int(round(min_val * multiplier)))
+            slider.setMaximum(int(round(max_val * multiplier)))
+            slider.setValue(int(round(init_val * multiplier)))
+            
+            if decimals == 0:
+                spinbox = QSpinBox()
+                spinbox.setRange(int(min_val), int(max_val))
+                spinbox.setValue(int(init_val))
+            else:
+                spinbox = QDoubleSpinBox()
+                spinbox.setRange(float(min_val), float(max_val))
+                spinbox.setDecimals(decimals)
+                spinbox.setSingleStep(1.0 / multiplier)
+                spinbox.setValue(float(init_val))
+                
+            spinbox.setFixedWidth(70)
+            
+            # Sync slider -> spinbox
+            def on_slider_val_changed(val):
+                real_val = val / float(multiplier)
+                if abs(spinbox.value() - real_val) > 1e-6:
+                    spinbox.blockSignals(True)
+                    spinbox.setValue(real_val)
+                    spinbox.blockSignals(False)
+                callback()
+                
+            # Sync spinbox -> slider
+            def on_spin_val_changed(val):
+                slider_val = int(round(val * multiplier))
+                if slider.value() != slider_val:
+                    slider.blockSignals(True)
+                    slider.setValue(slider_val)
+                    slider.blockSignals(False)
+                callback()
+                
+            slider.valueChanged.connect(on_slider_val_changed)
+            spinbox.valueChanged.connect(on_spin_val_changed)
+            
+            row_layout = QHBoxLayout()
+            row_layout.addWidget(slider)
+            row_layout.addWidget(spinbox)
+            group_layout.addRow(label, row_layout)
+            
+            self.control_widgets[key] = (slider, spinbox, multiplier)
+            return slider, spinbox
+
         # Projection Calibration Group
         proj_group = QGroupBox("1. Floor Projection Math")
         proj_layout = QFormLayout()
         
-        self.sl_height = self.create_slider(20, 200, int(self.params["camera_height"] * 100), self.on_proj_slider_changed)
-        proj_layout.addRow(self.create_slider_label("Cam Height (H)", "m"), self.sl_height)
-        
-        self.sl_scale = self.create_slider(1, 100, int(self.params["scale"] * 1000), self.on_proj_slider_changed)
-        proj_layout.addRow(self.create_slider_label("Scale (mm/px)", "mm"), self.sl_scale)
-        
-        self.sl_pitch = self.create_slider(-90, 90, int(self.params["pitch_deg"]), self.on_proj_slider_changed)
-        proj_layout.addRow(self.create_slider_label("Pitch (Tilt Forward)", "deg"), self.sl_pitch)
-        
-        self.sl_roll = self.create_slider(-30, 30, int(self.params["roll_deg"]), self.on_proj_slider_changed)
-        proj_layout.addRow(self.create_slider_label("Roll (Tilt Side)", "deg"), self.sl_roll)
-        
-        self.sl_yaw = self.create_slider(-180, 180, int(self.params["yaw_deg"]), self.on_proj_slider_changed)
-        proj_layout.addRow(self.create_slider_label("Yaw (Rotate)", "deg"), self.sl_yaw)
-        
-        self.sl_bowl = self.create_slider(0, 5000, int(self.params.get("bowl_curve", 0.0) * 100), self.on_proj_slider_changed)
-        proj_layout.addRow(self.create_slider_label("Bowl Distortion", ""), self.sl_bowl)
-        
-        self.sl_forward_stretch = self.create_slider(0, 300, int(self.params.get("forward_stretch", 0.0) * 100), self.on_proj_slider_changed)
-        proj_layout.addRow(self.create_slider_label("Forward Stretch", ""), self.sl_forward_stretch)
-        
-        self.sl_backward_stretch = self.create_slider(0, 300, int(self.params.get("backward_stretch", 0.0) * 100), self.on_proj_slider_changed)
-        proj_layout.addRow(self.create_slider_label("Backward Stretch", ""), self.sl_backward_stretch)
+        self.sl_height, self.sp_height = add_control(
+            proj_layout, "Cam Height (H)", "m", "camera_height", 0.20, 2.00, self.params["camera_height"], 2, 100.0, self.on_proj_slider_changed
+        )
+        self.sl_scale, self.sp_scale = add_control(
+            proj_layout, "Scale (mm/px)", "mm", "scale", 0.001, 0.100, self.params["scale"], 3, 1000.0, self.on_proj_slider_changed
+        )
+        self.sl_pitch, self.sp_pitch = add_control(
+            proj_layout, "Pitch (Tilt Forward)", "deg", "pitch_deg", -90.0, 90.0, self.params["pitch_deg"], 0, 1.0, self.on_proj_slider_changed
+        )
+        self.sl_roll, self.sp_roll = add_control(
+            proj_layout, "Roll (Tilt Side)", "deg", "roll_deg", -30.0, 30.0, self.params["roll_deg"], 0, 1.0, self.on_proj_slider_changed
+        )
+        self.sl_yaw, self.sp_yaw = add_control(
+            proj_layout, "Yaw (Rotate)", "deg", "yaw_deg", -180.0, 180.0, self.params["yaw_deg"], 0, 1.0, self.on_proj_slider_changed
+        )
+        self.sl_bowl, self.sp_bowl = add_control(
+            proj_layout, "Bowl Distortion", "", "bowl_curve", 0.00, 50.00, self.params.get("bowl_curve", 0.0), 2, 100.0, self.on_proj_slider_changed
+        )
+        self.sl_forward_stretch, self.sp_forward_stretch = add_control(
+            proj_layout, "Forward Stretch", "", "forward_stretch", 0.00, 3.00, self.params.get("forward_stretch", 0.0), 2, 100.0, self.on_proj_slider_changed
+        )
+        self.sl_backward_stretch, self.sp_backward_stretch = add_control(
+            proj_layout, "Backward Stretch", "", "backward_stretch", 0.00, 3.00, self.params.get("backward_stretch", 0.0), 2, 100.0, self.on_proj_slider_changed
+        )
         
         proj_group.setLayout(proj_layout)
         right_layout.addWidget(proj_group)
@@ -504,20 +564,21 @@ class CalibrationWindow(QWidget):
         lens_group = QGroupBox("2. Fisheye Lens Calibration")
         lens_layout = QFormLayout()
         
-        self.sl_rad_scale = self.create_slider(80, 120, int(self.params["radius_scale"] * 100), self.on_proj_slider_changed)
-        lens_layout.addRow(self.create_slider_label("Lens Radius Scale", "%"), self.sl_rad_scale)
-        
-        self.sl_fcx = self.create_slider(-100, 100, int(self.params["front_cx_offset"]), self.on_proj_slider_changed)
-        lens_layout.addRow(self.create_slider_label("Front Lens CX Off", "px"), self.sl_fcx)
-        
-        self.sl_fcy = self.create_slider(-100, 100, int(self.params["front_cy_offset"]), self.on_proj_slider_changed)
-        lens_layout.addRow(self.create_slider_label("Front Lens CY Off", "px"), self.sl_fcy)
-
-        self.sl_bcx = self.create_slider(-100, 100, int(self.params["back_cx_offset"]), self.on_proj_slider_changed)
-        lens_layout.addRow(self.create_slider_label("Back Lens CX Off", "px"), self.sl_bcx)
-        
-        self.sl_bcy = self.create_slider(-100, 100, int(self.params["back_cy_offset"]), self.on_proj_slider_changed)
-        lens_layout.addRow(self.create_slider_label("Back Lens CY Off", "px"), self.sl_bcy)
+        self.sl_rad_scale, self.sp_rad_scale = add_control(
+            lens_layout, "Lens Radius Scale", "%", "radius_scale", 0.80, 1.20, self.params["radius_scale"], 2, 100.0, self.on_proj_slider_changed
+        )
+        self.sl_fcx, self.sp_fcx = add_control(
+            lens_layout, "Front Lens CX Off", "px", "front_cx_offset", -100.0, 100.0, self.params["front_cx_offset"], 0, 1.0, self.on_proj_slider_changed
+        )
+        self.sl_fcy, self.sp_fcy = add_control(
+            lens_layout, "Front Lens CY Off", "px", "front_cy_offset", -100.0, 100.0, self.params["front_cy_offset"], 0, 1.0, self.on_proj_slider_changed
+        )
+        self.sl_bcx, self.sp_bcx = add_control(
+            lens_layout, "Back Lens CX Off", "px", "back_cx_offset", -100.0, 100.0, self.params["back_cx_offset"], 0, 1.0, self.on_proj_slider_changed
+        )
+        self.sl_bcy, self.sp_bcy = add_control(
+            lens_layout, "Back Lens CY Off", "px", "back_cy_offset", -100.0, 100.0, self.params["back_cy_offset"], 0, 1.0, self.on_proj_slider_changed
+        )
 
         lens_group.setLayout(lens_layout)
         right_layout.addWidget(lens_group)
@@ -526,17 +587,32 @@ class CalibrationWindow(QWidget):
         robot_group = QGroupBox("3. Kobuki Silhouette Offset")
         robot_layout = QFormLayout()
         
-        self.sl_car_x = self.create_slider(-100, 100, int(self.params["car_offset_x"] * 100), self.on_car_slider_changed)
-        robot_layout.addRow(self.create_slider_label("Offset X", "cm"), self.sl_car_x)
-        
-        self.sl_car_z = self.create_slider(-100, 100, int(self.params["car_offset_z"] * 100), self.on_car_slider_changed)
-        robot_layout.addRow(self.create_slider_label("Offset Z (Fwd/Bwd)", "cm"), self.sl_car_z)
-        
-        self.sl_car_size = self.create_slider(10, 300, int(self.params["car_width"] * 100), self.on_car_slider_changed)
-        robot_layout.addRow(self.create_slider_label("Chassis Size", "cm"), self.sl_car_size)
+        self.sl_car_x, self.sp_car_x = add_control(
+            robot_layout, "Offset X", "cm", "car_offset_x", -1.00, 1.00, self.params["car_offset_x"], 2, 100.0, self.on_car_slider_changed
+        )
+        self.sl_car_z, self.sp_car_z = add_control(
+            robot_layout, "Offset Z (Fwd/Bwd)", "cm", "car_offset_z", -1.00, 1.00, self.params["car_offset_z"], 2, 100.0, self.on_car_slider_changed
+        )
+        self.sl_car_size, self.sp_car_size = add_control(
+            robot_layout, "Chassis Size", "cm", "car_width", 0.10, 3.00, self.params["car_width"], 2, 100.0, self.on_car_slider_changed
+        )
         
         robot_group.setLayout(robot_layout)
         right_layout.addWidget(robot_group)
+
+        # Lane Detection Threshold Group
+        lane_group = QGroupBox("4. Lane Detection Parameters")
+        lane_layout = QFormLayout()
+        
+        self.sl_white, self.sp_white = add_control(
+            lane_layout, "White Threshold", "", "white_thresh", 100, 255, self.params.get("white_thresh", 185), 0, 1.0, self.on_lane_slider_changed
+        )
+        self.sl_sat, self.sp_sat = add_control(
+            lane_layout, "Sat Threshold", "", "sat_thresh", 10, 255, self.params.get("sat_thresh", 60), 0, 1.0, self.on_lane_slider_changed
+        )
+        
+        lane_group.setLayout(lane_layout)
+        right_layout.addWidget(lane_group)
 
         # Action layout
         btn_layout = QVBoxLayout()
@@ -563,98 +639,51 @@ class CalibrationWindow(QWidget):
         
         main_layout.addLayout(right_layout)
 
-    def create_slider(self, min_v, max_v, init_v, callback):
-        slider = QSlider(Qt.Horizontal)
-        slider.setMinimum(min_v)
-        slider.setMaximum(max_v)
-        slider.setValue(init_v)
-        slider.setTickInterval(1)
-        slider.valueChanged.connect(callback)
-        return slider
-
-    def create_slider_label(self, name, unit):
-        lbl = QLabel(f"{name} ({unit}):")
-        lbl.setMinimumWidth(120)
-        return lbl
-
     def update_sliders(self):
-        # Temporarily block signals to avoid triggering multiple map updates
-        self.sl_height.blockSignals(True)
-        self.sl_scale.blockSignals(True)
-        self.sl_pitch.blockSignals(True)
-        self.sl_roll.blockSignals(True)
-        self.sl_yaw.blockSignals(True)
-        self.sl_rad_scale.blockSignals(True)
-        self.sl_fcx.blockSignals(True)
-        self.sl_fcy.blockSignals(True)
-        self.sl_bcx.blockSignals(True)
-        self.sl_bcy.blockSignals(True)
-        self.sl_car_x.blockSignals(True)
-        self.sl_car_z.blockSignals(True)
-        self.sl_bowl.blockSignals(True)
-        self.sl_forward_stretch.blockSignals(True)
-        self.sl_backward_stretch.blockSignals(True)
-        self.sl_car_size.blockSignals(True)
-
-        self.sl_height.setValue(int(self.params["camera_height"] * 100))
-        self.sl_scale.setValue(int(self.params["scale"] * 1000))
-        self.sl_pitch.setValue(int(self.params["pitch_deg"]))
-        self.sl_roll.setValue(int(self.params["roll_deg"]))
-        self.sl_yaw.setValue(int(self.params["yaw_deg"]))
-        self.sl_rad_scale.setValue(int(self.params["radius_scale"] * 100))
-        self.sl_fcx.setValue(int(self.params["front_cx_offset"]))
-        self.sl_fcy.setValue(int(self.params["front_cy_offset"]))
-        self.sl_bcx.setValue(int(self.params["back_cx_offset"]))
-        self.sl_bcy.setValue(int(self.params["back_cy_offset"]))
-        self.sl_car_x.setValue(int(self.params["car_offset_x"] * 100))
-        self.sl_car_z.setValue(int(self.params["car_offset_z"] * 100))
-        self.sl_bowl.setValue(int(self.params.get("bowl_curve", 0.0) * 100))
-        self.sl_forward_stretch.setValue(int(self.params.get("forward_stretch", 0.0) * 100))
-        self.sl_backward_stretch.setValue(int(self.params.get("backward_stretch", 0.0) * 100))
-        self.sl_car_size.setValue(int(self.params["car_width"] * 100))
-
-        self.sl_height.blockSignals(False)
-        self.sl_scale.blockSignals(False)
-        self.sl_pitch.blockSignals(False)
-        self.sl_roll.blockSignals(False)
-        self.sl_yaw.blockSignals(False)
-        self.sl_rad_scale.blockSignals(False)
-        self.sl_fcx.blockSignals(False)
-        self.sl_fcy.blockSignals(False)
-        self.sl_bcx.blockSignals(False)
-        self.sl_bcy.blockSignals(False)
-        self.sl_car_x.blockSignals(False)
-        self.sl_car_z.blockSignals(False)
-        self.sl_bowl.blockSignals(False)
-        self.sl_forward_stretch.blockSignals(False)
-        self.sl_backward_stretch.blockSignals(False)
-        self.sl_car_size.blockSignals(False)
+        # Temporarily block signals to avoid triggering multiple updates
+        for key, (slider, spinbox, multiplier) in self.control_widgets.items():
+            slider.blockSignals(True)
+            spinbox.blockSignals(True)
+            
+            val = float(self.params.get(key, 0.0))
+            if key == "car_length" and "car_width" in self.params: # Sync car size
+                val = float(self.params["car_width"])
+                
+            slider.setValue(int(round(val * multiplier)))
+            spinbox.setValue(val)
+            
+            slider.blockSignals(False)
+            spinbox.blockSignals(False)
 
     def on_proj_slider_changed(self):
-        # Update values from sliders
-        self.params["camera_height"] = self.sl_height.value() / 100.0
-        self.params["scale"] = self.sl_scale.value() / 1000.0
-        self.params["pitch_deg"] = float(self.sl_pitch.value())
-        self.params["roll_deg"] = float(self.sl_roll.value())
-        self.params["yaw_deg"] = float(self.sl_yaw.value())
-        self.params["radius_scale"] = self.sl_rad_scale.value() / 100.0
-        self.params["front_cx_offset"] = float(self.sl_fcx.value())
-        self.params["front_cy_offset"] = float(self.sl_fcy.value())
-        self.params["back_cx_offset"] = float(self.sl_bcx.value())
-        self.params["back_cy_offset"] = float(self.sl_bcy.value())
-        self.params["bowl_curve"] = self.sl_bowl.value() / 100.0
-        self.params["forward_stretch"] = self.sl_forward_stretch.value() / 100.0
-        self.params["backward_stretch"] = self.sl_backward_stretch.value() / 100.0
+        # Update values from controls
+        self.params["camera_height"] = self.sp_height.value()
+        self.params["scale"] = self.sp_scale.value()
+        self.params["pitch_deg"] = self.sp_pitch.value()
+        self.params["roll_deg"] = self.sp_roll.value()
+        self.params["yaw_deg"] = self.sp_yaw.value()
+        self.params["radius_scale"] = self.sp_rad_scale.value()
+        self.params["front_cx_offset"] = self.sp_fcx.value()
+        self.params["front_cy_offset"] = self.sp_fcy.value()
+        self.params["back_cx_offset"] = self.sp_bcx.value()
+        self.params["back_cy_offset"] = self.sp_bcy.value()
+        self.params["bowl_curve"] = self.sp_bowl.value()
+        self.params["forward_stretch"] = self.sp_forward_stretch.value()
+        self.params["backward_stretch"] = self.sp_backward_stretch.value()
         
         # Mark remapping matrices as dirty to force rebuild
         self.map_dirty = True
 
     def on_car_slider_changed(self):
-        self.params["car_offset_x"] = self.sl_car_x.value() / 100.0
-        self.params["car_offset_z"] = self.sl_car_z.value() / 100.0
-        self.params["car_width"] = self.sl_car_size.value() / 100.0
-        self.params["car_length"] = self.sl_car_size.value() / 100.0
+        self.params["car_offset_x"] = self.sp_car_x.value()
+        self.params["car_offset_z"] = self.sp_car_z.value()
+        self.params["car_width"] = self.sp_car_size.value()
+        self.params["car_length"] = self.sp_car_size.value()
         self.map_dirty = True
+
+    def on_lane_slider_changed(self):
+        self.params["white_thresh"] = self.sp_white.value()
+        self.params["sat_thresh"] = self.sp_sat.value()
 
     def on_checkbox_changed(self, state):
         self.params["show_circles"] = 1 if self.chk_circles.isChecked() else 0
@@ -751,11 +780,13 @@ class CalibrationWindow(QWidget):
         l_channel = hls[:, :, 1]
         s_channel = hls[:, :, 2]
 
-        # 2. Strict thresholding on Lightness (L >= 220) to ignore grey floor
-        _, l_mask = cv2.threshold(l_channel, 185, 255, cv2.THRESH_BINARY)
+        # 2. Strict thresholding on Lightness (L >= white_thresh) to ignore grey floor
+        white_t = int(self.params.get("white_thresh", 185))
+        _, l_mask = cv2.threshold(l_channel, white_t, 255, cv2.THRESH_BINARY)
 
-        # 3. Saturation filter (S < 60) to exclude colored reflections
-        _, s_mask = cv2.threshold(s_channel, 60, 255, cv2.THRESH_BINARY_INV)
+        # 3. Saturation filter (S < sat_thresh) to exclude colored reflections
+        sat_t = int(self.params.get("sat_thresh", 60))
+        _, s_mask = cv2.threshold(s_channel, sat_t, 255, cv2.THRESH_BINARY_INV)
 
         # Combine L and S masks (pure bright white line only)
         binary_mask = cv2.bitwise_and(l_mask, s_mask)
