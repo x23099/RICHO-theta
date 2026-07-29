@@ -130,7 +130,8 @@ def make_floor_projection_map(
     bowl_curve=0.0,
     front_lens="left",
     camera_offset_x=0.0,
-    camera_offset_z=0.0
+    camera_offset_z=0.0,
+    forward_stretch=0.0
 ):
     """
     Computes maps for cv2.remap that project a dual-fisheye image onto a horizontal floor plane.
@@ -157,6 +158,13 @@ def make_floor_projection_map(
     xs, ys = np.meshgrid(np.arange(out_w), np.arange(out_h))
     X_w_cam = (xs - out_w / 2.0) * scale - camera_offset_x
     Z_w_cam = (out_h / 2.0 - ys) * scale - camera_offset_z
+    
+    # Non-linear forward stretching for front area (Z_w_cam > 0)
+    if forward_stretch > 0.0:
+        forward_mask = Z_w_cam > 0.0
+        factor = 1.0 + forward_stretch * Z_w_cam
+        X_w_cam = np.where(forward_mask, X_w_cam * factor, X_w_cam)
+        Z_w_cam = np.where(forward_mask, Z_w_cam * factor, Z_w_cam)
     
     if bowl_curve > 0.0:
         # X方向（左右）に 1.6 倍の重み、Z方向（前後）に 0.6 倍の重みをかけて d を計算
@@ -307,7 +315,8 @@ class CalibrationWindow(QWidget):
             "car_width": 0.354,
             "car_length": 0.354,
             "show_circles": 1,
-            "bowl_curve": 1.2
+            "bowl_curve": 1.2,
+            "forward_stretch": 0.0
         }
         if os.path.exists(self.config_path):
             try:
@@ -344,7 +353,8 @@ class CalibrationWindow(QWidget):
             "car_width": 0.354,
             "car_length": 0.354,
             "show_circles": 1,
-            "bowl_curve": 1.2
+            "bowl_curve": 1.2,
+            "forward_stretch": 0.0
         }
         self.update_sliders()
         self.map_dirty = True
@@ -471,6 +481,9 @@ class CalibrationWindow(QWidget):
         self.sl_bowl = self.create_slider(0, 5000, int(self.params.get("bowl_curve", 0.0) * 100), self.on_proj_slider_changed)
         proj_layout.addRow(self.create_slider_label("Bowl Distortion", ""), self.sl_bowl)
         
+        self.sl_forward_stretch = self.create_slider(0, 300, int(self.params.get("forward_stretch", 0.0) * 100), self.on_proj_slider_changed)
+        proj_layout.addRow(self.create_slider_label("Forward Stretch", ""), self.sl_forward_stretch)
+        
         proj_group.setLayout(proj_layout)
         right_layout.addWidget(proj_group)
 
@@ -566,6 +579,7 @@ class CalibrationWindow(QWidget):
         self.sl_car_x.blockSignals(True)
         self.sl_car_z.blockSignals(True)
         self.sl_bowl.blockSignals(True)
+        self.sl_forward_stretch.blockSignals(True)
         self.sl_car_size.blockSignals(True)
 
         self.sl_height.setValue(int(self.params["camera_height"] * 100))
@@ -581,6 +595,7 @@ class CalibrationWindow(QWidget):
         self.sl_car_x.setValue(int(self.params["car_offset_x"] * 100))
         self.sl_car_z.setValue(int(self.params["car_offset_z"] * 100))
         self.sl_bowl.setValue(int(self.params.get("bowl_curve", 0.0) * 100))
+        self.sl_forward_stretch.setValue(int(self.params.get("forward_stretch", 0.0) * 100))
         self.sl_car_size.setValue(int(self.params["car_width"] * 100))
 
         self.sl_height.blockSignals(False)
@@ -596,6 +611,7 @@ class CalibrationWindow(QWidget):
         self.sl_car_x.blockSignals(False)
         self.sl_car_z.blockSignals(False)
         self.sl_bowl.blockSignals(False)
+        self.sl_forward_stretch.blockSignals(False)
         self.sl_car_size.blockSignals(False)
 
     def on_proj_slider_changed(self):
@@ -611,6 +627,7 @@ class CalibrationWindow(QWidget):
         self.params["back_cx_offset"] = float(self.sl_bcx.value())
         self.params["back_cy_offset"] = float(self.sl_bcy.value())
         self.params["bowl_curve"] = self.sl_bowl.value() / 100.0
+        self.params["forward_stretch"] = self.sl_forward_stretch.value() / 100.0
         
         # Mark remapping matrices as dirty to force rebuild
         self.map_dirty = True
@@ -681,7 +698,8 @@ class CalibrationWindow(QWidget):
                 back_cy_offset=self.params["back_cy_offset"],
                 bowl_curve=self.params.get("bowl_curve", 0.0),
                 camera_offset_x=self.params["car_offset_x"],
-                camera_offset_z=self.params["car_offset_z"]
+                camera_offset_z=self.params["car_offset_z"],
+                forward_stretch=self.params.get("forward_stretch", 0.0)
             )
             self.map_dirty = False
 
