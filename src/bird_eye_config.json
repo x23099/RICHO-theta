@@ -17,6 +17,6 @@
     "bowl_curve": 0.1,
     "forward_stretch": 0.0,
     "backward_stretch": 0.16,
-    "white_thresh": 185,
-    "sat_thresh": 60
+    "white_thresh": 160,
+    "sat_thresh": 139
 }
