@@ -18,5 +18,8 @@
     "forward_stretch": 0.0,
     "backward_stretch": 0.16,
     "white_thresh": 185,
-    "sat_thresh": 60
+    "sat_thresh": 60,
+    "roi_forward": 2.5,
+    "roi_side": 1.5,
+    "max_area": 5000
 }
