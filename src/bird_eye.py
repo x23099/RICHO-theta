@@ -328,7 +328,10 @@ class CalibrationWindow(QWidget):
             "forward_stretch": 0.0,
             "backward_stretch": 0.0,
             "white_thresh": 185,
-            "sat_thresh": 60
+            "sat_thresh": 60,
+            "roi_forward": 2.5,
+            "roi_side": 1.5,
+            "max_area": 5000
         }
         if os.path.exists(self.config_path):
             try:
@@ -369,7 +372,10 @@ class CalibrationWindow(QWidget):
             "forward_stretch": 0.0,
             "backward_stretch": 0.0,
             "white_thresh": 185,
-            "sat_thresh": 60
+            "sat_thresh": 60,
+            "roi_forward": 2.5,
+            "roi_side": 1.5,
+            "max_area": 5000
         }
         self.update_sliders()
         self.map_dirty = True
@@ -600,7 +606,7 @@ class CalibrationWindow(QWidget):
         robot_group.setLayout(robot_layout)
         right_layout.addWidget(robot_group)
 
-        # Lane Detection Threshold Group
+        # Lane Detection Threshold & Mask Group
         lane_group = QGroupBox("4. Lane Detection Parameters")
         lane_layout = QFormLayout()
         
@@ -609,6 +615,15 @@ class CalibrationWindow(QWidget):
         )
         self.sl_sat, self.sp_sat = add_control(
             lane_layout, "Sat Threshold", "", "sat_thresh", 10, 255, self.params.get("sat_thresh", 60), 0, 1.0, self.on_lane_slider_changed
+        )
+        self.sl_roi_fwd, self.sp_roi_fwd = add_control(
+            lane_layout, "ROI Forward", "m", "roi_forward", 0.5, 10.0, self.params.get("roi_forward", 2.5), 2, 100.0, self.on_lane_slider_changed
+        )
+        self.sl_roi_side, self.sp_roi_side = add_control(
+            lane_layout, "ROI Side", "m", "roi_side", 0.5, 10.0, self.params.get("roi_side", 1.5), 2, 100.0, self.on_lane_slider_changed
+        )
+        self.sl_max_area, self.sp_max_area = add_control(
+            lane_layout, "Max Area", "px", "max_area", 500, 30000, self.params.get("max_area", 5000), 0, 1.0, self.on_lane_slider_changed
         )
         
         lane_group.setLayout(lane_layout)
@@ -684,6 +699,9 @@ class CalibrationWindow(QWidget):
     def on_lane_slider_changed(self):
         self.params["white_thresh"] = self.sp_white.value()
         self.params["sat_thresh"] = self.sp_sat.value()
+        self.params["roi_forward"] = self.sp_roi_fwd.value()
+        self.params["roi_side"] = self.sp_roi_side.value()
+        self.params["max_area"] = self.sp_max_area.value()
 
     def on_checkbox_changed(self, state):
         self.params["show_circles"] = 1 if self.chk_circles.isChecked() else 0
@@ -795,16 +813,41 @@ class CalibrationWindow(QWidget):
         kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 7))
         binary_mask = cv2.morphologyEx(binary_mask, cv2.MORPH_CLOSE, kernel)
 
-        # 4. Create visual output image (BGR)
+        # 4. ROI (Region of Interest) Physical Distance Masking
+        roi_fwd = float(self.params.get("roi_forward", 2.5))
+        roi_side = float(self.params.get("roi_side", 1.5))
+        scale = float(self.params.get("scale", 0.005))
+        if scale <= 0.0:
+            scale = 0.005
+
+        cx_px = w / 2.0 + (self.params.get("car_offset_x", 0.0) / scale)
+        cy_px = h / 2.0 - (self.params.get("car_offset_z", 0.0) / scale)
+
+        y_coords, x_coords = np.ogrid[:h, :w]
+        dist_x_m = np.abs(x_coords - cx_px) * scale
+        dist_z_m = np.abs(cy_px - y_coords) * scale
+
+        roi_mask = (dist_x_m <= roi_side) & (dist_z_m <= roi_fwd)
+        binary_mask[~roi_mask] = 0
+
+        # 5. Create visual output image (BGR)
         mask_visual = cv2.cvtColor(binary_mask, cv2.COLOR_GRAY2BGR)
 
-        # 5. Robust Localized Fitting using cv2.fitLine (Prevents wild screen-wide crossing lines)
+        # Draw ROI boundary box on mask visual (Red line)
+        roi_min_x = int(max(0, cx_px - roi_side / scale))
+        roi_max_x = int(min(w - 1, cx_px + roi_side / scale))
+        roi_min_y = int(max(0, cy_px - roi_fwd / scale))
+        roi_max_y = int(min(h - 1, cy_px + roi_fwd / scale))
+        cv2.rectangle(mask_visual, (roi_min_x, roi_min_y), (roi_max_x, roi_max_y), (80, 80, 220), 1)
+
+        # 6. Robust Localized Fitting using cv2.fitLine (Prevents wild screen-wide crossing lines)
         contours, _ = cv2.findContours(binary_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        max_area = float(self.params.get("max_area", 5000))
 
         for cnt in contours:
             area = cv2.contourArea(cnt)
-            # Ignore noise dots
-            if area < 30:
+            # Ignore small noise dots AND huge background regions (walls/reflections)
+            if area < 30 or area > max_area:
                 continue
 
             # Bounding box of the detected tape segment
