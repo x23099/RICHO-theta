@@ -17,9 +17,9 @@
     "bowl_curve": 0.1,
     "forward_stretch": 0.0,
     "backward_stretch": 0.16,
-    "white_thresh": 160,
-    "sat_thresh": 139,
-    "roi_forward": 2.5,
-    "roi_side": 1.5,
-    "max_area": 5000
+    "white_thresh": 161,
+    "sat_thresh": 163,
+    "roi_forward": 8.26,
+    "roi_side": 2.16,
+    "max_area": 7732
 }
