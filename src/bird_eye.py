@@ -7,6 +7,18 @@ import math
 import json
 import argparse
 import time
+
+# Compatibility patch for PyTorch/torchvision Self type in Python 3.10
+try:
+    import typing
+    if not hasattr(typing, "Self"):
+        try:
+            from typing_extensions import Self
+            typing.Self = Self
+        except ImportError:
+            pass
+except Exception:
+    pass
 import cv2
 import numpy as np
 
@@ -15,8 +27,15 @@ from PySide6.QtGui import QImage, QPixmap, QPainter, QColor, QPen, QBrush, QFont
 from PySide6.QtWidgets import (
     QApplication, QWidget, QLabel, QSlider, QGridLayout, QVBoxLayout,
     QHBoxLayout, QPushButton, QGroupBox, QFormLayout, QFileDialog, QCheckBox,
-    QDoubleSpinBox, QSpinBox
+    QDoubleSpinBox, QSpinBox, QComboBox
 )
+
+try:
+    from ultralytics import YOLO
+    HAS_ULTRALYTICS = True
+except Exception as e:
+    HAS_ULTRALYTICS = False
+    print(f"[WARN] Failed to import ultralytics/YOLO: {e}")
 
 # Configuration file name
 DEFAULT_CONFIG_FILE = "bird_eye_config.json"
@@ -331,7 +350,9 @@ class CalibrationWindow(QWidget):
             "sat_thresh": 60,
             "roi_forward": 2.5,
             "roi_side": 1.5,
-            "max_area": 5000
+            "max_area": 5000,
+            "enable_ai": 0,
+            "yolo_model": "yolov8s.pt"
         }
         if os.path.exists(self.config_path):
             try:
@@ -375,7 +396,9 @@ class CalibrationWindow(QWidget):
             "sat_thresh": 60,
             "roi_forward": 2.5,
             "roi_side": 1.5,
-            "max_area": 5000
+            "max_area": 5000,
+            "enable_ai": 0,
+            "yolo_model": "yolov8s.pt"
         }
         self.update_sliders()
         self.map_dirty = True
@@ -629,6 +652,30 @@ class CalibrationWindow(QWidget):
         lane_group.setLayout(lane_layout)
         right_layout.addWidget(lane_group)
 
+        # AI Perception Group
+        ai_group = QGroupBox("5. AI Perception & 3D Box (YOLOv8)")
+        ai_layout = QFormLayout()
+        
+        self.chk_enable_ai = QCheckBox("Enable YOLOv8 AI Detection")
+        self.chk_enable_ai.setChecked(self.params.get("enable_ai", 0) == 1)
+        self.chk_enable_ai.stateChanged.connect(self.on_ai_checkbox_changed)
+        ai_layout.addRow(self.chk_enable_ai)
+
+        self.combo_yolo_model = QComboBox()
+        self.combo_yolo_model.addItems(["yolov8n.pt (Nano - Faster)", "yolov8s.pt (Small - Balanced)", "yolov8m.pt (Medium - Precise)"])
+        cur_model = self.params.get("yolo_model", "yolov8s.pt")
+        if "yolov8n" in cur_model:
+            self.combo_yolo_model.setCurrentIndex(0)
+        elif "yolov8m" in cur_model:
+            self.combo_yolo_model.setCurrentIndex(2)
+        else:
+            self.combo_yolo_model.setCurrentIndex(1)
+        self.combo_yolo_model.currentIndexChanged.connect(self.on_yolo_model_changed)
+        ai_layout.addRow(QLabel("YOLO Model Size:"), self.combo_yolo_model)
+
+        ai_group.setLayout(ai_layout)
+        right_layout.addWidget(ai_group)
+
         # Action layout
         btn_layout = QVBoxLayout()
         
@@ -706,6 +753,110 @@ class CalibrationWindow(QWidget):
     def on_checkbox_changed(self, state):
         self.params["show_circles"] = 1 if self.chk_circles.isChecked() else 0
 
+    def on_ai_checkbox_changed(self, state):
+        self.params["enable_ai"] = 1 if self.chk_enable_ai.isChecked() else 0
+        if self.params["enable_ai"] == 1 and getattr(self, 'yolo_model_obj', None) is None:
+            self.load_yolo_model()
+
+    def on_yolo_model_changed(self, index):
+        models = ["yolov8n.pt", "yolov8s.pt", "yolov8m.pt"]
+        if 0 <= index < len(models):
+            self.params["yolo_model"] = models[index]
+            if self.params.get("enable_ai", 0) == 1:
+                self.load_yolo_model()
+
+    def load_yolo_model(self):
+        if not HAS_ULTRALYTICS:
+            print("[WARN] Ultralytics package is not installed. AI Perception disabled.")
+            return
+        model_name = self.params.get("yolo_model", "yolov8s.pt")
+        try:
+            print(f"[INFO] Loading YOLOv8 model: {model_name}...")
+            self.yolo_model_obj = YOLO(model_name)
+            print(f"[INFO] YOLOv8 model {model_name} loaded successfully!")
+        except Exception as e:
+            print(f"[ERROR] Failed to load YOLOv8 model {model_name}: {e}")
+            self.yolo_model_obj = None
+
+    def process_ai_perception(self, img):
+        if not HAS_ULTRALYTICS or self.params.get("enable_ai", 0) != 1:
+            return
+        if getattr(self, 'yolo_model_obj', None) is None:
+            self.load_yolo_model()
+            if getattr(self, 'yolo_model_obj', None) is None:
+                return
+
+        # Perform inference on BEV image or camera frame
+        try:
+            results = self.yolo_model_obj(img, verbose=False, conf=0.35)
+            for r in results:
+                boxes = r.boxes
+                for box in boxes:
+                    # Class name & confidence
+                    cls_id = int(box.cls[0])
+                    label_name = self.yolo_model_obj.names[cls_id]
+                    conf = float(box.conf[0])
+                    
+                    # 2D Bounding box coordinates
+                    xyxy = box.xyxy[0].cpu().numpy()
+                    x1, y1, x2, y2 = int(xyxy[0]), int(xyxy[1]), int(xyxy[2]), int(xyxy[3])
+                    
+                    # Draw 3D wireframe box
+                    self.draw_3d_bounding_box_bev(img, x1, y1, x2, y2, label_name, conf)
+        except Exception as e:
+            print(f"[WARN] Error during YOLO inference: {e}")
+
+    def draw_3d_bounding_box_bev(self, img, x1, y1, x2, y2, label, conf):
+        """
+        Draws a Tesla FSD-style 3D Wireframe Bounding Box on BEV image.
+        """
+        bw = x2 - x1
+        bh = y2 - y1
+        if bw <= 0 or bh <= 0:
+            return
+
+        # 3D Box height offset in pixels (proportional to object 2D height/width)
+        box_h_px = int(min(bh * 0.4, 40))
+        
+        # Bottom rectangle (ground contact)
+        b_tl = (x1, y2 - int(bh * 0.3))
+        b_tr = (x2, y2 - int(bh * 0.3))
+        b_br = (x2, y2)
+        b_bl = (x1, y2)
+
+        # Top rectangle (height offset)
+        t_tl = (x1, b_tl[1] - box_h_px)
+        t_tr = (x2, b_tr[1] - box_h_px)
+        t_br = (x2, b_br[1] - box_h_px)
+        t_bl = (x1, b_bl[1] - box_h_px)
+
+        # Cyberpunk Cyan/Neon Green colors (BGR)
+        box_color = (0, 229, 255) # Cyan
+        top_color = (0, 255, 120) # Green
+
+        # Draw Bottom Face
+        cv2.line(img, b_tl, b_tr, box_color, 1, cv2.LINE_AA)
+        cv2.line(img, b_tr, b_br, box_color, 1, cv2.LINE_AA)
+        cv2.line(img, b_br, b_bl, box_color, 1, cv2.LINE_AA)
+        cv2.line(img, b_bl, b_tl, box_color, 1, cv2.LINE_AA)
+
+        # Draw Top Face
+        cv2.line(img, t_tl, t_tr, top_color, 2, cv2.LINE_AA)
+        cv2.line(img, t_tr, t_br, top_color, 2, cv2.LINE_AA)
+        cv2.line(img, t_br, t_bl, top_color, 2, cv2.LINE_AA)
+        cv2.line(img, t_bl, t_tl, top_color, 2, cv2.LINE_AA)
+
+        # Draw Vertical Pillars (Pillars connecting bottom to top)
+        cv2.line(img, b_tl, t_tl, box_color, 1, cv2.LINE_AA)
+        cv2.line(img, b_tr, t_tr, box_color, 1, cv2.LINE_AA)
+        cv2.line(img, b_br, t_br, box_color, 1, cv2.LINE_AA)
+        cv2.line(img, b_bl, t_bl, box_color, 1, cv2.LINE_AA)
+
+        # Label tag (Tesla FSD Style)
+        tag_text = f"{label} {conf:.2f}"
+        cv2.putText(img, tag_text, (x1, max(15, t_tl[1] - 5)),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 255, 255), 1, cv2.LINE_AA)
+
     def start_capture(self):
         if self.args.mock_camera:
             print("[INFO] Initializing simulated mock 360 camera...")
@@ -778,6 +929,11 @@ class CalibrationWindow(QWidget):
             borderValue=(0, 0, 0)
         )
         lane_mask_visual = self.process_white_lane_detection(bev_img)
+
+        # Process AI Perception (YOLOv8 Object Detection & 3D Box Rendering)
+        if self.params.get("enable_ai", 0) == 1:
+            self.process_ai_perception(bev_img)
+            self.process_ai_perception(lane_mask_visual)
 
         # Draw overlays on BEV
         self.draw_bev_overlays(bev_img)
