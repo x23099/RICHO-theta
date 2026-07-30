@@ -30,6 +30,23 @@ from PySide6.QtWidgets import (
     QDoubleSpinBox, QSpinBox, QComboBox
 )
 
+import torch
+
+# Fix for PyTorch 2.6+ weights_only=True default load restriction for Ultralytics models
+try:
+    import ultralytics.nn.tasks
+    import ultralytics.nn.modules
+    torch.serialization.add_safe_globals([
+        ultralytics.nn.tasks.DetectionModel,
+        ultralytics.nn.modules.Conv,
+        ultralytics.nn.modules.C2f,
+        ultralytics.nn.modules.SPPF,
+        ultralytics.nn.modules.Detect,
+        ultralytics.nn.modules.Bottleneck
+    ])
+except Exception:
+    pass
+
 try:
     from ultralytics import YOLO
     HAS_ULTRALYTICS = True
@@ -775,8 +792,21 @@ class CalibrationWindow(QWidget):
             self.yolo_model_obj = YOLO(model_name)
             print(f"[INFO] YOLOv8 model {model_name} loaded successfully!")
         except Exception as e:
-            print(f"[ERROR] Failed to load YOLOv8 model {model_name}: {e}")
-            self.yolo_model_obj = None
+            print(f"[WARN] Initial load failed for {model_name}: {e}. Retrying with patched torch.load...")
+            try:
+                # Workaround for PyTorch 2.6 default weights_only=True restriction
+                orig_load = torch.load
+                def patched_load(*args, **kwargs):
+                    if 'weights_only' not in kwargs:
+                        kwargs['weights_only'] = False
+                    return orig_load(*args, **kwargs)
+                torch.load = patched_load
+                self.yolo_model_obj = YOLO(model_name)
+                torch.load = orig_load
+                print(f"[INFO] YOLOv8 model {model_name} loaded successfully via fallback!")
+            except Exception as e2:
+                print(f"[ERROR] Failed to load YOLOv8 model {model_name}: {e2}")
+                self.yolo_model_obj = None
 
     def process_ai_perception(self, img):
         if not HAS_ULTRALYTICS or self.params.get("enable_ai", 0) != 1:
@@ -788,7 +818,7 @@ class CalibrationWindow(QWidget):
 
         # Perform inference on BEV image or camera frame
         try:
-            results = self.yolo_model_obj(img, verbose=False, conf=0.35)
+            results = self.yolo_model_obj(img, verbose=False, conf=0.25)
             for r in results:
                 boxes = r.boxes
                 for box in boxes:
