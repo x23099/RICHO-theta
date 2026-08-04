@@ -30,10 +30,18 @@ from PySide6.QtWidgets import (
     QDoubleSpinBox, QSpinBox, QComboBox
 )
 
-import torch
+try:
+    import torch
+    HAS_TORCH = True
+except Exception as e:
+    torch = None
+    HAS_TORCH = False
+    print(f"[WARN] Failed to import PyTorch; AI perception disabled: {e}")
 
 # Fix for PyTorch 2.6+ weights_only=True default load restriction for Ultralytics models
 try:
+    if not HAS_TORCH:
+        raise ImportError("PyTorch is not installed")
     import ultralytics.nn.tasks
     import ultralytics.nn.modules
     torch.serialization.add_safe_globals([
@@ -48,6 +56,8 @@ except Exception:
     pass
 
 try:
+    if not HAS_TORCH:
+        raise ImportError("PyTorch is not installed")
     from ultralytics import YOLO
     HAS_ULTRALYTICS = True
 except Exception as e:
@@ -56,6 +66,26 @@ except Exception as e:
 
 # Configuration file name
 DEFAULT_CONFIG_FILE = "bird_eye_config.json"
+
+# Vehicle geometry is kept separate from camera/BEV calibration.  Only the
+# Kobuki dimensions are known here.  AI-FORMULA dimensions must be measured on
+# the actual vehicle instead of being inferred from the thesis photographs.
+VEHICLE_PROFILES = {
+    "kobuki": {
+        "label": "Kobuki (354 mm circular)",
+        "camera_height": 0.40,
+        "width": 0.354,
+        "length": 0.354,
+        "footprint_shape": "circle",
+    },
+    "aiformula": {
+        "label": "AI-FORMULA (use measured dimensions)",
+        "footprint_shape": "rectangle",
+    },
+    "custom": {
+        "label": "Custom vehicle",
+    },
+}
 
 class MockCapture:
     """
@@ -345,7 +375,7 @@ class CalibrationWindow(QWidget):
 
     def load_config(self):
         defaults = {
-            "camera_height": 0.45,
+            "camera_height": 0.40,
             "scale": 0.005,
             "pitch_deg": 0.0,
             "roll_deg": 0.0,
@@ -357,6 +387,8 @@ class CalibrationWindow(QWidget):
             "back_cy_offset": 0.0,
             "car_offset_x": 0.0,
             "car_offset_z": 0.0,
+            "vehicle_profile": "kobuki",
+            "footprint_shape": "circle",
             "car_width": 0.354,
             "car_length": 0.354,
             "show_circles": 1,
@@ -391,7 +423,7 @@ class CalibrationWindow(QWidget):
 
     def reset_config(self):
         self.params = {
-            "camera_height": 0.45,
+            "camera_height": 0.40,
             "scale": 0.005,
             "pitch_deg": 0.0,
             "roll_deg": 0.0,
@@ -403,6 +435,8 @@ class CalibrationWindow(QWidget):
             "back_cy_offset": 0.0,
             "car_offset_x": 0.0,
             "car_offset_z": 0.0,
+            "vehicle_profile": "kobuki",
+            "footprint_shape": "circle",
             "car_width": 0.354,
             "car_length": 0.354,
             "show_circles": 1,
@@ -629,9 +663,20 @@ class CalibrationWindow(QWidget):
         lens_group.setLayout(lens_layout)
         right_layout.addWidget(lens_group)
 
-        # Kobuki Robot Offset Group
-        robot_group = QGroupBox("3. Kobuki Silhouette Offset")
+        # Vehicle geometry is independent of camera calibration so the same
+        # perception pipeline can be moved from Kobuki to AI-FORMULA.
+        robot_group = QGroupBox("3. Vehicle Geometry & Camera Offset")
         robot_layout = QFormLayout()
+
+        self.combo_vehicle_profile = QComboBox()
+        self.vehicle_profile_keys = list(VEHICLE_PROFILES.keys())
+        for key in self.vehicle_profile_keys:
+            self.combo_vehicle_profile.addItem(VEHICLE_PROFILES[key]["label"], key)
+        current_profile = self.params.get("vehicle_profile", "custom")
+        profile_index = self.combo_vehicle_profile.findData(current_profile)
+        self.combo_vehicle_profile.setCurrentIndex(max(0, profile_index))
+        self.combo_vehicle_profile.currentIndexChanged.connect(self.on_vehicle_profile_changed)
+        robot_layout.addRow(QLabel("Vehicle Profile:"), self.combo_vehicle_profile)
         
         self.sl_car_x, self.sp_car_x = add_control(
             robot_layout, "Offset X", "cm", "car_offset_x", -1.00, 1.00, self.params["car_offset_x"], 2, 100.0, self.on_car_slider_changed
@@ -639,8 +684,11 @@ class CalibrationWindow(QWidget):
         self.sl_car_z, self.sp_car_z = add_control(
             robot_layout, "Offset Z (Fwd/Bwd)", "cm", "car_offset_z", -1.00, 1.00, self.params["car_offset_z"], 2, 100.0, self.on_car_slider_changed
         )
-        self.sl_car_size, self.sp_car_size = add_control(
-            robot_layout, "Chassis Size", "cm", "car_width", 0.10, 3.00, self.params["car_width"], 2, 100.0, self.on_car_slider_changed
+        self.sl_car_width, self.sp_car_width = add_control(
+            robot_layout, "Vehicle Width", "cm", "car_width", 0.10, 3.00, self.params["car_width"], 3, 100.0, self.on_car_slider_changed
+        )
+        self.sl_car_length, self.sp_car_length = add_control(
+            robot_layout, "Vehicle Length", "cm", "car_length", 0.10, 3.00, self.params["car_length"], 3, 100.0, self.on_car_slider_changed
         )
         
         robot_group.setLayout(robot_layout)
@@ -725,9 +773,6 @@ class CalibrationWindow(QWidget):
             spinbox.blockSignals(True)
             
             val = float(self.params.get(key, 0.0))
-            if key == "car_length" and "car_width" in self.params: # Sync car size
-                val = float(self.params["car_width"])
-                
             slider.setValue(int(round(val * multiplier)))
             spinbox.setValue(val)
             
@@ -756,8 +801,31 @@ class CalibrationWindow(QWidget):
     def on_car_slider_changed(self):
         self.params["car_offset_x"] = self.sp_car_x.value()
         self.params["car_offset_z"] = self.sp_car_z.value()
-        self.params["car_width"] = self.sp_car_size.value()
-        self.params["car_length"] = self.sp_car_size.value()
+        self.params["car_width"] = self.sp_car_width.value()
+        self.params["car_length"] = self.sp_car_length.value()
+        self.map_dirty = True
+
+    def on_vehicle_profile_changed(self, index):
+        profile_key = self.combo_vehicle_profile.itemData(index)
+        if profile_key not in VEHICLE_PROFILES:
+            return
+
+        profile = VEHICLE_PROFILES[profile_key]
+        self.params["vehicle_profile"] = profile_key
+        self.params["footprint_shape"] = profile.get(
+            "footprint_shape", self.params.get("footprint_shape", "rectangle")
+        )
+
+        # Apply only dimensions that are verified.  AI-FORMULA deliberately
+        # retains the current editable values until the real chassis is measured.
+        if "width" in profile:
+            self.params["car_width"] = profile["width"]
+        if "length" in profile:
+            self.params["car_length"] = profile["length"]
+        if "camera_height" in profile:
+            self.params["camera_height"] = profile["camera_height"]
+
+        self.update_sliders()
         self.map_dirty = True
 
     def on_lane_slider_changed(self):
@@ -1180,23 +1248,23 @@ class CalibrationWindow(QWidget):
 
     def draw_bev_overlays(self, bev_img):
         """
-        Draws the Kobuki robot silhouette and corner guide lines.
+        Draws the configured vehicle footprint and corner guide lines.
         """
         h, w = bev_img.shape[:2]
         center_x = w // 2
         center_y = h // 2
 
         # 1. Draw Diagonal Corner Guide Lines (Standard AVM grid seams)
-        # Bounding box of the robot in pixels:
-        robot_radius_m = self.params["car_width"] / 2.0
-        r_px = int(robot_radius_m / self.params["scale"])
+        scale = max(float(self.params["scale"]), 1e-6)
+        half_width_px = max(1, int(float(self.params["car_width"]) / (2.0 * scale)))
+        half_length_px = max(1, int(float(self.params["car_length"]) / (2.0 * scale)))
         
         # Bounding box corners relative to the robot center
         corners = [
-            (-r_px, -r_px),  # Top-Left
-            (r_px, -r_px),   # Top-Right
-            (-r_px, r_px),   # Bottom-Left
-            (r_px, r_px)     # Bottom-Right
+            (-half_width_px, -half_length_px),
+            (half_width_px, -half_length_px),
+            (-half_width_px, half_length_px),
+            (half_width_px, half_length_px),
         ]
 
         # Draw diagonal seams extending outwards
@@ -1218,7 +1286,7 @@ class CalibrationWindow(QWidget):
         # 2. Draw Predicted Trajectory Path (Tesla style translucent blue band)
         self.draw_predicted_path_on_bev(bev_img)
 
-        # 3. Draw Kobuki Mobile Robot in the center (overwriting the blind spot)
+        # 3. Draw the vehicle footprint in the center (overwriting the blind spot)
         # Apply robot center offset
         rob_offset_x_px = int(self.params["car_offset_x"] / self.params["scale"])
         rob_offset_z_px = int(self.params["car_offset_z"] / self.params["scale"])
@@ -1226,40 +1294,71 @@ class CalibrationWindow(QWidget):
         rx = center_x + rob_offset_x_px
         ry = center_y - rob_offset_z_px  # -Z is forward (up) in pixel coords
 
-        # Draw Kobuki circular body (solid charcoal grey base)
-        cv2.circle(bev_img, (rx, ry), r_px, (45, 45, 48), -1)
-        cv2.circle(bev_img, (rx, ry), r_px, (0, 229, 255), 2)  # Glowing cyan ring border
+        footprint_shape = self.params.get("footprint_shape", "rectangle")
+        if footprint_shape == "circle":
+            body_radius_px = half_width_px
+            cv2.circle(bev_img, (rx, ry), body_radius_px, (45, 45, 48), -1)
+            cv2.circle(bev_img, (rx, ry), body_radius_px, (0, 229, 255), 2)
+        else:
+            cv2.rectangle(
+                bev_img,
+                (rx - half_width_px, ry - half_length_px),
+                (rx + half_width_px, ry + half_length_px),
+                (45, 45, 48),
+                -1,
+            )
+            cv2.rectangle(
+                bev_img,
+                (rx - half_width_px, ry - half_length_px),
+                (rx + half_width_px, ry + half_length_px),
+                (0, 229, 255),
+                2,
+            )
 
         # Draw Wheel cutouts (left/right wheel positions)
-        wheel_w = int(r_px * 0.15)
-        wheel_h = int(r_px * 0.4)
+        wheel_w = max(2, int(half_width_px * 0.15))
+        wheel_h = max(4, int(half_length_px * 0.5))
         # Left wheel
         cv2.rectangle(bev_img, 
-                      (rx - r_px + 2, ry - wheel_h // 2), 
-                      (rx - r_px + 2 + wheel_w, ry + wheel_h // 2), 
+                      (rx - half_width_px + 2, ry - wheel_h // 2),
+                      (rx - half_width_px + 2 + wheel_w, ry + wheel_h // 2),
                       (20, 20, 20), -1)
         # Right wheel
         cv2.rectangle(bev_img, 
-                      (rx + r_px - 2 - wheel_w, ry - wheel_h // 2), 
-                      (rx + r_px - 2, ry + wheel_h // 2), 
+                      (rx + half_width_px - 2 - wheel_w, ry - wheel_h // 2),
+                      (rx + half_width_px - 2, ry + wheel_h // 2),
                       (20, 20, 20), -1)
 
-        # Draw Front Bumper Arc (Thick semi-circle at front edge)
-        # Forward is top (-Y in screen space, angle range 180 to 360)
-        cv2.ellipse(bev_img, (rx, ry), (r_px, r_px), 0, 200, 340, (80, 80, 85), 4)
+        if footprint_shape == "circle":
+            # Forward is top (-Y in screen space, angle range 180 to 360)
+            cv2.ellipse(
+                bev_img, (rx, ry), (half_width_px, half_length_px),
+                0, 200, 340, (80, 80, 85), 4
+            )
+        else:
+            cv2.line(
+                bev_img,
+                (rx - half_width_px, ry - half_length_px),
+                (rx + half_width_px, ry - half_length_px),
+                (80, 80, 85),
+                4,
+                cv2.LINE_AA,
+            )
 
         # Draw Status LEDs (two small green dots at the front left/right nose)
-        led_offset = int(r_px * 0.5)
-        cv2.circle(bev_img, (rx - led_offset, ry - led_offset), 4, (0, 255, 0), -1)
-        cv2.circle(bev_img, (rx + led_offset, ry - led_offset), 4, (0, 255, 0), -1)
+        led_offset = int(half_width_px * 0.5)
+        led_y = ry - half_length_px + max(4, int(half_length_px * 0.15))
+        cv2.circle(bev_img, (rx - led_offset, led_y), 4, (0, 255, 0), -1)
+        cv2.circle(bev_img, (rx + led_offset, led_y), 4, (0, 255, 0), -1)
 
         # Draw Direction Arrow (triangle pointing forward/up)
-        arrow_w = int(r_px * 0.25)
-        arrow_h = int(r_px * 0.35)
+        arrow_w = max(2, int(half_width_px * 0.25))
+        arrow_h = max(3, int(half_length_px * 0.35))
+        arrow_top = ry - half_length_px + 10
         pts = np.array([
-            [rx, ry - r_px + 10],                     # Top tip
-            [rx - arrow_w, ry - r_px + 10 + arrow_h], # Bottom-left
-            [rx + arrow_w, ry - r_px + 10 + arrow_h]  # Bottom-right
+            [rx, arrow_top],
+            [rx - arrow_w, arrow_top + arrow_h],
+            [rx + arrow_w, arrow_top + arrow_h],
         ], np.int32)
         cv2.fillPoly(bev_img, [pts], (0, 229, 255))
 
