@@ -177,6 +177,15 @@ class MockCapture:
 
         return True, frame
 
+    def get(self, prop_id):
+        if prop_id == cv2.CAP_PROP_FPS:
+            return 24.0
+        if prop_id == cv2.CAP_PROP_FRAME_WIDTH:
+            return float(self.width)
+        if prop_id == cv2.CAP_PROP_FRAME_HEIGHT:
+            return float(self.height)
+        return 0.0
+
     def release(self):
         pass
 
@@ -370,6 +379,13 @@ class CalibrationWindow(QWidget):
         self.map_y = None
         self.map_dirty = True
 
+        # Experiment recording state. Writers are opened on the first frame so
+        # the files always use the camera's actual resolution.
+        self.is_recording = False
+        self.recording_session_dir = None
+        self.recording_writers = {}
+        self.recording_frame_count = 0
+
         self.init_ui()
         self.start_capture()
 
@@ -525,6 +541,15 @@ class CalibrationWindow(QWidget):
         self.bev_label.setFixedSize(self.bev_w, self.bev_h)
         self.bev_label.setStyleSheet("border: 2px solid #282830; background-color: #050508;")
         left_layout.addWidget(self.bev_label)
+
+        record_layout = QHBoxLayout()
+        self.record_btn = QPushButton("Start Recording")
+        self.record_btn.clicked.connect(self.toggle_recording)
+        self.record_status_label = QLabel("Not recording")
+        self.record_status_label.setStyleSheet("color: #9e9e9e;")
+        record_layout.addWidget(self.record_btn)
+        record_layout.addWidget(self.record_status_label)
+        left_layout.addLayout(record_layout)
         main_layout.addLayout(left_layout)
 
         # 2. Center Layout - Lane Detection & Occupancy Mask
@@ -760,11 +785,115 @@ class CalibrationWindow(QWidget):
         h_btn_layout.addWidget(save_btn)
         h_btn_layout.addWidget(reset_btn)
         btn_layout.addLayout(h_btn_layout)
-        
+
         right_layout.addLayout(btn_layout)
         right_layout.addStretch()
         
         main_layout.addLayout(right_layout)
+
+    def toggle_recording(self):
+        if self.is_recording:
+            self.stop_recording()
+        else:
+            self.start_recording()
+
+    def start_recording(self):
+        timestamp = time.strftime("%Y%m%d_%H%M%S")
+        timestamp += f"_{int(time.time() * 1000) % 1000:03d}"
+        session_dir = os.path.abspath(os.path.join(self.args.record_dir, timestamp))
+        try:
+            os.makedirs(session_dir, exist_ok=False)
+            metadata = {
+                "created_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+                "device": str(self.args.device),
+                "requested_camera_width": self.args.cam_width,
+                "requested_camera_height": self.args.cam_height,
+                "parameters": self.params,
+            }
+            with open(os.path.join(session_dir, "metadata.json"), "w") as f:
+                json.dump(metadata, f, indent=4)
+        except Exception as e:
+            print(f"[ERROR] Failed to prepare recording directory: {e}")
+            self.record_status_label.setText("Recording error")
+            self.record_status_label.setStyleSheet("color: #ff5252;")
+            return
+
+        self.recording_session_dir = session_dir
+        self.recording_writers = {}
+        self.recording_frame_count = 0
+        self.is_recording = True
+        self.record_btn.setText("Stop Recording")
+        self.record_btn.setStyleSheet("background-color: #7f0000; border-color: #ff5252;")
+        self.record_status_label.setText("REC 00:00")
+        self.record_status_label.setStyleSheet("color: #ff5252; font-weight: bold;")
+        print(f"[INFO] Recording started: {session_dir}")
+
+    def _open_recording_writers(self, frame):
+        if not self.is_recording or self.recording_writers:
+            return True
+
+        raw_h, raw_w = frame.shape[:2]
+        fps = float(self.cap.get(cv2.CAP_PROP_FPS)) if self.cap is not None else 0.0
+        if not math.isfinite(fps) or fps < 1.0 or fps > 120.0:
+            fps = 24.0
+
+        fourcc = cv2.VideoWriter_fourcc(*"MJPG")
+        specifications = {
+            "raw": (raw_w, raw_h),
+            "bev": (self.bev_w, self.bev_h),
+            "detection": (self.bev_w, self.bev_h),
+        }
+        writers = {}
+        for name, size in specifications.items():
+            path = os.path.join(self.recording_session_dir, f"{name}.avi")
+            writer = cv2.VideoWriter(path, fourcc, fps, size)
+            if not writer.isOpened():
+                for opened_writer in writers.values():
+                    opened_writer.release()
+                print(f"[ERROR] Failed to open video writer: {path}")
+                return False
+            writers[name] = writer
+
+        self.recording_writers = writers
+        print(f"[INFO] Recording video at {fps:.2f} fps, raw={raw_w}x{raw_h}")
+        return True
+
+    def record_frames(self, raw_frame, bev_frame, detection_frame):
+        if not self.is_recording:
+            return
+        if not self._open_recording_writers(raw_frame):
+            self.stop_recording()
+            self.record_status_label.setText("Recording error")
+            self.record_status_label.setStyleSheet("color: #ff5252;")
+            return
+
+        self.recording_writers["raw"].write(raw_frame)
+        self.recording_writers["bev"].write(bev_frame)
+        self.recording_writers["detection"].write(detection_frame)
+        self.recording_frame_count += 1
+
+        fps = float(self.cap.get(cv2.CAP_PROP_FPS)) if self.cap is not None else 0.0
+        if not math.isfinite(fps) or fps < 1.0 or fps > 120.0:
+            fps = 24.0
+        elapsed_seconds = int(self.recording_frame_count / fps)
+        self.record_status_label.setText(
+            f"REC {elapsed_seconds // 60:02d}:{elapsed_seconds % 60:02d}"
+        )
+
+    def stop_recording(self):
+        if not self.is_recording and not self.recording_writers:
+            return
+        for writer in self.recording_writers.values():
+            writer.release()
+        saved_dir = self.recording_session_dir
+        frame_count = self.recording_frame_count
+        self.recording_writers = {}
+        self.is_recording = False
+        self.record_btn.setText("Start Recording")
+        self.record_btn.setStyleSheet("")
+        self.record_status_label.setText(f"Saved {frame_count} frames")
+        self.record_status_label.setStyleSheet("color: #69f0ae;")
+        print(f"[INFO] Recording stopped: {saved_dir} ({frame_count} frames)")
 
     def update_sliders(self):
         # Temporarily block signals to avoid triggering multiple updates
@@ -1035,6 +1164,9 @@ class CalibrationWindow(QWidget):
 
         # Draw overlays on BEV
         self.draw_bev_overlays(bev_img)
+
+        # Save the camera input and both processed views for later evaluation.
+        self.record_frames(frame, bev_img, lane_mask_visual)
 
         # Display images to UI
         self.display_image(self.bev_label, bev_img)
@@ -1564,6 +1696,7 @@ class CalibrationWindow(QWidget):
 
     def closeEvent(self, event):
         self.timer.stop()
+        self.stop_recording()
         if self.cap is not None:
             self.cap.release()
         event.accept()
@@ -1576,6 +1709,10 @@ def main():
     parser.add_argument("--cam-height", type=int, default=720, help="Camera height resolution")
     parser.add_argument("--mock-camera", action="store_true", help="Use simulated dual-fisheye frames")
     parser.add_argument("--config", default=DEFAULT_CONFIG_FILE, help="Path to config JSON file")
+    parser.add_argument(
+        "--record-dir", default="recordings",
+        help="Directory where recording session folders are created"
+    )
     
     args = parser.parse_args()
 
