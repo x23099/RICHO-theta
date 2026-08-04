@@ -30,3 +30,6 @@ Thumbs.db
 *.mkv
 *.bag
 *.db3
+
+# Local experiment captures (videos, per-session metadata and detection logs)
+recordings/
