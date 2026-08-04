@@ -73,7 +73,7 @@ DEFAULT_CONFIG_FILE = "bird_eye_config.json"
 VEHICLE_PROFILES = {
     "kobuki": {
         "label": "Kobuki (354 mm circular)",
-        "camera_height": 0.40,
+        "camera_height": 0.58,
         "width": 0.354,
         "length": 0.354,
         "footprint_shape": "circle",
@@ -134,7 +134,7 @@ class MockCapture:
         # X = R * cos(t), Z = R * sin(t), Y = -H (ground level)
         t = self.frame_count * 0.05
         orbit_r = 1.0  # 1 meter radius
-        cam_h = 0.45   # Camera height (default)
+        cam_h = 0.58   # Camera height (default)
         
         p_x = orbit_r * math.cos(t)
         p_z = orbit_r * math.sin(t)
@@ -375,7 +375,7 @@ class CalibrationWindow(QWidget):
 
     def load_config(self):
         defaults = {
-            "camera_height": 0.40,
+            "camera_height": 0.58,
             "scale": 0.005,
             "pitch_deg": 0.0,
             "roll_deg": 0.0,
@@ -423,7 +423,7 @@ class CalibrationWindow(QWidget):
 
     def reset_config(self):
         self.params = {
-            "camera_height": 0.40,
+            "camera_height": 0.58,
             "scale": 0.005,
             "pitch_deg": 0.0,
             "roll_deg": 0.0,
@@ -545,7 +545,7 @@ class CalibrationWindow(QWidget):
         info_layout.addWidget(QLabel("Chassis:"), 0, 0)
         info_layout.addWidget(QLabel("Circular (Diameter: 354 mm / 0.354 m)"), 0, 1)
         info_layout.addWidget(QLabel("Default Height:"), 1, 0)
-        info_layout.addWidget(QLabel("Camera is mounted at ~450 mm (0.45 m) above floor"), 1, 1)
+        info_layout.addWidget(QLabel("Camera is mounted at 580 mm (0.58 m) above floor"), 1, 1)
         info_box.setLayout(info_layout)
         center_layout.addWidget(info_box)
         main_layout.addLayout(center_layout)
