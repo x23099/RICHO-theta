@@ -7,6 +7,7 @@ import math
 import json
 import argparse
 import time
+import csv
 
 # Compatibility patch for PyTorch/torchvision Self type in Python 3.10
 try:
@@ -324,6 +325,42 @@ def make_floor_projection_map(
     return map_x.astype(np.float32), map_y.astype(np.float32)
 
 
+def detect_blue_obstacle(bev_img, scale, min_area=250.0):
+    """Detect the nearest point of the largest blue obstacle in a BEV image."""
+    hsv = cv2.cvtColor(bev_img, cv2.COLOR_BGR2HSV)
+    mask = cv2.inRange(hsv, (90, 70, 30), (140, 255, 255))
+    kernel = np.ones((3, 3), dtype=np.uint8)
+    mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
+    mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=2)
+
+    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours = [cnt for cnt in contours if cv2.contourArea(cnt) >= min_area]
+    if not contours:
+        return None, mask
+
+    contour = max(contours, key=cv2.contourArea)
+    points = contour[:, 0, :].astype(np.float32)
+    image_center = np.array([bev_img.shape[1] / 2.0, bev_img.shape[0] / 2.0])
+    distances = np.linalg.norm(points - image_center, axis=1)
+    nearest_count = max(3, int(math.ceil(len(points) * 0.08)))
+    nearest_indices = np.argpartition(distances, nearest_count - 1)[:nearest_count]
+    contact = np.median(points[nearest_indices], axis=0)
+    px, py = float(contact[0]), float(contact[1])
+
+    x_m = (px - image_center[0]) * scale
+    z_m = (image_center[1] - py) * scale
+    result = {
+        "pixel_x": px,
+        "pixel_y": py,
+        "x_m": x_m,
+        "z_m": z_m,
+        "distance_m": math.hypot(x_m, z_m),
+        "area_px": float(cv2.contourArea(contour)),
+        "contour": contour,
+    }
+    return result, mask
+
+
 class CalibrationWindow(QWidget):
     def __init__(self, args):
         super().__init__()
@@ -385,6 +422,9 @@ class CalibrationWindow(QWidget):
         self.recording_session_dir = None
         self.recording_writers = {}
         self.recording_frame_count = 0
+        self.recording_csv_file = None
+        self.recording_csv_writer = None
+        self.last_blue_detection = None
 
         self.init_ui()
         self.start_capture()
@@ -416,6 +456,8 @@ class CalibrationWindow(QWidget):
             "roi_forward": 2.5,
             "roi_side": 1.5,
             "max_area": 5000,
+            "detect_blue_obstacle": 1,
+            "blue_min_area": 250,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -464,6 +506,8 @@ class CalibrationWindow(QWidget):
             "roi_forward": 2.5,
             "roi_side": 1.5,
             "max_area": 5000,
+            "detect_blue_obstacle": 1,
+            "blue_min_area": 250,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -773,6 +817,13 @@ class CalibrationWindow(QWidget):
         self.chk_circles.setChecked(self.params["show_circles"] == 1)
         self.chk_circles.stateChanged.connect(self.on_checkbox_changed)
         btn_layout.addWidget(self.chk_circles)
+
+        self.chk_blue_obstacle = QCheckBox("Detect blue obstacle")
+        self.chk_blue_obstacle.setChecked(
+            self.params.get("detect_blue_obstacle", 1) == 1
+        )
+        self.chk_blue_obstacle.stateChanged.connect(self.on_checkbox_changed)
+        btn_layout.addWidget(self.chk_blue_obstacle)
         
         h_btn_layout = QHBoxLayout()
         save_btn = QPushButton("Save Config")
@@ -812,6 +863,14 @@ class CalibrationWindow(QWidget):
             }
             with open(os.path.join(session_dir, "metadata.json"), "w") as f:
                 json.dump(metadata, f, indent=4)
+            self.recording_csv_file = open(
+                os.path.join(session_dir, "detections.csv"), "w", newline=""
+            )
+            self.recording_csv_writer = csv.writer(self.recording_csv_file)
+            self.recording_csv_writer.writerow([
+                "frame", "time_sec", "detected", "pixel_x", "pixel_y",
+                "x_m", "z_m", "distance_m", "area_px"
+            ])
         except Exception as e:
             print(f"[ERROR] Failed to prepare recording directory: {e}")
             self.record_status_label.setText("Recording error")
@@ -875,6 +934,20 @@ class CalibrationWindow(QWidget):
         fps = float(self.cap.get(cv2.CAP_PROP_FPS)) if self.cap is not None else 0.0
         if not math.isfinite(fps) or fps < 1.0 or fps > 120.0:
             fps = 24.0
+        detection = self.last_blue_detection
+        if self.recording_csv_writer is not None:
+            if detection is None:
+                self.recording_csv_writer.writerow([
+                    self.recording_frame_count, self.recording_frame_count / fps,
+                    0, "", "", "", "", "", ""
+                ])
+            else:
+                self.recording_csv_writer.writerow([
+                    self.recording_frame_count, self.recording_frame_count / fps, 1,
+                    f'{detection["pixel_x"]:.2f}', f'{detection["pixel_y"]:.2f}',
+                    f'{detection["x_m"]:.4f}', f'{detection["z_m"]:.4f}',
+                    f'{detection["distance_m"]:.4f}', f'{detection["area_px"]:.1f}'
+                ])
         elapsed_seconds = int(self.recording_frame_count / fps)
         self.record_status_label.setText(
             f"REC {elapsed_seconds // 60:02d}:{elapsed_seconds % 60:02d}"
@@ -885,6 +958,10 @@ class CalibrationWindow(QWidget):
             return
         for writer in self.recording_writers.values():
             writer.release()
+        if self.recording_csv_file is not None:
+            self.recording_csv_file.close()
+            self.recording_csv_file = None
+            self.recording_csv_writer = None
         saved_dir = self.recording_session_dir
         frame_count = self.recording_frame_count
         self.recording_writers = {}
@@ -966,6 +1043,9 @@ class CalibrationWindow(QWidget):
 
     def on_checkbox_changed(self, state):
         self.params["show_circles"] = 1 if self.chk_circles.isChecked() else 0
+        self.params["detect_blue_obstacle"] = (
+            1 if self.chk_blue_obstacle.isChecked() else 0
+        )
 
     def on_ai_checkbox_changed(self, state):
         self.params["enable_ai"] = 1 if self.chk_enable_ai.isChecked() else 0
@@ -1157,6 +1237,15 @@ class CalibrationWindow(QWidget):
         )
         lane_mask_visual = self.process_white_lane_detection(bev_img)
 
+        # Detect the blue evaluation target before drawing vehicle/UI overlays.
+        self.last_blue_detection = None
+        if self.params.get("detect_blue_obstacle", 1) == 1:
+            self.last_blue_detection, _ = detect_blue_obstacle(
+                bev_img,
+                max(float(self.params["scale"]), 1e-6),
+                float(self.params.get("blue_min_area", 250)),
+            )
+
         # Process AI Perception (YOLOv8 Object Detection & 3D Box Rendering)
         if self.params.get("enable_ai", 0) == 1:
             self.process_ai_perception(bev_img)
@@ -1164,6 +1253,8 @@ class CalibrationWindow(QWidget):
 
         # Draw overlays on BEV
         self.draw_bev_overlays(bev_img)
+        self.draw_blue_obstacle_detection(bev_img, self.last_blue_detection)
+        self.draw_blue_obstacle_detection(lane_mask_visual, self.last_blue_detection)
 
         # Save the camera input and both processed views for later evaluation.
         self.record_frames(frame, bev_img, lane_mask_visual)
@@ -1171,6 +1262,29 @@ class CalibrationWindow(QWidget):
         # Display images to UI
         self.display_image(self.bev_label, bev_img)
         self.display_image(self.lane_mask_label, lane_mask_visual)
+
+    @staticmethod
+    def draw_blue_obstacle_detection(img, detection):
+        if detection is None:
+            return
+        contour = detection["contour"]
+        px = int(round(detection["pixel_x"]))
+        py = int(round(detection["pixel_y"]))
+        cv2.drawContours(img, [contour], -1, (0, 165, 255), 2, cv2.LINE_AA)
+        cv2.drawMarker(
+            img, (px, py), (0, 0, 255), cv2.MARKER_CROSS,
+            markerSize=16, thickness=2, line_type=cv2.LINE_AA
+        )
+        text = (
+            f'BLUE x={detection["x_m"]:+.2f}m '
+            f'z={detection["z_m"]:.2f}m d={detection["distance_m"]:.2f}m'
+        )
+        text_x = max(5, min(img.shape[1] - 300, px - 100))
+        text_y = max(45, min(img.shape[0] - 10, py - 12))
+        cv2.putText(
+            img, text, (text_x, text_y), cv2.FONT_HERSHEY_SIMPLEX,
+            0.45, (0, 165, 255), 2, cv2.LINE_AA
+        )
 
     def process_white_lane_detection(self, bev_img):
         """
