@@ -26,7 +26,7 @@ def parse_expected_position(name):
     return float(match.group("x")), float(match.group("z"))
 
 
-def evaluate_session(session_dir, camera_height, frame_step):
+def evaluate_session(session_dir, camera_height, frame_step, calibration):
     expected = parse_expected_position(session_dir.name)
     if expected is None:
         return None
@@ -73,30 +73,45 @@ def evaluate_session(session_dir, camera_height, frame_step):
             )
             detection, _ = detect_blue_obstacle(
                 bev, float(parameters["scale"]),
-                float(parameters.get("blue_min_area", 250))
+                float(parameters.get("blue_min_area", 250)),
+                x_scale=calibration["x_scale"],
+                z_scale=calibration["z_scale"],
+                z_offset_m=calibration["z_offset_m"],
             )
             if detection is not None:
-                detections.append((detection["x_m"], detection["z_m"]))
+                detections.append((
+                    detection["raw_x_m"], detection["raw_z_m"],
+                    detection["x_m"], detection["z_m"]
+                ))
         frame_index += 1
     capture.release()
 
     if detections:
         values = np.asarray(detections)
-        estimated_x = float(np.median(values[:, 0]))
-        estimated_z = float(np.median(values[:, 1]))
-        std_x = float(np.std(values[:, 0]))
-        std_z = float(np.std(values[:, 1]))
+        raw_estimated_x = float(np.median(values[:, 0]))
+        raw_estimated_z = float(np.median(values[:, 1]))
+        estimated_x = float(np.median(values[:, 2]))
+        estimated_z = float(np.median(values[:, 3]))
+        std_x = float(np.std(values[:, 2]))
+        std_z = float(np.std(values[:, 3]))
     else:
+        raw_estimated_x = raw_estimated_z = math.nan
         estimated_x = estimated_z = std_x = std_z = math.nan
 
     expected_x, expected_z = expected
     error_x = estimated_x - expected_x
     error_z = estimated_z - expected_z
     position_error = math.hypot(error_x, error_z)
+    raw_position_error = math.hypot(
+        raw_estimated_x - expected_x, raw_estimated_z - expected_z
+    )
     return {
         "session": session_dir.name,
         "expected_x_m": expected_x,
         "expected_z_m": expected_z,
+        "raw_estimated_x_m": raw_estimated_x,
+        "raw_estimated_z_m": raw_estimated_z,
+        "raw_position_error_m": raw_position_error,
         "estimated_x_m": estimated_x,
         "estimated_z_m": estimated_z,
         "error_x_m": error_x,
@@ -115,12 +130,30 @@ def main():
     parser.add_argument("recordings", type=Path, help="Directory containing session folders")
     parser.add_argument("--camera-height", type=float, default=0.58)
     parser.add_argument("--frame-step", type=int, default=5)
+    parser.add_argument(
+        "--calibration-config", type=Path,
+        help="JSON config containing blue_calibration_* coefficients"
+    )
     parser.add_argument("--output", type=Path, default=Path("blue_obstacle_evaluation.csv"))
     args = parser.parse_args()
 
+    calibration = {"x_scale": 1.0, "z_scale": 1.0, "z_offset_m": 0.0}
+    if args.calibration_config is not None:
+        with args.calibration_config.open() as config_file:
+            config = json.load(config_file)
+        calibration = {
+            "x_scale": float(config.get("blue_calibration_x_scale", 1.0)),
+            "z_scale": float(config.get("blue_calibration_z_scale", 1.0)),
+            "z_offset_m": float(
+                config.get("blue_calibration_z_offset_m", 0.0)
+            ),
+        }
+
     results = []
     for session_dir in sorted(path for path in args.recordings.iterdir() if path.is_dir()):
-        result = evaluate_session(session_dir, args.camera_height, max(1, args.frame_step))
+        result = evaluate_session(
+            session_dir, args.camera_height, max(1, args.frame_step), calibration
+        )
         if result is not None:
             results.append(result)
 
@@ -140,6 +173,10 @@ def main():
             f'error={row["position_error_m"]:.3f} m'
         )
     mean_error = float(np.mean([row["position_error_m"] for row in results]))
+    raw_mean_error = float(
+        np.mean([row["raw_position_error_m"] for row in results])
+    )
+    print(f"Raw mean position error: {raw_mean_error:.3f} m")
     print(f"Mean position error: {mean_error:.3f} m")
     print(f"CSV saved: {args.output.resolve()}")
 

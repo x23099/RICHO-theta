@@ -325,7 +325,27 @@ def make_floor_projection_map(
     return map_x.astype(np.float32), map_y.astype(np.float32)
 
 
-def detect_blue_obstacle(bev_img, scale, min_area=250.0):
+def calibrate_obstacle_coordinates(
+    raw_x_m, raw_z_m, x_scale=1.0, z_scale=1.0, z_offset_m=0.0
+):
+    """Apply vehicle-centered calibration to a raw BEV ground position."""
+    return (
+        float(raw_x_m) * float(x_scale),
+        float(raw_z_m) * float(z_scale) + float(z_offset_m),
+    )
+
+
+def detect_blue_obstacle(
+    bev_img,
+    scale,
+    min_area=250.0,
+    x_scale=1.0,
+    z_scale=1.0,
+    z_offset_m=0.0,
+    valid_input_x_max_m=None,
+    valid_input_z_min_m=None,
+    valid_input_z_max_m=None,
+):
     """Detect the nearest point of the largest blue obstacle in a BEV image."""
     hsv = cv2.cvtColor(bev_img, cv2.COLOR_BGR2HSV)
     mask = cv2.inRange(hsv, (90, 70, 30), (140, 255, 255))
@@ -347,14 +367,28 @@ def detect_blue_obstacle(bev_img, scale, min_area=250.0):
     contact = np.median(points[nearest_indices], axis=0)
     px, py = float(contact[0]), float(contact[1])
 
-    x_m = (px - image_center[0]) * scale
-    z_m = (image_center[1] - py) * scale
+    raw_x_m = (px - image_center[0]) * scale
+    raw_z_m = (image_center[1] - py) * scale
+    x_m, z_m = calibrate_obstacle_coordinates(
+        raw_x_m, raw_z_m, x_scale, z_scale, z_offset_m
+    )
+    calibration_valid = True
+    if valid_input_x_max_m is not None:
+        calibration_valid &= abs(raw_x_m) <= float(valid_input_x_max_m)
+    if valid_input_z_min_m is not None:
+        calibration_valid &= raw_z_m >= float(valid_input_z_min_m)
+    if valid_input_z_max_m is not None:
+        calibration_valid &= raw_z_m <= float(valid_input_z_max_m)
     result = {
         "pixel_x": px,
         "pixel_y": py,
+        "raw_x_m": raw_x_m,
+        "raw_z_m": raw_z_m,
+        "raw_distance_m": math.hypot(raw_x_m, raw_z_m),
         "x_m": x_m,
         "z_m": z_m,
         "distance_m": math.hypot(x_m, z_m),
+        "calibration_valid": bool(calibration_valid),
         "area_px": float(cv2.contourArea(contour)),
         "contour": contour,
     }
@@ -458,6 +492,12 @@ class CalibrationWindow(QWidget):
             "max_area": 5000,
             "detect_blue_obstacle": 1,
             "blue_min_area": 250,
+            "blue_calibration_x_scale": 1.0,
+            "blue_calibration_z_scale": 1.0,
+            "blue_calibration_z_offset_m": 0.0,
+            "blue_calibration_input_x_max_m": 0.5,
+            "blue_calibration_input_z_min_m": 0.65,
+            "blue_calibration_input_z_max_m": 1.2,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -508,6 +548,12 @@ class CalibrationWindow(QWidget):
             "max_area": 5000,
             "detect_blue_obstacle": 1,
             "blue_min_area": 250,
+            "blue_calibration_x_scale": 1.0,
+            "blue_calibration_z_scale": 1.0,
+            "blue_calibration_z_offset_m": 0.0,
+            "blue_calibration_input_x_max_m": 0.5,
+            "blue_calibration_input_z_min_m": 0.65,
+            "blue_calibration_input_z_max_m": 1.2,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -869,7 +915,8 @@ class CalibrationWindow(QWidget):
             self.recording_csv_writer = csv.writer(self.recording_csv_file)
             self.recording_csv_writer.writerow([
                 "frame", "time_sec", "detected", "pixel_x", "pixel_y",
-                "x_m", "z_m", "distance_m", "area_px"
+                "raw_x_m", "raw_z_m", "raw_distance_m",
+                "x_m", "z_m", "distance_m", "calibration_valid", "area_px"
             ])
         except Exception as e:
             print(f"[ERROR] Failed to prepare recording directory: {e}")
@@ -939,14 +986,18 @@ class CalibrationWindow(QWidget):
             if detection is None:
                 self.recording_csv_writer.writerow([
                     self.recording_frame_count, self.recording_frame_count / fps,
-                    0, "", "", "", "", "", ""
-                ])
+                    0
+                ] + [""] * 10)
             else:
                 self.recording_csv_writer.writerow([
                     self.recording_frame_count, self.recording_frame_count / fps, 1,
                     f'{detection["pixel_x"]:.2f}', f'{detection["pixel_y"]:.2f}',
+                    f'{detection["raw_x_m"]:.4f}', f'{detection["raw_z_m"]:.4f}',
+                    f'{detection["raw_distance_m"]:.4f}',
                     f'{detection["x_m"]:.4f}', f'{detection["z_m"]:.4f}',
-                    f'{detection["distance_m"]:.4f}', f'{detection["area_px"]:.1f}'
+                    f'{detection["distance_m"]:.4f}',
+                    1 if detection["calibration_valid"] else 0,
+                    f'{detection["area_px"]:.1f}'
                 ])
         elapsed_seconds = int(self.recording_frame_count / fps)
         self.record_status_label.setText(
@@ -1244,6 +1295,20 @@ class CalibrationWindow(QWidget):
                 bev_img,
                 max(float(self.params["scale"]), 1e-6),
                 float(self.params.get("blue_min_area", 250)),
+                x_scale=float(self.params.get("blue_calibration_x_scale", 1.0)),
+                z_scale=float(self.params.get("blue_calibration_z_scale", 1.0)),
+                z_offset_m=float(
+                    self.params.get("blue_calibration_z_offset_m", 0.0)
+                ),
+                valid_input_x_max_m=float(
+                    self.params.get("blue_calibration_input_x_max_m", 0.5)
+                ),
+                valid_input_z_min_m=float(
+                    self.params.get("blue_calibration_input_z_min_m", 0.65)
+                ),
+                valid_input_z_max_m=float(
+                    self.params.get("blue_calibration_input_z_max_m", 1.2)
+                ),
             )
 
         # Process AI Perception (YOLOv8 Object Detection & 3D Box Rendering)
@@ -1275,8 +1340,9 @@ class CalibrationWindow(QWidget):
             img, (px, py), (0, 0, 255), cv2.MARKER_CROSS,
             markerSize=16, thickness=2, line_type=cv2.LINE_AA
         )
+        validity = "CAL" if detection["calibration_valid"] else "OUT"
         text = (
-            f'BLUE x={detection["x_m"]:+.2f}m '
+            f'BLUE[{validity}] x={detection["x_m"]:+.2f}m '
             f'z={detection["z_m"]:.2f}m d={detection["distance_m"]:.2f}m'
         )
         text_x = max(5, min(img.shape[1] - 300, px - 100))

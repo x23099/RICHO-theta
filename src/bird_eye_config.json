@@ -26,6 +26,12 @@
     "max_area": 15129,
     "detect_blue_obstacle": 1,
     "blue_min_area": 250,
+    "blue_calibration_x_scale": 1.168342,
+    "blue_calibration_z_scale": 1.389122,
+    "blue_calibration_z_offset_m": -0.296977,
+    "blue_calibration_input_x_max_m": 0.5,
+    "blue_calibration_input_z_min_m": 0.65,
+    "blue_calibration_input_z_max_m": 1.2,
     "enable_ai": 1,
     "yolo_model": "yolov8n.pt"
 }
