@@ -335,6 +335,96 @@ def calibrate_obstacle_coordinates(
     )
 
 
+def classify_obstacle_region(
+    raw_x_m, raw_z_m, input_x_max_m, input_z_min_m, input_z_max_m
+):
+    """Classify why a raw position is inside or outside calibration data."""
+    if raw_z_m < input_z_min_m:
+        return "NEAR"
+    if raw_z_m > input_z_max_m:
+        return "FAR"
+    if abs(raw_x_m) > input_x_max_m:
+        return "SIDE"
+    return "CAL"
+
+
+class ObstacleRegionHysteresis:
+    """Stabilize calibration-region labels around their thresholds."""
+
+    def __init__(
+        self,
+        input_x_max_m,
+        input_z_min_m,
+        input_z_max_m,
+        margin_m=0.03,
+        confirm_frames=3,
+    ):
+        self.input_x_max_m = float(input_x_max_m)
+        self.input_z_min_m = float(input_z_min_m)
+        self.input_z_max_m = float(input_z_max_m)
+        self.margin_m = max(0.0, float(margin_m))
+        self.confirm_frames = max(1, int(confirm_frames))
+        self.reset()
+
+    def reset(self):
+        self.stable_region = None
+        self.pending_region = None
+        self.pending_count = 0
+
+    def _candidate_region(self, raw_x_m, raw_z_m):
+        margin = self.margin_m
+
+        # An active OUT state uses a tighter return threshold. This creates a
+        # dead band, so small measurement noise cannot toggle the label.
+        if (
+            self.stable_region == "NEAR"
+            and raw_z_m < self.input_z_min_m + margin
+        ):
+            return "NEAR"
+        if (
+            self.stable_region == "FAR"
+            and raw_z_m > self.input_z_max_m - margin
+        ):
+            return "FAR"
+
+        # CAL requires a wider threshold before changing to an OUT state.
+        if raw_z_m < self.input_z_min_m - margin:
+            return "NEAR"
+        if raw_z_m > self.input_z_max_m + margin:
+            return "FAR"
+
+        if (
+            self.stable_region == "SIDE"
+            and abs(raw_x_m) > self.input_x_max_m - margin
+        ):
+            return "SIDE"
+        if abs(raw_x_m) > self.input_x_max_m + margin:
+            return "SIDE"
+        return "CAL"
+
+    def update(self, raw_x_m, raw_z_m):
+        candidate = self._candidate_region(float(raw_x_m), float(raw_z_m))
+        if self.stable_region is None:
+            self.stable_region = candidate
+            return self.stable_region
+        if candidate == self.stable_region:
+            self.pending_region = None
+            self.pending_count = 0
+            return self.stable_region
+
+        if candidate != self.pending_region:
+            self.pending_region = candidate
+            self.pending_count = 1
+        else:
+            self.pending_count += 1
+
+        if self.pending_count >= self.confirm_frames:
+            self.stable_region = candidate
+            self.pending_region = None
+            self.pending_count = 0
+        return self.stable_region
+
+
 def detect_blue_obstacle(
     bev_img,
     scale,
@@ -372,13 +462,17 @@ def detect_blue_obstacle(
     x_m, z_m = calibrate_obstacle_coordinates(
         raw_x_m, raw_z_m, x_scale, z_scale, z_offset_m
     )
-    calibration_valid = True
-    if valid_input_x_max_m is not None:
-        calibration_valid &= abs(raw_x_m) <= float(valid_input_x_max_m)
-    if valid_input_z_min_m is not None:
-        calibration_valid &= raw_z_m >= float(valid_input_z_min_m)
-    if valid_input_z_max_m is not None:
-        calibration_valid &= raw_z_m <= float(valid_input_z_max_m)
+    region = "CAL"
+    if None not in (
+        valid_input_x_max_m, valid_input_z_min_m, valid_input_z_max_m
+    ):
+        region = classify_obstacle_region(
+            raw_x_m,
+            raw_z_m,
+            float(valid_input_x_max_m),
+            float(valid_input_z_min_m),
+            float(valid_input_z_max_m),
+        )
     result = {
         "pixel_x": px,
         "pixel_y": py,
@@ -388,7 +482,9 @@ def detect_blue_obstacle(
         "x_m": x_m,
         "z_m": z_m,
         "distance_m": math.hypot(x_m, z_m),
-        "calibration_valid": bool(calibration_valid),
+        "instant_region": region,
+        "region": region,
+        "calibration_valid": region == "CAL",
         "area_px": float(cv2.contourArea(contour)),
         "contour": contour,
     }
@@ -459,6 +555,7 @@ class CalibrationWindow(QWidget):
         self.recording_csv_file = None
         self.recording_csv_writer = None
         self.last_blue_detection = None
+        self.blue_region_hysteresis = self.create_blue_region_hysteresis()
 
         self.init_ui()
         self.start_capture()
@@ -498,6 +595,8 @@ class CalibrationWindow(QWidget):
             "blue_calibration_input_x_max_m": 0.5,
             "blue_calibration_input_z_min_m": 0.65,
             "blue_calibration_input_z_max_m": 1.2,
+            "blue_region_hysteresis_margin_m": 0.03,
+            "blue_region_confirm_frames": 3,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -554,11 +653,23 @@ class CalibrationWindow(QWidget):
             "blue_calibration_input_x_max_m": 0.5,
             "blue_calibration_input_z_min_m": 0.65,
             "blue_calibration_input_z_max_m": 1.2,
+            "blue_region_hysteresis_margin_m": 0.03,
+            "blue_region_confirm_frames": 3,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
         self.update_sliders()
         self.map_dirty = True
+        self.blue_region_hysteresis = self.create_blue_region_hysteresis()
+
+    def create_blue_region_hysteresis(self):
+        return ObstacleRegionHysteresis(
+            self.params.get("blue_calibration_input_x_max_m", 0.5),
+            self.params.get("blue_calibration_input_z_min_m", 0.65),
+            self.params.get("blue_calibration_input_z_max_m", 1.2),
+            self.params.get("blue_region_hysteresis_margin_m", 0.03),
+            self.params.get("blue_region_confirm_frames", 3),
+        )
 
     def init_ui(self):
         self.setWindowTitle("360 Camera Bird's Eye View (AVM) Calibration Tool")
@@ -916,7 +1027,8 @@ class CalibrationWindow(QWidget):
             self.recording_csv_writer.writerow([
                 "frame", "time_sec", "detected", "pixel_x", "pixel_y",
                 "raw_x_m", "raw_z_m", "raw_distance_m",
-                "x_m", "z_m", "distance_m", "calibration_valid", "area_px"
+                "x_m", "z_m", "distance_m", "calibration_valid",
+                "region", "instant_region", "area_px"
             ])
         except Exception as e:
             print(f"[ERROR] Failed to prepare recording directory: {e}")
@@ -987,7 +1099,7 @@ class CalibrationWindow(QWidget):
                 self.recording_csv_writer.writerow([
                     self.recording_frame_count, self.recording_frame_count / fps,
                     0
-                ] + [""] * 10)
+                ] + [""] * 12)
             else:
                 self.recording_csv_writer.writerow([
                     self.recording_frame_count, self.recording_frame_count / fps, 1,
@@ -997,6 +1109,7 @@ class CalibrationWindow(QWidget):
                     f'{detection["x_m"]:.4f}', f'{detection["z_m"]:.4f}',
                     f'{detection["distance_m"]:.4f}',
                     1 if detection["calibration_valid"] else 0,
+                    detection["region"], detection["instant_region"],
                     f'{detection["area_px"]:.1f}'
                 ])
         elapsed_seconds = int(self.recording_frame_count / fps)
@@ -1097,6 +1210,8 @@ class CalibrationWindow(QWidget):
         self.params["detect_blue_obstacle"] = (
             1 if self.chk_blue_obstacle.isChecked() else 0
         )
+        if not self.chk_blue_obstacle.isChecked():
+            self.blue_region_hysteresis.reset()
 
     def on_ai_checkbox_changed(self, state):
         self.params["enable_ai"] = 1 if self.chk_enable_ai.isChecked() else 0
@@ -1310,6 +1425,17 @@ class CalibrationWindow(QWidget):
                     self.params.get("blue_calibration_input_z_max_m", 1.2)
                 ),
             )
+            if self.last_blue_detection is not None:
+                stable_region = self.blue_region_hysteresis.update(
+                    self.last_blue_detection["raw_x_m"],
+                    self.last_blue_detection["raw_z_m"],
+                )
+                self.last_blue_detection["region"] = stable_region
+                self.last_blue_detection["calibration_valid"] = (
+                    stable_region == "CAL"
+                )
+            else:
+                self.blue_region_hysteresis.reset()
 
         # Process AI Perception (YOLOv8 Object Detection & 3D Box Rendering)
         if self.params.get("enable_ai", 0) == 1:
@@ -1335,21 +1461,28 @@ class CalibrationWindow(QWidget):
         contour = detection["contour"]
         px = int(round(detection["pixel_x"]))
         py = int(round(detection["pixel_y"]))
-        cv2.drawContours(img, [contour], -1, (0, 165, 255), 2, cv2.LINE_AA)
+        region = detection.get("region", "CAL")
+        region_colors = {
+            "CAL": (0, 165, 255),
+            "NEAR": (0, 0, 255),
+            "FAR": (255, 255, 0),
+            "SIDE": (255, 0, 255),
+        }
+        color = region_colors.get(region, (0, 165, 255))
+        cv2.drawContours(img, [contour], -1, color, 2, cv2.LINE_AA)
         cv2.drawMarker(
-            img, (px, py), (0, 0, 255), cv2.MARKER_CROSS,
+            img, (px, py), color, cv2.MARKER_CROSS,
             markerSize=16, thickness=2, line_type=cv2.LINE_AA
         )
-        validity = "CAL" if detection["calibration_valid"] else "OUT"
         text = (
-            f'BLUE[{validity}] x={detection["x_m"]:+.2f}m '
+            f'BLUE[{region}] x={detection["x_m"]:+.2f}m '
             f'z={detection["z_m"]:.2f}m d={detection["distance_m"]:.2f}m'
         )
         text_x = max(5, min(img.shape[1] - 300, px - 100))
         text_y = max(45, min(img.shape[0] - 10, py - 12))
         cv2.putText(
             img, text, (text_x, text_y), cv2.FONT_HERSHEY_SIMPLEX,
-            0.45, (0, 165, 255), 2, cv2.LINE_AA
+            0.45, color, 2, cv2.LINE_AA
         )
 
     def process_white_lane_detection(self, bev_img):

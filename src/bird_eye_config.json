@@ -32,6 +32,8 @@
     "blue_calibration_input_x_max_m": 0.5,
     "blue_calibration_input_z_min_m": 0.65,
     "blue_calibration_input_z_max_m": 1.2,
+    "blue_region_hysteresis_margin_m": 0.03,
+    "blue_region_confirm_frames": 3,
     "enable_ai": 1,
     "yolo_model": "yolov8n.pt"
 }
