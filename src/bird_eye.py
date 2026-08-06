@@ -441,6 +441,121 @@ class ObstacleRegionHysteresis:
         return self.stable_region
 
 
+class BlueObstacleTracker:
+    """Track one obstacle in vehicle coordinates with a constant-velocity KF."""
+
+    def __init__(
+        self,
+        process_accel_std_mps2=1.5,
+        measurement_std_m=0.03,
+        max_missing_sec=0.25,
+        max_dt_sec=0.2,
+    ):
+        self.process_accel_std_mps2 = max(
+            1e-6, float(process_accel_std_mps2)
+        )
+        self.measurement_std_m = max(1e-6, float(measurement_std_m))
+        self.max_missing_sec = max(0.0, float(max_missing_sec))
+        self.max_dt_sec = max(1e-3, float(max_dt_sec))
+        self.filter = cv2.KalmanFilter(4, 2)
+        self.filter.measurementMatrix = np.array(
+            [[1.0, 0.0, 0.0, 0.0], [0.0, 1.0, 0.0, 0.0]],
+            dtype=np.float32,
+        )
+        measurement_variance = self.measurement_std_m ** 2
+        self.filter.measurementNoiseCov = np.eye(2, dtype=np.float32) * (
+            measurement_variance
+        )
+        self.reset()
+
+    def reset(self):
+        self.initialized = False
+        self.last_update_time = None
+        self.last_measurement_time = None
+        self.filter.statePre = np.zeros((4, 1), dtype=np.float32)
+        self.filter.statePost = np.zeros((4, 1), dtype=np.float32)
+        self.filter.errorCovPost = np.diag(
+            [
+                self.measurement_std_m ** 2,
+                self.measurement_std_m ** 2,
+                0.25,
+                0.25,
+            ]
+        ).astype(np.float32)
+
+    def _set_motion_model(self, dt):
+        dt = max(1e-3, min(float(dt), self.max_dt_sec))
+        self.filter.transitionMatrix = np.array(
+            [
+                [1.0, 0.0, dt, 0.0],
+                [0.0, 1.0, 0.0, dt],
+                [0.0, 0.0, 1.0, 0.0],
+                [0.0, 0.0, 0.0, 1.0],
+            ],
+            dtype=np.float32,
+        )
+        accel_variance = self.process_accel_std_mps2 ** 2
+        dt2 = dt * dt
+        dt3 = dt2 * dt
+        dt4 = dt2 * dt2
+        self.filter.processNoiseCov = np.array(
+            [
+                [dt4 / 4.0, 0.0, dt3 / 2.0, 0.0],
+                [0.0, dt4 / 4.0, 0.0, dt3 / 2.0],
+                [dt3 / 2.0, 0.0, dt2, 0.0],
+                [0.0, dt3 / 2.0, 0.0, dt2],
+            ],
+            dtype=np.float32,
+        ) * accel_variance
+
+    @staticmethod
+    def _result(state, predicted, missing_age_sec):
+        x_m, z_m, vx_mps, vz_mps = state.reshape(-1)
+        return {
+            "x_m": float(x_m),
+            "z_m": float(z_m),
+            "distance_m": math.hypot(float(x_m), float(z_m)),
+            "vx_mps": float(vx_mps),
+            "vz_mps": float(vz_mps),
+            "predicted": bool(predicted),
+            "missing_age_sec": float(missing_age_sec),
+        }
+
+    def update(self, measurement, timestamp=None):
+        """Update with ``(x_m, z_m)`` or predict briefly when it is ``None``."""
+        now = time.monotonic() if timestamp is None else float(timestamp)
+        if not self.initialized:
+            if measurement is None:
+                return None
+            x_m, z_m = (float(measurement[0]), float(measurement[1]))
+            state = np.array([[x_m], [z_m], [0.0], [0.0]], dtype=np.float32)
+            self.filter.statePre = state.copy()
+            self.filter.statePost = state.copy()
+            self.initialized = True
+            self.last_update_time = now
+            self.last_measurement_time = now
+            return self._result(state, False, 0.0)
+
+        dt = max(1e-3, now - self.last_update_time)
+        self._set_motion_model(dt)
+        predicted_state = self.filter.predict()
+        self.last_update_time = now
+
+        if measurement is not None:
+            x_m, z_m = (float(measurement[0]), float(measurement[1]))
+            corrected_state = self.filter.correct(
+                np.array([[x_m], [z_m]], dtype=np.float32)
+            )
+            self.last_measurement_time = now
+            return self._result(corrected_state, False, 0.0)
+
+        missing_age_sec = max(0.0, now - self.last_measurement_time)
+        if missing_age_sec > self.max_missing_sec:
+            self.reset()
+            return None
+        return self._result(predicted_state, True, missing_age_sec)
+
+
 def detect_blue_obstacle(
     bev_img,
     scale,
@@ -571,6 +686,8 @@ class CalibrationWindow(QWidget):
         self.recording_csv_file = None
         self.recording_csv_writer = None
         self.last_blue_detection = None
+        self.last_blue_track = None
+        self.blue_obstacle_tracker = self.create_blue_obstacle_tracker()
         (
             self.blue_range_hysteresis,
             self.blue_side_hysteresis,
@@ -619,6 +736,11 @@ class CalibrationWindow(QWidget):
             "blue_region_distance_max_m": 1.4,
             "blue_region_hysteresis_margin_m": 0.03,
             "blue_region_confirm_frames": 3,
+            "blue_tracking_enabled": 1,
+            "blue_tracking_process_accel_std_mps2": 1.5,
+            "blue_tracking_measurement_std_m": 0.03,
+            "blue_tracking_max_missing_sec": 0.25,
+            "blue_tracking_max_dt_sec": 0.2,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -680,6 +802,11 @@ class CalibrationWindow(QWidget):
             "blue_region_distance_max_m": 1.4,
             "blue_region_hysteresis_margin_m": 0.03,
             "blue_region_confirm_frames": 3,
+            "blue_tracking_enabled": 1,
+            "blue_tracking_process_accel_std_mps2": 1.5,
+            "blue_tracking_measurement_std_m": 0.03,
+            "blue_tracking_max_missing_sec": 0.25,
+            "blue_tracking_max_dt_sec": 0.2,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -689,6 +816,16 @@ class CalibrationWindow(QWidget):
             self.blue_range_hysteresis,
             self.blue_side_hysteresis,
         ) = self.create_blue_region_hysteresis()
+        self.blue_obstacle_tracker = self.create_blue_obstacle_tracker()
+        self.last_blue_track = None
+
+    def create_blue_obstacle_tracker(self):
+        return BlueObstacleTracker(
+            self.params.get("blue_tracking_process_accel_std_mps2", 1.5),
+            self.params.get("blue_tracking_measurement_std_m", 0.03),
+            self.params.get("blue_tracking_max_missing_sec", 0.25),
+            self.params.get("blue_tracking_max_dt_sec", 0.2),
+        )
 
     def create_blue_region_hysteresis(self):
         margin = self.params.get("blue_region_hysteresis_margin_m", 0.03)
@@ -1066,7 +1203,10 @@ class CalibrationWindow(QWidget):
                 "frame", "time_sec", "detected", "pixel_x", "pixel_y",
                 "raw_x_m", "raw_z_m", "raw_distance_m",
                 "x_m", "z_m", "distance_m", "calibration_valid",
-                "region", "instant_region", "area_px"
+                "region", "instant_region", "area_px",
+                "track_available", "track_predicted",
+                "filtered_x_m", "filtered_z_m", "filtered_distance_m",
+                "relative_vx_mps", "relative_vz_mps", "missing_age_sec"
             ])
         except Exception as e:
             print(f"[ERROR] Failed to prepare recording directory: {e}")
@@ -1132,15 +1272,19 @@ class CalibrationWindow(QWidget):
         if not math.isfinite(fps) or fps < 1.0 or fps > 120.0:
             fps = 24.0
         detection = self.last_blue_detection
+        track = self.last_blue_track
         if self.recording_csv_writer is not None:
             if detection is None:
-                self.recording_csv_writer.writerow([
-                    self.recording_frame_count, self.recording_frame_count / fps,
-                    0
-                ] + [""] * 12)
+                if track is None:
+                    detection_values = [""] * 12
+                else:
+                    detection_values = [""] * 9 + [
+                        track.get("region", ""),
+                        track.get("instant_region", ""),
+                        "",
+                    ]
             else:
-                self.recording_csv_writer.writerow([
-                    self.recording_frame_count, self.recording_frame_count / fps, 1,
+                detection_values = [
                     f'{detection["pixel_x"]:.2f}', f'{detection["pixel_y"]:.2f}',
                     f'{detection["raw_x_m"]:.4f}', f'{detection["raw_z_m"]:.4f}',
                     f'{detection["raw_distance_m"]:.4f}',
@@ -1149,7 +1293,22 @@ class CalibrationWindow(QWidget):
                     1 if detection["calibration_valid"] else 0,
                     detection["region"], detection["instant_region"],
                     f'{detection["area_px"]:.1f}'
-                ])
+                ]
+            if track is None:
+                tracking_values = [0, "", "", "", "", "", "", ""]
+            else:
+                tracking_values = [
+                    1, 1 if track["predicted"] else 0,
+                    f'{track["x_m"]:.4f}', f'{track["z_m"]:.4f}',
+                    f'{track["distance_m"]:.4f}', f'{track["vx_mps"]:.4f}',
+                    f'{track["vz_mps"]:.4f}',
+                    f'{track["missing_age_sec"]:.4f}',
+                ]
+            self.recording_csv_writer.writerow([
+                self.recording_frame_count,
+                self.recording_frame_count / fps,
+                1 if detection is not None else 0,
+            ] + detection_values + tracking_values)
         elapsed_seconds = int(self.recording_frame_count / fps)
         self.record_status_label.setText(
             f"REC {elapsed_seconds // 60:02d}:{elapsed_seconds % 60:02d}"
@@ -1444,6 +1603,7 @@ class CalibrationWindow(QWidget):
 
         # Detect the blue evaluation target before drawing vehicle/UI overlays.
         self.last_blue_detection = None
+        tracking_enabled = self.params.get("blue_tracking_enabled", 1) == 1
         if self.params.get("detect_blue_obstacle", 1) == 1:
             self.last_blue_detection, _ = detect_blue_obstacle(
                 bev_img,
@@ -1464,38 +1624,96 @@ class CalibrationWindow(QWidget):
                     self.params.get("blue_calibration_input_z_max_m", 1.2)
                 ),
             )
+            measurement = None
             if self.last_blue_detection is not None:
+                measurement = (
+                    self.last_blue_detection["x_m"],
+                    self.last_blue_detection["z_m"],
+                )
+            if tracking_enabled:
+                self.last_blue_track = self.blue_obstacle_tracker.update(measurement)
+            elif measurement is not None:
+                self.blue_obstacle_tracker.reset()
+                self.last_blue_track = {
+                    "x_m": measurement[0],
+                    "z_m": measurement[1],
+                    "distance_m": math.hypot(*measurement),
+                    "vx_mps": 0.0,
+                    "vz_mps": 0.0,
+                    "predicted": False,
+                    "missing_age_sec": 0.0,
+                }
+            else:
+                self.blue_obstacle_tracker.reset()
+                self.last_blue_track = None
+
+            if self.last_blue_track is not None:
+                # Convert the filtered vehicle coordinate back to the BEV only
+                # for drawing a marker during a short prediction-only period.
+                x_scale = float(
+                    self.params.get("blue_calibration_x_scale", 1.0)
+                )
+                z_scale = float(
+                    self.params.get("blue_calibration_z_scale", 1.0)
+                )
+                z_offset_m = float(
+                    self.params.get("blue_calibration_z_offset_m", 0.0)
+                )
+                bev_scale = max(float(self.params["scale"]), 1e-6)
+                if abs(x_scale) > 1e-6 and abs(z_scale) > 1e-6:
+                    raw_track_x_m = self.last_blue_track["x_m"] / x_scale
+                    raw_track_z_m = (
+                        self.last_blue_track["z_m"] - z_offset_m
+                    ) / z_scale
+                    self.last_blue_track["pixel_x"] = (
+                        self.bev_w / 2.0 + raw_track_x_m / bev_scale
+                    )
+                    self.last_blue_track["pixel_y"] = (
+                        self.bev_h / 2.0 - raw_track_z_m / bev_scale
+                    )
                 instant_range_region = classify_obstacle_region(
                     0.0,
-                    self.last_blue_detection["distance_m"],
+                    self.last_blue_track["distance_m"],
                     float("inf"),
                     float(self.params.get("blue_region_distance_min_m", 0.75)),
                     float(self.params.get("blue_region_distance_max_m", 1.4)),
                 )
                 instant_side_region = classify_obstacle_region(
-                    self.last_blue_detection["x_m"],
+                    self.last_blue_track["x_m"],
                     0.0,
                     float(self.params.get("blue_region_x_max_m", 0.5)),
                     float("-inf"),
                     float("inf"),
                 )
                 stable_range_region = self.blue_range_hysteresis.update(
-                    0.0, self.last_blue_detection["distance_m"]
+                    0.0, self.last_blue_track["distance_m"]
                 )
                 stable_side_region = self.blue_side_hysteresis.update(
-                    self.last_blue_detection["x_m"], 0.0
+                    self.last_blue_track["x_m"], 0.0
                 )
-                self.last_blue_detection["instant_region"] = (
+                self.last_blue_track["instant_region"] = (
                     combine_obstacle_regions(
                         instant_range_region, instant_side_region
                     )
                 )
-                self.last_blue_detection["region"] = combine_obstacle_regions(
+                self.last_blue_track["region"] = combine_obstacle_regions(
                     stable_range_region, stable_side_region
                 )
+                if self.last_blue_detection is not None:
+                    self.last_blue_detection["instant_region"] = (
+                        self.last_blue_track["instant_region"]
+                    )
+                    self.last_blue_detection["region"] = self.last_blue_track[
+                        "region"
+                    ]
             else:
                 self.blue_range_hysteresis.reset()
                 self.blue_side_hysteresis.reset()
+        else:
+            self.blue_obstacle_tracker.reset()
+            self.last_blue_track = None
+            self.blue_range_hysteresis.reset()
+            self.blue_side_hysteresis.reset()
 
         # Process AI Perception (YOLOv8 Object Detection & 3D Box Rendering)
         if self.params.get("enable_ai", 0) == 1:
@@ -1504,8 +1722,12 @@ class CalibrationWindow(QWidget):
 
         # Draw overlays on BEV
         self.draw_bev_overlays(bev_img)
-        self.draw_blue_obstacle_detection(bev_img, self.last_blue_detection)
-        self.draw_blue_obstacle_detection(lane_mask_visual, self.last_blue_detection)
+        self.draw_blue_obstacle_detection(
+            bev_img, self.last_blue_detection, self.last_blue_track
+        )
+        self.draw_blue_obstacle_detection(
+            lane_mask_visual, self.last_blue_detection, self.last_blue_track
+        )
 
         # Save the camera input and both processed views for later evaluation.
         self.record_frames(frame, bev_img, lane_mask_visual)
@@ -1515,13 +1737,11 @@ class CalibrationWindow(QWidget):
         self.display_image(self.lane_mask_label, lane_mask_visual)
 
     @staticmethod
-    def draw_blue_obstacle_detection(img, detection):
-        if detection is None:
+    def draw_blue_obstacle_detection(img, detection, track=None):
+        if detection is None and track is None:
             return
-        contour = detection["contour"]
-        px = int(round(detection["pixel_x"]))
-        py = int(round(detection["pixel_y"]))
-        region = detection.get("region", "CAL")
+        region_source = track if track is not None else detection
+        region = region_source.get("region", "CAL")
         region_colors = {
             "CAL": (0, 165, 255),
             "NEAR": (0, 0, 255),
@@ -1531,14 +1751,28 @@ class CalibrationWindow(QWidget):
             "FAR+SIDE": (255, 128, 255),
         }
         color = region_colors.get(region, (0, 165, 255))
-        cv2.drawContours(img, [contour], -1, color, 2, cv2.LINE_AA)
-        cv2.drawMarker(
-            img, (px, py), color, cv2.MARKER_CROSS,
-            markerSize=16, thickness=2, line_type=cv2.LINE_AA
-        )
+        if detection is not None:
+            contour = detection["contour"]
+            px = int(round(detection["pixel_x"]))
+            py = int(round(detection["pixel_y"]))
+            cv2.drawContours(img, [contour], -1, color, 2, cv2.LINE_AA)
+            cv2.drawMarker(
+                img, (px, py), color, cv2.MARKER_CROSS,
+                markerSize=16, thickness=2, line_type=cv2.LINE_AA
+            )
+        else:
+            px = int(round(track.get("pixel_x", img.shape[1] / 2.0)))
+            py = int(round(track.get("pixel_y", img.shape[0] / 2.0)))
+            if 0 <= px < img.shape[1] and 0 <= py < img.shape[0]:
+                cv2.drawMarker(
+                    img, (px, py), color, cv2.MARKER_DIAMOND,
+                    markerSize=14, thickness=2, line_type=cv2.LINE_AA
+                )
+        position = track if track is not None else detection
+        prediction_label = " PRED" if position.get("predicted", False) else ""
         text = (
-            f'BLUE[{region}] x={detection["x_m"]:+.2f}m '
-            f'z={detection["z_m"]:.2f}m d={detection["distance_m"]:.2f}m'
+            f'BLUE[{region}{prediction_label}] x={position["x_m"]:+.2f}m '
+            f'z={position["z_m"]:.2f}m d={position["distance_m"]:.2f}m'
         )
         text_x = max(5, min(img.shape[1] - 300, px - 100))
         text_y = max(45, min(img.shape[0] - 10, py - 12))
@@ -1546,6 +1780,16 @@ class CalibrationWindow(QWidget):
             img, text, (text_x, text_y), cv2.FONT_HERSHEY_SIMPLEX,
             0.45, color, 2, cv2.LINE_AA
         )
+        if track is not None:
+            velocity_text = (
+                f'REL vx={track["vx_mps"]:+.2f}m/s '
+                f'vz={track["vz_mps"]:+.2f}m/s'
+            )
+            velocity_y = max(18, min(img.shape[0] - 5, text_y + 18))
+            cv2.putText(
+                img, velocity_text, (text_x, velocity_y),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.40, color, 1, cv2.LINE_AA
+            )
 
     def process_white_lane_detection(self, bev_img):
         """

@@ -37,6 +37,11 @@
     "blue_region_distance_max_m": 1.4,
     "blue_region_hysteresis_margin_m": 0.03,
     "blue_region_confirm_frames": 3,
+    "blue_tracking_enabled": 1,
+    "blue_tracking_process_accel_std_mps2": 1.5,
+    "blue_tracking_measurement_std_m": 0.03,
+    "blue_tracking_max_missing_sec": 0.25,
+    "blue_tracking_max_dt_sec": 0.2,
     "enable_ai": 1,
     "yolo_model": "yolov8n.pt"
 }
