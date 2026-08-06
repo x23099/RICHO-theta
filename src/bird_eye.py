@@ -403,10 +403,17 @@ class ObstacleRegionHysteresis:
         return "CAL"
 
     def update(self, raw_x_m, raw_z_m):
-        candidate = self._candidate_region(float(raw_x_m), float(raw_z_m))
         if self.stable_region is None:
-            self.stable_region = candidate
+            self.stable_region = classify_obstacle_region(
+                float(raw_x_m),
+                float(raw_z_m),
+                self.input_x_max_m,
+                self.input_z_min_m,
+                self.input_z_max_m,
+            )
             return self.stable_region
+
+        candidate = self._candidate_region(float(raw_x_m), float(raw_z_m))
         if candidate == self.stable_region:
             self.pending_region = None
             self.pending_count = 0
@@ -595,6 +602,9 @@ class CalibrationWindow(QWidget):
             "blue_calibration_input_x_max_m": 0.5,
             "blue_calibration_input_z_min_m": 0.65,
             "blue_calibration_input_z_max_m": 1.2,
+            "blue_region_x_max_m": 0.5,
+            "blue_region_z_min_m": 0.7,
+            "blue_region_z_max_m": 1.3,
             "blue_region_hysteresis_margin_m": 0.03,
             "blue_region_confirm_frames": 3,
             "enable_ai": 0,
@@ -653,6 +663,9 @@ class CalibrationWindow(QWidget):
             "blue_calibration_input_x_max_m": 0.5,
             "blue_calibration_input_z_min_m": 0.65,
             "blue_calibration_input_z_max_m": 1.2,
+            "blue_region_x_max_m": 0.5,
+            "blue_region_z_min_m": 0.7,
+            "blue_region_z_max_m": 1.3,
             "blue_region_hysteresis_margin_m": 0.03,
             "blue_region_confirm_frames": 3,
             "enable_ai": 0,
@@ -664,9 +677,9 @@ class CalibrationWindow(QWidget):
 
     def create_blue_region_hysteresis(self):
         return ObstacleRegionHysteresis(
-            self.params.get("blue_calibration_input_x_max_m", 0.5),
-            self.params.get("blue_calibration_input_z_min_m", 0.65),
-            self.params.get("blue_calibration_input_z_max_m", 1.2),
+            self.params.get("blue_region_x_max_m", 0.5),
+            self.params.get("blue_region_z_min_m", 0.7),
+            self.params.get("blue_region_z_max_m", 1.3),
             self.params.get("blue_region_hysteresis_margin_m", 0.03),
             self.params.get("blue_region_confirm_frames", 3),
         )
@@ -1426,14 +1439,19 @@ class CalibrationWindow(QWidget):
                 ),
             )
             if self.last_blue_detection is not None:
+                instant_region = classify_obstacle_region(
+                    self.last_blue_detection["x_m"],
+                    self.last_blue_detection["z_m"],
+                    float(self.params.get("blue_region_x_max_m", 0.5)),
+                    float(self.params.get("blue_region_z_min_m", 0.7)),
+                    float(self.params.get("blue_region_z_max_m", 1.3)),
+                )
                 stable_region = self.blue_region_hysteresis.update(
-                    self.last_blue_detection["raw_x_m"],
-                    self.last_blue_detection["raw_z_m"],
+                    self.last_blue_detection["x_m"],
+                    self.last_blue_detection["z_m"],
                 )
+                self.last_blue_detection["instant_region"] = instant_region
                 self.last_blue_detection["region"] = stable_region
-                self.last_blue_detection["calibration_valid"] = (
-                    stable_region == "CAL"
-                )
             else:
                 self.blue_region_hysteresis.reset()
 
