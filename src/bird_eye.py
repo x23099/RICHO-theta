@@ -348,6 +348,15 @@ def classify_obstacle_region(
     return "CAL"
 
 
+def combine_obstacle_regions(range_region, lateral_region):
+    """Combine independent distance and lateral states without hiding either."""
+    if lateral_region == "SIDE" and range_region != "CAL":
+        return f"{range_region}+SIDE"
+    if lateral_region == "SIDE":
+        return "SIDE"
+    return range_region
+
+
 class ObstacleRegionHysteresis:
     """Stabilize calibration-region labels around their thresholds."""
 
@@ -562,7 +571,10 @@ class CalibrationWindow(QWidget):
         self.recording_csv_file = None
         self.recording_csv_writer = None
         self.last_blue_detection = None
-        self.blue_region_hysteresis = self.create_blue_region_hysteresis()
+        (
+            self.blue_range_hysteresis,
+            self.blue_side_hysteresis,
+        ) = self.create_blue_region_hysteresis()
 
         self.init_ui()
         self.start_capture()
@@ -603,8 +615,8 @@ class CalibrationWindow(QWidget):
             "blue_calibration_input_z_min_m": 0.65,
             "blue_calibration_input_z_max_m": 1.2,
             "blue_region_x_max_m": 0.5,
-            "blue_region_z_min_m": 0.7,
-            "blue_region_z_max_m": 1.3,
+            "blue_region_distance_min_m": 0.75,
+            "blue_region_distance_max_m": 1.4,
             "blue_region_hysteresis_margin_m": 0.03,
             "blue_region_confirm_frames": 3,
             "enable_ai": 0,
@@ -664,8 +676,8 @@ class CalibrationWindow(QWidget):
             "blue_calibration_input_z_min_m": 0.65,
             "blue_calibration_input_z_max_m": 1.2,
             "blue_region_x_max_m": 0.5,
-            "blue_region_z_min_m": 0.7,
-            "blue_region_z_max_m": 1.3,
+            "blue_region_distance_min_m": 0.75,
+            "blue_region_distance_max_m": 1.4,
             "blue_region_hysteresis_margin_m": 0.03,
             "blue_region_confirm_frames": 3,
             "enable_ai": 0,
@@ -673,16 +685,29 @@ class CalibrationWindow(QWidget):
         }
         self.update_sliders()
         self.map_dirty = True
-        self.blue_region_hysteresis = self.create_blue_region_hysteresis()
+        (
+            self.blue_range_hysteresis,
+            self.blue_side_hysteresis,
+        ) = self.create_blue_region_hysteresis()
 
     def create_blue_region_hysteresis(self):
-        return ObstacleRegionHysteresis(
-            self.params.get("blue_region_x_max_m", 0.5),
-            self.params.get("blue_region_z_min_m", 0.7),
-            self.params.get("blue_region_z_max_m", 1.3),
-            self.params.get("blue_region_hysteresis_margin_m", 0.03),
-            self.params.get("blue_region_confirm_frames", 3),
+        margin = self.params.get("blue_region_hysteresis_margin_m", 0.03)
+        confirm_frames = self.params.get("blue_region_confirm_frames", 3)
+        range_hysteresis = ObstacleRegionHysteresis(
+            float("inf"),
+            self.params.get("blue_region_distance_min_m", 0.75),
+            self.params.get("blue_region_distance_max_m", 1.4),
+            margin,
+            confirm_frames,
         )
+        side_hysteresis = ObstacleRegionHysteresis(
+            self.params.get("blue_region_x_max_m", 0.5),
+            float("-inf"),
+            float("inf"),
+            margin,
+            confirm_frames,
+        )
+        return range_hysteresis, side_hysteresis
 
     def init_ui(self):
         self.setWindowTitle("360 Camera Bird's Eye View (AVM) Calibration Tool")
@@ -1224,7 +1249,8 @@ class CalibrationWindow(QWidget):
             1 if self.chk_blue_obstacle.isChecked() else 0
         )
         if not self.chk_blue_obstacle.isChecked():
-            self.blue_region_hysteresis.reset()
+            self.blue_range_hysteresis.reset()
+            self.blue_side_hysteresis.reset()
 
     def on_ai_checkbox_changed(self, state):
         self.params["enable_ai"] = 1 if self.chk_enable_ai.isChecked() else 0
@@ -1439,21 +1465,37 @@ class CalibrationWindow(QWidget):
                 ),
             )
             if self.last_blue_detection is not None:
-                instant_region = classify_obstacle_region(
+                instant_range_region = classify_obstacle_region(
+                    0.0,
+                    self.last_blue_detection["distance_m"],
+                    float("inf"),
+                    float(self.params.get("blue_region_distance_min_m", 0.75)),
+                    float(self.params.get("blue_region_distance_max_m", 1.4)),
+                )
+                instant_side_region = classify_obstacle_region(
                     self.last_blue_detection["x_m"],
-                    self.last_blue_detection["z_m"],
+                    0.0,
                     float(self.params.get("blue_region_x_max_m", 0.5)),
-                    float(self.params.get("blue_region_z_min_m", 0.7)),
-                    float(self.params.get("blue_region_z_max_m", 1.3)),
+                    float("-inf"),
+                    float("inf"),
                 )
-                stable_region = self.blue_region_hysteresis.update(
-                    self.last_blue_detection["x_m"],
-                    self.last_blue_detection["z_m"],
+                stable_range_region = self.blue_range_hysteresis.update(
+                    0.0, self.last_blue_detection["distance_m"]
                 )
-                self.last_blue_detection["instant_region"] = instant_region
-                self.last_blue_detection["region"] = stable_region
+                stable_side_region = self.blue_side_hysteresis.update(
+                    self.last_blue_detection["x_m"], 0.0
+                )
+                self.last_blue_detection["instant_region"] = (
+                    combine_obstacle_regions(
+                        instant_range_region, instant_side_region
+                    )
+                )
+                self.last_blue_detection["region"] = combine_obstacle_regions(
+                    stable_range_region, stable_side_region
+                )
             else:
-                self.blue_region_hysteresis.reset()
+                self.blue_range_hysteresis.reset()
+                self.blue_side_hysteresis.reset()
 
         # Process AI Perception (YOLOv8 Object Detection & 3D Box Rendering)
         if self.params.get("enable_ai", 0) == 1:
@@ -1485,6 +1527,8 @@ class CalibrationWindow(QWidget):
             "NEAR": (0, 0, 255),
             "FAR": (255, 255, 0),
             "SIDE": (255, 0, 255),
+            "NEAR+SIDE": (128, 0, 255),
+            "FAR+SIDE": (255, 128, 255),
         }
         color = region_colors.get(region, (0, 165, 255))
         cv2.drawContours(img, [contour], -1, color, 2, cv2.LINE_AA)
