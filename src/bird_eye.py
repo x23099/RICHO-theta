@@ -23,6 +23,8 @@ except Exception:
 import cv2
 import numpy as np
 
+from ground_contact import detect_blue_ground_contact
+
 from PySide6.QtCore import Qt, QTimer, QPoint, QRectF
 from PySide6.QtGui import QImage, QPixmap, QPainter, QColor, QPen, QBrush, QFont, QKeyEvent
 from PySide6.QtWidgets import (
@@ -685,6 +687,8 @@ class CalibrationWindow(QWidget):
         self.recording_frame_count = 0
         self.recording_csv_file = None
         self.recording_csv_writer = None
+        self.yolo_model_obj = None
+        self.yolo_load_attempted = False
         self.last_blue_detection = None
         self.last_blue_track = None
         self.blue_obstacle_tracker = self.create_blue_obstacle_tracker()
@@ -725,12 +729,18 @@ class CalibrationWindow(QWidget):
             "max_area": 5000,
             "detect_blue_obstacle": 1,
             "blue_min_area": 250,
+            "blue_position_method": "ground_contact",
+            "blue_ground_contact_min_area": 300,
+            "blue_ground_contact_fraction": 0.08,
+            "blue_ground_contact_x_scale": 0.607688741902197,
+            "blue_ground_contact_x_offset_m": 0.022595727915692983,
+            "blue_ground_contact_z_offset_m": 0.0,
             "blue_calibration_x_scale": 1.0,
             "blue_calibration_z_scale": 1.0,
             "blue_calibration_z_offset_m": 0.0,
             "blue_calibration_input_x_max_m": 0.5,
             "blue_calibration_input_z_min_m": 0.65,
-            "blue_calibration_input_z_max_m": 1.2,
+            "blue_calibration_input_z_max_m": 1.35,
             "blue_region_x_max_m": 0.5,
             "blue_region_distance_min_m": 0.75,
             "blue_region_distance_max_m": 1.4,
@@ -791,12 +801,18 @@ class CalibrationWindow(QWidget):
             "max_area": 5000,
             "detect_blue_obstacle": 1,
             "blue_min_area": 250,
+            "blue_position_method": "ground_contact",
+            "blue_ground_contact_min_area": 300,
+            "blue_ground_contact_fraction": 0.08,
+            "blue_ground_contact_x_scale": 0.607688741902197,
+            "blue_ground_contact_x_offset_m": 0.022595727915692983,
+            "blue_ground_contact_z_offset_m": 0.0,
             "blue_calibration_x_scale": 1.0,
             "blue_calibration_z_scale": 1.0,
             "blue_calibration_z_offset_m": 0.0,
             "blue_calibration_input_x_max_m": 0.5,
             "blue_calibration_input_z_min_m": 0.65,
-            "blue_calibration_input_z_max_m": 1.2,
+            "blue_calibration_input_z_max_m": 1.35,
             "blue_region_x_max_m": 0.5,
             "blue_region_distance_min_m": 0.75,
             "blue_region_distance_max_m": 1.4,
@@ -1413,7 +1429,8 @@ class CalibrationWindow(QWidget):
 
     def on_ai_checkbox_changed(self, state):
         self.params["enable_ai"] = 1 if self.chk_enable_ai.isChecked() else 0
-        if self.params["enable_ai"] == 1 and getattr(self, 'yolo_model_obj', None) is None:
+        if self.params["enable_ai"] == 1 and self.yolo_model_obj is None:
+            self.yolo_load_attempted = False
             self.load_yolo_model()
 
     def on_yolo_model_changed(self, index):
@@ -1421,9 +1438,12 @@ class CalibrationWindow(QWidget):
         if 0 <= index < len(models):
             self.params["yolo_model"] = models[index]
             if self.params.get("enable_ai", 0) == 1:
+                self.yolo_model_obj = None
+                self.yolo_load_attempted = False
                 self.load_yolo_model()
 
     def load_yolo_model(self):
+        self.yolo_load_attempted = True
         if not HAS_ULTRALYTICS:
             print("[WARN] Ultralytics package is not installed. AI Perception disabled.")
             return
@@ -1434,28 +1454,29 @@ class CalibrationWindow(QWidget):
             print(f"[INFO] YOLOv8 model {model_name} loaded successfully!")
         except Exception as e:
             print(f"[WARN] Initial load failed for {model_name}: {e}. Retrying with patched torch.load...")
+            orig_load = torch.load
             try:
                 # Workaround for PyTorch 2.6 default weights_only=True restriction
-                orig_load = torch.load
                 def patched_load(*args, **kwargs):
                     if 'weights_only' not in kwargs:
                         kwargs['weights_only'] = False
                     return orig_load(*args, **kwargs)
                 torch.load = patched_load
                 self.yolo_model_obj = YOLO(model_name)
-                torch.load = orig_load
                 print(f"[INFO] YOLOv8 model {model_name} loaded successfully via fallback!")
             except Exception as e2:
                 print(f"[ERROR] Failed to load YOLOv8 model {model_name}: {e2}")
                 self.yolo_model_obj = None
+            finally:
+                torch.load = orig_load
 
     def process_ai_perception(self, img):
         if not HAS_ULTRALYTICS or self.params.get("enable_ai", 0) != 1:
             return
-        if getattr(self, 'yolo_model_obj', None) is None:
+        if self.yolo_model_obj is None and not self.yolo_load_attempted:
             self.load_yolo_model()
-            if getattr(self, 'yolo_model_obj', None) is None:
-                return
+        if self.yolo_model_obj is None:
+            return
 
         # Perform inference on BEV image or camera frame
         try:
@@ -1605,25 +1626,112 @@ class CalibrationWindow(QWidget):
         self.last_blue_detection = None
         tracking_enabled = self.params.get("blue_tracking_enabled", 1) == 1
         if self.params.get("detect_blue_obstacle", 1) == 1:
-            self.last_blue_detection, _ = detect_blue_obstacle(
-                bev_img,
-                max(float(self.params["scale"]), 1e-6),
-                float(self.params.get("blue_min_area", 250)),
-                x_scale=float(self.params.get("blue_calibration_x_scale", 1.0)),
-                z_scale=float(self.params.get("blue_calibration_z_scale", 1.0)),
-                z_offset_m=float(
-                    self.params.get("blue_calibration_z_offset_m", 0.0)
-                ),
-                valid_input_x_max_m=float(
-                    self.params.get("blue_calibration_input_x_max_m", 0.5)
-                ),
-                valid_input_z_min_m=float(
-                    self.params.get("blue_calibration_input_z_min_m", 0.65)
-                ),
-                valid_input_z_max_m=float(
-                    self.params.get("blue_calibration_input_z_max_m", 1.2)
-                ),
+            position_method = self.params.get(
+                "blue_position_method", "ground_contact"
             )
+            if position_method == "ground_contact":
+                contact, _ = detect_blue_ground_contact(
+                    frame,
+                    self.params,
+                    min_area_px=float(
+                        self.params.get("blue_ground_contact_min_area", 300)
+                    ),
+                    contact_fraction=float(
+                        self.params.get("blue_ground_contact_fraction", 0.08)
+                    ),
+                )
+                if contact is not None:
+                    raw_x_m = contact["x_m"]
+                    raw_z_m = contact["z_m"]
+                    x_m = (
+                        raw_x_m
+                        * float(
+                            self.params.get(
+                                "blue_ground_contact_x_scale", 1.0
+                            )
+                        )
+                        + float(
+                            self.params.get(
+                                "blue_ground_contact_x_offset_m", 0.0
+                            )
+                        )
+                    )
+                    z_m = raw_z_m + float(
+                        self.params.get(
+                            "blue_ground_contact_z_offset_m", 0.0
+                        )
+                    )
+                    region = classify_obstacle_region(
+                        x_m,
+                        z_m,
+                        float(
+                            self.params.get(
+                                "blue_calibration_input_x_max_m", 0.5
+                            )
+                        ),
+                        float(
+                            self.params.get(
+                                "blue_calibration_input_z_min_m", 0.65
+                            )
+                        ),
+                        float(
+                            self.params.get(
+                                "blue_calibration_input_z_max_m", 1.35
+                            )
+                        ),
+                    )
+                    bev_scale = max(float(self.params["scale"]), 1e-6)
+                    robot_x_px = self.bev_w / 2.0 + float(
+                        self.params.get("car_offset_x", 0.0)
+                    ) / bev_scale
+                    robot_y_px = self.bev_h / 2.0 - float(
+                        self.params.get("car_offset_z", 0.0)
+                    ) / bev_scale
+                    self.last_blue_detection = {
+                        "pixel_x": robot_x_px + x_m / bev_scale,
+                        "pixel_y": robot_y_px - z_m / bev_scale,
+                        "source_pixel_x": contact["pixel_x"],
+                        "source_pixel_y": contact["pixel_y"],
+                        "raw_x_m": raw_x_m,
+                        "raw_z_m": raw_z_m,
+                        "raw_distance_m": math.hypot(raw_x_m, raw_z_m),
+                        "x_m": x_m,
+                        "z_m": z_m,
+                        "distance_m": math.hypot(x_m, z_m),
+                        "instant_region": region,
+                        "region": region,
+                        "calibration_valid": region == "CAL",
+                        "area_px": contact["area_px"],
+                        # The contour belongs to the raw dual-fisheye frame and
+                        # must not be drawn directly over the BEV image.
+                        "contour": None,
+                        "source_contour": contact["contour"],
+                        "position_method": position_method,
+                    }
+            else:
+                self.last_blue_detection, _ = detect_blue_obstacle(
+                    bev_img,
+                    max(float(self.params["scale"]), 1e-6),
+                    float(self.params.get("blue_min_area", 250)),
+                    x_scale=float(
+                        self.params.get("blue_calibration_x_scale", 1.0)
+                    ),
+                    z_scale=float(
+                        self.params.get("blue_calibration_z_scale", 1.0)
+                    ),
+                    z_offset_m=float(
+                        self.params.get("blue_calibration_z_offset_m", 0.0)
+                    ),
+                    valid_input_x_max_m=float(
+                        self.params.get("blue_calibration_input_x_max_m", 0.5)
+                    ),
+                    valid_input_z_min_m=float(
+                        self.params.get("blue_calibration_input_z_min_m", 0.65)
+                    ),
+                    valid_input_z_max_m=float(
+                        self.params.get("blue_calibration_input_z_max_m", 1.35)
+                    ),
+                )
             measurement = None
             if self.last_blue_detection is not None:
                 measurement = (
@@ -1650,17 +1758,32 @@ class CalibrationWindow(QWidget):
             if self.last_blue_track is not None:
                 # Convert the filtered vehicle coordinate back to the BEV only
                 # for drawing a marker during a short prediction-only period.
-                x_scale = float(
-                    self.params.get("blue_calibration_x_scale", 1.0)
-                )
-                z_scale = float(
-                    self.params.get("blue_calibration_z_scale", 1.0)
-                )
-                z_offset_m = float(
-                    self.params.get("blue_calibration_z_offset_m", 0.0)
-                )
                 bev_scale = max(float(self.params["scale"]), 1e-6)
-                if abs(x_scale) > 1e-6 and abs(z_scale) > 1e-6:
+                if position_method == "ground_contact":
+                    robot_x_px = self.bev_w / 2.0 + float(
+                        self.params.get("car_offset_x", 0.0)
+                    ) / bev_scale
+                    robot_y_px = self.bev_h / 2.0 - float(
+                        self.params.get("car_offset_z", 0.0)
+                    ) / bev_scale
+                    self.last_blue_track["pixel_x"] = (
+                        robot_x_px + self.last_blue_track["x_m"] / bev_scale
+                    )
+                    self.last_blue_track["pixel_y"] = (
+                        robot_y_px - self.last_blue_track["z_m"] / bev_scale
+                    )
+                else:
+                    x_scale = float(
+                        self.params.get("blue_calibration_x_scale", 1.0)
+                    )
+                    z_scale = float(
+                        self.params.get("blue_calibration_z_scale", 1.0)
+                    )
+                    z_offset_m = float(
+                        self.params.get("blue_calibration_z_offset_m", 0.0)
+                    )
+                    if abs(x_scale) <= 1e-6 or abs(z_scale) <= 1e-6:
+                        x_scale = z_scale = 1.0
                     raw_track_x_m = self.last_blue_track["x_m"] / x_scale
                     raw_track_z_m = (
                         self.last_blue_track["z_m"] - z_offset_m
@@ -1752,14 +1875,16 @@ class CalibrationWindow(QWidget):
         }
         color = region_colors.get(region, (0, 165, 255))
         if detection is not None:
-            contour = detection["contour"]
+            contour = detection.get("contour")
             px = int(round(detection["pixel_x"]))
             py = int(round(detection["pixel_y"]))
-            cv2.drawContours(img, [contour], -1, color, 2, cv2.LINE_AA)
-            cv2.drawMarker(
-                img, (px, py), color, cv2.MARKER_CROSS,
-                markerSize=16, thickness=2, line_type=cv2.LINE_AA
-            )
+            if contour is not None:
+                cv2.drawContours(img, [contour], -1, color, 2, cv2.LINE_AA)
+            if 0 <= px < img.shape[1] and 0 <= py < img.shape[0]:
+                cv2.drawMarker(
+                    img, (px, py), color, cv2.MARKER_CROSS,
+                    markerSize=16, thickness=2, line_type=cv2.LINE_AA
+                )
         else:
             px = int(round(track.get("pixel_x", img.shape[1] / 2.0)))
             py = int(round(track.get("pixel_y", img.shape[0] / 2.0)))

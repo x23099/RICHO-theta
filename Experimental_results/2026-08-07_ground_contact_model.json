@@ -1,0 +1,11 @@
+{
+  "type": "ground_contact_lateral_affine",
+  "x_scale": 0.607688741902197,
+  "x_offset_m": 0.022595727915692983,
+  "z_scale": 1.0,
+  "z_offset_m": 0.0,
+  "contact_fraction": 0.08,
+  "min_area_px": 300.0,
+  "warmup_frames": 30,
+  "frame_step": 5
+}
