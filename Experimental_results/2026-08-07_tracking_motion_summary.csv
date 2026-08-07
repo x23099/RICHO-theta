@@ -1,0 +1,7 @@
+session,motion,frames,duration_s,detection_rate,start_filtered_z_m,end_filtered_z_m,delta_z_m,motion_interval_s,z_slope_mps,median_tracker_vz_mps,raw_direction_correct_pct,smoothed_direction_correct_pct,start_filtered_x_m,end_filtered_x_m
+approach_01,approach,498,16.600,1.0,1.7698,1.0640,-0.7058,4.700,-0.1170,-0.0945,93.7,100.0,0.0341,0.0972
+approach_02,approach,373,12.433,1.0,1.7192,1.0252,-0.6941,4.900,-0.1098,-0.0985,93.2,100.0,0.0144,-0.0126
+approach_03,approach,395,13.167,1.0,1.7205,1.0338,-0.6867,4.667,-0.1152,-0.1090,90.1,100.0,-0.0165,-0.0806
+retreat_01,retreat,329,10.967,1.0,1.0290,1.7095,0.6805,4.700,0.1140,0.0887,93.7,100.0,-0.0723,0.0120
+retreat_02,retreat,344,11.467,1.0,1.0156,1.7300,0.7145,4.733,0.1197,0.0979,96.5,100.0,-0.0702,-0.0370
+retreat_03,retreat,352,11.733,1.0,1.0424,1.6828,0.6404,4.533,0.1129,0.0904,94.2,100.0,0.0901,0.0187
