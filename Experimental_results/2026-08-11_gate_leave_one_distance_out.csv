@@ -1,0 +1,4 @@
+holdout_session,training_sessions,normalized_area_threshold,stable_inlier_acceptance_rate,outlier_rejection_rate,max_abs_vz_mps,events_track_expired,events_reacquired,mean_reacquisition_delay_frames,max_reacquisition_delay_frames,decision
+shield_z0.8m,shield_z1.0m;shield_z1.3m,3156.2460839890864,0.9943181818181818,1.0,0.08567863702774048,2,2,8.0,9,PASS
+shield_z1.0m,shield_z0.8m;shield_z1.3m,2503.678448310634,0.9927536231884058,1.0,0.20865213871002197,2,2,4.0,4,PASS
+shield_z1.3m,shield_z0.8m;shield_z1.0m,2503.678448310634,0.9827586206896551,1.0,0.21154701709747314,2,2,3.0,3,PASS

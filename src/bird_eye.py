@@ -24,6 +24,11 @@ import cv2
 import numpy as np
 
 from ground_contact import detect_blue_ground_contact
+from obstacle_tracking import (
+    BlueObstacleTracker,
+    CausalTtcEstimator,
+    ObstacleObservationGate,
+)
 
 from PySide6.QtCore import Qt, QTimer, QPoint, QRectF
 from PySide6.QtGui import QImage, QPixmap, QPainter, QColor, QPen, QBrush, QFont, QKeyEvent
@@ -443,121 +448,6 @@ class ObstacleRegionHysteresis:
         return self.stable_region
 
 
-class BlueObstacleTracker:
-    """Track one obstacle in vehicle coordinates with a constant-velocity KF."""
-
-    def __init__(
-        self,
-        process_accel_std_mps2=1.5,
-        measurement_std_m=0.03,
-        max_missing_sec=0.25,
-        max_dt_sec=0.2,
-    ):
-        self.process_accel_std_mps2 = max(
-            1e-6, float(process_accel_std_mps2)
-        )
-        self.measurement_std_m = max(1e-6, float(measurement_std_m))
-        self.max_missing_sec = max(0.0, float(max_missing_sec))
-        self.max_dt_sec = max(1e-3, float(max_dt_sec))
-        self.filter = cv2.KalmanFilter(4, 2)
-        self.filter.measurementMatrix = np.array(
-            [[1.0, 0.0, 0.0, 0.0], [0.0, 1.0, 0.0, 0.0]],
-            dtype=np.float32,
-        )
-        measurement_variance = self.measurement_std_m ** 2
-        self.filter.measurementNoiseCov = np.eye(2, dtype=np.float32) * (
-            measurement_variance
-        )
-        self.reset()
-
-    def reset(self):
-        self.initialized = False
-        self.last_update_time = None
-        self.last_measurement_time = None
-        self.filter.statePre = np.zeros((4, 1), dtype=np.float32)
-        self.filter.statePost = np.zeros((4, 1), dtype=np.float32)
-        self.filter.errorCovPost = np.diag(
-            [
-                self.measurement_std_m ** 2,
-                self.measurement_std_m ** 2,
-                0.25,
-                0.25,
-            ]
-        ).astype(np.float32)
-
-    def _set_motion_model(self, dt):
-        dt = max(1e-3, min(float(dt), self.max_dt_sec))
-        self.filter.transitionMatrix = np.array(
-            [
-                [1.0, 0.0, dt, 0.0],
-                [0.0, 1.0, 0.0, dt],
-                [0.0, 0.0, 1.0, 0.0],
-                [0.0, 0.0, 0.0, 1.0],
-            ],
-            dtype=np.float32,
-        )
-        accel_variance = self.process_accel_std_mps2 ** 2
-        dt2 = dt * dt
-        dt3 = dt2 * dt
-        dt4 = dt2 * dt2
-        self.filter.processNoiseCov = np.array(
-            [
-                [dt4 / 4.0, 0.0, dt3 / 2.0, 0.0],
-                [0.0, dt4 / 4.0, 0.0, dt3 / 2.0],
-                [dt3 / 2.0, 0.0, dt2, 0.0],
-                [0.0, dt3 / 2.0, 0.0, dt2],
-            ],
-            dtype=np.float32,
-        ) * accel_variance
-
-    @staticmethod
-    def _result(state, predicted, missing_age_sec):
-        x_m, z_m, vx_mps, vz_mps = state.reshape(-1)
-        return {
-            "x_m": float(x_m),
-            "z_m": float(z_m),
-            "distance_m": math.hypot(float(x_m), float(z_m)),
-            "vx_mps": float(vx_mps),
-            "vz_mps": float(vz_mps),
-            "predicted": bool(predicted),
-            "missing_age_sec": float(missing_age_sec),
-        }
-
-    def update(self, measurement, timestamp=None):
-        """Update with ``(x_m, z_m)`` or predict briefly when it is ``None``."""
-        now = time.monotonic() if timestamp is None else float(timestamp)
-        if not self.initialized:
-            if measurement is None:
-                return None
-            x_m, z_m = (float(measurement[0]), float(measurement[1]))
-            state = np.array([[x_m], [z_m], [0.0], [0.0]], dtype=np.float32)
-            self.filter.statePre = state.copy()
-            self.filter.statePost = state.copy()
-            self.initialized = True
-            self.last_update_time = now
-            self.last_measurement_time = now
-            return self._result(state, False, 0.0)
-
-        dt = max(1e-3, now - self.last_update_time)
-        self._set_motion_model(dt)
-        predicted_state = self.filter.predict()
-        self.last_update_time = now
-
-        if measurement is not None:
-            x_m, z_m = (float(measurement[0]), float(measurement[1]))
-            corrected_state = self.filter.correct(
-                np.array([[x_m], [z_m]], dtype=np.float32)
-            )
-            self.last_measurement_time = now
-            return self._result(corrected_state, False, 0.0)
-
-        missing_age_sec = max(0.0, now - self.last_measurement_time)
-        if missing_age_sec > self.max_missing_sec:
-            self.reset()
-            return None
-        return self._result(predicted_state, True, missing_age_sec)
-
-
 def detect_blue_obstacle(
     bev_img,
     scale,
@@ -687,11 +577,17 @@ class CalibrationWindow(QWidget):
         self.recording_frame_count = 0
         self.recording_csv_file = None
         self.recording_csv_writer = None
+        self.recording_start_monotonic = None
         self.yolo_model_obj = None
         self.yolo_load_attempted = False
         self.last_blue_detection = None
         self.last_blue_track = None
+        self.last_blue_gate_diagnostics = {}
+        self.last_blue_tracker_diagnostics = {}
+        self.last_blue_processing_timestamp = None
         self.blue_obstacle_tracker = self.create_blue_obstacle_tracker()
+        self.blue_observation_gate = self.create_blue_observation_gate()
+        self.blue_ttc_estimator = self.create_blue_ttc_estimator()
         (
             self.blue_range_hysteresis,
             self.blue_side_hysteresis,
@@ -751,6 +647,14 @@ class CalibrationWindow(QWidget):
             "blue_tracking_measurement_std_m": 0.03,
             "blue_tracking_max_missing_sec": 0.25,
             "blue_tracking_max_dt_sec": 0.2,
+            "blue_observation_gate_enabled": 1,
+            "blue_observation_normalized_area_min": 2503.678448310634,
+            "blue_observation_nis_max": 9.210,
+            "blue_observation_confirmation_frames": 2,
+            "blue_observation_confirmation_distance_m": 0.15,
+            "blue_ttc_enabled": 1,
+            "blue_ttc_velocity_window_sec": 0.3,
+            "blue_ttc_deadband_mps": 0.05,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -823,16 +727,30 @@ class CalibrationWindow(QWidget):
             "blue_tracking_measurement_std_m": 0.03,
             "blue_tracking_max_missing_sec": 0.25,
             "blue_tracking_max_dt_sec": 0.2,
+            "blue_observation_gate_enabled": 1,
+            "blue_observation_normalized_area_min": 2503.678448310634,
+            "blue_observation_nis_max": 9.210,
+            "blue_observation_confirmation_frames": 2,
+            "blue_observation_confirmation_distance_m": 0.15,
+            "blue_ttc_enabled": 1,
+            "blue_ttc_velocity_window_sec": 0.3,
+            "blue_ttc_deadband_mps": 0.05,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
         self.update_sliders()
+        if hasattr(self, "chk_blue_observation_gate"):
+            self.chk_blue_observation_gate.setChecked(True)
+        if hasattr(self, "chk_blue_ttc"):
+            self.chk_blue_ttc.setChecked(True)
         self.map_dirty = True
         (
             self.blue_range_hysteresis,
             self.blue_side_hysteresis,
         ) = self.create_blue_region_hysteresis()
         self.blue_obstacle_tracker = self.create_blue_obstacle_tracker()
+        self.blue_observation_gate = self.create_blue_observation_gate()
+        self.blue_ttc_estimator = self.create_blue_ttc_estimator()
         self.last_blue_track = None
 
     def create_blue_obstacle_tracker(self):
@@ -841,6 +759,28 @@ class CalibrationWindow(QWidget):
             self.params.get("blue_tracking_measurement_std_m", 0.03),
             self.params.get("blue_tracking_max_missing_sec", 0.25),
             self.params.get("blue_tracking_max_dt_sec", 0.2),
+        )
+
+    def create_blue_observation_gate(self):
+        return ObstacleObservationGate(
+            enabled=self.params.get("blue_observation_gate_enabled", 1) == 1,
+            min_normalized_area=self.params.get(
+                "blue_observation_normalized_area_min", 2503.678448310634
+            ),
+            max_nis=self.params.get("blue_observation_nis_max", 9.210),
+            confirmation_frames=self.params.get(
+                "blue_observation_confirmation_frames", 2
+            ),
+            confirmation_distance_m=self.params.get(
+                "blue_observation_confirmation_distance_m", 0.15
+            ),
+        )
+
+    def create_blue_ttc_estimator(self):
+        return CausalTtcEstimator(
+            enabled=self.params.get("blue_ttc_enabled", 1) == 1,
+            window_sec=self.params.get("blue_ttc_velocity_window_sec", 0.3),
+            deadband_mps=self.params.get("blue_ttc_deadband_mps", 0.05),
         )
 
     def create_blue_region_hysteresis(self):
@@ -1172,6 +1112,26 @@ class CalibrationWindow(QWidget):
         )
         self.chk_blue_obstacle.stateChanged.connect(self.on_checkbox_changed)
         btn_layout.addWidget(self.chk_blue_obstacle)
+
+        self.chk_blue_observation_gate = QCheckBox(
+            "Enable blue-obstacle observation gate"
+        )
+        self.chk_blue_observation_gate.setChecked(
+            self.params.get("blue_observation_gate_enabled", 1) == 1
+        )
+        self.chk_blue_observation_gate.stateChanged.connect(
+            self.on_tracking_feature_checkbox_changed
+        )
+        btn_layout.addWidget(self.chk_blue_observation_gate)
+
+        self.chk_blue_ttc = QCheckBox("Show blue-obstacle TTC")
+        self.chk_blue_ttc.setChecked(
+            self.params.get("blue_ttc_enabled", 1) == 1
+        )
+        self.chk_blue_ttc.stateChanged.connect(
+            self.on_tracking_feature_checkbox_changed
+        )
+        btn_layout.addWidget(self.chk_blue_ttc)
         
         h_btn_layout = QHBoxLayout()
         save_btn = QPushButton("Save Config")
@@ -1200,6 +1160,7 @@ class CalibrationWindow(QWidget):
         timestamp = time.strftime("%Y%m%d_%H%M%S")
         timestamp += f"_{int(time.time() * 1000) % 1000:03d}"
         session_dir = os.path.abspath(os.path.join(self.args.record_dir, timestamp))
+        recording_start_monotonic = time.monotonic()
         try:
             os.makedirs(session_dir, exist_ok=False)
             metadata = {
@@ -1207,6 +1168,7 @@ class CalibrationWindow(QWidget):
                 "device": str(self.args.device),
                 "requested_camera_width": self.args.cam_width,
                 "requested_camera_height": self.args.cam_height,
+                "time_base": "time.monotonic",
                 "parameters": self.params,
             }
             with open(os.path.join(session_dir, "metadata.json"), "w") as f:
@@ -1222,7 +1184,10 @@ class CalibrationWindow(QWidget):
                 "region", "instant_region", "area_px",
                 "track_available", "track_predicted",
                 "filtered_x_m", "filtered_z_m", "filtered_distance_m",
-                "relative_vx_mps", "relative_vz_mps", "missing_age_sec"
+                "relative_vx_mps", "relative_vz_mps", "missing_age_sec",
+                "monotonic_time_sec", "measurement_accepted",
+                "rejection_reason", "normalized_area", "observation_nis",
+                "smoothed_vz_mps", "ttc_sec"
             ])
         except Exception as e:
             print(f"[ERROR] Failed to prepare recording directory: {e}")
@@ -1233,6 +1198,7 @@ class CalibrationWindow(QWidget):
         self.recording_session_dir = session_dir
         self.recording_writers = {}
         self.recording_frame_count = 0
+        self.recording_start_monotonic = recording_start_monotonic
         self.is_recording = True
         self.record_btn.setText("Stop Recording")
         self.record_btn.setStyleSheet("background-color: #7f0000; border-color: #ff5252;")
@@ -1324,7 +1290,22 @@ class CalibrationWindow(QWidget):
                 self.recording_frame_count,
                 self.recording_frame_count / fps,
                 1 if detection is not None else 0,
-            ] + detection_values + tracking_values)
+            ] + detection_values + tracking_values + [
+                (
+                    f'{max(0.0, self.last_blue_processing_timestamp - self.recording_start_monotonic):.6f}'
+                    if self.last_blue_processing_timestamp is not None
+                    and self.recording_start_monotonic is not None
+                    else ""
+                ),
+                1 if self.last_blue_tracker_diagnostics.get(
+                    "measurement_accepted", False
+                ) else 0,
+                self.last_blue_tracker_diagnostics.get("rejection_reason", ""),
+                self.last_blue_gate_diagnostics.get("normalized_area", ""),
+                self.last_blue_tracker_diagnostics.get("nis", ""),
+                track.get("smoothed_vz_mps", "") if track is not None else "",
+                track.get("ttc_sec", "") if track is not None else "",
+            ])
         elapsed_seconds = int(self.recording_frame_count / fps)
         self.record_status_label.setText(
             f"REC {elapsed_seconds // 60:02d}:{elapsed_seconds % 60:02d}"
@@ -1343,6 +1324,7 @@ class CalibrationWindow(QWidget):
         frame_count = self.recording_frame_count
         self.recording_writers = {}
         self.is_recording = False
+        self.recording_start_monotonic = None
         self.record_btn.setText("Start Recording")
         self.record_btn.setStyleSheet("")
         self.record_status_label.setText(f"Saved {frame_count} frames")
@@ -1424,8 +1406,24 @@ class CalibrationWindow(QWidget):
             1 if self.chk_blue_obstacle.isChecked() else 0
         )
         if not self.chk_blue_obstacle.isChecked():
+            self.blue_obstacle_tracker.reset()
+            self.blue_observation_gate.reset()
+            self.blue_ttc_estimator.reset()
             self.blue_range_hysteresis.reset()
             self.blue_side_hysteresis.reset()
+
+    def on_tracking_feature_checkbox_changed(self, state):
+        del state
+        self.params["blue_observation_gate_enabled"] = (
+            1 if self.chk_blue_observation_gate.isChecked() else 0
+        )
+        self.params["blue_ttc_enabled"] = (
+            1 if self.chk_blue_ttc.isChecked() else 0
+        )
+        self.blue_obstacle_tracker.reset()
+        self.blue_observation_gate = self.create_blue_observation_gate()
+        self.blue_ttc_estimator = self.create_blue_ttc_estimator()
+        self.last_blue_track = None
 
     def on_ai_checkbox_changed(self, state):
         self.params["enable_ai"] = 1 if self.chk_enable_ai.isChecked() else 0
@@ -1624,6 +1622,9 @@ class CalibrationWindow(QWidget):
 
         # Detect the blue evaluation target before drawing vehicle/UI overlays.
         self.last_blue_detection = None
+        self.last_blue_processing_timestamp = time.monotonic()
+        self.last_blue_gate_diagnostics = {}
+        self.last_blue_tracker_diagnostics = {}
         tracking_enabled = self.params.get("blue_tracking_enabled", 1) == 1
         if self.params.get("detect_blue_obstacle", 1) == 1:
             position_method = self.params.get(
@@ -1732,28 +1733,121 @@ class CalibrationWindow(QWidget):
                         self.params.get("blue_calibration_input_z_max_m", 1.35)
                     ),
                 )
-            measurement = None
+            raw_measurement = None
             if self.last_blue_detection is not None:
-                measurement = (
+                raw_measurement = (
                     self.last_blue_detection["x_m"],
                     self.last_blue_detection["z_m"],
                 )
             if tracking_enabled:
-                self.last_blue_track = self.blue_obstacle_tracker.update(measurement)
-            elif measurement is not None:
+                if position_method == "ground_contact":
+                    projected_position = self.blue_obstacle_tracker.projected_position(
+                        timestamp=self.last_blue_processing_timestamp
+                    )
+                    predicted_z_m = (
+                        projected_position[1]
+                        if projected_position is not None
+                        else (
+                            raw_measurement[1]
+                            if raw_measurement is not None
+                            else None
+                        )
+                    )
+                    measurement, self.last_blue_gate_diagnostics = (
+                        self.blue_observation_gate.filter_measurement(
+                            raw_measurement,
+                            area_px=(
+                                self.last_blue_detection["area_px"]
+                                if self.last_blue_detection is not None
+                                else None
+                            ),
+                            predicted_z_m=predicted_z_m,
+                            tracker_initialized=self.blue_obstacle_tracker.initialized,
+                        )
+                    )
+                    max_nis = (
+                        self.blue_observation_gate.max_nis
+                        if self.blue_observation_gate.enabled
+                        else None
+                    )
+                else:
+                    # The legacy detector measures contour area in BEV pixels;
+                    # the raw-fisheye gate threshold is not transferable.
+                    measurement = raw_measurement
+                    max_nis = None
+                    self.last_blue_gate_diagnostics = {
+                        "gate_enabled": False,
+                        "normalized_area": "",
+                        "gate_passed": raw_measurement is not None,
+                        "gate_rejection_reason": "",
+                        "confirmation_count": 0,
+                    }
+                (
+                    self.last_blue_track,
+                    self.last_blue_tracker_diagnostics,
+                ) = self.blue_obstacle_tracker.update_with_diagnostics(
+                    measurement,
+                    timestamp=self.last_blue_processing_timestamp,
+                    max_nis=max_nis,
+                )
+                if raw_measurement is not None and measurement is None:
+                    self.last_blue_tracker_diagnostics[
+                        "measurement_available"
+                    ] = True
+                    self.last_blue_tracker_diagnostics[
+                        "measurement_accepted"
+                    ] = False
+                    self.last_blue_tracker_diagnostics[
+                        "rejection_reason"
+                    ] = self.last_blue_gate_diagnostics[
+                        "gate_rejection_reason"
+                    ]
+            elif raw_measurement is not None:
                 self.blue_obstacle_tracker.reset()
+                self.blue_observation_gate.reset()
                 self.last_blue_track = {
-                    "x_m": measurement[0],
-                    "z_m": measurement[1],
-                    "distance_m": math.hypot(*measurement),
+                    "x_m": raw_measurement[0],
+                    "z_m": raw_measurement[1],
+                    "distance_m": math.hypot(*raw_measurement),
                     "vx_mps": 0.0,
                     "vz_mps": 0.0,
                     "predicted": False,
                     "missing_age_sec": 0.0,
                 }
+                self.last_blue_tracker_diagnostics = {
+                    "measurement_available": True,
+                    "measurement_accepted": True,
+                    "rejection_reason": "tracking_disabled",
+                    "nis": "",
+                }
             else:
                 self.blue_obstacle_tracker.reset()
+                self.blue_observation_gate.reset()
                 self.last_blue_track = None
+
+            ttc_estimate = self.blue_ttc_estimator.update(
+                self.last_blue_track if tracking_enabled else None,
+                timestamp=self.last_blue_processing_timestamp,
+            )
+            if self.last_blue_track is not None:
+                self.last_blue_track.update(ttc_estimate)
+            if self.last_blue_detection is not None:
+                self.last_blue_detection["measurement_accepted"] = bool(
+                    self.last_blue_tracker_diagnostics.get(
+                        "measurement_accepted", False
+                    )
+                )
+                self.last_blue_detection["rejection_reason"] = (
+                    self.last_blue_tracker_diagnostics.get(
+                        "rejection_reason", ""
+                    )
+                )
+                self.last_blue_detection["normalized_area"] = (
+                    self.last_blue_gate_diagnostics.get("normalized_area", "")
+                )
+                self.last_blue_detection["nis"] = (
+                    self.last_blue_tracker_diagnostics.get("nis", "")
+                )
 
             if self.last_blue_track is not None:
                 # Convert the filtered vehicle coordinate back to the BEV only
@@ -1834,6 +1928,8 @@ class CalibrationWindow(QWidget):
                 self.blue_side_hysteresis.reset()
         else:
             self.blue_obstacle_tracker.reset()
+            self.blue_observation_gate.reset()
+            self.blue_ttc_estimator.reset()
             self.last_blue_track = None
             self.blue_range_hysteresis.reset()
             self.blue_side_hysteresis.reset()
@@ -1874,6 +1970,12 @@ class CalibrationWindow(QWidget):
             "FAR+SIDE": (255, 128, 255),
         }
         color = region_colors.get(region, (0, 165, 255))
+        observation_rejected = (
+            detection is not None
+            and detection.get("measurement_accepted") is False
+        )
+        if observation_rejected:
+            color = (128, 128, 128)
         if detection is not None:
             contour = detection.get("contour")
             px = int(round(detection["pixel_x"]))
@@ -1895,8 +1997,10 @@ class CalibrationWindow(QWidget):
                 )
         position = track if track is not None else detection
         prediction_label = " PRED" if position.get("predicted", False) else ""
+        rejection_label = " REJ" if observation_rejected else ""
         text = (
-            f'BLUE[{region}{prediction_label}] x={position["x_m"]:+.2f}m '
+            f'BLUE[{region}{prediction_label}{rejection_label}] '
+            f'x={position["x_m"]:+.2f}m '
             f'z={position["z_m"]:.2f}m d={position["distance_m"]:.2f}m'
         )
         text_x = max(5, min(img.shape[1] - 300, px - 100))
@@ -1906,14 +2010,45 @@ class CalibrationWindow(QWidget):
             0.45, color, 2, cv2.LINE_AA
         )
         if track is not None:
+            smoothed_vz = track.get("smoothed_vz_mps")
             velocity_text = (
                 f'REL vx={track["vx_mps"]:+.2f}m/s '
                 f'vz={track["vz_mps"]:+.2f}m/s'
+                + (
+                    f' med={smoothed_vz:+.2f}m/s'
+                    if smoothed_vz is not None
+                    else ""
+                )
             )
             velocity_y = max(18, min(img.shape[0] - 5, text_y + 18))
             cv2.putText(
                 img, velocity_text, (text_x, velocity_y),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.40, color, 1, cv2.LINE_AA
+            )
+            ttc_sec = track.get("ttc_sec")
+            if ttc_sec is not None:
+                ttc_y = max(18, min(img.shape[0] - 5, velocity_y + 18))
+                cv2.putText(
+                    img,
+                    f'TTC CANDIDATE={ttc_sec:.2f}s',
+                    (text_x, ttc_y),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.40,
+                    (0, 0, 255),
+                    1,
+                    cv2.LINE_AA,
+                )
+        if observation_rejected:
+            rejection_y = max(18, min(img.shape[0] - 5, text_y - 18))
+            cv2.putText(
+                img,
+                f'OBS REJECT: {detection.get("rejection_reason", "gate")}',
+                (text_x, rejection_y),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.36,
+                color,
+                1,
+                cv2.LINE_AA,
             )
 
     def process_white_lane_detection(self, bev_img):

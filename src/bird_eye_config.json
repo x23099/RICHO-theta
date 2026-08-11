@@ -48,6 +48,14 @@
     "blue_tracking_measurement_std_m": 0.03,
     "blue_tracking_max_missing_sec": 0.25,
     "blue_tracking_max_dt_sec": 0.2,
+    "blue_observation_gate_enabled": 1,
+    "blue_observation_normalized_area_min": 2503.678448310634,
+    "blue_observation_nis_max": 9.21,
+    "blue_observation_confirmation_frames": 2,
+    "blue_observation_confirmation_distance_m": 0.15,
+    "blue_ttc_enabled": 1,
+    "blue_ttc_velocity_window_sec": 0.3,
+    "blue_ttc_deadband_mps": 0.05,
     "enable_ai": 1,
     "yolo_model": "yolov8n.pt"
 }
