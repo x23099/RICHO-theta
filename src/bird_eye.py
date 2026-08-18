@@ -8,6 +8,7 @@ import json
 import argparse
 import time
 import csv
+import re
 
 # Compatibility patch for PyTorch/torchvision Self type in Python 3.10
 try:
@@ -24,18 +25,20 @@ import cv2
 import numpy as np
 
 from ground_contact import detect_blue_ground_contact
+from collision_risk import assess_path_collision, predict_unicycle_path
 from obstacle_tracking import (
     BlueObstacleTracker,
     CausalTtcEstimator,
     ObstacleObservationGate,
 )
+from ros_odometry import RosOdometryBridge
 
 from PySide6.QtCore import Qt, QTimer, QPoint, QRectF
 from PySide6.QtGui import QImage, QPixmap, QPainter, QColor, QPen, QBrush, QFont, QKeyEvent
 from PySide6.QtWidgets import (
     QApplication, QWidget, QLabel, QSlider, QGridLayout, QVBoxLayout,
     QHBoxLayout, QPushButton, QGroupBox, QFormLayout, QFileDialog, QCheckBox,
-    QDoubleSpinBox, QSpinBox, QComboBox
+    QDoubleSpinBox, QSpinBox, QComboBox, QLineEdit
 )
 
 try:
@@ -73,7 +76,9 @@ except Exception as e:
     print(f"[WARN] Failed to import ultralytics/YOLO: {e}")
 
 # Configuration file name
-DEFAULT_CONFIG_FILE = "bird_eye_config.json"
+DEFAULT_CONFIG_FILE = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "bird_eye_config.json"
+)
 
 # Vehicle geometry is kept separate from camera/BEV calibration.  Only the
 # Kobuki dimensions are known here.  AI-FORMULA dimensions must be measured on
@@ -538,6 +543,13 @@ class CalibrationWindow(QWidget):
         self.cmd_angular_z = 0.0
         self.yaw_to_handle_ratio = 1.25
         self.handle_limit_deg = 450.0
+        self.odom_bridge = None
+        if self.args.odom_topic:
+            try:
+                self.odom_bridge = RosOdometryBridge(self.args.odom_topic)
+                print(f"[INFO] Subscribed experiment odometry: {self.args.odom_topic}")
+            except Exception as error:
+                print(f"[WARN] Odometry disabled: {error}")
 
         # WASD & Gear keyboard state
         self.current_gear = 1
@@ -585,6 +597,10 @@ class CalibrationWindow(QWidget):
         self.last_blue_gate_diagnostics = {}
         self.last_blue_tracker_diagnostics = {}
         self.last_blue_processing_timestamp = None
+        self.last_blue_collision = None
+        self.last_prediction_speed_mps = 0.0
+        self.last_prediction_angular_radps = 0.0
+        self.last_prediction_source = "none"
         self.blue_obstacle_tracker = self.create_blue_obstacle_tracker()
         self.blue_observation_gate = self.create_blue_observation_gate()
         self.blue_ttc_estimator = self.create_blue_ttc_estimator()
@@ -655,6 +671,10 @@ class CalibrationWindow(QWidget):
             "blue_ttc_enabled": 1,
             "blue_ttc_velocity_window_sec": 0.3,
             "blue_ttc_deadband_mps": 0.05,
+            "blue_collision_candidate_enabled": 1,
+            "blue_collision_safety_margin_m": 0.10,
+            "blue_collision_warning_ttc_sec": 4.0,
+            "blue_collision_critical_ttc_sec": 2.0,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -735,6 +755,10 @@ class CalibrationWindow(QWidget):
             "blue_ttc_enabled": 1,
             "blue_ttc_velocity_window_sec": 0.3,
             "blue_ttc_deadband_mps": 0.05,
+            "blue_collision_candidate_enabled": 1,
+            "blue_collision_safety_margin_m": 0.10,
+            "blue_collision_warning_ttc_sec": 4.0,
+            "blue_collision_critical_ttc_sec": 2.0,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -743,6 +767,8 @@ class CalibrationWindow(QWidget):
             self.chk_blue_observation_gate.setChecked(True)
         if hasattr(self, "chk_blue_ttc"):
             self.chk_blue_ttc.setChecked(True)
+        if hasattr(self, "chk_blue_collision_candidate"):
+            self.chk_blue_collision_candidate.setChecked(True)
         self.map_dirty = True
         (
             self.blue_range_hysteresis,
@@ -752,6 +778,7 @@ class CalibrationWindow(QWidget):
         self.blue_observation_gate = self.create_blue_observation_gate()
         self.blue_ttc_estimator = self.create_blue_ttc_estimator()
         self.last_blue_track = None
+        self.last_blue_collision = None
 
     def create_blue_obstacle_tracker(self):
         return BlueObstacleTracker(
@@ -882,6 +909,14 @@ class CalibrationWindow(QWidget):
         record_layout.addWidget(self.record_btn)
         record_layout.addWidget(self.record_status_label)
         left_layout.addLayout(record_layout)
+        experiment_layout = QHBoxLayout()
+        experiment_layout.addWidget(QLabel("Trial label:"))
+        self.experiment_label_edit = QLineEdit(self.args.experiment_label)
+        self.experiment_label_edit.setPlaceholderText(
+            "e.g. straight_center_v0p10_r01"
+        )
+        experiment_layout.addWidget(self.experiment_label_edit)
+        left_layout.addLayout(experiment_layout)
         main_layout.addLayout(left_layout)
 
         # 2. Center Layout - Lane Detection & Occupancy Mask
@@ -1132,6 +1167,17 @@ class CalibrationWindow(QWidget):
             self.on_tracking_feature_checkbox_changed
         )
         btn_layout.addWidget(self.chk_blue_ttc)
+
+        self.chk_blue_collision_candidate = QCheckBox(
+            "Show path-collision candidate (no control output)"
+        )
+        self.chk_blue_collision_candidate.setChecked(
+            self.params.get("blue_collision_candidate_enabled", 1) == 1
+        )
+        self.chk_blue_collision_candidate.stateChanged.connect(
+            self.on_tracking_feature_checkbox_changed
+        )
+        btn_layout.addWidget(self.chk_blue_collision_candidate)
         
         h_btn_layout = QHBoxLayout()
         save_btn = QPushButton("Save Config")
@@ -1156,16 +1202,28 @@ class CalibrationWindow(QWidget):
         else:
             self.start_recording()
 
+    @staticmethod
+    def normalize_experiment_label(label):
+        label = re.sub(r"[^A-Za-z0-9_.-]+", "_", str(label).strip())
+        return label.strip("_.-")[:80] or "trial"
+
     def start_recording(self):
         timestamp = time.strftime("%Y%m%d_%H%M%S")
         timestamp += f"_{int(time.time() * 1000) % 1000:03d}"
-        session_dir = os.path.abspath(os.path.join(self.args.record_dir, timestamp))
+        experiment_label = self.normalize_experiment_label(
+            self.experiment_label_edit.text()
+        )
+        session_dir = os.path.abspath(
+            os.path.join(self.args.record_dir, f"{experiment_label}_{timestamp}")
+        )
         recording_start_monotonic = time.monotonic()
         try:
             os.makedirs(session_dir, exist_ok=False)
             metadata = {
                 "created_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+                "experiment_label": experiment_label,
                 "device": str(self.args.device),
+                "odom_topic": str(self.args.odom_topic),
                 "requested_camera_width": self.args.cam_width,
                 "requested_camera_height": self.args.cam_height,
                 "time_base": "time.monotonic",
@@ -1187,7 +1245,12 @@ class CalibrationWindow(QWidget):
                 "relative_vx_mps", "relative_vz_mps", "missing_age_sec",
                 "monotonic_time_sec", "measurement_accepted",
                 "rejection_reason", "normalized_area", "observation_nis",
-                "smoothed_vz_mps", "ttc_sec"
+                "smoothed_vz_mps", "ttc_sec",
+                "odom_available", "odom_linear_mps", "odom_angular_radps",
+                "cmd_linear_mps", "cmd_angular_radps",
+                "prediction_motion_source", "path_in_collision_corridor",
+                "path_distance_to_center_m", "path_clearance_m",
+                "path_distance_m", "path_eta_sec", "collision_risk_level"
             ])
         except Exception as e:
             print(f"[ERROR] Failed to prepare recording directory: {e}")
@@ -1305,6 +1368,44 @@ class CalibrationWindow(QWidget):
                 self.last_blue_tracker_diagnostics.get("nis", ""),
                 track.get("smoothed_vz_mps", "") if track is not None else "",
                 track.get("ttc_sec", "") if track is not None else "",
+                1 if self.odometry_is_recent() else 0,
+                f"{self.odom_linear_x:.6f}" if self.odometry_is_recent() else "",
+                f"{self.odom_angular_z:.6f}" if self.odometry_is_recent() else "",
+                f"{self.cmd_linear_x:.6f}",
+                f"{self.cmd_angular_z:.6f}",
+                self.last_prediction_source,
+                (
+                    1
+                    if self.last_blue_collision is not None
+                    and self.last_blue_collision["in_collision_corridor"]
+                    else 0
+                ),
+                (
+                    self.last_blue_collision.get("distance_to_path_center_m", "")
+                    if self.last_blue_collision is not None
+                    else ""
+                ),
+                (
+                    self.last_blue_collision.get("clearance_from_vehicle_m", "")
+                    if self.last_blue_collision is not None
+                    else ""
+                ),
+                (
+                    self.last_blue_collision.get("path_distance_m", "")
+                    if self.last_blue_collision is not None
+                    else ""
+                ),
+                (
+                    self.last_blue_collision.get("path_eta_sec", "")
+                    if self.last_blue_collision is not None
+                    and self.last_blue_collision.get("path_eta_sec") is not None
+                    else ""
+                ),
+                (
+                    self.last_blue_collision.get("risk_level", "")
+                    if self.last_blue_collision is not None
+                    else ""
+                ),
             ])
         elapsed_seconds = int(self.recording_frame_count / fps)
         self.record_status_label.setText(
@@ -1420,10 +1521,14 @@ class CalibrationWindow(QWidget):
         self.params["blue_ttc_enabled"] = (
             1 if self.chk_blue_ttc.isChecked() else 0
         )
+        self.params["blue_collision_candidate_enabled"] = (
+            1 if self.chk_blue_collision_candidate.isChecked() else 0
+        )
         self.blue_obstacle_tracker.reset()
         self.blue_observation_gate = self.create_blue_observation_gate()
         self.blue_ttc_estimator = self.create_blue_ttc_estimator()
         self.last_blue_track = None
+        self.last_blue_collision = None
 
     def on_ai_checkbox_changed(self, state):
         self.params["enable_ai"] = 1 if self.chk_enable_ai.isChecked() else 0
@@ -1572,7 +1677,30 @@ class CalibrationWindow(QWidget):
         # Trigger timer (24 fps -> ~41 ms interval)
         self.timer.start(41)
 
+    def poll_odometry(self):
+        if self.odom_bridge is None:
+            return
+        try:
+            self.odom_bridge.spin_once()
+            sample = self.odom_bridge.sample()
+        except Exception as error:
+            print(f"[WARN] Failed to read odometry: {error}")
+            return
+        if sample is None:
+            return
+        self.odom_linear_x = sample["linear_mps"]
+        self.odom_angular_z = sample["angular_radps"]
+        self.last_odom_time = sample["monotonic_time"]
+
+    def odometry_is_recent(self, now=None):
+        if self.last_odom_time <= 0.0:
+            return False
+        if now is None:
+            now = time.monotonic()
+        return now - self.last_odom_time <= self.prediction_odom_timeout
+
     def update_frame(self):
+        self.poll_odometry()
         ret, frame = self.cap.read()
         if not ret:
             # Loop for video files
@@ -2386,35 +2514,36 @@ class CalibrationWindow(QWidget):
         """
         Calculates predicted path points identical to zc33s_ui.py logic.
         """
-        now = time.time()
-        odom_is_recent = (
-            self.last_odom_time > 0.0
-            and now - self.last_odom_time <= self.prediction_odom_timeout
-        )
+        odom_is_recent = self.odometry_is_recent()
 
         if odom_is_recent and abs(self.odom_linear_x) >= self.prediction_min_speed:
             v = float(self.odom_linear_x)
+            linear_source = "odom"
         else:
             v = float(self.cmd_linear_x)
+            linear_source = "cmd"
 
         if abs(self.cmd_angular_z) >= 1e-4:
             w = float(self.cmd_angular_z)
-            source = "cmd"
+            angular_source = "cmd"
         elif odom_is_recent and abs(self.odom_angular_z) >= self.prediction_angular_deadband:
             w = float(self.odom_angular_z)
-            source = "odom"
+            angular_source = "odom"
         else:
             w = float(self.cmd_angular_z)
-            source = "cmd"
+            angular_source = "cmd"
 
         v_abs = abs(v)
         if (
             v_abs < self.prediction_min_speed
             and abs(w) < self.prediction_angular_deadband
         ):
+            self.last_prediction_speed_mps = 0.0
+            self.last_prediction_angular_radps = 0.0
+            self.last_prediction_source = "none"
             return []
 
-        if source == "cmd":
+        if angular_source == "cmd":
             abs_cmd_w = abs(w)
             if abs_cmd_w > 1e-4:
                 target_yaw_deg = 90.0 * ((abs_cmd_w / 0.8) ** (1.0 / 0.60))
@@ -2426,31 +2555,21 @@ class CalibrationWindow(QWidget):
                 w = math.copysign(w_base * (v_abs / v_ref), w)
             else:
                 w = 0.0
-
-        min_distance = 1.5
-        if v_abs > 1e-4:
-            required_time = max(prediction_time, min_distance / v_abs)
-            required_time = min(15.0, required_time)
-        else:
-            required_time = prediction_time
-
-        x = 0.0
-        y = 0.0
-        yaw = 0.0
-        points = []
-
-        steps = int(required_time / dt)
-        max_yaw_limit = math.radians(100.0)
-
-        for _ in range(steps):
-            x += v * math.cos(yaw) * dt
-            y += v * math.sin(yaw) * dt
-            yaw += w * dt
-            points.append((x, y, yaw))
-            if abs(yaw) >= max_yaw_limit:
-                break
-
-        return points
+        self.last_prediction_speed_mps = v
+        self.last_prediction_angular_radps = w
+        self.last_prediction_source = (
+            "odom" if linear_source == "odom" and angular_source == "odom"
+            else f"{linear_source}+{angular_source}"
+        )
+        return predict_unicycle_path(
+            v,
+            w,
+            prediction_time_sec=prediction_time,
+            step_sec=dt,
+            min_distance_m=1.5,
+            max_prediction_time_sec=15.0,
+            max_abs_yaw_deg=100.0,
+        )
 
     def update_keyboard_input(self):
         """
@@ -2502,6 +2621,28 @@ class CalibrationWindow(QWidget):
         self.update_keyboard_input()
 
         points = self.predict_path_points(prediction_time=3.5, dt=0.05)
+        self.last_blue_collision = None
+        if (
+            self.params.get("blue_collision_candidate_enabled", 1) == 1
+            and self.last_blue_track is not None
+        ):
+            self.last_blue_collision = assess_path_collision(
+                points,
+                obstacle_forward_m=self.last_blue_track["z_m"],
+                obstacle_left_m=-self.last_blue_track["x_m"],
+                vehicle_width_m=self.params.get("car_width", 0.354),
+                safety_margin_m=self.params.get(
+                    "blue_collision_safety_margin_m", 0.10
+                ),
+                path_speed_mps=self.last_prediction_speed_mps,
+                ttc_sec=self.last_blue_track.get("ttc_sec"),
+                warning_ttc_sec=self.params.get(
+                    "blue_collision_warning_ttc_sec", 4.0
+                ),
+                critical_ttc_sec=self.params.get(
+                    "blue_collision_critical_ttc_sec", 2.0
+                ),
+            )
         if len(points) < 2:
             return
 
@@ -2553,11 +2694,40 @@ class CalibrationWindow(QWidget):
         pts = np.array(poly_points, dtype=np.int32).reshape((-1, 1, 2))
 
         overlay = bev_img.copy()
-        # Tesla-style deep solid blue color BGR: (240, 110, 0)
-        cv2.fillPoly(overlay, [pts], color=(240, 110, 0))
+        risk_level = (
+            self.last_blue_collision.get("risk_level", "CLEAR")
+            if self.last_blue_collision is not None
+            else "CLEAR"
+        )
+        path_colors = {
+            "CLEAR": (240, 110, 0),
+            "PATH": (0, 200, 255),
+            "WARNING": (0, 140, 255),
+            "CRITICAL": (0, 0, 255),
+        }
+        cv2.fillPoly(
+            overlay, [pts], color=path_colors.get(risk_level, (240, 110, 0))
+        )
 
         # Blend with opacity 0.70
         cv2.addWeighted(overlay, 0.70, bev_img, 0.30, 0, dst=bev_img)
+        if self.last_blue_collision is not None:
+            clearance = self.last_blue_collision["clearance_from_vehicle_m"]
+            label = (
+                f"COLLISION CANDIDATE: {risk_level} "
+                f"clearance={clearance:+.2f}m "
+                f"source={self.last_prediction_source}"
+            )
+            cv2.putText(
+                bev_img,
+                label,
+                (15, 48),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.42,
+                path_colors.get(risk_level, (240, 110, 0)),
+                1,
+                cv2.LINE_AA,
+            )
 
     def display_image(self, label, img):
         h, w, c = img.shape
@@ -2578,6 +2748,8 @@ class CalibrationWindow(QWidget):
         self.stop_recording()
         if self.cap is not None:
             self.cap.release()
+        if self.odom_bridge is not None:
+            self.odom_bridge.close()
         event.accept()
 
 
@@ -2591,6 +2763,16 @@ def main():
     parser.add_argument(
         "--record-dir", default="recordings",
         help="Directory where recording session folders are created"
+    )
+    parser.add_argument(
+        "--experiment-label",
+        default="trial",
+        help="Initial label used in each recording folder and metadata",
+    )
+    parser.add_argument(
+        "--odom-topic",
+        default="",
+        help="Optional ROS 2 nav_msgs/Odometry topic, for example /odom",
     )
     
     args = parser.parse_args()
