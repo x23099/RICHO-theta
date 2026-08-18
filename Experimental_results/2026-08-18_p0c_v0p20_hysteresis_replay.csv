@@ -1,0 +1,4 @@
+session,frames,raw_warning_frames,filtered_warning_frames,warning_hold_frames,unknown_frames,first_raw_warning_sec,first_filtered_warning_sec,maximum_warning_entry_delay_sec,path_while_forward_after_warning_frames,final_state
+approach_center_v0p20_r01_20260818_173859_761,362,12,27,21,0,8.107492,8.189345,0.08185299999999884,0,CLEAR
+approach_center_v0p20_r02_20260818_173929_852,369,13,25,20,16,7.776237,7.854485,0.07824800000000032,0,CLEAR
+approach_center_v0p20_r03_20260818_173959_164,346,13,24,20,13,9.264758,9.345361,0.08060299999999998,0,CLEAR

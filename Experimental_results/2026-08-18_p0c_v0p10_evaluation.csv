@@ -1,0 +1,7 @@
+session,motion,frames,duration_sec,odom_travel_m,tracked_z_start_m,tracked_z_end_m,direction_correct_rate,relative_speed_mae_mps,ttc_active_rate_while_approaching,ttc_delay_from_odom_deadband_sec,minimum_ttc_sec,ttc_false_activation_rate,warning_or_critical_frames,result
+approach_center_v0p10_r01_20260818_172025_635,approach,393,15.688,0.4312,1.3115,0.8948,1.0000,0.0095,0.8355,0.0400,9.7469,0.0000,0,PASS
+approach_center_v0p10_r02_20260818_172100_667,approach,362,14.436,0.4134,1.3780,0.9396,0.9632,0.0126,0.8615,0.2758,10.8347,0.0000,0,PASS
+approach_center_v0p10_r03_20260818_172131_591,approach,338,13.475,0.4223,1.3597,0.9030,0.9873,0.0107,0.9527,0.1201,9.4715,0.0000,0,PASS
+retreat_center_v0p10_r01_20260818_172222_468,retreat,338,13.478,-0.4014,0.9065,1.3220,0.9795,0.0102,0.0000,,,0.0000,0,PASS
+retreat_center_v0p10_r02_20260818_172256_256,retreat,312,12.419,-0.3830,0.9297,1.3386,0.9861,0.0126,0.0000,,,0.0000,0,PASS
+retreat_center_v0p10_r03_20260818_172320_984,retreat,311,12.398,-0.3925,0.9298,1.3482,1.0000,0.0126,0.0000,,,0.0000,0,PASS

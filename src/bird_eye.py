@@ -25,7 +25,11 @@ import cv2
 import numpy as np
 
 from ground_contact import detect_blue_ground_contact
-from collision_risk import assess_path_collision, predict_unicycle_path
+from collision_risk import (
+    CollisionRiskHysteresis,
+    assess_path_collision,
+    predict_unicycle_path,
+)
 from obstacle_tracking import (
     BlueObstacleTracker,
     CausalTtcEstimator,
@@ -601,6 +605,7 @@ class CalibrationWindow(QWidget):
         self.last_prediction_speed_mps = 0.0
         self.last_prediction_angular_radps = 0.0
         self.last_prediction_source = "none"
+        self.collision_risk_hysteresis = self.create_collision_risk_hysteresis()
         self.blue_obstacle_tracker = self.create_blue_obstacle_tracker()
         self.blue_observation_gate = self.create_blue_observation_gate()
         self.blue_ttc_estimator = self.create_blue_ttc_estimator()
@@ -675,6 +680,11 @@ class CalibrationWindow(QWidget):
             "blue_collision_safety_margin_m": 0.10,
             "blue_collision_warning_ttc_sec": 4.0,
             "blue_collision_critical_ttc_sec": 2.0,
+            "blue_collision_warning_exit_ttc_sec": 5.0,
+            "blue_collision_warning_confirm_frames": 3,
+            "blue_collision_warning_clear_frames": 3,
+            "blue_collision_warning_hold_sec": 0.8,
+            "blue_collision_forward_motion_threshold_mps": 0.03,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -759,6 +769,11 @@ class CalibrationWindow(QWidget):
             "blue_collision_safety_margin_m": 0.10,
             "blue_collision_warning_ttc_sec": 4.0,
             "blue_collision_critical_ttc_sec": 2.0,
+            "blue_collision_warning_exit_ttc_sec": 5.0,
+            "blue_collision_warning_confirm_frames": 3,
+            "blue_collision_warning_clear_frames": 3,
+            "blue_collision_warning_hold_sec": 0.8,
+            "blue_collision_forward_motion_threshold_mps": 0.03,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -777,6 +792,7 @@ class CalibrationWindow(QWidget):
         self.blue_obstacle_tracker = self.create_blue_obstacle_tracker()
         self.blue_observation_gate = self.create_blue_observation_gate()
         self.blue_ttc_estimator = self.create_blue_ttc_estimator()
+        self.collision_risk_hysteresis = self.create_collision_risk_hysteresis()
         self.last_blue_track = None
         self.last_blue_collision = None
 
@@ -808,6 +824,25 @@ class CalibrationWindow(QWidget):
             enabled=self.params.get("blue_ttc_enabled", 1) == 1,
             window_sec=self.params.get("blue_ttc_velocity_window_sec", 0.3),
             deadband_mps=self.params.get("blue_ttc_deadband_mps", 0.05),
+        )
+
+    def create_collision_risk_hysteresis(self):
+        return CollisionRiskHysteresis(
+            warning_ttc_sec=self.params.get(
+                "blue_collision_warning_ttc_sec", 4.0
+            ),
+            warning_exit_ttc_sec=self.params.get(
+                "blue_collision_warning_exit_ttc_sec", 5.0
+            ),
+            warning_confirm_frames=self.params.get(
+                "blue_collision_warning_confirm_frames", 3
+            ),
+            warning_clear_frames=self.params.get(
+                "blue_collision_warning_clear_frames", 3
+            ),
+            warning_hold_sec=self.params.get(
+                "blue_collision_warning_hold_sec", 0.8
+            ),
         )
 
     def create_blue_region_hysteresis(self):
@@ -1284,7 +1319,9 @@ class CalibrationWindow(QWidget):
                 "cmd_linear_mps", "cmd_angular_radps",
                 "prediction_motion_source", "path_in_collision_corridor",
                 "path_distance_to_center_m", "path_clearance_m",
-                "path_distance_m", "path_eta_sec", "collision_risk_level"
+                "path_distance_m", "path_eta_sec", "collision_risk_level",
+                "collision_raw_risk_level", "collision_state_reason",
+                "collision_hold_age_sec", "collision_measurement_valid"
             ])
         except Exception as e:
             print(f"[ERROR] Failed to prepare recording directory: {e}")
@@ -1296,6 +1333,7 @@ class CalibrationWindow(QWidget):
         self.recording_writers = {}
         self.recording_frame_count = 0
         self.recording_start_monotonic = recording_start_monotonic
+        self.collision_risk_hysteresis.reset()
         self.is_recording = True
         self.record_btn.setText("Stop Recording")
         self.record_btn.setStyleSheet("background-color: #7f0000; border-color: #ff5252;")
@@ -1440,6 +1478,28 @@ class CalibrationWindow(QWidget):
                     if self.last_blue_collision is not None
                     else ""
                 ),
+                (
+                    self.last_blue_collision.get("raw_risk_level", "")
+                    if self.last_blue_collision is not None
+                    else ""
+                ),
+                (
+                    self.last_blue_collision.get("state_reason", "")
+                    if self.last_blue_collision is not None
+                    else ""
+                ),
+                (
+                    self.last_blue_collision.get("hold_age_sec", "")
+                    if self.last_blue_collision is not None
+                    and self.last_blue_collision.get("hold_age_sec") is not None
+                    else ""
+                ),
+                (
+                    1
+                    if self.last_blue_collision is not None
+                    and self.last_blue_collision.get("measurement_valid", False)
+                    else 0
+                ),
             ])
         elapsed_seconds = int(self.recording_frame_count / fps)
         self.record_status_label.setText(
@@ -1546,6 +1606,7 @@ class CalibrationWindow(QWidget):
             self.blue_ttc_estimator.reset()
             self.blue_range_hysteresis.reset()
             self.blue_side_hysteresis.reset()
+            self.collision_risk_hysteresis.reset()
 
     def on_tracking_feature_checkbox_changed(self, state):
         del state
@@ -1561,6 +1622,7 @@ class CalibrationWindow(QWidget):
         self.blue_obstacle_tracker.reset()
         self.blue_observation_gate = self.create_blue_observation_gate()
         self.blue_ttc_estimator = self.create_blue_ttc_estimator()
+        self.collision_risk_hysteresis = self.create_collision_risk_hysteresis()
         self.last_blue_track = None
         self.last_blue_collision = None
 
@@ -2677,6 +2739,57 @@ class CalibrationWindow(QWidget):
                     "blue_collision_critical_ttc_sec", 2.0
                 ),
             )
+        if self.params.get("blue_collision_candidate_enabled", 1) == 1:
+            raw_risk_level = (
+                self.last_blue_collision.get("risk_level", "CLEAR")
+                if self.last_blue_collision is not None
+                else "CLEAR"
+            )
+            in_collision_corridor = bool(
+                self.last_blue_collision is not None
+                and self.last_blue_collision.get("in_collision_corridor", False)
+            )
+            measurement_valid = bool(
+                self.last_blue_detection is not None
+                and self.last_blue_detection.get("calibration_valid", False)
+                and self.last_blue_tracker_diagnostics.get(
+                    "measurement_accepted", False
+                )
+                and self.last_blue_track is not None
+                and not self.last_blue_track.get("predicted", False)
+            )
+            moving_forward = self.last_prediction_speed_mps > float(
+                self.params.get(
+                    "blue_collision_forward_motion_threshold_mps", 0.03
+                )
+            )
+            state = self.collision_risk_hysteresis.update(
+                raw_level=raw_risk_level,
+                timestamp_sec=(
+                    self.last_blue_processing_timestamp
+                    if self.last_blue_processing_timestamp is not None
+                    else time.monotonic()
+                ),
+                measurement_valid=measurement_valid,
+                moving_forward=moving_forward,
+                in_collision_corridor=in_collision_corridor,
+                ttc_sec=(
+                    self.last_blue_track.get("ttc_sec")
+                    if self.last_blue_track is not None
+                    else None
+                ),
+            )
+            if self.last_blue_collision is None:
+                self.last_blue_collision = {
+                    "in_collision_corridor": False,
+                    "distance_to_path_center_m": math.nan,
+                    "clearance_from_vehicle_m": math.nan,
+                    "path_distance_m": math.nan,
+                    "path_eta_sec": None,
+                }
+            self.last_blue_collision.update(state)
+        else:
+            self.collision_risk_hysteresis.reset()
         if len(points) < 2:
             return
 
@@ -2738,6 +2851,8 @@ class CalibrationWindow(QWidget):
             "PATH": (0, 200, 255),
             "WARNING": (0, 140, 255),
             "CRITICAL": (0, 0, 255),
+            "WARNING_HOLD": (0, 190, 255),
+            "UNKNOWN": (160, 160, 160),
         }
         cv2.fillPoly(
             overlay, [pts], color=path_colors.get(risk_level, (240, 110, 0))
@@ -2752,6 +2867,9 @@ class CalibrationWindow(QWidget):
                 f"clearance={clearance:+.2f}m "
                 f"source={self.last_prediction_source}"
             )
+            state_reason = self.last_blue_collision.get("state_reason", "")
+            if state_reason:
+                label += f" reason={state_reason}"
             cv2.putText(
                 bev_img,
                 label,

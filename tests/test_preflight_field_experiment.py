@@ -30,6 +30,11 @@ class FieldExperimentPreflightTest(unittest.TestCase):
             "blue_ttc_velocity_window_sec": 0.3,
             "blue_collision_warning_ttc_sec": 4.0,
             "blue_collision_critical_ttc_sec": 2.0,
+            "blue_collision_warning_exit_ttc_sec": 5.0,
+            "blue_collision_warning_confirm_frames": 3,
+            "blue_collision_warning_clear_frames": 3,
+            "blue_collision_warning_hold_sec": 0.8,
+            "blue_collision_forward_motion_threshold_mps": 0.03,
         }
 
         self.assertEqual(validate_experiment_config(config), [])
@@ -50,12 +55,19 @@ class FieldExperimentPreflightTest(unittest.TestCase):
             "blue_ttc_velocity_window_sec": 0.3,
             "blue_collision_warning_ttc_sec": 2.0,
             "blue_collision_critical_ttc_sec": 4.0,
+            "blue_collision_warning_exit_ttc_sec": 1.0,
+            "blue_collision_warning_confirm_frames": 0,
+            "blue_collision_warning_clear_frames": 3,
+            "blue_collision_warning_hold_sec": 0.8,
+            "blue_collision_forward_motion_threshold_mps": 0.03,
         }
 
         errors = validate_experiment_config(config)
 
         self.assertTrue(any("blue_observation_gate_enabled" in item for item in errors))
         self.assertTrue(any("critical TTC" in item for item in errors))
+        self.assertTrue(any("warning exit TTC" in item for item in errors))
+        self.assertTrue(any("warning_confirm_frames" in item for item in errors))
 
     def test_storage_check_uses_requested_threshold(self):
         with tempfile.TemporaryDirectory() as temporary_dir:

@@ -29,6 +29,8 @@ SUMMARY_FIELDS = [
     "ttc_vs_odom_mae_sec",
     "path_corridor_rate",
     "warning_or_critical_rate",
+    "warning_hold_rate",
+    "unknown_rate",
     "critical_rate",
     "warning_or_critical_frames",
     "critical_frames",
@@ -123,6 +125,7 @@ def summarize_session(session_dir, moving_threshold_mps=0.03):
         row for row in tracked if row.get("path_in_collision_corridor", "") != ""
     ]
     risk_levels = [row.get("collision_risk_level", "") for row in rows]
+    warning_levels = {"WARNING", "WARNING_HOLD", "CRITICAL"}
     return {
         "experiment_label": metadata.get("experiment_label", Path(session_dir).name),
         "session_dir": str(Path(session_dir).resolve()),
@@ -150,14 +153,20 @@ def summarize_session(session_dir, moving_threshold_mps=0.03):
             len(path_rows),
         ),
         "warning_or_critical_rate": _rate(
-            sum(value in {"WARNING", "CRITICAL"} for value in risk_levels),
+            sum(value in warning_levels for value in risk_levels),
             len(rows),
+        ),
+        "warning_hold_rate": _rate(
+            sum(value == "WARNING_HOLD" for value in risk_levels), len(rows)
+        ),
+        "unknown_rate": _rate(
+            sum(value == "UNKNOWN" for value in risk_levels), len(rows)
         ),
         "critical_rate": _rate(
             sum(value == "CRITICAL" for value in risk_levels), len(rows)
         ),
         "warning_or_critical_frames": sum(
-            value in {"WARNING", "CRITICAL"} for value in risk_levels
+            value in warning_levels for value in risk_levels
         ),
         "critical_frames": sum(value == "CRITICAL" for value in risk_levels),
     }

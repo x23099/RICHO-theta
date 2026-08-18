@@ -77,6 +77,8 @@ class LiveTrialSummaryTest(unittest.TestCase):
             self.assertAlmostEqual(summary["relative_speed_mae_mps"], 0.0)
             self.assertAlmostEqual(summary["ttc_vs_odom_mae_sec"], 0.0)
             self.assertEqual(summary["warning_or_critical_frames"], 1)
+            self.assertEqual(summary["warning_hold_rate"], 0.0)
+            self.assertEqual(summary["unknown_rate"], 0.0)
             self.assertEqual(find_session_dirs([Path(temporary_dir)]), [session])
 
 

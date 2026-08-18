@@ -1,0 +1,7 @@
+session,frames,raw_warning_frames,filtered_warning_frames,warning_hold_frames,unknown_frames,first_raw_warning_sec,first_filtered_warning_sec,maximum_warning_entry_delay_sec,path_while_forward_after_warning_frames,final_state
+approach_center_v0p10_r01_20260818_172025_635,393,0,0,0,0,,,nan,0,CLEAR
+approach_center_v0p10_r02_20260818_172100_667,362,0,0,0,49,,,nan,0,CLEAR
+approach_center_v0p10_r03_20260818_172131_591,338,0,0,0,0,,,nan,0,CLEAR
+retreat_center_v0p10_r01_20260818_172222_468,338,0,0,0,0,,,nan,0,CLEAR
+retreat_center_v0p10_r02_20260818_172256_256,312,0,0,0,0,,,nan,0,CLEAR
+retreat_center_v0p10_r03_20260818_172320_984,311,0,0,0,0,,,nan,0,CLEAR

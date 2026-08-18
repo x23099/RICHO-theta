@@ -1,0 +1,4 @@
+session,frames,duration_sec,odom_travel_m,tracked_z_start_m,tracked_z_end_m,median_odom_linear_mps,direction_correct_rate_all_motion,relative_speed_mae_all_motion_mps,direction_correct_rate_ttc_to_warning,relative_speed_mae_ttc_to_warning_mps,ttc_active_rate_while_approaching,ttc_delay_sec,minimum_ttc_sec,first_warning_z_m,first_warning_ttc_sec,warning_frames,post_warning_moving_frames,result
+approach_center_v0p20_r01_20260818_173859_761,362,14.442,0.7815,1.3151,0.6776,0.1599,0.8769,0.0381,1.0000,0.0129,0.9815,0.4718,3.5578,0.6884,3.9739,12,15,FAIL_ALL_MOTION
+approach_center_v0p20_r02_20260818_173929_852,369,14.715,0.8822,1.3378,0.7043,0.1621,0.8592,0.0529,1.0000,0.0168,0.9914,0.0719,3.5739,0.7006,3.9444,13,28,FAIL_ALL_MOTION
+approach_center_v0p20_r03_20260818_173959_164,346,13.800,0.8529,1.3581,0.6997,0.1599,0.8913,0.0432,1.0000,0.0149,0.9828,0.1997,3.4935,0.6911,3.9182,13,22,FAIL_ALL_MOTION

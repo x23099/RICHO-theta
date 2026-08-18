@@ -56,6 +56,9 @@ def validate_experiment_config(config):
         "blue_ttc_velocity_window_sec",
         "blue_collision_warning_ttc_sec",
         "blue_collision_critical_ttc_sec",
+        "blue_collision_warning_exit_ttc_sec",
+        "blue_collision_warning_hold_sec",
+        "blue_collision_forward_motion_threshold_mps",
     )
     for key in positive_keys:
         try:
@@ -67,12 +70,26 @@ def validate_experiment_config(config):
             errors.append(f"{key} must be a finite positive number")
     warning_ttc = config.get("blue_collision_warning_ttc_sec")
     critical_ttc = config.get("blue_collision_critical_ttc_sec")
+    warning_exit_ttc = config.get("blue_collision_warning_exit_ttc_sec")
     if (
         isinstance(warning_ttc, (int, float))
         and isinstance(critical_ttc, (int, float))
         and critical_ttc > warning_ttc
     ):
         errors.append("critical TTC must not exceed warning TTC")
+    if (
+        isinstance(warning_ttc, (int, float))
+        and isinstance(warning_exit_ttc, (int, float))
+        and warning_exit_ttc <= warning_ttc
+    ):
+        errors.append("warning exit TTC must exceed warning TTC")
+    for key in (
+        "blue_collision_warning_confirm_frames",
+        "blue_collision_warning_clear_frames",
+    ):
+        value = config.get(key)
+        if not isinstance(value, int) or isinstance(value, bool) or value < 1:
+            errors.append(f"{key} must be a positive integer")
     return errors
 
 

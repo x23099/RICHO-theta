@@ -12,6 +12,16 @@ from __future__ import annotations
 import math
 
 
+RISK_LEVELS = {
+    "CLEAR",
+    "PATH",
+    "WARNING",
+    "CRITICAL",
+    "WARNING_HOLD",
+    "UNKNOWN",
+}
+
+
 def predict_unicycle_path(
     linear_mps,
     angular_radps,
@@ -109,6 +119,201 @@ def classify_candidate_risk(
     if float(ttc_sec) <= float(warning_ttc_sec):
         return "WARNING"
     return "PATH"
+
+
+class CollisionRiskHysteresis:
+    """Stabilize a display-only collision warning without indefinite latching.
+
+    Entry and exit confirmation are intentionally asymmetric.  A confirmed
+    warning survives a short invalid-measurement interval, then degrades to
+    ``UNKNOWN`` rather than pretending the path is clear or keeping a warning
+    forever.  This class does not produce a control command.
+    """
+
+    ALERT_CONTEXT_STATES = {
+        "WARNING",
+        "CRITICAL",
+        "WARNING_HOLD",
+        "UNKNOWN",
+    }
+
+    def __init__(
+        self,
+        warning_ttc_sec=4.0,
+        warning_exit_ttc_sec=5.0,
+        warning_confirm_frames=3,
+        warning_clear_frames=3,
+        warning_hold_sec=0.8,
+    ):
+        self.warning_ttc_sec = float(warning_ttc_sec)
+        self.warning_exit_ttc_sec = float(warning_exit_ttc_sec)
+        self.warning_confirm_frames = max(1, int(warning_confirm_frames))
+        self.warning_clear_frames = max(1, int(warning_clear_frames))
+        self.warning_hold_sec = max(0.0, float(warning_hold_sec))
+        if not math.isfinite(self.warning_ttc_sec):
+            raise ValueError("warning TTC must be finite")
+        if not math.isfinite(self.warning_exit_ttc_sec):
+            raise ValueError("warning exit TTC must be finite")
+        if self.warning_exit_ttc_sec <= self.warning_ttc_sec:
+            raise ValueError("warning exit TTC must exceed warning TTC")
+        if not math.isfinite(self.warning_hold_sec):
+            raise ValueError("warning hold duration must be finite")
+        self.reset()
+
+    def reset(self):
+        self.state = "CLEAR"
+        self.warning_confirmation_count = 0
+        self.clear_confirmation_count = 0
+        self.last_confirmed_warning_sec = None
+        self.last_update_sec = None
+
+    @staticmethod
+    def _finite_number(value):
+        if value is None:
+            return None
+        try:
+            value = float(value)
+        except (TypeError, ValueError):
+            return None
+        return value if math.isfinite(value) else None
+
+    def _result(self, raw_level, reason, now_sec, measurement_valid):
+        hold_age_sec = None
+        if self.last_confirmed_warning_sec is not None:
+            hold_age_sec = max(0.0, now_sec - self.last_confirmed_warning_sec)
+        return {
+            "risk_level": self.state,
+            "raw_risk_level": raw_level,
+            "state_reason": reason,
+            "hold_age_sec": hold_age_sec,
+            "measurement_valid": bool(measurement_valid),
+        }
+
+    def _confirm_release(self, target_state, raw_level, now_sec, valid, reason):
+        self.clear_confirmation_count += 1
+        if self.clear_confirmation_count >= self.warning_clear_frames:
+            self.state = target_state
+            self.clear_confirmation_count = 0
+            self.last_confirmed_warning_sec = None
+            return self._result(
+                raw_level, f"{reason}_confirmed", now_sec, valid
+            )
+        return self._result(
+            raw_level, f"{reason}_confirmation", now_sec, valid
+        )
+
+    def _hold_or_unknown(self, raw_level, now_sec, valid):
+        if self.last_confirmed_warning_sec is None:
+            self.state = "UNKNOWN"
+            return self._result(
+                raw_level, "invalid_measurement", now_sec, valid
+            )
+        age_sec = max(0.0, now_sec - self.last_confirmed_warning_sec)
+        if age_sec <= self.warning_hold_sec:
+            self.state = "WARNING_HOLD"
+            return self._result(raw_level, "finite_warning_hold", now_sec, valid)
+        self.state = "UNKNOWN"
+        return self._result(raw_level, "warning_hold_expired", now_sec, valid)
+
+    def update(
+        self,
+        raw_level,
+        timestamp_sec,
+        measurement_valid,
+        moving_forward,
+        in_collision_corridor,
+        ttc_sec=None,
+    ):
+        """Return filtered risk state and diagnostics for one timestamp."""
+
+        raw_level = str(raw_level or "CLEAR").upper()
+        if raw_level not in RISK_LEVELS:
+            raise ValueError(f"unknown collision risk level: {raw_level}")
+        now_sec = self._finite_number(timestamp_sec)
+        if now_sec is None:
+            raise ValueError("timestamp must be finite")
+        if self.last_update_sec is not None and now_sec < self.last_update_sec:
+            self.reset()
+        self.last_update_sec = now_sec
+        valid = bool(measurement_valid)
+        moving_forward = bool(moving_forward)
+        in_collision_corridor = bool(in_collision_corridor)
+        ttc_value = self._finite_number(ttc_sec)
+        alert_context = self.state in self.ALERT_CONTEXT_STATES
+
+        # Imminent, valid evidence bypasses the entry debounce.
+        if valid and raw_level == "CRITICAL":
+            self.state = "CRITICAL"
+            self.warning_confirmation_count = 0
+            self.clear_confirmation_count = 0
+            self.last_confirmed_warning_sec = now_sec
+            return self._result(raw_level, "valid_critical", now_sec, valid)
+
+        if valid and raw_level == "WARNING":
+            self.clear_confirmation_count = 0
+            if alert_context:
+                self.state = "WARNING"
+                self.warning_confirmation_count = 0
+                self.last_confirmed_warning_sec = now_sec
+                return self._result(
+                    raw_level, "warning_reconfirmed", now_sec, valid
+                )
+            self.warning_confirmation_count += 1
+            if self.warning_confirmation_count >= self.warning_confirm_frames:
+                self.state = "WARNING"
+                self.warning_confirmation_count = 0
+                self.last_confirmed_warning_sec = now_sec
+                return self._result(
+                    raw_level, "warning_entry_confirmed", now_sec, valid
+                )
+            self.state = "PATH" if in_collision_corridor else "CLEAR"
+            return self._result(
+                raw_level, "warning_entry_confirmation", now_sec, valid
+            )
+
+        self.warning_confirmation_count = 0
+        if alert_context:
+            if valid and not in_collision_corridor:
+                return self._confirm_release(
+                    "CLEAR", raw_level, now_sec, valid, "outside_path"
+                )
+            if (
+                valid
+                and in_collision_corridor
+                and ttc_value is not None
+                and ttc_value >= self.warning_exit_ttc_sec
+            ):
+                return self._confirm_release(
+                    "PATH", raw_level, now_sec, valid, "ttc_safe"
+                )
+            if (
+                valid
+                and in_collision_corridor
+                and ttc_value is not None
+                and self.warning_ttc_sec < ttc_value < self.warning_exit_ttc_sec
+            ):
+                self.state = "WARNING"
+                self.clear_confirmation_count = 0
+                self.last_confirmed_warning_sec = now_sec
+                return self._result(
+                    raw_level, "ttc_exit_hysteresis", now_sec, valid
+                )
+            if not moving_forward:
+                target = "PATH" if in_collision_corridor else "CLEAR"
+                return self._confirm_release(
+                    target, raw_level, now_sec, valid, "not_approaching"
+                )
+            self.clear_confirmation_count = 0
+            return self._hold_or_unknown(raw_level, now_sec, valid)
+
+        self.clear_confirmation_count = 0
+        if not valid and moving_forward and in_collision_corridor:
+            self.state = "UNKNOWN"
+            return self._result(
+                raw_level, "invalid_measurement", now_sec, valid
+            )
+        self.state = raw_level
+        return self._result(raw_level, "instantaneous", now_sec, valid)
 
 
 def assess_path_collision(
