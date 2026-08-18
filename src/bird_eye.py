@@ -38,7 +38,7 @@ from PySide6.QtGui import QImage, QPixmap, QPainter, QColor, QPen, QBrush, QFont
 from PySide6.QtWidgets import (
     QApplication, QWidget, QLabel, QSlider, QGridLayout, QVBoxLayout,
     QHBoxLayout, QPushButton, QGroupBox, QFormLayout, QFileDialog, QCheckBox,
-    QDoubleSpinBox, QSpinBox, QComboBox, QLineEdit
+    QDoubleSpinBox, QSpinBox, QComboBox, QLineEdit, QScrollArea, QSizePolicy
 )
 
 try:
@@ -888,6 +888,8 @@ class CalibrationWindow(QWidget):
         """)
 
         main_layout = QHBoxLayout(self)
+        main_layout.setContentsMargins(8, 8, 8, 8)
+        main_layout.setSpacing(8)
 
         # 1. Left Layout - Bird's Eye View Label
         left_layout = QVBoxLayout()
@@ -897,9 +899,11 @@ class CalibrationWindow(QWidget):
         left_layout.addWidget(bev_title)
         
         self.bev_label = QLabel()
-        self.bev_label.setFixedSize(self.bev_w, self.bev_h)
+        self.bev_label.setMinimumSize(260, 312)
+        self.bev_label.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
+        self.bev_label.setAlignment(Qt.AlignCenter)
         self.bev_label.setStyleSheet("border: 2px solid #282830; background-color: #050508;")
-        left_layout.addWidget(self.bev_label)
+        left_layout.addWidget(self.bev_label, 1)
 
         record_layout = QHBoxLayout()
         self.record_btn = QPushButton("Start Recording")
@@ -917,7 +921,7 @@ class CalibrationWindow(QWidget):
         )
         experiment_layout.addWidget(self.experiment_label_edit)
         left_layout.addLayout(experiment_layout)
-        main_layout.addLayout(left_layout)
+        main_layout.addLayout(left_layout, 1)
 
         # 2. Center Layout - Lane Detection & Occupancy Mask
         center_layout = QVBoxLayout()
@@ -927,9 +931,11 @@ class CalibrationWindow(QWidget):
         center_layout.addWidget(lane_mask_title)
 
         self.lane_mask_label = QLabel()
-        self.lane_mask_label.setFixedSize(self.bev_w, self.bev_h)
+        self.lane_mask_label.setMinimumSize(260, 312)
+        self.lane_mask_label.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
+        self.lane_mask_label.setAlignment(Qt.AlignCenter)
         self.lane_mask_label.setStyleSheet("border: 2px solid #282830; background-color: #050508;")
-        center_layout.addWidget(self.lane_mask_label)
+        center_layout.addWidget(self.lane_mask_label, 1)
 
         # Bottom info section
         info_box = QGroupBox("Kobuki Robot Specifications")
@@ -940,7 +946,7 @@ class CalibrationWindow(QWidget):
         info_layout.addWidget(QLabel("Camera is mounted at 580 mm (0.58 m) above floor"), 1, 1)
         info_box.setLayout(info_layout)
         center_layout.addWidget(info_box)
-        main_layout.addLayout(center_layout)
+        main_layout.addLayout(center_layout, 1)
 
         # 3. Right Layout - Calibration Sliders & Actions
         right_layout = QVBoxLayout()
@@ -1193,8 +1199,36 @@ class CalibrationWindow(QWidget):
 
         right_layout.addLayout(btn_layout)
         right_layout.addStretch()
-        
-        main_layout.addLayout(right_layout)
+
+        # Calibration controls are taller than many laptop/remote-desktop
+        # viewports. Keep the video and recording controls visible and scroll
+        # this panel independently instead of forcing an oversized window.
+        right_panel = QWidget()
+        right_panel.setLayout(right_layout)
+        self.settings_scroll_area = QScrollArea()
+        self.settings_scroll_area.setWidgetResizable(True)
+        self.settings_scroll_area.setHorizontalScrollBarPolicy(
+            Qt.ScrollBarAsNeeded
+        )
+        self.settings_scroll_area.setVerticalScrollBarPolicy(
+            Qt.ScrollBarAsNeeded
+        )
+        self.settings_scroll_area.setMinimumWidth(390)
+        self.settings_scroll_area.setWidget(right_panel)
+        main_layout.addWidget(self.settings_scroll_area)
+
+        # Start inside the available desktop area while retaining normal
+        # maximize/minimize and edge-resize behavior.
+        screen = QApplication.primaryScreen()
+        if screen is not None:
+            available = screen.availableGeometry()
+            minimum_width = min(1000, max(720, int(available.width() * 0.65)))
+            minimum_height = min(620, max(480, int(available.height() * 0.60)))
+            self.setMinimumSize(minimum_width, minimum_height)
+            self.resize(
+                max(minimum_width, int(available.width() * 0.94)),
+                max(minimum_height, int(available.height() * 0.90)),
+            )
 
     def toggle_recording(self):
         if self.is_recording:
