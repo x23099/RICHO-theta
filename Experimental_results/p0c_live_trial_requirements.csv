@@ -1,0 +1,5 @@
+rule_id,experiment_label_glob,min_trials,min_detection_rate,min_track_rate,min_direction_correct_rate,max_relative_speed_mae_mps,min_ttc_active_rate_while_approaching,max_ttc_active_rate,min_warning_or_critical_frames
+v0p10_approach_accuracy,approach_center_v0p10*,3,0.98,0.95,0.95,0.03,0.80,,
+v0p10_retreat_safety,retreat_center_v0p10*,3,0.98,0.95,0.95,0.03,,0.01,
+v0p20_warning_presence,approach_center_v0p20*,3,0.98,0.95,,,,,1
+v0p20_full_interval_accuracy,approach_center_v0p20*,3,0.98,0.95,0.95,0.032,,,

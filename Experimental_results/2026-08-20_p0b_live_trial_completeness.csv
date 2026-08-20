@@ -1,0 +1,5 @@
+rule_id,experiment_label_glob,matched_trials,matched_labels,result,reasons
+no_box,static_none*,1,static_none_r01,PASS,
+center_static,static_center_z1p00*,3,static_center_z1p00_r01;static_center_z1p00_r02;static_center_z1p00_r03,PASS,
+left_static,static_left_xm0p40_z1p00*,1,static_left_xm0p40_z1p00_r01,FAIL,static_left_xm0p40_z1p00_r01: measurement_acceptance_rate=0.000000 < min_measurement_acceptance_rate=0.980000; static_left_xm0p40_z1p00_r01: track_rate=0.000000 < min_track_rate=0.980000
+right_static,static_right_xp0p40_z1p00*,1,static_right_xp0p40_z1p00_r01,PASS,

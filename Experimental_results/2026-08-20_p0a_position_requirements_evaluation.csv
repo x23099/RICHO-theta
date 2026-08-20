@@ -1,0 +1,2 @@
+rule_id,experiment_label_glob,matched_trials,matched_labels,result,reasons
+p0a_position_regression,*,7,x-0.22m_z0.95m_20260818_162502_015;x-0.22m_z1.2m_20260818_162820_565;x0.0m_z0.8m_20260818_162139_642;x0.0m_z1.0m_20260818_162224_840;x0.0m_z1.3m_20260818_162247_135;x0.22m_z0.95m_20260818_162539_367;x0.22m_z1.2m_20260818_162746_609,PASS,

@@ -1,0 +1,5 @@
+rule_id,experiment_label_glob,min_trials,min_detection_rate,max_detection_rate,min_measurement_acceptance_rate,min_track_rate,max_track_rate,max_warning_or_critical_rate
+no_box,static_none*,1,,0.0,,,0.0,0.01
+center_static,static_center_z1p00*,3,0.98,,0.98,0.98,,0.01
+left_static,static_left_xm0p40_z1p00*,1,0.98,,0.98,0.98,,0.01
+right_static,static_right_xp0p40_z1p00*,1,0.98,,0.98,0.98,,0.01

@@ -1,0 +1,2 @@
+rule_id,experiment_label_glob,min_trials,max_filtered_warning_frames,max_raw_warning_frames,max_path_while_forward_after_warning_frames,max_unknown_frames,expected_final_state
+p0b_static_no_false_warning,static_*,6,0,0,0,0,CLEAR

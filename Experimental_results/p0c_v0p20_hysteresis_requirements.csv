@@ -1,0 +1,2 @@
+rule_id,experiment_label_glob,min_trials,min_filtered_warning_frames,min_warning_hold_frames,max_warning_entry_delay_sec,max_path_while_forward_after_warning_frames,expected_final_state
+v0p20_finite_hysteresis,approach_center_v0p20*,3,1,1,0.5,0,CLEAR
