@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Preflight checks for the 2026-08-22 field experiment."""
+"""Preflight checks for a blue-target field experiment."""
 
 from __future__ import annotations
 
