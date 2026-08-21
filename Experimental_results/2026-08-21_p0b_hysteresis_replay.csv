@@ -1,0 +1,7 @@
+session,frames,raw_warning_frames,filtered_warning_frames,warning_hold_frames,unknown_frames,first_raw_warning_sec,first_filtered_warning_sec,maximum_warning_entry_delay_sec,path_while_forward_after_warning_frames,final_state
+static_center_z1p00_r01_20260818_164807_727,834,0,0,0,0,,,nan,0,CLEAR
+static_center_z1p00_r02_20260818_164908_140,815,0,0,0,0,,,nan,0,CLEAR
+static_center_z1p00_r03_20260818_164956_525,878,0,0,0,0,,,nan,0,CLEAR
+static_left_xm0p40_z1p00_r01_20260818_165339_551,529,0,0,0,0,,,nan,0,CLEAR
+static_none_r01_20260818_164442_953,814,0,0,0,0,,,nan,0,CLEAR
+static_right_xp0p40_z1p00_r01_20260818_165227_107,559,0,0,0,0,,,nan,0,CLEAR

@@ -9,6 +9,8 @@ import json
 import math
 from pathlib import Path
 
+from diagnose_lateral_gate_asymmetry import load_sessions as load_recording_sessions
+
 
 SUMMARY_FIELDS = [
     "experiment_label",
@@ -71,8 +73,7 @@ def load_session(session_dir):
     return metadata, rows
 
 
-def summarize_session(session_dir, moving_threshold_mps=0.03):
-    metadata, rows = load_session(session_dir)
+def summarize_rows(label, source, metadata, rows, moving_threshold_mps=0.03):
     timestamps = [
         value
         for row in rows
@@ -127,8 +128,8 @@ def summarize_session(session_dir, moving_threshold_mps=0.03):
     risk_levels = [row.get("collision_risk_level", "") for row in rows]
     warning_levels = {"WARNING", "WARNING_HOLD", "CRITICAL"}
     return {
-        "experiment_label": metadata.get("experiment_label", Path(session_dir).name),
-        "session_dir": str(Path(session_dir).resolve()),
+        "experiment_label": metadata.get("experiment_label", label),
+        "session_dir": source,
         "frames": len(rows),
         "duration_sec": duration_sec,
         "effective_fps": (len(timestamps) - 1) / duration_sec
@@ -172,6 +173,25 @@ def summarize_session(session_dir, moving_threshold_mps=0.03):
     }
 
 
+def summarize_session(session_dir, moving_threshold_mps=0.03):
+    session_dir = Path(session_dir)
+    metadata, rows = load_session(session_dir)
+    return summarize_rows(
+        session_dir.name,
+        str(session_dir.resolve()),
+        metadata,
+        rows,
+        moving_threshold_mps,
+    )
+
+
+def summarize_inputs(inputs, moving_threshold_mps=0.03):
+    return [
+        summarize_rows(label, source, metadata, rows, moving_threshold_mps)
+        for label, source, metadata, rows in load_recording_sessions(inputs)
+    ]
+
+
 def find_session_dirs(inputs):
     found = []
     for input_path in inputs:
@@ -194,13 +214,12 @@ def main():
     parser.add_argument("--moving-threshold-mps", type=float, default=0.03)
     args = parser.parse_args()
 
-    sessions = find_session_dirs(args.input)
-    if not sessions:
-        parser.error("no recording directory containing detections.csv was found")
-    summaries = [
-        summarize_session(session, args.moving_threshold_mps)
-        for session in sessions
-    ]
+    try:
+        summaries = summarize_inputs(args.input, args.moving_threshold_mps)
+    except (FileNotFoundError, ValueError) as error:
+        parser.error(str(error))
+    if not summaries:
+        parser.error("no recording session containing detections.csv was found")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w", newline="") as output_file:
         writer = csv.DictWriter(

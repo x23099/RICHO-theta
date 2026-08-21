@@ -236,6 +236,8 @@ class ObstacleObservationGate:
         tracker_initialized=False,
         fill_ratio=None,
         solidity=None,
+        measurement_valid=True,
+        invalid_reason="invalid_measurement",
     ):
         diagnostics = {
             "gate_enabled": self.enabled,
@@ -245,6 +247,11 @@ class ObstacleObservationGate:
             "confirmation_count": self.confirmation_count,
         }
         if measurement is None:
+            if not tracker_initialized:
+                self.reset()
+            return None, diagnostics
+        if not measurement_valid:
+            diagnostics["gate_rejection_reason"] = invalid_reason
             if not tracker_initialized:
                 self.reset()
             return None, diagnostics

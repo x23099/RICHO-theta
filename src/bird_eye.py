@@ -1987,6 +1987,13 @@ class CalibrationWindow(QWidget):
                             ),
                             predicted_z_m=predicted_z_m,
                             tracker_initialized=self.blue_obstacle_tracker.initialized,
+                            measurement_valid=(
+                                self.last_blue_detection is not None
+                                and self.last_blue_detection.get(
+                                    "calibration_valid", False
+                                )
+                            ),
+                            invalid_reason="calibration_range_gate",
                         )
                     )
                     max_nis = (

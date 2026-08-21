@@ -107,6 +107,24 @@ class ObstacleObservationGateTest(unittest.TestCase):
         self.assertEqual(second, (0.01, 1.0))
         self.assertTrue(accepted_diagnostics["gate_passed"])
 
+    def test_calibration_invalid_measurement_is_rejected_even_when_disabled(self):
+        gate = ObstacleObservationGate(enabled=False)
+
+        measurement, diagnostics = gate.filter_measurement(
+            (0.0, 0.60),
+            area_px=4000.0,
+            predicted_z_m=0.65,
+            tracker_initialized=True,
+            measurement_valid=False,
+            invalid_reason="calibration_range_gate",
+        )
+
+        self.assertIsNone(measurement)
+        self.assertFalse(diagnostics["gate_passed"])
+        self.assertEqual(
+            diagnostics["gate_rejection_reason"], "calibration_range_gate"
+        )
+
 
 class CausalTtcEstimatorTest(unittest.TestCase):
     def test_applies_deadband_after_causal_median(self):

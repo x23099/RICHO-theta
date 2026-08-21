@@ -1,6 +1,7 @@
 import csv
 import json
 import sys
+import tarfile
 import tempfile
 import unittest
 from pathlib import Path
@@ -9,7 +10,8 @@ from pathlib import Path
 SRC_DIR = Path(__file__).resolve().parents[1] / "src"
 sys.path.insert(0, str(SRC_DIR))
 
-from evaluate_collision_hysteresis_replay import replay_session  # noqa: E402
+from diagnose_lateral_gate_asymmetry import load_sessions  # noqa: E402
+from evaluate_collision_hysteresis_replay import replay_rows, replay_session  # noqa: E402
 
 
 class CollisionHysteresisReplayTest(unittest.TestCase):
@@ -92,6 +94,23 @@ class CollisionHysteresisReplayTest(unittest.TestCase):
             self.assertGreaterEqual(result["warning_hold_frames"], 1)
             self.assertEqual(result["unknown_frames"], 1)
             self.assertEqual(result["path_while_forward_after_warning_frames"], 0)
+
+            archive_path = Path(temporary_dir) / "trial.tar.xz"
+            with tarfile.open(archive_path, mode="w:xz") as archive:
+                archive.add(session, arcname=session.name)
+            label, _source, metadata, rows = load_sessions([archive_path])[0]
+            archive_result = replay_rows(
+                label,
+                metadata,
+                rows,
+                {
+                    "blue_collision_warning_exit_ttc_sec": 5.0,
+                    "blue_collision_warning_confirm_frames": 3,
+                    "blue_collision_warning_clear_frames": 3,
+                    "blue_collision_warning_hold_sec": 0.8,
+                },
+            )
+            self.assertEqual(archive_result, result)
 
 
 if __name__ == "__main__":

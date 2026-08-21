@@ -10,6 +10,7 @@ import math
 from pathlib import Path
 
 from collision_risk import CollisionRiskHysteresis, classify_candidate_risk
+from diagnose_lateral_gate_asymmetry import load_sessions as load_recording_sessions
 
 
 FIELDS = [
@@ -39,9 +40,8 @@ def _flag(row, key):
     return str(row.get(key, "")).strip().lower() in {"1", "true", "yes"}
 
 
-def _load_parameters(session_dir, overrides=None):
-    with (Path(session_dir) / "metadata.json").open() as metadata_file:
-        parameters = json.load(metadata_file).get("parameters", {})
+def _parameters(metadata, overrides=None):
+    parameters = metadata.get("parameters", {})
     result = dict(parameters)
     if overrides:
         result.update(overrides)
@@ -50,7 +50,15 @@ def _load_parameters(session_dir, overrides=None):
 
 def replay_session(session_dir, overrides=None):
     session_dir = Path(session_dir)
-    parameters = _load_parameters(session_dir, overrides)
+    with (session_dir / "metadata.json").open() as metadata_file:
+        metadata = json.load(metadata_file)
+    with (session_dir / "detections.csv").open(newline="") as input_file:
+        rows = list(csv.DictReader(input_file))
+    return replay_rows(session_dir.name, metadata, rows, overrides)
+
+
+def replay_rows(session, metadata, rows, overrides=None):
+    parameters = _parameters(metadata, overrides)
     state_filter = CollisionRiskHysteresis(
         warning_ttc_sec=parameters.get(
             "blue_collision_warning_ttc_sec", 4.0
@@ -71,9 +79,6 @@ def replay_session(session_dir, overrides=None):
     motion_threshold = float(
         parameters.get("blue_collision_forward_motion_threshold_mps", 0.03)
     )
-    with (session_dir / "detections.csv").open(newline="") as input_file:
-        rows = list(csv.DictReader(input_file))
-
     output_levels = []
     raw_levels = []
     timestamps = []
@@ -143,7 +148,7 @@ def replay_session(session_dir, overrides=None):
         moving_forward_flags.append(moving_forward)
 
     return {
-        "session": session_dir.name,
+        "session": session,
         "frames": len(output_levels),
         "raw_warning_frames": sum(
             value in {"WARNING", "CRITICAL"} for value in raw_levels
@@ -188,9 +193,12 @@ def main():
     parser.add_argument("--input", type=Path, action="append", required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    sessions = find_sessions(args.input)
+    try:
+        sessions = load_recording_sessions(args.input)
+    except (FileNotFoundError, ValueError) as error:
+        parser.error(str(error))
     if not sessions:
-        parser.error("no recording directory containing detections.csv was found")
+        parser.error("no recording session containing detections.csv was found")
     overrides = {
         "blue_collision_warning_exit_ttc_sec": 5.0,
         "blue_collision_warning_confirm_frames": 3,
@@ -198,7 +206,10 @@ def main():
         "blue_collision_warning_hold_sec": 0.8,
         "blue_collision_forward_motion_threshold_mps": 0.03,
     }
-    results = [replay_session(session, overrides) for session in sessions]
+    results = [
+        replay_rows(label, metadata, rows, overrides)
+        for label, _source, metadata, rows in sessions
+    ]
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w", newline="") as output_file:
         writer = csv.DictWriter(output_file, fieldnames=FIELDS, lineterminator="\n")
