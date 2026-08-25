@@ -1,0 +1,13 @@
+session,event,phase,start_frame,end_frame,label_source,notes
+x0.0mz1.0m_raw_20260825_180659_557,0,visible,0,336,recording_condition,中央静止試験
+x-0.4mz1.0m_raw_20260825_180902_184,0,visible,0,415,recording_condition,左静止試験
+x0.4mz1.0m_raw_20260825_180934_724,0,visible,0,388,recording_condition,右静止試験
+x0.0mz1.0m_syahei_raw_20260825_180740_854,0,visible,0,98,manual_raw_video_review,1回目の遮蔽板が青箱へ重なる前
+x0.0mz1.0m_syahei_raw_20260825_180740_854,1,partial_occlusion,99,107,manual_raw_video_review,1回目の遮蔽板進入
+x0.0mz1.0m_syahei_raw_20260825_180740_854,1,fully_occluded,108,196,manual_raw_video_review,青箱が遮蔽板で完全に隠れる
+x0.0mz1.0m_syahei_raw_20260825_180740_854,1,reappearing,197,209,manual_raw_video_review,1回目の遮蔽板退出
+x0.0mz1.0m_syahei_raw_20260825_180740_854,0,visible,210,358,manual_raw_video_review,遮蔽間の安定表示
+x0.0mz1.0m_syahei_raw_20260825_180740_854,2,partial_occlusion,359,369,manual_raw_video_review,2回目の遮蔽板進入
+x0.0mz1.0m_syahei_raw_20260825_180740_854,2,fully_occluded,370,468,manual_raw_video_review,青箱が遮蔽板で完全に隠れる
+x0.0mz1.0m_syahei_raw_20260825_180740_854,2,reappearing,469,481,manual_raw_video_review,2回目の遮蔽板退出
+x0.0mz1.0m_syahei_raw_20260825_180740_854,0,visible,482,645,manual_raw_video_review,遮蔽板退出後の安定表示
