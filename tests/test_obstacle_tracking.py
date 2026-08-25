@@ -79,6 +79,21 @@ class BlueObstacleTrackerDiagnosticsTest(unittest.TestCase):
 
 
 class ObstacleObservationGateTest(unittest.TestCase):
+    def test_explicit_normalization_distance_overrides_forward_range(self):
+        gate = ObstacleObservationGate(min_normalized_area=2500.0)
+
+        measurement, diagnostics = gate.filter_measurement(
+            (0.3, 0.9),
+            area_px=2300.0,
+            predicted_z_m=0.9,
+            normalization_distance_m=1.05,
+            tracker_initialized=True,
+        )
+
+        self.assertEqual(measurement, (0.3, 0.9))
+        self.assertAlmostEqual(diagnostics["normalization_distance_m"], 1.05)
+        self.assertAlmostEqual(diagnostics["normalized_area"], 2535.75)
+
     def test_normalized_area_and_confirmation_are_both_required(self):
         gate = ObstacleObservationGate(
             min_normalized_area=2500.0,

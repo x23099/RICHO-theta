@@ -77,6 +77,36 @@ class FieldExperimentPreflightTest(unittest.TestCase):
         self.assertEqual(passing.status, "PASS")
         self.assertEqual(impossible.status, "FAIL")
 
+    def test_rejects_invalid_area_mode_and_hsv_value(self):
+        config = {
+            "blue_position_method": "ground_contact",
+            "blue_tracking_enabled": 1,
+            "blue_observation_gate_enabled": 1,
+            "blue_ttc_enabled": 1,
+            "blue_collision_candidate_enabled": 1,
+            "camera_height": 0.58,
+            "scale": 0.008,
+            "car_width": 0.354,
+            "blue_ground_contact_min_area": 300,
+            "blue_observation_normalized_area_min": 2000,
+            "blue_observation_nis_max": 9.21,
+            "blue_ttc_velocity_window_sec": 0.3,
+            "blue_collision_warning_ttc_sec": 4.0,
+            "blue_collision_critical_ttc_sec": 2.0,
+            "blue_collision_warning_exit_ttc_sec": 5.0,
+            "blue_collision_warning_confirm_frames": 3,
+            "blue_collision_warning_clear_frames": 3,
+            "blue_collision_warning_hold_sec": 0.8,
+            "blue_collision_forward_motion_threshold_mps": 0.03,
+            "blue_observation_area_distance_mode": "unknown",
+            "blue_ground_contact_hsv_v_min": 300,
+        }
+
+        errors = validate_experiment_config(config)
+
+        self.assertTrue(any("area_distance_mode" in item for item in errors))
+        self.assertTrue(any("hsv_v_min" in item for item in errors))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -233,6 +233,7 @@ class ObstacleObservationGate:
         measurement,
         area_px=None,
         predicted_z_m=None,
+        normalization_distance_m=None,
         tracker_initialized=False,
         fill_ratio=None,
         solidity=None,
@@ -242,6 +243,7 @@ class ObstacleObservationGate:
         diagnostics = {
             "gate_enabled": self.enabled,
             "normalized_area": "",
+            "normalization_distance_m": "",
             "gate_passed": False,
             "gate_rejection_reason": "no_detection",
             "confirmation_count": self.confirmation_count,
@@ -263,13 +265,18 @@ class ObstacleObservationGate:
             return measurement, diagnostics
 
         area = float(area_px) if area_px is not None else math.nan
-        reference_z = (
-            float(predicted_z_m)
-            if predicted_z_m is not None
-            else float(measurement[1])
+        normalization_distance = (
+            float(normalization_distance_m)
+            if normalization_distance_m is not None
+            else (
+                float(predicted_z_m)
+                if predicted_z_m is not None
+                else float(measurement[1])
+            )
         )
-        normalized_area = area * max(reference_z, 0.2) ** 2
+        normalized_area = area * max(normalization_distance, 0.2) ** 2
         diagnostics["normalized_area"] = normalized_area
+        diagnostics["normalization_distance_m"] = normalization_distance
         if self.min_area_px is not None and area < float(self.min_area_px):
             diagnostics["gate_rejection_reason"] = "area_gate"
             if not tracker_initialized:

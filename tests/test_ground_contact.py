@@ -1,6 +1,7 @@
 import math
 import unittest
 
+import cv2
 import numpy as np
 
 from evaluate_ground_contact import (
@@ -8,7 +9,7 @@ from evaluate_ground_contact import (
     fit_lateral_calibration,
     parse_expected_position,
 )
-from ground_contact import dual_fisheye_pixels_to_vehicle_rays
+from ground_contact import blue_hsv_mask, dual_fisheye_pixels_to_vehicle_rays
 
 
 PARAMETERS = {
@@ -73,6 +74,18 @@ def project_vehicle_ray_to_front_pixel(ray, width=1920, height=960):
 
 
 class GroundContactGeometryTest(unittest.TestCase):
+    def test_blue_hsv_value_threshold_is_configurable(self):
+        hsv = np.array([[[110, 200, 25], [110, 200, 35]]], dtype=np.uint8)
+        frame = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
+
+        default_mask = blue_hsv_mask(frame, {})
+        lowered_mask = blue_hsv_mask(
+            frame, {"blue_ground_contact_hsv_v_min": 20}
+        )
+
+        self.assertEqual(default_mask.tolist(), [[0, 255]])
+        self.assertEqual(lowered_mask.tolist(), [[255, 255]])
+
     def test_front_pixel_round_trip_recovers_vehicle_ray(self):
         original = np.array([0.22, -PARAMETERS["camera_height"], 1.20])
         original /= np.linalg.norm(original)

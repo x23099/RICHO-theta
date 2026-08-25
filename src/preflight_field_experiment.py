@@ -90,6 +90,25 @@ def validate_experiment_config(config):
         value = config.get(key)
         if not isinstance(value, int) or isinstance(value, bool) or value < 1:
             errors.append(f"{key} must be a positive integer")
+    area_distance_mode = config.get(
+        "blue_observation_area_distance_mode", "forward_z"
+    )
+    if area_distance_mode not in {
+        "forward_z",
+        "calibrated_ground_distance",
+        "raw_ground_distance",
+    }:
+        errors.append(
+            "blue_observation_area_distance_mode must be forward_z, "
+            "calibrated_ground_distance, or raw_ground_distance"
+        )
+    hsv_v_min = config.get("blue_ground_contact_hsv_v_min", 30)
+    if (
+        not isinstance(hsv_v_min, int)
+        or isinstance(hsv_v_min, bool)
+        or not 0 <= hsv_v_min <= 255
+    ):
+        errors.append("blue_ground_contact_hsv_v_min must be an integer from 0 to 255")
     return errors
 
 

@@ -187,6 +187,38 @@ def estimate_ground_contact(
     }
 
 
+def area_normalization_distance(
+    mode: str,
+    projected_position: Optional[Tuple[float, float]],
+    raw_distance_m: Optional[float],
+    parameters: Mapping[str, float],
+) -> Optional[float]:
+    """Convert a calibrated track prediction to an area-normalization range."""
+
+    if mode == "forward_z":
+        return None
+    if mode not in {"calibrated_ground_distance", "raw_ground_distance"}:
+        raise ValueError(f"Unsupported area normalization mode: {mode}")
+    if projected_position is None:
+        return float(raw_distance_m) if raw_distance_m is not None else None
+
+    projected_x, projected_z = map(float, projected_position)
+    if mode == "calibrated_ground_distance":
+        return math.hypot(projected_x, projected_z)
+
+    x_scale = float(parameters.get("blue_ground_contact_x_scale", 1.0))
+    if abs(x_scale) <= 1e-9:
+        raise ValueError("blue_ground_contact_x_scale must be non-zero")
+    raw_x = (
+        projected_x
+        - float(parameters.get("blue_ground_contact_x_offset_m", 0.0))
+    ) / x_scale
+    raw_z = projected_z - float(
+        parameters.get("blue_ground_contact_z_offset_m", 0.0)
+    )
+    return math.hypot(raw_x, raw_z)
+
+
 def detect_blue_ground_contact(
     frame: np.ndarray,
     parameters: Mapping[str, float],
@@ -196,8 +228,7 @@ def detect_blue_ground_contact(
 ) -> Tuple[Optional[dict], np.ndarray]:
     """Blue-target adapter for the generic ground-contact geometry."""
 
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    mask = cv2.inRange(hsv, (90, 70, 30), (140, 255, 255))
+    mask = blue_hsv_mask(frame, parameters)
     kernel = np.ones((3, 3), dtype=np.uint8)
     mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
     mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=2)
@@ -241,3 +272,26 @@ def detect_blue_ground_contact(
     result["area_px"] = float(cv2.contourArea(contour))
     result["contour"] = contour
     return result, mask
+
+
+def blue_hsv_mask(frame: np.ndarray, parameters: Mapping[str, float]) -> np.ndarray:
+    """Return the configurable HSV mask used by the blue-target adapter."""
+
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    lower = tuple(
+        int(parameters.get(key, default))
+        for key, default in (
+            ("blue_ground_contact_hsv_h_min", 90),
+            ("blue_ground_contact_hsv_s_min", 70),
+            ("blue_ground_contact_hsv_v_min", 30),
+        )
+    )
+    upper = tuple(
+        int(parameters.get(key, default))
+        for key, default in (
+            ("blue_ground_contact_hsv_h_max", 140),
+            ("blue_ground_contact_hsv_s_max", 255),
+            ("blue_ground_contact_hsv_v_max", 255),
+        )
+    )
+    return cv2.inRange(hsv, lower, upper)

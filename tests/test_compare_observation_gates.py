@@ -6,7 +6,10 @@ from pathlib import Path
 SRC_DIR = Path(__file__).resolve().parents[1] / "src"
 sys.path.insert(0, str(SRC_DIR))
 
-from compare_observation_gates import external_rejection_reason  # noqa: E402
+from compare_observation_gates import (  # noqa: E402
+    area_normalization_distance,
+    external_rejection_reason,
+)
 
 
 class ObservationGateTest(unittest.TestCase):
@@ -40,6 +43,31 @@ class ObservationGateTest(unittest.TestCase):
             predicted_z_m=1.0,
         )
         self.assertEqual(reason, "fill_ratio_gate")
+
+    def test_raw_ground_distance_inverts_lateral_calibration(self):
+        config = {
+            "blue_ground_contact_x_scale": 0.5,
+            "blue_ground_contact_x_offset_m": 0.02,
+            "blue_ground_contact_z_offset_m": 0.1,
+        }
+        distance = area_normalization_distance(
+            self.row,
+            projected_position=(0.27, 0.9),
+            config=config,
+            mode="raw_ground_distance",
+        )
+        self.assertAlmostEqual(distance, (0.5**2 + 0.8**2) ** 0.5)
+
+    def test_missing_detection_distance_accepts_empty_csv_value(self):
+        row = dict(self.row, raw_distance_m="")
+        self.assertIsNone(
+            area_normalization_distance(
+                row,
+                projected_position=None,
+                config={},
+                mode="raw_ground_distance",
+            )
+        )
 
 
 if __name__ == "__main__":

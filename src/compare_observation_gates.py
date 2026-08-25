@@ -12,6 +12,7 @@ from pathlib import Path
 
 import numpy as np
 
+from ground_contact import area_normalization_distance as normalization_distance
 from obstacle_tracking import BlueObstacleTracker, ObstacleObservationGate
 
 
@@ -46,6 +47,8 @@ DETAIL_FIELDS = [
     "position_inlier",
     "measurement_accepted",
     "rejection_reason",
+    "normalization_distance_m",
+    "normalized_area",
     "nis",
     "track_available",
     "track_predicted",
@@ -93,11 +96,12 @@ def load_observations(path: Path) -> dict[str, list[dict]]:
             for field in (
                 "x_m",
                 "z_m",
+                "raw_distance_m",
                 "area_px",
                 "bbox_fill_ratio",
                 "contour_solidity",
             ):
-                row[field] = optional_float(row[field])
+                row[field] = optional_float(row.get(field))
             sessions[row["session"]].append(row)
     for rows in sessions.values():
         rows.sort(key=lambda row: row["frame"])
@@ -110,6 +114,12 @@ def reference_position(rows: list[dict]) -> tuple[float, float]:
         for row in rows
         if row["phase_label"] == "visible" and row["detected"]
     ]
+    if not visible:
+        visible = [
+            (row["x_m"], row["z_m"])
+            for row in rows
+            if row["detected"]
+        ]
     if not visible:
         raise ValueError(f'No visible observations for {rows[0]["session"]}')
     return tuple(np.median(np.asarray(visible), axis=0))
@@ -133,7 +143,29 @@ def external_rejection_reason(row, settings, predicted_z_m):
     return diagnostics["gate_rejection_reason"]
 
 
+def area_normalization_distance(row, projected_position, config, mode):
+    """Return a track-referenced distance for contour-area normalization."""
+
+    fallback_raw_distance = optional_float(row.get("raw_distance_m"))
+    fallback_position = None
+    if projected_position is None and mode == "calibrated_ground_distance":
+        fallback_x = optional_float(row.get("x_m"))
+        fallback_z = optional_float(row.get("z_m"))
+        if fallback_x is not None and fallback_z is not None:
+            fallback_position = (fallback_x, fallback_z)
+    return normalization_distance(
+        mode,
+        projected_position or fallback_position,
+        fallback_raw_distance,
+        config,
+    )
+
+
 def replay_variant(rows, config, variant, settings):
+    settings = dict(settings)
+    area_normalization_mode = settings.pop(
+        "area_normalization_mode", "forward_z"
+    )
     tracker = BlueObstacleTracker(
         process_accel_std_mps2=config["blue_tracking_process_accel_std_mps2"],
         measurement_std_m=config["blue_tracking_measurement_std_m"],
@@ -152,6 +184,12 @@ def replay_variant(rows, config, variant, settings):
             if projected_position is not None
             else (row["z_m"] if row["z_m"] is not None else reference_z)
         )
+        normalization_distance_m = area_normalization_distance(
+            row,
+            projected_position,
+            config,
+            area_normalization_mode,
+        )
         raw_measurement = (
             (row["x_m"], row["z_m"]) if row["detected"] else None
         )
@@ -159,6 +197,7 @@ def replay_variant(rows, config, variant, settings):
             raw_measurement,
             area_px=row["area_px"],
             predicted_z_m=predicted_z_m,
+            normalization_distance_m=normalization_distance_m,
             tracker_initialized=tracker.initialized,
             fill_ratio=row["bbox_fill_ratio"],
             solidity=row["contour_solidity"],
@@ -196,6 +235,10 @@ def replay_variant(rows, config, variant, settings):
                     diagnostics["measurement_accepted"]
                 ),
                 "rejection_reason": diagnostics["rejection_reason"],
+                "normalization_distance_m": gate_diagnostics[
+                    "normalization_distance_m"
+                ],
+                "normalized_area": gate_diagnostics["normalized_area"],
                 "nis": diagnostics["nis"],
                 "track_available": int(track is not None),
                 "track_predicted": int(track["predicted"]) if track else "",
@@ -210,10 +253,12 @@ def replay_variant(rows, config, variant, settings):
 
 def summarize(details):
     detected = [row for row in details if row["detected"]]
+    has_phase_labels = any(row["phase_label"] for row in details)
     stable_inliers = [
         row
         for row in detected
-        if row["phase_label"] == "visible" and row["position_inlier"]
+        if row["position_inlier"]
+        and (not has_phase_labels or row["phase_label"] == "visible")
     ]
     outliers = [row for row in detected if not row["position_inlier"]]
     partial = [

@@ -24,7 +24,7 @@ except Exception:
 import cv2
 import numpy as np
 
-from ground_contact import detect_blue_ground_contact
+from ground_contact import area_normalization_distance, detect_blue_ground_contact
 from collision_risk import (
     CollisionRiskHysteresis,
     assess_path_collision,
@@ -649,6 +649,7 @@ class CalibrationWindow(QWidget):
             "blue_position_method": "ground_contact",
             "blue_ground_contact_min_area": 300,
             "blue_ground_contact_fraction": 0.08,
+            "blue_ground_contact_hsv_v_min": 30,
             "blue_ground_contact_x_scale": 0.607688741902197,
             "blue_ground_contact_x_offset_m": 0.022595727915692983,
             "blue_ground_contact_z_offset_m": 0.0,
@@ -669,6 +670,7 @@ class CalibrationWindow(QWidget):
             "blue_tracking_max_missing_sec": 0.25,
             "blue_tracking_max_dt_sec": 0.2,
             "blue_observation_gate_enabled": 1,
+            "blue_observation_area_distance_mode": "forward_z",
             "blue_observation_normalized_area_min": 2503.678448310634,
             "blue_observation_nis_max": 9.210,
             "blue_observation_confirmation_frames": 2,
@@ -738,6 +740,7 @@ class CalibrationWindow(QWidget):
             "blue_position_method": "ground_contact",
             "blue_ground_contact_min_area": 300,
             "blue_ground_contact_fraction": 0.08,
+            "blue_ground_contact_hsv_v_min": 30,
             "blue_ground_contact_x_scale": 0.607688741902197,
             "blue_ground_contact_x_offset_m": 0.022595727915692983,
             "blue_ground_contact_z_offset_m": 0.0,
@@ -758,6 +761,7 @@ class CalibrationWindow(QWidget):
             "blue_tracking_max_missing_sec": 0.25,
             "blue_tracking_max_dt_sec": 0.2,
             "blue_observation_gate_enabled": 1,
+            "blue_observation_area_distance_mode": "forward_z",
             "blue_observation_normalized_area_min": 2503.678448310634,
             "blue_observation_nis_max": 9.210,
             "blue_observation_confirmation_frames": 2,
@@ -1313,7 +1317,8 @@ class CalibrationWindow(QWidget):
                 "filtered_x_m", "filtered_z_m", "filtered_distance_m",
                 "relative_vx_mps", "relative_vz_mps", "missing_age_sec",
                 "monotonic_time_sec", "measurement_accepted",
-                "rejection_reason", "normalized_area", "observation_nis",
+                "rejection_reason", "normalization_distance_m",
+                "normalized_area", "observation_nis",
                 "smoothed_vz_mps", "ttc_sec",
                 "odom_available", "odom_linear_mps", "odom_angular_radps",
                 "cmd_linear_mps", "cmd_angular_radps",
@@ -1436,6 +1441,9 @@ class CalibrationWindow(QWidget):
                     "measurement_accepted", False
                 ) else 0,
                 self.last_blue_tracker_diagnostics.get("rejection_reason", ""),
+                self.last_blue_gate_diagnostics.get(
+                    "normalization_distance_m", ""
+                ),
                 self.last_blue_gate_diagnostics.get("normalized_area", ""),
                 self.last_blue_tracker_diagnostics.get("nis", ""),
                 track.get("smoothed_vz_mps", "") if track is not None else "",
@@ -1977,6 +1985,21 @@ class CalibrationWindow(QWidget):
                             else None
                         )
                     )
+                    normalization_distance_m = area_normalization_distance(
+                        str(
+                            self.params.get(
+                                "blue_observation_area_distance_mode",
+                                "forward_z",
+                            )
+                        ),
+                        projected_position,
+                        (
+                            self.last_blue_detection.get("raw_distance_m")
+                            if self.last_blue_detection is not None
+                            else None
+                        ),
+                        self.params,
+                    )
                     measurement, self.last_blue_gate_diagnostics = (
                         self.blue_observation_gate.filter_measurement(
                             raw_measurement,
@@ -1986,6 +2009,7 @@ class CalibrationWindow(QWidget):
                                 else None
                             ),
                             predicted_z_m=predicted_z_m,
+                            normalization_distance_m=normalization_distance_m,
                             tracker_initialized=self.blue_obstacle_tracker.initialized,
                             measurement_valid=(
                                 self.last_blue_detection is not None
