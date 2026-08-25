@@ -154,7 +154,13 @@ def check_config(config_path):
     return CheckResult(
         "Experiment config",
         "PASS",
-        f"{Path(config_path).resolve()} (blue baseline)",
+        f"{Path(config_path).resolve()}: "
+        f"area_mode={config.get('blue_observation_area_distance_mode', 'forward_z')}, "
+        f"normalized_area_min={float(config['blue_observation_normalized_area_min']):g}, "
+        f"nis_max={float(config['blue_observation_nis_max']):g}, "
+        f"confirm_frames={config.get('blue_observation_confirmation_frames', 1)}, "
+        f"hsv_v_min={config.get('blue_ground_contact_hsv_v_min', 30)}, "
+        f"illumination={config.get('blue_ground_contact_illumination_mode', 'none')}",
     )
 
 

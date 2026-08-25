@@ -8,12 +8,26 @@ SRC_DIR = Path(__file__).resolve().parents[1] / "src"
 sys.path.insert(0, str(SRC_DIR))
 
 from preflight_field_experiment import (  # noqa: E402
+    check_config,
     check_record_storage,
     validate_experiment_config,
 )
 
 
 class FieldExperimentPreflightTest(unittest.TestCase):
+    def test_accepts_raw_ground_distance_trial_configuration(self):
+        config_path = SRC_DIR / "bird_eye_config_raw_ground_distance.json"
+
+        result = check_config(config_path)
+
+        self.assertEqual(result.status, "PASS")
+        self.assertIn("area_mode=raw_ground_distance", result.detail)
+        self.assertIn("normalized_area_min=2000", result.detail)
+        self.assertIn("nis_max=9.21", result.detail)
+        self.assertIn("confirm_frames=2", result.detail)
+        self.assertIn("hsv_v_min=30", result.detail)
+        self.assertIn("illumination=none", result.detail)
+
     def test_accepts_blue_baseline_configuration(self):
         config = {
             "blue_position_method": "ground_contact",
