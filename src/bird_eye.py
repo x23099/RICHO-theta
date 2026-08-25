@@ -1302,6 +1302,7 @@ class CalibrationWindow(QWidget):
                 "odom_topic": str(self.args.odom_topic),
                 "requested_camera_width": self.args.cam_width,
                 "requested_camera_height": self.args.cam_height,
+                "requested_camera_fps": self.args.camera_fps,
                 "time_base": "time.monotonic",
                 "parameters": self.params,
                 "camera_capture_properties": getattr(
@@ -1359,7 +1360,7 @@ class CalibrationWindow(QWidget):
         raw_h, raw_w = frame.shape[:2]
         fps = float(self.cap.get(cv2.CAP_PROP_FPS)) if self.cap is not None else 0.0
         if not math.isfinite(fps) or fps < 1.0 or fps > 120.0:
-            fps = 24.0
+            fps = float(self.args.camera_fps)
 
         fourcc = cv2.VideoWriter_fourcc(*"MJPG")
         specifications = {
@@ -1398,9 +1399,19 @@ class CalibrationWindow(QWidget):
 
         fps = float(self.cap.get(cv2.CAP_PROP_FPS)) if self.cap is not None else 0.0
         if not math.isfinite(fps) or fps < 1.0 or fps > 120.0:
-            fps = 24.0
+            fps = float(self.args.camera_fps)
         detection = self.last_blue_detection
         track = self.last_blue_track
+        recording_elapsed_sec = (
+            max(
+                0.0,
+                self.last_blue_processing_timestamp
+                - self.recording_start_monotonic,
+            )
+            if self.last_blue_processing_timestamp is not None
+            and self.recording_start_monotonic is not None
+            else self.recording_frame_count / fps
+        )
         if self.recording_csv_writer is not None:
             if detection is None:
                 if track is None:
@@ -1434,11 +1445,11 @@ class CalibrationWindow(QWidget):
                 ]
             self.recording_csv_writer.writerow([
                 self.recording_frame_count,
-                self.recording_frame_count / fps,
+                f"{recording_elapsed_sec:.6f}",
                 1 if detection is not None else 0,
             ] + detection_values + tracking_values + [
                 (
-                    f'{max(0.0, self.last_blue_processing_timestamp - self.recording_start_monotonic):.6f}'
+                    f'{recording_elapsed_sec:.6f}'
                     if self.last_blue_processing_timestamp is not None
                     and self.recording_start_monotonic is not None
                     else ""
@@ -1515,7 +1526,7 @@ class CalibrationWindow(QWidget):
                     else 0
                 ),
             ])
-        elapsed_seconds = int(self.recording_frame_count / fps)
+        elapsed_seconds = int(recording_elapsed_sec)
         self.record_status_label.setText(
             f"REC {elapsed_seconds // 60:02d}:{elapsed_seconds % 60:02d}"
         )
@@ -1778,7 +1789,7 @@ class CalibrationWindow(QWidget):
             self.cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*"MJPG"))
             self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.args.cam_width)
             self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.args.cam_height)
-            self.cap.set(cv2.CAP_PROP_FPS, 24)
+            self.cap.set(cv2.CAP_PROP_FPS, self.args.camera_fps)
 
         if not self.cap.isOpened():
             print(f"[ERROR] Failed to open capture device/file: {self.args.device}")
@@ -1790,8 +1801,10 @@ class CalibrationWindow(QWidget):
             f"{self.camera_capture_properties}"
         )
 
-        # Trigger timer (24 fps -> ~41 ms interval)
-        self.timer.start(41)
+        # Poll at the requested native capture rate. Processing timestamps use
+        # a monotonic clock, so temporary UI stalls do not distort velocities.
+        timer_interval_ms = max(1, int(round(1000.0 / self.args.camera_fps)))
+        self.timer.start(timer_interval_ms)
 
     def poll_odometry(self):
         if self.odom_bridge is None:
@@ -2953,6 +2966,12 @@ def main():
     parser.add_argument("--device", default="0", help="Camera index or video file path")
     parser.add_argument("--cam-width", type=int, default=1280, help="Camera width resolution")
     parser.add_argument("--cam-height", type=int, default=720, help="Camera height resolution")
+    parser.add_argument(
+        "--camera-fps",
+        type=float,
+        default=30.0,
+        help="Requested native camera and processing frame rate",
+    )
     parser.add_argument("--mock-camera", action="store_true", help="Use simulated dual-fisheye frames")
     parser.add_argument("--config", default=DEFAULT_CONFIG_FILE, help="Path to config JSON file")
     parser.add_argument(

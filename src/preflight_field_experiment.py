@@ -231,7 +231,7 @@ def check_unit_tests():
     )
 
 
-def check_camera(device, width, height, frame_count, requested_fps=24.0):
+def check_camera(device, width, height, frame_count, requested_fps=30.0):
     import cv2
 
     capture_device = int(device) if str(device).isdigit() else str(device)
@@ -244,6 +244,8 @@ def check_camera(device, width, height, frame_count, requested_fps=24.0):
         capture.set(cv2.CAP_PROP_FRAME_WIDTH, width)
         capture.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
         capture.set(cv2.CAP_PROP_FPS, requested_fps)
+        for _ in range(5):
+            capture.read()
         valid = 0
         shape = None
         started = time.monotonic()
@@ -260,12 +262,19 @@ def check_camera(device, width, height, frame_count, requested_fps=24.0):
         return CheckResult(
             "Camera", "FAIL", f"read {valid}/{max(1, frame_count)} valid frames"
         )
+    read_rate = valid / elapsed
+    reported_fps = capture_properties.get("fps", math.nan)
+    rate_status = (
+        "PASS"
+        if not math.isfinite(reported_fps) or read_rate >= 0.8 * reported_fps
+        else "WARN"
+    )
     return CheckResult(
         "Camera",
-        "PASS",
-        f"{valid} frames, shape={shape}, read rate={valid / elapsed:.1f} fps, "
+        rate_status,
+        f"{valid} frames, shape={shape}, read rate={read_rate:.1f} fps, "
         f"requested={requested_fps:.1f} fps, "
-        f"reported={capture_properties.get('fps', math.nan):.1f} fps; "
+        f"reported={reported_fps:.1f} fps; "
         f"{exposure_summary(capture_properties)}",
     )
 
@@ -317,8 +326,8 @@ def main():
     parser.add_argument("--camera-device", default="")
     parser.add_argument("--camera-width", type=int, default=1280)
     parser.add_argument("--camera-height", type=int, default=720)
-    parser.add_argument("--camera-fps", type=float, default=24.0)
-    parser.add_argument("--camera-frames", type=int, default=10)
+    parser.add_argument("--camera-fps", type=float, default=30.0)
+    parser.add_argument("--camera-frames", type=int, default=30)
     parser.add_argument("--odom-topic", default="")
     parser.add_argument("--odom-timeout-sec", type=float, default=3.0)
     parser.add_argument("--skip-tests", action="store_true")
