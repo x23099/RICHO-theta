@@ -100,12 +100,14 @@ class FieldExperimentPreflightTest(unittest.TestCase):
             "blue_collision_forward_motion_threshold_mps": 0.03,
             "blue_observation_area_distance_mode": "unknown",
             "blue_ground_contact_hsv_v_min": 300,
+            "blue_ground_contact_illumination_mode": "unknown",
         }
 
         errors = validate_experiment_config(config)
 
         self.assertTrue(any("area_distance_mode" in item for item in errors))
         self.assertTrue(any("hsv_v_min" in item for item in errors))
+        self.assertTrue(any("illumination_mode" in item for item in errors))
 
 
 if __name__ == "__main__":

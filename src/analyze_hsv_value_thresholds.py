@@ -20,6 +20,7 @@ from evaluate_observation_gates import (
 
 
 OUTPUT_FIELDS = [
+    "illumination_mode",
     "hsv_v_min",
     "session",
     "no_target",
@@ -123,6 +124,7 @@ def main():
     )
     parser.add_argument("--labels", type=Path)
     parser.add_argument("--v-min", type=int, action="append")
+    parser.add_argument("--illumination-mode", action="append")
     parser.add_argument(
         "--no-target-prefix", default="hakonasi",
         help="Session prefix identifying the no-blue-target control",
@@ -138,33 +140,37 @@ def main():
     if not sessions:
         parser.error("no recording sessions were found")
     thresholds = args.v_min or [10, 20, 25, 30]
+    illumination_modes = args.illumination_mode or ["none"]
 
     output_rows = []
-    for value_min in thresholds:
-        config = dict(base_config)
-        config["blue_ground_contact_hsv_v_min"] = value_min
-        for session_dir in sessions:
-            rows, basic = recompute_session(
-                session_dir,
-                config,
-                frame_step=args.frame_step,
-                phase_intervals=labels.get(session_dir.name, ()),
-                source_label=str(session_dir.parent),
-            )
-            no_target = session_dir.name.startswith(args.no_target_prefix)
-            output_rows.append(
-                {
-                    "hsv_v_min": value_min,
-                    "session": session_dir.name,
-                    "no_target": int(no_target),
-                    **summarize_threshold(rows, basic, config, no_target),
-                }
-            )
-            print(
-                f"V>={value_min:2d} {session_dir.name}: "
-                f"detect={basic['detection_rate']:.1%}, "
-                f"decision={output_rows[-1]['decision']}"
-            )
+    for illumination_mode in illumination_modes:
+        for value_min in thresholds:
+            config = dict(base_config)
+            config["blue_ground_contact_hsv_v_min"] = value_min
+            config["blue_ground_contact_illumination_mode"] = illumination_mode
+            for session_dir in sessions:
+                rows, basic = recompute_session(
+                    session_dir,
+                    config,
+                    frame_step=args.frame_step,
+                    phase_intervals=labels.get(session_dir.name, ()),
+                    source_label=str(session_dir.parent),
+                )
+                no_target = session_dir.name.startswith(args.no_target_prefix)
+                output_rows.append(
+                    {
+                        "illumination_mode": illumination_mode,
+                        "hsv_v_min": value_min,
+                        "session": session_dir.name,
+                        "no_target": int(no_target),
+                        **summarize_threshold(rows, basic, config, no_target),
+                    }
+                )
+                print(
+                    f"{illumination_mode} V>={value_min:2d} "
+                    f"{session_dir.name}: detect={basic['detection_rate']:.1%}, "
+                    f"decision={output_rows[-1]['decision']}"
+                )
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w", newline="") as output_file:

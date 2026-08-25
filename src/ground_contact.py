@@ -10,6 +10,7 @@ any contour supplied by a future segmentation or object-detection backend.
 from __future__ import annotations
 
 import math
+from functools import lru_cache
 from typing import Mapping, Optional, Tuple
 
 import cv2
@@ -274,10 +275,76 @@ def detect_blue_ground_contact(
     return result, mask
 
 
+@lru_cache(maxsize=16)
+def _front_lens_mask(height, width, center_x, center_y, radius):
+    yy, xx = np.ogrid[:height, :width]
+    return (xx - center_x) ** 2 + (yy - center_y) ** 2 <= radius ** 2
+
+
+def _apply_shades_of_gray(
+    frame: np.ndarray,
+    parameters: Mapping[str, float],
+    minkowski_power: float,
+) -> np.ndarray:
+    """Apply diagonal color constancy using pixels inside the front lens."""
+
+    height, width = frame.shape[:2]
+    center_x, center_y, radius, _ = _lens_geometry(
+        width, height, parameters, "front"
+    )
+    lens_mask = _front_lens_mask(
+        height, width, center_x, center_y, 0.9 * radius
+    )
+    pixels = frame[lens_mask].astype(np.float64)
+    if not len(pixels):
+        return frame
+    power = max(1.0, float(minkowski_power))
+    channel_norms = np.mean(np.power(pixels, power), axis=0) ** (1.0 / power)
+    if np.any(channel_norms <= 1e-6):
+        return frame
+    target_norm = float(np.mean(channel_norms))
+    gains = target_norm / channel_norms
+    return np.clip(frame.astype(np.float64) * gains, 0, 255).astype(np.uint8)
+
+
+def blue_preprocessed_hsv(
+    frame: np.ndarray, parameters: Mapping[str, float]
+) -> np.ndarray:
+    """Return HSV after the selected illumination-normalization candidate."""
+
+    mode = str(parameters.get("blue_ground_contact_illumination_mode", "none"))
+    corrected = frame
+    if mode in {"gray_world", "gray_world_clahe"}:
+        corrected = _apply_shades_of_gray(frame, parameters, 1.0)
+    elif mode in {"shades_of_gray", "shades_of_gray_clahe"}:
+        corrected = _apply_shades_of_gray(
+            frame,
+            parameters,
+            float(parameters.get("blue_ground_contact_shades_of_gray_power", 6.0)),
+        )
+    elif mode not in {"none", "clahe_value"}:
+        raise ValueError(f"Unsupported blue illumination mode: {mode}")
+
+    hsv = cv2.cvtColor(corrected, cv2.COLOR_BGR2HSV)
+    if mode in {"clahe_value", "gray_world_clahe", "shades_of_gray_clahe"}:
+        clip_limit = float(
+            parameters.get("blue_ground_contact_clahe_clip_limit", 2.0)
+        )
+        tile_size = max(
+            1, int(parameters.get("blue_ground_contact_clahe_tile_size", 8))
+        )
+        clahe = cv2.createCLAHE(
+            clipLimit=max(0.01, clip_limit),
+            tileGridSize=(tile_size, tile_size),
+        )
+        hsv[:, :, 2] = clahe.apply(hsv[:, :, 2])
+    return hsv
+
+
 def blue_hsv_mask(frame: np.ndarray, parameters: Mapping[str, float]) -> np.ndarray:
     """Return the configurable HSV mask used by the blue-target adapter."""
 
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    hsv = blue_preprocessed_hsv(frame, parameters)
     lower = tuple(
         int(parameters.get(key, default))
         for key, default in (

@@ -17,6 +17,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from ros_odometry import RosOdometryBridge
+from camera_capture_properties import exposure_summary, read_capture_properties
 
 
 REPOSITORY_DIR = Path(__file__).resolve().parents[1]
@@ -109,6 +110,18 @@ def validate_experiment_config(config):
         or not 0 <= hsv_v_min <= 255
     ):
         errors.append("blue_ground_contact_hsv_v_min must be an integer from 0 to 255")
+    illumination_mode = config.get(
+        "blue_ground_contact_illumination_mode", "none"
+    )
+    if illumination_mode not in {
+        "none",
+        "clahe_value",
+        "gray_world",
+        "gray_world_clahe",
+        "shades_of_gray",
+        "shades_of_gray_clahe",
+    }:
+        errors.append("unsupported blue_ground_contact_illumination_mode")
     return errors
 
 
@@ -238,6 +251,7 @@ def check_camera(device, width, height, frame_count):
                 valid += 1
                 shape = frame.shape
         elapsed = max(1e-6, time.monotonic() - started)
+        capture_properties = read_capture_properties(capture)
     finally:
         capture.release()
     if valid < max(1, frame_count):
@@ -247,7 +261,8 @@ def check_camera(device, width, height, frame_count):
     return CheckResult(
         "Camera",
         "PASS",
-        f"{valid} frames, shape={shape}, read rate={valid / elapsed:.1f} fps",
+        f"{valid} frames, shape={shape}, read rate={valid / elapsed:.1f} fps; "
+        f"{exposure_summary(capture_properties)}",
     )
 
 

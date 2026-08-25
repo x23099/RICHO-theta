@@ -9,7 +9,11 @@ from evaluate_ground_contact import (
     fit_lateral_calibration,
     parse_expected_position,
 )
-from ground_contact import blue_hsv_mask, dual_fisheye_pixels_to_vehicle_rays
+from ground_contact import (
+    blue_hsv_mask,
+    blue_preprocessed_hsv,
+    dual_fisheye_pixels_to_vehicle_rays,
+)
 
 
 PARAMETERS = {
@@ -85,6 +89,22 @@ class GroundContactGeometryTest(unittest.TestCase):
 
         self.assertEqual(default_mask.tolist(), [[0, 255]])
         self.assertEqual(lowered_mask.tolist(), [[255, 255]])
+
+    def test_clahe_candidate_preserves_hsv_shape(self):
+        frame = np.full((32, 32, 3), 20, dtype=np.uint8)
+        hsv = blue_preprocessed_hsv(
+            frame,
+            {"blue_ground_contact_illumination_mode": "clahe_value"},
+        )
+        self.assertEqual(hsv.shape, frame.shape)
+        self.assertEqual(hsv.dtype, np.uint8)
+
+    def test_rejects_unknown_illumination_mode(self):
+        with self.assertRaises(ValueError):
+            blue_preprocessed_hsv(
+                np.zeros((8, 8, 3), dtype=np.uint8),
+                {"blue_ground_contact_illumination_mode": "unknown"},
+            )
 
     def test_front_pixel_round_trip_recovers_vehicle_ray(self):
         original = np.array([0.22, -PARAMETERS["camera_height"], 1.20])

@@ -25,6 +25,7 @@ import cv2
 import numpy as np
 
 from ground_contact import area_normalization_distance, detect_blue_ground_contact
+from camera_capture_properties import read_capture_properties
 from collision_risk import (
     CollisionRiskHysteresis,
     assess_path_collision,
@@ -650,6 +651,7 @@ class CalibrationWindow(QWidget):
             "blue_ground_contact_min_area": 300,
             "blue_ground_contact_fraction": 0.08,
             "blue_ground_contact_hsv_v_min": 30,
+            "blue_ground_contact_illumination_mode": "none",
             "blue_ground_contact_x_scale": 0.607688741902197,
             "blue_ground_contact_x_offset_m": 0.022595727915692983,
             "blue_ground_contact_z_offset_m": 0.0,
@@ -741,6 +743,7 @@ class CalibrationWindow(QWidget):
             "blue_ground_contact_min_area": 300,
             "blue_ground_contact_fraction": 0.08,
             "blue_ground_contact_hsv_v_min": 30,
+            "blue_ground_contact_illumination_mode": "none",
             "blue_ground_contact_x_scale": 0.607688741902197,
             "blue_ground_contact_x_offset_m": 0.022595727915692983,
             "blue_ground_contact_z_offset_m": 0.0,
@@ -1301,6 +1304,9 @@ class CalibrationWindow(QWidget):
                 "requested_camera_height": self.args.cam_height,
                 "time_base": "time.monotonic",
                 "parameters": self.params,
+                "camera_capture_properties": getattr(
+                    self, "camera_capture_properties", {}
+                ),
             }
             with open(os.path.join(session_dir, "metadata.json"), "w") as f:
                 json.dump(metadata, f, indent=4)
@@ -1777,6 +1783,12 @@ class CalibrationWindow(QWidget):
         if not self.cap.isOpened():
             print(f"[ERROR] Failed to open capture device/file: {self.args.device}")
             sys.exit(1)
+
+        self.camera_capture_properties = read_capture_properties(self.cap)
+        print(
+            "[INFO] Camera capture properties: "
+            f"{self.camera_capture_properties}"
+        )
 
         # Trigger timer (24 fps -> ~41 ms interval)
         self.timer.start(41)

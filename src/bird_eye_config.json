@@ -30,6 +30,7 @@
     "blue_ground_contact_min_area": 300,
     "blue_ground_contact_fraction": 0.08,
     "blue_ground_contact_hsv_v_min": 30,
+    "blue_ground_contact_illumination_mode": "none",
     "blue_ground_contact_x_scale": 0.607688741902197,
     "blue_ground_contact_x_offset_m": 0.022595727915692983,
     "blue_ground_contact_z_offset_m": 0.0,
