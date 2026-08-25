@@ -1,0 +1,2 @@
+normalized_area_threshold,live_sessions,live_min_area_acceptance_rate,occlusion_sessions,stable_inlier_min_acceptance_rate,outlier_min_rejection_rate,max_abs_vz_mps,occlusion_events,events_track_expired,events_reacquired,decision
+2000.0,7,0.005128205128205128,3,0.0,0.9774774774774775,0.2682845890522003,6,6,4,FAIL

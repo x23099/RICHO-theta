@@ -1,0 +1,12 @@
+experiment_label,session_dir,frames,duration_sec,effective_fps,detection_rate,measurement_acceptance_rate,track_rate,odom_available_rate,moving_frames,direction_correct_rate,relative_speed_mae_mps,ttc_active_rate,ttc_active_rate_while_approaching,minimum_ttc_sec,ttc_vs_odom_mae_sec,path_corridor_rate,warning_or_critical_rate,warning_hold_rate,unknown_rate,critical_rate,warning_or_critical_frames,critical_frames
+hakonasi,/tmp/ricoh_08251330_analysis/hakonasi_20260825_131458_522,853,34.066917000000004,25.009600956846196,1.0,0.0,0.0,0.0,0,nan,nan,0.0,nan,nan,nan,nan,0.0,0.0,0.0,0.0,0,0
+x-0.4mz1.0m_1,/tmp/ricoh_08251330_analysis/x-0.4mz1.0m_1_20260825_132457_315,590,23.552304,25.00816905216577,1.0,0.0,0.0,0.0,0,nan,nan,0.0,nan,nan,nan,nan,0.0,0.0,0.0,0.0,0,0
+x-0.4mz1.0m_2,/tmp/ricoh_08251330_analysis/x-0.4mz1.0m_2_20260825_132526_688,628,25.113325,24.966825380549967,1.0,0.0,0.0,0.0,0,nan,nan,0.0,nan,nan,nan,nan,0.0,0.0,0.0,0.0,0,0
+x-0.4mz1.0m_3,/tmp/ricoh_08251330_analysis/x-0.4mz1.0m_3_20260825_132558_373,585,23.828640999999998,24.50832172930047,1.0,0.0,0.0,0.0,0,nan,nan,0.0,nan,nan,nan,nan,0.0,0.0,0.0,0.0,0,0
+x0.0mz0.8m_syahei,/tmp/ricoh_08251330_analysis/x0.0mz0.8m_syahei_20260825_132109_556,767,30.634729999999998,25.004300674430624,1.0,0.0,0.0,0.0,0,nan,nan,0.0,nan,nan,nan,nan,0.0,0.0,0.0,0.0,0,0
+x0.0mz1.0m,/tmp/ricoh_08251330_analysis/x0.0mz1.0m_20260825_131915_200,530,21.158272,25.002041754638565,1.0,1.0,1.0,0.0,0,nan,nan,0.0,nan,nan,nan,0.0,0.0,0.0,0.0,0.0,0,0
+x0.0mz1.0m_syahei,/tmp/ricoh_08251330_analysis/x0.0mz1.0m_syahei_20260825_132000_690,655,26.152241,25.00741714639292,1.0,0.6106870229007634,0.6305343511450382,0.0,0,nan,nan,0.0,nan,nan,nan,0.0,0.0,0.0,0.0,0.0,0,0
+x0.0mz1.3m_syahei,/tmp/ricoh_08251330_analysis/x0.0mz1.3m_syahei_20260825_132301_275,657,26.239879000000002,25.000115282543792,0.8249619482496194,0.7638376383763837,0.649923896499239,0.0,0,nan,nan,0.0,nan,nan,nan,0.0,0.0,0.0,0.0,0.0,0,0
+x0.4mz1.0m_1,/tmp/ricoh_08251330_analysis/x0.4mz1.0m_1_20260825_132647_844,587,23.473821,24.96398008658241,1.0,0.0,0.0,0.0,0,nan,nan,0.0,nan,nan,nan,nan,0.0,0.0,0.0,0.0,0,0
+x0.4mz1.0m_2,/tmp/ricoh_08251330_analysis/x0.4mz1.0m_2_20260825_132716_503,556,22.298189999999998,24.889912589317788,1.0,0.0,0.0,0.0,0,nan,nan,0.0,nan,nan,nan,nan,0.0,0.0,0.0,0.0,0,0
+x0.4mz1.0m_3,/tmp/ricoh_08251330_analysis/x0.4mz1.0m_3_20260825_132744_034,573,23.10234,24.759396667177434,1.0,0.0,0.0,0.0,0,nan,nan,0.0,nan,nan,nan,nan,0.0,0.0,0.0,0.0,0,0

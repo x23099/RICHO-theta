@@ -1,0 +1,8 @@
+experiment_label,condition,frames,detected_frames,detection_rate,finite_normalized_area_frames,normalized_area_2000_pass_frames,normalized_area_2000_pass_rate,decision
+x0.0mz1.0m,center_x0p00_z1p00,530,530,1.0,530,530,1.0,PASS
+x-0.4mz1.0m_1,left_xm0p40_z1p00_r01,590,590,1.0,590,12,0.020338983050847456,FAIL
+x-0.4mz1.0m_2,left_xm0p40_z1p00_r02,628,628,1.0,628,8,0.012738853503184714,FAIL
+x-0.4mz1.0m_3,left_xm0p40_z1p00_r03,585,585,1.0,585,3,0.005128205128205128,FAIL
+x0.4mz1.0m_1,right_xp0p40_z1p00_r01,587,587,1.0,587,587,1.0,PASS
+x0.4mz1.0m_2,right_xp0p40_z1p00_r02,556,556,1.0,556,556,1.0,PASS
+x0.4mz1.0m_3,right_xp0p40_z1p00_r03,573,573,1.0,573,573,1.0,PASS
