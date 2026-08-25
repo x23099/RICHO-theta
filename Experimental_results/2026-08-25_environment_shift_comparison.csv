@@ -1,0 +1,13 @@
+comparison_set,environment,condition,frames,median_x_m,median_z_m,median_area_px,median_bbox_width_px,median_bbox_height_px,median_bbox_fill_ratio,median_contour_solidity,median_source_pixel_x,median_source_pixel_y
+lateral_z1p00,old_position,center,2527,-0.0204464708,0.99166289,3234.5,59,72,0.750347222,0.875712498,312,435
+lateral_z1p00,old_position,left,529,-0.31667244,0.964648808,2263.5,48,68,0.696231618,0.912015889,238,432
+lateral_z1p00,old_position,right,559,0.32708136,1.05289999,2468,44,70,0.806006494,0.950984176,395.5,422.5
+lateral_z1p00,new_position,center,530,0.00449586617,0.940695093,3398.5,72,70,0.679124748,0.857655728,318.5,439
+lateral_z1p00,new_position,left,1803,-0.295433562,0.936483153,2190.5,48,66,0.694286616,0.899936535,241.5,435
+lateral_z1p00,new_position,right,1716,0.337408517,1.01591048,2128.75,40,65,0.817307692,0.938202967,399.5,424
+center_distance,old_position,z0p80,161,-0.027482,0.773216,5289,95,86,0.650297,0.850441,308,455
+center_distance,old_position,z1p00,169,-0.0446561,0.979049,3721.5,62,75,0.799892,0.938626,305.5,436
+center_distance,old_position,z1p30,173,-0.0143848,1.31518,2382,53,59,0.76591,0.917344,315,415
+center_distance,new_position,z0p80_visible,555,0.0733928,0.788309,2300.5,77,80,0.373294,0.498955,340,452.5
+center_distance,new_position,z1p00_visible,396,0.0126689,0.941372,3233.5,68,70,0.66485,0.840011,320.75,439
+center_distance,new_position,z1p30_visible,383,0.0409576,1.20872,2229,55,58,0.681034,0.875615,327,420

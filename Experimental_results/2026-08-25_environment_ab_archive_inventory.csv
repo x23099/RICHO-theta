@@ -1,0 +1,2 @@
+archive_filename,archive_path,size_bytes,sha256,tar_xz_status,archive_members,recording_sessions,metadata_sessions,detections_sessions,raw_video_sessions,complete_core_sessions,session_names,error
+08251420.tar.xz,/home/robo25/Downloads/recoding/08251420.tar.xz,123623400,b69c60153f5b233ae4e438ff5c647bb1c814f1ba6a1d12f15608ebfbe4cda224,PASS,24,4,4,4,4,4,x-0.4mz1.0m_4_20260825_141800_161;x0.0mz0.8m_4_20260825_141625_493;x0.0mz0.8m_4_kyuubasyo_20260825_141945_844;x0.4mz1.0m_4_20260825_141730_883,
