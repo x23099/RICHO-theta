@@ -36,6 +36,22 @@ class CapturePropertiesTest(unittest.TestCase):
         self.assertEqual(properties["exposure"], -6.0)
         self.assertIn("auto_exposure=3.0", exposure_summary(properties))
 
+    def test_reports_all_minus_one_controls_as_unavailable(self):
+        summary = exposure_summary(
+            {
+                "backend": "V4L2",
+                "auto_exposure": -1.0,
+                "exposure": -1.0,
+                "gain": -1.0,
+                "auto_white_balance": -1.0,
+                "white_balance_temperature": -1.0,
+            }
+        )
+        self.assertEqual(
+            summary,
+            "backend=V4L2, exposure controls unavailable via OpenCV (-1)",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -57,14 +57,22 @@ def read_capture_properties(capture):
 
 
 def exposure_summary(properties):
-    fields = (
-        "backend",
+    control_fields = (
         "auto_exposure",
         "exposure",
         "gain",
         "auto_white_balance",
         "white_balance_temperature",
     )
+    control_values = [
+        properties[field]
+        for field in control_fields
+        if field in properties and properties[field] != ""
+    ]
+    if control_values and all(value == -1.0 for value in control_values):
+        backend = properties.get("backend", "unknown")
+        return f"backend={backend}, exposure controls unavailable via OpenCV (-1)"
+    fields = ("backend", *control_fields)
     return ", ".join(
         f"{field}={properties[field]}"
         for field in fields

@@ -231,7 +231,7 @@ def check_unit_tests():
     )
 
 
-def check_camera(device, width, height, frame_count):
+def check_camera(device, width, height, frame_count, requested_fps=24.0):
     import cv2
 
     capture_device = int(device) if str(device).isdigit() else str(device)
@@ -240,8 +240,10 @@ def check_camera(device, width, height, frame_count):
     try:
         if not capture.isOpened():
             return CheckResult("Camera", "FAIL", f"cannot open {device}")
+        capture.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*"MJPG"))
         capture.set(cv2.CAP_PROP_FRAME_WIDTH, width)
         capture.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
+        capture.set(cv2.CAP_PROP_FPS, requested_fps)
         valid = 0
         shape = None
         started = time.monotonic()
@@ -261,7 +263,9 @@ def check_camera(device, width, height, frame_count):
     return CheckResult(
         "Camera",
         "PASS",
-        f"{valid} frames, shape={shape}, read rate={valid / elapsed:.1f} fps; "
+        f"{valid} frames, shape={shape}, read rate={valid / elapsed:.1f} fps, "
+        f"requested={requested_fps:.1f} fps, "
+        f"reported={capture_properties.get('fps', math.nan):.1f} fps; "
         f"{exposure_summary(capture_properties)}",
     )
 
@@ -313,6 +317,7 @@ def main():
     parser.add_argument("--camera-device", default="")
     parser.add_argument("--camera-width", type=int, default=1280)
     parser.add_argument("--camera-height", type=int, default=720)
+    parser.add_argument("--camera-fps", type=float, default=24.0)
     parser.add_argument("--camera-frames", type=int, default=10)
     parser.add_argument("--odom-topic", default="")
     parser.add_argument("--odom-timeout-sec", type=float, default=3.0)
@@ -337,6 +342,7 @@ def main():
                 args.camera_width,
                 args.camera_height,
                 args.camera_frames,
+                args.camera_fps,
             )
         )
     else:
