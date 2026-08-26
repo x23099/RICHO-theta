@@ -1,0 +1,2 @@
+archive,path,size_bytes,sha256,xz_test,session_count,metadata_count,detections_csv_count,raw_video_count,bev_video_count,detection_video_count,decision
+202608261410.tar.xz,/home/robo25/Downloads/recoding/202608261410.tar.xz,362242620,f4e5346d41da819422d9539c97e216a7a4de8a0b12fc82b6aecfb1e1cd438fab,PASS,6,6,6,6,6,6,PASS
