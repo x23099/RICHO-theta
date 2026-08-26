@@ -26,6 +26,11 @@ import numpy as np
 
 from ground_contact import area_normalization_distance, detect_blue_ground_contact
 from camera_capture_properties import read_capture_properties
+from frame_timing import (
+    PROCESSING_TIMING_FIELDS,
+    elapsed_ms,
+    format_processing_timings,
+)
 from collision_risk import (
     CollisionRiskHysteresis,
     assess_path_collision,
@@ -45,6 +50,29 @@ from PySide6.QtWidgets import (
     QHBoxLayout, QPushButton, QGroupBox, QFormLayout, QFileDialog, QCheckBox,
     QDoubleSpinBox, QSpinBox, QComboBox, QLineEdit, QScrollArea, QSizePolicy
 )
+
+
+BASE_RECORDING_CSV_FIELDS = (
+    "frame", "time_sec", "detected", "pixel_x", "pixel_y",
+    "raw_x_m", "raw_z_m", "raw_distance_m",
+    "x_m", "z_m", "distance_m", "calibration_valid",
+    "region", "instant_region", "area_px",
+    "track_available", "track_predicted",
+    "filtered_x_m", "filtered_z_m", "filtered_distance_m",
+    "relative_vx_mps", "relative_vz_mps", "missing_age_sec",
+    "monotonic_time_sec", "measurement_accepted",
+    "rejection_reason", "normalization_distance_m",
+    "normalized_area", "observation_nis",
+    "smoothed_vz_mps", "ttc_sec",
+    "odom_available", "odom_linear_mps", "odom_angular_radps",
+    "cmd_linear_mps", "cmd_angular_radps",
+    "prediction_motion_source", "path_in_collision_corridor",
+    "path_distance_to_center_m", "path_clearance_m",
+    "path_distance_m", "path_eta_sec", "collision_risk_level",
+    "collision_raw_risk_level", "collision_state_reason",
+    "collision_hold_age_sec", "collision_measurement_valid",
+)
+RECORDING_CSV_FIELDS = BASE_RECORDING_CSV_FIELDS + PROCESSING_TIMING_FIELDS
 
 try:
     import torch
@@ -595,6 +623,8 @@ class CalibrationWindow(QWidget):
         self.recording_csv_file = None
         self.recording_csv_writer = None
         self.recording_start_monotonic = None
+        self.current_frame_timing = {}
+        self.frame_processing_started_perf = None
         self.yolo_model_obj = None
         self.yolo_load_attempted = False
         self.last_blue_detection = None
@@ -1304,6 +1334,9 @@ class CalibrationWindow(QWidget):
                 "requested_camera_height": self.args.cam_height,
                 "requested_camera_fps": self.args.camera_fps,
                 "time_base": "time.monotonic",
+                "processing_timing_clock": "time.perf_counter",
+                "processing_timing_total_endpoint": "before detections.csv write",
+                "processing_timing_fields": list(PROCESSING_TIMING_FIELDS),
                 "parameters": self.params,
                 "camera_capture_properties": getattr(
                     self, "camera_capture_properties", {}
@@ -1315,26 +1348,7 @@ class CalibrationWindow(QWidget):
                 os.path.join(session_dir, "detections.csv"), "w", newline=""
             )
             self.recording_csv_writer = csv.writer(self.recording_csv_file)
-            self.recording_csv_writer.writerow([
-                "frame", "time_sec", "detected", "pixel_x", "pixel_y",
-                "raw_x_m", "raw_z_m", "raw_distance_m",
-                "x_m", "z_m", "distance_m", "calibration_valid",
-                "region", "instant_region", "area_px",
-                "track_available", "track_predicted",
-                "filtered_x_m", "filtered_z_m", "filtered_distance_m",
-                "relative_vx_mps", "relative_vz_mps", "missing_age_sec",
-                "monotonic_time_sec", "measurement_accepted",
-                "rejection_reason", "normalization_distance_m",
-                "normalized_area", "observation_nis",
-                "smoothed_vz_mps", "ttc_sec",
-                "odom_available", "odom_linear_mps", "odom_angular_radps",
-                "cmd_linear_mps", "cmd_angular_radps",
-                "prediction_motion_source", "path_in_collision_corridor",
-                "path_distance_to_center_m", "path_clearance_m",
-                "path_distance_m", "path_eta_sec", "collision_risk_level",
-                "collision_raw_risk_level", "collision_state_reason",
-                "collision_hold_age_sec", "collision_measurement_valid"
-            ])
+            self.recording_csv_writer.writerow(RECORDING_CSV_FIELDS)
         except Exception as e:
             print(f"[ERROR] Failed to prepare recording directory: {e}")
             self.record_status_label.setText("Recording error")
@@ -1392,9 +1406,17 @@ class CalibrationWindow(QWidget):
             self.record_status_label.setStyleSheet("color: #ff5252;")
             return
 
+        video_write_started = time.perf_counter()
         self.recording_writers["raw"].write(raw_frame)
         self.recording_writers["bev"].write(bev_frame)
         self.recording_writers["detection"].write(detection_frame)
+        self.current_frame_timing["processing_video_write_ms"] = elapsed_ms(
+            video_write_started
+        )
+        if self.frame_processing_started_perf is not None:
+            self.current_frame_timing[
+                "processing_total_before_csv_ms"
+            ] = elapsed_ms(self.frame_processing_started_perf)
         self.recording_frame_count += 1
 
         fps = float(self.cap.get(cv2.CAP_PROP_FPS)) if self.cap is not None else 0.0
@@ -1525,7 +1547,7 @@ class CalibrationWindow(QWidget):
                     and self.last_blue_collision.get("measurement_valid", False)
                     else 0
                 ),
-            ])
+            ] + format_processing_timings(self.current_frame_timing))
         elapsed_seconds = int(recording_elapsed_sec)
         self.record_status_label.setText(
             f"REC {elapsed_seconds // 60:02d}:{elapsed_seconds % 60:02d}"
@@ -1829,8 +1851,18 @@ class CalibrationWindow(QWidget):
         return now - self.last_odom_time <= self.prediction_odom_timeout
 
     def update_frame(self):
+        self.frame_processing_started_perf = time.perf_counter()
+        self.current_frame_timing = {}
+        stage_started = time.perf_counter()
         self.poll_odometry()
+        self.current_frame_timing["processing_odom_poll_ms"] = elapsed_ms(
+            stage_started
+        )
+        stage_started = time.perf_counter()
         ret, frame = self.cap.read()
+        self.current_frame_timing["processing_capture_read_ms"] = elapsed_ms(
+            stage_started
+        )
         if not ret:
             # Loop for video files
             if not self.args.mock_camera and not str(self.args.device).isdigit():
@@ -1839,6 +1871,7 @@ class CalibrationWindow(QWidget):
             print("[WARN] Failed to read frame")
             return
 
+        stage_started = time.perf_counter()
         in_h, in_w = frame.shape[:2]
 
         # Recompute projection map if dirty
@@ -1876,8 +1909,12 @@ class CalibrationWindow(QWidget):
             borderValue=(0, 0, 0)
         )
         lane_mask_visual = self.process_white_lane_detection(bev_img)
+        self.current_frame_timing["processing_bev_preprocess_ms"] = elapsed_ms(
+            stage_started
+        )
 
         # Detect the blue evaluation target before drawing vehicle/UI overlays.
+        stage_started = time.perf_counter()
         self.last_blue_detection = None
         self.last_blue_processing_timestamp = time.monotonic()
         self.last_blue_gate_diagnostics = {}
@@ -2213,13 +2250,21 @@ class CalibrationWindow(QWidget):
             self.last_blue_track = None
             self.blue_range_hysteresis.reset()
             self.blue_side_hysteresis.reset()
+        self.current_frame_timing["processing_blue_pipeline_ms"] = elapsed_ms(
+            stage_started
+        )
 
         # Process AI Perception (YOLOv8 Object Detection & 3D Box Rendering)
+        stage_started = time.perf_counter()
         if self.params.get("enable_ai", 0) == 1:
             self.process_ai_perception(bev_img)
             self.process_ai_perception(lane_mask_visual)
+        self.current_frame_timing["processing_ai_perception_ms"] = elapsed_ms(
+            stage_started
+        )
 
         # Draw overlays on BEV
+        stage_started = time.perf_counter()
         self.draw_bev_overlays(bev_img)
         self.draw_blue_obstacle_detection(
             bev_img, self.last_blue_detection, self.last_blue_track
@@ -2227,13 +2272,22 @@ class CalibrationWindow(QWidget):
         self.draw_blue_obstacle_detection(
             lane_mask_visual, self.last_blue_detection, self.last_blue_track
         )
-
-        # Save the camera input and both processed views for later evaluation.
-        self.record_frames(frame, bev_img, lane_mask_visual)
+        self.current_frame_timing["processing_overlay_render_ms"] = elapsed_ms(
+            stage_started
+        )
 
         # Display images to UI
+        stage_started = time.perf_counter()
         self.display_image(self.bev_label, bev_img)
         self.display_image(self.lane_mask_label, lane_mask_visual)
+        self.current_frame_timing["processing_display_ms"] = elapsed_ms(
+            stage_started
+        )
+
+        # Save the camera input and both processed views for later evaluation.
+        # Recording happens last so the same row can contain display and video
+        # write timings for this frame.
+        self.record_frames(frame, bev_img, lane_mask_visual)
 
     @staticmethod
     def draw_blue_obstacle_detection(img, detection, track=None):

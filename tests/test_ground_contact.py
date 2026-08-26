@@ -12,6 +12,7 @@ from evaluate_ground_contact import (
 from ground_contact import (
     blue_hsv_mask,
     blue_preprocessed_hsv,
+    detect_blue_ground_contact,
     dual_fisheye_pixels_to_vehicle_rays,
 )
 
@@ -78,6 +79,44 @@ def project_vehicle_ray_to_front_pixel(ray, width=1920, height=960):
 
 
 class GroundContactGeometryTest(unittest.TestCase):
+    @staticmethod
+    def _blue_rectangle_frame(top_left, bottom_right):
+        frame = np.zeros((720, 1280, 3), dtype=np.uint8)
+        cv2.rectangle(frame, top_left, bottom_right, (255, 0, 0), -1)
+        return frame
+
+    def test_optional_aspect_filter_rejects_horizontal_floor_candidate(self):
+        parameters = {
+            "camera_height": 0.58,
+            "pitch_deg": 0.0,
+            "roll_deg": 0.0,
+            "yaw_deg": 0.0,
+            "radius_scale": 0.96,
+            "blue_ground_contact_max_aspect_ratio": 1.5,
+        }
+        horizontal = self._blue_rectangle_frame((350, 440), (450, 460))
+        vertical = self._blue_rectangle_frame((380, 400), (420, 480))
+
+        rejected, _ = detect_blue_ground_contact(horizontal, parameters)
+        accepted, _ = detect_blue_ground_contact(vertical, parameters)
+
+        self.assertIsNone(rejected)
+        self.assertIsNotNone(accepted)
+
+    def test_missing_aspect_filter_preserves_previous_detector_behavior(self):
+        parameters = {
+            "camera_height": 0.58,
+            "pitch_deg": 0.0,
+            "roll_deg": 0.0,
+            "yaw_deg": 0.0,
+            "radius_scale": 0.96,
+        }
+        horizontal = self._blue_rectangle_frame((350, 440), (450, 460))
+
+        detection, _ = detect_blue_ground_contact(horizontal, parameters)
+
+        self.assertIsNotNone(detection)
+
     def test_blue_hsv_value_threshold_is_configurable(self):
         hsv = np.array([[[110, 200, 25], [110, 200, 35]]], dtype=np.uint8)
         frame = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)

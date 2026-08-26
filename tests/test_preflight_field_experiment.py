@@ -26,6 +26,7 @@ class FieldExperimentPreflightTest(unittest.TestCase):
         self.assertIn("nis_max=9.21", result.detail)
         self.assertIn("confirm_frames=2", result.detail)
         self.assertIn("hsv_v_min=30", result.detail)
+        self.assertIn("max_aspect=1.5", result.detail)
         self.assertIn("illumination=none", result.detail)
 
     def test_accepts_blue_baseline_configuration(self):
@@ -114,6 +115,7 @@ class FieldExperimentPreflightTest(unittest.TestCase):
             "blue_collision_forward_motion_threshold_mps": 0.03,
             "blue_observation_area_distance_mode": "unknown",
             "blue_ground_contact_hsv_v_min": 300,
+            "blue_ground_contact_max_aspect_ratio": 0,
             "blue_ground_contact_illumination_mode": "unknown",
         }
 
@@ -121,6 +123,7 @@ class FieldExperimentPreflightTest(unittest.TestCase):
 
         self.assertTrue(any("area_distance_mode" in item for item in errors))
         self.assertTrue(any("hsv_v_min" in item for item in errors))
+        self.assertTrue(any("max_aspect_ratio" in item for item in errors))
         self.assertTrue(any("illumination_mode" in item for item in errors))
 
 

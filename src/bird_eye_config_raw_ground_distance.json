@@ -29,6 +29,7 @@
     "blue_position_method": "ground_contact",
     "blue_ground_contact_min_area": 300,
     "blue_ground_contact_fraction": 0.08,
+    "blue_ground_contact_max_aspect_ratio": 1.5,
     "blue_ground_contact_hsv_v_min": 30,
     "blue_ground_contact_illumination_mode": "none",
     "blue_ground_contact_x_scale": 0.607688741902197,

@@ -11,6 +11,8 @@ from pathlib import Path
 
 import numpy as np
 
+from frame_timing import PROCESSING_TIMING_FIELDS
+
 
 OUTPUT_FIELDS = [
     "experiment_label",
@@ -31,7 +33,31 @@ OUTPUT_FIELDS = [
     "raw_kib_per_frame",
     "bev_kib_per_frame",
     "detection_kib_per_frame",
+    "odom_poll_median_ms",
+    "capture_read_median_ms",
+    "bev_preprocess_median_ms",
+    "blue_pipeline_median_ms",
+    "ai_perception_median_ms",
+    "overlay_render_median_ms",
+    "display_median_ms",
+    "video_write_median_ms",
+    "processing_total_median_ms",
+    "processing_over_budget_rate",
 ]
+
+
+TIMING_SUMMARY_FIELDS = {
+    "processing_odom_poll_ms": "odom_poll_median_ms",
+    "processing_capture_read_ms": "capture_read_median_ms",
+    "processing_bev_preprocess_ms": "bev_preprocess_median_ms",
+    "processing_blue_pipeline_ms": "blue_pipeline_median_ms",
+    "processing_ai_perception_ms": "ai_perception_median_ms",
+    "processing_overlay_render_ms": "overlay_render_median_ms",
+    "processing_display_ms": "display_median_ms",
+    "processing_video_write_ms": "video_write_median_ms",
+    "processing_total_before_csv_ms": "processing_total_median_ms",
+}
+assert set(TIMING_SUMMARY_FIELDS) == set(PROCESSING_TIMING_FIELDS)
 
 
 def _timestamps(rows):
@@ -61,6 +87,33 @@ def summarize_rows(label, source, metadata, rows, video_sizes=None):
     def kib_per_frame(name):
         return sizes.get(name, math.nan) / len(rows) / 1024.0
 
+    timing_summary = {}
+    for source_field, output_field in TIMING_SUMMARY_FIELDS.items():
+        values = []
+        for row in rows:
+            try:
+                value = float(row.get(source_field, ""))
+            except (TypeError, ValueError):
+                continue
+            if math.isfinite(value):
+                values.append(value)
+        timing_summary[output_field] = (
+            float(np.median(values)) if values else math.nan
+        )
+    total_values = []
+    for row in rows:
+        try:
+            value = float(row.get("processing_total_before_csv_ms", ""))
+        except (TypeError, ValueError):
+            continue
+        if math.isfinite(value):
+            total_values.append(value)
+    over_budget_rate = (
+        float(np.mean(np.asarray(total_values) > 1000.0 / requested))
+        if total_values and requested > 0.0
+        else math.nan
+    )
+
     return {
         "experiment_label": metadata.get("experiment_label", label),
         "session_dir": source,
@@ -80,6 +133,8 @@ def summarize_rows(label, source, metadata, rows, video_sizes=None):
         "raw_kib_per_frame": kib_per_frame("raw"),
         "bev_kib_per_frame": kib_per_frame("bev"),
         "detection_kib_per_frame": kib_per_frame("detection"),
+        **timing_summary,
+        "processing_over_budget_rate": over_budget_rate,
     }
 
 

@@ -238,6 +238,18 @@ def detect_blue_ground_contact(
     center_x, center_y, radius, _ = _lens_geometry(
         width, height, parameters, "front", front_lens
     )
+    configured_max_aspect = parameters.get(
+        "blue_ground_contact_max_aspect_ratio"
+    )
+    max_aspect_ratio = (
+        math.inf
+        if configured_max_aspect is None
+        else float(configured_max_aspect)
+    )
+    if configured_max_aspect is not None and (
+        not math.isfinite(max_aspect_ratio) or max_aspect_ratio <= 0.0
+    ):
+        raise ValueError("blue_ground_contact_max_aspect_ratio must be positive")
     contours, _ = cv2.findContours(
         mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE
     )
@@ -247,6 +259,8 @@ def detect_blue_ground_contact(
         if area < float(min_area_px):
             continue
         x, y, box_width, box_height = cv2.boundingRect(contour)
+        if box_width / max(box_height, 1) > max_aspect_ratio:
+            continue
         box_center_x = x + box_width / 2.0
         box_center_y = y + box_height / 2.0
         # The evaluation target stands on the floor in the lower part of the

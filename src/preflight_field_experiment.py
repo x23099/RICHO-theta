@@ -110,6 +110,14 @@ def validate_experiment_config(config):
         or not 0 <= hsv_v_min <= 255
     ):
         errors.append("blue_ground_contact_hsv_v_min must be an integer from 0 to 255")
+    max_aspect_ratio = config.get("blue_ground_contact_max_aspect_ratio")
+    if max_aspect_ratio is not None and (
+        not isinstance(max_aspect_ratio, (int, float))
+        or isinstance(max_aspect_ratio, bool)
+        or not math.isfinite(max_aspect_ratio)
+        or max_aspect_ratio <= 0.0
+    ):
+        errors.append("blue_ground_contact_max_aspect_ratio must be positive")
     illumination_mode = config.get(
         "blue_ground_contact_illumination_mode", "none"
     )
@@ -160,6 +168,7 @@ def check_config(config_path):
         f"nis_max={float(config['blue_observation_nis_max']):g}, "
         f"confirm_frames={config.get('blue_observation_confirmation_frames', 1)}, "
         f"hsv_v_min={config.get('blue_ground_contact_hsv_v_min', 30)}, "
+        f"max_aspect={config.get('blue_ground_contact_max_aspect_ratio', 'off')}, "
         f"illumination={config.get('blue_ground_contact_illumination_mode', 'none')}",
     )
 

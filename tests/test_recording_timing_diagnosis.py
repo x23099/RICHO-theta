@@ -12,8 +12,16 @@ from diagnose_recording_timing import summarize_rows  # noqa: E402
 class RecordingTimingDiagnosisTest(unittest.TestCase):
     def test_summarizes_monotonic_intervals_and_video_sizes(self):
         rows = [
-            {"monotonic_time_sec": value, "time_sec": "bad"}
-            for value in ("0.0", "0.033", "0.066", "0.105")
+            {
+                "monotonic_time_sec": value,
+                "time_sec": "bad",
+                "processing_capture_read_ms": "2.0",
+                "processing_total_before_csv_ms": total,
+            }
+            for value, total in zip(
+                ("0.0", "0.033", "0.066", "0.105"),
+                ("30", "32", "34", "36"),
+            )
         ]
         summary = summarize_rows(
             "trial",
@@ -28,6 +36,9 @@ class RecordingTimingDiagnosisTest(unittest.TestCase):
         self.assertEqual(summary["fps_within_one_percent"], 0)
         self.assertAlmostEqual(summary["raw_kib_per_frame"], 1.0)
         self.assertAlmostEqual(summary["dt_over_40ms_rate"], 0.0)
+        self.assertAlmostEqual(summary["capture_read_median_ms"], 2.0)
+        self.assertAlmostEqual(summary["processing_total_median_ms"], 33.0)
+        self.assertAlmostEqual(summary["processing_over_budget_rate"], 0.5)
 
 
 if __name__ == "__main__":
