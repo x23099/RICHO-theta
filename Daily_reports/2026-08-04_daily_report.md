@@ -183,4 +183,3 @@ python3 src/evaluate_blue_obstacle.py /path/to/recordings \
 - `6fa95af`：青色箱認識と実験結果v1
 - `7cb1cd0`：カメラ高さ・投影設定調整
 - `4cb6bef`：録画メタデータのGit除外設定
-
