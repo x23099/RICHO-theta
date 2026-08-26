@@ -39,6 +39,11 @@ class RecordingTimingDiagnosisTest(unittest.TestCase):
         self.assertAlmostEqual(summary["capture_read_median_ms"], 2.0)
         self.assertAlmostEqual(summary["processing_total_median_ms"], 33.0)
         self.assertAlmostEqual(summary["processing_over_budget_rate"], 0.5)
+        self.assertAlmostEqual(summary["processing_active_median_ms"], 31.0)
+        self.assertAlmostEqual(summary["processing_active_p95_ms"], 33.7)
+        self.assertAlmostEqual(
+            summary["processing_active_over_budget_rate"], 0.25
+        )
 
 
 if __name__ == "__main__":

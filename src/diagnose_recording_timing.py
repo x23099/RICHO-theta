@@ -43,6 +43,9 @@ OUTPUT_FIELDS = [
     "video_write_median_ms",
     "processing_total_median_ms",
     "processing_over_budget_rate",
+    "processing_active_median_ms",
+    "processing_active_p95_ms",
+    "processing_active_over_budget_rate",
 ]
 
 
@@ -113,6 +116,28 @@ def summarize_rows(label, source, metadata, rows, video_sizes=None):
         if total_values and requested > 0.0
         else math.nan
     )
+    active_values = []
+    for row in rows:
+        try:
+            total = float(row.get("processing_total_before_csv_ms", ""))
+            capture_read = float(row.get("processing_capture_read_ms", ""))
+        except (TypeError, ValueError):
+            continue
+        active = total - capture_read
+        if math.isfinite(active) and active >= 0.0:
+            active_values.append(active)
+    active_array = np.asarray(active_values, dtype=float)
+    active_median = (
+        float(np.median(active_array)) if len(active_array) else math.nan
+    )
+    active_p95 = (
+        float(np.quantile(active_array, 0.95)) if len(active_array) else math.nan
+    )
+    active_over_budget_rate = (
+        float(np.mean(active_array > 1000.0 / requested))
+        if len(active_array) and requested > 0.0
+        else math.nan
+    )
 
     return {
         "experiment_label": metadata.get("experiment_label", label),
@@ -135,6 +160,9 @@ def summarize_rows(label, source, metadata, rows, video_sizes=None):
         "detection_kib_per_frame": kib_per_frame("detection"),
         **timing_summary,
         "processing_over_budget_rate": over_budget_rate,
+        "processing_active_median_ms": active_median,
+        "processing_active_p95_ms": active_p95,
+        "processing_active_over_budget_rate": active_over_budget_rate,
     }
 
 

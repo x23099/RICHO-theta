@@ -1,0 +1,2 @@
+archive_filename,archive_path,size_bytes,sha256,tar_xz_status,archive_members,recording_sessions,metadata_sessions,detections_sessions,raw_video_sessions,complete_core_sessions,session_names,error
+202608261630.tar.xz,/home/robo25/Downloads/recoding/202608261630.tar.xz,269751260,f50752c6b82ca5e80d4fa7676bc9a4763f0898749a3af56a27f56000e45c9f08,PASS,24,4,4,4,4,4,hakonasi2_20260826_161833_613;timing_hakonasi_other_floor_20260826_162320_203;timing_x0.0mz1.2m_20260826_162000_354;timing_x0.0mz1.2m_shahei_20260826_162058_939,

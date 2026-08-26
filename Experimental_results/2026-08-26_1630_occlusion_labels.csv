@@ -1,0 +1,10 @@
+session,event,phase,start_frame,end_frame,label_method,notes
+timing_x0.0mz1.2m_shahei_20260826_162058_939,0,visible,0,154,manual_raw_video_review,1回目の遮蔽板進入前
+timing_x0.0mz1.2m_shahei_20260826_162058_939,1,partial_occlusion,155,167,manual_raw_video_review,1回目の遮蔽板進入
+timing_x0.0mz1.2m_shahei_20260826_162058_939,1,fully_occluded,168,304,manual_raw_video_review,青箱が遮蔽板で完全に隠れる
+timing_x0.0mz1.2m_shahei_20260826_162058_939,1,reappearing,305,315,manual_raw_video_review,1回目の遮蔽板退出
+timing_x0.0mz1.2m_shahei_20260826_162058_939,0,visible,316,503,manual_raw_video_review,遮蔽間の安定表示
+timing_x0.0mz1.2m_shahei_20260826_162058_939,2,partial_occlusion,504,522,manual_raw_video_review,2回目の遮蔽板進入
+timing_x0.0mz1.2m_shahei_20260826_162058_939,2,fully_occluded,523,644,manual_raw_video_review,青箱が遮蔽板で完全に隠れる
+timing_x0.0mz1.2m_shahei_20260826_162058_939,2,reappearing,645,660,manual_raw_video_review,2回目の遮蔽板退出
+timing_x0.0mz1.2m_shahei_20260826_162058_939,0,visible,661,834,manual_raw_video_review,2回目の遮蔽板退出後
