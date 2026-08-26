@@ -1,0 +1,3 @@
+experiment_label,source,frames,detected_frames,measurement_accepted_frames,normalized_area_rejection_frames,measurement_acceptance_rate,median_x_m,median_z_m,median_area_px,median_normalized_area,normalized_area_threshold,median_normalized_area_to_threshold
+x-0.3m_z0.9m_2,/home/robo25/Downloads/recoding/202608261700.tar.xz::x-0.3m_z0.9m_2_20260826_165456_775,429,429,429,0,1.0,-0.2689,0.8739,2749.5,2741.7311111290787,2000.0,1.3708655555645393
+x0.3m_z0.9m_2,/home/robo25/Downloads/recoding/202608261700.tar.xz::x0.3m_z0.9m_2_20260826_165527_077,424,424,424,0,1.0,0.233,0.9082,3052.0,2879.9337991833336,2000.0,1.4399668995916668
