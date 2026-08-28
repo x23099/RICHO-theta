@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <style>
+      text { font-family: "Noto Sans CJK JP", "Yu Gothic", sans-serif; fill: #172033; }
+      .title { font-size: 44px; font-weight: 700; }
+      .subtitle { font-size: 24px; fill: #4a5568; }
+      .head { font-size: 27px; font-weight: 700; }
+      .body { font-size: 21px; fill: #39465a; }
+      .light-head { font-size: 27px; font-weight: 700; fill: #ffffff; }
+      .light-body { font-size: 21px; fill: #e8eef7; }
+      .num { font-size: 24px; font-weight: 700; fill: #ffffff; }
+      .arrow { stroke: #6c7a8d; stroke-width: 5; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#6c7a8d"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="#f7f9fc"/>
+  <text x="70" y="76" class="title">処理の流れ：360度映像から障害物位置と衝突可能性を求める</text>
+  <text x="72" y="116" class="subtitle">青箱の接地点を床座標へ変換し、外れ値を除いて時間方向に追跡</text>
+
+  <!-- arrows -->
+  <path d="M350 325 L425 325" class="arrow"/>
+  <path d="M700 325 L775 325" class="arrow"/>
+  <path d="M1050 325 L1125 325" class="arrow"/>
+  <path d="M1263 478 L1263 555" class="arrow"/>
+
+  <!-- card 1 -->
+  <rect x="70" y="190" width="280" height="270" rx="25" fill="#ffffff" stroke="#d6deea" stroke-width="2" filter="url(#shadow)"/>
+  <circle cx="110" cy="230" r="25" fill="#1769d2"/><text x="110" y="239" class="num" text-anchor="middle">1</text>
+  <text x="145" y="240" class="head">360度映像</text>
+  <circle cx="165" cy="315" r="64" fill="#d8eaff" stroke="#1769d2" stroke-width="5"/>
+  <circle cx="255" cy="315" r="64" fill="#d8eaff" stroke="#1769d2" stroke-width="5"/>
+  <path d="M145 335 Q165 285 185 335" stroke="#7db1eb" stroke-width="5" fill="none"/>
+  <path d="M235 335 Q255 285 275 335" stroke="#7db1eb" stroke-width="5" fill="none"/>
+  <text x="210" y="415" class="body" text-anchor="middle">前後2つの魚眼画像</text>
+
+  <!-- card 2 -->
+  <rect x="425" y="190" width="275" height="270" rx="25" fill="#ffffff" stroke="#d6deea" stroke-width="2" filter="url(#shadow)"/>
+  <circle cx="465" cy="230" r="25" fill="#29a36a"/><text x="465" y="239" class="num" text-anchor="middle">2</text>
+  <text x="500" y="240" class="head">青領域・接地点</text>
+  <rect x="475" y="282" width="175" height="92" rx="10" fill="#1769d2"/>
+  <line x1="462" y1="386" x2="663" y2="386" stroke="#29a36a" stroke-width="8"/>
+  <circle cx="563" cy="386" r="12" fill="#ef4444" stroke="#ffffff" stroke-width="4"/>
+  <text x="563" y="425" class="body" text-anchor="middle">床との境界を計測</text>
+
+  <!-- card 3 -->
+  <rect x="775" y="190" width="275" height="270" rx="25" fill="#ffffff" stroke="#d6deea" stroke-width="2" filter="url(#shadow)"/>
+  <circle cx="815" cy="230" r="25" fill="#ef8f22"/><text x="815" y="239" class="num" text-anchor="middle">3</text>
+  <text x="850" y="240" class="head">座標・観測ゲート</text>
+  <line x1="850" y1="390" x2="850" y2="285" stroke="#68778a" stroke-width="4"/>
+  <line x1="820" y1="390" x2="975" y2="390" stroke="#68778a" stroke-width="4"/>
+  <circle cx="915" cy="330" r="17" fill="#1769d2"/>
+  <path d="M875 365 L920 320" stroke="#ef8f22" stroke-width="5" stroke-dasharray="8 6"/>
+  <text x="912" y="420" class="body" text-anchor="middle">x・z・距離へ変換</text>
+
+  <!-- card 4 -->
+  <rect x="1125" y="190" width="275" height="288" rx="25" fill="#ffffff" stroke="#d6deea" stroke-width="2" filter="url(#shadow)"/>
+  <circle cx="1165" cy="230" r="25" fill="#8b5cf6"/><text x="1165" y="239" class="num" text-anchor="middle">4</text>
+  <text x="1200" y="240" class="head">追跡・遮蔽予測</text>
+  <circle cx="1185" cy="337" r="17" fill="#1769d2"/>
+  <circle cx="1262" cy="324" r="17" fill="#1769d2" opacity="0.55"/>
+  <circle cx="1338" cy="302" r="17" fill="#1769d2" opacity="0.25"/>
+  <path d="M1187 337 Q1260 330 1338 302" stroke="#8b5cf6" stroke-width="6" fill="none" stroke-dasharray="10 8"/>
+  <rect x="1244" y="280" width="35" height="100" fill="#2d3748" opacity="0.88"/>
+  <text x="1263" y="422" class="body" text-anchor="middle">カルマンフィルタ</text>
+  <text x="1263" y="450" class="body" text-anchor="middle">短時間の欠測を予測</text>
+
+  <!-- output card -->
+  <rect x="1040" y="555" width="445" height="235" rx="28" fill="#172033" filter="url(#shadow)"/>
+  <circle cx="1090" cy="605" r="25" fill="#ef4444"/><text x="1090" y="614" class="num" text-anchor="middle">5</text>
+  <text x="1130" y="615" class="light-head">衝突候補・TTC</text>
+  <g>
+    <text x="1090" y="675" class="light-body">• 予測経路との重なり</text>
+    <text x="1090" y="715" class="light-body">• 相対速度と衝突予測時間</text>
+    <text x="1090" y="755" class="light-body">• CLEAR / WARNING / CRITICAL</text>
+  </g>
+
+  <!-- recording lane -->
+  <rect x="70" y="555" width="875" height="235" rx="28" fill="#ffffff" stroke="#d6deea" stroke-width="2" filter="url(#shadow)"/>
+  <text x="115" y="612" class="head">実験では各段階を同時記録</text>
+  <g>
+    <rect x="115" y="652" width="150" height="70" rx="15" fill="#dcecff"/><text x="190" y="696" class="body" text-anchor="middle">raw.avi</text>
+    <rect x="290" y="652" width="150" height="70" rx="15" fill="#dff5e9"/><text x="365" y="696" class="body" text-anchor="middle">bev.avi</text>
+    <rect x="465" y="652" width="175" height="70" rx="15" fill="#fff0dd"/><text x="553" y="696" class="body" text-anchor="middle">detection.avi</text>
+    <rect x="665" y="652" width="210" height="70" rx="15" fill="#eee7ff"/><text x="770" y="683" class="body" text-anchor="middle">detections.csv</text><text x="770" y="711" class="body" text-anchor="middle">位置・ODOM・時間</text>
+  </g>
+  <text x="115" y="760" class="body">30 fpsで保存し、録画後も同じフレームを再解析できる</text>
+</svg>
