@@ -1,0 +1,3 @@
+rule_id,experiment_label_glob,min_trials,min_detection_rate,min_measurement_acceptance_rate,min_track_rate,max_warning_or_critical_rate,min_odom_available_rate
+left_static,x-0.3m_z0.9m_2,1,0.99,0.99,0.99,0.0,0.99
+right_static,x0.3m_z0.9m_2,1,0.99,0.99,0.99,0.0,0.99

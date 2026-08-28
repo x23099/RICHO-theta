@@ -1,0 +1,3 @@
+dataset_id,enabled,config_path,labels_path,requirements_path,expected_status,expected_sessions,expected_gate_sessions,expected_gate_pass_sessions,expected_occlusion_events,expected_track_expired_events,expected_reacquired_events,notes
+aspect-timing-20260826-1630,1,src/bird_eye_config_raw_ground_distance.json,Experimental_results/2026-08-26_1630_occlusion_labels.csv,Experimental_results/2026-08-26_1630_regression_requirements.csv,PASS,4,2,2,2,2,2,no-target on two floors; center and two occlusions
+lateral-static-20260826-1700,1,src/bird_eye_config_raw_ground_distance.json,,Experimental_results/2026-08-26_1700_regression_requirements.csv,PASS,2,2,2,0,0,0,left and right static observations
