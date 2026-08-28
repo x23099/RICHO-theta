@@ -93,6 +93,9 @@ class CollisionHysteresisReplayTest(unittest.TestCase):
             self.assertEqual(result["raw_warning_frames"], 3)
             self.assertGreaterEqual(result["warning_hold_frames"], 1)
             self.assertEqual(result["unknown_frames"], 1)
+            self.assertEqual(result["raw_critical_frames"], 0)
+            self.assertEqual(result["filtered_critical_frames"], 0)
+            self.assertAlmostEqual(result["first_raw_warning_ttc_sec"], 3.9)
             self.assertEqual(result["path_while_forward_after_warning_frames"], 0)
 
             archive_path = Path(temporary_dir) / "trial.tar.xz"

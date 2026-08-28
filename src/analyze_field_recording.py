@@ -39,6 +39,11 @@ from evaluate_live_trial_requirements import (
     evaluate_requirements,
     load_requirements,
 )
+from evaluate_dynamic_ttc_conditions import (
+    FIELDS as DYNAMIC_TTC_FIELDS,
+    evaluate_inputs as evaluate_dynamic_ttc_inputs,
+    load_profile as load_dynamic_ttc_profile,
+)
 from evaluate_observation_gates import (
     find_session_directories,
     load_phase_labels,
@@ -68,6 +73,7 @@ ARTIFACT_NAMES = (
     "observation_replay.csv",
     "gate_regression.csv",
     "requirements_results.csv",
+    "dynamic_ttc_results.csv",
     "analysis_report.md",
 )
 INTEGRITY_FIELDS = (
@@ -367,6 +373,7 @@ def automatic_status(
     gate_rows: list[dict],
     selected_gate_mode: str,
     requirement_rows: list[dict] | None,
+    dynamic_ttc_rows: list[dict] | None = None,
 ) -> tuple[str, list[str]]:
     reasons = []
     if not archive_ok:
@@ -386,6 +393,11 @@ def automatic_status(
         row["result"] != "PASS" for row in requirement_rows
     ):
         reasons.append("one or more predefined requirements failed")
+    if dynamic_ttc_rows is not None and (
+        not dynamic_ttc_rows
+        or any(row["decision"] != "PASS" for row in dynamic_ttc_rows)
+    ):
+        reasons.append("one or more fixed dynamic TTC conditions failed")
     if reasons:
         return "FAIL", reasons
     if requirement_rows is None:
@@ -409,6 +421,8 @@ def build_report(
     labels_path: Path | None,
     threshold: float,
     selected_gate_mode: str,
+    dynamic_ttc_rows: list[dict] | None,
+    dynamic_ttc_profile_path: Path | None,
 ) -> str:
     archive_ok = (
         inventory["tar_xz_status"] == "PASS"
@@ -422,6 +436,7 @@ def build_report(
         gate_rows,
         selected_gate_mode,
         requirement_rows,
+        dynamic_ttc_rows,
     )
     lines = [
         "# 録画一括解析レポート",
@@ -437,12 +452,18 @@ def build_report(
         for name in ARTIFACT_NAMES
         if name != "analysis_report.md"
         and (name != "requirements_results.csv" or requirement_rows is not None)
+        and (name != "dynamic_ttc_results.csv" or dynamic_ttc_rows is not None)
     ]
+    if status == "DIAGNOSTIC":
+        lines.extend(
+            [
+                "",
+                "`DIAGNOSTIC`は解析失敗ではない。条件別の事前要件CSVがないため、",
+                "この録画だけから正式な実験PASSを宣言していないことを表す。",
+            ]
+        )
     lines.extend(
         [
-            "",
-            "`DIAGNOSTIC`は解析失敗ではない。条件別の事前要件CSVがないため、",
-            "この録画だけから正式な実験PASSを宣言していないことを表す。",
             "",
             "## 入力と来歴",
             "",
@@ -551,6 +572,29 @@ def build_report(
             detail = f": {row['reasons']}" if row["reasons"] else ""
             lines.append(f"- {row['rule_id']}: **{row['result']}**{detail}")
 
+    lines.extend(["", "## 固定動的TTC条件", ""])
+    if dynamic_ttc_rows is None:
+        lines.append("- 動的TTCプロファイル未指定。")
+    else:
+        lines.extend(
+            [
+                f"- profile: `{dynamic_ttc_profile_path.resolve()}`",
+                "",
+                "| ラベル | 精度区間 | 方向 | 速度MAE | TTC発火 | 警告/保持 | 判定 |",
+                "|---|---:|---:|---:|---:|---:|---|",
+            ]
+        )
+        for row in dynamic_ttc_rows:
+            lines.append(
+                f"| {_markdown(row['experiment_label'])} | "
+                f"{row['accuracy_interval_frames']} | "
+                f"{_pct(row['direction_correct_rate'])} | "
+                f"{_number(row['relative_speed_mae_mps'], 4)} m/s | "
+                f"{_pct(row['ttc_active_rate'])} | "
+                f"{row['filtered_warning_frames']}/{row['warning_hold_frames']} | "
+                f"{row['decision']} |"
+            )
+
     lines.extend(
         [
             "",
@@ -581,6 +625,11 @@ def run_analysis(args: argparse.Namespace) -> str:
     requirements_path = (
         args.requirements.expanduser().resolve() if args.requirements else None
     )
+    dynamic_ttc_profile_path = (
+        args.dynamic_ttc_profile.expanduser().resolve()
+        if getattr(args, "dynamic_ttc_profile", None)
+        else None
+    )
     if not archive_path.is_file():
         raise FileNotFoundError(f"archive does not exist: {archive_path}")
     if not config_path.is_file():
@@ -589,9 +638,13 @@ def run_analysis(args: argparse.Namespace) -> str:
         raise FileNotFoundError(f"labels do not exist: {labels_path}")
     if requirements_path and not requirements_path.is_file():
         raise FileNotFoundError(f"requirements do not exist: {requirements_path}")
+    if dynamic_ttc_profile_path and not dynamic_ttc_profile_path.is_file():
+        raise FileNotFoundError(
+            f"dynamic TTC profile does not exist: {dynamic_ttc_profile_path}"
+        )
 
     paths = ensure_output_paths(args.output_dir.resolve(), args.overwrite)
-    print("[1/8] Inspecting archive...", flush=True)
+    print("[1/9] Inspecting archive...", flush=True)
     inventory = inspect_archive(archive_path)
     write_rows(paths["archive_inventory.csv"], INVENTORY_FIELDS, [inventory])
     if inventory["tar_xz_status"] != "PASS":
@@ -619,24 +672,24 @@ def run_analysis(args: argparse.Namespace) -> str:
 
     with tempfile.TemporaryDirectory(prefix="field-recording-analysis-") as temporary:
         extracted_root = Path(temporary)
-        print("[2/8] Safely extracting archive...", flush=True)
+        print("[2/9] Safely extracting archive...", flush=True)
         safe_extract_archive(archive_path, extracted_root, max_bytes)
 
-        print("[3/8] Checking session integrity...", flush=True)
+        print("[3/9] Checking session integrity...", flush=True)
         integrity_rows = summarize_integrity(extracted_root, source_label)
         write_rows(paths["session_integrity.csv"], INTEGRITY_FIELDS, integrity_rows)
 
-        print("[4/8] Summarizing live data and timing...", flush=True)
+        print("[4/9] Summarizing live data and timing...", flush=True)
         live_rows = summarize_live_inputs([archive_path], args.moving_threshold_mps)
         write_rows(paths["live_summary.csv"], LIVE_FIELDS, live_rows)
         timing_rows = summarize_timing(extracted_root, source_label)
         write_rows(paths["processing_timing.csv"], TIMING_FIELDS, timing_rows)
 
-        print("[5/8] Diagnosing lateral behavior...", flush=True)
+        print("[5/9] Diagnosing lateral behavior...", flush=True)
         lateral_rows = summarize_lateral_inputs([archive_path], threshold)
         write_rows(paths["lateral_summary.csv"], LATERAL_FIELDS, lateral_rows)
 
-        print("[6/8] Recomputing observations from raw video...", flush=True)
+        print("[6/9] Recomputing observations from raw video...", flush=True)
         replay_observations(
             extracted_root,
             config,
@@ -645,7 +698,7 @@ def run_analysis(args: argparse.Namespace) -> str:
             paths["observation_replay.csv"],
         )
 
-    print("[7/8] Replaying observation gates...", flush=True)
+    print("[7/9] Replaying observation gates...", flush=True)
     gate_rows, skipped_gate_sessions = evaluate_gate_rows(
         paths["observation_replay.csv"], config, threshold
     )
@@ -667,7 +720,25 @@ def run_analysis(args: argparse.Namespace) -> str:
     elif paths["requirements_results.csv"].exists():
         paths["requirements_results.csv"].unlink()
 
-    print("[8/8] Writing Markdown report...", flush=True)
+    print("[8/9] Evaluating fixed dynamic TTC conditions...", flush=True)
+    dynamic_ttc_rows = None
+    if dynamic_ttc_profile_path:
+        dynamic_ttc_rows = evaluate_dynamic_ttc_inputs(
+            [archive_path], load_dynamic_ttc_profile(dynamic_ttc_profile_path)
+        )
+        if not dynamic_ttc_rows:
+            raise ValueError(
+                "dynamic TTC profile supplied but no supported session was found"
+            )
+        write_rows(
+            paths["dynamic_ttc_results.csv"],
+            DYNAMIC_TTC_FIELDS,
+            dynamic_ttc_rows,
+        )
+    elif paths["dynamic_ttc_results.csv"].exists():
+        paths["dynamic_ttc_results.csv"].unlink()
+
+    print("[9/9] Writing Markdown report...", flush=True)
     report = build_report(
         archive_path,
         config_path,
@@ -682,6 +753,8 @@ def run_analysis(args: argparse.Namespace) -> str:
         labels_path,
         threshold,
         selected_gate_mode,
+        dynamic_ttc_rows,
+        dynamic_ttc_profile_path,
     )
     paths["analysis_report.md"].write_text(report, encoding="utf-8")
     status_line = next(
@@ -701,6 +774,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     parser.add_argument("--labels", type=Path)
     parser.add_argument("--requirements", type=Path)
+    parser.add_argument("--dynamic-ttc-profile", type=Path)
     parser.add_argument("--threshold", type=float)
     parser.add_argument("--moving-threshold-mps", type=float, default=0.03)
     parser.add_argument("--max-extracted-gb", type=float, default=50.0)

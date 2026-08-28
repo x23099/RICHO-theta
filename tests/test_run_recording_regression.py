@@ -29,6 +29,7 @@ def dataset(**overrides):
         "requirements_path": (
             "Experimental_results/2026-08-26_1700_regression_requirements.csv"
         ),
+        "dynamic_ttc_profile_path": "",
         "expected_status": "PASS",
         "expected_sessions": 2,
         "expected_gate_sessions": 2,
@@ -36,6 +37,8 @@ def dataset(**overrides):
         "expected_occlusion_events": 0,
         "expected_track_expired_events": 0,
         "expected_reacquired_events": 0,
+        "expected_dynamic_sessions": 0,
+        "expected_dynamic_pass_sessions": 0,
         "notes": "test",
     }
     row.update(overrides)
@@ -103,6 +106,8 @@ class RecordingRegressionTest(unittest.TestCase):
                     "actual_gate_pass_sessions": "",
                     "actual_track_expired_events": "",
                     "actual_reacquired_events": "",
+                    "actual_dynamic_sessions": "",
+                    "actual_dynamic_pass_sessions": "",
                     "decision": "SKIP",
                     "reasons": "archive not found",
                 }

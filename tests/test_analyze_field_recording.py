@@ -128,6 +128,20 @@ class FieldRecordingAnalysisTest(unittest.TestCase):
         self.assertEqual(status, "FAIL")
         self.assertIn("raw_ground_distance observation gate failed", reasons)
 
+    def test_dynamic_ttc_failure_produces_fail(self):
+        status, reasons = automatic_status(
+            True,
+            [{"decision": "PASS"}],
+            [{"fps_within_one_percent": 1}],
+            [],
+            "raw_ground_distance",
+            [{"result": "PASS"}],
+            [{"decision": "FAIL"}],
+        )
+
+        self.assertEqual(status, "FAIL")
+        self.assertIn("one or more fixed dynamic TTC conditions failed", reasons)
+
     def test_integrity_requires_all_three_videos(self):
         with tempfile.TemporaryDirectory() as temporary:
             session = Path(temporary) / "trial"

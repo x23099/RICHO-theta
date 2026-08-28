@@ -20,8 +20,14 @@ FIELDS = [
     "filtered_warning_frames",
     "warning_hold_frames",
     "unknown_frames",
+    "raw_critical_frames",
+    "filtered_critical_frames",
     "first_raw_warning_sec",
+    "first_raw_warning_ttc_sec",
+    "first_raw_warning_z_m",
     "first_filtered_warning_sec",
+    "first_filtered_warning_ttc_sec",
+    "first_filtered_warning_z_m",
     "maximum_warning_entry_delay_sec",
     "path_while_forward_after_warning_frames",
     "final_state",
@@ -84,7 +90,11 @@ def replay_rows(session, metadata, rows, overrides=None):
     timestamps = []
     moving_forward_flags = []
     first_raw_warning_sec = None
+    first_raw_warning_ttc_sec = None
+    first_raw_warning_z_m = None
     first_filtered_warning_sec = None
+    first_filtered_warning_ttc_sec = None
+    first_filtered_warning_z_m = None
     warning_entry_delays = []
     pending_raw_warning_sec = None
     warning_seen = False
@@ -129,6 +139,8 @@ def replay_rows(session, metadata, rows, overrides=None):
         if raw_level in {"WARNING", "CRITICAL"}:
             if first_raw_warning_sec is None:
                 first_raw_warning_sec = timestamp
+                first_raw_warning_ttc_sec = ttc_sec
+                first_raw_warning_z_m = _number(row, "filtered_z_m")
             if pending_raw_warning_sec is None:
                 pending_raw_warning_sec = timestamp
         else:
@@ -136,6 +148,8 @@ def replay_rows(session, metadata, rows, overrides=None):
         if output_level in {"WARNING", "CRITICAL"}:
             if first_filtered_warning_sec is None:
                 first_filtered_warning_sec = timestamp
+                first_filtered_warning_ttc_sec = ttc_sec
+                first_filtered_warning_z_m = _number(row, "filtered_z_m")
             if pending_raw_warning_sec is not None:
                 warning_entry_delays.append(timestamp - pending_raw_warning_sec)
                 pending_raw_warning_sec = None
@@ -161,8 +175,16 @@ def replay_rows(session, metadata, rows, overrides=None):
             value == "WARNING_HOLD" for value in output_levels
         ),
         "unknown_frames": sum(value == "UNKNOWN" for value in output_levels),
+        "raw_critical_frames": sum(value == "CRITICAL" for value in raw_levels),
+        "filtered_critical_frames": sum(
+            value == "CRITICAL" for value in output_levels
+        ),
         "first_raw_warning_sec": first_raw_warning_sec,
+        "first_raw_warning_ttc_sec": first_raw_warning_ttc_sec,
+        "first_raw_warning_z_m": first_raw_warning_z_m,
         "first_filtered_warning_sec": first_filtered_warning_sec,
+        "first_filtered_warning_ttc_sec": first_filtered_warning_ttc_sec,
+        "first_filtered_warning_z_m": first_filtered_warning_z_m,
         "maximum_warning_entry_delay_sec": (
             max(warning_entry_delays) if warning_entry_delays else math.nan
         ),

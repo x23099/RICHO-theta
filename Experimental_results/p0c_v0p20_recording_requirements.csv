@@ -1,0 +1,2 @@
+rule_id,experiment_label_glob,min_trials,min_detection_rate,min_track_rate,min_odom_available_rate
+v0p20_approach_recording,approach_center_v0p20*,3,0.98,0.95,0.95

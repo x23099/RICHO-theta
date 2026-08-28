@@ -27,6 +27,7 @@ SUITE_FIELDS = [
     "config_path",
     "labels_path",
     "requirements_path",
+    "dynamic_ttc_profile_path",
     "expected_status",
     "expected_sessions",
     "expected_gate_sessions",
@@ -34,6 +35,8 @@ SUITE_FIELDS = [
     "expected_occlusion_events",
     "expected_track_expired_events",
     "expected_reacquired_events",
+    "expected_dynamic_sessions",
+    "expected_dynamic_pass_sessions",
     "notes",
 ]
 RESULT_FIELDS = [
@@ -54,6 +57,10 @@ RESULT_FIELDS = [
     "actual_track_expired_events",
     "expected_reacquired_events",
     "actual_reacquired_events",
+    "expected_dynamic_sessions",
+    "actual_dynamic_sessions",
+    "expected_dynamic_pass_sessions",
+    "actual_dynamic_pass_sessions",
     "decision",
     "reasons",
     "report_path",
@@ -107,6 +114,8 @@ def load_regression_suite(path: Path) -> list[dict]:
             "expected_occlusion_events",
             "expected_track_expired_events",
             "expected_reacquired_events",
+            "expected_dynamic_sessions",
+            "expected_dynamic_pass_sessions",
         )
         for field in integer_fields:
             try:
@@ -200,6 +209,12 @@ def _base_result(dataset: dict) -> dict:
         "actual_track_expired_events": "",
         "expected_reacquired_events": dataset["expected_reacquired_events"],
         "actual_reacquired_events": "",
+        "expected_dynamic_sessions": dataset["expected_dynamic_sessions"],
+        "actual_dynamic_sessions": "",
+        "expected_dynamic_pass_sessions": dataset[
+            "expected_dynamic_pass_sessions"
+        ],
+        "actual_dynamic_pass_sessions": "",
         "decision": "FAIL",
         "reasons": "",
         "report_path": "",
@@ -254,6 +269,11 @@ def run_dataset(
     requirements_path = resolve_repository_path(
         dataset["requirements_path"], "requirements_path"
     )
+    dynamic_ttc_profile_path = resolve_repository_path(
+        dataset["dynamic_ttc_profile_path"],
+        "dynamic_ttc_profile_path",
+        optional=True,
+    )
     dataset_output = output_dir / dataset["dataset_id"]
     analysis_args = argparse.Namespace(
         input=archive_path,
@@ -261,6 +281,7 @@ def run_dataset(
         config=config_path,
         labels=labels_path,
         requirements=requirements_path,
+        dynamic_ttc_profile=dynamic_ttc_profile_path,
         threshold=None,
         moving_threshold_mps=0.03,
         max_extracted_gb=50.0,
@@ -273,6 +294,11 @@ def run_dataset(
     inventory_rows = _load_csv_rows(dataset_output / "archive_inventory.csv")
     live_rows = _load_csv_rows(dataset_output / "live_summary.csv")
     gate_rows = _load_csv_rows(dataset_output / "gate_regression.csv")
+    dynamic_ttc_rows = (
+        _load_csv_rows(dataset_output / "dynamic_ttc_results.csv")
+        if dynamic_ttc_profile_path
+        else []
+    )
     with config_path.open() as config_file:
         selected_gate_mode = json.load(config_file).get(
             "blue_observation_area_distance_mode", "forward_z"
@@ -296,12 +322,18 @@ def run_dataset(
     actual_reacquired_events = sum(
         int(row["events_reacquired"]) for row in selected_gate_rows
     )
+    actual_dynamic_sessions = len(dynamic_ttc_rows)
+    actual_dynamic_pass_sessions = sum(
+        row["decision"] == "PASS" for row in dynamic_ttc_rows
+    )
     result["actual_sessions"] = actual_sessions
     result["actual_gate_sessions"] = actual_gate_sessions
     result["actual_gate_pass_sessions"] = actual_gate_pass_sessions
     result["actual_occlusion_events"] = actual_occlusion_events
     result["actual_track_expired_events"] = actual_track_expired_events
     result["actual_reacquired_events"] = actual_reacquired_events
+    result["actual_dynamic_sessions"] = actual_dynamic_sessions
+    result["actual_dynamic_pass_sessions"] = actual_dynamic_pass_sessions
     if len(inventory_rows) != 1:
         reasons.append(f"archive inventory rows={len(inventory_rows)} != 1")
     elif inventory_rows[0]["sha256"].lower() != expected_sha256:
@@ -336,6 +368,16 @@ def run_dataset(
             actual_reacquired_events,
             dataset["expected_reacquired_events"],
         ),
+        (
+            "dynamic_sessions",
+            actual_dynamic_sessions,
+            dataset["expected_dynamic_sessions"],
+        ),
+        (
+            "dynamic_pass_sessions",
+            actual_dynamic_pass_sessions,
+            dataset["expected_dynamic_pass_sessions"],
+        ),
     )
     for name, actual, expected in comparisons:
         if actual != expected:
@@ -359,8 +401,8 @@ def build_report(results: list[dict]) -> str:
         f"- FAIL: {len(failed)}",
         f"- SKIP: {len(skipped)}",
         "",
-        "| dataset | SHA-256 | 解析判定 | session | gate PASS | 遮蔽失効/再捕捉 | 回帰 |",
-        "|---|---|---|---:|---:|---:|---|",
+        "| dataset | SHA-256 | 解析判定 | session | gate PASS | 遮蔽失効/再捕捉 | 動的TTC | 回帰 |",
+        "|---|---|---|---:|---:|---:|---:|---|",
     ]
     for row in results:
         sha = "PASS" if str(row["sha256_match"]) == "1" else "―"
@@ -376,10 +418,16 @@ def build_report(results: list[dict]) -> str:
             if row["actual_track_expired_events"] != ""
             else "―"
         )
+        dynamic = (
+            f"{row['actual_dynamic_pass_sessions']}/"
+            f"{row['actual_dynamic_sessions']}"
+            if row["actual_dynamic_sessions"] != ""
+            else "―"
+        )
         lines.append(
             f"| {row['dataset_id']} | {sha} | "
             f"{row['actual_status'] or '―'} | {sessions} | {gate_pass} | "
-            f"{events} | {row['decision']} |"
+            f"{events} | {dynamic} | {row['decision']} |"
         )
     differences = [row for row in results if row["reasons"]]
     if differences:
@@ -465,7 +513,9 @@ def list_suite(args: argparse.Namespace) -> None:
             f"expected={dataset['expected_status']}\t"
             f"sessions={dataset['expected_sessions']}\t"
             f"gate={dataset['expected_gate_pass_sessions']}/"
-            f"{dataset['expected_gate_sessions']}"
+            f"{dataset['expected_gate_sessions']}\t"
+            f"dynamic={dataset['expected_dynamic_pass_sessions']}/"
+            f"{dataset['expected_dynamic_sessions']}"
         )
 
 

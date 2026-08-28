@@ -27,6 +27,17 @@ python3 src/analyze_field_recording.py \
   --output-dir Experimental_results/2026-08-26_1630_auto
 ```
 
+動的TTC録画は、固定した評価プロファイルと録画完全性要件を両方指定する。
+
+```bash
+python3 src/analyze_field_recording.py \
+  --input /path/to/recoding_08181740.tar.xz \
+  --config src/bird_eye_config_raw_ground_distance.json \
+  --requirements Experimental_results/p0c_v0p20_recording_requirements.csv \
+  --dynamic-ttc-profile src/dynamic_ttc_evaluation_profile.json \
+  --output-dir Experimental_results/example_dynamic_auto
+```
+
 既存の解析結果を意図して更新する場合だけ`--overwrite`を付ける。指定しなければ、同名成果物の
 上書きを拒否する。展開データは一時ディレクトリに置き、解析後に自動削除する。
 
@@ -65,6 +76,7 @@ python3 src/analyze_field_recording.py \
 | `observation_replay.csv` | 生映像から再計算したframe単位観測 |
 | `gate_regression.csv` | 正規化方式ごとのゲート再生結果 |
 | `requirements_results.csv` | 事前要件の条件別採否。`--requirements`指定時のみ |
+| `dynamic_ttc_results.csv` | 固定した精度区間、TTC発火、警告成立・保持の条件別採否。`--dynamic-ttc-profile`指定時のみ |
 | `analysis_report.md` | 主要指標と総合判定の人間向けレポート |
 
 ## 確認済み録画

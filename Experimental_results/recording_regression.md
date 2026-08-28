@@ -16,10 +16,13 @@ Gitには次の小さい定義ファイルだけを保存する。
 |---|---|---|---|
 | `aspect-timing-20260826-1630` | `202608261630.tar.xz` | 箱なし2床、中央、遮蔽2回 | PASS、4 session、gate 2/2、遮蔽失効・再捕捉2/2 |
 | `lateral-static-20260826-1700` | `202608261700.tar.xz` | 左右静止 | PASS、2 session、gate 2/2、遮蔽0回 |
+| `p0c-v0p10-20260818` | `recoding_08181725.tar.xz` | 0.10 m/s接近・後退 | 動的TTC 6/6 PASS、既知の収録品質によりアーカイブ総合FAIL |
+| `p0c-v0p20-20260818` | `recoding_08181740.tar.xz` | 0.20 m/s接近・警告保持 | 動的TTC 3/3 PASS、既知の収録品質によりアーカイブ総合FAIL |
 
-動的P0-C録画は、動的TTCの評価区間と許容値を固定する前に登録すると、
-「既知の近距離失敗を保持すべきか」が曖昧になる。そのため項目3で条件を確定後、
-この同じ台帳へ追加する。
+動的P0-Cは`dynamic_ttc_evaluation_profile.json`で精度区間と警告安全区間を分け、
+動的条件のPASS数を独立して照合する。8月18日の録画は、要求30 fpsに対する実効25 fps、
+旧CSVの`time_sec`/`monotonic_time_sec`差、静的外れ値ゲートの動的録画への非適用が残る。
+そのためアーカイブ総合判定は既知の`FAIL`とし、動的TTC 9/9 PASSと分離して登録する。
 
 ## 実行
 
@@ -62,7 +65,7 @@ python3 src/run_recording_regression.py \
 
 `--output-dir`直下に次を作成する。
 
-- `regression_summary.csv`: データセットごとのSHA-256、期待/実際判定、session数、差分理由。
+- `regression_summary.csv`: データセットごとのSHA-256、期待/実際判定、session数、gate数、動的TTC PASS数、差分理由。
 - `recording_regression_report.md`: 回帰試験全体の要約。
 - `<dataset ID>/`: 録画ごとの一括解析CSVと`analysis_report.md`。
 
@@ -71,5 +74,5 @@ python3 src/run_recording_regression.py \
 1. `register_recording_archive.py`でファイル全体のSHA-256とtar.xz構造を確認する。
 2. `recording_archive_manifest.csv`に不変のdataset IDと録画情報を登録する。
 3. 開発中に結果を見てしきい値を合わせず、事前に条件別要件CSVを作る。
-4. `recording_regression_suite.csv`にconfig、ラベル、要件CSV、期待session数を登録する。
+4. `recording_regression_suite.csv`にconfig、ラベル、要件CSV、期待session数を登録する。動的録画はTTCプロファイルと期待PASS数も登録する。
 5. 既存と新規データセットをまとめて実行し、台帳登録時点の期待値と一致することを確認する。
