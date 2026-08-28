@@ -1,0 +1,20 @@
+{
+  "decision": "KEEP_CURRENT",
+  "cross_dataset_improving_families": [],
+  "family_passes": {
+    "affine": false,
+    "depth_affine": false,
+    "asymmetric_affine": false
+  },
+  "current_x_scale": 0.607688741902197,
+  "current_x_offset_m": 0.022595727915692983,
+  "trusted_datasets": [
+    "august07_final",
+    "p0a_20260818"
+  ],
+  "nominal_only_datasets": [
+    "lateral_20260826",
+    "p0b_20260818"
+  ],
+  "selection_rule": "A family must reduce both mean and maximum absolute x error versus the current model in every cross-dataset fold."
+}
