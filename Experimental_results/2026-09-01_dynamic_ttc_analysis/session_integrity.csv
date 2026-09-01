@@ -1,0 +1,11 @@
+session,source,required_files_complete,csv_frames,frame_sequence_ok,timestamps_monotonic,time_alias_ok,raw_frames,bev_frames,detection_frames,video_counts_match,processing_timing_status,decision,reasons
+approach_center_v0p10_r01_20260901_142324_230,/home/robo25/Downloads/recoding/202609011435.tar.xz::approach_center_v0p10_r01_20260901_142324_230,1,615,1,1,1,615,615,615,1,PASS,PASS,
+approach_center_v0p10_r02_20260901_142401_291,/home/robo25/Downloads/recoding/202609011435.tar.xz::approach_center_v0p10_r02_20260901_142401_291,1,536,1,1,1,536,536,536,1,PASS,PASS,
+approach_center_v0p10_r03_20260901_142434_429,/home/robo25/Downloads/recoding/202609011435.tar.xz::approach_center_v0p10_r03_20260901_142434_429,1,517,1,1,1,517,517,517,1,PASS,PASS,
+approach_center_v0p20_r01_20260901_143052_426,/home/robo25/Downloads/recoding/202609011435.tar.xz::approach_center_v0p20_r01_20260901_143052_426,1,425,1,1,1,425,425,425,1,PASS,PASS,
+approach_center_v0p20_r02_20260901_143130_004,/home/robo25/Downloads/recoding/202609011435.tar.xz::approach_center_v0p20_r02_20260901_143130_004,1,416,1,1,1,416,416,416,1,PASS,PASS,
+approach_center_v0p20_r03_20260901_143206_639,/home/robo25/Downloads/recoding/202609011435.tar.xz::approach_center_v0p20_r03_20260901_143206_639,1,402,1,1,1,402,402,402,1,PASS,PASS,
+approach_center_v0p20_r04_20260901_143249_502,/home/robo25/Downloads/recoding/202609011435.tar.xz::approach_center_v0p20_r04_20260901_143249_502,1,358,1,1,1,358,358,358,1,PASS,PASS,
+retreat_center_v0p10_r01_20260901_142527_026,/home/robo25/Downloads/recoding/202609011435.tar.xz::retreat_center_v0p10_r01_20260901_142527_026,1,574,1,1,1,574,574,574,1,PASS,PASS,
+retreat_center_v0p10_r02_20260901_142605_934,/home/robo25/Downloads/recoding/202609011435.tar.xz::retreat_center_v0p10_r02_20260901_142605_934,1,687,1,1,1,687,687,687,1,PASS,PASS,
+retreat_center_v0p10_r03_20260901_142643_149,/home/robo25/Downloads/recoding/202609011435.tar.xz::retreat_center_v0p10_r03_20260901_142643_149,1,641,1,1,1,641,641,641,1,PASS,PASS,

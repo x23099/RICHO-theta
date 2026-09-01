@@ -33,3 +33,6 @@ Thumbs.db
 
 # Local experiment captures (videos, per-session metadata and detection logs)
 recordings/
+
+# Reproducible local outputs from run_recording_regression.py
+Experimental_results/regression_runs/
