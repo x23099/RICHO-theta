@@ -28,6 +28,7 @@ FIELDS = [
     "accuracy_interval_frames",
     "detection_rate",
     "track_rate",
+    "motion_track_rate",
     "odom_available_rate",
     "odom_speed_p90_mps",
     "nominal_speed_error_mps",
@@ -36,17 +37,34 @@ FIELDS = [
     "median_abs_odom_speed_mps",
     "speed_mae_limit_mps",
     "direction_correct_rate",
+    "direction_response_delay_sec",
+    "steady_direction_correct_rate",
     "relative_speed_mae_mps",
     "ttc_expected_frames",
     "ttc_active_rate",
     "ttc_activation_delay_sec",
+    "raw_vz_activation_delay_sec",
+    "smoothed_vz_activation_delay_sec",
+    "smoothing_added_activation_delay_sec",
+    "raw_vz_stable_activation_delay_sec",
+    "smoothed_vz_stable_activation_delay_sec",
     "false_ttc_rate",
     "raw_warning_frames",
+    "confirmable_warning_frames",
+    "longest_raw_warning_run_frames",
+    "longest_confirmable_warning_run_frames",
+    "raw_warning_track_unavailable_frames",
+    "raw_warning_track_predicted_frames",
+    "raw_warning_measurement_rejected_frames",
+    "raw_warning_calibration_invalid_frames",
+    "raw_warning_not_forward_frames",
+    "minimum_ttc_threshold_for_confirmation_sec",
     "filtered_warning_frames",
     "warning_hold_frames",
     "unknown_frames",
     "first_raw_warning_ttc_sec",
     "first_raw_warning_z_m",
+    "warning_feasibility_margin_sec",
     "maximum_warning_entry_delay_sec",
     "path_while_forward_after_warning_frames",
     "critical_frames",
@@ -54,19 +72,17 @@ FIELDS = [
     "decision",
     "reasons",
 ]
-REQUIRED_PROFILE_FIELDS = {
+COMMON_PROFILE_FIELDS = {
     "schema_version",
     "motion_deadband_mps",
     "calibration_z_min_m",
     "calibration_z_max_m",
     "minimum_accuracy_interval_frames",
     "minimum_detection_rate",
-    "minimum_track_rate",
     "minimum_odom_available_rate",
     "nominal_speed_absolute_tolerance_mps",
     "nominal_speed_relative_tolerance",
     "maximum_abs_odom_angular_p95_radps",
-    "minimum_direction_correct_rate",
     "speed_mae_absolute_limit_mps",
     "speed_mae_relative_limit",
     "minimum_ttc_active_rate",
@@ -87,6 +103,20 @@ REQUIRED_PROFILE_FIELDS = {
     "maximum_post_warning_path_while_forward_frames",
     "maximum_critical_frames",
     "expected_final_state",
+}
+SCHEMA_PROFILE_FIELDS = {
+    1: {
+        "minimum_track_rate",
+        "minimum_direction_correct_rate",
+    },
+    2: {
+        "minimum_motion_track_rate",
+        "direction_stability_frames",
+        "maximum_direction_response_delay_sec",
+        "minimum_steady_direction_correct_rate",
+        "warning_feasibility_speed_mps",
+        "minimum_warning_feasibility_margin_sec",
+    },
 }
 
 
@@ -137,15 +167,17 @@ def nominal_speed_mps(label: str):
 def load_profile(path: Path) -> dict:
     with Path(path).open() as input_file:
         profile = json.load(input_file)
-    missing = sorted(REQUIRED_PROFILE_FIELDS - set(profile))
-    unknown = sorted(set(profile) - REQUIRED_PROFILE_FIELDS)
+    schema_version = profile.get("schema_version")
+    if schema_version not in SCHEMA_PROFILE_FIELDS:
+        raise ValueError("unsupported dynamic TTC profile schema_version")
+    required_fields = COMMON_PROFILE_FIELDS | SCHEMA_PROFILE_FIELDS[schema_version]
+    missing = sorted(required_fields - set(profile))
+    unknown = sorted(set(profile) - required_fields)
     if missing or unknown:
         raise ValueError(
             f"invalid dynamic TTC profile: missing={missing}, unknown={unknown}"
         )
-    if profile["schema_version"] != 1:
-        raise ValueError("unsupported dynamic TTC profile schema_version")
-    numeric_fields = REQUIRED_PROFILE_FIELDS - {
+    numeric_fields = required_fields - {
         "schema_version",
         "expected_final_state",
     }
@@ -164,13 +196,16 @@ def load_profile(path: Path) -> dict:
         raise ValueError("calibration z range is invalid")
     rate_fields = (
         "minimum_detection_rate",
-        "minimum_track_rate",
         "minimum_odom_available_rate",
-        "minimum_direction_correct_rate",
         "speed_mae_relative_limit",
         "minimum_ttc_active_rate",
         "maximum_false_ttc_rate",
         "nominal_speed_relative_tolerance",
+    )
+    rate_fields += (
+        ("minimum_track_rate", "minimum_direction_correct_rate")
+        if schema_version == 1
+        else ("minimum_motion_track_rate", "minimum_steady_direction_correct_rate")
     )
     if any(not 0.0 <= numeric_values[field] <= 1.0 for field in rate_fields):
         raise ValueError("dynamic TTC profile rates must be in [0, 1]")
@@ -191,10 +226,14 @@ def load_profile(path: Path) -> dict:
         "maximum_post_warning_path_while_forward_frames",
         "maximum_critical_frames",
     )
+    if schema_version == 2:
+        integer_fields += ("direction_stability_frames",)
     if any(not numeric_values[field].is_integer() for field in integer_fields):
         raise ValueError("dynamic TTC profile frame counts must be integers")
     if int(profile["minimum_accuracy_interval_frames"]) < 1:
         raise ValueError("minimum_accuracy_interval_frames must be positive")
+    if schema_version == 2 and int(profile["direction_stability_frames"]) < 1:
+        raise ValueError("direction_stability_frames must be positive")
     if int(profile["warning_confirm_frames"]) < 1 or int(
         profile["warning_clear_frames"]
     ) < 1:
@@ -212,7 +251,55 @@ def load_profile(path: Path) -> dict:
         "CRITICAL",
     }:
         raise ValueError("expected_final_state is invalid")
+    if schema_version == 2:
+        if float(profile["warning_feasibility_speed_mps"]) <= 0.0:
+            raise ValueError("warning_feasibility_speed_mps must be positive")
+        feasibility_margin = float(profile["warning_ttc_sec"]) - (
+            float(profile["calibration_z_min_m"])
+            / float(profile["warning_feasibility_speed_mps"])
+        )
+        if feasibility_margin < float(
+            profile["minimum_warning_feasibility_margin_sec"]
+        ):
+            raise ValueError(
+                "warning TTC has insufficient calibration-range feasibility margin"
+            )
     return profile
+
+
+def _direction_response(accuracy_rows, direction_flags, motion_rows, stable_frames):
+    """Return response delay, steady-state rate, and stable interval start index."""
+    if not accuracy_rows or not motion_rows:
+        return math.nan, math.nan, None
+    first_motion_time = _timestamp(motion_rows[0])
+    if first_motion_time is None:
+        return math.nan, math.nan, None
+    consecutive = 0
+    stable_start = None
+    for index, correct in enumerate(direction_flags):
+        consecutive = consecutive + 1 if correct else 0
+        if consecutive >= stable_frames:
+            stable_start = index - stable_frames + 1
+            break
+    if stable_start is None:
+        return math.nan, math.nan, None
+    response_time = _timestamp(accuracy_rows[stable_start])
+    response_delay = (
+        max(0.0, response_time - first_motion_time)
+        if response_time is not None
+        else math.nan
+    )
+    steady_flags = direction_flags[stable_start:]
+    return response_delay, _rate(sum(steady_flags), len(steady_flags)), stable_start
+
+
+def _first_stable_timestamp(rows, predicate, stable_frames):
+    consecutive = 0
+    for index, row in enumerate(rows):
+        consecutive = consecutive + 1 if predicate(row) else 0
+        if consecutive >= stable_frames:
+            return _timestamp(rows[index - stable_frames + 1])
+    return None
 
 
 def _hysteresis_overrides(profile: dict) -> dict:
@@ -319,6 +406,16 @@ def evaluate_session(
         else math.nan
     )
     direction_rate = _rate(sum(direction_flags), len(direction_flags))
+    if profile["schema_version"] == 2:
+        direction_response_delay, steady_direction_rate, _ = _direction_response(
+            accuracy_rows,
+            direction_flags,
+            motion_rows,
+            int(profile["direction_stability_frames"]),
+        )
+    else:
+        direction_response_delay = math.nan
+        steady_direction_rate = math.nan
     speed_mae = (
         sum(speed_errors) / len(speed_errors) if speed_errors else math.nan
     )
@@ -343,11 +440,72 @@ def evaluate_session(
             if first_motion_time is not None and first_ttc_time is not None
             else math.nan
         )
+        motion_start_time = _timestamp(motion_rows[0]) if motion_rows else None
+        raw_active_rows = [
+            row
+            for row in accuracy_rows
+            if (_number(row, "relative_vz_mps") or 0.0) < -deadband
+        ]
+        smoothed_active_rows = [
+            row
+            for row in accuracy_rows
+            if (_number(row, "smoothed_vz_mps") or 0.0) < -deadband
+        ]
+        first_raw_vz_time = _timestamp(raw_active_rows[0]) if raw_active_rows else None
+        first_smoothed_vz_time = (
+            _timestamp(smoothed_active_rows[0]) if smoothed_active_rows else None
+        )
+        raw_vz_activation_delay = (
+            max(0.0, first_raw_vz_time - motion_start_time)
+            if motion_start_time is not None and first_raw_vz_time is not None
+            else math.nan
+        )
+        smoothed_vz_activation_delay = (
+            max(0.0, first_smoothed_vz_time - motion_start_time)
+            if motion_start_time is not None and first_smoothed_vz_time is not None
+            else math.nan
+        )
+        smoothing_added_delay = (
+            max(0.0, first_smoothed_vz_time - first_raw_vz_time)
+            if first_raw_vz_time is not None and first_smoothed_vz_time is not None
+            else math.nan
+        )
+        activation_stability_frames = (
+            int(profile["direction_stability_frames"])
+            if profile["schema_version"] == 2
+            else 1
+        )
+        first_raw_stable_time = _first_stable_timestamp(
+            accuracy_rows,
+            lambda row: (_number(row, "relative_vz_mps") or 0.0) < -deadband,
+            activation_stability_frames,
+        )
+        first_smoothed_stable_time = _first_stable_timestamp(
+            accuracy_rows,
+            lambda row: (_number(row, "smoothed_vz_mps") or 0.0) < -deadband,
+            activation_stability_frames,
+        )
+        raw_vz_stable_activation_delay = (
+            max(0.0, first_raw_stable_time - motion_start_time)
+            if motion_start_time is not None and first_raw_stable_time is not None
+            else math.nan
+        )
+        smoothed_vz_stable_activation_delay = (
+            max(0.0, first_smoothed_stable_time - motion_start_time)
+            if motion_start_time is not None
+            and first_smoothed_stable_time is not None
+            else math.nan
+        )
         false_ttc_rate = 0.0
     else:
         ttc_expected_rows = []
         ttc_active_rate = math.nan
         activation_delay = math.nan
+        raw_vz_activation_delay = math.nan
+        smoothed_vz_activation_delay = math.nan
+        smoothing_added_delay = math.nan
+        raw_vz_stable_activation_delay = math.nan
+        smoothed_vz_stable_activation_delay = math.nan
         false_ttc_rate = _rate(
             sum(_number(row, "ttc_sec") is not None for row in accuracy_rows),
             len(accuracy_rows),
@@ -357,7 +515,18 @@ def evaluate_session(
     track_rate = _rate(
         sum(_flag(row, "track_available") for row in rows), len(rows)
     )
+    motion_track_rate = _rate(
+        sum(_flag(row, "track_available") for row in motion_rows),
+        len(motion_rows),
+    )
     odom_rate = _rate(len(odom_rows), len(rows))
+    warning_feasibility_margin = (
+        float(profile["warning_ttc_sec"])
+        - float(profile["calibration_z_min_m"])
+        / float(profile["warning_feasibility_speed_mps"])
+        if profile["schema_version"] == 2
+        else math.nan
+    )
 
     reasons = []
 
@@ -370,7 +539,14 @@ def evaluate_session(
             reasons.append(f"{name}={value} > {maximum}")
 
     require_min("detection_rate", detection_rate, profile["minimum_detection_rate"])
-    require_min("track_rate", track_rate, profile["minimum_track_rate"])
+    if profile["schema_version"] == 1:
+        require_min("track_rate", track_rate, profile["minimum_track_rate"])
+    else:
+        require_min(
+            "motion_track_rate",
+            motion_track_rate,
+            profile["minimum_motion_track_rate"],
+        )
     require_min(
         "odom_available_rate", odom_rate, profile["minimum_odom_available_rate"]
     )
@@ -389,11 +565,23 @@ def evaluate_session(
         float(len(accuracy_rows)),
         profile["minimum_accuracy_interval_frames"],
     )
-    require_min(
-        "direction_correct_rate",
-        direction_rate,
-        profile["minimum_direction_correct_rate"],
-    )
+    if profile["schema_version"] == 1:
+        require_min(
+            "direction_correct_rate",
+            direction_rate,
+            profile["minimum_direction_correct_rate"],
+        )
+    else:
+        require_max(
+            "direction_response_delay_sec",
+            direction_response_delay,
+            profile["maximum_direction_response_delay_sec"],
+        )
+        require_min(
+            "steady_direction_correct_rate",
+            steady_direction_rate,
+            profile["minimum_steady_direction_correct_rate"],
+        )
     require_max("relative_speed_mae_mps", speed_mae, speed_mae_limit)
 
     if motion == "approach":
@@ -472,6 +660,7 @@ def evaluate_session(
         "accuracy_interval_frames": len(accuracy_rows),
         "detection_rate": detection_rate,
         "track_rate": track_rate,
+        "motion_track_rate": motion_track_rate,
         "odom_available_rate": odom_rate,
         "odom_speed_p90_mps": odom_speed_p90,
         "nominal_speed_error_mps": nominal_speed_error,
@@ -480,17 +669,52 @@ def evaluate_session(
         "median_abs_odom_speed_mps": median_odom_speed,
         "speed_mae_limit_mps": speed_mae_limit,
         "direction_correct_rate": direction_rate,
+        "direction_response_delay_sec": direction_response_delay,
+        "steady_direction_correct_rate": steady_direction_rate,
         "relative_speed_mae_mps": speed_mae,
         "ttc_expected_frames": len(ttc_expected_rows),
         "ttc_active_rate": ttc_active_rate,
         "ttc_activation_delay_sec": activation_delay,
+        "raw_vz_activation_delay_sec": raw_vz_activation_delay,
+        "smoothed_vz_activation_delay_sec": smoothed_vz_activation_delay,
+        "smoothing_added_activation_delay_sec": smoothing_added_delay,
+        "raw_vz_stable_activation_delay_sec": raw_vz_stable_activation_delay,
+        "smoothed_vz_stable_activation_delay_sec": (
+            smoothed_vz_stable_activation_delay
+        ),
         "false_ttc_rate": false_ttc_rate,
         "raw_warning_frames": hysteresis["raw_warning_frames"],
+        "confirmable_warning_frames": hysteresis["confirmable_warning_frames"],
+        "longest_raw_warning_run_frames": hysteresis[
+            "longest_raw_warning_run_frames"
+        ],
+        "longest_confirmable_warning_run_frames": hysteresis[
+            "longest_confirmable_warning_run_frames"
+        ],
+        "raw_warning_track_unavailable_frames": hysteresis[
+            "raw_warning_track_unavailable_frames"
+        ],
+        "raw_warning_track_predicted_frames": hysteresis[
+            "raw_warning_track_predicted_frames"
+        ],
+        "raw_warning_measurement_rejected_frames": hysteresis[
+            "raw_warning_measurement_rejected_frames"
+        ],
+        "raw_warning_calibration_invalid_frames": hysteresis[
+            "raw_warning_calibration_invalid_frames"
+        ],
+        "raw_warning_not_forward_frames": hysteresis[
+            "raw_warning_not_forward_frames"
+        ],
+        "minimum_ttc_threshold_for_confirmation_sec": hysteresis[
+            "minimum_ttc_threshold_for_confirmation_sec"
+        ],
         "filtered_warning_frames": hysteresis["filtered_warning_frames"],
         "warning_hold_frames": hysteresis["warning_hold_frames"],
         "unknown_frames": hysteresis["unknown_frames"],
         "first_raw_warning_ttc_sec": hysteresis["first_raw_warning_ttc_sec"],
         "first_raw_warning_z_m": hysteresis["first_raw_warning_z_m"],
+        "warning_feasibility_margin_sec": warning_feasibility_margin,
         "maximum_warning_entry_delay_sec": hysteresis[
             "maximum_warning_entry_delay_sec"
         ],

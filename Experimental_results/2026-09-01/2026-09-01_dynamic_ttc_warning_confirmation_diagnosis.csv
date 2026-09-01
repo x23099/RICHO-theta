@@ -1,0 +1,5 @@
+trial,role,raw_warning_frames,confirmable_warning_frames,longest_confirmable_warning_run_frames,raw_warning_track_unavailable_frames,raw_warning_track_predicted_frames,raw_warning_measurement_rejected_frames,raw_warning_calibration_invalid_frames,minimum_ttc_threshold_for_confirmation_sec
+approach_center_v0p20_r01,formal,9,2,2,0,7,7,7,4.507845729020047
+approach_center_v0p20_r02,formal,1,0,0,0,1,1,1,4.541525200261913
+approach_center_v0p20_r03,diagnostic,11,5,5,0,6,6,6,4.422011698594747
+approach_center_v0p20_r04,formal,11,5,5,0,6,6,6,4.429587078574656

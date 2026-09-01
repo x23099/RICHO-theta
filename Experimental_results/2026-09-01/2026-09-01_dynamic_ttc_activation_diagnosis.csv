@@ -1,0 +1,4 @@
+trial,ttc_activation_delay_sec,raw_vz_stable_activation_delay_sec,smoothed_vz_stable_activation_delay_sec,median_added_delay_sec,diagnosis
+approach_center_v0p10_r01,0.5202080000000002,0.44818599999999975,0.5202080000000002,0.07202200000000047,kalman_dominant
+approach_center_v0p10_r02,0.9399690000000005,0.9399690000000005,0.9399690000000005,0.0,kalman_dominant
+approach_center_v0p10_r03,0.8690049999999996,0.7243199999999996,0.8690049999999996,0.14468499999999995,kalman_dominant

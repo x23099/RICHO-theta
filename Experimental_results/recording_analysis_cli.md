@@ -14,7 +14,7 @@
 python3 src/analyze_field_recording.py \
   --input /home/robo25/Downloads/recoding/202608261700.tar.xz \
   --config src/bird_eye_config_raw_ground_distance.json \
-  --output-dir Experimental_results/2026-08-26_1700_auto
+  --output-dir Experimental_results/2026-08-26/2026-08-26_1700_auto
 ```
 
 遮蔽録画は、セッション名と区間を記録したラベルCSVも指定する。
@@ -23,8 +23,8 @@ python3 src/analyze_field_recording.py \
 python3 src/analyze_field_recording.py \
   --input /home/robo25/Downloads/recoding/202608261630.tar.xz \
   --config src/bird_eye_config_raw_ground_distance.json \
-  --labels Experimental_results/2026-08-26_1630_occlusion_labels.csv \
-  --output-dir Experimental_results/2026-08-26_1630_auto
+  --labels Experimental_results/2026-08-26/2026-08-26_1630_occlusion_labels.csv \
+  --output-dir Experimental_results/2026-08-26/2026-08-26_1630_auto
 ```
 
 動的TTC録画は、固定した評価プロファイルと録画完全性要件を両方指定する。
@@ -35,8 +35,14 @@ python3 src/analyze_field_recording.py \
   --config src/bird_eye_config_raw_ground_distance.json \
   --requirements Experimental_results/p0c_v0p20_recording_requirements.csv \
   --dynamic-ttc-profile src/dynamic_ttc_evaluation_profile.json \
-  --output-dir Experimental_results/example_dynamic_auto
+  --output-dir Experimental_results/YYYY-MM-DD/example_dynamic_auto
 ```
+
+`dynamic_ttc_evaluation_profile.json`は確定済みschema v1である。
+`dynamic_ttc_evaluation_profile_v2_candidate.json`は走行中追跡率、方向応答時間、
+定常方向精度を分離する開発候補であり、独立holdout確認までは本番判定に使わない。
+動的プロファイルに含まれるsessionの静的位置外れ値ゲートは診断結果へ残すが、
+総合判定には加えない。静的sessionが混在する場合、その静的ゲート判定は従来どおり必須である。
 
 既存の解析結果を意図して更新する場合だけ`--overwrite`を付ける。指定しなければ、同名成果物の
 上書きを拒否する。展開データは一時ディレクトリに置き、解析後に自動削除する。
@@ -50,7 +56,7 @@ python3 src/analyze_field_recording.py \
   --input /path/to/recording.tar.xz \
   --config src/bird_eye_config_raw_ground_distance.json \
   --requirements Experimental_results/p0b_live_trial_completeness_requirements.csv \
-  --output-dir Experimental_results/example_auto
+  --output-dir Experimental_results/YYYY-MM-DD/example_auto
 ```
 
 自動判定の意味は次のとおり。

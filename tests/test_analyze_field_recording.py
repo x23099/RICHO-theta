@@ -142,6 +142,51 @@ class FieldRecordingAnalysisTest(unittest.TestCase):
         self.assertEqual(status, "FAIL")
         self.assertIn("one or more fixed dynamic TTC conditions failed", reasons)
 
+    def test_dynamic_session_is_excluded_from_static_gate_decision(self):
+        status, reasons = automatic_status(
+            True,
+            [{"decision": "PASS"}],
+            [{"fps_within_one_percent": 1}],
+            [
+                {
+                    "session": "approach_trial",
+                    "normalization_mode": "raw_ground_distance",
+                    "decision": "FAIL",
+                }
+            ],
+            "raw_ground_distance",
+            [{"result": "PASS"}],
+            [{"session": "approach_trial", "decision": "PASS"}],
+        )
+
+        self.assertEqual(status, "PASS")
+        self.assertNotIn("raw_ground_distance observation gate failed", reasons)
+
+    def test_static_session_still_requires_gate_pass_in_mixed_archive(self):
+        status, reasons = automatic_status(
+            True,
+            [{"decision": "PASS"}],
+            [{"fps_within_one_percent": 1}],
+            [
+                {
+                    "session": "approach_trial",
+                    "normalization_mode": "raw_ground_distance",
+                    "decision": "FAIL",
+                },
+                {
+                    "session": "static_trial",
+                    "normalization_mode": "raw_ground_distance",
+                    "decision": "FAIL",
+                },
+            ],
+            "raw_ground_distance",
+            [{"result": "PASS"}],
+            [{"session": "approach_trial", "decision": "PASS"}],
+        )
+
+        self.assertEqual(status, "FAIL")
+        self.assertIn("raw_ground_distance observation gate failed", reasons)
+
     def test_integrity_requires_all_three_videos(self):
         with tempfile.TemporaryDirectory() as temporary:
             session = Path(temporary) / "trial"

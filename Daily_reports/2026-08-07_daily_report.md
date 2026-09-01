@@ -226,9 +226,9 @@ python3 src/evaluate_ground_contact.py \
 - `tests/test_ground_contact.py`
 - `src/bird_eye.py`
 - `src/bird_eye_config.json`
-- `Experimental_results/2026-08-07_ground_contact_final_evaluation.csv`
-- `Experimental_results/2026-08-07_ground_contact_model.json`
-- `Experimental_results/2026-08-07_ground_contact_implementation_report.md`
+- `Experimental_results/2026-08-07/2026-08-07_ground_contact_final_evaluation.csv`
+- `Experimental_results/2026-08-07/2026-08-07_ground_contact_model.json`
+- `Experimental_results/2026-08-07/2026-08-07_ground_contact_implementation_report.md`
 - `handover/REMOTE_EXPERIMENT_GUIDE.md`
 
 本日の追跡、遮蔽、再キャリブレーション、最終holdoutに関する詳細レポートおよび図表も`Experimental_results/`に保存している。元の大容量録画はGitへ追加せず、`/home/hsr/Downloads/recoding_20260807_*`に保持している。

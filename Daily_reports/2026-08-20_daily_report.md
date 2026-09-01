@@ -126,14 +126,14 @@ PYTHONPATH=src python3 -m unittest discover -s tests -v
 
 主な成果物:
 
-- `Experimental_results/2026-08-20_remote_work_status.md`
+- `Experimental_results/2026-08-20/2026-08-20_remote_work_status.md`
 - `Experimental_results/recording_archive_manifest.csv`
 - `Experimental_results/recording_google_drive_migration.md`
 - `src/register_recording_archive.py`
 - `src/diagnose_lateral_gate_asymmetry.py`
 - `src/evaluate_live_trial_requirements.py`
 - `Experimental_results/*_requirements.csv`
-- `Experimental_results/2026-08-20_*_evaluation.csv`
+- `Experimental_results/2026-08-20/2026-08-20_*_evaluation.csv`
 
 ## 6. 未解決事項・制約
 

@@ -210,12 +210,12 @@ FFBまたは自動停止への接続は、これらの実機確認が完了す�
 
 ## 8. 成果物
 
-- `Experimental_results/2026-08-18_kobuki_odometry_diagnosis_memo.md`
-- `Experimental_results/2026-08-18_p0a_position_regression_report.md`
-- `Experimental_results/2026-08-18_p0b_static_false_activation_report.md`
-- `Experimental_results/2026-08-18_p0c_v0p10_report.md`
-- `Experimental_results/2026-08-18_p0c_v0p20_report.md`
-- `Experimental_results/2026-08-18_collision_warning_hysteresis_report.md`
-- `Experimental_results/2026-08-22_field_experiment_plan.md`
+- `Experimental_results/2026-08-18/2026-08-18_kobuki_odometry_diagnosis_memo.md`
+- `Experimental_results/2026-08-18/2026-08-18_p0a_position_regression_report.md`
+- `Experimental_results/2026-08-18/2026-08-18_p0b_static_false_activation_report.md`
+- `Experimental_results/2026-08-18/2026-08-18_p0c_v0p10_report.md`
+- `Experimental_results/2026-08-18/2026-08-18_p0c_v0p20_report.md`
+- `Experimental_results/2026-08-18/2026-08-18_collision_warning_hysteresis_report.md`
+- `Experimental_results/2026-08-22/2026-08-22_field_experiment_plan.md`
 
 本日終了時点の判断は、**ODOM校正採用、P0-A PASS、P0-B PASS、P0-C 0.10 m/s PASS、P0-C 0.20 m/sは初回警告PASS・全区間FAIL、ヒステリシスはオフライン回帰PASS・実機holdout待ち**である。

@@ -17,6 +17,15 @@ FIELDS = [
     "session",
     "frames",
     "raw_warning_frames",
+    "confirmable_warning_frames",
+    "longest_raw_warning_run_frames",
+    "longest_confirmable_warning_run_frames",
+    "raw_warning_track_unavailable_frames",
+    "raw_warning_track_predicted_frames",
+    "raw_warning_measurement_rejected_frames",
+    "raw_warning_calibration_invalid_frames",
+    "raw_warning_not_forward_frames",
+    "minimum_ttc_threshold_for_confirmation_sec",
     "filtered_warning_frames",
     "warning_hold_frames",
     "unknown_frames",
@@ -89,6 +98,16 @@ def replay_rows(session, metadata, rows, overrides=None):
     raw_levels = []
     timestamps = []
     moving_forward_flags = []
+    confirmable_warning_flags = []
+    raw_warning_invalid_counts = {
+        "raw_warning_track_unavailable_frames": 0,
+        "raw_warning_track_predicted_frames": 0,
+        "raw_warning_measurement_rejected_frames": 0,
+        "raw_warning_calibration_invalid_frames": 0,
+        "raw_warning_not_forward_frames": 0,
+    }
+    confirmable_ttc_run = []
+    minimum_ttc_threshold_for_confirmation = math.inf
     first_raw_warning_sec = None
     first_raw_warning_ttc_sec = None
     first_raw_warning_z_m = None
@@ -136,6 +155,44 @@ def replay_rows(session, metadata, rows, overrides=None):
             ttc_sec=ttc_sec,
         )
         output_level = state["risk_level"]
+        confirmable_warning = (
+            raw_level in {"WARNING", "CRITICAL"}
+            and measurement_valid
+            and moving_forward
+        )
+        confirmation_base = (
+            measurement_valid
+            and moving_forward
+            and in_corridor
+            and ttc_sec is not None
+        )
+        if confirmation_base:
+            confirmable_ttc_run.append(ttc_sec)
+            confirm_frames = state_filter.warning_confirm_frames
+            if len(confirmable_ttc_run) >= confirm_frames:
+                required_threshold = max(confirmable_ttc_run[-confirm_frames:])
+                minimum_ttc_threshold_for_confirmation = min(
+                    minimum_ttc_threshold_for_confirmation,
+                    required_threshold,
+                )
+        else:
+            confirmable_ttc_run.clear()
+        if raw_level in {"WARNING", "CRITICAL"}:
+            raw_warning_invalid_counts["raw_warning_track_unavailable_frames"] += (
+                not _flag(row, "track_available")
+            )
+            raw_warning_invalid_counts["raw_warning_track_predicted_frames"] += (
+                _flag(row, "track_predicted")
+            )
+            raw_warning_invalid_counts["raw_warning_measurement_rejected_frames"] += (
+                not _flag(row, "measurement_accepted")
+            )
+            raw_warning_invalid_counts["raw_warning_calibration_invalid_frames"] += (
+                not _flag(row, "calibration_valid")
+            )
+            raw_warning_invalid_counts["raw_warning_not_forward_frames"] += (
+                not moving_forward
+            )
         if raw_level in {"WARNING", "CRITICAL"}:
             if first_raw_warning_sec is None:
                 first_raw_warning_sec = timestamp
@@ -160,12 +217,34 @@ def replay_rows(session, metadata, rows, overrides=None):
         output_levels.append(output_level)
         timestamps.append(timestamp)
         moving_forward_flags.append(moving_forward)
+        confirmable_warning_flags.append(confirmable_warning)
+
+    def longest_true_run(flags):
+        longest = 0
+        current = 0
+        for flag in flags:
+            current = current + 1 if flag else 0
+            longest = max(longest, current)
+        return longest
+
+    raw_warning_flags = [
+        value in {"WARNING", "CRITICAL"} for value in raw_levels
+    ]
 
     return {
         "session": session,
         "frames": len(output_levels),
-        "raw_warning_frames": sum(
-            value in {"WARNING", "CRITICAL"} for value in raw_levels
+        "raw_warning_frames": sum(raw_warning_flags),
+        "confirmable_warning_frames": sum(confirmable_warning_flags),
+        "longest_raw_warning_run_frames": longest_true_run(raw_warning_flags),
+        "longest_confirmable_warning_run_frames": longest_true_run(
+            confirmable_warning_flags
+        ),
+        **raw_warning_invalid_counts,
+        "minimum_ttc_threshold_for_confirmation_sec": (
+            minimum_ttc_threshold_for_confirmation
+            if math.isfinite(minimum_ttc_threshold_for_confirmation)
+            else math.nan
         ),
         "filtered_warning_frames": sum(
             value in {"WARNING", "WARNING_HOLD", "CRITICAL"}

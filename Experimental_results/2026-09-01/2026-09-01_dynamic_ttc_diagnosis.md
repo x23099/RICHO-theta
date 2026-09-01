@@ -169,7 +169,7 @@ PASS数が登録した基準と一致し、今後の変更を検出できる状�
 
 ## 成果物
 
-- `Experimental_results/2026-09-01_dynamic_ttc_analysis/`
-- `Experimental_results/2026-09-01_dynamic_ttc_evaluation_all.csv`
-- `Experimental_results/2026-09-01_dynamic_ttc_requirements.csv`
-- `Experimental_results/2026-09-01_dynamic_ttc_diagnosis.md`
+- `Experimental_results/2026-09-01/`（解析CSV一式）
+- `Experimental_results/2026-09-01/2026-09-01_dynamic_ttc_evaluation_all.csv`
+- `Experimental_results/2026-09-01/2026-09-01_dynamic_ttc_requirements.csv`
+- `Experimental_results/2026-09-01/2026-09-01_dynamic_ttc_diagnosis.md`

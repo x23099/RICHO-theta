@@ -7,6 +7,7 @@ from pathlib import Path
 
 
 SRC_DIR = Path(__file__).resolve().parents[1] / "src"
+V2_PROFILE = SRC_DIR / "dynamic_ttc_evaluation_profile_v2_candidate.json"
 sys.path.insert(0, str(SRC_DIR))
 
 from evaluate_dynamic_ttc_conditions import (  # noqa: E402
@@ -72,6 +73,52 @@ class DynamicTtcConditionTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "thresholds are inconsistent"):
                 load_profile(path)
 
+    def test_v2_rejects_warning_without_calibration_range_margin(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "profile.json"
+            invalid = copy.deepcopy(load_profile(V2_PROFILE))
+            invalid["warning_ttc_sec"] = 4.1
+            path.write_text(json.dumps(invalid))
+
+            with self.assertRaisesRegex(ValueError, "feasibility margin"):
+                load_profile(path)
+
+    def test_v2_scores_motion_tracking_and_steady_direction_separately(self):
+        candidate = copy.deepcopy(load_profile(V2_PROFILE))
+        candidate["minimum_accuracy_interval_frames"] = 1
+        candidate["speed_mae_absolute_limit_mps"] = 1.0
+        candidate["direction_stability_frames"] = 3
+        moving = [
+            row(0.00, 0.10, +0.10, ""),
+            row(0.04, 0.10, +0.10, ""),
+            row(0.08, 0.10, -0.10, 8.0),
+            row(0.12, 0.10, -0.10, 7.6),
+            row(0.16, 0.10, -0.10, 7.2),
+            row(0.20, 0.10, -0.10, 6.8),
+        ]
+        stopped = [row(0.24 + index * 0.04, 0.0, 0.0, "") for index in range(8)]
+        for stopped_row in stopped:
+            stopped_row["track_available"] = 0
+            stopped_row["calibration_valid"] = 0
+        settled = [
+            row(0.56 + index * 0.04, 0.0, 0.0, "", corridor=False)
+            for index in range(3)
+        ]
+
+        result = evaluate_session(
+            "approach_center_v0p10_r01",
+            "trial",
+            {"parameters": {}},
+            moving + stopped + settled,
+            candidate,
+        )
+
+        self.assertEqual(result["decision"], "PASS")
+        self.assertLess(result["track_rate"], candidate["minimum_motion_track_rate"])
+        self.assertEqual(result["motion_track_rate"], 1.0)
+        self.assertAlmostEqual(result["direction_response_delay_sec"], 0.08)
+        self.assertEqual(result["steady_direction_correct_rate"], 1.0)
+
     def test_high_speed_scores_accuracy_before_warning_and_safety_after_it(self):
         rows = [
             row(0.00, 0.20, -0.20, 3.9),
@@ -94,6 +141,7 @@ class DynamicTtcConditionTest(unittest.TestCase):
         self.assertEqual(result["decision"], "PASS")
         self.assertEqual(result["accuracy_interval_frames"], 1)
         self.assertGreaterEqual(result["warning_hold_frames"], 1)
+        self.assertEqual(result["longest_confirmable_warning_run_frames"], 3)
         self.assertEqual(result["path_while_forward_after_warning_frames"], 0)
         self.assertEqual(result["final_state"], "CLEAR")
 

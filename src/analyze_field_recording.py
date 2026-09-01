@@ -387,7 +387,13 @@ def automatic_status(
         for row in gate_rows
         if row["normalization_mode"] == selected_gate_mode
     ]
-    if any(row["decision"] != "PASS" for row in selected_gate_rows):
+    dynamic_sessions = {
+        row["session"] for row in (dynamic_ttc_rows or []) if row.get("session")
+    }
+    static_gate_rows = [
+        row for row in selected_gate_rows if row.get("session") not in dynamic_sessions
+    ]
+    if any(row["decision"] != "PASS" for row in static_gate_rows):
         reasons.append(f"{selected_gate_mode} observation gate failed")
     if requirement_rows is not None and any(
         row["result"] != "PASS" for row in requirement_rows
@@ -548,6 +554,14 @@ def build_report(
             f"{row['events_track_expired']}/{row['occlusion_events']} | "
             f"{row['events_reacquired']}/{row['occlusion_events']} | {row['decision']} |"
         )
+    if dynamic_ttc_rows is not None:
+        lines.extend(
+            [
+                "",
+                "動的TTC対象sessionのゲート再生は診断値として保存するが、"
+                "静的位置外れ値判定を総合判定へは加えない。",
+            ]
+        )
     if skipped_gate_sessions:
         lines.extend(
             [
@@ -580,21 +594,24 @@ def build_report(
             [
                 f"- profile: `{dynamic_ttc_profile_path.resolve()}`",
                 "",
-                "| ラベル | 精度区間 | 方向 | 速度MAE | TTC発火 | 警告/保持 | 判定 |",
-                "|---|---:|---:|---:|---:|---:|---|",
+                "| ラベル | 精度区間 | 追跡(全体/走行) | 方向(全体/定常) | "
+                "方向応答 | 速度MAE | TTC発火 | 警告/保持 | 判定 |",
+                "|---|---:|---:|---:|---:|---:|---:|---:|---|",
             ]
         )
         for row in dynamic_ttc_rows:
             lines.append(
                 f"| {_markdown(row['experiment_label'])} | "
                 f"{row['accuracy_interval_frames']} | "
-                f"{_pct(row['direction_correct_rate'])} | "
+                f"{_pct(row['track_rate'])}/{_pct(row['motion_track_rate'])} | "
+                f"{_pct(row['direction_correct_rate'])}/"
+                f"{_pct(row['steady_direction_correct_rate'])} | "
+                f"{_number(row['direction_response_delay_sec'], 3)} s | "
                 f"{_number(row['relative_speed_mae_mps'], 4)} m/s | "
                 f"{_pct(row['ttc_active_rate'])} | "
                 f"{row['filtered_warning_frames']}/{row['warning_hold_frames']} | "
                 f"{row['decision']} |"
             )
-
     lines.extend(
         [
             "",

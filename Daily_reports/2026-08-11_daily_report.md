@@ -134,10 +134,10 @@ TTC = filtered_z_m / -smoothed_vz_mps
 
 ## 8. 成果物とGit反映
 
-- 詳細評価レポート: `Experimental_results/2026-08-11_observation_gate_ttc_report.md`
-- 観測ゲート集計: `Experimental_results/2026-08-11_gate_comparison.csv`
-- 距離holdout集計: `Experimental_results/2026-08-11_gate_leave_one_distance_out.csv`
-- TTC集計: `Experimental_results/2026-08-11_ttc_replay_summary.csv`
+- 詳細評価レポート: `Experimental_results/2026-08-11/2026-08-11_observation_gate_ttc_report.md`
+- 観測ゲート集計: `Experimental_results/2026-08-11/2026-08-11_gate_comparison.csv`
+- 距離holdout集計: `Experimental_results/2026-08-11/2026-08-11_gate_leave_one_distance_out.csv`
+- TTC集計: `Experimental_results/2026-08-11/2026-08-11_ttc_replay_summary.csv`
 - 実装コミット: `1dce82b6d422e0a02e3b9fbe384eaec2fec552fd`
 - コミット日時: 2026年8月11日 22:30 JST
 - GitHub反映先: `x23099/RICHO-theta`の`main`

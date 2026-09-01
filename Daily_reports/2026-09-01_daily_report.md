@@ -10,7 +10,8 @@
 ODOM 100%、速度MAE、処理時間は成立した。録画破損ではなく、4秒警告と0.65 m校正下限の
 設計競合、評価区間の不整合、発進時の速度フィルタ過渡応答を原因として切り分けた。
 
-本番configと既存profileは変更していない。同条件を撮り直す前に、評価区間と警告仕様を再設計する。
+本番configと既存profileは変更していない。その後、schema v1を保持したまま評価区間を分離する
+schema v2候補を実装し、新旧録画で開発評価した。v2候補の正式結果は3/9 PASSで、まだ本番採用しない。
 
 ## 入力録画
 
@@ -119,38 +120,115 @@ raw動画再処理では安定観測が全セッション100%採用されたた�
 - `src/bird_eye_config_raw_ground_distance.json`: 変更なし
 - `src/dynamic_ttc_evaluation_profile.json`: 変更なし
 - 本番警告しきい値: 変更なし
+- `src/dynamic_ttc_evaluation_profile_v2_candidate.json`: 開発候補として追加
 - 新規アーカイブ、固定要件、期待FAILを回帰台帳へ追加
+
+## 追加実装とprofile v2候補
+
+### 評価区間の分離
+
+- 全録画追跡率は参考値として保持し、v2では走行中追跡率を合否へ使用する。
+- 方向一致率を、5 frame連続で正方向となるまでの応答時間と、その後の定常方向精度へ分けた。
+- 校正下限と最低試験速度から、警告成立可能な時間余裕をprofile読込時に検証する。
+- schema v1の判定と既存profileは変更せず、schema v2指定時だけ新指標を使う。
+
+| 録画 | v1 | v2候補 | 備考 |
+|---|---:|---:|---|
+| 9月1日 正式9試行 | 0/9 | 3/9 | v2も本番採用条件を満たさない |
+| 9月1日 診断r03 | FAIL | FAIL | 走行中追跡率94.70% |
+| 8月18日 旧9試行 | 9/9 | 8/9 | 1件は走行中追跡率88.57% |
+
+### 一括解析の動静分離
+
+動的TTC profileに含まれるsessionは、静止位置を前提にしたゲート再生の総合判定対象から除外した。
+ゲート再生結果自体はCSVとレポートへ残す。動的・静的sessionが混在する場合、静的sessionの
+ゲートFAILは従来どおり総合FAILになる。9月1日録画の再解析では、誤っていた静的ゲートFAILが
+総合理由から消え、事前要件と動的TTCの未達だけが残ることを確認した。
+
+### 警告3 frame確認の診断
+
+警告候補の総数だけでなく、生警告の最長連続長、実測で確認可能な連続長、測定無効理由、
+3 frame確認に必要な理論最小TTC閾値を追加した。
+
+| 0.20 m/s試行 | 役割 | 生警告 | 実測確認可能 | 最長確認可能 | 理論最小TTC |
+|---|---|---:|---:|---:|---:|
+| r01 | 正式 | 9 | 2 | 2 | 4.508 s |
+| r02 | 正式 | 1 | 0 | 0 | 4.542 s |
+| r03 | 診断 | 11 | 5 | 5 | 4.422 s |
+| r04 | 正式 | 11 | 5 | 5 | 4.430 s |
+
+r01/r02は追跡消失ではなく、校正範囲外の観測が棄却され、予測追跡へ切り替わったため
+3 frameの実測確認ができなかった。この録画だけなら4.55秒以上で成立するが、holdoutを見た後の
+値へ合わせ込まない。次回候補は安全側に丸めた4.6秒とし、事前固定後の独立録画で検証する。
+本番configの4.0秒は変更していない。
+
+### 0.10 m/s TTC立ち上がり診断
+
+5 frame連続で接近速度がデッドバンドを超えるまでを使い、生Kalman速度と0.3秒中央値後を比較した。
+
+| 試行 | TTC発火 | 生Kalman安定化 | 中央値後安定化 | 中央値追加遅延 |
+|---|---:|---:|---:|---:|
+| r01 | 0.520 s | 0.448 s | 0.520 s | 0.072 s |
+| r02 | 0.940 s | 0.940 s | 0.940 s | 0.000 s |
+| r03 | 0.869 s | 0.724 s | 0.869 s | 0.145 s |
+
+低速TTC遅延の主因は中央値窓ではなく、Kalman速度が`-0.05 m/s`を安定して下回るまでの
+0.45～0.94秒だった。中央値窓だけを短くしてもr02は改善しない。
+
+## Experimental_resultsの整理
+
+実験結果を`Experimental_results/YYYY-MM-DD/`へ日付別に移動した。回帰suite、テスト、
+解析CLI例、日報から参照する実行パスを新配置へ更新した。今後の新規結果も必ず該当日付の
+フォルダへ保存する。生成可能な回帰一時出力は日付フォルダ配下でもGit対象外とした。
 
 ## 検証
 
 | 検証 | 結果 |
 |---|---|
-| Python単体テスト | 103件すべてPASS |
+| Python単体テスト | 107件すべてPASS |
 | 新規アーカイブ単体回帰 | PASS（登録期待値と一致） |
 | 全録画回帰 | 5/5 PASS、FAIL 0、SKIP 0 |
 | `git diff --check` | PASS |
 
 PyTorchとUltralyticsは未導入のため、AI認識は無効である。
 
-## 次回作業
+## 明日の作業
 
-同じ条件の再録画はまだ行わない。次は録画前に次を実施する。
+### 本日中に追加録画する必要
 
-1. 全録画、走行区間、精度区間の追跡率を分離する。
-2. 発進応答遅延と定常方向精度を分けたprofile v2候補を作る。
-3. 実速許容下限でも0.65 mより外側で警告確認できるTTC仕様を計算する。
-4. 動的profile指定時に静的ゲートFAILを総合判定から分離する。
-5. 旧9試行と今回10試行でv2候補を開発評価する。
-6. v2を事前固定してから、新しい独立holdoutを録画する。
+**追加録画は不要。** 明日は既存の8月18日・9月1日録画を使うオフライン感度評価から始める。
+現行configのまま同条件を繰り返しても、まだ実装していないKalman応答改善や4.6秒候補の効果を
+検証できない。また、候補決定前に新録画を解析へ使うと独立holdoutとして扱えなくなる。
 
-横位置校正用23点は、本日の予定作業完了後に余力がある場合の別作業として扱う。
+### 明日の実装・解析順序
+
+1. Kalman速度応答の感度評価をワンコマンド化する。
+2. process acceleration stdとTTC deadbandの候補を既存接近・後退・静止録画で比較する。
+3. 0.10 m/s接近の発火遅延、0.10 m/s後退・静止時のTTC誤発火を同時に評価する。
+4. 現行値を含む候補から、誤発火を増やさず応答を改善する組合せがあるか判断する。
+5. 警告4.6秒候補を含めたprofile次版の条件を、結果を見る前に固定できる形へまとめる。
+6. 条件固定後にのみ、独立holdoutの録画計画を確定する。
+
+### 条件固定後の次回録画案（本日は撮らない）
+
+- 青箱静止・ロボット停止: 20秒 × 3試行（TTC誤発火確認）
+- 0.10 m/s接近: 20秒 × 3試行（低速TTC応答）
+- 0.10 m/s後退: 20秒 × 3試行（方向・TTC誤発火）
+- 0.20 m/s接近: 20秒 × 3試行（4.6秒候補と3 frame警告確認）
+
+録画時は30 fps、青箱中央、直進、開始時距離約1.3 m、停止後も数秒記録する。実装候補が
+確定するまではこの案を正式条件とはせず、録画開始前にprofileと試行条件をコミットする。
 
 ## 主な成果物
 
-- `Experimental_results/2026-09-01_dynamic_ttc_analysis/`
-- `Experimental_results/2026-09-01_dynamic_ttc_evaluation_all.csv`
-- `Experimental_results/2026-09-01_dynamic_ttc_requirements.csv`
-- `Experimental_results/2026-09-01_dynamic_ttc_diagnosis.md`
+- `Experimental_results/2026-09-01/`（解析CSV一式）
+- `Experimental_results/2026-09-01/2026-09-01_dynamic_ttc_evaluation_all.csv`
+- `Experimental_results/2026-09-01/2026-09-01_dynamic_ttc_requirements.csv`
+- `Experimental_results/2026-09-01/2026-09-01_dynamic_ttc_diagnosis.md`
+- `Experimental_results/2026-09-01/2026-09-01_dynamic_ttc_v2_candidate_report.md`
+- `Experimental_results/2026-09-01/2026-09-01_dynamic_ttc_v2_candidate.csv`
+- `Experimental_results/2026-09-01/2026-09-01_dynamic_ttc_warning_confirmation_diagnosis.csv`
+- `Experimental_results/2026-09-01/2026-09-01_dynamic_ttc_activation_diagnosis.csv`
 - `Experimental_results/recording_archive_manifest.csv`
 - `Experimental_results/recording_regression_suite.csv`
 - `Experimental_results/recording_regression.md`

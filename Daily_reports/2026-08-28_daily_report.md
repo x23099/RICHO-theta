@@ -193,5 +193,5 @@ PyTorchとUltralyticsは現在の環境に未導入であり、AI認識は無効
 - `src/dynamic_ttc_evaluation_profile.json`
 - `Experimental_results/recording_analysis_cli.md`
 - `Experimental_results/recording_regression.md`
-- `Experimental_results/2026-08-28_dynamic_ttc_evaluation_conditions.md`
-- `Experimental_results/2026-08-28_lateral_calibration_rediagnosis.md`
+- `Experimental_results/2026-08-28/2026-08-28_dynamic_ttc_evaluation_conditions.md`
+- `Experimental_results/2026-08-28/2026-08-28_lateral_calibration_rediagnosis.md`

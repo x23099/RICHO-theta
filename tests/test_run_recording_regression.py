@@ -27,7 +27,8 @@ def dataset(**overrides):
         "config_path": "src/bird_eye_config_raw_ground_distance.json",
         "labels_path": "",
         "requirements_path": (
-            "Experimental_results/2026-08-26_1700_regression_requirements.csv"
+            "Experimental_results/2026-08-26/"
+            "2026-08-26_1700_regression_requirements.csv"
         ),
         "dynamic_ttc_profile_path": "",
         "expected_status": "PASS",

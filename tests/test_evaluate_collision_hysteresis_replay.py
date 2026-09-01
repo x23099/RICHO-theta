@@ -91,6 +91,17 @@ class CollisionHysteresisReplayTest(unittest.TestCase):
             )
 
             self.assertEqual(result["raw_warning_frames"], 3)
+            self.assertEqual(result["confirmable_warning_frames"], 3)
+            self.assertEqual(result["longest_raw_warning_run_frames"], 3)
+            self.assertEqual(result["longest_confirmable_warning_run_frames"], 3)
+            self.assertEqual(result["raw_warning_track_unavailable_frames"], 0)
+            self.assertEqual(result["raw_warning_track_predicted_frames"], 0)
+            self.assertEqual(result["raw_warning_measurement_rejected_frames"], 0)
+            self.assertEqual(result["raw_warning_calibration_invalid_frames"], 0)
+            self.assertEqual(result["raw_warning_not_forward_frames"], 0)
+            self.assertAlmostEqual(
+                result["minimum_ttc_threshold_for_confirmation_sec"], 3.9
+            )
             self.assertGreaterEqual(result["warning_hold_frames"], 1)
             self.assertEqual(result["unknown_frames"], 1)
             self.assertEqual(result["raw_critical_frames"], 0)

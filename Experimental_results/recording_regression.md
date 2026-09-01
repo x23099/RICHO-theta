@@ -44,7 +44,7 @@ python3 src/run_recording_regression.py --list
 ```bash
 python3 src/run_recording_regression.py \
   --archive-dir /home/robo25/Downloads/recoding \
-  --output-dir Experimental_results/regression_runs/2026-08-28
+  --output-dir Experimental_results/2026-09-01/regression_runs/all
 ```
 
 1件だけの確認は`--dataset-id`で選択する。
@@ -52,7 +52,7 @@ python3 src/run_recording_regression.py \
 ```bash
 python3 src/run_recording_regression.py \
   --archive-dir /home/robo25/Downloads/recoding \
-  --output-dir Experimental_results/regression_runs/2026-08-28-lateral \
+  --output-dir Experimental_results/2026-09-01/regression_runs/lateral \
   --dataset-id lateral-static-20260826-1700
 ```
 
