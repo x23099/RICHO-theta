@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs><filter id="s"><feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#172033" flood-opacity=".13"/></filter><marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0L12 6L0 12z" fill="#69778e"/></marker><style>.jp{font-family:'Noto Sans CJK JP','Yu Gothic',sans-serif}.t{font-size:49px;font-weight:800;fill:#172033}.st{font-size:25px;fill:#536077}.h{font-size:27px;font-weight:800;fill:#172033}.b{font-size:21px;fill:#455269}.sm{font-size:18px;fill:#5c687d}.w{fill:#fff}</style></defs>
+  <rect width="1600" height="900" fill="#f6f8fc"/>
+  <text class="jp t" x="70" y="82">最終デモまでの接続図：残るのは2本の橋</text>
+  <text class="jp st" x="72" y="122">青箱で作った計測・TTC基盤を、YOLOの一般物体とFFBへつなぐ</text>
+
+  <text class="jp h" x="75" y="190" fill="#207b50">現在動いている経路</text>
+  <g filter="url(#s)">
+    <rect x="70" y="225" width="250" height="175" rx="24" fill="#eaf4ff" stroke="#4b8fd8" stroke-width="2"/><text class="jp h" x="112" y="277">360度カメラ</text><text class="jp b" x="112" y="322">MJPG 30 fps</text><text class="jp b" x="112" y="355">BEV投影</text>
+    <rect x="390" y="225" width="250" height="175" rx="24" fill="#e9f8f0" stroke="#43ad74" stroke-width="2"/><text class="jp h" x="433" y="277">青箱を検出</text><text class="jp b" x="433" y="322">HSV・床接地点</text><text class="jp b" x="433" y="355">x, z 実距離</text>
+    <rect x="710" y="225" width="250" height="175" rx="24" fill="#f0ebff" stroke="#8063d9" stroke-width="2"/><text class="jp h" x="751" y="277">追跡・速度</text><text class="jp b" x="751" y="322">外れ値除去</text><text class="jp b" x="751" y="355">カルマン予測</text>
+    <rect x="1030" y="225" width="250" height="175" rx="24" fill="#fff4df" stroke="#e9a532" stroke-width="2"/><text class="jp h" x="1073" y="277">TTC・危険度</text><text class="jp b" x="1073" y="322">経路との重なり</text><text class="jp b" x="1073" y="355">表示・CSV記録</text>
+    <rect x="1350" y="225" width="180" height="175" rx="24" fill="#f2f4f8" stroke="#a9b2c2" stroke-width="2"/><text class="jp h" x="1397" y="277">FFB</text><text class="jp b" x="1381" y="322">未接続</text><text class="jp b" x="1381" y="355">制御なし</text>
+  </g>
+  <g stroke="#69778e" stroke-width="6" marker-end="url(#a)"><path d="M320 312h62"/><path d="M640 312h62"/><path d="M960 312h62"/><path d="M1280 312h62"/></g>
+
+  <text class="jp h" x="75" y="490" fill="#9a5c00">すでにあるYOLO経路</text>
+  <g filter="url(#s)"><rect x="70" y="525" width="370" height="180" rx="24" fill="#fff5df" stroke="#efa62e" stroke-width="2"/><text class="jp h" x="112" y="580">YOLOv8 検出</text><text class="jp b" x="112" y="624">クラス・信頼度・2D bbox</text><text class="jp b" x="112" y="660">3D風ワイヤーフレーム描画</text>
+  <rect x="510" y="525" width="450" height="180" rx="24" fill="#fff0f0" stroke="#ef6a6a" stroke-width="3" stroke-dasharray="12 9"/><text class="jp h" x="554" y="580">橋①：一般物体を計測へ</text><text class="jp b" x="554" y="624">bbox下端 → BEV床座標 → x, z</text><text class="jp b" x="554" y="660">クラス別追跡・TTCへ共通化</text>
+  <rect x="1030" y="525" width="500" height="180" rx="24" fill="#fff0f0" stroke="#ef6a6a" stroke-width="3" stroke-dasharray="12 9"/><text class="jp h" x="1074" y="580">橋②：危険度をFFBへ</text><text class="jp b" x="1074" y="624">WARNING/CRITICAL → 反力指令</text><text class="jp b" x="1074" y="660">上限・タイムアウト・手動解除を設計</text></g>
+  <g stroke="#69778e" stroke-width="6" marker-end="url(#a)"><path d="M440 615h62"/><path d="M960 615h62"/></g>
+  <rect x="70" y="765" width="1460" height="75" rx="24" fill="#172437"/><text class="jp w" x="118" y="813" font-size="26" font-weight="700">次の最短経路：YOLO 1クラスで座標化 → 録画再生でTTC確認 → 弱いFFBから段階的に実機試験</text>
+</svg>

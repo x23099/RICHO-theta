@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+ <defs><filter id="s"><feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#172033" flood-opacity=".15"/></filter><marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0L12 6L0 12z" fill="#69778e"/></marker><style>.jp{font-family:'Noto Sans CJK JP','Yu Gothic',sans-serif}.t{font-size:49px;font-weight:800;fill:#172033}.st{font-size:25px;fill:#536077}.h{font-size:28px;font-weight:800;fill:#172033}.b{font-size:21px;fill:#48556d}</style></defs>
+ <rect width="1600" height="900" fill="#f6f8fc"/><text class="jp t" x="70" y="82">実録画：ロボットが青箱へ0.20 m/sで接近</text><text class="jp st" x="72" y="124">RICOH THETAの前後魚眼映像　同じ試行の時間変化</text>
+ <g filter="url(#s)"><rect x="70" y="190" width="440" height="500" rx="25" fill="#fff"/><rect x="580" y="190" width="440" height="500" rx="25" fill="#fff"/><rect x="1090" y="190" width="440" height="500" rx="25" fill="#fff"/></g>
+ <image href="experiment_frames/far_raw.jpg" x="90" y="260" width="400" height="225"/><image href="experiment_frames/mid_raw.jpg" x="600" y="260" width="400" height="225"/><image href="experiment_frames/warning_raw.jpg" x="1110" y="260" width="400" height="225"/>
+ <text class="jp h" x="112" y="235">① 接近開始</text><text class="jp h" x="622" y="235">② 接近中</text><text class="jp h" x="1132" y="235">③ 警告成立付近</text>
+ <text class="jp" x="112" y="545" font-size="34" font-weight="800" fill="#2671d9">約1.15 m</text><text class="jp b" x="112" y="586">青箱は画面中央の進行方向</text><text class="jp b" x="112" y="620">TTC候補 約22.3秒</text>
+ <text class="jp" x="622" y="545" font-size="34" font-weight="800" fill="#7655d8">約0.84 m</text><text class="jp b" x="622" y="586">箱が大きく見える</text><text class="jp b" x="622" y="620">TTC候補 約5.3秒</text>
+ <text class="jp" x="1132" y="545" font-size="34" font-weight="800" fill="#dc7619">約0.66 m</text><text class="jp b" x="1132" y="586">校正範囲下限付近</text><text class="jp b" x="1132" y="620">WARNING・TTC 約4.53秒</text>
+ <g stroke="#69778e" stroke-width="7" marker-end="url(#a)"><path d="M510 440h60"/><path d="M1020 440h60"/></g>
+ <rect x="180" y="755" width="1240" height="72" rx="36" fill="#e6edf8"/><text class="jp" x="307" y="801" font-size="25" font-weight="700" fill="#30405b">青箱を固定し、Kobukiを直進させて距離・相対速度・TTCを同時記録</text>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/></filter>
+    <linearGradient id="bar" x1="0" x2="1"><stop offset="0" stop-color="#2671d9"/><stop offset="1" stop-color="#6d55df"/></linearGradient>
+    <style>
+      .jp{font-family:'Noto Sans CJK JP','Yu Gothic',sans-serif}.title{font-size:50px;font-weight:800;fill:#172033}.sub{font-size:25px;fill:#536077}.h{font-size:28px;font-weight:700;fill:#172033}.body{font-size:22px;fill:#435069}.small{font-size:19px;fill:#5b6780}.white{fill:#fff}.done{fill:#e9f8f0;stroke:#4ab47b;stroke-width:2}.part{fill:#fff5df;stroke:#eeac39;stroke-width:2}.todo{fill:#f2f4f8;stroke:#a9b2c2;stroke-width:2}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="#f6f8fc"/>
+  <text class="jp title" x="70" y="82">現在地：FFBデモ完成を100とすると 約55</text>
+  <text class="jp sub" x="72" y="122">青箱で「見る→位置→追跡→TTC」は成立。YOLOの位置・追跡化とFFB接続が次の主工程</text>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="170" width="270" height="290" rx="26" class="done"/>
+    <circle cx="112" cy="216" r="25" fill="#28a56a"/><text class="jp white" x="104" y="225" font-size="25" font-weight="700">1</text>
+    <text class="jp h" x="148" y="226">入力・BEV</text>
+    <text class="jp body" x="98" y="285">360度映像取得</text><text class="jp body" x="98" y="322">MJPG 30 fps</text><text class="jp body" x="98" y="359">俯瞰変換・ODOM</text>
+    <rect x="98" y="398" width="214" height="42" rx="21" fill="#ccefdc"/><text class="jp" x="166" y="427" font-size="23" font-weight="700" fill="#16764a">完了</text>
+
+    <rect x="370" y="170" width="270" height="290" rx="26" class="done"/>
+    <circle cx="412" cy="216" r="25" fill="#28a56a"/><text class="jp white" x="404" y="225" font-size="25" font-weight="700">2</text>
+    <text class="jp h" x="448" y="226">青箱認識</text>
+    <text class="jp body" x="398" y="285">床接地点→実距離</text><text class="jp body" x="398" y="322">外れ値除去</text><text class="jp body" x="398" y="359">遮蔽追跡・再捕捉</text>
+    <rect x="398" y="398" width="214" height="42" rx="21" fill="#ccefdc"/><text class="jp" x="466" y="427" font-size="23" font-weight="700" fill="#16764a">完了</text>
+
+    <rect x="670" y="170" width="270" height="290" rx="26" class="part"/>
+    <circle cx="712" cy="216" r="25" fill="#ef9b22"/><text class="jp white" x="704" y="225" font-size="25" font-weight="700">3</text>
+    <text class="jp h" x="748" y="226">動的TTC</text>
+    <text class="jp body" x="698" y="285">相対速度・経路重なり</text><text class="jp body" x="698" y="322">警告ヒステリシス</text><text class="jp body" x="698" y="359">9/1正式評価 0/9</text>
+    <rect x="698" y="398" width="214" height="42" rx="21" fill="#ffe3a8"/><text class="jp" x="742" y="427" font-size="23" font-weight="700" fill="#9a5c00">実装済・検証中</text>
+
+    <rect x="970" y="170" width="270" height="290" rx="26" class="part"/>
+    <circle cx="1012" cy="216" r="25" fill="#ef9b22"/><text class="jp white" x="1004" y="225" font-size="25" font-weight="700">4</text>
+    <text class="jp h" x="1048" y="226">YOLO統合</text>
+    <text class="jp body" x="998" y="285">モデル読込・検出</text><text class="jp body" x="998" y="322">3D風枠の描画</text><text class="jp body" x="998" y="359">距離・TTC接続は未実装</text>
+    <rect x="998" y="398" width="214" height="42" rx="21" fill="#ffe3a8"/><text class="jp" x="1052" y="427" font-size="23" font-weight="700" fill="#9a5c00">入口のみ</text>
+
+    <rect x="1270" y="170" width="260" height="290" rx="26" class="todo"/>
+    <circle cx="1312" cy="216" r="25" fill="#8390a4"/><text class="jp white" x="1304" y="225" font-size="25" font-weight="700">5</text>
+    <text class="jp h" x="1348" y="226">FFB連携</text>
+    <text class="jp body" x="1298" y="285">危険度→反力</text><text class="jp body" x="1298" y="322">安全な上限・解除</text><text class="jp body" x="1298" y="359">E2E実機検証</text>
+    <rect x="1298" y="398" width="204" height="42" rx="21" fill="#dde2ea"/><text class="jp" x="1366" y="427" font-size="23" font-weight="700" fill="#5d6879">未着手</text>
+  </g>
+  <g stroke="#748196" stroke-width="7" fill="none"><path d="M340 315h30"/><path d="M640 315h30"/><path d="M940 315h30"/><path d="M1240 315h30"/></g>
+
+  <rect x="70" y="525" width="1460" height="300" rx="30" fill="#fff" filter="url(#shadow)"/>
+  <text class="jp h" x="110" y="584">進捗率は「何を完成と呼ぶか」で変わる</text>
+  <text class="jp body" x="110" y="645">A. 卒研デモ：YOLO障害物 → TTC → FFB</text>
+  <rect x="610" y="615" width="760" height="42" rx="21" fill="#e3e7ee"/><rect x="610" y="615" width="418" height="42" rx="21" fill="url(#bar)"/>
+  <text class="jp" x="1393" y="645" font-size="30" font-weight="800" fill="#4939b7">約55 / 100</text>
+  <text class="jp body" x="110" y="724">B. FSD風環境地図＋AI Seg＋Visual SLAM＋UI</text>
+  <rect x="610" y="694" width="760" height="42" rx="21" fill="#e3e7ee"/><rect x="610" y="694" width="281" height="42" rx="21" fill="url(#bar)"/>
+  <text class="jp" x="1393" y="724" font-size="30" font-weight="800" fill="#4939b7">約37 / 100</text>
+  <text class="jp small" x="110" y="786">※進捗率は機能の有無だけでなく、独立データでの検証・安全な実機連携まで含めた概算</text>
+</svg>

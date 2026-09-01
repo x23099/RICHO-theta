@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs><filter id="s"><feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#172033" flood-opacity=".12"/></filter><style>.jp{font-family:'Noto Sans CJK JP','Yu Gothic',sans-serif}.t{font-size:49px;font-weight:800;fill:#172033}.st{font-size:25px;fill:#536077}.date{font-size:29px;font-weight:800;fill:#fff}.h{font-size:27px;font-weight:800;fill:#172033}.b{font-size:21px;fill:#46536a}.num{font-size:35px;font-weight:800;fill:#172033}.sm{font-size:18px;fill:#5d687c}</style></defs>
+  <rect width="1600" height="900" fill="#f6f8fc"/>
+  <text class="jp t" x="70" y="82">8/26–9/1：検出の安定化から動的TTC診断へ</text>
+  <text class="jp st" x="72" y="122">成功条件だけでなく、独立録画でFAILを再現し原因を数値で残した</text>
+  <path d="M180 240H1420" stroke="#c7cfdb" stroke-width="8"/>
+  <circle cx="250" cy="240" r="25" fill="#2d70d6"/><circle cx="800" cy="240" r="25" fill="#7856d9"/><circle cx="1350" cy="240" r="25" fill="#ef9b22"/>
+  <g filter="url(#s)">
+    <rect x="70" y="285" width="500" height="425" rx="28" fill="#fff"/><rect x="70" y="285" width="500" height="70" rx="28" fill="#2d70d6"/><rect x="70" y="327" width="500" height="28" fill="#2d70d6"/><text class="jp date" x="112" y="331">8月26日　静的系を改善・確認</text>
+    <text class="jp h" x="112" y="410">横長誤候補を除外</text><text class="jp b" x="112" y="449">ゴムマット上端と青箱を縦横比で分離</text>
+    <text class="jp num" x="112" y="515">0 / 1298</text><text class="jp b" x="290" y="515">箱なし誤検出</text>
+    <text class="jp num" x="112" y="572">853 / 853</text><text class="jp b" x="325" y="572">左右 検出・採用・追跡</text>
+    <text class="jp num" x="112" y="629">≤ 27.05 ms</text><text class="jp b" x="350" y="629">処理p95最大</text>
+    <text class="jp sm" x="112" y="675">遮蔽は2/2で追跡失効・再捕捉</text>
+
+    <rect x="600" y="285" width="400" height="425" rx="28" fill="#fff"/><rect x="600" y="285" width="400" height="70" rx="28" fill="#7856d9"/><rect x="600" y="327" width="400" height="28" fill="#7856d9"/><text class="jp date" x="642" y="331">8月28日　再現性を整備</text>
+    <text class="jp h" x="642" y="410">解析をワンコマンド化</text><text class="jp b" x="642" y="449">録画→CSV→合否判定</text>
+    <text class="jp h" x="642" y="515">過去録画を回帰登録</text><text class="jp b" x="642" y="554">変更時の退行を自動確認</text>
+    <text class="jp h" x="642" y="620">動的条件を事前固定</text><text class="jp b" x="642" y="659">後付け調整を避ける評価設計</text>
+
+    <rect x="1030" y="285" width="500" height="425" rx="28" fill="#fff"/><rect x="1030" y="285" width="500" height="70" rx="28" fill="#ef9b22"/><rect x="1030" y="327" width="500" height="28" fill="#ef9b22"/><text class="jp date" x="1072" y="331">9月1日　動的TTCを独立評価</text>
+    <text class="jp h" x="1072" y="410">録画品質・検出は成立</text><text class="jp b" x="1072" y="449">30 fps、青箱検出100%、全試行解析可能</text>
+    <text class="jp num" x="1072" y="515">v1　0 / 9 PASS</text>
+    <text class="jp num" x="1072" y="572">v2候補　3 / 9 PASS</text>
+    <text class="jp b" x="1072" y="625">速度安定化と3フレーム確認で警告が遅れる</text>
+    <text class="jp sm" x="1072" y="675">v2は診断候補。まだ本番設定へは昇格しない</text>
+  </g>
+  <rect x="220" y="775" width="1160" height="70" rx="35" fill="#e8eef8"/><text class="jp" x="302" y="820" font-size="25" font-weight="700" fill="#30405b">成果：静的基盤は安定　／　現在のボトルネックは低速接近時のTTC警告遅延</text>
+</svg>
