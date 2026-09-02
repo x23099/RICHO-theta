@@ -1,3 +1,4 @@
+import json
 import sys
 import tempfile
 import unittest
@@ -10,6 +11,7 @@ sys.path.insert(0, str(SRC_DIR))
 from preflight_field_experiment import (  # noqa: E402
     check_config,
     check_record_storage,
+    check_ttc_profile,
     validate_experiment_config,
 )
 
@@ -29,6 +31,31 @@ class FieldExperimentPreflightTest(unittest.TestCase):
         self.assertIn("max_aspect=1.5", result.detail)
         self.assertIn("illumination=none", result.detail)
 
+    def test_candidate_config_matches_candidate_profile(self):
+        result = check_ttc_profile(
+            SRC_DIR / "bird_eye_config_ttc_candidate_20260902.json",
+            SRC_DIR / "dynamic_ttc_evaluation_profile_v3_candidate.json",
+        )
+
+        self.assertEqual(result.status, "PASS")
+        self.assertIn("matched 8 runtime parameters", result.detail)
+
+    def test_ttc_profile_mismatch_fails_preflight(self):
+        config = json.loads(
+            (SRC_DIR / "bird_eye_config_ttc_candidate_20260902.json").read_text()
+        )
+        config["blue_ttc_deadband_mps"] = 0.05
+        with tempfile.TemporaryDirectory() as temporary_dir:
+            config_path = Path(temporary_dir) / "config.json"
+            config_path.write_text(json.dumps(config))
+            result = check_ttc_profile(
+                config_path,
+                SRC_DIR / "dynamic_ttc_evaluation_profile_v3_candidate.json",
+            )
+
+        self.assertEqual(result.status, "FAIL")
+        self.assertIn("blue_ttc_deadband_mps", result.detail)
+
     def test_accepts_blue_baseline_configuration(self):
         config = {
             "blue_position_method": "ground_contact",
@@ -43,6 +70,7 @@ class FieldExperimentPreflightTest(unittest.TestCase):
             "blue_observation_normalized_area_min": 2503.7,
             "blue_observation_nis_max": 9.21,
             "blue_ttc_velocity_window_sec": 0.3,
+            "blue_ttc_deadband_mps": 0.05,
             "blue_collision_warning_ttc_sec": 4.0,
             "blue_collision_critical_ttc_sec": 2.0,
             "blue_collision_warning_exit_ttc_sec": 5.0,
@@ -68,6 +96,7 @@ class FieldExperimentPreflightTest(unittest.TestCase):
             "blue_observation_normalized_area_min": 2503.7,
             "blue_observation_nis_max": 9.21,
             "blue_ttc_velocity_window_sec": 0.3,
+            "blue_ttc_deadband_mps": 0.05,
             "blue_collision_warning_ttc_sec": 2.0,
             "blue_collision_critical_ttc_sec": 4.0,
             "blue_collision_warning_exit_ttc_sec": 1.0,
@@ -106,6 +135,7 @@ class FieldExperimentPreflightTest(unittest.TestCase):
             "blue_observation_normalized_area_min": 2000,
             "blue_observation_nis_max": 9.21,
             "blue_ttc_velocity_window_sec": 0.3,
+            "blue_ttc_deadband_mps": 0.05,
             "blue_collision_warning_ttc_sec": 4.0,
             "blue_collision_critical_ttc_sec": 2.0,
             "blue_collision_warning_exit_ttc_sec": 5.0,

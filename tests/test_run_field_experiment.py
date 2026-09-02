@@ -124,6 +124,17 @@ class FieldExperimentRunnerTest(unittest.TestCase):
 
         self.assertNotIn("--require-clean-git", command)
 
+    def test_dynamic_profile_is_forwarded_to_preflight_only(self):
+        args = parsed_args(
+            "--dynamic-ttc-profile",
+            "src/dynamic_ttc_evaluation_profile_v3_candidate.json",
+        )
+        preflight = build_preflight_command(args)
+        application = build_bird_eye_command(args)
+
+        self.assertIn("--dynamic-ttc-profile", preflight)
+        self.assertNotIn("--dynamic-ttc-profile", application)
+
     def test_rejects_blank_odom_topic(self):
         parser = build_parser()
         args = parser.parse_args(

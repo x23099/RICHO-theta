@@ -41,6 +41,8 @@ python3 src/analyze_field_recording.py \
 `dynamic_ttc_evaluation_profile.json`は確定済みschema v1である。
 `dynamic_ttc_evaluation_profile_v2_candidate.json`は走行中追跡率、方向応答時間、
 定常方向精度を分離する開発候補であり、独立holdout確認までは本番判定に使わない。
+`dynamic_ttc_evaluation_profile_v3_candidate.json`は9月2日に固定したdeadband 0.03 m/s・
+WARNING 4.6秒候補であり、同様に新規独立holdout確認までは本番判定に使わない。
 動的プロファイルに含まれるsessionの静的位置外れ値ゲートは診断結果へ残すが、
 総合判定には加えない。静的sessionが混在する場合、その静的ゲート判定は従来どおり必須である。
 
@@ -91,3 +93,20 @@ python3 src/analyze_field_recording.py \
 - `202608261630.tar.xz`: 青箱なし2件、通常1件、遮蔽1件。遮蔽2/2回の失効と再捕捉を確認。
 
 利用可能な全引数は`python3 src/analyze_field_recording.py --help`で確認できる。
+# Kalman速度応答・TTCデッドバンド感度評価
+
+録画時に採用済みの観測を固定し、Kalman process acceleration stdとTTC deadbandの候補を
+一括比較する。入力は複数回指定でき、tar.xzを展開せずに直接読む。
+
+```bash
+python3 src/analyze_ttc_kalman_sensitivity.py \
+  --input /path/to/202609011435.tar.xz \
+  --input /path/to/recoding_08181725.tar.xz \
+  --input /path/to/recoding_08181740.tar.xz \
+  --input /path/to/202608261630.tar.xz \
+  --output-dir Experimental_results/2026-09-02
+```
+
+既定候補はprocess acceleration std `0.75,1.5,3.0,6.0 m/s²`と、TTC deadband
+`0.03,0.05,0.07 m/s`の12通り。要約CSV、試行別CSV、Markdown reportを出力する。
+既存結果を更新する場合だけ`--overwrite`を指定する。

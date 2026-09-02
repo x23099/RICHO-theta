@@ -43,6 +43,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--record-dir", type=Path, required=True)
     parser.add_argument("--experiment-label", required=True)
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
+    parser.add_argument("--dynamic-ttc-profile", type=Path)
     parser.add_argument("--camera-device", default="0")
     parser.add_argument("--camera-width", type=positive_int, default=1280)
     parser.add_argument("--camera-height", type=positive_int, default=720)
@@ -112,6 +113,13 @@ def build_preflight_command(args: argparse.Namespace) -> list[str]:
     ]
     if args.skip_tests:
         command.append("--skip-tests")
+    if args.dynamic_ttc_profile is not None:
+        command.extend(
+            [
+                "--dynamic-ttc-profile",
+                str(args.dynamic_ttc_profile.expanduser().resolve()),
+            ]
+        )
     if not args.allow_dirty_git:
         command.append("--require-clean-git")
     return command

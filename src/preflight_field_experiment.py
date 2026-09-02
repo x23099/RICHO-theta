@@ -18,6 +18,7 @@ from pathlib import Path
 
 from ros_odometry import RosOdometryBridge
 from camera_capture_properties import exposure_summary, read_capture_properties
+from evaluate_dynamic_ttc_conditions import load_profile
 
 
 REPOSITORY_DIR = Path(__file__).resolve().parents[1]
@@ -55,6 +56,7 @@ def validate_experiment_config(config):
         "blue_observation_normalized_area_min",
         "blue_observation_nis_max",
         "blue_ttc_velocity_window_sec",
+        "blue_ttc_deadband_mps",
         "blue_collision_warning_ttc_sec",
         "blue_collision_critical_ttc_sec",
         "blue_collision_warning_exit_ttc_sec",
@@ -170,6 +172,46 @@ def check_config(config_path):
         f"hsv_v_min={config.get('blue_ground_contact_hsv_v_min', 30)}, "
         f"max_aspect={config.get('blue_ground_contact_max_aspect_ratio', 'off')}, "
         f"illumination={config.get('blue_ground_contact_illumination_mode', 'none')}",
+    )
+
+
+def check_ttc_profile(config_path, profile_path):
+    try:
+        with Path(config_path).open() as config_file:
+            config = json.load(config_file)
+        profile = load_profile(profile_path)
+    except (OSError, ValueError, json.JSONDecodeError) as error:
+        return CheckResult("Dynamic TTC profile", "FAIL", str(error))
+    pairs = {
+        "blue_ttc_deadband_mps": "motion_deadband_mps",
+        "blue_collision_warning_ttc_sec": "warning_ttc_sec",
+        "blue_collision_critical_ttc_sec": "critical_ttc_sec",
+        "blue_collision_warning_exit_ttc_sec": "warning_exit_ttc_sec",
+        "blue_collision_warning_confirm_frames": "warning_confirm_frames",
+        "blue_collision_warning_clear_frames": "warning_clear_frames",
+        "blue_collision_warning_hold_sec": "warning_hold_sec",
+        "blue_collision_forward_motion_threshold_mps": "forward_motion_threshold_mps",
+    }
+    mismatches = []
+    for config_key, profile_key in pairs.items():
+        config_value = config.get(config_key)
+        profile_value = profile.get(profile_key)
+        try:
+            matches = math.isclose(
+                float(config_value), float(profile_value), rel_tol=0.0, abs_tol=1e-9
+            )
+        except (TypeError, ValueError):
+            matches = config_value == profile_value
+        if not matches:
+            mismatches.append(
+                f"{config_key}={config_value!r} != {profile_key}={profile_value!r}"
+            )
+    if mismatches:
+        return CheckResult("Dynamic TTC profile", "FAIL", "; ".join(mismatches))
+    return CheckResult(
+        "Dynamic TTC profile",
+        "PASS",
+        f"{Path(profile_path).resolve()}: matched {len(pairs)} runtime parameters",
     )
 
 
@@ -336,6 +378,7 @@ def main():
         description="Preflight the blue-target field experiment environment"
     )
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
+    parser.add_argument("--dynamic-ttc-profile", type=Path)
     parser.add_argument("--record-dir", type=Path, required=True)
     parser.add_argument("--minimum-free-gb", type=float, default=20.0)
     parser.add_argument("--camera-device", default="")
@@ -352,9 +395,15 @@ def main():
     results = [
         check_dependencies(require_ros=bool(args.odom_topic)),
         check_config(args.config),
-        check_record_storage(args.record_dir, max(0.0, args.minimum_free_gb)),
-        check_git_state(args.require_clean_git),
     ]
+    if args.dynamic_ttc_profile is not None:
+        results.append(check_ttc_profile(args.config, args.dynamic_ttc_profile))
+    results.extend(
+        [
+            check_record_storage(args.record_dir, max(0.0, args.minimum_free_gb)),
+            check_git_state(args.require_clean_git),
+        ]
+    )
     if not args.skip_tests:
         results.append(check_unit_tests())
     else:
