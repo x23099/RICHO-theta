@@ -113,7 +113,7 @@ def compare_inputs(inputs: list[Path], profile: dict):
         session_name = source.rsplit("::", 1)[-1] if "::" in source else Path(source).name
         for mode in MODES:
             mode_profile = copy.deepcopy(profile)
-            if mode_profile.get("schema_version") == 3:
+            if mode_profile.get("schema_version") in {3, 4}:
                 mode_profile["velocity_source"] = mode
             profile_without_hold = copy.deepcopy(mode_profile)
             profile_without_hold["minimum_warning_hold_frames"] = 0

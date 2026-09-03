@@ -9,6 +9,7 @@ from pathlib import Path
 SRC_DIR = Path(__file__).resolve().parents[1] / "src"
 V2_PROFILE = SRC_DIR / "dynamic_ttc_evaluation_profile_v2_candidate.json"
 V4_PROFILE = SRC_DIR / "dynamic_ttc_evaluation_profile_v4_candidate.json"
+V5_PROFILE = SRC_DIR / "dynamic_ttc_evaluation_profile_v5_candidate.json"
 sys.path.insert(0, str(SRC_DIR))
 
 from evaluate_dynamic_ttc_conditions import (  # noqa: E402
@@ -196,6 +197,25 @@ class DynamicTtcConditionTest(unittest.TestCase):
         self.assertNotIn("configured_velocity_source", result["reasons"])
         self.assertNotIn("velocity_source_match_rate", result["reasons"])
         self.assertEqual(result["velocity_source_match_rate"], 1.0)
+
+    def test_schema4_adds_half_odom_resolution_to_speed_limit(self):
+        candidate = copy.deepcopy(load_profile(V5_PROFILE))
+        candidate["minimum_accuracy_interval_frames"] = 1
+        rows = [row(index * 0.04, 0.159923, -0.159923, 4.5) for index in range(3)]
+        for item in rows:
+            item["ttc_velocity_source"] = "conservative_odom"
+
+        result = evaluate_session(
+            "approach_center_v0p20_r01",
+            "trial",
+            {"parameters": {"blue_ttc_velocity_source": "conservative"}},
+            rows,
+            candidate,
+        )
+
+        self.assertAlmostEqual(result["nominal_speed_error_mps"], 0.040077)
+        self.assertAlmostEqual(result["nominal_speed_error_limit_mps"], 0.041066)
+        self.assertNotIn("nominal_speed_error_mps", result["reasons"])
 
     def test_high_speed_scores_accuracy_before_warning_and_safety_after_it(self):
         rows = [

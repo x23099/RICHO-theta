@@ -1,0 +1,6 @@
+experiment_label,source,frames,detected_frames,measurement_accepted_frames,normalized_area_rejection_frames,measurement_acceptance_rate,median_x_m,median_z_m,median_area_px,median_normalized_area,normalized_area_threshold,median_normalized_area_to_threshold
+approach_center_v0p20_r01,/home/robo25/Downloads/202609031545.tar.xz::approach_center_v0p20_r01_20260903_153413_843,499,499,499,0,1.0,0.0086,0.8499,3632.0,2599.5222718944633,2000.0,1.2997611359472316
+approach_center_v0p20_r02,/home/robo25/Downloads/202609031545.tar.xz::approach_center_v0p20_r02_20260903_154255_459,518,518,518,0,1.0,0.01,0.8484,3627.5,2614.118674855845,2000.0,1.3070593374279225
+approach_center_v0p20_r03,/home/robo25/Downloads/202609031545.tar.xz::approach_center_v0p20_r03_20260903_154331_538,501,501,501,0,1.0,0.0171,0.8476,3686.5,2633.0052851492383,2000.0,1.3165026425746191
+retreat_center_v0p10_r01,/home/robo25/Downloads/202609031545.tar.xz::retreat_center_v0p10_r01_20260903_154413_782,599,599,599,0,1.0,0.018,0.8211,3890.5,2654.0846863333954,2000.0,1.3270423431666978
+static_center_ttc_r01,/home/robo25/Downloads/202609031545.tar.xz::static_center_ttc_r01_20260903_153206_220,448,448,448,0,1.0,0.0133,0.8395,3629.0,2559.6931377989713,2000.0,1.2798465688994856

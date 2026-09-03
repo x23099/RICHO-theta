@@ -1,0 +1,4 @@
+experiment_label,source,frames,detected_frames,measurement_accepted_frames,normalized_area_rejection_frames,measurement_acceptance_rate,median_x_m,median_z_m,median_area_px,median_normalized_area,normalized_area_threshold,median_normalized_area_to_threshold
+approach_center_v0p20_r01,/home/robo25/Downloads/recoding/202609031610.tar.xz::approach_center_v0p20_r01_20260903_160831_889,431,431,289,0,0.6705336426914154,0.0284,0.9364,2808.0,2451.0729709463903,2000.0,1.2255364854731952
+approach_center_v0p20_r02,/home/robo25/Downloads/recoding/202609031610.tar.xz::approach_center_v0p20_r02_20260903_161123_582,317,317,206,0,0.6498422712933754,0.0141,0.8276,3488.0,2442.5331086933083,2000.0,1.221266554346654
+approach_center_v0p20_r03,/home/robo25/Downloads/recoding/202609031610.tar.xz::approach_center_v0p20_r03_20260903_161200_952,337,337,213,0,0.6320474777448071,0.0196,0.8195,3576.0,2468.5306562991236,2000.0,1.234265328149562

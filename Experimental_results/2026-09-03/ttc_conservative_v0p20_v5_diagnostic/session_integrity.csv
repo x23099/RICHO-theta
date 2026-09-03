@@ -1,0 +1,4 @@
+session,source,required_files_complete,csv_frames,frame_sequence_ok,timestamps_monotonic,time_alias_ok,raw_frames,bev_frames,detection_frames,video_counts_match,processing_timing_status,decision,reasons
+approach_center_v0p20_r01_20260903_160831_889,/home/robo25/Downloads/recoding/202609031610.tar.xz::approach_center_v0p20_r01_20260903_160831_889,1,431,1,1,1,431,431,431,1,PASS,PASS,
+approach_center_v0p20_r02_20260903_161123_582,/home/robo25/Downloads/recoding/202609031610.tar.xz::approach_center_v0p20_r02_20260903_161123_582,1,317,1,1,1,317,317,317,1,PASS,PASS,
+approach_center_v0p20_r03_20260903_161200_952,/home/robo25/Downloads/recoding/202609031610.tar.xz::approach_center_v0p20_r03_20260903_161200_952,1,337,1,1,1,337,337,337,1,PASS,PASS,

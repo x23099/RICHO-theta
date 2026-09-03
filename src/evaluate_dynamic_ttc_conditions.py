@@ -129,6 +129,17 @@ SCHEMA_PROFILE_FIELDS = {
         "velocity_source",
         "minimum_velocity_source_match_rate",
     },
+    4: {
+        "minimum_motion_track_rate",
+        "direction_stability_frames",
+        "maximum_direction_response_delay_sec",
+        "minimum_steady_direction_correct_rate",
+        "warning_feasibility_speed_mps",
+        "minimum_warning_feasibility_margin_sec",
+        "velocity_source",
+        "minimum_velocity_source_match_rate",
+        "odom_speed_resolution_mps",
+    },
 }
 
 
@@ -243,13 +254,13 @@ def load_profile(path: Path) -> dict:
         "maximum_post_warning_path_while_forward_frames",
         "maximum_critical_frames",
     )
-    if schema_version in {2, 3}:
+    if schema_version in {2, 3, 4}:
         integer_fields += ("direction_stability_frames",)
     if any(not numeric_values[field].is_integer() for field in integer_fields):
         raise ValueError("dynamic TTC profile frame counts must be integers")
     if int(profile["minimum_accuracy_interval_frames"]) < 1:
         raise ValueError("minimum_accuracy_interval_frames must be positive")
-    if schema_version in {2, 3} and int(profile["direction_stability_frames"]) < 1:
+    if schema_version in {2, 3, 4} and int(profile["direction_stability_frames"]) < 1:
         raise ValueError("direction_stability_frames must be positive")
     if int(profile["warning_confirm_frames"]) < 1 or int(
         profile["warning_clear_frames"]
@@ -268,13 +279,15 @@ def load_profile(path: Path) -> dict:
         "CRITICAL",
     }:
         raise ValueError("expected_final_state is invalid")
-    if schema_version == 3 and profile["velocity_source"] not in {
+    if schema_version in {3, 4} and profile["velocity_source"] not in {
         "visual",
         "odom_static",
         "conservative",
     }:
         raise ValueError("velocity_source is invalid")
-    if schema_version in {2, 3}:
+    if schema_version == 4 and numeric_values["odom_speed_resolution_mps"] <= 0.0:
+        raise ValueError("odom_speed_resolution_mps must be positive")
+    if schema_version in {2, 3, 4}:
         if float(profile["warning_feasibility_speed_mps"]) <= 0.0:
             raise ValueError("warning_feasibility_speed_mps must be positive")
         feasibility_margin = float(profile["warning_ttc_sec"]) - (
@@ -419,6 +432,10 @@ def evaluate_session(
         float(profile["nominal_speed_absolute_tolerance_mps"]),
         float(profile["nominal_speed_relative_tolerance"]) * nominal_speed,
     )
+    if profile["schema_version"] == 4:
+        nominal_speed_error_limit += (
+            float(profile["odom_speed_resolution_mps"]) / 2.0
+        )
     abs_odom_angular_p95 = _nearest_rank(odom_angular_speeds, 0.95)
     speed_mae_limit = (
         max(
@@ -429,7 +446,7 @@ def evaluate_session(
         else math.nan
     )
     direction_rate = _rate(sum(direction_flags), len(direction_flags))
-    if profile["schema_version"] in {2, 3}:
+    if profile["schema_version"] in {2, 3, 4}:
         direction_response_delay, steady_direction_rate, _ = _direction_response(
             accuracy_rows,
             direction_flags,
@@ -495,7 +512,7 @@ def evaluate_session(
         )
         activation_stability_frames = (
             int(profile["direction_stability_frames"])
-            if profile["schema_version"] in {2, 3}
+            if profile["schema_version"] in {2, 3, 4}
             else 1
         )
         first_raw_stable_time = _first_stable_timestamp(
@@ -545,7 +562,7 @@ def evaluate_session(
     odom_rate = _rate(len(odom_rows), len(rows))
     configured_velocity_source = ""
     velocity_source_match_rate = math.nan
-    if profile["schema_version"] == 3:
+    if profile["schema_version"] in {3, 4}:
         expected_velocity_source = profile["velocity_source"]
         configured_velocity_source = str(
             metadata.get("parameters", {}).get(
@@ -569,7 +586,7 @@ def evaluate_session(
         float(profile["warning_ttc_sec"])
         - float(profile["calibration_z_min_m"])
         / float(profile["warning_feasibility_speed_mps"])
-        if profile["schema_version"] in {2, 3}
+        if profile["schema_version"] in {2, 3, 4}
         else math.nan
     )
 
@@ -595,7 +612,7 @@ def evaluate_session(
     require_min(
         "odom_available_rate", odom_rate, profile["minimum_odom_available_rate"]
     )
-    if profile["schema_version"] == 3:
+    if profile["schema_version"] in {3, 4}:
         if configured_velocity_source != profile["velocity_source"]:
             reasons.append(
                 f"configured_velocity_source={configured_velocity_source!r} != "
