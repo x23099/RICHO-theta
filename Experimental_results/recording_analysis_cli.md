@@ -10,6 +10,32 @@
 
 リポジトリ直下で実行する。
 
+通常はルート直下のラッパーを使う。出力先を省略すると、実行日とアーカイブ名から
+`Experimental_results/YYYY-MM-DD/<archive-name>_analysis`を自動作成する。標準解析に加えて
+`virtual_ffb_replay.csv`も生成する。カメラ、ROS、Kobuki、ハンドル機器にはアクセスしない。
+
+```bash
+./start_recording_analysis.sh \
+  /home/robo25/Downloads/recoding/202609031610.tar.xz
+```
+
+固定条件を指定する場合は、出力先に続けて従来の解析オプションを渡す。
+
+```bash
+./start_recording_analysis.sh \
+  /home/robo25/Downloads/recoding/202609031610.tar.xz \
+  Experimental_results/2026-09-03/ttc_v5_check \
+  --config src/bird_eye_config_ttc_conservative_candidate_20260903.json \
+  --requirements Experimental_results/2026-09-03/2026-09-03_ttc_conservative_v0p20_retry_requirements.csv \
+  --dynamic-ttc-profile src/dynamic_ttc_evaluation_profile_v5_candidate.json
+```
+
+正式な判定条件は録画内容ごとに異なるため、ラッパー内へ固定しない。既存出力を更新する場合は、
+内容を確認してから末尾へ`--overwrite`を付ける。使用するPythonを明示する場合は、
+`PYTHON_BIN=/path/to/python ./start_recording_analysis.sh ...`とする。
+
+Python CLIを直接呼びたい場合は次の形式も引き続き利用できる。
+
 ```bash
 python3 src/analyze_field_recording.py \
   --input /home/robo25/Downloads/recoding/202608261700.tar.xz \

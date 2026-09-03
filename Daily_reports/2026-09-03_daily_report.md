@@ -160,7 +160,7 @@ LinuxカーネルのForce Feedback仕様では、対応能力の確認、effect�
 | 固定v3回帰の再現 | 動的6/9 FAILを再現 |
 | Python構文検査 | PASS |
 | 差分形式検査 | PASS |
-| 単体テスト | 138件 PASS |
+| 単体テスト | 141件 PASS |
 
 PyTorch/YOLOが未導入という警告は継続しているが、本日の処理は色抽出・幾何推定・ODOM・オフラインCSV再生を対象としており、今回のTTCおよび仮想FFB評価には影響しない。
 
@@ -177,6 +177,8 @@ PyTorch/YOLOが未導入という警告は継続しているが、本日の処�
 - `Experimental_results/2026-09-03/2026-09-03_virtual_ffb_replay.csv`
 - `src/virtual_ffb.py`
 - `tests/test_virtual_ffb.py`
+- `start_recording_analysis.sh`
+- `tests/test_start_recording_analysis_script.py`
 
 録画本体は容量が大きいためGit管理対象外とし、解析結果、設定、メタデータ、ハッシュ値だけをリポジトリへ保存する。
 
@@ -208,3 +210,16 @@ PyTorch/YOLOが未導入という警告は継続しているが、本日の処�
 4. watchdog、明示的enable、終了時ゼロ出力を備えたdry-run対応アダプタを実装する。
 5. 人がハンドルを保持しない停止状態で、最小強度から物理FFBを確認する。
 6. YOLO環境、対象クラス、教師データ方針を整理し、移動物体への拡張へ進む。
+
+## 14. リモート環境での追加作業
+
+学校PC、カメラ、Kobuki、G923へアクセスできない状態でも解析操作を進められるよう、
+ルート直下へ`start_recording_analysis.sh`を追加した。
+
+```bash
+./start_recording_analysis.sh /path/to/recording.tar.xz
+```
+
+この1コマンドで標準録画解析と仮想FFB再生を順に実行し、出力先を省略した場合は
+`Experimental_results/YYYY-MM-DD/<archive-name>_analysis`へ保存する。シェルスクリプトは解析処理を
+再実装せず、引数と保存先を整理して既存Python CLIを呼び出す薄いラッパーとした。機材にはアクセスしない。
