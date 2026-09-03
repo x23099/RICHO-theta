@@ -51,11 +51,11 @@ HOLD性能は「警告成立後に意図的な遮蔽または欠測を発生さ�
 
 | 順番 | ラベル | 条件 | 時間 | 主な確認 |
 |---:|---|---|---:|---|
-| 1 | `static_center_ttc_conservative_r01` | 青箱中央1.0 m、静止 | 10秒 | 誤TTC・誤警告なし |
-| 2 | `approach_center_v0p20_conservative_r01` | 1.3→0.8 m、約0.20 m/s | 約20秒 | WARNINGと速度源 |
-| 3 | `approach_center_v0p20_conservative_r02` | 同上 | 約20秒 | 再現性 |
-| 4 | `approach_center_v0p20_conservative_r03` | 同上 | 約20秒 | 再現性 |
-| 5 | `retreat_center_v0p10_conservative_r01` | 0.8→1.3 m、約0.10 m/s | 約20秒 | TTC・警告なし |
+| 1 | `static_center_ttc_r01` | 青箱中央1.0 m、静止 | 10秒 | 誤TTC・誤警告なし |
+| 2 | `approach_center_v0p20_r01` | 1.3→0.8 m、約0.20 m/s | 約20秒 | WARNINGと速度源 |
+| 3 | `approach_center_v0p20_r02` | 同上 | 約20秒 | 再現性 |
+| 4 | `approach_center_v0p20_r03` | 同上 | 約20秒 | 再現性 |
+| 5 | `retreat_center_v0p10_r01` | 0.8→1.3 m、約0.10 m/s | 約20秒 | TTC・警告なし |
 
 0.20 m/s接近の停止位置は安全下限0.75 mを守り、1〜1.5 cmの停止誤差を許容する。
 評価対象は停止位置の一致ではなく、接近中の速度源、TTC、WARNING成立である。
@@ -67,7 +67,7 @@ python3 src/run_field_experiment.py \
   --config src/bird_eye_config_ttc_conservative_candidate_20260903.json \
   --dynamic-ttc-profile src/dynamic_ttc_evaluation_profile_v4_candidate.json \
   --record-dir recordings/2026-09-03_ttc_conservative \
-  --experiment-label static_center_ttc_conservative_r01 \
+  --experiment-label static_center_ttc_r01 \
   --camera-device 0 \
   --camera-fps 30 \
   --camera-frames 60 \
@@ -76,6 +76,17 @@ python3 src/run_field_experiment.py \
 
 画面の速度表示に`src=conservative_odom`または`src=conservative_visual`が表示され、
 CSVの`ttc_velocity_source`にも同じ値が記録されることを確認する。
+
+録画を`tar.xz`へまとめた後は、5試行専用の固定要件で解析する。
+
+```bash
+python3 src/analyze_field_recording.py \
+  --input /path/to/recording.tar.xz \
+  --config src/bird_eye_config_ttc_conservative_candidate_20260903.json \
+  --requirements Experimental_results/2026-09-03/2026-09-03_ttc_conservative_live_requirements.csv \
+  --dynamic-ttc-profile src/dynamic_ttc_evaluation_profile_v4_candidate.json \
+  --output-dir Experimental_results/2026-09-03/ttc_conservative_live
+```
 
 ## 採用前に残るリスク
 
