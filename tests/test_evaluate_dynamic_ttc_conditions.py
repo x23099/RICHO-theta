@@ -8,6 +8,7 @@ from pathlib import Path
 
 SRC_DIR = Path(__file__).resolve().parents[1] / "src"
 V2_PROFILE = SRC_DIR / "dynamic_ttc_evaluation_profile_v2_candidate.json"
+V4_PROFILE = SRC_DIR / "dynamic_ttc_evaluation_profile_v4_candidate.json"
 sys.path.insert(0, str(SRC_DIR))
 
 from evaluate_dynamic_ttc_conditions import (  # noqa: E402
@@ -118,6 +119,38 @@ class DynamicTtcConditionTest(unittest.TestCase):
         self.assertEqual(result["motion_track_rate"], 1.0)
         self.assertAlmostEqual(result["direction_response_delay_sec"], 0.08)
         self.assertEqual(result["steady_direction_correct_rate"], 1.0)
+
+    def test_v3_schema_preserves_v2_direction_metrics(self):
+        candidate = copy.deepcopy(load_profile(V4_PROFILE))
+        candidate["minimum_accuracy_interval_frames"] = 1
+        candidate["speed_mae_absolute_limit_mps"] = 1.0
+        candidate["direction_stability_frames"] = 2
+        rows = [
+            row(0.00, 0.10, -0.10, 8.0),
+            row(0.04, 0.10, -0.10, 7.6),
+            row(0.08, 0.10, -0.10, 7.2),
+        ]
+
+        result = evaluate_session(
+            "approach_center_v0p10_r01",
+            "trial",
+            {"parameters": {}},
+            rows,
+            candidate,
+        )
+
+        self.assertEqual(result["direction_response_delay_sec"], 0.0)
+        self.assertEqual(result["steady_direction_correct_rate"], 1.0)
+
+    def test_v3_rejects_unknown_velocity_source(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "profile.json"
+            invalid = copy.deepcopy(load_profile(V4_PROFILE))
+            invalid["velocity_source"] = "unknown"
+            path.write_text(json.dumps(invalid))
+
+            with self.assertRaisesRegex(ValueError, "velocity_source"):
+                load_profile(path)
 
     def test_high_speed_scores_accuracy_before_warning_and_safety_after_it(self):
         rows = [

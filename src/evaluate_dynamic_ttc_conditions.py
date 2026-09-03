@@ -117,6 +117,15 @@ SCHEMA_PROFILE_FIELDS = {
         "warning_feasibility_speed_mps",
         "minimum_warning_feasibility_margin_sec",
     },
+    3: {
+        "minimum_motion_track_rate",
+        "direction_stability_frames",
+        "maximum_direction_response_delay_sec",
+        "minimum_steady_direction_correct_rate",
+        "warning_feasibility_speed_mps",
+        "minimum_warning_feasibility_margin_sec",
+        "velocity_source",
+    },
 }
 
 
@@ -180,6 +189,7 @@ def load_profile(path: Path) -> dict:
     numeric_fields = required_fields - {
         "schema_version",
         "expected_final_state",
+        "velocity_source",
     }
     try:
         numeric_values = {field: float(profile[field]) for field in numeric_fields}
@@ -226,13 +236,13 @@ def load_profile(path: Path) -> dict:
         "maximum_post_warning_path_while_forward_frames",
         "maximum_critical_frames",
     )
-    if schema_version == 2:
+    if schema_version in {2, 3}:
         integer_fields += ("direction_stability_frames",)
     if any(not numeric_values[field].is_integer() for field in integer_fields):
         raise ValueError("dynamic TTC profile frame counts must be integers")
     if int(profile["minimum_accuracy_interval_frames"]) < 1:
         raise ValueError("minimum_accuracy_interval_frames must be positive")
-    if schema_version == 2 and int(profile["direction_stability_frames"]) < 1:
+    if schema_version in {2, 3} and int(profile["direction_stability_frames"]) < 1:
         raise ValueError("direction_stability_frames must be positive")
     if int(profile["warning_confirm_frames"]) < 1 or int(
         profile["warning_clear_frames"]
@@ -251,7 +261,13 @@ def load_profile(path: Path) -> dict:
         "CRITICAL",
     }:
         raise ValueError("expected_final_state is invalid")
-    if schema_version == 2:
+    if schema_version == 3 and profile["velocity_source"] not in {
+        "visual",
+        "odom_static",
+        "conservative",
+    }:
+        raise ValueError("velocity_source is invalid")
+    if schema_version in {2, 3}:
         if float(profile["warning_feasibility_speed_mps"]) <= 0.0:
             raise ValueError("warning_feasibility_speed_mps must be positive")
         feasibility_margin = float(profile["warning_ttc_sec"]) - (
@@ -406,7 +422,7 @@ def evaluate_session(
         else math.nan
     )
     direction_rate = _rate(sum(direction_flags), len(direction_flags))
-    if profile["schema_version"] == 2:
+    if profile["schema_version"] in {2, 3}:
         direction_response_delay, steady_direction_rate, _ = _direction_response(
             accuracy_rows,
             direction_flags,
@@ -472,7 +488,7 @@ def evaluate_session(
         )
         activation_stability_frames = (
             int(profile["direction_stability_frames"])
-            if profile["schema_version"] == 2
+            if profile["schema_version"] in {2, 3}
             else 1
         )
         first_raw_stable_time = _first_stable_timestamp(
@@ -524,7 +540,7 @@ def evaluate_session(
         float(profile["warning_ttc_sec"])
         - float(profile["calibration_z_min_m"])
         / float(profile["warning_feasibility_speed_mps"])
-        if profile["schema_version"] == 2
+        if profile["schema_version"] in {2, 3}
         else math.nan
     )
 

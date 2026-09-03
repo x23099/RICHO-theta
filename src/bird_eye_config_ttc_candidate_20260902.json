@@ -60,6 +60,7 @@
     "blue_ttc_enabled": 1,
     "blue_ttc_velocity_window_sec": 0.3,
     "blue_ttc_deadband_mps": 0.03,
+    "blue_ttc_velocity_source": "visual",
     "blue_collision_candidate_enabled": 1,
     "blue_collision_safety_margin_m": 0.1,
     "blue_collision_warning_ttc_sec": 4.6,

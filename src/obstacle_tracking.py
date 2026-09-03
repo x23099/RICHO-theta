@@ -332,32 +332,76 @@ class ObstacleObservationGate:
 
 
 class CausalTtcEstimator:
-    """Compute TTC from a causal median of the tracked forward velocity."""
+    """Compute TTC from visual velocity, ODOM, or their conservative fusion."""
 
-    def __init__(self, window_sec=0.3, deadband_mps=0.05, enabled=True):
+    VELOCITY_SOURCES = {"visual", "odom_static", "conservative"}
+
+    def __init__(
+        self,
+        window_sec=0.3,
+        deadband_mps=0.05,
+        enabled=True,
+        velocity_source="visual",
+    ):
         self.window_sec = max(0.01, float(window_sec))
         self.deadband_mps = max(0.0, float(deadband_mps))
         self.enabled = bool(enabled)
+        if velocity_source not in self.VELOCITY_SOURCES:
+            raise ValueError(
+                f"velocity_source must be one of {sorted(self.VELOCITY_SOURCES)}"
+            )
+        self.velocity_source = velocity_source
         self.history = deque()
 
     def reset(self):
         self.history.clear()
 
-    def update(self, track, timestamp=None):
+    def update(self, track, timestamp=None, ego_linear_mps=None):
         now = time.monotonic() if timestamp is None else float(timestamp)
         if not self.enabled or track is None:
             self.reset()
-            return {"smoothed_vz_mps": None, "ttc_sec": None}
+            return {
+                "visual_smoothed_vz_mps": None,
+                "smoothed_vz_mps": None,
+                "ttc_velocity_source": "disabled" if not self.enabled else "none",
+                "ttc_sec": None,
+            }
         self.history.append((now, float(track["vz_mps"])))
         while self.history and self.history[0][0] < now - self.window_sec:
             self.history.popleft()
-        smoothed_vz_mps = float(
+        visual_vz_mps = float(
             statistics.median(value for _, value in self.history)
         )
+        odom_vz_mps = None
+        try:
+            candidate = -float(ego_linear_mps)
+            if math.isfinite(candidate):
+                odom_vz_mps = candidate
+        except (TypeError, ValueError):
+            pass
+
+        smoothed_vz_mps = visual_vz_mps
+        selected_source = "visual"
+        if self.velocity_source == "odom_static" and odom_vz_mps is not None:
+            smoothed_vz_mps = odom_vz_mps
+            selected_source = "odom_static"
+        elif self.velocity_source == "odom_static":
+            selected_source = "visual_fallback"
+        elif self.velocity_source == "conservative" and odom_vz_mps is not None:
+            if odom_vz_mps < visual_vz_mps:
+                smoothed_vz_mps = odom_vz_mps
+                selected_source = "conservative_odom"
+            else:
+                selected_source = "conservative_visual"
+        elif self.velocity_source == "conservative":
+            selected_source = "visual_fallback"
+
         ttc_sec = None
         if float(track["z_m"]) > 0.0 and smoothed_vz_mps < -self.deadband_mps:
             ttc_sec = float(track["z_m"]) / -smoothed_vz_mps
         return {
+            "visual_smoothed_vz_mps": visual_vz_mps,
             "smoothed_vz_mps": smoothed_vz_mps,
+            "ttc_velocity_source": selected_source,
             "ttc_sec": ttc_sec,
         }

@@ -63,7 +63,8 @@ BASE_RECORDING_CSV_FIELDS = (
     "monotonic_time_sec", "measurement_accepted",
     "rejection_reason", "normalization_distance_m",
     "normalized_area", "observation_nis",
-    "smoothed_vz_mps", "ttc_sec",
+    "visual_smoothed_vz_mps", "smoothed_vz_mps", "ttc_velocity_source",
+    "ttc_sec",
     "odom_available", "odom_linear_mps", "odom_angular_radps",
     "cmd_linear_mps", "cmd_angular_radps",
     "prediction_motion_source", "path_in_collision_corridor",
@@ -710,6 +711,7 @@ class CalibrationWindow(QWidget):
             "blue_ttc_enabled": 1,
             "blue_ttc_velocity_window_sec": 0.3,
             "blue_ttc_deadband_mps": 0.05,
+            "blue_ttc_velocity_source": "visual",
             "blue_collision_candidate_enabled": 1,
             "blue_collision_safety_margin_m": 0.10,
             "blue_collision_warning_ttc_sec": 4.0,
@@ -802,6 +804,7 @@ class CalibrationWindow(QWidget):
             "blue_ttc_enabled": 1,
             "blue_ttc_velocity_window_sec": 0.3,
             "blue_ttc_deadband_mps": 0.05,
+            "blue_ttc_velocity_source": "visual",
             "blue_collision_candidate_enabled": 1,
             "blue_collision_safety_margin_m": 0.10,
             "blue_collision_warning_ttc_sec": 4.0,
@@ -861,6 +864,9 @@ class CalibrationWindow(QWidget):
             enabled=self.params.get("blue_ttc_enabled", 1) == 1,
             window_sec=self.params.get("blue_ttc_velocity_window_sec", 0.3),
             deadband_mps=self.params.get("blue_ttc_deadband_mps", 0.05),
+            velocity_source=self.params.get(
+                "blue_ttc_velocity_source", "visual"
+            ),
         )
 
     def create_collision_risk_hysteresis(self):
@@ -1485,7 +1491,9 @@ class CalibrationWindow(QWidget):
                 ),
                 self.last_blue_gate_diagnostics.get("normalized_area", ""),
                 self.last_blue_tracker_diagnostics.get("nis", ""),
+                track.get("visual_smoothed_vz_mps", "") if track is not None else "",
                 track.get("smoothed_vz_mps", "") if track is not None else "",
+                track.get("ttc_velocity_source", "") if track is not None else "",
                 track.get("ttc_sec", "") if track is not None else "",
                 1 if self.odometry_is_recent() else 0,
                 f"{self.odom_linear_x:.6f}" if self.odometry_is_recent() else "",
@@ -2145,6 +2153,9 @@ class CalibrationWindow(QWidget):
             ttc_estimate = self.blue_ttc_estimator.update(
                 self.last_blue_track if tracking_enabled else None,
                 timestamp=self.last_blue_processing_timestamp,
+                ego_linear_mps=(
+                    self.odom_linear_x if self.odometry_is_recent() else None
+                ),
             )
             if self.last_blue_track is not None:
                 self.last_blue_track.update(ttc_estimate)
@@ -2351,6 +2362,11 @@ class CalibrationWindow(QWidget):
                 + (
                     f' med={smoothed_vz:+.2f}m/s'
                     if smoothed_vz is not None
+                    else ""
+                )
+                + (
+                    f' src={track["ttc_velocity_source"]}'
+                    if track.get("ttc_velocity_source")
                     else ""
                 )
             )

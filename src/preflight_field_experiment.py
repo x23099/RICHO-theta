@@ -45,6 +45,11 @@ def validate_experiment_config(config):
         "blue_collision_candidate_enabled": 1,
     }
     errors = []
+    velocity_source = config.get("blue_ttc_velocity_source", "visual")
+    if velocity_source not in {"visual", "odom_static", "conservative"}:
+        errors.append(
+            "blue_ttc_velocity_source must be visual, odom_static, or conservative"
+        )
     for key, expected in required_values.items():
         if config.get(key) != expected:
             errors.append(f"{key} must be {expected!r}, got {config.get(key)!r}")
@@ -192,6 +197,8 @@ def check_ttc_profile(config_path, profile_path):
         "blue_collision_warning_hold_sec": "warning_hold_sec",
         "blue_collision_forward_motion_threshold_mps": "forward_motion_threshold_mps",
     }
+    if "velocity_source" in profile:
+        pairs["blue_ttc_velocity_source"] = "velocity_source"
     mismatches = []
     for config_key, profile_key in pairs.items():
         config_value = config.get(config_key)

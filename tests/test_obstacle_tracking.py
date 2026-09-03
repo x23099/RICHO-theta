@@ -154,6 +154,62 @@ class CausalTtcEstimatorTest(unittest.TestCase):
         self.assertAlmostEqual(approaching["ttc_sec"], 10.0)
         self.assertIsNone(stopped["ttc_sec"])
 
+    def test_odom_static_uses_negative_ego_velocity(self):
+        estimator = CausalTtcEstimator(
+            deadband_mps=0.03, velocity_source="odom_static"
+        )
+
+        result = estimator.update(
+            {"z_m": 1.0, "vz_mps": -0.1},
+            timestamp=0.0,
+            ego_linear_mps=0.2,
+        )
+
+        self.assertAlmostEqual(result["visual_smoothed_vz_mps"], -0.1)
+        self.assertAlmostEqual(result["smoothed_vz_mps"], -0.2)
+        self.assertAlmostEqual(result["ttc_sec"], 5.0)
+        self.assertEqual(result["ttc_velocity_source"], "odom_static")
+
+    def test_conservative_uses_more_negative_velocity(self):
+        estimator = CausalTtcEstimator(
+            deadband_mps=0.03, velocity_source="conservative"
+        )
+
+        odom_dominates = estimator.update(
+            {"z_m": 1.0, "vz_mps": -0.1},
+            timestamp=0.0,
+            ego_linear_mps=0.2,
+        )
+        estimator.reset()
+        visual_dominates = estimator.update(
+            {"z_m": 1.0, "vz_mps": -0.3},
+            timestamp=1.0,
+            ego_linear_mps=0.2,
+        )
+
+        self.assertAlmostEqual(odom_dominates["smoothed_vz_mps"], -0.2)
+        self.assertEqual(
+            odom_dominates["ttc_velocity_source"], "conservative_odom"
+        )
+        self.assertAlmostEqual(visual_dominates["smoothed_vz_mps"], -0.3)
+        self.assertEqual(
+            visual_dominates["ttc_velocity_source"], "conservative_visual"
+        )
+
+    def test_missing_odom_falls_back_to_visual(self):
+        estimator = CausalTtcEstimator(velocity_source="conservative")
+
+        result = estimator.update(
+            {"z_m": 1.0, "vz_mps": -0.1}, timestamp=0.0
+        )
+
+        self.assertAlmostEqual(result["smoothed_vz_mps"], -0.1)
+        self.assertEqual(result["ttc_velocity_source"], "visual_fallback")
+
+    def test_rejects_unknown_velocity_source(self):
+        with self.assertRaises(ValueError):
+            CausalTtcEstimator(velocity_source="unknown")
+
 
 if __name__ == "__main__":
     unittest.main()
