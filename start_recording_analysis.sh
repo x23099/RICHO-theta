@@ -20,6 +20,9 @@ The output directory defaults to:
   Experimental_results/YYYY-MM-DD/<archive-name>_analysis
 
 Options after OUTPUT_DIR are passed to src/analyze_field_recording.py.
+Without explicit options, observation replay uses the current conservative TTC
+config and virtual FFB uses the pinned v5 candidate profile. If
+--dynamic-ttc-profile is supplied, virtual FFB uses the same profile.
 Set PYTHON_BIN to select a Python interpreter. The script never accesses a
 camera, ROS, Kobuki, or a steering-wheel device.
 EOF
@@ -61,14 +64,45 @@ if ! command -v "$python_bin" >/dev/null 2>&1; then
     exit 2
 fi
 
+default_config="src/bird_eye_config_ttc_conservative_candidate_20260903.json"
+ffb_profile="src/dynamic_ttc_evaluation_profile_v5_candidate.json"
+analyzer_args=("$@")
+config_supplied=0
+for ((index = 0; index < ${#analyzer_args[@]}; index++)); do
+    argument="${analyzer_args[$index]}"
+    case "$argument" in
+        --config)
+            config_supplied=1
+            ;;
+        --config=*)
+            config_supplied=1
+            ;;
+        --dynamic-ttc-profile)
+            if ((index + 1 >= ${#analyzer_args[@]})); then
+                echo "[ERROR] --dynamic-ttc-profile requires a path" >&2
+                exit 2
+            fi
+            ffb_profile="${analyzer_args[$((index + 1))]}"
+            ;;
+        --dynamic-ttc-profile=*)
+            ffb_profile="${argument#*=}"
+            ;;
+    esac
+done
+
+if [[ $config_supplied -eq 0 ]]; then
+    analyzer_args=(--config "$default_config" "${analyzer_args[@]}")
+fi
+
 echo "[INFO] Input: $input_path"
 echo "[INFO] Output: $output_dir"
+echo "[INFO] Virtual FFB profile: $ffb_profile"
 echo "[INFO] Running standard recording analysis..."
 
 "$python_bin" src/analyze_field_recording.py \
     --input "$input_path" \
     --output-dir "$output_dir" \
-    "$@"
+    "${analyzer_args[@]}"
 analysis_status=$?
 
 if [[ $analysis_status -gt 1 ]]; then
@@ -79,6 +113,7 @@ fi
 echo "[INFO] Replaying collision states as virtual FFB demand..."
 "$python_bin" src/virtual_ffb.py \
     --input "$input_path" \
+    --profile "$ffb_profile" \
     --output "$output_dir/virtual_ffb_replay.csv"
 ffb_status=$?
 

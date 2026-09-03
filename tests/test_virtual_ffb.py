@@ -5,7 +5,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from virtual_ffb import VirtualFfbPolicy, summarize_rows  # noqa: E402
+from evaluate_dynamic_ttc_conditions import load_profile  # noqa: E402
+from virtual_ffb import (  # noqa: E402
+    VirtualFfbPolicy,
+    replay_profile_rows,
+    summarize_rows,
+)
 
 
 class VirtualFfbPolicyTest(unittest.TestCase):
@@ -52,6 +57,45 @@ class VirtualFfbPolicyTest(unittest.TestCase):
         self.assertEqual(result["warning_hold_frames"], 1)
         self.assertEqual(result["unknown_frames"], 1)
         self.assertEqual(result["activation_events"], 2)
+
+    def test_profile_replay_uses_current_conservative_velocity(self):
+        profile = load_profile(
+            Path(__file__).resolve().parents[1]
+            / "src"
+            / "dynamic_ttc_evaluation_profile_v5_candidate.json"
+        )
+        rows = []
+        for index in range(3):
+            rows.append(
+                {
+                    "monotonic_time_sec": str(index * 0.1),
+                    "smoothed_vz_mps": "-0.1",
+                    "relative_vz_mps": "-0.1",
+                    "odom_linear_mps": "0.2",
+                    "odom_available": "1",
+                    "track_available": "1",
+                    "track_predicted": "0",
+                    "measurement_accepted": "1",
+                    "calibration_valid": "1",
+                    "path_in_collision_corridor": "1",
+                    "filtered_z_m": "0.8",
+                    "ttc_sec": "8.0",
+                }
+            )
+
+        replayed, velocity_source = replay_profile_rows(
+            "approach_test", {"parameters": {}}, rows, profile
+        )
+
+        self.assertEqual(velocity_source, "conservative")
+        self.assertTrue(
+            all(
+                row["ttc_velocity_source"] == "conservative_odom"
+                for row in replayed
+            )
+        )
+        self.assertTrue(all(float(row["ttc_sec"]) == 4.0 for row in replayed))
+        self.assertEqual(replayed[-1]["collision_risk_level"], "WARNING")
 
 
 if __name__ == "__main__":

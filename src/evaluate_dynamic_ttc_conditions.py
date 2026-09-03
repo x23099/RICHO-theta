@@ -338,7 +338,7 @@ def _first_stable_timestamp(rows, predicate, stable_frames):
     return None
 
 
-def _hysteresis_overrides(profile: dict) -> dict:
+def hysteresis_overrides(profile: dict) -> dict:
     return {
         "blue_collision_warning_ttc_sec": profile["warning_ttc_sec"],
         "blue_collision_critical_ttc_sec": profile["critical_ttc_sec"],
@@ -374,7 +374,7 @@ def evaluate_session(
         and nominal_speed >= float(profile["warning_required_nominal_speed_mps"])
     )
     hysteresis = replay_rows(
-        label, metadata, rows, _hysteresis_overrides(profile)
+        label, metadata, rows, hysteresis_overrides(profile)
     )
     odom_rows = [row for row in rows if _flag(row, "odom_available")]
     if motion == "approach":

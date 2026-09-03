@@ -72,7 +72,8 @@ def replay_session(session_dir, overrides=None):
     return replay_rows(session_dir.name, metadata, rows, overrides)
 
 
-def replay_rows(session, metadata, rows, overrides=None):
+def replay_rows_with_states(session, metadata, rows, overrides=None):
+    """Replay hysteresis and return both the summary and frame-level states."""
     parameters = _parameters(metadata, overrides)
     state_filter = CollisionRiskHysteresis(
         warning_ttc_sec=parameters.get(
@@ -118,6 +119,7 @@ def replay_rows(session, metadata, rows, overrides=None):
     pending_raw_warning_sec = None
     warning_seen = False
     path_while_forward_after_warning = 0
+    replayed_rows = []
     for row in rows:
         timestamp = _number(row, "monotonic_time_sec")
         if timestamp is None:
@@ -155,6 +157,10 @@ def replay_rows(session, metadata, rows, overrides=None):
             ttc_sec=ttc_sec,
         )
         output_level = state["risk_level"]
+        replayed_row = dict(row)
+        replayed_row["raw_collision_risk_level"] = raw_level
+        replayed_row["collision_risk_level"] = output_level
+        replayed_rows.append(replayed_row)
         confirmable_warning = (
             raw_level in {"WARNING", "CRITICAL"}
             and measurement_valid
@@ -231,7 +237,7 @@ def replay_rows(session, metadata, rows, overrides=None):
         value in {"WARNING", "CRITICAL"} for value in raw_levels
     ]
 
-    return {
+    summary = {
         "session": session,
         "frames": len(output_levels),
         "raw_warning_frames": sum(raw_warning_flags),
@@ -272,6 +278,15 @@ def replay_rows(session, metadata, rows, overrides=None):
         ),
         "final_state": output_levels[-1] if output_levels else "",
     }
+    return summary, replayed_rows
+
+
+def replay_rows(session, metadata, rows, overrides=None):
+    """Replay hysteresis and return the established session summary."""
+    summary, _replayed_rows = replay_rows_with_states(
+        session, metadata, rows, overrides
+    )
+    return summary
 
 
 def find_sessions(inputs):

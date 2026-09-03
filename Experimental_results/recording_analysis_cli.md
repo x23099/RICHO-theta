@@ -13,6 +13,8 @@
 通常はルート直下のラッパーを使う。出力先を省略すると、実行日とアーカイブ名から
 `Experimental_results/YYYY-MM-DD/<archive-name>_analysis`を自動作成する。標準解析に加えて
 `virtual_ffb_replay.csv`も生成する。カメラ、ROS、Kobuki、ハンドル機器にはアクセスしない。
+引数を省略した場合、観測再生は`bird_eye_config_ttc_conservative_candidate_20260903.json`、
+仮想FFBは固定済みの`dynamic_ttc_evaluation_profile_v5_candidate.json`で再計算する。
 
 ```bash
 ./start_recording_analysis.sh \
@@ -33,6 +35,14 @@
 正式な判定条件は録画内容ごとに異なるため、ラッパー内へ固定しない。既存出力を更新する場合は、
 内容を確認してから末尾へ`--overwrite`を付ける。使用するPythonを明示する場合は、
 `PYTHON_BIN=/path/to/python ./start_recording_analysis.sh ...`とする。
+
+仮想FFBは録画時の`collision_risk_level`をそのまま集計せず、指定profileの速度源、TTC、
+警告ヒステリシスをフレーム単位で再計算する。CSVの`risk_source=profile_replay`と
+`velocity_source`、`ttc_profile`で再計算条件を確認できる。これは既存録画に現在の候補を適用する
+反実仮想のオフライン評価であり、録画時にその設定が実機で動作していたことを示す証跡ではない。
+
+`approach_`または`retreat_`で始まる動的sessionでは、移動そのものを静的位置外れ値とみなす
+ゲート判定を総合判定から除外し、診断値としてのみ保存する。静的sessionのゲート判定は引き続き必須である。
 
 Python CLIを直接呼びたい場合は次の形式も引き続き利用できる。
 
@@ -111,6 +121,7 @@ python3 src/analyze_field_recording.py \
 | `gate_regression.csv` | 正規化方式ごとのゲート再生結果 |
 | `requirements_results.csv` | 事前要件の条件別採否。`--requirements`指定時のみ |
 | `dynamic_ttc_results.csv` | 固定した精度区間、TTC発火、警告成立・保持の条件別採否。`--dynamic-ttc-profile`指定時のみ |
+| `virtual_ffb_replay.csv` | ラッパー実行時に、現在のprofileでTTCと警告を再計算した仮想FFB集計 |
 | `analysis_report.md` | 主要指標と総合判定の人間向けレポート |
 
 ## 確認済み録画

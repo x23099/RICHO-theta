@@ -366,6 +366,10 @@ def _markdown(value) -> str:
     return str(value).replace("|", "\\|").replace("\n", " ")
 
 
+def is_dynamic_ttc_session(session_name: str) -> bool:
+    return str(session_name).startswith(("approach_", "retreat_"))
+
+
 def automatic_status(
     archive_ok: bool,
     integrity_rows: list[dict],
@@ -390,6 +394,11 @@ def automatic_status(
     dynamic_sessions = {
         row["session"] for row in (dynamic_ttc_rows or []) if row.get("session")
     }
+    dynamic_sessions.update(
+        row.get("session")
+        for row in selected_gate_rows
+        if is_dynamic_ttc_session(row.get("session", ""))
+    )
     static_gate_rows = [
         row for row in selected_gate_rows if row.get("session") not in dynamic_sessions
     ]
@@ -554,7 +563,10 @@ def build_report(
             f"{row['events_track_expired']}/{row['occlusion_events']} | "
             f"{row['events_reacquired']}/{row['occlusion_events']} | {row['decision']} |"
         )
-    if dynamic_ttc_rows is not None:
+    if any(
+        is_dynamic_ttc_session(row.get("session", ""))
+        for row in selected_gate_rows
+    ):
         lines.extend(
             [
                 "",

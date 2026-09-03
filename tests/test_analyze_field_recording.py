@@ -162,6 +162,25 @@ class FieldRecordingAnalysisTest(unittest.TestCase):
         self.assertEqual(status, "PASS")
         self.assertNotIn("raw_ground_distance observation gate failed", reasons)
 
+    def test_dynamic_name_is_excluded_without_ttc_profile(self):
+        status, reasons = automatic_status(
+            True,
+            [{"decision": "PASS"}],
+            [{"fps_within_one_percent": 1}],
+            [
+                {
+                    "session": "approach_center_v0p20_r01_20260903",
+                    "normalization_mode": "raw_ground_distance",
+                    "decision": "FAIL",
+                }
+            ],
+            "raw_ground_distance",
+            None,
+        )
+
+        self.assertEqual(status, "DIAGNOSTIC")
+        self.assertNotIn("raw_ground_distance observation gate failed", reasons)
+
     def test_static_session_still_requires_gate_pass_in_mixed_archive(self):
         status, reasons = automatic_status(
             True,

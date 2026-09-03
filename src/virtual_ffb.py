@@ -4,12 +4,16 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import csv
 import math
 from dataclasses import dataclass
 from pathlib import Path
 
+from analyze_ttc_velocity_sources import replace_velocity_source
 from diagnose_lateral_gate_asymmetry import load_sessions
+from evaluate_collision_hysteresis_replay import replay_rows_with_states
+from evaluate_dynamic_ttc_conditions import hysteresis_overrides, load_profile
 
 
 @dataclass(frozen=True)
@@ -81,6 +85,9 @@ class VirtualFfbPolicy:
 SUMMARY_FIELDS = (
     "session",
     "experiment_label",
+    "risk_source",
+    "velocity_source",
+    "ttc_profile",
     "frames",
     "active_frames",
     "active_rate",
@@ -124,11 +131,59 @@ def summarize_rows(session, label, rows, policy=None):
     }
 
 
-def evaluate_inputs(inputs, policy=None):
+def replay_profile_rows(session, metadata, rows, profile):
+    """Recompute TTC velocity and collision states using a fixed profile."""
+    velocity_source = (
+        str(profile["velocity_source"])
+        if profile.get("schema_version") in {3, 4}
+        else "visual"
+    )
+    velocity_rows = replace_velocity_source(
+        rows,
+        velocity_source,
+        float(profile["motion_deadband_mps"]),
+    )
+    replay_metadata = copy.deepcopy(metadata)
+    replay_metadata.setdefault("parameters", {})[
+        "blue_ttc_velocity_source"
+    ] = velocity_source
+    _summary, risk_rows = replay_rows_with_states(
+        session,
+        replay_metadata,
+        velocity_rows,
+        hysteresis_overrides(profile),
+    )
+    return risk_rows, velocity_source
+
+
+def evaluate_inputs(inputs, policy=None, profile=None, profile_source=""):
     results = []
     for label, source, _metadata, rows in load_sessions(inputs):
         session = source.rsplit("::", 1)[-1] if "::" in source else Path(source).name
-        results.append(summarize_rows(session, label, rows, policy=policy))
+        risk_rows = rows
+        risk_source = "recorded"
+        velocity_source = str(
+            _metadata.get("parameters", {}).get(
+                "blue_ttc_velocity_source", "recorded"
+            )
+        )
+        if profile is not None:
+            risk_rows, velocity_source = replay_profile_rows(
+                session,
+                _metadata,
+                rows,
+                profile,
+            )
+            risk_source = "profile_replay"
+        result = summarize_rows(session, label, risk_rows, policy=policy)
+        result.update(
+            {
+                "risk_source": risk_source,
+                "velocity_source": velocity_source,
+                "ttc_profile": profile_source if profile is not None else "",
+            }
+        )
+        results.append(result)
     return results
 
 
@@ -147,14 +202,28 @@ def main(argv=None):
     )
     parser.add_argument("--input", type=Path, action="append", required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--profile",
+        type=Path,
+        help=(
+            "Recompute velocity, TTC, and hysteresis with this dynamic TTC "
+            "profile instead of using collision states stored at recording time"
+        ),
+    )
     args = parser.parse_args(argv)
-    results = evaluate_inputs(args.input)
+    profile = load_profile(args.profile) if args.profile else None
+    results = evaluate_inputs(
+        args.input,
+        profile=profile,
+        profile_source=str(args.profile.resolve()) if args.profile else "",
+    )
     if not results:
         parser.error("no recording session was found")
     write_results(args.output, results)
     for row in results:
         print(
-            f"{row['experiment_label']}: active={row['active_frames']}/"
+            f"{row['experiment_label']}: source={row['risk_source']}/"
+            f"{row['velocity_source']}, active={row['active_frames']}/"
             f"{row['frames']}, peak={row['peak_normalized_magnitude']:.2f}, "
             f"events={row['activation_events']}"
         )

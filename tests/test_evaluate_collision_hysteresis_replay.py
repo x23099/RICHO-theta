@@ -11,7 +11,11 @@ SRC_DIR = Path(__file__).resolve().parents[1] / "src"
 sys.path.insert(0, str(SRC_DIR))
 
 from diagnose_lateral_gate_asymmetry import load_sessions  # noqa: E402
-from evaluate_collision_hysteresis_replay import replay_rows, replay_session  # noqa: E402
+from evaluate_collision_hysteresis_replay import (  # noqa: E402
+    replay_rows,
+    replay_rows_with_states,
+    replay_session,
+)
 
 
 class CollisionHysteresisReplayTest(unittest.TestCase):
@@ -125,6 +129,26 @@ class CollisionHysteresisReplayTest(unittest.TestCase):
                 },
             )
             self.assertEqual(archive_result, result)
+
+            state_summary, state_rows = replay_rows_with_states(
+                label,
+                metadata,
+                rows,
+                {
+                    "blue_collision_warning_exit_ttc_sec": 5.0,
+                    "blue_collision_warning_confirm_frames": 3,
+                    "blue_collision_warning_clear_frames": 3,
+                    "blue_collision_warning_hold_sec": 0.8,
+                },
+            )
+            self.assertEqual(state_summary, result)
+            self.assertEqual(
+                [row["collision_risk_level"] for row in state_rows],
+                ["PATH", "PATH", "WARNING", "WARNING_HOLD", "UNKNOWN"],
+            )
+            self.assertTrue(
+                all("raw_collision_risk_level" in row for row in state_rows)
+            )
 
 
 if __name__ == "__main__":
