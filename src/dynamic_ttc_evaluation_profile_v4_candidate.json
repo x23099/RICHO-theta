@@ -1,6 +1,7 @@
 {
   "schema_version": 3,
   "velocity_source": "conservative",
+  "minimum_velocity_source_match_rate": 0.95,
   "motion_deadband_mps": 0.03,
   "calibration_z_min_m": 0.65,
   "calibration_z_max_m": 1.35,

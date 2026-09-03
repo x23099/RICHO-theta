@@ -52,11 +52,13 @@ def _number(row: dict, key: str):
 def replace_velocity_source(rows: list[dict], mode: str, deadband_mps: float):
     if mode not in MODES:
         raise ValueError(f"unsupported velocity source: {mode}")
-    if mode == "visual":
-        return [dict(row) for row in rows]
     output = []
     for original in rows:
         row = dict(original)
+        if mode == "visual":
+            row["ttc_velocity_source"] = "visual"
+            output.append(row)
+            continue
         visual_vz = _number(row, "smoothed_vz_mps")
         odom_speed = (
             _number(row, "odom_linear_mps")
@@ -70,18 +72,26 @@ def replace_velocity_source(rows: list[dict], mode: str, deadband_mps: float):
             "yes",
         }
         if odom_speed is None or not track_available:
+            row["ttc_velocity_source"] = "visual_fallback"
             output.append(row)
             continue
         static_obstacle_vz = -odom_speed
         if mode == "odom_static":
             selected_vz = static_obstacle_vz
+            selected_source = "odom_static"
         else:
             selected_vz = (
                 min(visual_vz, static_obstacle_vz)
                 if visual_vz is not None
                 else static_obstacle_vz
             )
+            selected_source = (
+                "conservative_odom"
+                if visual_vz is None or static_obstacle_vz < visual_vz
+                else "conservative_visual"
+            )
         row["smoothed_vz_mps"] = str(selected_vz)
+        row["ttc_velocity_source"] = selected_source
         filtered_z = _number(row, "filtered_z_m")
         row["ttc_sec"] = (
             str(filtered_z / -selected_vz)
@@ -95,8 +105,6 @@ def replace_velocity_source(rows: list[dict], mode: str, deadband_mps: float):
 
 
 def compare_inputs(inputs: list[Path], profile: dict):
-    profile_without_hold = copy.deepcopy(profile)
-    profile_without_hold["minimum_warning_hold_frames"] = 0
     results = []
     for label, source, metadata, rows in load_sessions(inputs):
         motion = expected_motion(label)
@@ -104,16 +112,25 @@ def compare_inputs(inputs: list[Path], profile: dict):
             continue
         session_name = source.rsplit("::", 1)[-1] if "::" in source else Path(source).name
         for mode in MODES:
+            mode_profile = copy.deepcopy(profile)
+            if mode_profile.get("schema_version") == 3:
+                mode_profile["velocity_source"] = mode
+            profile_without_hold = copy.deepcopy(mode_profile)
+            profile_without_hold["minimum_warning_hold_frames"] = 0
             replay_rows = replace_velocity_source(
                 rows, mode, float(profile["motion_deadband_mps"])
             )
+            replay_metadata = copy.deepcopy(metadata)
+            replay_metadata.setdefault("parameters", {})[
+                "blue_ttc_velocity_source"
+            ] = mode
             strict = evaluate_session(
-                label, session_name, metadata, replay_rows, profile
+                label, session_name, replay_metadata, replay_rows, mode_profile
             )
             without_hold = evaluate_session(
                 label,
                 session_name,
-                metadata,
+                replay_metadata,
                 replay_rows,
                 profile_without_hold,
             )

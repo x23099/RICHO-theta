@@ -152,6 +152,51 @@ class DynamicTtcConditionTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "velocity_source"):
                 load_profile(path)
 
+    def test_v3_fails_when_runtime_velocity_source_does_not_match(self):
+        candidate = copy.deepcopy(load_profile(V4_PROFILE))
+        candidate["minimum_accuracy_interval_frames"] = 1
+        rows = [
+            row(0.00, 0.10, -0.10, 8.0),
+            row(0.04, 0.10, -0.10, 7.6),
+            row(0.08, 0.10, -0.10, 7.2),
+        ]
+        for item in rows:
+            item["ttc_velocity_source"] = "visual"
+
+        result = evaluate_session(
+            "approach_center_v0p10_r01",
+            "trial",
+            {"parameters": {"blue_ttc_velocity_source": "visual"}},
+            rows,
+            candidate,
+        )
+
+        self.assertIn("configured_velocity_source", result["reasons"])
+        self.assertIn("velocity_source_match_rate", result["reasons"])
+
+    def test_v3_accepts_conservative_runtime_provenance(self):
+        candidate = copy.deepcopy(load_profile(V4_PROFILE))
+        candidate["minimum_accuracy_interval_frames"] = 1
+        rows = [
+            row(0.00, 0.10, -0.10, 8.0),
+            row(0.04, 0.10, -0.10, 7.6),
+            row(0.08, 0.10, -0.10, 7.2),
+        ]
+        for item in rows:
+            item["ttc_velocity_source"] = "conservative_odom"
+
+        result = evaluate_session(
+            "approach_center_v0p10_r01",
+            "trial",
+            {"parameters": {"blue_ttc_velocity_source": "conservative"}},
+            rows,
+            candidate,
+        )
+
+        self.assertNotIn("configured_velocity_source", result["reasons"])
+        self.assertNotIn("velocity_source_match_rate", result["reasons"])
+        self.assertEqual(result["velocity_source_match_rate"], 1.0)
+
     def test_high_speed_scores_accuracy_before_warning_and_safety_after_it(self):
         rows = [
             row(0.00, 0.20, -0.20, 3.9),

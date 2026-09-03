@@ -30,6 +30,8 @@ FIELDS = [
     "track_rate",
     "motion_track_rate",
     "odom_available_rate",
+    "configured_velocity_source",
+    "velocity_source_match_rate",
     "odom_speed_p90_mps",
     "nominal_speed_error_mps",
     "nominal_speed_error_limit_mps",
@@ -125,6 +127,7 @@ SCHEMA_PROFILE_FIELDS = {
         "warning_feasibility_speed_mps",
         "minimum_warning_feasibility_margin_sec",
         "velocity_source",
+        "minimum_velocity_source_match_rate",
     },
 }
 
@@ -211,11 +214,15 @@ def load_profile(path: Path) -> dict:
         "minimum_ttc_active_rate",
         "maximum_false_ttc_rate",
         "nominal_speed_relative_tolerance",
+        "minimum_velocity_source_match_rate",
     )
     rate_fields += (
         ("minimum_track_rate", "minimum_direction_correct_rate")
         if schema_version == 1
         else ("minimum_motion_track_rate", "minimum_steady_direction_correct_rate")
+    )
+    rate_fields = tuple(
+        field for field in rate_fields if field in numeric_values
     )
     if any(not 0.0 <= numeric_values[field] <= 1.0 for field in rate_fields):
         raise ValueError("dynamic TTC profile rates must be in [0, 1]")
@@ -536,6 +543,28 @@ def evaluate_session(
         len(motion_rows),
     )
     odom_rate = _rate(len(odom_rows), len(rows))
+    configured_velocity_source = ""
+    velocity_source_match_rate = math.nan
+    if profile["schema_version"] == 3:
+        expected_velocity_source = profile["velocity_source"]
+        configured_velocity_source = str(
+            metadata.get("parameters", {}).get(
+                "blue_ttc_velocity_source", ""
+            )
+        )
+
+        def velocity_source_matches(row):
+            actual = str(row.get("ttc_velocity_source", ""))
+            if expected_velocity_source == "visual":
+                return actual == "visual"
+            if expected_velocity_source == "odom_static":
+                return actual == "odom_static"
+            return actual in {"conservative_visual", "conservative_odom"}
+
+        velocity_source_match_rate = _rate(
+            sum(velocity_source_matches(row) for row in accuracy_rows),
+            len(accuracy_rows),
+        )
     warning_feasibility_margin = (
         float(profile["warning_ttc_sec"])
         - float(profile["calibration_z_min_m"])
@@ -566,6 +595,17 @@ def evaluate_session(
     require_min(
         "odom_available_rate", odom_rate, profile["minimum_odom_available_rate"]
     )
+    if profile["schema_version"] == 3:
+        if configured_velocity_source != profile["velocity_source"]:
+            reasons.append(
+                f"configured_velocity_source={configured_velocity_source!r} != "
+                f"{profile['velocity_source']!r}"
+            )
+        require_min(
+            "velocity_source_match_rate",
+            velocity_source_match_rate,
+            profile["minimum_velocity_source_match_rate"],
+        )
     require_max(
         "nominal_speed_error_mps",
         nominal_speed_error,
@@ -678,6 +718,8 @@ def evaluate_session(
         "track_rate": track_rate,
         "motion_track_rate": motion_track_rate,
         "odom_available_rate": odom_rate,
+        "configured_velocity_source": configured_velocity_source,
+        "velocity_source_match_rate": velocity_source_match_rate,
         "odom_speed_p90_mps": odom_speed_p90,
         "nominal_speed_error_mps": nominal_speed_error,
         "nominal_speed_error_limit_mps": nominal_speed_error_limit,

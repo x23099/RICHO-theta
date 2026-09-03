@@ -21,10 +21,12 @@ def row(visual_vz="-0.1", odom="0.2", available="1", track="1", z="1.0"):
 
 
 class TtcVelocitySourceTests(unittest.TestCase):
-    def test_visual_is_unchanged(self):
+    def test_visual_preserves_values_and_marks_source(self):
         source = row()
         result = replace_velocity_source([source], "visual", 0.03)[0]
-        self.assertEqual(result, source)
+        self.assertEqual(result["smoothed_vz_mps"], source["smoothed_vz_mps"])
+        self.assertEqual(result["ttc_sec"], source["ttc_sec"])
+        self.assertEqual(result["ttc_velocity_source"], "visual")
         self.assertIsNot(result, source)
 
     def test_static_odom_uses_negative_ego_speed(self):
@@ -32,6 +34,7 @@ class TtcVelocitySourceTests(unittest.TestCase):
         self.assertAlmostEqual(float(result["smoothed_vz_mps"]), -0.2)
         self.assertAlmostEqual(float(result["relative_vz_mps"]), -0.1)
         self.assertAlmostEqual(float(result["ttc_sec"]), 5.0)
+        self.assertEqual(result["ttc_velocity_source"], "odom_static")
 
     def test_conservative_selects_faster_closing_source(self):
         visual_dominates = replace_velocity_source(
@@ -42,11 +45,18 @@ class TtcVelocitySourceTests(unittest.TestCase):
         )[0]
         self.assertAlmostEqual(float(visual_dominates["smoothed_vz_mps"]), -0.3)
         self.assertAlmostEqual(float(odom_dominates["smoothed_vz_mps"]), -0.2)
+        self.assertEqual(
+            visual_dominates["ttc_velocity_source"], "conservative_visual"
+        )
+        self.assertEqual(
+            odom_dominates["ttc_velocity_source"], "conservative_odom"
+        )
 
     def test_missing_odom_preserves_visual_result(self):
         source = row(available="0")
         result = replace_velocity_source([source], "odom_static", 0.03)[0]
-        self.assertEqual(result, source)
+        self.assertEqual(result["smoothed_vz_mps"], source["smoothed_vz_mps"])
+        self.assertEqual(result["ttc_velocity_source"], "visual_fallback")
 
     def test_deadband_clears_ttc(self):
         result = replace_velocity_source(

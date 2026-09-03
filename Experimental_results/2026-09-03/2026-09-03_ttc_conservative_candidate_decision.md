@@ -43,6 +43,7 @@ HOLD性能は「警告成立後に意図的な遮蔽または欠測を発生さ�
 - 実験候補設定: `src/bird_eye_config_ttc_conservative_candidate_20260903.json`
 - 実験候補profile: `src/dynamic_ttc_evaluation_profile_v4_candidate.json`
 - 候補profileはconfigとの9項目一致をpreflightで検証する。
+- 解析時はmetadataの設定値と各frameの`ttc_velocity_source`が95%以上一致することも必須とする。
 
 ## 次の最小実機確認
 
