@@ -1,0 +1,5 @@
+experiment_label,source,frames,detected_frames,measurement_accepted_frames,normalized_area_rejection_frames,measurement_acceptance_rate,median_x_m,median_z_m,median_area_px,median_normalized_area,normalized_area_threshold,median_normalized_area_to_threshold
+approach_center_v0p20_r01_v6holdout,/home/robo25/Downloads/recoding/202609081640.tar.xz::approach_center_v0p20_r01_v6holdout_20260908_163553_528,625,625,331,0,0.5296,-0.0343,0.6868,3040.5,3405.801921912369,1450.0,2.348828911663703
+approach_center_v0p20_r02_v6holdout,/home/robo25/Downloads/recoding/202609081640.tar.xz::approach_center_v0p20_r02_v6holdout_20260908_163811_391,629,229,217,3,0.9475982532751092,-0.0296,1.1043,3223.0,3906.718887594101,1450.0,2.6942888879959317
+approach_center_v0p20_r03_v6holdout,/home/robo25/Downloads/recoding/202609081640.tar.xz::approach_center_v0p20_r03_v6holdout_20260908_163856_015,626,310,303,2,0.9774193548387097,-0.0526,1.1052,3125.0,3665.8774138132408,1450.0,2.5281913198712007
+approach_center_v0p20_r01_v6holdout,/home/robo25/Downloads/recoding/202609081640.tar.xz::omake,622,622,620,2,0.9967845659163987,-0.0097,1.10345,3062.0,3688.9724453912095,1450.0,2.5441189278560064
