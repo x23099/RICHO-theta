@@ -81,6 +81,31 @@ class LiveTrialRequirementEvaluationTest(unittest.TestCase):
         self.assertEqual(result["result"], "FAIL")
         self.assertIn("track_rate is unavailable", result["reasons"])
 
+    def test_supports_motion_scoped_observation_requirements(self):
+        summaries = [
+            {
+                "experiment_label": "approach_center_v0p20_r01",
+                "detection_rate": "0.90",
+                "motion_detection_rate": "1.0",
+                "motion_measurement_acceptance_rate": "0.99",
+                "motion_track_rate": "1.0",
+            }
+        ]
+        rule = requirement(
+            experiment_label_glob="approach_center_v0p20_*",
+            min_detection_rate="",
+            min_measurement_acceptance_rate="",
+            min_track_rate="",
+            max_warning_or_critical_rate="",
+            min_motion_detection_rate="0.98",
+            min_motion_measurement_acceptance_rate="0.98",
+            min_motion_track_rate="0.95",
+        )
+
+        result = evaluate_requirements(summaries, [rule])[0]
+
+        self.assertEqual(result["result"], "PASS")
+
     def test_supports_hysteresis_metrics_and_alternate_label_column(self):
         summaries = [
             {

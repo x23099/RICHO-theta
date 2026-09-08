@@ -3,6 +3,7 @@ import unittest
 
 from analyze_observation_gate_robustness import (
     live_area_acceptance_rates,
+    sessions_with_reference_observation,
     threshold_decision,
 )
 
@@ -50,6 +51,16 @@ class ObservationGateRobustnessTest(unittest.TestCase):
             "events_reacquired": 1,
         }
         self.assertEqual(threshold_decision(row), "PASS")
+
+    def test_no_target_session_is_excluded_from_occlusion_replay(self):
+        sessions = {
+            "no_target": [{"detected": False}, {"detected": False}],
+            "occlusion": [{"detected": True}, {"detected": False}],
+        }
+
+        selected = sessions_with_reference_observation(sessions)
+
+        self.assertEqual(list(selected), ["occlusion"])
 
 
 if __name__ == "__main__":

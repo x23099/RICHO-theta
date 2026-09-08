@@ -49,6 +49,15 @@ class FieldExperimentPreflightTest(unittest.TestCase):
         self.assertEqual(result.status, "PASS")
         self.assertIn("matched 9 runtime parameters", result.detail)
 
+    def test_v6_candidate_config_matches_schema5_profile(self):
+        result = check_ttc_profile(
+            SRC_DIR / "bird_eye_config_ttc_v6_candidate_20260908.json",
+            SRC_DIR / "dynamic_ttc_evaluation_profile_v6_candidate.json",
+        )
+
+        self.assertEqual(result.status, "PASS")
+        self.assertIn("matched 9 runtime parameters", result.detail)
+
     def test_ttc_profile_mismatch_fails_preflight(self):
         config = json.loads(
             (SRC_DIR / "bird_eye_config_ttc_candidate_20260902.json").read_text()

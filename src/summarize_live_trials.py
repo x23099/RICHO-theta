@@ -19,8 +19,11 @@ SUMMARY_FIELDS = [
     "duration_sec",
     "effective_fps",
     "detection_rate",
+    "motion_detection_rate",
     "measurement_acceptance_rate",
+    "motion_measurement_acceptance_rate",
     "track_rate",
+    "motion_track_rate",
     "odom_available_rate",
     "moving_frames",
     "direction_correct_rate",
@@ -95,6 +98,11 @@ def summarize_rows(label, source, metadata, rows, moving_threshold_mps=0.03):
         for row in odom_rows
         if abs(_number(row, "odom_linear_mps") or 0.0) > moving_threshold_mps
     ]
+    moving_detected = [row for row in moving if _flag(row, "detected")]
+    moving_accepted = [
+        row for row in moving_detected if _flag(row, "measurement_accepted")
+    ]
+    moving_tracked = [row for row in moving if _flag(row, "track_available")]
     approaching = []
     direction_correct = []
     speed_errors = []
@@ -136,8 +144,13 @@ def summarize_rows(label, source, metadata, rows, moving_threshold_mps=0.03):
         if duration_sec > 0.0
         else math.nan,
         "detection_rate": _rate(len(detected), len(rows)),
+        "motion_detection_rate": _rate(len(moving_detected), len(moving)),
         "measurement_acceptance_rate": _rate(len(accepted), len(detected)),
+        "motion_measurement_acceptance_rate": _rate(
+            len(moving_accepted), len(moving_detected)
+        ),
         "track_rate": _rate(len(tracked), len(rows)),
+        "motion_track_rate": _rate(len(moving_tracked), len(moving)),
         "odom_available_rate": _rate(len(odom_rows), len(rows)),
         "moving_frames": len(moving),
         "direction_correct_rate": _mean(direction_correct),

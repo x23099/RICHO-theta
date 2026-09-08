@@ -10,6 +10,7 @@ SRC_DIR = Path(__file__).resolve().parents[1] / "src"
 V2_PROFILE = SRC_DIR / "dynamic_ttc_evaluation_profile_v2_candidate.json"
 V4_PROFILE = SRC_DIR / "dynamic_ttc_evaluation_profile_v4_candidate.json"
 V5_PROFILE = SRC_DIR / "dynamic_ttc_evaluation_profile_v5_candidate.json"
+V6_PROFILE = SRC_DIR / "dynamic_ttc_evaluation_profile_v6_candidate.json"
 sys.path.insert(0, str(SRC_DIR))
 
 from evaluate_dynamic_ttc_conditions import (  # noqa: E402
@@ -216,6 +217,88 @@ class DynamicTtcConditionTest(unittest.TestCase):
         self.assertAlmostEqual(result["nominal_speed_error_mps"], 0.040077)
         self.assertAlmostEqual(result["nominal_speed_error_limit_mps"], 0.041066)
         self.assertNotIn("nominal_speed_error_mps", result["reasons"])
+
+    def test_v6_uses_motion_detection_rate(self):
+        candidate = copy.deepcopy(load_profile(V6_PROFILE))
+        candidate["minimum_accuracy_interval_frames"] = 1
+        candidate["direction_stability_frames"] = 1
+        moving = [row(index * 0.04, 0.10, -0.10, 8.0) for index in range(3)]
+        stopped = [
+            row(0.12 + index * 0.04, 0.0, 0.0, "", corridor=False)
+            for index in range(20)
+        ]
+        for item in moving + stopped:
+            item["ttc_velocity_source"] = "conservative_odom"
+        for item in stopped:
+            item["detected"] = 0
+
+        result = evaluate_session(
+            "approach_center_v0p10_r01",
+            "trial",
+            {"parameters": {"blue_ttc_velocity_source": "conservative"}},
+            moving + stopped,
+            candidate,
+        )
+
+        self.assertLess(result["detection_rate"], 0.98)
+        self.assertEqual(result["motion_detection_rate"], 1.0)
+        self.assertEqual(result["decision"], "PASS")
+
+    def test_v6_marks_intended_warning_without_opportunity_inconclusive(self):
+        candidate = copy.deepcopy(load_profile(V6_PROFILE))
+        candidate["minimum_accuracy_interval_frames"] = 1
+        candidate["direction_stability_frames"] = 1
+        moving = [row(index * 0.04, 0.16, -0.16, 5.0) for index in range(4)]
+        stopped = [
+            row(0.16 + index * 0.04, 0.0, 0.0, "", corridor=False)
+            for index in range(3)
+        ]
+        for item in moving + stopped:
+            item["ttc_velocity_source"] = "conservative_odom"
+
+        result = evaluate_session(
+            "approach_center_v0p20_r01",
+            "trial",
+            {"parameters": {"blue_ttc_velocity_source": "conservative"}},
+            moving + stopped,
+            candidate,
+        )
+
+        self.assertEqual(result["warning_intended"], 1)
+        self.assertEqual(result["warning_opportunity"], 0)
+        self.assertEqual(result["decision"], "INCONCLUSIVE")
+        self.assertIn("no confirmable warning opportunity", result["inconclusive_reasons"])
+
+    def test_v6_allows_safe_path_release_after_warning(self):
+        candidate = copy.deepcopy(load_profile(V6_PROFILE))
+        candidate["minimum_accuracy_interval_frames"] = 1
+        candidate["direction_stability_frames"] = 1
+        warning = [row(index * 0.04, 0.20, -0.20, 4.4) for index in range(3)]
+        deceleration = [
+            row(0.12 + index * 0.04, 0.05, -0.05, 6.0)
+            for index in range(4)
+        ]
+        stopped = [
+            row(0.28 + index * 0.04, 0.0, 0.0, "", corridor=False)
+            for index in range(3)
+        ]
+        for item in warning + deceleration + stopped:
+            item["ttc_velocity_source"] = "conservative_odom"
+
+        result = evaluate_session(
+            "approach_center_v0p20_r01",
+            "trial",
+            {"parameters": {"blue_ttc_velocity_source": "conservative"}},
+            warning + deceleration + stopped,
+            candidate,
+        )
+
+        self.assertEqual(result["warning_opportunity"], 1)
+        self.assertGreater(result["path_while_forward_after_warning_frames"], 0)
+        self.assertEqual(
+            result["unsafe_path_while_forward_after_warning_frames"], 0
+        )
+        self.assertEqual(result["decision"], "PASS")
 
     def test_high_speed_scores_accuracy_before_warning_and_safety_after_it(self):
         rows = [

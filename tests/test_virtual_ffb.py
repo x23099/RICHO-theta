@@ -97,6 +97,36 @@ class VirtualFfbPolicyTest(unittest.TestCase):
         self.assertTrue(all(float(row["ttc_sec"]) == 4.0 for row in replayed))
         self.assertEqual(replayed[-1]["collision_risk_level"], "WARNING")
 
+    def test_schema5_profile_replay_preserves_conservative_velocity(self):
+        profile = load_profile(
+            Path(__file__).resolve().parents[1]
+            / "src"
+            / "dynamic_ttc_evaluation_profile_v6_candidate.json"
+        )
+        rows = [
+            {
+                "monotonic_time_sec": "0.0",
+                "smoothed_vz_mps": "-0.1",
+                "relative_vz_mps": "-0.1",
+                "odom_linear_mps": "0.2",
+                "odom_available": "1",
+                "track_available": "1",
+                "track_predicted": "0",
+                "measurement_accepted": "1",
+                "calibration_valid": "1",
+                "path_in_collision_corridor": "1",
+                "filtered_z_m": "0.8",
+                "ttc_sec": "8.0",
+            }
+        ]
+
+        replayed, velocity_source = replay_profile_rows(
+            "approach_test", {"parameters": {}}, rows, profile
+        )
+
+        self.assertEqual(velocity_source, "conservative")
+        self.assertEqual(replayed[0]["ttc_velocity_source"], "conservative_odom")
+
 
 if __name__ == "__main__":
     unittest.main()

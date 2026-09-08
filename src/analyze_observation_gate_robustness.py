@@ -53,6 +53,16 @@ def live_area_acceptance_rates(sessions, threshold):
     return rates
 
 
+def sessions_with_reference_observation(sessions):
+    """Drop no-target sessions that cannot define an obstacle reference."""
+
+    return {
+        session: rows
+        for session, rows in sessions.items()
+        if any(row.get("detected") for row in rows)
+    }
+
+
 def threshold_decision(row):
     outlier_rate = row["outlier_min_rejection_rate"]
     outlier_ok = math.isnan(outlier_rate) or outlier_rate >= 0.95
@@ -145,9 +155,12 @@ def main():
         2300.0,
         float(config["blue_observation_normalized_area_min"]),
     ]
+    occlusion_sessions = sessions_with_reference_observation(
+        load_observations(args.occlusion_input)
+    )
     rows = evaluate_thresholds(
         load_sessions(args.live_input),
-        load_observations(args.occlusion_input),
+        occlusion_sessions,
         config,
         thresholds,
     )

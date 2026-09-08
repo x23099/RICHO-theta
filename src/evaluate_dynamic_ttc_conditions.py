@@ -27,6 +27,7 @@ FIELDS = [
     "motion_frames",
     "accuracy_interval_frames",
     "detection_rate",
+    "motion_detection_rate",
     "track_rate",
     "motion_track_rate",
     "odom_available_rate",
@@ -67,12 +68,16 @@ FIELDS = [
     "first_raw_warning_ttc_sec",
     "first_raw_warning_z_m",
     "warning_feasibility_margin_sec",
+    "warning_intended",
+    "warning_opportunity",
     "maximum_warning_entry_delay_sec",
     "path_while_forward_after_warning_frames",
+    "unsafe_path_while_forward_after_warning_frames",
     "critical_frames",
     "final_state",
     "decision",
     "reasons",
+    "inconclusive_reasons",
 ]
 COMMON_PROFILE_FIELDS = {
     "schema_version",
@@ -140,6 +145,21 @@ SCHEMA_PROFILE_FIELDS = {
         "minimum_velocity_source_match_rate",
         "odom_speed_resolution_mps",
     },
+    5: {
+        "minimum_motion_track_rate",
+        "direction_stability_frames",
+        "maximum_direction_response_delay_sec",
+        "minimum_steady_direction_correct_rate",
+        "warning_feasibility_speed_mps",
+        "minimum_warning_feasibility_margin_sec",
+        "velocity_source",
+        "minimum_velocity_source_match_rate",
+        "odom_speed_resolution_mps",
+        "warning_requirement_mode",
+        "post_warning_path_mode",
+        "detection_rate_interval",
+        "maximum_post_warning_unsafe_path_frames",
+    },
 }
 
 
@@ -204,6 +224,9 @@ def load_profile(path: Path) -> dict:
         "schema_version",
         "expected_final_state",
         "velocity_source",
+        "warning_requirement_mode",
+        "post_warning_path_mode",
+        "detection_rate_interval",
     }
     try:
         numeric_values = {field: float(profile[field]) for field in numeric_fields}
@@ -254,13 +277,17 @@ def load_profile(path: Path) -> dict:
         "maximum_post_warning_path_while_forward_frames",
         "maximum_critical_frames",
     )
-    if schema_version in {2, 3, 4}:
+    if schema_version in {2, 3, 4, 5}:
         integer_fields += ("direction_stability_frames",)
+    if schema_version == 5:
+        integer_fields += ("maximum_post_warning_unsafe_path_frames",)
     if any(not numeric_values[field].is_integer() for field in integer_fields):
         raise ValueError("dynamic TTC profile frame counts must be integers")
     if int(profile["minimum_accuracy_interval_frames"]) < 1:
         raise ValueError("minimum_accuracy_interval_frames must be positive")
-    if schema_version in {2, 3, 4} and int(profile["direction_stability_frames"]) < 1:
+    if schema_version in {2, 3, 4, 5} and int(
+        profile["direction_stability_frames"]
+    ) < 1:
         raise ValueError("direction_stability_frames must be positive")
     if int(profile["warning_confirm_frames"]) < 1 or int(
         profile["warning_clear_frames"]
@@ -279,15 +306,22 @@ def load_profile(path: Path) -> dict:
         "CRITICAL",
     }:
         raise ValueError("expected_final_state is invalid")
-    if schema_version in {3, 4} and profile["velocity_source"] not in {
+    if schema_version in {3, 4, 5} and profile["velocity_source"] not in {
         "visual",
         "odom_static",
         "conservative",
     }:
         raise ValueError("velocity_source is invalid")
-    if schema_version == 4 and numeric_values["odom_speed_resolution_mps"] <= 0.0:
+    if schema_version in {4, 5} and numeric_values["odom_speed_resolution_mps"] <= 0.0:
         raise ValueError("odom_speed_resolution_mps must be positive")
-    if schema_version in {2, 3, 4}:
+    if schema_version == 5:
+        if profile["warning_requirement_mode"] != "confirmable_opportunity":
+            raise ValueError("warning_requirement_mode is invalid")
+        if profile["post_warning_path_mode"] != "unsafe_only":
+            raise ValueError("post_warning_path_mode is invalid")
+        if profile["detection_rate_interval"] != "motion":
+            raise ValueError("detection_rate_interval is invalid")
+    if schema_version in {2, 3, 4, 5}:
         if float(profile["warning_feasibility_speed_mps"]) <= 0.0:
             raise ValueError("warning_feasibility_speed_mps must be positive")
         feasibility_margin = float(profile["warning_ttc_sec"]) - (
@@ -369,7 +403,7 @@ def evaluate_session(
     deadband = float(profile["motion_deadband_mps"])
     z_min = float(profile["calibration_z_min_m"])
     z_max = float(profile["calibration_z_max_m"])
-    warning_required = (
+    warning_intended = (
         motion == "approach"
         and nominal_speed >= float(profile["warning_required_nominal_speed_mps"])
     )
@@ -399,6 +433,13 @@ def evaluate_session(
         and _number(row, "smoothed_vz_mps") is not None
     ]
     first_warning_time = hysteresis["first_raw_warning_sec"]
+    warning_opportunity = (
+        hysteresis["longest_confirmable_warning_run_frames"]
+        >= int(profile["warning_confirm_frames"])
+    )
+    warning_required = warning_intended and (
+        profile["schema_version"] < 5 or warning_opportunity
+    )
     if warning_required and first_warning_time is not None:
         def before_first_warning(row):
             timestamp = _timestamp(row)
@@ -432,7 +473,7 @@ def evaluate_session(
         float(profile["nominal_speed_absolute_tolerance_mps"]),
         float(profile["nominal_speed_relative_tolerance"]) * nominal_speed,
     )
-    if profile["schema_version"] == 4:
+    if profile["schema_version"] in {4, 5}:
         nominal_speed_error_limit += (
             float(profile["odom_speed_resolution_mps"]) / 2.0
         )
@@ -446,7 +487,7 @@ def evaluate_session(
         else math.nan
     )
     direction_rate = _rate(sum(direction_flags), len(direction_flags))
-    if profile["schema_version"] in {2, 3, 4}:
+    if profile["schema_version"] in {2, 3, 4, 5}:
         direction_response_delay, steady_direction_rate, _ = _direction_response(
             accuracy_rows,
             direction_flags,
@@ -512,7 +553,7 @@ def evaluate_session(
         )
         activation_stability_frames = (
             int(profile["direction_stability_frames"])
-            if profile["schema_version"] in {2, 3, 4}
+            if profile["schema_version"] in {2, 3, 4, 5}
             else 1
         )
         first_raw_stable_time = _first_stable_timestamp(
@@ -552,6 +593,9 @@ def evaluate_session(
         )
     critical_frames = hysteresis["filtered_critical_frames"]
     detection_rate = _rate(sum(_flag(row, "detected") for row in rows), len(rows))
+    motion_detection_rate = _rate(
+        sum(_flag(row, "detected") for row in motion_rows), len(motion_rows)
+    )
     track_rate = _rate(
         sum(_flag(row, "track_available") for row in rows), len(rows)
     )
@@ -562,7 +606,7 @@ def evaluate_session(
     odom_rate = _rate(len(odom_rows), len(rows))
     configured_velocity_source = ""
     velocity_source_match_rate = math.nan
-    if profile["schema_version"] in {3, 4}:
+    if profile["schema_version"] in {3, 4, 5}:
         expected_velocity_source = profile["velocity_source"]
         configured_velocity_source = str(
             metadata.get("parameters", {}).get(
@@ -586,11 +630,12 @@ def evaluate_session(
         float(profile["warning_ttc_sec"])
         - float(profile["calibration_z_min_m"])
         / float(profile["warning_feasibility_speed_mps"])
-        if profile["schema_version"] in {2, 3, 4}
+        if profile["schema_version"] in {2, 3, 4, 5}
         else math.nan
     )
 
     reasons = []
+    inconclusive_reasons = []
 
     def require_min(name, value, minimum):
         if not math.isfinite(value) or value < float(minimum):
@@ -600,7 +645,16 @@ def evaluate_session(
         if not math.isfinite(value) or value > float(maximum):
             reasons.append(f"{name}={value} > {maximum}")
 
-    require_min("detection_rate", detection_rate, profile["minimum_detection_rate"])
+    evaluated_detection_rate = (
+        motion_detection_rate if profile["schema_version"] == 5 else detection_rate
+    )
+    require_min(
+        "motion_detection_rate"
+        if profile["schema_version"] == 5
+        else "detection_rate",
+        evaluated_detection_rate,
+        profile["minimum_detection_rate"],
+    )
     if profile["schema_version"] == 1:
         require_min("track_rate", track_rate, profile["minimum_track_rate"])
     else:
@@ -612,7 +666,7 @@ def evaluate_session(
     require_min(
         "odom_available_rate", odom_rate, profile["minimum_odom_available_rate"]
     )
-    if profile["schema_version"] in {3, 4}:
+    if profile["schema_version"] in {3, 4, 5}:
         if configured_velocity_source != profile["velocity_source"]:
             reasons.append(
                 f"configured_velocity_source={configured_velocity_source!r} != "
@@ -702,17 +756,32 @@ def evaluate_session(
             hysteresis["maximum_warning_entry_delay_sec"],
             profile["maximum_warning_entry_delay_sec"],
         )
-        require_max(
-            "path_while_forward_after_warning_frames",
-            float(hysteresis["path_while_forward_after_warning_frames"]),
-            profile["maximum_post_warning_path_while_forward_frames"],
-        )
-    else:
+        if profile["schema_version"] == 5:
+            require_max(
+                "unsafe_path_while_forward_after_warning_frames",
+                float(
+                    hysteresis[
+                        "unsafe_path_while_forward_after_warning_frames"
+                    ]
+                ),
+                profile["maximum_post_warning_unsafe_path_frames"],
+            )
+        else:
+            require_max(
+                "path_while_forward_after_warning_frames",
+                float(hysteresis["path_while_forward_after_warning_frames"]),
+                profile["maximum_post_warning_path_while_forward_frames"],
+            )
+    elif not warning_intended:
         require_max("raw_warning_frames", float(hysteresis["raw_warning_frames"]), 0)
         require_max(
             "filtered_warning_frames",
             float(hysteresis["filtered_warning_frames"]),
             0,
+        )
+    else:
+        inconclusive_reasons.append(
+            "no confirmable warning opportunity in measured TTC sequence"
         )
     require_max(
         "critical_frames", float(critical_frames), profile["maximum_critical_frames"]
@@ -732,6 +801,7 @@ def evaluate_session(
         "motion_frames": len(motion_rows),
         "accuracy_interval_frames": len(accuracy_rows),
         "detection_rate": detection_rate,
+        "motion_detection_rate": motion_detection_rate,
         "track_rate": track_rate,
         "motion_track_rate": motion_track_rate,
         "odom_available_rate": odom_rate,
@@ -790,16 +860,28 @@ def evaluate_session(
         "first_raw_warning_ttc_sec": hysteresis["first_raw_warning_ttc_sec"],
         "first_raw_warning_z_m": hysteresis["first_raw_warning_z_m"],
         "warning_feasibility_margin_sec": warning_feasibility_margin,
+        "warning_intended": int(warning_intended),
+        "warning_opportunity": int(warning_opportunity),
         "maximum_warning_entry_delay_sec": hysteresis[
             "maximum_warning_entry_delay_sec"
         ],
         "path_while_forward_after_warning_frames": hysteresis[
             "path_while_forward_after_warning_frames"
         ],
+        "unsafe_path_while_forward_after_warning_frames": hysteresis[
+            "unsafe_path_while_forward_after_warning_frames"
+        ],
         "critical_frames": critical_frames,
         "final_state": hysteresis["final_state"],
-        "decision": "FAIL" if reasons else "PASS",
+        "decision": (
+            "FAIL"
+            if reasons
+            else "INCONCLUSIVE"
+            if inconclusive_reasons
+            else "PASS"
+        ),
         "reasons": "; ".join(reasons),
+        "inconclusive_reasons": "; ".join(inconclusive_reasons),
     }
 
 
@@ -844,7 +926,7 @@ def main(argv=None) -> int:
     if not results:
         parser.error("no supported approach or retreat session was found")
     write_results(args.output, results)
-    failed = [row for row in results if row["decision"] == "FAIL"]
+    nonpassing = [row for row in results if row["decision"] != "PASS"]
     for row in results:
         print(
             f"{row['experiment_label']}: {row['decision']} "
@@ -852,11 +934,17 @@ def main(argv=None) -> int:
             f"speed_MAE={row['relative_speed_mae_mps']:.4f}, "
             f"TTC_active={row['ttc_active_rate']}"
         )
-        if row["reasons"]:
-            print(f"  {row['reasons']}")
-    print(f"PASS: {len(results) - len(failed)}/{len(results)}")
+        detail = row["reasons"] or row["inconclusive_reasons"]
+        if detail:
+            print(f"  {detail}")
+    print(f"PASS: {len(results) - len(nonpassing)}/{len(results)}")
+    print(
+        "INCONCLUSIVE: "
+        f"{sum(row['decision'] == 'INCONCLUSIVE' for row in results)}"
+    )
+    print(f"FAIL: {sum(row['decision'] == 'FAIL' for row in results)}")
     print(f"Results saved: {args.output.resolve()}")
-    return 1 if failed else 0
+    return 1 if nonpassing else 0
 
 
 if __name__ == "__main__":

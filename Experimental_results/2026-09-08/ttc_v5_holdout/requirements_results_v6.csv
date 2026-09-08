@@ -1,0 +1,5 @@
+rule_id,experiment_label_glob,matched_trials,matched_labels,result,reasons
+static_no_false_ttc,static_center_ttc_r0[1-3]*,3,static_center_ttc_r01;static_center_ttc_r02;static_center_ttc_r03,PASS,
+v0p10_approach_response,approach_center_v0p10_r0[1-3]*,3,approach_center_v0p10_r01;approach_center_v0p10_r02;approach_center_v0p10_r03,PASS,
+v0p10_retreat_no_false_ttc,retreat_center_v0p10_r0[1-3]*,3,retreat_center_v0p10_r01;retreat_center_v0p10_r02;retreat_center_v0p10_r03,PASS,
+v0p20_approach_warning,approach_center_v0p20_r0[1-3]*,3,approach_center_v0p20_r01;approach_center_v0p20_r02;approach_center_v0p20_r03,PASS,

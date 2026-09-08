@@ -135,7 +135,7 @@ def replay_profile_rows(session, metadata, rows, profile):
     """Recompute TTC velocity and collision states using a fixed profile."""
     velocity_source = (
         str(profile["velocity_source"])
-        if profile.get("schema_version") in {3, 4}
+        if profile.get("schema_version") in {3, 4, 5}
         else "visual"
     )
     velocity_rows = replace_velocity_source(

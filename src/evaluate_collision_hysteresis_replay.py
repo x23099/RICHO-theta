@@ -39,6 +39,7 @@ FIELDS = [
     "first_filtered_warning_z_m",
     "maximum_warning_entry_delay_sec",
     "path_while_forward_after_warning_frames",
+    "unsafe_path_while_forward_after_warning_frames",
     "final_state",
 ]
 
@@ -119,6 +120,7 @@ def replay_rows_with_states(session, metadata, rows, overrides=None):
     pending_raw_warning_sec = None
     warning_seen = False
     path_while_forward_after_warning = 0
+    unsafe_path_while_forward_after_warning = 0
     replayed_rows = []
     for row in rows:
         timestamp = _number(row, "monotonic_time_sec")
@@ -219,6 +221,8 @@ def replay_rows_with_states(session, metadata, rows, overrides=None):
             warning_seen = True
         elif warning_seen and output_level == "PATH" and moving_forward:
             path_while_forward_after_warning += 1
+            if raw_level in {"WARNING", "CRITICAL"}:
+                unsafe_path_while_forward_after_warning += 1
         raw_levels.append(raw_level)
         output_levels.append(output_level)
         timestamps.append(timestamp)
@@ -275,6 +279,9 @@ def replay_rows_with_states(session, metadata, rows, overrides=None):
         ),
         "path_while_forward_after_warning_frames": (
             path_while_forward_after_warning
+        ),
+        "unsafe_path_while_forward_after_warning_frames": (
+            unsafe_path_while_forward_after_warning
         ),
         "final_state": output_levels[-1] if output_levels else "",
     }
