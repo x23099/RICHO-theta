@@ -1,0 +1,13 @@
+session,frames,raw_warning_frames,confirmable_warning_frames,longest_raw_warning_run_frames,longest_confirmable_warning_run_frames,raw_warning_track_unavailable_frames,raw_warning_track_predicted_frames,raw_warning_measurement_rejected_frames,raw_warning_calibration_invalid_frames,raw_warning_not_forward_frames,minimum_ttc_threshold_for_confirmation_sec,filtered_warning_frames,warning_hold_frames,unknown_frames,raw_critical_frames,filtered_critical_frames,first_raw_warning_sec,first_raw_warning_ttc_sec,first_raw_warning_z_m,first_filtered_warning_sec,first_filtered_warning_ttc_sec,first_filtered_warning_z_m,maximum_warning_entry_delay_sec,path_while_forward_after_warning_frames,final_state
+approach_center_v0p10_r01_20260908_143110_750,605,0,0,0,0,0,0,0,0,0,7.342415007498907,0,0,0,0,0,,,,,,,nan,0,CLEAR
+approach_center_v0p10_r02_20260908_143603_134,605,0,0,0,0,0,0,0,0,0,7.562102684793011,0,0,0,0,0,,,,,,,nan,0,CLEAR
+approach_center_v0p10_r03_20260908_144024_286,622,0,0,0,0,0,0,0,0,0,7.227488816739706,0,0,3,0,0,,,,,,,nan,0,CLEAR
+approach_center_v0p20_r01_20260908_143413_255,390,9,9,8,8,0,0,0,0,0,4.373739349253084,9,0,0,0,0,5.615864,4.583249450565619,0.733,5.785588,4.373739349253084,0.7088,0.06588599999999989,9,CLEAR
+approach_center_v0p20_r02_20260908_143837_964,621,3,2,2,1,0,1,1,0,0,4.729212159718581,0,0,10,0,0,6.272118,4.589661911922179,0.7536,,,,nan,0,CLEAR
+approach_center_v0p20_r03_20260908_144130_128,627,0,0,0,0,0,0,0,0,0,4.861424359857357,0,0,3,0,0,,,,,,,nan,0,CLEAR
+retreat_center_v0p10_r01_20260908_143155_511,647,0,0,0,0,0,0,0,0,0,nan,0,0,0,0,0,,,,,,,nan,0,CLEAR
+retreat_center_v0p10_r02_20260908_143637_382,616,0,0,0,0,0,0,0,0,0,nan,0,0,0,0,0,,,,,,,nan,0,CLEAR
+retreat_center_v0p10_r03_20260908_144058_154,625,0,0,0,0,0,0,0,0,0,nan,0,0,0,0,0,,,,,,,nan,0,CLEAR
+static_center_ttc_r01_20260908_142731_596,622,0,0,0,0,0,0,0,0,0,nan,0,0,0,0,0,,,,,,,nan,0,CLEAR
+static_center_ttc_r02_20260908_143504_968,620,0,0,0,0,0,0,0,0,0,nan,0,0,0,0,0,,,,,,,nan,0,CLEAR
+static_center_ttc_r03_20260908_143951_028,624,0,0,0,0,0,0,0,0,0,nan,0,0,0,0,0,,,,,,,nan,0,CLEAR

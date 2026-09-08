@@ -1,0 +1,13 @@
+session,source,required_files_complete,csv_frames,frame_sequence_ok,timestamps_monotonic,time_alias_ok,raw_frames,bev_frames,detection_frames,video_counts_match,processing_timing_status,decision,reasons
+approach_center_v0p10_r01_20260908_143110_750,/home/robo25/Downloads/recoding/202609081440.tar.xz::approach_center_v0p10_r01_20260908_143110_750,1,605,1,1,1,605,605,605,1,PASS,PASS,
+approach_center_v0p10_r02_20260908_143603_134,/home/robo25/Downloads/recoding/202609081440.tar.xz::approach_center_v0p10_r02_20260908_143603_134,1,605,1,1,1,605,605,605,1,PASS,PASS,
+approach_center_v0p10_r03_20260908_144024_286,/home/robo25/Downloads/recoding/202609081440.tar.xz::approach_center_v0p10_r03_20260908_144024_286,1,622,1,1,1,622,622,622,1,PASS,PASS,
+approach_center_v0p20_r01_20260908_143413_255,/home/robo25/Downloads/recoding/202609081440.tar.xz::approach_center_v0p20_r01_20260908_143413_255,1,390,1,1,1,390,390,390,1,PASS,PASS,
+approach_center_v0p20_r02_20260908_143837_964,/home/robo25/Downloads/recoding/202609081440.tar.xz::approach_center_v0p20_r02_20260908_143837_964,1,621,1,1,1,621,621,621,1,PASS,PASS,
+approach_center_v0p20_r03_20260908_144130_128,/home/robo25/Downloads/recoding/202609081440.tar.xz::approach_center_v0p20_r03_20260908_144130_128,1,627,1,1,1,627,627,627,1,PASS,PASS,
+retreat_center_v0p10_r01_20260908_143155_511,/home/robo25/Downloads/recoding/202609081440.tar.xz::retreat_center_v0p10_r01_20260908_143155_511,1,647,1,1,1,647,647,647,1,PASS,PASS,
+retreat_center_v0p10_r02_20260908_143637_382,/home/robo25/Downloads/recoding/202609081440.tar.xz::retreat_center_v0p10_r02_20260908_143637_382,1,616,1,1,1,616,616,616,1,PASS,PASS,
+retreat_center_v0p10_r03_20260908_144058_154,/home/robo25/Downloads/recoding/202609081440.tar.xz::retreat_center_v0p10_r03_20260908_144058_154,1,625,1,1,1,625,625,625,1,PASS,PASS,
+static_center_ttc_r01_20260908_142731_596,/home/robo25/Downloads/recoding/202609081440.tar.xz::static_center_ttc_r01_20260908_142731_596,1,622,1,1,1,622,622,622,1,PASS,PASS,
+static_center_ttc_r02_20260908_143504_968,/home/robo25/Downloads/recoding/202609081440.tar.xz::static_center_ttc_r02_20260908_143504_968,1,620,1,1,1,620,620,620,1,PASS,PASS,
+static_center_ttc_r03_20260908_143951_028,/home/robo25/Downloads/recoding/202609081440.tar.xz::static_center_ttc_r03_20260908_143951_028,1,624,1,1,1,624,624,624,1,PASS,PASS,

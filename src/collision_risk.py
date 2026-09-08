@@ -239,7 +239,16 @@ class CollisionRiskHysteresis:
         moving_forward = bool(moving_forward)
         in_collision_corridor = bool(in_collision_corridor)
         ttc_value = self._finite_number(ttc_sec)
-        alert_context = self.state in self.ALERT_CONTEXT_STATES
+        # UNKNOWN can mean either that a confirmed warning's finite hold has
+        # expired or that no valid obstacle observation has been established
+        # yet.  Only the former has warning history to preserve.  Treating a
+        # history-free UNKNOWN as alert context would let a subsequent PATH
+        # sample inside the exit band create a WARNING without ever satisfying
+        # the warning-entry confirmation.
+        alert_context = self.state in self.ALERT_CONTEXT_STATES and (
+            self.state != "UNKNOWN"
+            or self.last_confirmed_warning_sec is not None
+        )
 
         # Imminent, valid evidence bypasses the entry debounce.
         if valid and raw_level == "CRITICAL":

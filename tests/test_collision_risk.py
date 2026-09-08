@@ -122,6 +122,21 @@ class CollisionRiskTest(unittest.TestCase):
         self.assertEqual(held["risk_level"], "WARNING_HOLD")
         self.assertEqual(unknown["risk_level"], "UNKNOWN")
 
+    def test_unknown_without_warning_history_does_not_create_warning(self):
+        hysteresis = CollisionRiskHysteresis(
+            warning_ttc_sec=4.6,
+            warning_exit_ttc_sec=5.6,
+            warning_confirm_frames=3,
+        )
+
+        unknown = hysteresis.update("PATH", 0.0, False, True, True, None)
+        recovered = hysteresis.update("PATH", 0.1, True, True, True, 5.4)
+
+        self.assertEqual(unknown["risk_level"], "UNKNOWN")
+        self.assertIsNone(unknown["hold_age_sec"])
+        self.assertEqual(recovered["risk_level"], "PATH")
+        self.assertEqual(recovered["state_reason"], "instantaneous")
+
     def test_valid_critical_bypasses_warning_confirmation(self):
         hysteresis = CollisionRiskHysteresis(warning_confirm_frames=5)
 
