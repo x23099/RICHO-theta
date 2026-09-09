@@ -14,6 +14,7 @@ venv/
 log/
 build/
 install/
+Experimental_results/**/ros_logs/
 
 # editor
 .vscode/
