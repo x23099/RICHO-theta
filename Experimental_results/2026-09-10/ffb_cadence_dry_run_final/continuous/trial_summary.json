@@ -1,0 +1,40 @@
+{
+  "settings": {
+    "pattern": "steady",
+    "cadence": "continuous",
+    "magnitude": 0.05,
+    "duration_sec": 0.5,
+    "rate_hz": 30.0,
+    "source": "bird_eye",
+    "reason": "manual_collision_ffb_probe",
+    "expect_output_mode": "dry_run",
+    "acknowledge_physical_output": false
+  },
+  "summary": {
+    "decision": "PASS",
+    "checks": {
+      "status_received": true,
+      "expected_mode_only": true,
+      "active_apply_coverage": true,
+      "no_fault": true,
+      "magnitude_within_limit": true,
+      "final_clear_observed": true,
+      "final_inactive": true
+    },
+    "expected_output_mode": "dry_run",
+    "observed_output_modes": [
+      "dry_run"
+    ],
+    "command_count": 18,
+    "active_command_count": 15,
+    "status_count": 18,
+    "matched_active_sequences": 15,
+    "active_apply_coverage": 1.0,
+    "fault_count": 0,
+    "max_applied_magnitude": 0.05000000074505806,
+    "response_latency_mean_ms": 1.1792163891691922,
+    "response_latency_p95_ms": 1.7004799512505957,
+    "final_clear_stop_latency_ms": 0.9172379941446707,
+    "final_clear_sequence": 15
+  }
+}

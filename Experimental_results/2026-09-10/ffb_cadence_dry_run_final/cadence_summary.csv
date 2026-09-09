@@ -1,0 +1,4 @@
+cadence,pattern,magnitude,duration_sec,rate_hz,decision,command_count,active_command_count,status_count,active_apply_coverage,fault_count,max_applied_magnitude,response_latency_mean_ms,response_latency_p95_ms,final_clear_stop_latency_ms,result_dir
+continuous,steady,0.05,0.5,30.0,PASS,18,15,18,1.0,0,0.05000000074505806,1.1792163891691922,1.7004799512505957,0.9172379941446707,/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-09-10/ffb_cadence_dry_run_final/continuous
+double,steady,0.05,0.5,30.0,PASS,18,8,18,1.0,0,0.05000000074505806,0.9545862251090713,1.2240978547197296,0.7955649925861508,/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-09-10/ffb_cadence_dry_run_final/double
+triple,steady,0.05,0.5,30.0,PASS,18,9,18,1.0,0,0.05000000074505806,1.0925588333824028,2.4773715456831265,1.1290129914414138,/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-09-10/ffb_cadence_dry_run_final/triple

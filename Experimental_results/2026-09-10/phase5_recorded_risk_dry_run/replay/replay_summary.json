@@ -1,0 +1,26 @@
+{
+  "input": "/home/robo25/Downloads/recoding/202609081640.tar.xz",
+  "session": "approach_center_v0p20_r02_v6holdout_20260908_163811_391",
+  "rate_hz": 30.0,
+  "summary": {
+    "decision": "PASS",
+    "checks": {
+      "all_commands_published": true,
+      "status_received": true,
+      "expected_mode_only": true,
+      "no_fault": true,
+      "active_path_observed": true,
+      "adapter_cap_respected": true,
+      "final_inactive": true
+    },
+    "command_count": 630,
+    "active_command_count": 69,
+    "status_count": 630,
+    "active_status_count": 69,
+    "fault_count": 0,
+    "observed_output_modes": [
+      "dry_run"
+    ],
+    "max_applied_magnitude": 0.05000000074505806
+  }
+}

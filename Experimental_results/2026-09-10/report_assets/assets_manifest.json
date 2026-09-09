@@ -1,0 +1,32 @@
+{
+  "raw_camera_frame": {
+    "archive": "/home/robo25/Downloads/recoding/202609081640.tar.xz",
+    "member": "approach_center_v0p20_r02_v6holdout_20260908_163811_391/raw.avi",
+    "session": "approach_center_v0p20_r02_v6holdout_20260908_163811_391",
+    "frame": 150,
+    "video_time_sec": 4.966666666666667,
+    "source_width": 1280,
+    "source_height": 720,
+    "source_fps": 30.0,
+    "output_width": 1280,
+    "output_height": 720,
+    "output": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-09-10/report_assets/raw_approach_center_v0p20_r02_v6holdout_20260908_163811_391_frame_000150.png",
+    "transformations": []
+  },
+  "cadence_graph": {
+    "source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-09-10/ffb_cadence_dry_run_final",
+    "row_counts": {
+      "continuous": 18,
+      "double": 18,
+      "triple": 18
+    },
+    "output": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-09-10/report_assets/ffb_cadence_dry_run.png"
+  },
+  "recorded_risk_graph": {
+    "source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-09-10/phase5_recorded_risk_dry_run/replay",
+    "command_rows": 629,
+    "status_rows": 630,
+    "output": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-09-10/report_assets/recorded_risk_ffb_dry_run.png"
+  },
+  "archive_sha256": "7a38ec860b9bf5af3ef380332582ed154c4ca5dad4b12c44b4f38485e20facf7"
+}

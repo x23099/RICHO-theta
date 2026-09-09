@@ -1,0 +1,24 @@
+getifaddrs: Operation not permitted
+getifaddrs: Operation not permitted
+getifaddrs: Operation not permitted
+[37;1m2026-09-10 01:41:08.153 [31;1m[[37;1mTRANSPORT_UDP[31;1m Error] [37mError creating socket: Operation not permitted[34;1m -> Function [36minit[m
+[37;1m2026-09-10 01:41:08.153 [31;1m[[37;1mRTPS_PARTICIPANT[31;1m Error] [37mUser transport failed to register.[34;1m -> Function [36mRTPSParticipantImpl[m
+[INFO] [1788972068.248742929] [collision_ffb_node]: Collision FFB adapter started: mode=dry_run, command=/collision/ffb_command, status=/collision/ffb_status, watchdog=0.100s; hardware access disabled
+[INFO] [1788972070.280680306] [collision_ffb_node]: mode=dry_run sequence=0 action=apply command_active=True output_active=True requested=0.050 applied=0.050 pattern=1 reason=manual_collision_ffb_probe:continuous fault=False
+[INFO] [1788972070.789614218] [collision_ffb_node]: mode=dry_run sequence=15 action=stop command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1788972070.809780951] [collision_ffb_node]: mode=dry_run sequence=16 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1788972072.780357146] [collision_ffb_node]: mode=dry_run sequence=0 action=apply command_active=True output_active=True requested=0.050 applied=0.050 pattern=1 reason=manual_collision_ffb_probe:double fault=False
+[INFO] [1788972072.915342100] [collision_ffb_node]: mode=dry_run sequence=4 action=stop command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1788972072.948894693] [collision_ffb_node]: mode=dry_run sequence=5 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1788972073.050136793] [collision_ffb_node]: mode=dry_run sequence=8 action=apply command_active=True output_active=True requested=0.050 applied=0.050 pattern=1 reason=manual_collision_ffb_probe:double fault=False
+[INFO] [1788972073.184887315] [collision_ffb_node]: mode=dry_run sequence=12 action=stop command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1788972073.218496420] [collision_ffb_node]: mode=dry_run sequence=13 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1788972075.287660471] [collision_ffb_node]: mode=dry_run sequence=0 action=apply command_active=True output_active=True requested=0.050 applied=0.050 pattern=1 reason=manual_collision_ffb_probe:triple fault=False
+[INFO] [1788972075.388697431] [collision_ffb_node]: mode=dry_run sequence=3 action=stop command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1788972075.422885600] [collision_ffb_node]: mode=dry_run sequence=4 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1788972075.456532557] [collision_ffb_node]: mode=dry_run sequence=5 action=apply command_active=True output_active=True requested=0.050 applied=0.050 pattern=1 reason=manual_collision_ffb_probe:triple fault=False
+[INFO] [1788972075.557028153] [collision_ffb_node]: mode=dry_run sequence=8 action=stop command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1788972075.590897520] [collision_ffb_node]: mode=dry_run sequence=9 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1788972075.624701029] [collision_ffb_node]: mode=dry_run sequence=10 action=apply command_active=True output_active=True requested=0.050 applied=0.050 pattern=1 reason=manual_collision_ffb_probe:triple fault=False
+[INFO] [1788972075.728029447] [collision_ffb_node]: mode=dry_run sequence=13 action=stop command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1788972075.761904674] [collision_ffb_node]: mode=dry_run sequence=14 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
