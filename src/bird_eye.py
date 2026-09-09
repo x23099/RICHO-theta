@@ -41,6 +41,11 @@ from obstacle_tracking import (
     CausalTtcEstimator,
     ObstacleObservationGate,
 )
+from collision_ffb_publisher import (
+    CollisionFfbPublisherBridge,
+    FFB_RECORDING_FIELDS,
+    empty_publish_record,
+)
 from ros_odometry import RosOdometryBridge
 
 from PySide6.QtCore import Qt, QTimer, QPoint, QRectF
@@ -73,7 +78,9 @@ BASE_RECORDING_CSV_FIELDS = (
     "collision_raw_risk_level", "collision_state_reason",
     "collision_hold_age_sec", "collision_measurement_valid",
 )
-RECORDING_CSV_FIELDS = BASE_RECORDING_CSV_FIELDS + PROCESSING_TIMING_FIELDS
+RECORDING_CSV_FIELDS = (
+    BASE_RECORDING_CSV_FIELDS + FFB_RECORDING_FIELDS + PROCESSING_TIMING_FIELDS
+)
 
 try:
     import torch
@@ -645,6 +652,10 @@ class CalibrationWindow(QWidget):
             self.blue_range_hysteresis,
             self.blue_side_hysteresis,
         ) = self.create_blue_region_hysteresis()
+        self.collision_ffb_publisher = self.create_collision_ffb_publisher()
+        self.last_collision_ffb_publish = empty_publish_record(
+            enabled=self.collision_ffb_publisher is not None
+        )
 
         self.init_ui()
         self.start_capture()
@@ -721,6 +732,12 @@ class CalibrationWindow(QWidget):
             "blue_collision_warning_clear_frames": 3,
             "blue_collision_warning_hold_sec": 0.8,
             "blue_collision_forward_motion_threshold_mps": 0.03,
+            "collision_ffb_publish_enabled": 0,
+            "collision_ffb_command_topic": "/collision/ffb_command",
+            "collision_ffb_source": "bird_eye",
+            "collision_ffb_warning_magnitude": 0.25,
+            "collision_ffb_critical_magnitude": 0.40,
+            "collision_ffb_unknown_magnitude": 0.15,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -814,6 +831,12 @@ class CalibrationWindow(QWidget):
             "blue_collision_warning_clear_frames": 3,
             "blue_collision_warning_hold_sec": 0.8,
             "blue_collision_forward_motion_threshold_mps": 0.03,
+            "collision_ffb_publish_enabled": 0,
+            "collision_ffb_command_topic": "/collision/ffb_command",
+            "collision_ffb_source": "bird_eye",
+            "collision_ffb_warning_magnitude": 0.25,
+            "collision_ffb_critical_magnitude": 0.40,
+            "collision_ffb_unknown_magnitude": 0.15,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -835,6 +858,61 @@ class CalibrationWindow(QWidget):
         self.collision_risk_hysteresis = self.create_collision_risk_hysteresis()
         self.last_blue_track = None
         self.last_blue_collision = None
+        if getattr(self, "collision_ffb_publisher", None) is not None:
+            self.collision_ffb_publisher.close()
+            self.collision_ffb_publisher = None
+        self.last_collision_ffb_publish = empty_publish_record(enabled=False)
+
+    def create_collision_ffb_publisher(self):
+        if self.params.get("collision_ffb_publish_enabled", 0) != 1:
+            return None
+        publisher = CollisionFfbPublisherBridge(
+            topic=self.params.get(
+                "collision_ffb_command_topic", "/collision/ffb_command"
+            ),
+            source=self.params.get("collision_ffb_source", "bird_eye"),
+            warning_magnitude=self.params.get(
+                "collision_ffb_warning_magnitude", 0.25
+            ),
+            critical_magnitude=self.params.get(
+                "collision_ffb_critical_magnitude", 0.40
+            ),
+            unknown_magnitude=self.params.get(
+                "collision_ffb_unknown_magnitude", 0.15
+            ),
+        )
+        print(
+            "[INFO] Publishing collision FFB commands: "
+            f"{publisher.topic} (device-independent)"
+        )
+        return publisher
+
+    def collision_ffb_metadata(self):
+        if self.collision_ffb_publisher is None:
+            return {
+                "enabled": False,
+                "topic": self.params.get(
+                    "collision_ffb_command_topic", "/collision/ffb_command"
+                ),
+                "source": self.params.get("collision_ffb_source", "bird_eye"),
+            }
+        return self.collision_ffb_publisher.describe()
+
+    def publish_collision_ffb(self):
+        risk_level = (
+            self.last_blue_collision.get("risk_level", "CLEAR")
+            if self.last_blue_collision is not None
+            else "CLEAR"
+        )
+        if self.collision_ffb_publisher is None:
+            self.last_collision_ffb_publish = empty_publish_record(
+                enabled=False, risk_level=risk_level
+            )
+        else:
+            self.last_collision_ffb_publish = (
+                self.collision_ffb_publisher.publish_risk(risk_level)
+            )
+        return dict(self.last_collision_ffb_publish)
 
     def create_blue_obstacle_tracker(self):
         return BlueObstacleTracker(
@@ -1343,6 +1421,7 @@ class CalibrationWindow(QWidget):
                 "processing_timing_clock": "time.perf_counter",
                 "processing_timing_total_endpoint": "before detections.csv write",
                 "processing_timing_fields": list(PROCESSING_TIMING_FIELDS),
+                "collision_ffb_publisher": self.collision_ffb_metadata(),
                 "parameters": self.params,
                 "camera_capture_properties": getattr(
                     self, "camera_capture_properties", {}
@@ -1471,6 +1550,11 @@ class CalibrationWindow(QWidget):
                     f'{track["vz_mps"]:.4f}',
                     f'{track["missing_age_sec"]:.4f}',
                 ]
+            collision_ffb_record = getattr(
+                self,
+                "last_collision_ffb_publish",
+                empty_publish_record(enabled=False),
+            )
             self.recording_csv_writer.writerow([
                 self.recording_frame_count,
                 f"{recording_elapsed_sec:.6f}",
@@ -1555,6 +1639,9 @@ class CalibrationWindow(QWidget):
                     and self.last_blue_collision.get("measurement_valid", False)
                     else 0
                 ),
+            ] + [
+                collision_ffb_record.get(field, "")
+                for field in FFB_RECORDING_FIELDS
             ] + format_processing_timings(self.current_frame_timing))
         elapsed_seconds = int(recording_elapsed_sec)
         self.record_status_label.setText(
@@ -2277,6 +2364,7 @@ class CalibrationWindow(QWidget):
         # Draw overlays on BEV
         stage_started = time.perf_counter()
         self.draw_bev_overlays(bev_img)
+        self.publish_collision_ffb()
         self.draw_blue_obstacle_detection(
             bev_img, self.last_blue_detection, self.last_blue_track
         )
@@ -3026,6 +3114,8 @@ class CalibrationWindow(QWidget):
         self.stop_recording()
         if self.cap is not None:
             self.cap.release()
+        if self.collision_ffb_publisher is not None:
+            self.collision_ffb_publisher.close()
         if self.odom_bridge is not None:
             self.odom_bridge.close()
         event.accept()

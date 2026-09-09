@@ -12,6 +12,7 @@ from preflight_field_experiment import (  # noqa: E402
     check_config,
     check_record_storage,
     check_ttc_profile,
+    config_requires_ffb,
     validate_experiment_config,
 )
 
@@ -57,6 +58,37 @@ class FieldExperimentPreflightTest(unittest.TestCase):
 
         self.assertEqual(result.status, "PASS")
         self.assertIn("matched 9 runtime parameters", result.detail)
+
+    def test_accepts_v6_ffb_dry_run_configuration(self):
+        config_path = (
+            SRC_DIR / "bird_eye_config_ttc_v6_ffb_dry_run_20260909.json"
+        )
+
+        result = check_config(config_path)
+
+        self.assertEqual(result.status, "PASS")
+        self.assertIn("collision_ffb=enabled:/collision/ffb_command", result.detail)
+        self.assertTrue(config_requires_ffb(config_path))
+
+    def test_rejects_invalid_ffb_configuration(self):
+        config = json.loads(
+            (SRC_DIR / "bird_eye_config_ttc_v6_candidate_20260908.json").read_text()
+        )
+        config.update(
+            {
+                "collision_ffb_publish_enabled": 1,
+                "collision_ffb_command_topic": "",
+                "collision_ffb_source": "bird_eye",
+                "collision_ffb_unknown_magnitude": 0.3,
+                "collision_ffb_warning_magnitude": 0.2,
+                "collision_ffb_critical_magnitude": 0.4,
+            }
+        )
+
+        errors = validate_experiment_config(config)
+
+        self.assertTrue(any("command_topic" in item for item in errors))
+        self.assertTrue(any("unknown <= warning" in item for item in errors))
 
     def test_ttc_profile_mismatch_fails_preflight(self):
         config = json.loads(

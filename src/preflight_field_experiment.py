@@ -137,13 +137,50 @@ def validate_experiment_config(config):
         "shades_of_gray_clahe",
     }:
         errors.append("unsupported blue_ground_contact_illumination_mode")
+    ffb_enabled = config.get("collision_ffb_publish_enabled", 0)
+    if (
+        not isinstance(ffb_enabled, int)
+        or isinstance(ffb_enabled, bool)
+        or ffb_enabled not in {0, 1}
+    ):
+        errors.append("collision_ffb_publish_enabled must be integer 0 or 1")
+    elif ffb_enabled == 1:
+        for key in ("collision_ffb_command_topic", "collision_ffb_source"):
+            if not isinstance(config.get(key), str) or not config[key].strip():
+                errors.append(f"{key} must be a non-empty string")
+        magnitude_keys = (
+            "collision_ffb_unknown_magnitude",
+            "collision_ffb_warning_magnitude",
+            "collision_ffb_critical_magnitude",
+        )
+        magnitudes = []
+        for key in magnitude_keys:
+            value = config.get(key)
+            if (
+                not isinstance(value, (int, float))
+                or isinstance(value, bool)
+                or not math.isfinite(value)
+            ):
+                errors.append(f"{key} must be a finite number")
+                break
+            magnitudes.append(float(value))
+        if len(magnitudes) == len(magnitude_keys) and not (
+            0.0 <= magnitudes[0] <= magnitudes[1] <= magnitudes[2] <= 1.0
+        ):
+            errors.append(
+                "collision FFB magnitudes must satisfy "
+                "0 <= unknown <= warning <= critical <= 1"
+            )
     return errors
 
 
-def check_dependencies(require_ros):
+def check_dependencies(require_ros, require_ffb=False):
     modules = ["numpy", "cv2", "PySide6"]
     if require_ros:
         modules.extend(["rclpy", "nav_msgs.msg"])
+    if require_ffb:
+        modules.extend(["rclpy", "oit_interfaces.msg"])
+    modules = list(dict.fromkeys(modules))
     missing = []
     for module_name in modules:
         try:
@@ -157,6 +194,15 @@ def check_dependencies(require_ros):
     )
 
 
+def config_requires_ffb(config_path):
+    try:
+        with Path(config_path).open() as config_file:
+            config = json.load(config_file)
+    except (OSError, json.JSONDecodeError):
+        return False
+    return config.get("collision_ffb_publish_enabled", 0) == 1
+
+
 def check_config(config_path):
     try:
         with Path(config_path).open() as config_file:
@@ -166,6 +212,12 @@ def check_config(config_path):
     errors = validate_experiment_config(config)
     if errors:
         return CheckResult("Experiment config", "FAIL", "; ".join(errors))
+    ffb_enabled = config.get("collision_ffb_publish_enabled", 0) == 1
+    ffb_detail = (
+        f"enabled:{config.get('collision_ffb_command_topic')}"
+        if ffb_enabled
+        else "disabled"
+    )
     return CheckResult(
         "Experiment config",
         "PASS",
@@ -176,7 +228,8 @@ def check_config(config_path):
         f"confirm_frames={config.get('blue_observation_confirmation_frames', 1)}, "
         f"hsv_v_min={config.get('blue_ground_contact_hsv_v_min', 30)}, "
         f"max_aspect={config.get('blue_ground_contact_max_aspect_ratio', 'off')}, "
-        f"illumination={config.get('blue_ground_contact_illumination_mode', 'none')}",
+        f"illumination={config.get('blue_ground_contact_illumination_mode', 'none')}, "
+        f"collision_ffb={ffb_detail}",
     )
 
 
@@ -399,8 +452,12 @@ def main():
     parser.add_argument("--require-clean-git", action="store_true")
     args = parser.parse_args()
 
+    require_ffb = config_requires_ffb(args.config)
     results = [
-        check_dependencies(require_ros=bool(args.odom_topic)),
+        check_dependencies(
+            require_ros=bool(args.odom_topic),
+            require_ffb=require_ffb,
+        ),
         check_config(args.config),
     ]
     if args.dynamic_ttc_profile is not None:

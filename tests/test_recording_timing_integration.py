@@ -13,6 +13,7 @@ SRC_DIR = Path(__file__).resolve().parents[1] / "src"
 sys.path.insert(0, str(SRC_DIR))
 
 from bird_eye import CalibrationWindow, RECORDING_CSV_FIELDS  # noqa: E402
+from collision_ffb_publisher import FFB_RECORDING_FIELDS  # noqa: E402
 from frame_timing import PROCESSING_TIMING_FIELDS  # noqa: E402
 
 
@@ -65,6 +66,17 @@ class RecordingTimingIntegrationTest(unittest.TestCase):
         window.cmd_angular_z = 0.0
         window.last_prediction_source = "none"
         window.last_blue_collision = None
+        window.last_collision_ffb_publish = {
+            "collision_ffb_sequence": 42,
+            "collision_ffb_publish_enabled": 1,
+            "collision_ffb_publish_success": 1,
+            "collision_ffb_risk_level": "WARNING",
+            "collision_ffb_active": 1,
+            "collision_ffb_requested_magnitude": 0.25,
+            "collision_ffb_pattern": "steady",
+            "collision_ffb_reason": "ttc_warning",
+            "collision_ffb_publish_error": "",
+        }
         window.record_status_label = _Label()
         frame = np.zeros((8, 8, 3), dtype=np.uint8)
 
@@ -76,6 +88,10 @@ class RecordingTimingIntegrationTest(unittest.TestCase):
         self.assertEqual(values["processing_capture_read_ms"], "1.250")
         self.assertNotEqual(values["processing_video_write_ms"], "")
         self.assertGreater(float(values["processing_total_before_csv_ms"]), 0.0)
+        self.assertTrue(all(field in values for field in FFB_RECORDING_FIELDS))
+        self.assertEqual(values["collision_ffb_sequence"], "42")
+        self.assertEqual(values["collision_ffb_risk_level"], "WARNING")
+        self.assertEqual(values["collision_ffb_requested_magnitude"], "0.25")
         self.assertEqual(window.recording_writers["raw"].frames, 1)
 
 
