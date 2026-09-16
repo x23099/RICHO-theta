@@ -1,0 +1,2 @@
+experiment_label,source,frames,detected_frames,measurement_accepted_frames,normalized_area_rejection_frames,measurement_acceptance_rate,median_x_m,median_z_m,median_area_px,median_normalized_area,normalized_area_threshold,median_normalized_area_to_threshold
+phase5_camera_synthetic_odom_r01,/home/robo25/Downloads/202609161750.tar.xz::phase5_camera_synthetic_odom_r01_20260916_174710_016,1191,1191,1191,0,1.0,-0.016,0.8839,3709.0,2912.4203055590574,1450.0,2.0085657279717637

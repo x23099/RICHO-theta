@@ -1,0 +1,29 @@
+{
+  "input": "/home/matunuc/theta_ws/src/recordings/2026-09-16_phase5_synthetic_odom/phase5_camera_synthetic_odom_dryrun_r02_20260916_183117_154/detections.csv",
+  "session": "phase5_camera_synthetic_odom_dryrun_r02_20260916_183117_154",
+  "rate_hz": 30.0,
+  "cadence": "triple",
+  "cadence_duration_sec": 0.5,
+  "cadence_rate_hz": 30.0,
+  "summary": {
+    "decision": "FAIL",
+    "checks": {
+      "all_commands_published": true,
+      "status_received": true,
+      "expected_mode_only": true,
+      "no_fault": false,
+      "active_path_observed": false,
+      "adapter_cap_respected": true,
+      "final_inactive": true
+    },
+    "command_count": 403,
+    "active_command_count": 9,
+    "status_count": 382,
+    "active_status_count": 0,
+    "fault_count": 376,
+    "observed_output_modes": [
+      "dry_run"
+    ],
+    "max_applied_magnitude": 0.0
+  }
+}
