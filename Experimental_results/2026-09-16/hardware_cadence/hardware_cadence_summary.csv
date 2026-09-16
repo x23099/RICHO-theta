@@ -1,0 +1,4 @@
+cadence,magnitude,duration_sec,active_apply_coverage,fault_count,response_latency_p95_ms,final_clear_stop_latency_ms,perception,abnormality,decision
+continuous,0.05,0.5,1.0,0,1.272,0.849,"危険通知として知覚可能だが、少し弱い","なし",PASS
+double,0.05,0.5,1.0,0,1.200,0.717,"2回の区切りは明瞭でない","なし",PASS
+triple,0.05,0.5,1.0,0,1.244,1.047,"3回の振動として識別可能","なし",PASS

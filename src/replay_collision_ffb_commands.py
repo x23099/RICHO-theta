@@ -140,6 +140,9 @@ def replay_rows(
     command_topic: str,
     status_topic: str,
     source: str,
+    cadence: str,
+    cadence_duration_sec: float,
+    cadence_rate_hz: float,
     discovery_sec: float,
     settle_sec: float,
 ) -> tuple[list[dict], list[dict]]:
@@ -148,7 +151,13 @@ def replay_rows(
         raise ValueError("rate_hz must be finite and within 1..60")
     rclpy.init(args=None)
     collector = ReplayStatusCollector(status_topic)
-    bridge = CollisionFfbPublisherBridge(topic=command_topic, source=source)
+    bridge = CollisionFfbPublisherBridge(
+        topic=command_topic,
+        source=source,
+        cadence=cadence,
+        cadence_duration_sec=cadence_duration_sec,
+        cadence_rate_hz=cadence_rate_hz,
+    )
     command_rows = []
     interval_sec = 1.0 / rate_hz
     try:
@@ -262,6 +271,9 @@ def write_results(
     input_path: Path,
     session: str,
     rate_hz: float,
+    cadence: str,
+    cadence_duration_sec: float,
+    cadence_rate_hz: float,
     command_rows: list[dict],
     status_rows: list[dict],
     summary: dict,
@@ -274,6 +286,9 @@ def write_results(
         "input": str(input_path.resolve()),
         "session": session,
         "rate_hz": rate_hz,
+        "cadence": cadence,
+        "cadence_duration_sec": cadence_duration_sec,
+        "cadence_rate_hz": cadence_rate_hz,
         "summary": summary,
     }
     (output_dir / "replay_summary.json").write_text(
@@ -284,12 +299,18 @@ def write_results(
         f"- {'PASS' if passed else 'FAIL'}: `{name}`"
         for name, passed in summary["checks"].items()
     )
+    cadence_line = (
+        f"- FFB cadence: `{cadence}` / "
+        f"`{cadence_duration_sec:.3f} s` / "
+        f"`{cadence_rate_hz:.1f} Hz`"
+    )
     report = f"""# Recorded collision FFB dry-run replay
 
 - 自動判定: **{summary['decision']}**
 - input: `{input_path.resolve()}`
 - session: `{session}`
 - replay rate: `{rate_hz:.1f} Hz`
+{cadence_line}
 
 | 項目 | 値 |
 |---|---:|
@@ -321,6 +342,13 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--command-topic", default="/collision/ffb_command")
     parser.add_argument("--status-topic", default="/collision/ffb_status")
     parser.add_argument("--source", default="bird_eye")
+    parser.add_argument(
+        "--cadence",
+        choices=("continuous", "double", "triple"),
+        default="continuous",
+    )
+    parser.add_argument("--cadence-duration", type=float, default=0.5)
+    parser.add_argument("--cadence-rate", type=float, default=30.0)
     parser.add_argument("--expect-output-mode", default="dry_run")
     parser.add_argument("--discovery-sec", type=float, default=1.0)
     parser.add_argument("--settle-sec", type=float, default=0.2)
@@ -342,6 +370,9 @@ def main(args=None) -> int:
             command_topic=parsed.command_topic,
             status_topic=parsed.status_topic,
             source=parsed.source,
+            cadence=parsed.cadence,
+            cadence_duration_sec=parsed.cadence_duration,
+            cadence_rate_hz=parsed.cadence_rate,
             discovery_sec=parsed.discovery_sec,
             settle_sec=parsed.settle_sec,
         )
@@ -355,6 +386,9 @@ def main(args=None) -> int:
             input_path=parsed.input,
             session=session,
             rate_hz=parsed.rate,
+            cadence=parsed.cadence,
+            cadence_duration_sec=parsed.cadence_duration,
+            cadence_rate_hz=parsed.cadence_rate,
             command_rows=command_rows,
             status_rows=status_rows,
             summary=summary,

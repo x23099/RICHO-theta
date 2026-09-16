@@ -9,9 +9,11 @@ sys.path.insert(0, str(SRC_DIR))
 
 from bird_eye import CalibrationWindow  # noqa: E402
 from collision_ffb_publisher import (  # noqa: E402
+    CollisionFfbCadenceController,
     CollisionFfbPublisherBridge,
     PATTERN_VALUES,
     RISK_LEVEL_VALUES,
+    build_cadence_schedule,
     virtual_command_payload,
 )
 from virtual_ffb import VirtualFfbPolicy  # noqa: E402
@@ -73,15 +75,107 @@ class _RosApi:
         return self.node
 
 
-def _bridge(ros_api):
+def _bridge(ros_api, **kwargs):
     return CollisionFfbPublisherBridge(
         ros_api=ros_api,
         message_type=_Message,
         qos_profile=object(),
+        **kwargs,
     )
 
 
 class CollisionFfbPublisherTest(unittest.TestCase):
+    def test_verified_triple_schedule_matches_hardware_probe(self):
+        self.assertEqual(
+            build_cadence_schedule("triple", 0.5, 30.0),
+            [
+                True, True, True, False, False,
+                True, True, True, False, False,
+                True, True, True, False, False,
+            ],
+        )
+
+    def test_triple_cadence_is_finite_and_does_not_retrigger_on_hold(self):
+        now = [0.0]
+        ros_api = _RosApi()
+        bridge = _bridge(
+            ros_api,
+            cadence="triple",
+            cadence_duration_sec=0.5,
+            cadence_rate_hz=30.0,
+            monotonic_clock=lambda: now[0],
+        )
+
+        records = []
+        for index in range(15):
+            now[0] = index / 30.0
+            records.append(bridge.publish_risk("WARNING"))
+
+        self.assertEqual(
+            [row["collision_ffb_active"] for row in records],
+            [1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0],
+        )
+        now[0] = 0.6
+        completed = bridge.publish_risk("WARNING_HOLD")
+        self.assertEqual(completed["collision_ffb_active"], 0)
+        self.assertEqual(completed["collision_ffb_reason"], "cadence_complete")
+        bridge.close()
+
+    def test_clear_cancels_and_rearms_triple_cadence(self):
+        now = [1.0]
+        bridge = _bridge(
+            _RosApi(),
+            cadence="triple",
+            monotonic_clock=lambda: now[0],
+        )
+
+        first = bridge.publish_risk("WARNING")
+        now[0] = 1.04
+        cleared = bridge.publish_risk("CLEAR")
+        now[0] = 2.0
+        restarted = bridge.publish_risk("WARNING")
+
+        self.assertEqual(first["collision_ffb_active"], 1)
+        self.assertEqual(cleared["collision_ffb_active"], 0)
+        self.assertEqual(
+            cleared["collision_ffb_reason"],
+            "cadence_cancelled_by_clear",
+        )
+        self.assertEqual(restarted["collision_ffb_active"], 1)
+        bridge.close()
+
+    def test_critical_escalation_restarts_completed_cadence(self):
+        now = [3.0]
+        bridge = _bridge(
+            _RosApi(),
+            cadence="triple",
+            monotonic_clock=lambda: now[0],
+        )
+
+        bridge.publish_risk("WARNING")
+        now[0] = 3.6
+        completed = bridge.publish_risk("WARNING")
+        now[0] = 3.7
+        critical = bridge.publish_risk("CRITICAL")
+
+        self.assertEqual(completed["collision_ffb_active"], 0)
+        self.assertEqual(critical["collision_ffb_active"], 1)
+        self.assertEqual(
+            critical["collision_ffb_requested_magnitude"],
+            0.40,
+        )
+        bridge.close()
+
+    def test_cadence_settings_reject_unsafe_values(self):
+        for kwargs in (
+            {"cadence": "other"},
+            {"duration_sec": 0.51},
+            {"rate_hz": 9.0},
+        ):
+            with self.subTest(kwargs=kwargs):
+                with self.assertRaises(ValueError):
+                    CollisionFfbCadenceController(**kwargs)
+
     def test_virtual_policy_enum_mapping_is_exact(self):
         policy = VirtualFfbPolicy()
         expected = {

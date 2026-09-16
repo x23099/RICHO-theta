@@ -738,6 +738,9 @@ class CalibrationWindow(QWidget):
             "collision_ffb_warning_magnitude": 0.25,
             "collision_ffb_critical_magnitude": 0.40,
             "collision_ffb_unknown_magnitude": 0.15,
+            "collision_ffb_cadence": "continuous",
+            "collision_ffb_cadence_duration_sec": 0.5,
+            "collision_ffb_cadence_rate_hz": 30.0,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -837,6 +840,9 @@ class CalibrationWindow(QWidget):
             "collision_ffb_warning_magnitude": 0.25,
             "collision_ffb_critical_magnitude": 0.40,
             "collision_ffb_unknown_magnitude": 0.15,
+            "collision_ffb_cadence": "continuous",
+            "collision_ffb_cadence_duration_sec": 0.5,
+            "collision_ffb_cadence_rate_hz": 30.0,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -879,6 +885,15 @@ class CalibrationWindow(QWidget):
             ),
             unknown_magnitude=self.params.get(
                 "collision_ffb_unknown_magnitude", 0.15
+            ),
+            cadence=self.params.get(
+                "collision_ffb_cadence", "continuous"
+            ),
+            cadence_duration_sec=self.params.get(
+                "collision_ffb_cadence_duration_sec", 0.5
+            ),
+            cadence_rate_hz=self.params.get(
+                "collision_ffb_cadence_rate_hz", 30.0
             ),
         )
         print(

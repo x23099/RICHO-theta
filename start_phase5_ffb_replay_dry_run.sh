@@ -8,8 +8,9 @@ Usage:
   FFB_INSTALL_SETUP=/path/to/yopi_ws/install/setup.bash \
     ./start_phase5_ffb_replay_dry_run.sh INPUT.tar.xz SESSION [OUTPUT_DIR]
 
-Replays one recorded detections.csv through the same CollisionFfbPublisherBridge
-used by bird_eye.py and an explicitly dry-run adapter. It never opens G923.
+Replays one recorded detections.csv with the verified triple cadence through
+the same CollisionFfbPublisherBridge used by bird_eye.py and an explicitly
+dry-run adapter. It never opens G923.
 EOF
 }
 
@@ -85,6 +86,9 @@ python3 src/replay_collision_ffb_commands.py \
     --session "$session" \
     --output-dir "$output_dir/replay" \
     --rate 30 \
+    --cadence triple \
+    --cadence-duration 0.5 \
+    --cadence-rate 30 \
     --expect-output-mode dry_run
 replay_status=$?
 

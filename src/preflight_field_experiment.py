@@ -171,6 +171,33 @@ def validate_experiment_config(config):
                 "collision FFB magnitudes must satisfy "
                 "0 <= unknown <= warning <= critical <= 1"
             )
+        cadence = config.get("collision_ffb_cadence", "continuous")
+        if cadence not in {"continuous", "double", "triple"}:
+            errors.append(
+                "collision_ffb_cadence must be continuous, double, or triple"
+            )
+        cadence_duration = config.get(
+            "collision_ffb_cadence_duration_sec", 0.5
+        )
+        if (
+            not isinstance(cadence_duration, (int, float))
+            or isinstance(cadence_duration, bool)
+            or not math.isfinite(cadence_duration)
+            or not 0.0 < cadence_duration <= 0.5
+        ):
+            errors.append(
+                "collision_ffb_cadence_duration_sec must be within (0, 0.5]"
+            )
+        cadence_rate = config.get("collision_ffb_cadence_rate_hz", 30.0)
+        if (
+            not isinstance(cadence_rate, (int, float))
+            or isinstance(cadence_rate, bool)
+            or not math.isfinite(cadence_rate)
+            or not 10.0 <= cadence_rate <= 60.0
+        ):
+            errors.append(
+                "collision_ffb_cadence_rate_hz must be within 10..60"
+            )
     return errors
 
 
@@ -229,7 +256,8 @@ def check_config(config_path):
         f"hsv_v_min={config.get('blue_ground_contact_hsv_v_min', 30)}, "
         f"max_aspect={config.get('blue_ground_contact_max_aspect_ratio', 'off')}, "
         f"illumination={config.get('blue_ground_contact_illumination_mode', 'none')}, "
-        f"collision_ffb={ffb_detail}",
+        f"collision_ffb={ffb_detail}, "
+        f"ffb_cadence={config.get('collision_ffb_cadence', 'continuous')}",
     )
 
 

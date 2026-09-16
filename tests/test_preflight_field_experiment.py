@@ -70,6 +70,17 @@ class FieldExperimentPreflightTest(unittest.TestCase):
         self.assertIn("collision_ffb=enabled:/collision/ffb_command", result.detail)
         self.assertTrue(config_requires_ffb(config_path))
 
+    def test_accepts_v7_triple_ffb_configuration(self):
+        config_path = (
+            SRC_DIR / "bird_eye_config_ttc_v7_ffb_triple_20260916.json"
+        )
+
+        result = check_config(config_path)
+
+        self.assertEqual(result.status, "PASS")
+        self.assertIn("ffb_cadence=triple", result.detail)
+        self.assertTrue(config_requires_ffb(config_path))
+
     def test_rejects_invalid_ffb_configuration(self):
         config = json.loads(
             (SRC_DIR / "bird_eye_config_ttc_v6_candidate_20260908.json").read_text()
@@ -89,6 +100,23 @@ class FieldExperimentPreflightTest(unittest.TestCase):
 
         self.assertTrue(any("command_topic" in item for item in errors))
         self.assertTrue(any("unknown <= warning" in item for item in errors))
+
+    def test_rejects_invalid_ffb_cadence_configuration(self):
+        config = json.loads(
+            (
+                SRC_DIR
+                / "bird_eye_config_ttc_v7_ffb_triple_20260916.json"
+            ).read_text()
+        )
+        config["collision_ffb_cadence"] = "unbounded"
+        config["collision_ffb_cadence_duration_sec"] = 0.6
+        config["collision_ffb_cadence_rate_hz"] = 5.0
+
+        errors = validate_experiment_config(config)
+
+        self.assertTrue(any("cadence must be" in item for item in errors))
+        self.assertTrue(any("duration_sec" in item for item in errors))
+        self.assertTrue(any("rate_hz" in item for item in errors))
 
     def test_ttc_profile_mismatch_fails_preflight(self):
         config = json.loads(

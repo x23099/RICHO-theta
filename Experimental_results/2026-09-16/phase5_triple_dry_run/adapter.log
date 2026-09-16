@@ -1,0 +1,26 @@
+getifaddrs: Operation not permitted
+getifaddrs: Operation not permitted
+getifaddrs: Operation not permitted
+[37;1m2026-09-16 15:02:58.229 [31;1m[[37;1mTRANSPORT_UDP[31;1m Error] [37mError creating socket: Operation not permitted[34;1m -> Function [36minit[m
+[37;1m2026-09-16 15:02:58.229 [31;1m[[37;1mRTPS_PARTICIPANT[31;1m Error] [37mUser transport failed to register.[34;1m -> Function [36mRTPSParticipantImpl[m
+[INFO] [1789538578.345715155] [collision_ffb_node]: Collision FFB adapter started: mode=dry_run, command=/collision/ffb_command, status=/collision/ffb_status, watchdog=0.100s; hardware access disabled
+[INFO] [1789538609.689510897] [collision_ffb_node]: mode=dry_run sequence=0 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1789538613.618955277] [collision_ffb_node]: mode=dry_run sequence=116 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:path fault=False
+[INFO] [1789538613.687158434] [collision_ffb_node]: mode=dry_run sequence=118 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1789538613.753943843] [collision_ffb_node]: mode=dry_run sequence=120 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:path fault=False
+[INFO] [1789538613.822079541] [collision_ffb_node]: mode=dry_run sequence=122 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1789538613.888283043] [collision_ffb_node]: mode=dry_run sequence=124 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:path fault=False
+[INFO] [1789538614.735253991] [collision_ffb_node]: mode=dry_run sequence=149 action=apply command_active=True output_active=True requested=0.250 applied=0.050 pattern=1 reason=ttc_warning:cadence_triple fault=False
+[INFO] [1789538614.837687362] [collision_ffb_node]: mode=dry_run sequence=152 action=stop command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1789538614.871761628] [collision_ffb_node]: mode=dry_run sequence=153 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1789538614.905630898] [collision_ffb_node]: mode=dry_run sequence=154 action=apply command_active=True output_active=True requested=0.250 applied=0.050 pattern=1 reason=ttc_warning:cadence_triple fault=False
+[INFO] [1789538615.007363905] [collision_ffb_node]: mode=dry_run sequence=157 action=stop command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1789538615.041662324] [collision_ffb_node]: mode=dry_run sequence=158 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1789538615.076111801] [collision_ffb_node]: mode=dry_run sequence=159 action=apply command_active=True output_active=True requested=0.250 applied=0.050 pattern=1 reason=ttc_warning:cadence_triple fault=False
+[INFO] [1789538615.176738307] [collision_ffb_node]: mode=dry_run sequence=162 action=stop command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1789538615.211031837] [collision_ffb_node]: mode=dry_run sequence=163 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1789538616.973476416] [collision_ffb_node]: mode=dry_run sequence=215 action=apply command_active=True output_active=True requested=0.150 applied=0.050 pattern=3 reason=invalid_or_unknown_perception:cadence_triple fault=False
+[INFO] [1789538617.041549224] [collision_ffb_node]: mode=dry_run sequence=217 action=stop command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1789538617.076382566] [collision_ffb_node]: mode=dry_run sequence=218 action=apply command_active=True output_active=True requested=0.150 applied=0.050 pattern=3 reason=invalid_or_unknown_perception:cadence_triple fault=False
+[INFO] [1789538617.143679676] [collision_ffb_node]: mode=dry_run sequence=220 action=stop command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1789538617.178044177] [collision_ffb_node]: mode=dry_run sequence=221 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False

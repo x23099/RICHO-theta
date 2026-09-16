@@ -1,0 +1,24 @@
+{
+  "raw_camera_frame": {
+    "archive": "/home/robo25/Downloads/recoding/202609081640.tar.xz",
+    "session": "approach_center_v0p20_r02_v6holdout_20260908_163811_391",
+    "member": "approach_center_v0p20_r02_v6holdout_20260908_163811_391/raw.avi",
+    "frame": 150,
+    "video_time_sec": 4.966666666666667,
+    "width": 1280,
+    "height": 720,
+    "sha256": "71070b1fbd9beabd62db75a0290efbdb99bc62019e30162def701a5169111061",
+    "transformations": []
+  },
+  "hardware_cadence_graph": {
+    "source": "../hardware_cadence/hardware_cadence_summary.csv",
+    "generator": "src/create_ffb_hardware_cadence_graph.py",
+    "output": "hardware_cadence_latency.png"
+  },
+  "triple_replay_graph": {
+    "source_commands": "../phase5_triple_dry_run/replay/replayed_commands.csv",
+    "source_status": "../phase5_triple_dry_run/replay/adapter_status.csv",
+    "generator": "src/create_ffb_report_assets.py::plot_replay",
+    "output": "triple_recorded_risk_dry_run.png"
+  }
+}

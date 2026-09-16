@@ -4,8 +4,9 @@
 from __future__ import annotations
 
 import math
+import time
 
-from virtual_ffb import VirtualFfbPolicy
+from virtual_ffb import VirtualFfbCommand, VirtualFfbPolicy
 
 
 FFB_RECORDING_FIELDS = (
@@ -35,6 +36,10 @@ PATTERN_VALUES = {
     "pulse": 3,
 }
 UINT64_MAX = (1 << 64) - 1
+CADENCE_NAMES = ("continuous", "double", "triple")
+CADENCE_MAX_DURATION_SEC = 0.5
+CADENCE_MIN_RATE_HZ = 10.0
+CADENCE_MAX_RATE_HZ = 60.0
 
 try:
     import rclpy
@@ -107,6 +112,123 @@ def collision_command_qos():
     )
 
 
+def build_cadence_schedule(cadence, duration_sec, rate_hz):
+    """Return the finite active schedule used by the verified probe."""
+    cadence = str(cadence).strip().lower()
+    if cadence not in CADENCE_NAMES:
+        raise ValueError(f"unsupported collision FFB cadence: {cadence!r}")
+    duration_sec = float(duration_sec)
+    rate_hz = float(rate_hz)
+    if (
+        not math.isfinite(duration_sec)
+        or duration_sec <= 0.0
+        or duration_sec > CADENCE_MAX_DURATION_SEC
+    ):
+        raise ValueError(
+            "collision FFB cadence duration must be within "
+            f"(0, {CADENCE_MAX_DURATION_SEC:.1f}] seconds"
+        )
+    if (
+        not math.isfinite(rate_hz)
+        or rate_hz < CADENCE_MIN_RATE_HZ
+        or rate_hz > CADENCE_MAX_RATE_HZ
+    ):
+        raise ValueError(
+            "collision FFB cadence rate must be within "
+            f"{CADENCE_MIN_RATE_HZ:.0f}..{CADENCE_MAX_RATE_HZ:.0f} Hz"
+        )
+    sample_count = max(1, int(round(duration_sec * rate_hz)))
+    if cadence == "continuous":
+        return [True] * sample_count
+    pulse_count = 2 if cadence == "double" else 3
+    return [
+        ((index * pulse_count * 2) // sample_count) % 2 == 0
+        for index in range(sample_count)
+    ]
+
+
+class CollisionFfbCadenceController:
+    """Gate one collision alert into a finite, non-retriggering cadence."""
+
+    def __init__(
+        self,
+        cadence="continuous",
+        duration_sec=0.5,
+        rate_hz=30.0,
+        *,
+        monotonic_clock=time.monotonic,
+    ):
+        """Validate timing and initialize the alert latch."""
+        self.cadence = str(cadence).strip().lower()
+        self.duration_sec = float(duration_sec)
+        self.rate_hz = float(rate_hz)
+        self.schedule = build_cadence_schedule(
+            self.cadence,
+            self.duration_sec,
+            self.rate_hz,
+        )
+        self.monotonic_clock = monotonic_clock
+        self.reset()
+
+    def reset(self):
+        """Re-arm the next alert entry and cancel an active cadence."""
+        self.started_sec = None
+        self.latched = False
+        self.highest_alert_rank = 0
+
+    def describe(self):
+        """Return serializable cadence provenance."""
+        return {
+            "name": self.cadence,
+            "duration_sec": self.duration_sec,
+            "rate_hz": self.rate_hz,
+            "sample_count": len(self.schedule),
+            "active_sample_count": sum(self.schedule),
+            "retrigger": "clear_or_critical_escalation",
+        }
+
+    @staticmethod
+    def _inactive(reason):
+        """Return an adapter-valid CLEAR command for a cadence gap."""
+        return VirtualFfbCommand("CLEAR", False, 0.0, "off", reason)
+
+    def command(self, risk_level, policy):
+        """Return the current cadence command for one perception state."""
+        base_command = policy.command(risk_level)
+        level = base_command.risk_level
+        if self.cadence == "continuous":
+            return base_command
+        if level in {"CLEAR", "PATH"}:
+            was_latched = self.latched
+            self.reset()
+            if was_latched:
+                return self._inactive("cadence_cancelled_by_clear")
+            return base_command
+
+        alert_rank = 2 if level == "CRITICAL" else 1
+        now_sec = float(self.monotonic_clock())
+        if not math.isfinite(now_sec):
+            raise ValueError("collision FFB cadence clock must be finite")
+        if not self.latched or alert_rank > self.highest_alert_rank:
+            self.started_sec = now_sec
+            self.latched = True
+            self.highest_alert_rank = alert_rank
+
+        elapsed_sec = max(0.0, now_sec - self.started_sec)
+        sample_index = int(elapsed_sec * self.rate_hz)
+        if sample_index >= len(self.schedule):
+            return self._inactive("cadence_complete")
+        if not self.schedule[sample_index]:
+            return self._inactive(f"cadence_gap:{self.cadence}")
+        return VirtualFfbCommand(
+            base_command.risk_level,
+            base_command.active,
+            base_command.normalized_magnitude,
+            base_command.pattern,
+            f"{base_command.reason}:cadence_{self.cadence}",
+        )
+
+
 class CollisionFfbPublisherBridge:
     """Publish risk states while keeping ROS optional for offline tools."""
 
@@ -117,7 +239,11 @@ class CollisionFfbPublisherBridge:
         warning_magnitude=0.25,
         critical_magnitude=0.40,
         unknown_magnitude=0.15,
+        cadence="continuous",
+        cadence_duration_sec=0.5,
+        cadence_rate_hz=30.0,
         *,
+        monotonic_clock=time.monotonic,
         ros_api=None,
         message_type=None,
         qos_profile=None,
@@ -133,6 +259,12 @@ class CollisionFfbPublisherBridge:
             warning_magnitude=warning_magnitude,
             critical_magnitude=critical_magnitude,
             unknown_magnitude=unknown_magnitude,
+        )
+        self.cadence = CollisionFfbCadenceController(
+            cadence=cadence,
+            duration_sec=cadence_duration_sec,
+            rate_hz=cadence_rate_hz,
+            monotonic_clock=monotonic_clock,
         )
         self.sequence = 0
         self.last_record = empty_publish_record(enabled=True)
@@ -182,6 +314,7 @@ class CollisionFfbPublisherBridge:
             "warning_magnitude": self.policy.warning_magnitude,
             "critical_magnitude": self.policy.critical_magnitude,
             "unknown_magnitude": self.policy.unknown_magnitude,
+            "cadence": self.cadence.describe(),
             "qos": {
                 "history": "keep_last",
                 "depth": 1,
@@ -197,7 +330,7 @@ class CollisionFfbPublisherBridge:
         if self.sequence > UINT64_MAX:
             raise RuntimeError("collision FFB sequence exhausted uint64 range")
 
-        virtual_command = self.policy.command(risk_level)
+        virtual_command = self.cadence.command(risk_level, self.policy)
         payload = virtual_command_payload(virtual_command)
         sequence = self.sequence
         self.sequence += 1
