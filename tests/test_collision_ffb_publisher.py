@@ -22,6 +22,8 @@ from virtual_ffb import VirtualFfbPolicy  # noqa: E402
 class _Message:
     def __init__(self):
         self.header = SimpleNamespace(stamp=None)
+        self.receiver_session_id = 0
+        self.receiver_token = 0
 
 
 class _Publisher:
@@ -39,9 +41,14 @@ class _Node:
     def __init__(self, publisher):
         self.publisher = publisher
         self.destroyed = False
+        self.subscription_callback = None
 
     def create_publisher(self, _message_type, _topic, _qos):
         return self.publisher
+
+    def create_subscription(self, _message_type, _topic, callback, _qos):
+        self.subscription_callback = callback
+        return object()
 
     def get_clock(self):
         return SimpleNamespace(
@@ -53,12 +60,15 @@ class _Node:
 
 
 class _RosApi:
-    def __init__(self, *, initially_ok=True, fail_publish=False):
+    def __init__(
+        self, *, initially_ok=True, fail_publish=False, fail_spin=False
+    ):
         self._ok = initially_ok
         self.initialized = False
         self.shutdown_called = False
         self.publisher = _Publisher(fail=fail_publish)
         self.node = _Node(self.publisher)
+        self.fail_spin = fail_spin
 
     def ok(self):
         return self._ok
@@ -74,17 +84,57 @@ class _RosApi:
     def create_node(self, _name):
         return self.node
 
+    def spin_once(self, _node, timeout_sec=0.0):
+        if self.fail_spin:
+            raise RuntimeError("synthetic challenge receive failure")
+
 
 def _bridge(ros_api, **kwargs):
     return CollisionFfbPublisherBridge(
         ros_api=ros_api,
         message_type=_Message,
         qos_profile=object(),
+        challenge_message_type=_Message,
         **kwargs,
     )
 
 
 class CollisionFfbPublisherTest(unittest.TestCase):
+    def test_challenge_mode_never_publishes_without_recent_receiver_token(self):
+        now = [2.0]
+        ros_api = _RosApi()
+        bridge = _bridge(
+            ros_api, freshness_mode="challenge", monotonic_clock=lambda: now[0]
+        )
+
+        absent = bridge.publish_risk("WARNING")
+        self.assertEqual(absent["collision_ffb_publish_success"], 0)
+        self.assertEqual(absent["collision_ffb_active"], 0)
+        self.assertEqual(ros_api.publisher.messages, [])
+
+        ros_api.node.subscription_callback(
+            SimpleNamespace(session_id=17, token=42)
+        )
+        accepted = bridge.publish_risk("WARNING")
+        self.assertEqual(accepted["collision_ffb_publish_success"], 1)
+        sent = ros_api.publisher.messages[-1]
+        self.assertEqual((sent.receiver_session_id, sent.receiver_token), (17, 42))
+
+        now[0] = 2.101
+        stale = bridge.publish_risk("WARNING")
+        self.assertEqual(stale["collision_ffb_publish_success"], 0)
+        self.assertEqual(stale["collision_ffb_active"], 0)
+
+    def test_challenge_spin_failure_fails_closed(self):
+        ros_api = _RosApi(fail_spin=True)
+        bridge = _bridge(ros_api, freshness_mode="challenge")
+
+        result = bridge.publish_risk("WARNING")
+
+        self.assertEqual(result["collision_ffb_publish_success"], 0)
+        self.assertEqual(result["collision_ffb_active"], 0)
+        self.assertEqual(ros_api.publisher.messages, [])
+
     def test_verified_triple_schedule_matches_hardware_probe(self):
         self.assertEqual(
             build_cadence_schedule("triple", 0.5, 30.0),

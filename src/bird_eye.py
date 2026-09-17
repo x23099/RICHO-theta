@@ -895,6 +895,9 @@ class CalibrationWindow(QWidget):
             cadence_rate_hz=self.params.get(
                 "collision_ffb_cadence_rate_hz", 30.0
             ),
+            freshness_mode=self.params.get(
+                "collision_ffb_freshness_mode", "clock"
+            ),
         )
         print(
             "[INFO] Publishing collision FFB commands: "

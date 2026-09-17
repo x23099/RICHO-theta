@@ -43,7 +43,7 @@ CADENCE_MAX_RATE_HZ = 60.0
 
 try:
     import rclpy
-    from oit_interfaces.msg import CollisionFfbCommand
+    from oit_interfaces.msg import CollisionFfbChallenge, CollisionFfbCommand
     from rclpy.qos import (
         DurabilityPolicy,
         HistoryPolicy,
@@ -54,6 +54,7 @@ try:
 except ImportError as error:  # Preserve offline analysis without ROS setup.
     rclpy = None
     CollisionFfbCommand = None
+    CollisionFfbChallenge = None
     DurabilityPolicy = None
     HistoryPolicy = None
     QoSProfile = None
@@ -242,11 +243,15 @@ class CollisionFfbPublisherBridge:
         cadence="continuous",
         cadence_duration_sec=0.5,
         cadence_rate_hz=30.0,
+        freshness_mode="clock",
+        challenge_topic="/collision/ffb_challenge",
+        challenge_max_age_sec=0.1,
         *,
         monotonic_clock=time.monotonic,
         ros_api=None,
         message_type=None,
         qos_profile=None,
+        challenge_message_type=None,
     ):
         """Initialize one ROS publisher without accessing any FFB device."""
         self.topic = str(topic).strip()
@@ -255,6 +260,17 @@ class CollisionFfbPublisherBridge:
             raise ValueError("collision FFB command topic must not be empty")
         if not self.source:
             raise ValueError("collision FFB source must not be empty")
+        self.freshness_mode = str(freshness_mode).strip().lower()
+        if self.freshness_mode not in {"clock", "challenge"}:
+            raise ValueError("freshness_mode must be clock or challenge")
+        self.challenge_topic = str(challenge_topic).strip()
+        self.challenge_max_age_sec = float(challenge_max_age_sec)
+        if self.freshness_mode == "challenge" and (
+            not self.challenge_topic
+            or not math.isfinite(self.challenge_max_age_sec)
+            or self.challenge_max_age_sec <= 0.0
+        ):
+            raise ValueError("challenge topic and positive max age are required")
         self.policy = VirtualFfbPolicy(
             warning_magnitude=warning_magnitude,
             critical_magnitude=critical_magnitude,
@@ -274,12 +290,25 @@ class CollisionFfbPublisherBridge:
         self._message_type = (
             message_type if message_type is not None else CollisionFfbCommand
         )
+        self._challenge_type = (
+            challenge_message_type
+            if challenge_message_type is not None else CollisionFfbChallenge
+        )
         if self._ros is None or self._message_type is None:
             raise RuntimeError(
                 "ROS 2 rclpy/oit_interfaces is unavailable; build and source "
                 "the FFB workspace before enabling collision FFB publishing: "
                 f"{ROS_IMPORT_ERROR}"
             )
+        if self.freshness_mode == "challenge" and (
+            self._challenge_type is None
+            or not hasattr(self._message_type(), "receiver_token")
+        ):
+            raise RuntimeError(
+                "challenge mode requires the rebuilt oit_interfaces on both PCs"
+            )
+
+        self._latest_challenge = None
 
         self._owns_rclpy = not self._ros.ok()
         self.node = None
@@ -297,6 +326,14 @@ class CollisionFfbPublisherBridge:
                 self.topic,
                 publisher_qos,
             )
+            self.challenge_subscription = None
+            if self.freshness_mode == "challenge":
+                self.challenge_subscription = self.node.create_subscription(
+                    self._challenge_type,
+                    self.challenge_topic,
+                    self._on_challenge,
+                    publisher_qos,
+                )
         except Exception:
             if self.node is not None:
                 self.node.destroy_node()
@@ -311,6 +348,10 @@ class CollisionFfbPublisherBridge:
             "enabled": True,
             "topic": self.topic,
             "source": self.source,
+            "freshness_mode": self.freshness_mode,
+            "challenge_topic": (
+                self.challenge_topic if self.freshness_mode == "challenge" else ""
+            ),
             "warning_magnitude": self.policy.warning_magnitude,
             "critical_magnitude": self.policy.critical_magnitude,
             "unknown_magnitude": self.policy.unknown_magnitude,
@@ -323,6 +364,14 @@ class CollisionFfbPublisherBridge:
             },
         }
 
+    def _on_challenge(self, message):
+        session_id = int(message.session_id)
+        token = int(message.token)
+        if session_id > 0 and token > 0:
+            self._latest_challenge = (
+                session_id, token, float(self.cadence.monotonic_clock())
+            )
+
     def publish_risk(self, risk_level):
         """Map and publish one risk state, returning its recording fields."""
         if self._closed:
@@ -330,6 +379,15 @@ class CollisionFfbPublisherBridge:
         if self.sequence > UINT64_MAX:
             raise RuntimeError("collision FFB sequence exhausted uint64 range")
 
+        if self.freshness_mode == "challenge":
+            try:
+                self._ros.spin_once(self.node, timeout_sec=0.0)
+            except Exception as error:
+                self._latest_challenge = None
+                error_text = f"challenge_receive_error:{type(error).__name__}:{error}"
+                if error_text != self._last_error:
+                    print(f"[WARN] {error_text}")
+                self._last_error = error_text
         virtual_command = self.cadence.command(risk_level, self.policy)
         payload = virtual_command_payload(virtual_command)
         sequence = self.sequence
@@ -347,6 +405,19 @@ class CollisionFfbPublisherBridge:
             "collision_ffb_reason": payload["reason"],
             "collision_ffb_publish_error": "",
         }
+        if self.freshness_mode == "challenge":
+            challenge = self._latest_challenge
+            now = float(self.cadence.monotonic_clock())
+            if challenge is None or not 0.0 <= now - challenge[2] <= self.challenge_max_age_sec:
+                self.cadence.reset()
+                record.update(
+                    collision_ffb_active=0,
+                    collision_ffb_requested_magnitude=0.0,
+                    collision_ffb_reason="challenge_unavailable",
+                    collision_ffb_publish_error="no_recent_receiver_challenge",
+                )
+                self.last_record = record
+                return dict(record)
         try:
             message = self._message_type()
             message.header.stamp = self.node.get_clock().now().to_msg()
@@ -357,6 +428,9 @@ class CollisionFfbPublisherBridge:
             message.active = payload["active"]
             message.normalized_magnitude = payload["normalized_magnitude"]
             message.reason = payload["reason"]
+            if self.freshness_mode == "challenge":
+                message.receiver_session_id = challenge[0]
+                message.receiver_token = challenge[1]
             self.publisher.publish(message)
             record["collision_ffb_publish_success"] = 1
             self._last_error = ""

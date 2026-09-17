@@ -145,6 +145,7 @@ def replay_rows(
     cadence_rate_hz: float,
     discovery_sec: float,
     settle_sec: float,
+    freshness_mode: str = "clock",
 ) -> tuple[list[dict], list[dict]]:
     """Publish recorded risk states at a fixed rate and collect statuses."""
     if not math.isfinite(rate_hz) or not 1.0 <= rate_hz <= 60.0:
@@ -157,6 +158,7 @@ def replay_rows(
         cadence=cadence,
         cadence_duration_sec=cadence_duration_sec,
         cadence_rate_hz=cadence_rate_hz,
+        freshness_mode=freshness_mode,
     )
     command_rows = []
     interval_sec = 1.0 / rate_hz
@@ -350,6 +352,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--cadence-duration", type=float, default=0.5)
     parser.add_argument("--cadence-rate", type=float, default=30.0)
     parser.add_argument("--expect-output-mode", default="dry_run")
+    parser.add_argument(
+        "--freshness-mode", choices=("clock", "challenge"), default="clock"
+    )
     parser.add_argument("--discovery-sec", type=float, default=1.0)
     parser.add_argument("--settle-sec", type=float, default=0.2)
     return parser
@@ -375,6 +380,7 @@ def main(args=None) -> int:
             cadence_rate_hz=parsed.cadence_rate,
             discovery_sec=parsed.discovery_sec,
             settle_sec=parsed.settle_sec,
+            freshness_mode=parsed.freshness_mode,
         )
         summary = summarize_replay(
             command_rows,

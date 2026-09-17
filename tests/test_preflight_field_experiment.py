@@ -13,6 +13,7 @@ from preflight_field_experiment import (  # noqa: E402
     check_record_storage,
     check_ttc_profile,
     config_requires_ffb,
+    config_requires_challenge,
     validate_experiment_config,
 )
 
@@ -80,6 +81,23 @@ class FieldExperimentPreflightTest(unittest.TestCase):
         self.assertEqual(result.status, "PASS")
         self.assertIn("ffb_cadence=triple", result.detail)
         self.assertTrue(config_requires_ffb(config_path))
+
+    def test_challenge_config_is_explicit_and_validated(self):
+        config_path = (
+            SRC_DIR
+            / "bird_eye_config_ttc_v7_ffb_triple_challenge_dryrun_20260917.json"
+        )
+        result = check_config(config_path)
+        self.assertEqual(result.status, "PASS")
+        self.assertTrue(config_requires_challenge(config_path))
+        self.assertIn("ffb_freshness=challenge", result.detail)
+
+        config = json.loads(config_path.read_text())
+        config["collision_ffb_freshness_mode"] = "unsafe"
+        self.assertTrue(any(
+            "collision_ffb_freshness_mode" in item
+            for item in validate_experiment_config(config)
+        ))
 
     def test_rejects_invalid_ffb_configuration(self):
         config = json.loads(

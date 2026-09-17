@@ -198,10 +198,15 @@ def validate_experiment_config(config):
             errors.append(
                 "collision_ffb_cadence_rate_hz must be within 10..60"
             )
+        freshness_mode = config.get("collision_ffb_freshness_mode", "clock")
+        if freshness_mode not in {"clock", "challenge"}:
+            errors.append(
+                "collision_ffb_freshness_mode must be clock or challenge"
+            )
     return errors
 
 
-def check_dependencies(require_ros, require_ffb=False):
+def check_dependencies(require_ros, require_ffb=False, require_challenge=False):
     modules = ["numpy", "cv2", "PySide6"]
     if require_ros:
         modules.extend(["rclpy", "nav_msgs.msg"])
@@ -216,6 +221,20 @@ def check_dependencies(require_ros, require_ffb=False):
             missing.append(f"{module_name}: {error}")
     if missing:
         return CheckResult("Python dependencies", "FAIL", "; ".join(missing))
+    if require_challenge:
+        from oit_interfaces import msg as ffb_messages
+
+        for message_name in ("CollisionFfbCommand", "CollisionFfbChallenge"):
+            if not hasattr(ffb_messages, message_name):
+                return CheckResult(
+                    "Python dependencies", "FAIL",
+                    f"rebuild oit_interfaces: missing {message_name}",
+                )
+        if not hasattr(ffb_messages.CollisionFfbCommand(), "receiver_token"):
+            return CheckResult(
+                "Python dependencies", "FAIL",
+                "rebuild oit_interfaces: CollisionFfbCommand lacks receiver_token",
+            )
     return CheckResult(
         "Python dependencies", "PASS", ", ".join(modules)
     )
@@ -228,6 +247,18 @@ def config_requires_ffb(config_path):
     except (OSError, json.JSONDecodeError):
         return False
     return config.get("collision_ffb_publish_enabled", 0) == 1
+
+
+def config_requires_challenge(config_path):
+    try:
+        with Path(config_path).open() as config_file:
+            config = json.load(config_file)
+    except (OSError, json.JSONDecodeError):
+        return False
+    return (
+        config.get("collision_ffb_publish_enabled", 0) == 1
+        and config.get("collision_ffb_freshness_mode", "clock") == "challenge"
+    )
 
 
 def check_config(config_path):
@@ -257,7 +288,8 @@ def check_config(config_path):
         f"max_aspect={config.get('blue_ground_contact_max_aspect_ratio', 'off')}, "
         f"illumination={config.get('blue_ground_contact_illumination_mode', 'none')}, "
         f"collision_ffb={ffb_detail}, "
-        f"ffb_cadence={config.get('collision_ffb_cadence', 'continuous')}",
+        f"ffb_cadence={config.get('collision_ffb_cadence', 'continuous')}, "
+        f"ffb_freshness={config.get('collision_ffb_freshness_mode', 'clock')}",
     )
 
 
@@ -485,6 +517,7 @@ def main():
         check_dependencies(
             require_ros=bool(args.odom_topic),
             require_ffb=require_ffb,
+            require_challenge=config_requires_challenge(args.config),
         ),
         check_config(args.config),
     ]
