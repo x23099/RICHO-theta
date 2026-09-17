@@ -60,7 +60,22 @@ def decode_command(data: bytes) -> dict:
         normalized_magnitude=reader.unpack("f", 4),
         reason=reader.text(),
     )
+    aligned = (reader.pos + 7) // 8 * 8
+    if len(data) >= 4 + aligned + 16:
+        result["receiver_session_id"] = reader.unpack("Q", 8)
+        result["receiver_token"] = reader.unpack("Q", 8)
+    else:
+        result["receiver_session_id"] = 0
+        result["receiver_token"] = 0
     return result
+
+
+def decode_challenge(data: bytes) -> dict:
+    reader = CDR(data)
+    return {
+        "session_id": reader.unpack("Q", 8),
+        "token": reader.unpack("Q", 8),
+    }
 
 
 def decode_status(data: bytes) -> dict:
@@ -135,6 +150,7 @@ def main() -> None:
     decoders = {
         "/collision/ffb_command": decode_command,
         "/collision/ffb_status": decode_status,
+        "/collision/ffb_challenge": decode_challenge,
         "/phase5/mock_odom": decode_odom,
     }
     events: dict[str, list[dict]] = {topic: [] for topic in decoders}
@@ -149,6 +165,7 @@ def main() -> None:
 
     commands = events["/collision/ffb_command"]
     statuses = events["/collision/ffb_status"]
+    challenges = events["/collision/ffb_challenge"]
     odom = events["/phase5/mock_odom"]
     camera_session, camera = camera_rows(args.camera_archive)
     camera_active = [row for row in camera if row["collision_ffb_active"] == "1"]
@@ -176,6 +193,18 @@ def main() -> None:
     ]
     active_header_minus_bag_ms = [
         (row["stamp_ns"] - row["bag_ns"]) / 1e6 for row in active_commands
+    ]
+    issued_challenges = {
+        (row["session_id"], row["token"]): row["bag_ns"]
+        for row in challenges
+    }
+    active_challenge_delays_ms = [
+        (row["bag_ns"] - issued_challenges[
+            (row["receiver_session_id"], row["receiver_token"])
+        ]) / 1e6
+        for row in active_commands
+        if (row["receiver_session_id"], row["receiver_token"])
+        in issued_challenges
     ]
 
     summary = {
@@ -220,6 +249,12 @@ def main() -> None:
         "bag_active_command_count": len(active_commands),
         "bag_active_command_span": span(active_commands),
         "bag_active_command_sequences": sorted(bag_active_sequences),
+        "bag_active_commands_with_known_challenge": len(active_challenge_delays_ms),
+        "bag_active_challenge_roundtrip_ms": {
+            "min": min(active_challenge_delays_ms),
+            "max": max(active_challenge_delays_ms),
+            "median": median(active_challenge_delays_ms),
+        } if active_challenge_delays_ms else None,
         "bag_command_risk_counts": dict(Counter(row["risk_level"] for row in commands)),
         "bag_command_reasons": dict(Counter(row["reason"] for row in commands)),
         "bag_status_modes": dict(Counter(row["output_mode"] for row in statuses)),
@@ -266,21 +301,26 @@ def main() -> None:
     with (args.output_dir / f"{args.artifact_prefix}_events.csv").open(
         "w", newline="", encoding="utf-8"
     ) as output:
-        writer = csv.writer(output)
+        writer = csv.writer(output, lineterminator="\n")
         writer.writerow([
             "topic", "bag_time_jst", "header_time_jst", "sequence", "linear_x_mps",
             "risk_level", "active", "output_mode", "action", "output_active",
             "requested_magnitude", "applied_magnitude", "fault", "reason",
+            "receiver_session_id", "receiver_token", "challenge_session_id",
+            "challenge_token",
         ])
         for topic, rows in events.items():
             for row in rows:
                 writer.writerow([
-                    topic, clock(row["bag_ns"]), clock(row["stamp_ns"]),
+                    topic, clock(row["bag_ns"]),
+                    clock(row["stamp_ns"]) if "stamp_ns" in row else "",
                     row.get("sequence", ""), row.get("linear_x", ""),
                     row.get("risk_level", ""), row.get("active", row.get("command_active", "")),
                     row.get("output_mode", ""), row.get("action", ""),
                     row.get("output_active", ""), row.get("requested_magnitude", row.get("normalized_magnitude", "")),
                     row.get("applied_magnitude", ""), row.get("fault", ""), row.get("reason", ""),
+                    row.get("receiver_session_id", ""), row.get("receiver_token", ""),
+                    row.get("session_id", ""), row.get("token", ""),
                 ])
     print(json.dumps(summary, ensure_ascii=False, indent=2))
 

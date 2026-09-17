@@ -1,0 +1,2 @@
+experiment_label,source,frames,detected_frames,measurement_accepted_frames,normalized_area_rejection_frames,measurement_acceptance_rate,median_x_m,median_z_m,median_area_px,median_normalized_area,normalized_area_threshold,median_normalized_area_to_threshold
+phase5_challenge_camera_mock_odom_r01,/home/robo25/Downloads/202609171821.tar.xz::phase5_challenge_camera_mock_odom_r01_20260917_181900_391,742,742,742,0,1.0,-0.0005,1.1028,3731.5,4546.949544592031,1450.0,3.135827272132435

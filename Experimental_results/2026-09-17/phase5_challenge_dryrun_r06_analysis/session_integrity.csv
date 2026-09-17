@@ -1,0 +1,2 @@
+session,source,required_files_complete,csv_frames,frame_sequence_ok,timestamps_monotonic,time_alias_ok,raw_frames,bev_frames,detection_frames,video_counts_match,processing_timing_status,decision,reasons
+phase5_challenge_camera_mock_odom_r01_20260917_181900_391,/home/robo25/Downloads/202609171821.tar.xz::phase5_challenge_camera_mock_odom_r01_20260917_181900_391,1,742,1,1,1,742,742,742,1,PASS,PASS,
