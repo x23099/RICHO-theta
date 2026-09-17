@@ -1,0 +1,251 @@
+{
+  "camera_session": "phase5_camera_mock_odom_dryrun_r02_20260917_145834_900",
+  "camera_frames": 1035,
+  "camera_detected_frames": 1035,
+  "camera_odom_available_frames": 343,
+  "camera_motion_frames": 122,
+  "camera_motion_elapsed_sec": [
+    9.65421,
+    13.791262
+  ],
+  "camera_warning_frames": 122,
+  "camera_warning_elapsed_sec": [
+    9.720289,
+    13.856204
+  ],
+  "camera_active_frames": 8,
+  "camera_min_finite_ttc_sec": 4.2348785400390625,
+  "camera_active_requested_magnitudes": [
+    0.25
+  ],
+  "camera_active_elapsed_sec": [
+    9.720289,
+    10.120561
+  ],
+  "camera_active_sequences": [
+    2383,
+    2384,
+    2385,
+    2389,
+    2390,
+    2393,
+    2394,
+    2395
+  ],
+  "camera_ffb_publish_failures": 0,
+  "bag_counts": {
+    "/collision/ffb_command": 3641,
+    "/collision/ffb_status": 3322,
+    "/phase5/mock_odom": 3937
+  },
+  "bag_spans": {
+    "/collision/ffb_command": [
+      "2026-09-17T14:56:32.458+09:00",
+      "2026-09-17T14:59:50.569+09:00"
+    ],
+    "/collision/ffb_status": [
+      "2026-09-17T14:56:31.908+09:00",
+      "2026-09-17T14:59:39.796+09:00"
+    ],
+    "/phase5/mock_odom": [
+      "2026-09-17T14:56:32.809+09:00",
+      "2026-09-17T14:58:47.414+09:00"
+    ]
+  },
+  "bag_odom_speed_counts": {
+    "0.0": 3848,
+    "0.25": 89
+  },
+  "bag_positive_odom_count": 89,
+  "bag_positive_odom_span": [
+    "2026-09-17T14:58:44.480+09:00",
+    "2026-09-17T14:58:47.414+09:00"
+  ],
+  "bag_active_command_count": 8,
+  "bag_active_command_span": [
+    "2026-09-17T14:58:44.535+09:00",
+    "2026-09-17T14:58:44.958+09:00"
+  ],
+  "bag_active_command_sequences": [
+    2383,
+    2384,
+    2385,
+    2389,
+    2390,
+    2393,
+    2394,
+    2395
+  ],
+  "bag_command_risk_counts": {
+    "0": 3631,
+    "1": 2,
+    "2": 8
+  },
+  "bag_command_reasons": {
+    "no_alert": 3518,
+    "ttc_warning:cadence_triple": 8,
+    "cadence_gap:triple": 7,
+    "cadence_complete": 107,
+    "cadence_cancelled_by_clear": 1
+  },
+  "bag_status_modes": {
+    "disabled": 3322
+  },
+  "bag_status_actions": {
+    "stop": 3319,
+    "none": 3
+  },
+  "bag_active_status_count": 0,
+  "bag_active_status_span": null,
+  "bag_statuses_matching_active_sequences": [
+    {
+      "sequence": 2383,
+      "output_mode": "disabled",
+      "action": "stop",
+      "command_active": false,
+      "output_active": false,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.0,
+      "reason": "invalid_request:future_message:age=-0.089090",
+      "fault": true,
+      "bag_ns": 1789624724536232031
+    },
+    {
+      "sequence": 2384,
+      "output_mode": "disabled",
+      "action": "stop",
+      "command_active": false,
+      "output_active": false,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.0,
+      "reason": "invalid_request:future_message:age=-0.089229",
+      "fault": true,
+      "bag_ns": 1789624724570151919
+    },
+    {
+      "sequence": 2385,
+      "output_mode": "disabled",
+      "action": "stop",
+      "command_active": false,
+      "output_active": false,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.0,
+      "reason": "invalid_request:future_message:age=-0.089434",
+      "fault": true,
+      "bag_ns": 1789624724602395718
+    },
+    {
+      "sequence": 2389,
+      "output_mode": "disabled",
+      "action": "stop",
+      "command_active": false,
+      "output_active": false,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.0,
+      "reason": "invalid_request:future_message:age=-0.089294",
+      "fault": true,
+      "bag_ns": 1789624724735961258
+    },
+    {
+      "sequence": 2390,
+      "output_mode": "disabled",
+      "action": "stop",
+      "command_active": false,
+      "output_active": false,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.0,
+      "reason": "invalid_request:future_message:age=-0.089355",
+      "fault": true,
+      "bag_ns": 1789624724769313945
+    },
+    {
+      "sequence": 2393,
+      "output_mode": "disabled",
+      "action": "stop",
+      "command_active": false,
+      "output_active": false,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.0,
+      "reason": "invalid_request:future_message:age=-0.088272",
+      "fault": true,
+      "bag_ns": 1789624724874442306
+    },
+    {
+      "sequence": 2394,
+      "output_mode": "disabled",
+      "action": "stop",
+      "command_active": false,
+      "output_active": false,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.0,
+      "reason": "invalid_request:future_message:age=-0.072877",
+      "fault": true,
+      "bag_ns": 1789624724920042864
+    },
+    {
+      "sequence": 2395,
+      "output_mode": "disabled",
+      "action": "stop",
+      "command_active": false,
+      "output_active": false,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.0,
+      "reason": "invalid_request:future_message:age=-0.067071",
+      "fault": true,
+      "bag_ns": 1789624724958768110
+    }
+  ],
+  "active_command_to_status_bag_delay_ms": {
+    "min": 0.422842,
+    "max": 0.768595,
+    "median": 0.5386155
+  },
+  "bag_active_output_count": 0,
+  "bag_fault_count": 3318,
+  "bag_fault_categories": {
+    "invalid_request:future_message": 3318
+  },
+  "bag_fault_age_ms": {
+    "min": -90.574,
+    "max": -51.238,
+    "mean": -88.06846564195298
+  },
+  "bag_status_last": {
+    "stamp_ns": 1789624779795993831,
+    "frame_id": "",
+    "has_sequence": true,
+    "sequence": 870,
+    "source": "bird_eye",
+    "output_mode": "disabled",
+    "action": "stop",
+    "command_active": false,
+    "output_active": false,
+    "requested_magnitude": 0.0,
+    "applied_magnitude": 0.0,
+    "pattern": 0,
+    "reason": "shutdown",
+    "fault": false,
+    "bag_ns": 1789624779796188926
+  },
+  "active_sequence_intersection_camera_command": [
+    2383,
+    2384,
+    2385,
+    2389,
+    2390,
+    2393,
+    2394,
+    2395
+  ],
+  "active_sequence_intersection_command_status": [],
+  "command_stamp_minus_bag_ms": {
+    "min": -12.71601,
+    "max": 90.861548,
+    "mean": 88.28833257566608
+  },
+  "active_command_stamp_minus_bag_ms": {
+    "min": 67.182069,
+    "max": 89.681322,
+    "median": 89.3606655
+  }
+}

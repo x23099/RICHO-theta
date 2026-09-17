@@ -1,0 +1,2 @@
+archive_filename,archive_path,size_bytes,sha256,tar_xz_status,archive_members,recording_sessions,metadata_sessions,detections_sessions,raw_video_sessions,complete_core_sessions,session_names,error
+202609171524.tar.xz,/home/robo25/Downloads/202609171524.tar.xz,77540796,52372786e82bdd3f7042fc6d26c3b8b39dae289be06f7f9d0101e0e24144e326,PASS,6,1,1,1,1,1,phase5_camera_mock_odom_dryrun_r02_20260917_145834_900,
