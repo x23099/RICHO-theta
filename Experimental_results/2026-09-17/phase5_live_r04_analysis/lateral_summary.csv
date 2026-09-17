@@ -1,0 +1,2 @@
+experiment_label,source,frames,detected_frames,measurement_accepted_frames,normalized_area_rejection_frames,measurement_acceptance_rate,median_x_m,median_z_m,median_area_px,median_normalized_area,normalized_area_threshold,median_normalized_area_to_threshold
+phase5_camera_mock_odom_dryrun_r04,/home/robo25/Downloads/202609171638.tar.xz::phase5_camera_mock_odom_dryrun_r04_20260917_163414_067,1068,1068,1068,0,1.0,-0.0213,1.1043,3695.5,4533.206069876055,1450.0,3.126349013707624
