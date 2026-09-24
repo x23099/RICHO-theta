@@ -136,6 +136,14 @@ challenge＋hardware、3連、0.05、0.5秒、1イベントを実施した。com
 
 archive名は`0p03_r02`だったが、内部設定と全command/statusは0.05で一致している。詳細は[0.05 r01診断](phase5_challenge_hardware_probe_0p05_r01_diagnosis.md)を参照する。0.05・3連を採用条件とし、強度はこれ以上上げない。
 
+### 録画TTC challenge hardware再生
+
+過去の0.20 m/s接近sessionを30 Hzで再生し、challenge方式でG923まで出力した。command/statusは630/630、activeは13/13、fault 0件、challenge age最大26.13 ms、active応答最大4.47 msで、自動判定はPASSだった。操作者は意図したWARNINGの3連振動を明確に知覚した。
+
+その約1.9秒後に短い振動も1回知覚した。ログ上は録画内の短い`UNKNOWN → CLEAR → UNKNOWN`によるactive 4件であり、通信欠落、watchdog、hardware faultではなかった。現行方針ではUNKNOWNもactiveで、WARNINGとUNKNOWNはいずれもadapter上限0.05へ制限され、共通の3連cadenceを使う。このため通知意味の区別が不十分である。
+
+経路検証はPASSとするが、カメラ＋模擬ODOM試験の前に、WARNING/CRITICALは3連、UNKNOWNは単発または物理出力なし、という通知方針を決定する。詳細は[録画TTC hardware再生 r01診断](phase5_challenge_hardware_recorded_replay_r01_diagnosis.md)を参照する。
+
 ## 承認後の実機試験順
 
 1. adapterだけをchallenge＋hardware、上限0.03で起動し、起動直後が無出力であることを確認する。

@@ -1,0 +1,525 @@
+ros2 run oit collision_ffb_node --ros-args -p output_mode:=hardware -p freshness_mode:=challenge -p hardware_armed:=true -p challenge_hardware_armed:=true -p hardware_initial_test_passed:=true -p max_magnitude:=0.05 -p challenge_max_age_sec:=0.1 -p challenge_rate_hz:=50.0 -p watchdog_timeout_sec:=0.1 -p device_path:="${G923_EVENT:?G923_EVENTが未設定です}" -p effect_duration_ms:=120
+[INFO] [1790243866.963637763] [collision_ffb_node]: Collision FFB adapter started: mode=hardware, command=/collision/ffb_command, status=/collision/ffb_status, watchdog=0.100s, freshness=challenge; challenge hardware gate armed; hardware backend armed
+[INFO] [1790244524.506276322] [collision_ffb_node]: mode=hardware sequence=0 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1790244528.457644427] [collision_ffb_node]: mode=hardware sequence=116 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:path fault=False
+[INFO] [1790244528.526436579] [collision_ffb_node]: mode=hardware sequence=118 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1790244528.593851873] [collision_ffb_node]: mode=hardware sequence=120 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:path fault=False
+[INFO] [1790244528.662703369] [collision_ffb_node]: mode=hardware sequence=122 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1790244528.731863503] [collision_ffb_node]: mode=hardware sequence=124 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:path fault=False
+[INFO] [1790244529.584008108] [collision_ffb_node]: mode=hardware sequence=149 action=apply command_active=True output_active=True requested=0.250 applied=0.050 pattern=1 reason=ttc_warning:cadence_triple fault=False
+[INFO] [1790244529.686927702] [collision_ffb_node]: mode=hardware sequence=152 action=stop command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1790244529.720819815] [collision_ffb_node]: mode=hardware sequence=153 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1790244529.754886423] [collision_ffb_node]: mode=hardware sequence=154 action=apply command_active=True output_active=True requested=0.250 applied=0.050 pattern=1 reason=ttc_warning:cadence_triple fault=False
+[INFO] [1790244529.857335114] [collision_ffb_node]: mode=hardware sequence=157 action=stop command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1790244529.891603267] [collision_ffb_node]: mode=hardware sequence=158 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1790244529.925519569] [collision_ffb_node]: mode=hardware sequence=159 action=apply command_active=True output_active=True requested=0.250 applied=0.050 pattern=1 reason=ttc_warning:cadence_triple fault=False
+[INFO] [1790244530.027417316] [collision_ffb_node]: mode=hardware sequence=162 action=stop command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1790244530.061599273] [collision_ffb_node]: mode=hardware sequence=163 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1790244531.830847605] [collision_ffb_node]: mode=hardware sequence=215 action=apply command_active=True output_active=True requested=0.150 applied=0.050 pattern=3 reason=invalid_or_unknown_perception:cadence_triple fault=False
+[INFO] [1790244531.903215052] [collision_ffb_node]: mode=hardware sequence=217 action=stop command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1790244531.933617298] [collision_ffb_node]: mode=hardware sequence=218 action=apply command_active=True output_active=True requested=0.150 applied=0.050 pattern=3 reason=invalid_or_unknown_perception:cadence_triple fault=False
+[INFO] [1790244532.014364380] [collision_ffb_node]: mode=hardware sequence=220 action=stop command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+[INFO] [1790244532.035046555] [collision_ffb_node]: mode=hardware sequence=221 action=none command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=inactive:clear fault=False
+^C[INFO] [1790244654.638040823] [collision_ffb_node]: mode=hardware sequence=629 action=stop command_active=False output_active=False requested=0.000 applied=0.000 pattern=0 reason=shutdown fault=False
+hsr@hsr-Alienware-m16-R2:~/yopi_ws$
+
+has_sequence: true
+sequence: 603
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 99473013
+  frame_id: ''
+has_sequence: true
+sequence: 604
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 133764184
+  frame_id: ''
+has_sequence: true
+sequence: 605
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 167880749
+  frame_id: ''
+has_sequence: true
+sequence: 606
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 204710829
+  frame_id: ''
+has_sequence: true
+sequence: 607
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 236752864
+  frame_id: ''
+has_sequence: true
+sequence: 608
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 271968216
+  frame_id: ''
+has_sequence: true
+sequence: 609
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 304859974
+  frame_id: ''
+has_sequence: true
+sequence: 610
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 340572111
+  frame_id: ''
+has_sequence: true
+sequence: 611
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 373639371
+  frame_id: ''
+has_sequence: true
+sequence: 612
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 407723943
+  frame_id: ''
+has_sequence: true
+sequence: 613
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 442642095
+  frame_id: ''
+has_sequence: true
+sequence: 614
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 476709950
+  frame_id: ''
+has_sequence: true
+sequence: 615
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 510277393
+  frame_id: ''
+has_sequence: true
+sequence: 616
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 545728160
+  frame_id: ''
+has_sequence: true
+sequence: 617
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 580608565
+  frame_id: ''
+has_sequence: true
+sequence: 618
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 613486270
+  frame_id: ''
+has_sequence: true
+sequence: 619
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 647511418
+  frame_id: ''
+has_sequence: true
+sequence: 620
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 681980408
+  frame_id: ''
+has_sequence: true
+sequence: 621
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 715271141
+  frame_id: ''
+has_sequence: true
+sequence: 622
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 749532067
+  frame_id: ''
+has_sequence: true
+sequence: 623
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 787800423
+  frame_id: ''
+has_sequence: true
+sequence: 624
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 817461828
+  frame_id: ''
+has_sequence: true
+sequence: 625
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 856613296
+  frame_id: ''
+has_sequence: true
+sequence: 626
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 885317021
+  frame_id: ''
+has_sequence: true
+sequence: 627
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 920172020
+  frame_id: ''
+has_sequence: true
+sequence: 628
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244545
+    nanosec: 955829356
+  frame_id: ''
+has_sequence: true
+sequence: 629
+source: bird_eye
+output_mode: hardware
+action: none
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: inactive:clear
+fault: false
+---
+header:
+  stamp:
+    sec: 1790244654
+    nanosec: 637444127
+  frame_id: ''
+has_sequence: true
+sequence: 629
+source: bird_eye
+output_mode: hardware
+action: stop
+command_active: false
+output_active: false
+requested_magnitude: 0.0
+applied_magnitude: 0.0
+pattern: 0
+reason: shutdown
+fault: false
+---
+^Chsr@hsr-Alienware-m16-R2:~/yopi_ws$
