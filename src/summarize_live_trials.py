@@ -25,6 +25,12 @@ SUMMARY_FIELDS = [
     "track_rate",
     "motion_track_rate",
     "odom_available_rate",
+    "odom_callback_count_delta",
+    "challenge_callback_count_delta",
+    "challenge_age_p95_sec",
+    "challenge_age_max_sec",
+    "ffb_publish_success_rate",
+    "ffb_challenge_unavailable_frames",
     "moving_frames",
     "direction_correct_rate",
     "relative_speed_mae_mps",
@@ -62,6 +68,26 @@ def _rate(numerator, denominator):
 
 def _mean(values):
     return sum(values) / len(values) if values else math.nan
+
+
+def _percentile(values, quantile):
+    if not values:
+        return math.nan
+    ordered = sorted(values)
+    position = (len(ordered) - 1) * quantile
+    lower = int(math.floor(position))
+    upper = int(math.ceil(position))
+    if lower == upper:
+        return ordered[lower]
+    fraction = position - lower
+    return ordered[lower] * (1.0 - fraction) + ordered[upper] * fraction
+
+
+def _counter_delta(rows, key):
+    values = [
+        value for row in rows if (value := _number(row, key)) is not None
+    ]
+    return max(values) - min(values) if values else math.nan
 
 
 def load_session(session_dir):
@@ -135,6 +161,19 @@ def summarize_rows(label, source, metadata, rows, moving_threshold_mps=0.03):
     ]
     risk_levels = [row.get("collision_risk_level", "") for row in rows]
     warning_levels = {"WARNING", "WARNING_HOLD", "CRITICAL"}
+    challenge_ages = [
+        value
+        for row in rows
+        if (
+            value := _number(row, "collision_ffb_challenge_age_sec")
+        ) is not None
+    ]
+    ffb_enabled = [
+        row for row in rows if _flag(row, "collision_ffb_publish_enabled")
+    ]
+    ffb_published = [
+        row for row in ffb_enabled if _flag(row, "collision_ffb_publish_success")
+    ]
     return {
         "experiment_label": metadata.get("experiment_label", label),
         "session_dir": source,
@@ -152,6 +191,22 @@ def summarize_rows(label, source, metadata, rows, moving_threshold_mps=0.03):
         "track_rate": _rate(len(tracked), len(rows)),
         "motion_track_rate": _rate(len(moving_tracked), len(moving)),
         "odom_available_rate": _rate(len(odom_rows), len(rows)),
+        "odom_callback_count_delta": _counter_delta(
+            rows, "odom_received_count"
+        ),
+        "challenge_callback_count_delta": _counter_delta(
+            rows, "collision_ffb_challenge_received_count"
+        ),
+        "challenge_age_p95_sec": _percentile(challenge_ages, 0.95),
+        "challenge_age_max_sec": max(challenge_ages)
+        if challenge_ages else math.nan,
+        "ffb_publish_success_rate": _rate(
+            len(ffb_published), len(ffb_enabled)
+        ),
+        "ffb_challenge_unavailable_frames": sum(
+            row.get("collision_ffb_reason") == "challenge_unavailable"
+            for row in ffb_enabled
+        ),
         "moving_frames": len(moving),
         "direction_correct_rate": _mean(direction_correct),
         "relative_speed_mae_mps": _mean(speed_errors),

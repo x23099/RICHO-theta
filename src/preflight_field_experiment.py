@@ -203,6 +203,18 @@ def validate_experiment_config(config):
             errors.append(
                 "collision_ffb_freshness_mode must be clock or challenge"
             )
+        challenge_max_age = config.get(
+            "collision_ffb_challenge_max_age_sec", 0.1
+        )
+        if freshness_mode == "challenge" and (
+            not isinstance(challenge_max_age, (int, float))
+            or isinstance(challenge_max_age, bool)
+            or not math.isfinite(challenge_max_age)
+            or not 0.0 < challenge_max_age <= 0.1
+        ):
+            errors.append(
+                "collision_ffb_challenge_max_age_sec must be within (0, 0.1]"
+            )
     return errors
 
 
@@ -289,7 +301,9 @@ def check_config(config_path):
         f"illumination={config.get('blue_ground_contact_illumination_mode', 'none')}, "
         f"collision_ffb={ffb_detail}, "
         f"ffb_cadence={config.get('collision_ffb_cadence', 'continuous')}, "
-        f"ffb_freshness={config.get('collision_ffb_freshness_mode', 'clock')}",
+        f"ffb_freshness={config.get('collision_ffb_freshness_mode', 'clock')}, "
+        "ffb_challenge_max_age="
+        f"{config.get('collision_ffb_challenge_max_age_sec', 0.1)}",
     )
 
 

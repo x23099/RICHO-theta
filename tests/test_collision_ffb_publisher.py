@@ -1,4 +1,5 @@
 import sys
+import threading
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
@@ -89,17 +90,68 @@ class _RosApi:
             raise RuntimeError("synthetic challenge receive failure")
 
 
+class _FailedExecutorThread:
+    def raise_if_failed(self):
+        raise RuntimeError("synthetic challenge executor failure")
+
+    def close(self):
+        pass
+
+
+class _ChallengeExecutor:
+    def __init__(self):
+        self.node = None
+        self.delivered = threading.Event()
+        self.stopped = threading.Event()
+
+    def add_node(self, node):
+        self.node = node
+        return True
+
+    def spin(self):
+        self.node.subscription_callback(
+            SimpleNamespace(session_id=41, token=202)
+        )
+        self.delivered.set()
+        self.stopped.wait(1.0)
+
+    def shutdown(self, timeout_sec=None):
+        self.stopped.set()
+        return True
+
+
 def _bridge(ros_api, **kwargs):
+    start_executor = kwargs.pop("start_executor", False)
     return CollisionFfbPublisherBridge(
         ros_api=ros_api,
         message_type=_Message,
         qos_profile=object(),
         challenge_message_type=_Message,
+        start_executor=start_executor,
         **kwargs,
     )
 
 
 class CollisionFfbPublisherTest(unittest.TestCase):
+    def test_challenge_executor_receives_without_frame_polling(self):
+        ros_api = _RosApi()
+        executor = _ChallengeExecutor()
+        bridge = _bridge(
+            ros_api,
+            freshness_mode="challenge",
+            executor_factory=lambda: executor,
+            start_executor=True,
+        )
+        self.assertTrue(executor.delivered.wait(0.5))
+
+        result = bridge.publish_risk("CLEAR")
+
+        self.assertEqual(result["collision_ffb_publish_success"], 1)
+        self.assertEqual(result["collision_ffb_challenge_received_count"], 1)
+        self.assertEqual(result["collision_ffb_challenge_session_id"], 41)
+        self.assertEqual(result["collision_ffb_challenge_token"], 202)
+        bridge.close()
+
     def test_challenge_mode_never_publishes_without_recent_receiver_token(self):
         now = [2.0]
         ros_api = _RosApi()
@@ -119,21 +171,58 @@ class CollisionFfbPublisherTest(unittest.TestCase):
         self.assertEqual(accepted["collision_ffb_publish_success"], 1)
         sent = ros_api.publisher.messages[-1]
         self.assertEqual((sent.receiver_session_id, sent.receiver_token), (17, 42))
+        self.assertEqual(
+            accepted["collision_ffb_challenge_received_count"], 1
+        )
+        self.assertEqual(accepted["collision_ffb_challenge_session_id"], 17)
+        self.assertEqual(accepted["collision_ffb_challenge_token"], 42)
 
         now[0] = 2.101
         stale = bridge.publish_risk("WARNING")
         self.assertEqual(stale["collision_ffb_publish_success"], 0)
         self.assertEqual(stale["collision_ffb_active"], 0)
 
-    def test_challenge_spin_failure_fails_closed(self):
-        ros_api = _RosApi(fail_spin=True)
+    def test_challenge_sender_age_can_be_shorter_than_receiver_limit(self):
+        now = [4.0]
+        ros_api = _RosApi()
+        bridge = _bridge(
+            ros_api,
+            freshness_mode="challenge",
+            challenge_max_age_sec=0.06,
+            monotonic_clock=lambda: now[0],
+        )
+        ros_api.node.subscription_callback(
+            SimpleNamespace(session_id=23, token=99)
+        )
+        now[0] = 4.059
+        self.assertEqual(
+            bridge.publish_risk("CLEAR")["collision_ffb_publish_success"], 1
+        )
+        now[0] = 4.061
+        stale = bridge.publish_risk("CLEAR")
+        self.assertEqual(stale["collision_ffb_publish_success"], 0)
+        self.assertEqual(
+            stale["collision_ffb_publish_error"],
+            "no_recent_receiver_challenge",
+        )
+
+    def test_challenge_executor_failure_fails_closed(self):
+        ros_api = _RosApi()
         bridge = _bridge(ros_api, freshness_mode="challenge")
+        ros_api.node.subscription_callback(
+            SimpleNamespace(session_id=31, token=101)
+        )
+        bridge.executor_thread = _FailedExecutorThread()
 
         result = bridge.publish_risk("WARNING")
 
         self.assertEqual(result["collision_ffb_publish_success"], 0)
         self.assertEqual(result["collision_ffb_active"], 0)
         self.assertEqual(ros_api.publisher.messages, [])
+        self.assertIn(
+            "synthetic challenge executor failure",
+            result["collision_ffb_publish_error"],
+        )
 
     def test_verified_triple_schedule_matches_hardware_probe(self):
         self.assertEqual(

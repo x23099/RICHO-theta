@@ -71,6 +71,7 @@ BASE_RECORDING_CSV_FIELDS = (
     "visual_smoothed_vz_mps", "smoothed_vz_mps", "ttc_velocity_source",
     "ttc_sec",
     "odom_available", "odom_linear_mps", "odom_angular_radps",
+    "odom_received_count",
     "cmd_linear_mps", "cmd_angular_radps",
     "prediction_motion_source", "path_in_collision_corridor",
     "path_distance_to_center_m", "path_clearance_m",
@@ -580,6 +581,7 @@ class CalibrationWindow(QWidget):
         self.prediction_angular_deadband = 0.005
         self.odom_linear_x = 0.0
         self.odom_angular_z = 0.0
+        self.odom_received_count = 0
         self.cmd_linear_x = 0.0
         self.cmd_angular_z = 0.0
         self.yaw_to_handle_ratio = 1.25
@@ -897,6 +899,9 @@ class CalibrationWindow(QWidget):
             ),
             freshness_mode=self.params.get(
                 "collision_ffb_freshness_mode", "clock"
+            ),
+            challenge_max_age_sec=self.params.get(
+                "collision_ffb_challenge_max_age_sec", 0.1
             ),
         )
         print(
@@ -1600,6 +1605,7 @@ class CalibrationWindow(QWidget):
                 1 if self.odometry_is_recent() else 0,
                 f"{self.odom_linear_x:.6f}" if self.odometry_is_recent() else "",
                 f"{self.odom_angular_z:.6f}" if self.odometry_is_recent() else "",
+                getattr(self, "odom_received_count", 0),
                 f"{self.cmd_linear_x:.6f}",
                 f"{self.cmd_angular_z:.6f}",
                 self.last_prediction_source,
@@ -1955,6 +1961,7 @@ class CalibrationWindow(QWidget):
         self.odom_linear_x = sample["linear_mps"]
         self.odom_angular_z = sample["angular_radps"]
         self.last_odom_time = sample["monotonic_time"]
+        self.odom_received_count = sample["received_count"]
 
     def odometry_is_recent(self, now=None):
         if self.last_odom_time <= 0.0:

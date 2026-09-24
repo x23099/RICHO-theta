@@ -4,8 +4,10 @@
 from __future__ import annotations
 
 import math
+import threading
 import time
 
+from ros_executor_thread import RosExecutorThread
 from virtual_ffb import VirtualFfbCommand, VirtualFfbPolicy
 
 
@@ -19,6 +21,10 @@ FFB_RECORDING_FIELDS = (
     "collision_ffb_pattern",
     "collision_ffb_reason",
     "collision_ffb_publish_error",
+    "collision_ffb_challenge_received_count",
+    "collision_ffb_challenge_age_sec",
+    "collision_ffb_challenge_session_id",
+    "collision_ffb_challenge_token",
 )
 
 RISK_LEVEL_VALUES = {
@@ -44,6 +50,7 @@ CADENCE_MAX_RATE_HZ = 60.0
 try:
     import rclpy
     from oit_interfaces.msg import CollisionFfbChallenge, CollisionFfbCommand
+    from rclpy.executors import SingleThreadedExecutor
     from rclpy.qos import (
         DurabilityPolicy,
         HistoryPolicy,
@@ -59,6 +66,7 @@ except ImportError as error:  # Preserve offline analysis without ROS setup.
     HistoryPolicy = None
     QoSProfile = None
     ReliabilityPolicy = None
+    SingleThreadedExecutor = None
     ROS_IMPORT_ERROR = error
 
 
@@ -74,6 +82,10 @@ def empty_publish_record(*, enabled=False, risk_level=""):
         "collision_ffb_pattern": "off",
         "collision_ffb_reason": "publisher_not_run",
         "collision_ffb_publish_error": "",
+        "collision_ffb_challenge_received_count": "",
+        "collision_ffb_challenge_age_sec": "",
+        "collision_ffb_challenge_session_id": "",
+        "collision_ffb_challenge_token": "",
     }
 
 
@@ -252,6 +264,8 @@ class CollisionFfbPublisherBridge:
         message_type=None,
         qos_profile=None,
         challenge_message_type=None,
+        executor_factory=None,
+        start_executor=True,
     ):
         """Initialize one ROS publisher without accessing any FFB device."""
         self.topic = str(topic).strip()
@@ -309,6 +323,8 @@ class CollisionFfbPublisherBridge:
             )
 
         self._latest_challenge = None
+        self._challenge_received_count = 0
+        self._challenge_lock = threading.Lock()
 
         self._owns_rclpy = not self._ros.ok()
         self.node = None
@@ -327,6 +343,7 @@ class CollisionFfbPublisherBridge:
                 publisher_qos,
             )
             self.challenge_subscription = None
+            self.executor_thread = None
             if self.freshness_mode == "challenge":
                 self.challenge_subscription = self.node.create_subscription(
                     self._challenge_type,
@@ -334,7 +351,21 @@ class CollisionFfbPublisherBridge:
                     self._on_challenge,
                     publisher_qos,
                 )
+                if start_executor:
+                    factory = executor_factory or SingleThreadedExecutor
+                    if factory is None:
+                        raise RuntimeError(
+                            "ROS 2 SingleThreadedExecutor is unavailable"
+                        )
+                    self.executor_thread = RosExecutorThread(
+                        factory(),
+                        self.node,
+                        name="bird-eye-ffb-challenge-executor",
+                    )
         except Exception:
+            if getattr(self, "executor_thread", None) is not None:
+                self.executor_thread.close()
+                self.executor_thread = None
             if self.node is not None:
                 self.node.destroy_node()
                 self.node = None
@@ -352,6 +383,11 @@ class CollisionFfbPublisherBridge:
             "challenge_topic": (
                 self.challenge_topic if self.freshness_mode == "challenge" else ""
             ),
+            "challenge_max_age_sec": (
+                self.challenge_max_age_sec
+                if self.freshness_mode == "challenge"
+                else None
+            ),
             "warning_magnitude": self.policy.warning_magnitude,
             "critical_magnitude": self.policy.critical_magnitude,
             "unknown_magnitude": self.policy.unknown_magnitude,
@@ -368,9 +404,28 @@ class CollisionFfbPublisherBridge:
         session_id = int(message.session_id)
         token = int(message.token)
         if session_id > 0 and token > 0:
-            self._latest_challenge = (
-                session_id, token, float(self.cadence.monotonic_clock())
-            )
+            with self._challenge_lock:
+                self._latest_challenge = (
+                    session_id, token, float(self.cadence.monotonic_clock())
+                )
+                self._challenge_received_count += 1
+
+    def _challenge_diagnostics(self, now):
+        with self._challenge_lock:
+            challenge = self._latest_challenge
+            received_count = self._challenge_received_count
+        age_sec = ""
+        session_id = ""
+        token = ""
+        if challenge is not None:
+            session_id, token, received_monotonic = challenge
+            age_sec = float(now) - received_monotonic
+        return challenge, {
+            "collision_ffb_challenge_received_count": received_count,
+            "collision_ffb_challenge_age_sec": age_sec,
+            "collision_ffb_challenge_session_id": session_id,
+            "collision_ffb_challenge_token": token,
+        }
 
     def publish_risk(self, risk_level):
         """Map and publish one risk state, returning its recording fields."""
@@ -379,15 +434,6 @@ class CollisionFfbPublisherBridge:
         if self.sequence > UINT64_MAX:
             raise RuntimeError("collision FFB sequence exhausted uint64 range")
 
-        if self.freshness_mode == "challenge":
-            try:
-                self._ros.spin_once(self.node, timeout_sec=0.0)
-            except Exception as error:
-                self._latest_challenge = None
-                error_text = f"challenge_receive_error:{type(error).__name__}:{error}"
-                if error_text != self._last_error:
-                    print(f"[WARN] {error_text}")
-                self._last_error = error_text
         virtual_command = self.cadence.command(risk_level, self.policy)
         payload = virtual_command_payload(virtual_command)
         sequence = self.sequence
@@ -404,17 +450,43 @@ class CollisionFfbPublisherBridge:
             "collision_ffb_pattern": payload["pattern_name"],
             "collision_ffb_reason": payload["reason"],
             "collision_ffb_publish_error": "",
+            "collision_ffb_challenge_received_count": "",
+            "collision_ffb_challenge_age_sec": "",
+            "collision_ffb_challenge_session_id": "",
+            "collision_ffb_challenge_token": "",
         }
         if self.freshness_mode == "challenge":
-            challenge = self._latest_challenge
+            challenge_error = ""
+            if self.executor_thread is not None:
+                try:
+                    self.executor_thread.raise_if_failed()
+                except Exception as error:
+                    with self._challenge_lock:
+                        self._latest_challenge = None
+                    error_text = (
+                        f"challenge_receive_error:{type(error).__name__}:{error}"
+                    )
+                    if error_text != self._last_error:
+                        print(f"[WARN] {error_text}")
+                    self._last_error = error_text
+                    challenge_error = error_text
             now = float(self.cadence.monotonic_clock())
-            if challenge is None or not 0.0 <= now - challenge[2] <= self.challenge_max_age_sec:
+            challenge, diagnostics = self._challenge_diagnostics(now)
+            record.update(diagnostics)
+            age_sec = diagnostics["collision_ffb_challenge_age_sec"]
+            if (
+                challenge is None
+                or age_sec == ""
+                or not 0.0 <= age_sec <= self.challenge_max_age_sec
+            ):
                 self.cadence.reset()
                 record.update(
                     collision_ffb_active=0,
                     collision_ffb_requested_magnitude=0.0,
                     collision_ffb_reason="challenge_unavailable",
-                    collision_ffb_publish_error="no_recent_receiver_challenge",
+                    collision_ffb_publish_error=(
+                        challenge_error or "no_recent_receiver_challenge"
+                    ),
                 )
                 self.last_record = record
                 return dict(record)
@@ -452,6 +524,9 @@ class CollisionFfbPublisherBridge:
                 self.publish_risk("CLEAR")
         finally:
             self._closed = True
+            if self.executor_thread is not None:
+                self.executor_thread.close()
+                self.executor_thread = None
             if self.node is not None:
                 self.node.destroy_node()
                 self.node = None

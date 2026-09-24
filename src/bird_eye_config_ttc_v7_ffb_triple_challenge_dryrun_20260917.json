@@ -80,6 +80,7 @@
     "collision_ffb_cadence_duration_sec": 0.5,
     "collision_ffb_cadence_rate_hz": 30.0,
     "collision_ffb_freshness_mode": "challenge",
+    "collision_ffb_challenge_max_age_sec": 0.06,
     "enable_ai": 1,
     "yolo_model": "yolov8n.pt"
 }

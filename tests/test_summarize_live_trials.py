@@ -36,8 +36,14 @@ class LiveTrialSummaryTest(unittest.TestCase):
                 "ttc_sec",
                 "odom_available",
                 "odom_linear_mps",
+                "odom_received_count",
                 "path_in_collision_corridor",
                 "collision_risk_level",
+                "collision_ffb_publish_enabled",
+                "collision_ffb_publish_success",
+                "collision_ffb_reason",
+                "collision_ffb_challenge_received_count",
+                "collision_ffb_challenge_age_sec",
             ]
             with (session / "detections.csv").open("w", newline="") as output:
                 writer = csv.DictWriter(output, fieldnames=fields)
@@ -54,8 +60,14 @@ class LiveTrialSummaryTest(unittest.TestCase):
                             "ttc_sec": 10.0,
                             "odom_available": 1,
                             "odom_linear_mps": 0.1,
+                            "odom_received_count": 10,
                             "path_in_collision_corridor": 1,
                             "collision_risk_level": "PATH",
+                            "collision_ffb_publish_enabled": 1,
+                            "collision_ffb_publish_success": 1,
+                            "collision_ffb_reason": "no_alert",
+                            "collision_ffb_challenge_received_count": 20,
+                            "collision_ffb_challenge_age_sec": 0.01,
                         },
                         {
                             "monotonic_time_sec": 0.1,
@@ -67,8 +79,14 @@ class LiveTrialSummaryTest(unittest.TestCase):
                             "ttc_sec": 9.9,
                             "odom_available": 1,
                             "odom_linear_mps": 0.1,
+                            "odom_received_count": 15,
                             "path_in_collision_corridor": 1,
                             "collision_risk_level": "WARNING",
+                            "collision_ffb_publish_enabled": 1,
+                            "collision_ffb_publish_success": 0,
+                            "collision_ffb_reason": "challenge_unavailable",
+                            "collision_ffb_challenge_received_count": 25,
+                            "collision_ffb_challenge_age_sec": 0.07,
                         },
                     ]
                 )
@@ -87,6 +105,12 @@ class LiveTrialSummaryTest(unittest.TestCase):
             self.assertEqual(summary["warning_or_critical_frames"], 1)
             self.assertEqual(summary["warning_hold_rate"], 0.0)
             self.assertEqual(summary["unknown_rate"], 0.0)
+            self.assertEqual(summary["odom_callback_count_delta"], 5.0)
+            self.assertEqual(summary["challenge_callback_count_delta"], 5.0)
+            self.assertAlmostEqual(summary["challenge_age_p95_sec"], 0.067)
+            self.assertEqual(summary["challenge_age_max_sec"], 0.07)
+            self.assertEqual(summary["ffb_publish_success_rate"], 0.5)
+            self.assertEqual(summary["ffb_challenge_unavailable_frames"], 1)
             self.assertEqual(find_session_dirs([Path(temporary_dir)]), [session])
 
             archive_path = Path(temporary_dir) / "trial.tar.xz"

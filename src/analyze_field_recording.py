@@ -526,6 +526,26 @@ def build_report(
             f"{_number(timing.get('processing_active_p95_ms'), 2)} ms |"
         )
 
+    lines.extend(
+        [
+            "",
+            "## ROS/FFB callback診断",
+            "",
+            "| ラベル | ODOM受信増分 | challenge受信増分 | challenge age p95/max | FFB送信成功 | challenge見送り |",
+            "|---|---:|---:|---:|---:|---:|",
+        ]
+    )
+    for row in live_rows:
+        lines.append(
+            f"| {_markdown(row['experiment_label'])} | "
+            f"{_number(row['odom_callback_count_delta'], 0)} | "
+            f"{_number(row['challenge_callback_count_delta'], 0)} | "
+            f"{_number(row['challenge_age_p95_sec'], 4)} / "
+            f"{_number(row['challenge_age_max_sec'], 4)} s | "
+            f"{_pct(row['ffb_publish_success_rate'])} | "
+            f"{_number(row['ffb_challenge_unavailable_frames'], 0)} |"
+        )
+
     diagnosis = lateral_pair_diagnosis(lateral_rows)
     lines.extend(["", "## 左右診断", ""])
     if diagnosis:

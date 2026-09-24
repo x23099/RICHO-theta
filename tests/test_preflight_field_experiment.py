@@ -91,11 +91,19 @@ class FieldExperimentPreflightTest(unittest.TestCase):
         self.assertEqual(result.status, "PASS")
         self.assertTrue(config_requires_challenge(config_path))
         self.assertIn("ffb_freshness=challenge", result.detail)
+        self.assertIn("ffb_challenge_max_age=0.06", result.detail)
 
         config = json.loads(config_path.read_text())
         config["collision_ffb_freshness_mode"] = "unsafe"
         self.assertTrue(any(
             "collision_ffb_freshness_mode" in item
+            for item in validate_experiment_config(config)
+        ))
+
+        config["collision_ffb_freshness_mode"] = "challenge"
+        config["collision_ffb_challenge_max_age_sec"] = 0.0
+        self.assertTrue(any(
+            "collision_ffb_challenge_max_age_sec" in item
             for item in validate_experiment_config(config)
         ))
 
