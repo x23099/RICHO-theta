@@ -25,6 +25,23 @@ from collision_ffb_publisher import (
 REQUIRED_FIELDS = {"frame", "time_sec", "collision_risk_level"}
 
 
+def validate_replay_settings(
+    *,
+    expected_output_mode: str,
+    freshness_mode: str,
+    acknowledge_physical_output: bool,
+) -> None:
+    """Require an explicit acknowledgement before hardware replay."""
+    if expected_output_mode not in {"dry_run", "hardware"}:
+        raise ValueError("expect_output_mode must be dry_run or hardware")
+    if freshness_mode not in {"clock", "challenge"}:
+        raise ValueError("freshness_mode must be clock or challenge")
+    if expected_output_mode == "hardware" and not acknowledge_physical_output:
+        raise ValueError(
+            "hardware replay requires --acknowledge-physical-output"
+        )
+
+
 def select_detection_member(
     members: list[str],
     session: str | None,
@@ -276,6 +293,9 @@ def write_results(
     cadence: str,
     cadence_duration_sec: float,
     cadence_rate_hz: float,
+    expected_output_mode: str,
+    freshness_mode: str,
+    acknowledge_physical_output: bool,
     command_rows: list[dict],
     status_rows: list[dict],
     summary: dict,
@@ -291,6 +311,9 @@ def write_results(
         "cadence": cadence,
         "cadence_duration_sec": cadence_duration_sec,
         "cadence_rate_hz": cadence_rate_hz,
+        "expected_output_mode": expected_output_mode,
+        "freshness_mode": freshness_mode,
+        "acknowledge_physical_output": acknowledge_physical_output,
         "summary": summary,
     }
     (output_dir / "replay_summary.json").write_text(
@@ -306,12 +329,24 @@ def write_results(
         f"`{cadence_duration_sec:.3f} s` / "
         f"`{cadence_rate_hz:.1f} Hz`"
     )
-    report = f"""# Recorded collision FFB dry-run replay
+    scope_note = (
+        "本結果は、録画済みriskからCollisionFfbPublisherBridge、ROS topic、"
+        "hardware adapter、G923物理出力要求、status記録までを対象とする。"
+        "G923の体感は自動判定しない。"
+        if expected_output_mode == "hardware"
+        else
+        "本結果は、録画済みriskからCollisionFfbPublisherBridge、ROS topic、"
+        "dry-run adapter、status記録までを対象とする。G923物理出力は行わない。"
+    )
+    report = f"""# Recorded collision FFB replay
 
 - 自動判定: **{summary['decision']}**
 - input: `{input_path.resolve()}`
 - session: `{session}`
 - replay rate: `{rate_hz:.1f} Hz`
+- expected output mode: `{expected_output_mode}`
+- freshness mode: `{freshness_mode}`
+- physical output acknowledged: `{acknowledge_physical_output}`
 {cadence_line}
 
 | 項目 | 値 |
@@ -327,8 +362,7 @@ def write_results(
 
 {checks}
 
-本結果は、録画済みriskから`CollisionFfbPublisherBridge`、ROS topic、dry-run adapter、
-status記録までを対象とする。映像認識の再計算とG923物理出力は行っていない。
+{scope_note}
 """
     (output_dir / "replay_report.md").write_text(report, encoding="utf-8")
 
@@ -351,10 +385,15 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--cadence-duration", type=float, default=0.5)
     parser.add_argument("--cadence-rate", type=float, default=30.0)
-    parser.add_argument("--expect-output-mode", default="dry_run")
+    parser.add_argument(
+        "--expect-output-mode",
+        choices=("dry_run", "hardware"),
+        default="dry_run",
+    )
     parser.add_argument(
         "--freshness-mode", choices=("clock", "challenge"), default="clock"
     )
+    parser.add_argument("--acknowledge-physical-output", action="store_true")
     parser.add_argument("--discovery-sec", type=float, default=1.0)
     parser.add_argument("--settle-sec", type=float, default=0.2)
     return parser
@@ -364,6 +403,11 @@ def main(args=None) -> int:
     """Replay one session and return 0 only for an automatic PASS."""
     parsed = build_parser().parse_args(args)
     try:
+        validate_replay_settings(
+            expected_output_mode=parsed.expect_output_mode,
+            freshness_mode=parsed.freshness_mode,
+            acknowledge_physical_output=parsed.acknowledge_physical_output,
+        )
         session, rows = read_detection_rows(parsed.input, parsed.session)
         if parsed.max_frames is not None:
             if parsed.max_frames <= 0:
@@ -395,6 +439,11 @@ def main(args=None) -> int:
             cadence=parsed.cadence,
             cadence_duration_sec=parsed.cadence_duration,
             cadence_rate_hz=parsed.cadence_rate,
+            expected_output_mode=parsed.expect_output_mode,
+            freshness_mode=parsed.freshness_mode,
+            acknowledge_physical_output=(
+                parsed.acknowledge_physical_output
+            ),
             command_rows=command_rows,
             status_rows=status_rows,
             summary=summary,

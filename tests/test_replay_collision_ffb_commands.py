@@ -10,6 +10,7 @@ from replay_collision_ffb_commands import (
     read_detection_rows,
     select_detection_member,
     summarize_replay,
+    validate_replay_settings,
 )
 
 
@@ -78,6 +79,22 @@ def test_read_detection_rows_from_tar_xz(tmp_path):
 
     assert session == "session_r01"
     assert len(rows) == 2
+
+
+def test_hardware_replay_requires_physical_acknowledgement():
+    """Recorded replay must not trigger hardware without a separate gate."""
+    with pytest.raises(ValueError, match="acknowledge-physical-output"):
+        validate_replay_settings(
+            expected_output_mode="hardware",
+            freshness_mode="challenge",
+            acknowledge_physical_output=False,
+        )
+
+    validate_replay_settings(
+        expected_output_mode="hardware",
+        freshness_mode="challenge",
+        acknowledge_physical_output=True,
+    )
 
 
 def test_replay_summary_passes_dry_run_transport():

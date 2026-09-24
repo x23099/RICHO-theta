@@ -124,6 +124,18 @@ parameter名は「試験済み」を意味する名前ではなく、起動ご�
 
 以上により「コード実装と自動試験」の条件は完了した。次はユーザーの明示承認後に、停止状態・0.03・1イベントの実機試験へ進む。
 
+### 0.03停止状態実機試験
+
+2026-09-24にchallenge＋hardware、3連、0.03、0.5秒、1イベントを実施した。command/statusは18/18、active applyは9/9、fault 0件、応答p95 1.036 ms、最終CLEAR停止0.568 msで、自動判定はPASSだった。各CLEARとshutdownでもinactiveを確認した。
+
+操作者は振動を知覚できなかったため、0.03は通知強度としては不採用とする。詳細は[0.03 r01診断](phase5_challenge_hardware_probe_0p03_r01_diagnosis.md)を参照する。次は既に別方式で実機確認済みの0.05を、同じchallenge方式で1イベントだけ確認する。
+
+### 0.05停止状態実機試験
+
+challenge＋hardware、3連、0.05、0.5秒、1イベントを実施した。command/statusは18/18、active applyは9/9、fault 0件、応答p95 1.175 ms、最終CLEAR停止0.786 msで、自動判定はPASSだった。操作者は3回の振動を明確に知覚し、終了時も`shutdown`で正常停止した。
+
+archive名は`0p03_r02`だったが、内部設定と全command/statusは0.05で一致している。詳細は[0.05 r01診断](phase5_challenge_hardware_probe_0p05_r01_diagnosis.md)を参照する。0.05・3連を採用条件とし、強度はこれ以上上げない。
+
 ## 承認後の実機試験順
 
 1. adapterだけをchallenge＋hardware、上限0.03で起動し、起動直後が無出力であることを確認する。
