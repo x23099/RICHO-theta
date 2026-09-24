@@ -1,0 +1,2 @@
+session,source,required_files_complete,csv_frames,frame_sequence_ok,timestamps_monotonic,time_alias_ok,raw_frames,bev_frames,detection_frames,video_counts_match,processing_timing_status,decision,reasons
+phase5_callback_fix_dryrun_r02_20260924_172351_631,/home/robo25/Downloads/phase5_callback_fix_dryrun_r02_20260924_172351_631.tar.xz::phase5_callback_fix_dryrun_r02_20260924_172351_631,1,897,1,1,1,897,897,897,1,PASS,PASS,

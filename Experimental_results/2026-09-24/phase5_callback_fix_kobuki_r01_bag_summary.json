@@ -1,0 +1,88 @@
+{
+  "camera_session": "phase5_callback_fix_dryrun_r01_20260924_170947_310",
+  "camera_frames": 919,
+  "camera_detected_frames": 919,
+  "camera_odom_available_frames": 573,
+  "camera_motion_frames": 103,
+  "camera_motion_elapsed_sec": [
+    10.731861,
+    14.121738
+  ],
+  "camera_warning_frames": 0,
+  "camera_warning_elapsed_sec": null,
+  "camera_active_frames": 0,
+  "camera_min_finite_ttc_sec": 4.602710723876953,
+  "camera_active_requested_magnitudes": [],
+  "camera_active_elapsed_sec": null,
+  "camera_active_sequences": [],
+  "camera_ffb_publish_failures": 919,
+  "bag_counts": {
+    "/collision/ffb_command": 0,
+    "/collision/ffb_status": 1,
+    "/collision/ffb_challenge": 0,
+    "/phase5/mock_odom": 2962
+  },
+  "bag_spans": {
+    "/collision/ffb_command": null,
+    "/collision/ffb_status": [
+      "2026-09-24T17:10:37.063+09:00",
+      "2026-09-24T17:10:37.063+09:00"
+    ],
+    "/collision/ffb_challenge": null,
+    "/phase5/mock_odom": [
+      "2026-09-24T17:08:41.056+09:00",
+      "2026-09-24T17:10:32.152+09:00"
+    ]
+  },
+  "bag_odom_speed_counts": {
+    "0.0": 2872,
+    "0.25": 90
+  },
+  "bag_positive_odom_count": 90,
+  "bag_positive_odom_span": [
+    "2026-09-24T17:09:58.000+09:00",
+    "2026-09-24T17:10:00.967+09:00"
+  ],
+  "bag_active_command_count": 0,
+  "bag_active_command_span": null,
+  "bag_active_command_sequences": [],
+  "bag_active_commands_with_known_challenge": 0,
+  "bag_active_challenge_roundtrip_ms": null,
+  "bag_command_risk_counts": {},
+  "bag_command_reasons": {},
+  "bag_status_modes": {
+    "dry_run": 1
+  },
+  "bag_status_actions": {
+    "stop": 1
+  },
+  "bag_active_status_count": 0,
+  "bag_active_status_span": null,
+  "bag_statuses_matching_active_sequences": [],
+  "active_command_to_status_bag_delay_ms": null,
+  "bag_active_output_count": 0,
+  "bag_fault_count": 0,
+  "bag_fault_categories": {},
+  "bag_fault_age_ms": null,
+  "bag_status_last": {
+    "stamp_ns": 1790237437024157039,
+    "frame_id": "",
+    "has_sequence": false,
+    "sequence": 0,
+    "source": "",
+    "output_mode": "dry_run",
+    "action": "stop",
+    "command_active": false,
+    "output_active": false,
+    "requested_magnitude": 0.0,
+    "applied_magnitude": 0.0,
+    "pattern": 0,
+    "reason": "shutdown",
+    "fault": false,
+    "bag_ns": 1790237437063906485
+  },
+  "active_sequence_intersection_camera_command": [],
+  "active_sequence_intersection_command_status": [],
+  "command_stamp_minus_bag_ms": null,
+  "active_command_stamp_minus_bag_ms": null
+}

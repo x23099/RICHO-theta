@@ -285,8 +285,11 @@ def main() -> None:
         "command_stamp_minus_bag_ms": {
             "min": min((row["stamp_ns"] - row["bag_ns"]) / 1e6 for row in commands),
             "max": max((row["stamp_ns"] - row["bag_ns"]) / 1e6 for row in commands),
-            "mean": sum((row["stamp_ns"] - row["bag_ns"]) / 1e6 for row in commands) / len(commands),
-        },
+            "mean": sum(
+                (row["stamp_ns"] - row["bag_ns"]) / 1e6
+                for row in commands
+            ) / len(commands),
+        } if commands else None,
         "active_command_stamp_minus_bag_ms": {
             "min": min(active_header_minus_bag_ms),
             "max": max(active_header_minus_bag_ms),

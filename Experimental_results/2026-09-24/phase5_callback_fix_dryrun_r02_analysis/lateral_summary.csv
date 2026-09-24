@@ -1,0 +1,2 @@
+experiment_label,source,frames,detected_frames,measurement_accepted_frames,normalized_area_rejection_frames,measurement_acceptance_rate,median_x_m,median_z_m,median_area_px,median_normalized_area,normalized_area_threshold,median_normalized_area_to_threshold
+phase5_callback_fix_dryrun_r02,/home/robo25/Downloads/phase5_callback_fix_dryrun_r02_20260924_172351_631.tar.xz::phase5_callback_fix_dryrun_r02_20260924_172351_631,897,897,897,0,1.0,-0.0221,1.1357,3862.5,4996.194645352706,1450.0,3.4456514795535904

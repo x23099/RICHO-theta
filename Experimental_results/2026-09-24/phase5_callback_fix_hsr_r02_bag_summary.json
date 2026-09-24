@@ -1,0 +1,285 @@
+{
+  "camera_session": "phase5_callback_fix_dryrun_r02_20260924_172351_631",
+  "camera_frames": 897,
+  "camera_detected_frames": 897,
+  "camera_odom_available_frames": 702,
+  "camera_motion_frames": 104,
+  "camera_motion_elapsed_sec": [
+    16.04101,
+    19.473963
+  ],
+  "camera_warning_frames": 104,
+  "camera_warning_elapsed_sec": [
+    16.107531,
+    19.541004
+  ],
+  "camera_active_frames": 9,
+  "camera_min_finite_ttc_sec": 4.511411190032959,
+  "camera_active_requested_magnitudes": [
+    0.25
+  ],
+  "camera_active_elapsed_sec": [
+    16.107531,
+    16.507715
+  ],
+  "camera_active_sequences": [
+    1326,
+    1327,
+    1328,
+    1332,
+    1333,
+    1334,
+    1336,
+    1337,
+    1338
+  ],
+  "camera_ffb_publish_failures": 0,
+  "bag_counts": {
+    "/collision/ffb_command": 1912,
+    "/collision/ffb_status": 1911,
+    "/collision/ffb_challenge": 6101,
+    "/phase5/mock_odom": 2755
+  },
+  "bag_spans": {
+    "/collision/ffb_command": [
+      "2026-09-24T17:23:21.881+09:00",
+      "2026-09-24T17:24:27.210+09:00"
+    ],
+    "/collision/ffb_status": [
+      "2026-09-24T17:23:21.882+09:00",
+      "2026-09-24T17:24:33.414+09:00"
+    ],
+    "/collision/ffb_challenge": [
+      "2026-09-24T17:22:31.403+09:00",
+      "2026-09-24T17:24:33.404+09:00"
+    ],
+    "/phase5/mock_odom": [
+      "2026-09-24T17:22:50.424+09:00",
+      "2026-09-24T17:24:29.947+09:00"
+    ]
+  },
+  "bag_odom_speed_counts": {
+    "0.0": 2674,
+    "0.25": 81
+  },
+  "bag_positive_odom_count": 81,
+  "bag_positive_odom_span": [
+    "2026-09-24T17:24:07.941+09:00",
+    "2026-09-24T17:24:10.608+09:00"
+  ],
+  "bag_active_command_count": 9,
+  "bag_active_command_span": [
+    "2026-09-24T17:24:07.728+09:00",
+    "2026-09-24T17:24:08.128+09:00"
+  ],
+  "bag_active_command_sequences": [
+    1326,
+    1327,
+    1328,
+    1332,
+    1333,
+    1334,
+    1336,
+    1337,
+    1338
+  ],
+  "bag_active_commands_with_known_challenge": 9,
+  "bag_active_challenge_roundtrip_ms": {
+    "min": 3.947154,
+    "max": 24.553656,
+    "median": 17.306014
+  },
+  "bag_command_risk_counts": {
+    "0": 1901,
+    "1": 2,
+    "2": 9
+  },
+  "bag_command_reasons": {
+    "no_alert": 1807,
+    "ttc_warning:cadence_triple": 9,
+    "cadence_gap:triple": 6,
+    "cadence_complete": 89,
+    "cadence_cancelled_by_clear": 1
+  },
+  "bag_status_modes": {
+    "dry_run": 1911
+  },
+  "bag_status_actions": {
+    "none": 1898,
+    "apply": 9,
+    "stop": 4
+  },
+  "bag_active_status_count": 9,
+  "bag_active_status_span": [
+    "2026-09-24T17:24:07.728+09:00",
+    "2026-09-24T17:24:08.129+09:00"
+  ],
+  "bag_statuses_matching_active_sequences": [
+    {
+      "sequence": 1326,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790238247728328086
+    },
+    {
+      "sequence": 1327,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790238247761740007
+    },
+    {
+      "sequence": 1328,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790238247795451660
+    },
+    {
+      "sequence": 1332,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790238247930037241
+    },
+    {
+      "sequence": 1333,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790238247962001016
+    },
+    {
+      "sequence": 1334,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790238247996384272
+    },
+    {
+      "sequence": 1336,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790238248066552621
+    },
+    {
+      "sequence": 1337,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790238248101826118
+    },
+    {
+      "sequence": 1338,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790238248129338963
+    }
+  ],
+  "active_command_to_status_bag_delay_ms": {
+    "min": 0.210788,
+    "max": 0.68186,
+    "median": 0.503732
+  },
+  "bag_active_output_count": 9,
+  "bag_fault_count": 0,
+  "bag_fault_categories": {},
+  "bag_fault_age_ms": null,
+  "bag_status_last": {
+    "stamp_ns": 1790238273414129269,
+    "frame_id": "",
+    "has_sequence": true,
+    "sequence": 1910,
+    "source": "bird_eye",
+    "output_mode": "dry_run",
+    "action": "stop",
+    "command_active": false,
+    "output_active": false,
+    "requested_magnitude": 0.0,
+    "applied_magnitude": 0.0,
+    "pattern": 0,
+    "reason": "shutdown",
+    "fault": false,
+    "bag_ns": 1790238273414648575
+  },
+  "active_sequence_intersection_camera_command": [
+    1326,
+    1327,
+    1328,
+    1332,
+    1333,
+    1334,
+    1336,
+    1337,
+    1338
+  ],
+  "active_sequence_intersection_command_status": [
+    1326,
+    1327,
+    1328,
+    1332,
+    1333,
+    1334,
+    1336,
+    1337,
+    1338
+  ],
+  "command_stamp_minus_bag_ms": {
+    "min": -28.751214,
+    "max": 15.804402,
+    "mean": 14.039329421548121
+  },
+  "active_command_stamp_minus_bag_ms": {
+    "min": 12.151015,
+    "max": 14.961122,
+    "median": 14.462811
+  }
+}

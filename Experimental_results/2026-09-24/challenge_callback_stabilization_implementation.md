@@ -44,15 +44,26 @@ challengeとODOMは、それぞれ専用の`SingleThreadedExecutor`スレッド�
   - 最新session/token `88/10`、challenge age 19.73 ms
   - `linear.x=0.25 m/s`を取得し、CLEAR publish成功
 
-実機2台・カメラ負荷下での効果は未確認であり、次回の`dry_run`再試験が最終確認となる。
+### 実機2台・カメラ負荷下の確認
 
-## 次回の合格条件
+`phase5_callback_fix_dryrun_r02`で最終確認を実施し、callback安定化とPC間dry-run FFB経路はPASSした。
 
-1. 録画前pilotで青箱を連続検知する。
-2. `collision_ffb_challenge_received_count`が録画中に単調増加する。
-3. `collision_ffb_challenge_age_sec`が原則0.06秒以内である。
-4. `no_recent_receiver_challenge`の長時間連続区間がない。
-5. 模擬ODOM送信中に`odom_received_count`が増え、`odom_available=1`が継続する。
-6. 青箱検知かつ接近条件でWARNING/activeが生成され、adapterの`dry_run` statusと対応する。
+- challenge受信増分1,529件（約30.6秒、期待値約1,530件）
+- challenge age平均9.77 ms、p95 19.19 ms、最大29.89 ms
+- 60 ms超過、3フレーム以上の受信停止、`no_recent_receiver_challenge`: すべて0件
+- FFB publish: 897/897成功
+- active 9 sequenceがカメラ・両PC bag・adapter statusで完全一致
+- adapter: 全件`dry_run`、active 9/9件を0.05で適用、fault 0件、最終inactive
 
-hardware出力と実走行は、この`dry_run`がPASSしてから行う。
+詳細は[callback修正後r02診断](phase5_callback_fix_dryrun_r02_diagnosis.md)を参照。標準解析の全体FAILは実効FPS 29.286によるもので、callback/FFB機能はPASSとして分離評価した。
+
+## 合格条件の結果
+
+1. 青箱連続検知: PASS（897/897）
+2. challenge受信累計の単調増加: PASS
+3. challenge age 0.06秒以内: PASS（最大0.02989秒）
+4. `no_recent_receiver_challenge`なし: PASS
+5. 模擬ODOM中の受信: PASS
+6. WARNING/activeとdry-run status対応: PASS（9/9 sequence）
+
+次はchallenge方式をhardwareへ展開する前の安全レビューを別作業として行う。現行adapterはchallenge + hardwareをコード上で禁止しており、当日の判断だけで解除しない。
