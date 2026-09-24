@@ -66,4 +66,9 @@ challengeとODOMは、それぞれ専用の`SingleThreadedExecutor`スレッド�
 5. 模擬ODOM中の受信: PASS
 6. WARNING/activeとdry-run status対応: PASS（9/9 sequence）
 
-次はchallenge方式をhardwareへ展開する前の安全レビューを別作業として行う。現行adapterはchallenge + hardwareをコード上で禁止しており、当日の判断だけで解除しない。
+challenge方式をhardwareへ展開する前の安全レビューを別作業として実施した。詳細は
+[challenge方式hardware展開前安全レビュー](phase5_challenge_hardware_safety_review.md)を参照する。
+
+レビュー結果は、コード実装は条件付きGO、現時点の物理出力はNO-GOである。現行adapterの
+challenge＋hardware禁止を単純に削除せず、専用の明示gate、challenge期限100 ms以下、
+watchdog 100 ms以下を追加してfake backend試験を完了してから、別途承認を得て停止状態の実機試験へ進む。
