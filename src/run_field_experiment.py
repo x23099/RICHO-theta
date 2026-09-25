@@ -4,16 +4,20 @@
 from __future__ import annotations
 
 import argparse
+import json
 import math
 import shlex
+import signal
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 
 REPOSITORY_DIR = Path(__file__).resolve().parents[1]
 PREFLIGHT_SCRIPT = Path(__file__).with_name("preflight_field_experiment.py")
 BIRD_EYE_SCRIPT = Path(__file__).with_name("bird_eye.py")
+FFB_RELAY_SCRIPT = Path(__file__).with_name("collision_ffb_relay.py")
 DEFAULT_CONFIG = Path(__file__).with_name(
     "bird_eye_config_raw_ground_distance.json"
 )
@@ -149,13 +153,66 @@ def build_bird_eye_command(args: argparse.Namespace) -> list[str]:
     ]
 
 
+def load_experiment_config(args: argparse.Namespace) -> dict:
+    with args.config.expanduser().resolve().open() as config_file:
+        return json.load(config_file)
+
+
+def build_ffb_relay_command(args: argparse.Namespace) -> list[str] | None:
+    """Build the optional camera-host relay command from the shared config."""
+    config = load_experiment_config(args)
+    if config.get("collision_ffb_relay_enabled", 0) != 1:
+        return None
+    return [
+        sys.executable,
+        str(FFB_RELAY_SCRIPT),
+        "--intent-topic",
+        str(config.get("collision_ffb_intent_topic", "/collision/ffb_intent")),
+        "--command-topic",
+        str(config.get("collision_ffb_command_topic", "/collision/ffb_command")),
+        "--challenge-topic",
+        str(
+            config.get(
+                "collision_ffb_challenge_topic", "/collision/ffb_challenge"
+            )
+        ),
+        "--expected-source",
+        str(config.get("collision_ffb_source", "bird_eye")),
+        "--intent-max-age-sec",
+        str(config.get("collision_ffb_intent_max_age_sec", 0.1)),
+        "--challenge-max-age-sec",
+        str(config.get("collision_ffb_challenge_max_age_sec", 0.06)),
+    ]
+
+
+def stop_ffb_relay(process) -> None:
+    """Stop the child relay and escalate only if graceful shutdown stalls."""
+    if process is None or process.poll() is not None:
+        return
+    process.send_signal(signal.SIGINT)
+    try:
+        process.wait(timeout=2.0)
+    except subprocess.TimeoutExpired:
+        process.terminate()
+        process.wait(timeout=2.0)
+
+
 def run_experiment(
     args: argparse.Namespace,
     runner=subprocess.run,
+    popen_factory=subprocess.Popen,
+    startup_wait=time.sleep,
 ) -> int:
     preflight_command = build_preflight_command(args)
     bird_eye_command = build_bird_eye_command(args)
+    try:
+        relay_command = build_ffb_relay_command(args)
+    except (OSError, json.JSONDecodeError) as error:
+        print(f"[FAIL] Cannot read experiment config: {error}", file=sys.stderr)
+        return 1
     print("Preflight:", shlex.join(preflight_command), flush=True)
+    if relay_command is not None:
+        print("FFB relay:", shlex.join(relay_command), flush=True)
     print("Application:", shlex.join(bird_eye_command), flush=True)
     if args.dry_run:
         print("Decision: DRY-RUN (no command executed)")
@@ -171,9 +228,28 @@ def run_experiment(
         )
         return preflight.returncode or 1
 
-    print("[PASS] Preflight passed; starting bird_eye.py...", flush=True)
-    application = runner(bird_eye_command, cwd=REPOSITORY_DIR)
-    return application.returncode
+    relay_process = None
+    try:
+        if relay_command is not None:
+            print(
+                "[PASS] Preflight passed; starting collision FFB relay...",
+                flush=True,
+            )
+            relay_process = popen_factory(relay_command, cwd=REPOSITORY_DIR)
+            startup_wait(0.5)
+            relay_status = relay_process.poll()
+            if relay_status is not None:
+                print(
+                    "[FAIL] Collision FFB relay exited during startup with "
+                    f"status {relay_status}; bird_eye.py was not started.",
+                    file=sys.stderr,
+                )
+                return relay_status or 1
+        print("[PASS] Preflight passed; starting bird_eye.py...", flush=True)
+        application = runner(bird_eye_command, cwd=REPOSITORY_DIR)
+        return application.returncode
+    finally:
+        stop_ffb_relay(relay_process)
 
 
 def main(argv: list[str] | None = None) -> int:

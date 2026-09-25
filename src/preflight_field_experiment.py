@@ -138,6 +138,17 @@ def validate_experiment_config(config):
     }:
         errors.append("unsupported blue_ground_contact_illumination_mode")
     ffb_enabled = config.get("collision_ffb_publish_enabled", 0)
+    relay_enabled = config.get("collision_ffb_relay_enabled", 0)
+    if (
+        not isinstance(relay_enabled, int)
+        or isinstance(relay_enabled, bool)
+        or relay_enabled not in {0, 1}
+    ):
+        errors.append("collision_ffb_relay_enabled must be integer 0 or 1")
+    elif relay_enabled == 1 and ffb_enabled != 1:
+        errors.append(
+            "collision_ffb_relay_enabled requires collision_ffb_publish_enabled=1"
+        )
     if (
         not isinstance(ffb_enabled, int)
         or isinstance(ffb_enabled, bool)
@@ -241,6 +252,42 @@ def validate_experiment_config(config):
                 "collision_ffb_challenge_recovery_sec must be within "
                 "(0, 0.1]"
             )
+        if relay_enabled == 1:
+            intent_topic = config.get("collision_ffb_intent_topic")
+            challenge_topic = config.get(
+                "collision_ffb_challenge_topic", "/collision/ffb_challenge"
+            )
+            topics = (
+                intent_topic,
+                config.get("collision_ffb_command_topic"),
+                challenge_topic,
+            )
+            if not all(
+                isinstance(topic, str) and topic.strip() for topic in topics
+            ):
+                errors.append(
+                    "relay intent, command, and challenge topics must be "
+                    "non-empty strings"
+                )
+            elif len(set(topics)) != len(topics):
+                errors.append(
+                    "relay intent, command, and challenge topics must be distinct"
+                )
+            intent_max_age = config.get("collision_ffb_intent_max_age_sec")
+            if (
+                not isinstance(intent_max_age, (int, float))
+                or isinstance(intent_max_age, bool)
+                or not math.isfinite(intent_max_age)
+                or not 0.0 < intent_max_age <= 0.1
+            ):
+                errors.append(
+                    "collision_ffb_intent_max_age_sec must be within (0, 0.1]"
+                )
+            if freshness_mode != "challenge":
+                errors.append(
+                    "collision_ffb_relay_enabled requires "
+                    "collision_ffb_freshness_mode='challenge'"
+                )
     return errors
 
 
@@ -314,6 +361,11 @@ def check_config(config_path):
         if ffb_enabled
         else "disabled"
     )
+    relay_detail = (
+        f"enabled:{config.get('collision_ffb_intent_topic')}"
+        if config.get("collision_ffb_relay_enabled", 0) == 1
+        else "disabled"
+    )
     return CheckResult(
         "Experiment config",
         "PASS",
@@ -326,6 +378,7 @@ def check_config(config_path):
         f"max_aspect={config.get('blue_ground_contact_max_aspect_ratio', 'off')}, "
         f"illumination={config.get('blue_ground_contact_illumination_mode', 'none')}, "
         f"collision_ffb={ffb_detail}, "
+        f"ffb_relay={relay_detail}, "
         f"ffb_cadence={config.get('collision_ffb_cadence', 'continuous')}, "
         "ffb_unknown=single:"
         f"{config.get('collision_ffb_unknown_pulse_duration_sec', 0.1)}s, "

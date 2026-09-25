@@ -1,0 +1,73 @@
+{
+  "decision": "FAIL",
+  "recording_window_jst": [
+    "2026-09-25T16:49:55.362+09:00",
+    "2026-09-25T16:50:45.927+09:00"
+  ],
+  "camera": {
+    "frames": 1483,
+    "duration_sec": 50.565239,
+    "effective_fps": 29.308671911943303,
+    "detected_frames": 829,
+    "motion_frames": 182,
+    "warning_frames": 183,
+    "unknown_frames": 0,
+    "active_command_frames": 5,
+    "publish_failure_frames": 104,
+    "publish_failure_reasons": {
+      "receiver_challenge_recovery_cooldown": 64,
+      "no_recent_receiver_challenge": 29,
+      "receiver_challenge_already_used": 11
+    },
+    "recovery_reason_frames": {
+      "callback_gap": 94,
+      "sender_age": 18
+    },
+    "maximum_callback_gap_sec": 0.27305890600018756,
+    "maximum_sender_age_sec": 0.20578377899983025
+  },
+  "hsr_bag_in_recording_window": {
+    "challenge_count": 2510,
+    "command_count": 1378,
+    "status_count": 1363,
+    "mock_odom_count": 742,
+    "positive_odom_count": 180,
+    "active_command_count": 5,
+    "active_apply_count": 3,
+    "fault_count": 21,
+    "fault_categories": {
+      "invalid_request:unknown_receiver_token": 18,
+      "invalid_request:expired_receiver_token": 2,
+      "watchdog_timeout": 1
+    },
+    "command_token_reuse_count": 0,
+    "known_command_token_count": 1377,
+    "command_token_age_ms": {
+      "median": 17.0,
+      "p95": 48.0,
+      "max": 403.0,
+      "over_60_ms_count": 48,
+      "over_100_ms_count": 22
+    },
+    "output_modes": {
+      "dry_run": 1363
+    },
+    "last_status": {
+      "action": "none",
+      "output_active": false,
+      "fault": false,
+      "reason": "inactive:clear"
+    }
+  },
+  "checks": {
+    "recording_complete": true,
+    "dry_run_only": true,
+    "single_use_token": true,
+    "cadence_not_retriggered": true,
+    "unknown_observed": false,
+    "all_active_commands_applied": false,
+    "adapter_fault_zero": false,
+    "final_inactive": true,
+    "fps_within_one_percent": false
+  }
+}

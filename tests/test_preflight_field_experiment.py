@@ -114,6 +114,34 @@ class FieldExperimentPreflightTest(unittest.TestCase):
         self.assertIn("ffb_challenge_recovery=0.1", result.detail)
         self.assertTrue(config_requires_challenge(config_path))
 
+    def test_accepts_v10_separate_relay_configuration(self):
+        config_path = (
+            SRC_DIR / "bird_eye_config_ttc_v10_ffb_relay_20260925.json"
+        )
+
+        result = check_config(config_path)
+
+        self.assertEqual(result.status, "PASS")
+        self.assertIn("ffb_relay=enabled:/collision/ffb_intent", result.detail)
+        self.assertTrue(config_requires_ffb(config_path))
+        self.assertTrue(config_requires_challenge(config_path))
+
+    def test_rejects_unsafe_relay_configuration(self):
+        config = json.loads(
+            (
+                SRC_DIR / "bird_eye_config_ttc_v10_ffb_relay_20260925.json"
+            ).read_text()
+        )
+        config["collision_ffb_freshness_mode"] = "clock"
+        config["collision_ffb_intent_topic"] = "/collision/ffb_command"
+        config["collision_ffb_intent_max_age_sec"] = 0.11
+
+        errors = validate_experiment_config(config)
+
+        self.assertTrue(any("must be distinct" in item for item in errors))
+        self.assertTrue(any("intent_max_age_sec" in item for item in errors))
+        self.assertTrue(any("requires" in item for item in errors))
+
     def test_challenge_config_is_explicit_and_validated(self):
         config_path = (
             SRC_DIR

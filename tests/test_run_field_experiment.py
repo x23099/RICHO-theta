@@ -4,6 +4,7 @@ import subprocess
 import sys
 import unittest
 from pathlib import Path
+from unittest.mock import Mock
 
 
 SRC_DIR = Path(__file__).resolve().parents[1] / "src"
@@ -11,6 +12,7 @@ sys.path.insert(0, str(SRC_DIR))
 
 from run_field_experiment import (  # noqa: E402
     build_bird_eye_command,
+    build_ffb_relay_command,
     build_parser,
     build_preflight_command,
     run_experiment,
@@ -100,6 +102,96 @@ class FieldExperimentRunnerTest(unittest.TestCase):
         self.assertEqual(len(calls), 2)
         self.assertIn("preflight_field_experiment.py", calls[0][0][1])
         self.assertIn("bird_eye.py", calls[1][0][1])
+
+    def test_v10_starts_and_stops_relay_around_application(self):
+        args = parsed_args(
+            "--config",
+            str(SRC_DIR / "bird_eye_config_ttc_v10_ffb_relay_20260925.json"),
+        )
+        runner_calls = []
+
+        def runner(command, cwd):
+            runner_calls.append((command, cwd))
+            return subprocess.CompletedProcess(command, 0)
+
+        class FakeProcess:
+            def __init__(self):
+                self.signal = None
+                self.waited = False
+
+            def poll(self):
+                return None
+
+            def send_signal(self, sent_signal):
+                self.signal = sent_signal
+
+            def wait(self, timeout):
+                self.waited = True
+                return 0
+
+        process = FakeProcess()
+        popen_calls = []
+
+        def popen_factory(command, cwd):
+            popen_calls.append((command, cwd))
+            return process
+
+        with contextlib.redirect_stdout(io.StringIO()):
+            result = run_experiment(
+                args,
+                runner=runner,
+                popen_factory=popen_factory,
+                startup_wait=lambda _seconds: None,
+            )
+
+        self.assertEqual(result, 0)
+        self.assertEqual(len(runner_calls), 2)
+        self.assertEqual(len(popen_calls), 1)
+        self.assertIn("collision_ffb_relay.py", popen_calls[0][0][1])
+        self.assertEqual(process.signal, __import__("signal").SIGINT)
+        self.assertTrue(process.waited)
+
+    def test_v10_relay_command_keeps_topics_and_age_limits_explicit(self):
+        args = parsed_args(
+            "--config",
+            str(SRC_DIR / "bird_eye_config_ttc_v10_ffb_relay_20260925.json"),
+        )
+
+        command = build_ffb_relay_command(args)
+
+        self.assertIn("/collision/ffb_intent", command)
+        self.assertIn("/collision/ffb_command", command)
+        self.assertIn("/collision/ffb_challenge", command)
+        self.assertEqual(
+            command[command.index("--challenge-max-age-sec") + 1], "0.06"
+        )
+
+    def test_relay_startup_failure_does_not_start_camera(self):
+        args = parsed_args(
+            "--config",
+            str(SRC_DIR / "bird_eye_config_ttc_v10_ffb_relay_20260925.json"),
+        )
+        runner_calls = []
+
+        def runner(command, cwd):
+            runner_calls.append((command, cwd))
+            return subprocess.CompletedProcess(command, 0)
+
+        process = Mock()
+        process.poll.return_value = 9
+        output = io.StringIO()
+        with contextlib.redirect_stdout(io.StringIO()):
+            with contextlib.redirect_stderr(output):
+                result = run_experiment(
+                    args,
+                    runner=runner,
+                    popen_factory=lambda *_args, **_kwargs: process,
+                    startup_wait=lambda _seconds: None,
+                )
+
+        self.assertEqual(result, 9)
+        self.assertEqual(len(runner_calls), 1)
+        self.assertIn("bird_eye.py was not started", output.getvalue())
 
     def test_dry_run_executes_nothing_and_quotes_paths(self):
         calls = []

@@ -1,0 +1,6 @@
+sequence,camera_time_sec,camera_sender_age_ms,hsr_challenge_roundtrip_ms,command_reason,adapter_result,adapter_fault
+6060,10.839116,9.484,109.000,ttc_warning:cadence_triple,status_not_observed,
+6061,10.870160,0.472,69.000,ttc_warning:cadence_triple,apply_then_watchdog,watchdog_timeout
+6063,10.937767,25.703,269.000,ttc_warning:cadence_triple,rejected,unknown_receiver_token
+6066,11.234468,10.993,59.000,ttc_warning:cadence_triple,apply,
+6067,11.262177,15.040,65.000,ttc_warning:cadence_triple,apply,

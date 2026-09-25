@@ -1,6 +1,7 @@
 import sys
 import threading
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -133,6 +134,28 @@ def _bridge(ros_api, **kwargs):
 
 
 class CollisionFfbPublisherTest(unittest.TestCase):
+    def test_relay_config_publishes_local_intent_without_gui_challenge(self):
+        window = CalibrationWindow.__new__(CalibrationWindow)
+        window.params = {
+            "collision_ffb_publish_enabled": 1,
+            "collision_ffb_relay_enabled": 1,
+            "collision_ffb_intent_topic": "/collision/ffb_intent",
+            "collision_ffb_command_topic": "/collision/ffb_command",
+            "collision_ffb_freshness_mode": "challenge",
+        }
+        fake_publisher = SimpleNamespace(topic="/collision/ffb_intent")
+
+        with patch(
+            "bird_eye.CollisionFfbPublisherBridge",
+            return_value=fake_publisher,
+        ) as bridge_type:
+            publisher = window.create_collision_ffb_publisher()
+
+        self.assertIs(publisher, fake_publisher)
+        kwargs = bridge_type.call_args.kwargs
+        self.assertEqual(kwargs["topic"], "/collision/ffb_intent")
+        self.assertEqual(kwargs["freshness_mode"], "clock")
+
     def test_challenge_executor_receives_without_frame_polling(self):
         ros_api = _RosApi()
         executor = _ChallengeExecutor()

@@ -735,7 +735,11 @@ class CalibrationWindow(QWidget):
             "blue_collision_warning_hold_sec": 0.8,
             "blue_collision_forward_motion_threshold_mps": 0.03,
             "collision_ffb_publish_enabled": 0,
+            "collision_ffb_relay_enabled": 0,
+            "collision_ffb_intent_topic": "/collision/ffb_intent",
+            "collision_ffb_intent_max_age_sec": 0.1,
             "collision_ffb_command_topic": "/collision/ffb_command",
+            "collision_ffb_challenge_topic": "/collision/ffb_challenge",
             "collision_ffb_source": "bird_eye",
             "collision_ffb_warning_magnitude": 0.25,
             "collision_ffb_critical_magnitude": 0.40,
@@ -839,7 +843,11 @@ class CalibrationWindow(QWidget):
             "blue_collision_warning_hold_sec": 0.8,
             "blue_collision_forward_motion_threshold_mps": 0.03,
             "collision_ffb_publish_enabled": 0,
+            "collision_ffb_relay_enabled": 0,
+            "collision_ffb_intent_topic": "/collision/ffb_intent",
+            "collision_ffb_intent_max_age_sec": 0.1,
             "collision_ffb_command_topic": "/collision/ffb_command",
+            "collision_ffb_challenge_topic": "/collision/ffb_challenge",
             "collision_ffb_source": "bird_eye",
             "collision_ffb_warning_magnitude": 0.25,
             "collision_ffb_critical_magnitude": 0.40,
@@ -878,10 +886,18 @@ class CalibrationWindow(QWidget):
     def create_collision_ffb_publisher(self):
         if self.params.get("collision_ffb_publish_enabled", 0) != 1:
             return None
-        publisher = CollisionFfbPublisherBridge(
-            topic=self.params.get(
+        relay_enabled = self.params.get("collision_ffb_relay_enabled", 0) == 1
+        publish_topic = (
+            self.params.get(
+                "collision_ffb_intent_topic", "/collision/ffb_intent"
+            )
+            if relay_enabled
+            else self.params.get(
                 "collision_ffb_command_topic", "/collision/ffb_command"
-            ),
+            )
+        )
+        publisher = CollisionFfbPublisherBridge(
+            topic=publish_topic,
             source=self.params.get("collision_ffb_source", "bird_eye"),
             warning_magnitude=self.params.get(
                 "collision_ffb_warning_magnitude", 0.25
@@ -904,18 +920,28 @@ class CalibrationWindow(QWidget):
             unknown_pulse_duration_sec=self.params.get(
                 "collision_ffb_unknown_pulse_duration_sec", 0.1
             ),
-            freshness_mode=self.params.get(
-                "collision_ffb_freshness_mode", "clock"
+            # A separate relay owns challenge reception in relay mode.  The
+            # camera process only publishes same-host, timestamped intents.
+            freshness_mode=(
+                "clock"
+                if relay_enabled
+                else self.params.get(
+                    "collision_ffb_freshness_mode", "clock"
+                )
             ),
             challenge_max_age_sec=self.params.get(
                 "collision_ffb_challenge_max_age_sec", 0.1
+            ),
+            challenge_topic=self.params.get(
+                "collision_ffb_challenge_topic", "/collision/ffb_challenge"
             ),
             challenge_recovery_sec=self.params.get(
                 "collision_ffb_challenge_recovery_sec", 0.1
             ),
         )
+        transport_name = "intents" if relay_enabled else "commands"
         print(
-            "[INFO] Publishing collision FFB commands: "
+            f"[INFO] Publishing collision FFB {transport_name}: "
             f"{publisher.topic} (device-independent)"
         )
         return publisher
@@ -929,7 +955,25 @@ class CalibrationWindow(QWidget):
                 ),
                 "source": self.params.get("collision_ffb_source", "bird_eye"),
             }
-        return self.collision_ffb_publisher.describe()
+        metadata = self.collision_ffb_publisher.describe()
+        relay_enabled = self.params.get("collision_ffb_relay_enabled", 0) == 1
+        metadata.update(
+            {
+                "transport_role": "intent" if relay_enabled else "command",
+                "relay_enabled": relay_enabled,
+                "final_command_topic": self.params.get(
+                    "collision_ffb_command_topic", "/collision/ffb_command"
+                ),
+                "downstream_freshness_mode": (
+                    self.params.get(
+                        "collision_ffb_freshness_mode", "clock"
+                    )
+                    if relay_enabled
+                    else ""
+                ),
+            }
+        )
+        return metadata
 
     def publish_collision_ffb(self):
         risk_level = (

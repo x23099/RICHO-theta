@@ -61,3 +61,24 @@ PY
 ```
 
 後続の実カメラ試験から、WARNING開始フレームを生画像のまま追加した。
+
+## `phase5_v9_warning_raw_frame_0318.png`
+
+- 内容: v9 challenge回復試験でWARNINGのFFB activeが開始した時点の生カメラ画像。
+- 元録画: `phase5_v9_camera_unknown_dryrun_r01_20260925_164955_362.tar.xz`内の`raw.avi`。
+- session: `phase5_v9_camera_unknown_dryrun_r01_20260925_164955_362`
+- CSV frame / time: `318` / `10.839116 s`
+- 条件: 青箱検出、模擬ODOM `0.25 m/s`、risk `WARNING`、FFB sequence `6060`。
+- 画像処理: なし。切り抜き、リサイズ、注釈、色調整は行っていない。元解像度`1280×720`のフレームをPNG化した。
+- archive SHA-256: `d2611d77fd7fa9b9236cb188be4a52d4bbe7a33ae766c9f694e1b30492dc8838`
+- 画像SHA-256: `cd62302d6c49e0b2737bd8c733ef903f48c1d80afa9b0524c8ef9dc8e9bccbf0`
+
+## `phase5_v9_occlusion_raw_frame_0504.png`
+
+- 内容: v9試験で人が黒い遮蔽物を使い青箱を完全に覆った時点の生カメラ画像。
+- 元録画・session: `phase5_v9_camera_unknown_dryrun_r01_20260925_164955_362`
+- CSV frame / time: `504` / `17.247918 s`
+- 条件: 青箱未検出開始。ただし模擬0.25 m/sはすでに終了し、riskは`CLEAR`だった。
+- 画像処理: なし。切り抜き、リサイズ、注釈、色調整は行っていない。元解像度`1280×720`のフレームをPNG化した。
+- archive SHA-256: `d2611d77fd7fa9b9236cb188be4a52d4bbe7a33ae766c9f694e1b30492dc8838`
+- 画像SHA-256: `698d8010880bb774c24fea337cb0ebce7f67d548bac57235c7133cdd3ae6b80e`
