@@ -1,0 +1,2 @@
+experiment_label,source,frames,detected_frames,measurement_accepted_frames,normalized_area_rejection_frames,measurement_acceptance_rate,median_x_m,median_z_m,median_area_px,median_normalized_area,normalized_area_threshold,median_normalized_area_to_threshold
+phase5_v10_relay_dryrun_r01,/home/robo25/Downloads/phase5_v10_relay_dryrun_r01_20260925_173142_491.tar.xz::phase5_v10_relay_dryrun_r01_20260925_173142_491,2297,2048,1662,0,0.8115234375,-0.0832,1.0449,1947.75,2159.6111084650106,1450.0,1.4893869713551797

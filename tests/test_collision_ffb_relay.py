@@ -1,4 +1,5 @@
 import sys
+import json
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
@@ -52,6 +53,11 @@ class _Challenge:
     pass
 
 
+class _String:
+    def __init__(self):
+        self.data = ""
+
+
 class _Now:
     def __init__(self, seconds):
         self.nanoseconds = int(seconds * 1_000_000_000)
@@ -92,12 +98,14 @@ class _Node:
     def __init__(self, seconds):
         self.clock = _Clock(seconds)
         self.logger = _Logger()
-        self.publisher = _Publisher()
+        self.publishers = {}
         self.subscriptions = {}
         self.destroyed = False
 
-    def create_publisher(self, _message_type, _topic, _qos):
-        return self.publisher
+    def create_publisher(self, _message_type, topic, _qos):
+        publisher = _Publisher()
+        self.publishers[topic] = publisher
+        return publisher
 
     def create_subscription(self, _message_type, topic, callback, _qos):
         self.subscriptions[topic] = callback
@@ -133,21 +141,63 @@ class _RosApi:
 
 class CollisionFfbRelayGateTest(unittest.TestCase):
     def test_accepts_fresh_intent_once_with_fresh_challenge(self):
-        gate = CollisionFfbRelayGate()
+        gate = CollisionFfbRelayGate(challenge_stable_sec=0.01)
         self.assertTrue(gate.receive_challenge(_challenge(), 20.0))
+        self.assertTrue(gate.receive_challenge(_challenge(token=10), 20.01))
 
         decision = gate.authorize(
-            _intent(), now_ros_sec=10.02, now_monotonic=20.01
+            _intent(), now_ros_sec=10.02, now_monotonic=20.02
         )
         reused = gate.authorize(
-            _intent(), now_ros_sec=10.03, now_monotonic=20.02
+            _intent(), now_ros_sec=10.03, now_monotonic=20.03
         )
 
         self.assertTrue(decision.accepted)
         self.assertEqual(decision.receiver_session_id, 3)
-        self.assertEqual(decision.receiver_token, 9)
+        self.assertEqual(decision.receiver_token, 10)
         self.assertFalse(reused.accepted)
         self.assertEqual(reused.reason, "receiver_challenge_already_used")
+
+    def test_rejects_until_challenge_stream_is_stable(self):
+        gate = CollisionFfbRelayGate(challenge_stable_sec=1.0)
+        gate.receive_challenge(_challenge(token=1), 20.0)
+
+        startup = gate.authorize(
+            _intent(), now_ros_sec=10.01, now_monotonic=20.01
+        )
+        for token in range(2, 22):
+            gate.receive_challenge(
+                _challenge(token=token), 20.0 + (token - 1) * 0.05
+            )
+        stable = gate.authorize(
+            _intent(), now_ros_sec=10.02, now_monotonic=21.01
+        )
+
+        self.assertFalse(startup.accepted)
+        self.assertEqual(
+            startup.reason, "receiver_challenge_stream_not_stable"
+        )
+        self.assertTrue(stable.accepted)
+        self.assertGreaterEqual(stable.challenge_stable_age_sec, 1.0)
+
+    def test_challenge_gap_resets_stability(self):
+        gate = CollisionFfbRelayGate(
+            challenge_max_age_sec=0.06,
+            challenge_stable_sec=0.1,
+        )
+        gate.receive_challenge(_challenge(token=1), 20.0)
+        gate.receive_challenge(_challenge(token=2), 20.05)
+        gate.receive_challenge(_challenge(token=3), 20.15)
+
+        decision = gate.authorize(
+            _intent(), now_ros_sec=10.02, now_monotonic=20.16
+        )
+
+        self.assertFalse(decision.accepted)
+        self.assertEqual(
+            decision.reason, "receiver_challenge_stream_not_stable"
+        )
+        self.assertAlmostEqual(decision.challenge_stable_age_sec, 0.01)
 
     def test_rejects_stale_intent_before_consuming_token(self):
         gate = CollisionFfbRelayGate()
@@ -197,24 +247,38 @@ class CollisionFfbRelayGateTest(unittest.TestCase):
 class CollisionFfbRelayRosTest(unittest.TestCase):
     def test_forwards_authorized_intent_with_receiver_token(self):
         ros_api = _RosApi()
-        monotonic_values = iter((20.0, 20.01))
+        monotonic_values = iter((20.0, 20.01, 20.02))
         relay = CollisionFfbRelay(
             ros_api=ros_api,
             command_type=_Command,
             challenge_type=_Challenge,
+            diagnostic_type=_String,
             qos_profile="qos",
+            challenge_stable_sec=0.01,
             monotonic_clock=lambda: next(monotonic_values),
         )
 
         ros_api.node.subscriptions["/collision/ffb_challenge"](_challenge())
+        ros_api.node.subscriptions["/collision/ffb_challenge"](
+            _challenge(token=10)
+        )
         ros_api.node.subscriptions["/collision/ffb_intent"](_intent())
 
-        self.assertEqual(len(ros_api.node.publisher.messages), 1)
-        message = ros_api.node.publisher.messages[0]
+        commands = ros_api.node.publishers["/collision/ffb_command"].messages
+        diagnostics = ros_api.node.publishers[
+            "/collision/ffb_relay_diagnostics"
+        ].messages
+        self.assertEqual(len(commands), 1)
+        self.assertEqual(len(diagnostics), 1)
+        message = commands[0]
         self.assertEqual(message.header.stamp, "relay-stamp")
         self.assertEqual(message.sequence, 7)
         self.assertEqual(message.receiver_session_id, 3)
-        self.assertEqual(message.receiver_token, 9)
+        self.assertEqual(message.receiver_token, 10)
+        diagnostic = json.loads(diagnostics[0].data)
+        self.assertTrue(diagnostic["accepted"])
+        self.assertEqual(diagnostic["outcome"], "forwarded")
+        self.assertGreaterEqual(diagnostic["challenge_stable_age_sec"], 0.01)
         relay.close()
 
     def test_rejected_intent_publishes_nothing(self):
@@ -223,13 +287,23 @@ class CollisionFfbRelayRosTest(unittest.TestCase):
             ros_api=ros_api,
             command_type=_Command,
             challenge_type=_Challenge,
+            diagnostic_type=_String,
             qos_profile="qos",
             monotonic_clock=lambda: 20.0,
         )
 
         ros_api.node.subscriptions["/collision/ffb_intent"](_intent())
 
-        self.assertEqual(ros_api.node.publisher.messages, [])
+        self.assertEqual(
+            ros_api.node.publishers["/collision/ffb_command"].messages, []
+        )
+        diagnostics = ros_api.node.publishers[
+            "/collision/ffb_relay_diagnostics"
+        ].messages
+        self.assertEqual(len(diagnostics), 1)
+        diagnostic = json.loads(diagnostics[0].data)
+        self.assertFalse(diagnostic["accepted"])
+        self.assertEqual(diagnostic["reason"], "stale_intent")
         self.assertIn("stale_intent", ros_api.node.logger.warnings[-1])
         relay.close()
 

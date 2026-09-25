@@ -176,12 +176,21 @@ def build_ffb_relay_command(args: argparse.Namespace) -> list[str] | None:
                 "collision_ffb_challenge_topic", "/collision/ffb_challenge"
             )
         ),
+        "--diagnostic-topic",
+        str(
+            config.get(
+                "collision_ffb_relay_diagnostic_topic",
+                "/collision/ffb_relay_diagnostics",
+            )
+        ),
         "--expected-source",
         str(config.get("collision_ffb_source", "bird_eye")),
         "--intent-max-age-sec",
         str(config.get("collision_ffb_intent_max_age_sec", 0.1)),
         "--challenge-max-age-sec",
         str(config.get("collision_ffb_challenge_max_age_sec", 0.06)),
+        "--challenge-stable-sec",
+        str(config.get("collision_ffb_challenge_stable_sec", 1.0)),
     ]
 
 

@@ -748,6 +748,7 @@ class CalibrationWindow(QWidget):
             "collision_ffb_cadence_duration_sec": 0.5,
             "collision_ffb_cadence_rate_hz": 30.0,
             "collision_ffb_unknown_pulse_duration_sec": 0.1,
+            "collision_ffb_unknown_rearm_valid_sec": 0.5,
             "collision_ffb_challenge_recovery_sec": 0.1,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
@@ -856,6 +857,7 @@ class CalibrationWindow(QWidget):
             "collision_ffb_cadence_duration_sec": 0.5,
             "collision_ffb_cadence_rate_hz": 30.0,
             "collision_ffb_unknown_pulse_duration_sec": 0.1,
+            "collision_ffb_unknown_rearm_valid_sec": 0.5,
             "collision_ffb_challenge_recovery_sec": 0.1,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
@@ -920,6 +922,9 @@ class CalibrationWindow(QWidget):
             unknown_pulse_duration_sec=self.params.get(
                 "collision_ffb_unknown_pulse_duration_sec", 0.1
             ),
+            unknown_rearm_valid_sec=self.params.get(
+                "collision_ffb_unknown_rearm_valid_sec", 0.5
+            ),
             # A separate relay owns challenge reception in relay mode.  The
             # camera process only publishes same-host, timestamped intents.
             freshness_mode=(
@@ -981,13 +986,20 @@ class CalibrationWindow(QWidget):
             if self.last_blue_collision is not None
             else "CLEAR"
         )
+        measurement_valid = bool(
+            self.last_blue_collision is not None
+            and self.last_blue_collision.get("measurement_valid", False)
+        )
         if self.collision_ffb_publisher is None:
             self.last_collision_ffb_publish = empty_publish_record(
                 enabled=False, risk_level=risk_level
             )
         else:
             self.last_collision_ffb_publish = (
-                self.collision_ffb_publisher.publish_risk(risk_level)
+                self.collision_ffb_publisher.publish_risk(
+                    risk_level,
+                    measurement_valid=measurement_valid,
+                )
             )
         return dict(self.last_collision_ffb_publish)
 

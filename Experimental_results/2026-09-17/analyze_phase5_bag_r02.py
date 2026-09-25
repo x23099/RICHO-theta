@@ -8,6 +8,7 @@ import csv
 import io
 import json
 import math
+import re
 import sqlite3
 import struct
 import tarfile
@@ -78,6 +79,14 @@ def decode_challenge(data: bytes) -> dict:
     }
 
 
+def decode_relay_diagnostic(data: bytes) -> dict:
+    reader = CDR(data)
+    payload = json.loads(reader.text())
+    if not isinstance(payload, dict):
+        raise ValueError("relay diagnostic JSON must be an object")
+    return payload
+
+
 def decode_status(data: bytes) -> dict:
     reader = CDR(data)
     result = reader.header()
@@ -133,6 +142,19 @@ def camera_rows(path: Path) -> tuple[str, list[dict]]:
             return members[0].name.split("/")[0], list(csv.DictReader(text_stream))
 
 
+def camera_recording_window(session: str, rows: list[dict]) -> tuple[int, int] | None:
+    match = re.search(r"_(\d{8})_(\d{6})_(\d{3})$", session)
+    if match is None or not rows:
+        return None
+    date_text, time_text, millisecond_text = match.groups()
+    started = datetime.strptime(
+        date_text + time_text, "%Y%m%d%H%M%S"
+    ).replace(tzinfo=ZoneInfo("Asia/Tokyo"))
+    start_ns = int(started.timestamp() * 1e9) + int(millisecond_text) * 1_000_000
+    end_ns = start_ns + int(float(rows[-1]["time_sec"]) * 1e9)
+    return start_ns, end_ns
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--camera-archive", type=Path, required=True)
@@ -148,9 +170,11 @@ def main() -> None:
     connection = sqlite3.connect(f"file:{args.bag_db}?mode=ro", uri=True)
     topic_names = dict(connection.execute("SELECT id, name FROM topics"))
     decoders = {
+        "/collision/ffb_intent": decode_command,
         "/collision/ffb_command": decode_command,
         "/collision/ffb_status": decode_status,
         "/collision/ffb_challenge": decode_challenge,
+        "/collision/ffb_relay_diagnostics": decode_relay_diagnostic,
         "/phase5/mock_odom": decode_odom,
     }
     events: dict[str, list[dict]] = {topic: [] for topic in decoders}
@@ -158,16 +182,21 @@ def main() -> None:
         "SELECT topic_id, timestamp, data FROM messages ORDER BY timestamp"
     ):
         topic = topic_names[topic_id]
+        if topic not in decoders:
+            continue
         decoded = decoders[topic](data)
         decoded["bag_ns"] = bag_ns
         events[topic].append(decoded)
     connection.close()
 
+    intents = events["/collision/ffb_intent"]
     commands = events["/collision/ffb_command"]
     statuses = events["/collision/ffb_status"]
     challenges = events["/collision/ffb_challenge"]
+    relay_diagnostics = events["/collision/ffb_relay_diagnostics"]
     odom = events["/phase5/mock_odom"]
     camera_session, camera = camera_rows(args.camera_archive)
+    recording_window = camera_recording_window(camera_session, camera)
     camera_active = [row for row in camera if row["collision_ffb_active"] == "1"]
     camera_warning = [row for row in camera if row["collision_risk_level"] == "WARNING"]
     camera_motion = [
@@ -175,14 +204,17 @@ def main() -> None:
         if row["odom_available"] == "1" and float(row["odom_linear_mps"] or 0) > 0.1
     ]
     active_commands = [row for row in commands if row["active"]]
+    active_intents = [row for row in intents if row["active"]]
     active_statuses = [row for row in statuses if row["command_active"]]
     fault_statuses = [row for row in statuses if row["fault"]]
     positive_odom = [row for row in odom if row["linear_x"] > 0.1]
     camera_active_sequences = {int(row["collision_ffb_sequence"]) for row in camera_active}
     bag_active_sequences = {row["sequence"] for row in active_commands}
+    bag_active_intent_sequences = {row["sequence"] for row in active_intents}
     status_active_sequences = {row["sequence"] for row in active_statuses}
     matching_statuses = [row for row in statuses if row["sequence"] in bag_active_sequences]
     active_command_by_sequence = {row["sequence"]: row for row in active_commands}
+    active_intent_by_sequence = {row["sequence"]: row for row in active_intents}
     matching_status_delays_ms = [
         (row["bag_ns"] - active_command_by_sequence[row["sequence"]]["bag_ns"]) / 1e6
         for row in matching_statuses
@@ -205,6 +237,41 @@ def main() -> None:
         for row in active_commands
         if (row["receiver_session_id"], row["receiver_token"])
         in issued_challenges
+    ]
+    window_events = {
+        topic: [
+            row for row in rows
+            if recording_window is not None
+            and recording_window[0] <= row["bag_ns"] <= recording_window[1]
+        ]
+        for topic, rows in events.items()
+    }
+    window_intents = window_events["/collision/ffb_intent"]
+    window_commands = window_events["/collision/ffb_command"]
+    window_statuses = window_events["/collision/ffb_status"]
+    window_relay_diagnostics = window_events[
+        "/collision/ffb_relay_diagnostics"
+    ]
+    window_active_intents = [row for row in window_intents if row["active"]]
+    window_active_commands = [row for row in window_commands if row["active"]]
+    window_active_statuses = [
+        row for row in window_statuses if row["command_active"]
+    ]
+    window_fault_statuses = [row for row in window_statuses if row["fault"]]
+    window_active_intent_sequences = {
+        row["sequence"] for row in window_active_intents
+    }
+    window_active_command_sequences = {
+        row["sequence"] for row in window_active_commands
+    }
+    window_active_status_sequences = {
+        row["sequence"] for row in window_active_statuses
+    }
+    intent_to_command_ms = [
+        (active_command_by_sequence[sequence]["bag_ns"] - row["bag_ns"]) / 1e6
+        for sequence, row in active_intent_by_sequence.items()
+        if sequence in window_active_intent_sequences
+        and sequence in active_command_by_sequence
     ]
 
     summary = {
@@ -241,12 +308,46 @@ def main() -> None:
         "camera_ffb_publish_failures": sum(
             row["collision_ffb_publish_success"] == "0" for row in camera
         ),
+        "recording_window": (
+            [clock(recording_window[0]), clock(recording_window[1])]
+            if recording_window is not None else None
+        ),
+        "recording_window_counts": {
+            name: len(rows) for name, rows in window_events.items()
+        },
+        "recording_window_active_intent_count": len(window_active_intents),
+        "recording_window_active_command_count": len(window_active_commands),
+        "recording_window_active_status_count": len(window_active_statuses),
+        "recording_window_active_intent_without_command": sorted(
+            window_active_intent_sequences - window_active_command_sequences
+        ),
+        "recording_window_active_command_without_status": sorted(
+            window_active_command_sequences - window_active_status_sequences
+        ),
+        "recording_window_active_intent_to_command_ms": {
+            "min": min(intent_to_command_ms),
+            "max": max(intent_to_command_ms),
+            "median": median(intent_to_command_ms),
+        } if intent_to_command_ms else None,
+        "recording_window_fault_count": len(window_fault_statuses),
+        "recording_window_fault_categories": dict(Counter(
+            row["reason"].split(":age=", 1)[0]
+            for row in window_fault_statuses
+        )),
+        "recording_window_relay_outcomes": dict(Counter(
+            row.get("outcome", "") for row in window_relay_diagnostics
+        )),
+        "recording_window_relay_reasons": dict(Counter(
+            row.get("reason", "") for row in window_relay_diagnostics
+        )),
         "bag_counts": {name: len(rows) for name, rows in events.items()},
         "bag_spans": {name: span(rows) for name, rows in events.items()},
         "bag_odom_speed_counts": dict(sorted(Counter(round(row["linear_x"], 3) for row in odom).items())),
         "bag_positive_odom_count": len(positive_odom),
         "bag_positive_odom_span": span(positive_odom),
         "bag_active_command_count": len(active_commands),
+        "bag_active_intent_count": len(active_intents),
+        "bag_active_intent_sequences": sorted(bag_active_intent_sequences),
         "bag_active_command_span": span(active_commands),
         "bag_active_command_sequences": sorted(bag_active_sequences),
         "bag_active_commands_with_known_challenge": len(active_challenge_delays_ms),
@@ -276,11 +377,20 @@ def main() -> None:
         "bag_active_output_count": sum(row["output_active"] for row in statuses),
         "bag_fault_count": len(fault_statuses),
         "bag_fault_categories": dict(Counter(row["reason"].split(":age=", 1)[0] for row in fault_statuses)),
+        "bag_relay_outcomes": dict(Counter(
+            row.get("outcome", "") for row in relay_diagnostics
+        )),
+        "bag_relay_reasons": dict(Counter(
+            row.get("reason", "") for row in relay_diagnostics
+        )),
         "bag_fault_age_ms": {
             "min": min(fault_ages), "max": max(fault_ages), "mean": mean(fault_ages),
         } if fault_ages else None,
         "bag_status_last": statuses[-1] if statuses else None,
         "active_sequence_intersection_camera_command": sorted(camera_active_sequences & bag_active_sequences),
+        "active_sequence_intersection_intent_command": sorted(
+            bag_active_intent_sequences & bag_active_sequences
+        ),
         "active_sequence_intersection_command_status": sorted(bag_active_sequences & status_active_sequences),
         "command_stamp_minus_bag_ms": {
             "min": min((row["stamp_ns"] - row["bag_ns"]) / 1e6 for row in commands),
@@ -310,7 +420,8 @@ def main() -> None:
             "risk_level", "active", "output_mode", "action", "output_active",
             "requested_magnitude", "applied_magnitude", "fault", "reason",
             "receiver_session_id", "receiver_token", "challenge_session_id",
-            "challenge_token",
+            "challenge_token", "relay_outcome", "relay_accepted",
+            "challenge_stable_age_sec",
         ])
         for topic, rows in events.items():
             for row in rows:
@@ -324,6 +435,8 @@ def main() -> None:
                     row.get("applied_magnitude", ""), row.get("fault", ""), row.get("reason", ""),
                     row.get("receiver_session_id", ""), row.get("receiver_token", ""),
                     row.get("session_id", ""), row.get("token", ""),
+                    row.get("outcome", ""), row.get("accepted", ""),
+                    row.get("challenge_stable_age_sec", ""),
                 ])
     print(json.dumps(summary, ensure_ascii=False, indent=2))
 

@@ -533,6 +533,56 @@ class CollisionFfbPublisherTest(unittest.TestCase):
         )
         bridge.close()
 
+    def test_unknown_requires_continuous_valid_measurement_to_rearm(self):
+        now = [0.0]
+        bridge = _bridge(
+            _RosApi(),
+            unknown_pulse_duration_sec=0.1,
+            unknown_rearm_valid_sec=0.5,
+            monotonic_clock=lambda: now[0],
+        )
+
+        first = bridge.publish_risk("UNKNOWN", measurement_valid=False)
+        now[0] = 0.2
+        bridge.publish_risk("CLEAR", measurement_valid=True)
+        now[0] = 0.3
+        blocked = bridge.publish_risk("UNKNOWN", measurement_valid=False)
+        now[0] = 1.0
+        bridge.publish_risk("CLEAR", measurement_valid=True)
+        now[0] = 1.51
+        bridge.publish_risk("PATH", measurement_valid=True)
+        now[0] = 1.52
+        rearmed = bridge.publish_risk("UNKNOWN", measurement_valid=False)
+
+        self.assertEqual(first["collision_ffb_active"], 1)
+        self.assertEqual(blocked["collision_ffb_active"], 0)
+        self.assertEqual(
+            blocked["collision_ffb_reason"],
+            "unknown_waiting_for_valid_rearm",
+        )
+        self.assertEqual(rearmed["collision_ffb_active"], 1)
+        bridge.close()
+
+    def test_invalid_measurement_breaks_unknown_rearm_interval(self):
+        now = [0.0]
+        bridge = _bridge(
+            _RosApi(),
+            unknown_rearm_valid_sec=0.5,
+            monotonic_clock=lambda: now[0],
+        )
+        bridge.publish_risk("UNKNOWN", measurement_valid=False)
+        now[0] = 0.2
+        bridge.publish_risk("CLEAR", measurement_valid=True)
+        now[0] = 0.6
+        bridge.publish_risk("CLEAR", measurement_valid=False)
+        now[0] = 0.8
+        bridge.publish_risk("CLEAR", measurement_valid=True)
+        now[0] = 1.1
+        blocked = bridge.publish_risk("UNKNOWN", measurement_valid=False)
+
+        self.assertEqual(blocked["collision_ffb_active"], 0)
+        bridge.close()
+
     def test_clear_cancels_and_rearms_triple_cadence(self):
         now = [1.0]
         bridge = _bridge(
@@ -584,6 +634,7 @@ class CollisionFfbPublisherTest(unittest.TestCase):
             {"duration_sec": 0.51},
             {"rate_hz": 9.0},
             {"unknown_pulse_duration_sec": 0.101},
+            {"unknown_rearm_valid_sec": 5.01},
         ):
             with self.subTest(kwargs=kwargs):
                 with self.assertRaises(ValueError):

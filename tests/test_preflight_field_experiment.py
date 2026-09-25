@@ -126,6 +126,18 @@ class FieldExperimentPreflightTest(unittest.TestCase):
         self.assertTrue(config_requires_ffb(config_path))
         self.assertTrue(config_requires_challenge(config_path))
 
+    def test_accepts_v11_reliability_configuration(self):
+        config_path = (
+            SRC_DIR / "bird_eye_config_ttc_v11_ffb_reliability_20260925.json"
+        )
+
+        result = check_config(config_path)
+
+        self.assertEqual(result.status, "PASS")
+        self.assertIn("rearm_valid:0.5s", result.detail)
+        self.assertTrue(config_requires_ffb(config_path))
+        self.assertTrue(config_requires_challenge(config_path))
+
     def test_rejects_unsafe_relay_configuration(self):
         config = json.loads(
             (
@@ -135,11 +147,13 @@ class FieldExperimentPreflightTest(unittest.TestCase):
         config["collision_ffb_freshness_mode"] = "clock"
         config["collision_ffb_intent_topic"] = "/collision/ffb_command"
         config["collision_ffb_intent_max_age_sec"] = 0.11
+        config["collision_ffb_challenge_stable_sec"] = 10.1
 
         errors = validate_experiment_config(config)
 
         self.assertTrue(any("must be distinct" in item for item in errors))
         self.assertTrue(any("intent_max_age_sec" in item for item in errors))
+        self.assertTrue(any("challenge_stable_sec" in item for item in errors))
         self.assertTrue(any("requires" in item for item in errors))
 
     def test_challenge_config_is_explicit_and_validated(self):
@@ -225,6 +239,14 @@ class FieldExperimentPreflightTest(unittest.TestCase):
         self.assertIn(
             "collision_ffb_unknown_pulse_duration_sec must be within "
             "(0, 0.1]",
+            errors,
+        )
+
+        config["collision_ffb_unknown_pulse_duration_sec"] = 0.1
+        config["collision_ffb_unknown_rearm_valid_sec"] = 5.01
+        errors = validate_experiment_config(config)
+        self.assertIn(
+            "collision_ffb_unknown_rearm_valid_sec must be within (0, 5]",
             errors,
         )
 

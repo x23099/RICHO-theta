@@ -82,3 +82,39 @@ PY
 - 画像処理: なし。切り抜き、リサイズ、注釈、色調整は行っていない。元解像度`1280×720`のフレームをPNG化した。
 - archive SHA-256: `d2611d77fd7fa9b9236cb188be4a52d4bbe7a33ae766c9f694e1b30492dc8838`
 - 画像SHA-256: `698d8010880bb774c24fea337cb0ebce7f67d548bac57235c7133cdd3ae6b80e`
+
+## `phase5_v10_warning_raw_frame_0657.png`
+
+- 内容: v10 relay試験の1回目0.25 m/s区間でWARNINGが開始した時点の生カメラ画像。
+- 元録画・session: `phase5_v10_relay_dryrun_r01_20260925_173142_491`
+- CSV frame / time: `657` / `22.034125 s`
+- 条件: 青箱検出、模擬ODOM `0.25 m/s`、risk `WARNING`、FFB sequence `3674`。
+- 画像処理: なし。切り抜き、リサイズ、注釈、色調整は行っていない。元解像度`1280×720`のフレームをPNG化した。
+- archive SHA-256: `a52bd87ba1a68b5fb0b01c3ce1839cb10ec1be1588573d73fab93364c389a131`
+- 画像SHA-256: `c642af1b78f086a8afc8ab538ec0e125fe716a0c66f648f7884faa80ad9d5bfc`
+
+## `phase5_v10_unknown_raw_frame_1582.png`
+
+- 内容: 2回目0.25 m/s区間で、遮蔽物を持って箱へ近づく途中にUNKNOWN activeが始まった時点の生カメラ画像。
+- 元録画・session: `phase5_v10_relay_dryrun_r01_20260925_173142_491`
+- CSV frame / time: `1582` / `52.924687 s`
+- 条件: 模擬ODOM `0.25 m/s`、risk `UNKNOWN`、FFB sequence `4599`。
+- 画像処理: なし。切り抜き、リサイズ、注釈、色調整は行っていない。元解像度`1280×720`のフレームをPNG化した。
+- 画像SHA-256: `61fa2691188bb94fe336429fc842d8e0ce20a9f5c132b144465d8fa07e4ea922`
+
+## `phase5_v10_occlusion_raw_frame_1620.png`
+
+- 内容: 模擬ODOM送信中に、実験者が黒い遮蔽物を青箱へ運んでいる時点の生カメラ画像。
+- 元録画・session: `phase5_v10_relay_dryrun_r01_20260925_173142_491`
+- video frame / time: `1620` / 約`53.97 s`
+- 画像処理: なし。切り抜き、リサイズ、注釈、色調整は行っていない。元解像度`1280×720`のフレームをPNG化した。
+- 画像SHA-256: `b7157f2c3e1783e82d0d52275643a6a0cfc7632a3d69330ff4eec451f38b8bff`
+
+## `phase5_v10_occlusion_raw_frame_1700.png`
+
+- 内容: 2回目0.25 m/s区間中に黒い遮蔽物を青箱前へ置いた時点の生カメラ画像。
+- 元録画・session: `phase5_v10_relay_dryrun_r01_20260925_173142_491`
+- video frame / time: `1700` / 約`56.63 s`
+- 条件: カメラCSV上の2回目0.25 m/s区間は`52.325～58.724 s`であり、時間内の遮蔽である。
+- 画像処理: なし。切り抜き、リサイズ、注釈、色調整は行っていない。元解像度`1280×720`のフレームをPNG化した。
+- 画像SHA-256: `1c0aec70e6239e806786ea1aed892c35a27a799d98ec30fc56665a817fb7e9ce`

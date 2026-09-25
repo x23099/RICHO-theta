@@ -222,6 +222,18 @@ def validate_experiment_config(config):
                 "collision_ffb_unknown_pulse_duration_sec must be within "
                 "(0, 0.1]"
             )
+        unknown_rearm_valid = config.get(
+            "collision_ffb_unknown_rearm_valid_sec", 0.5
+        )
+        if (
+            not isinstance(unknown_rearm_valid, (int, float))
+            or isinstance(unknown_rearm_valid, bool)
+            or not math.isfinite(unknown_rearm_valid)
+            or not 0.0 < unknown_rearm_valid <= 5.0
+        ):
+            errors.append(
+                "collision_ffb_unknown_rearm_valid_sec must be within (0, 5]"
+            )
         freshness_mode = config.get("collision_ffb_freshness_mode", "clock")
         if freshness_mode not in {"clock", "challenge"}:
             errors.append(
@@ -257,21 +269,26 @@ def validate_experiment_config(config):
             challenge_topic = config.get(
                 "collision_ffb_challenge_topic", "/collision/ffb_challenge"
             )
+            diagnostic_topic = config.get(
+                "collision_ffb_relay_diagnostic_topic",
+                "/collision/ffb_relay_diagnostics",
+            )
             topics = (
                 intent_topic,
                 config.get("collision_ffb_command_topic"),
                 challenge_topic,
+                diagnostic_topic,
             )
             if not all(
                 isinstance(topic, str) and topic.strip() for topic in topics
             ):
                 errors.append(
-                    "relay intent, command, and challenge topics must be "
+                    "relay intent, command, challenge, and diagnostic topics must be "
                     "non-empty strings"
                 )
             elif len(set(topics)) != len(topics):
                 errors.append(
-                    "relay intent, command, and challenge topics must be distinct"
+                    "relay intent, command, challenge, and diagnostic topics must be distinct"
                 )
             intent_max_age = config.get("collision_ffb_intent_max_age_sec")
             if (
@@ -282,6 +299,18 @@ def validate_experiment_config(config):
             ):
                 errors.append(
                     "collision_ffb_intent_max_age_sec must be within (0, 0.1]"
+                )
+            challenge_stable = config.get(
+                "collision_ffb_challenge_stable_sec", 1.0
+            )
+            if (
+                not isinstance(challenge_stable, (int, float))
+                or isinstance(challenge_stable, bool)
+                or not math.isfinite(challenge_stable)
+                or not 0.0 < challenge_stable <= 10.0
+            ):
+                errors.append(
+                    "collision_ffb_challenge_stable_sec must be within (0, 10]"
                 )
             if freshness_mode != "challenge":
                 errors.append(
@@ -381,7 +410,9 @@ def check_config(config_path):
         f"ffb_relay={relay_detail}, "
         f"ffb_cadence={config.get('collision_ffb_cadence', 'continuous')}, "
         "ffb_unknown=single:"
-        f"{config.get('collision_ffb_unknown_pulse_duration_sec', 0.1)}s, "
+        f"{config.get('collision_ffb_unknown_pulse_duration_sec', 0.1)}s/"
+        "rearm_valid:"
+        f"{config.get('collision_ffb_unknown_rearm_valid_sec', 0.5)}s, "
         f"ffb_freshness={config.get('collision_ffb_freshness_mode', 'clock')}, "
         "ffb_challenge_max_age="
         f"{config.get('collision_ffb_challenge_max_age_sec', 0.1)}, "

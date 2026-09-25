@@ -49,6 +49,7 @@ CADENCE_MAX_DURATION_SEC = 0.5
 CADENCE_MIN_RATE_HZ = 10.0
 CADENCE_MAX_RATE_HZ = 60.0
 UNKNOWN_PULSE_MAX_DURATION_SEC = 0.1
+UNKNOWN_REARM_MAX_VALID_SEC = 5.0
 CHALLENGE_MAX_AGE_SEC = 0.1
 
 try:
@@ -175,6 +176,7 @@ class CollisionFfbCadenceController:
         duration_sec=0.5,
         rate_hz=30.0,
         unknown_pulse_duration_sec=0.1,
+        unknown_rearm_valid_sec=0.5,
         *,
         monotonic_clock=time.monotonic,
     ):
@@ -183,6 +185,7 @@ class CollisionFfbCadenceController:
         self.duration_sec = float(duration_sec)
         self.rate_hz = float(rate_hz)
         self.unknown_pulse_duration_sec = float(unknown_pulse_duration_sec)
+        self.unknown_rearm_valid_sec = float(unknown_rearm_valid_sec)
         if (
             not math.isfinite(self.unknown_pulse_duration_sec)
             or self.unknown_pulse_duration_sec <= 0.0
@@ -193,16 +196,33 @@ class CollisionFfbCadenceController:
                 "collision FFB UNKNOWN pulse duration must be within "
                 f"(0, {UNKNOWN_PULSE_MAX_DURATION_SEC:.1f}] seconds"
             )
+        if (
+            not math.isfinite(self.unknown_rearm_valid_sec)
+            or self.unknown_rearm_valid_sec <= 0.0
+            or self.unknown_rearm_valid_sec > UNKNOWN_REARM_MAX_VALID_SEC
+        ):
+            raise ValueError(
+                "collision FFB UNKNOWN rearm valid duration must be within "
+                f"(0, {UNKNOWN_REARM_MAX_VALID_SEC:.1f}] seconds"
+            )
         self.schedule = build_cadence_schedule(
             self.cadence,
             self.duration_sec,
             self.rate_hz,
         )
         self.monotonic_clock = monotonic_clock
+        self.unknown_armed = True
+        self.unknown_valid_since_sec = None
         self.reset()
 
     def reset(self):
         """Re-arm the next alert entry and cancel an active cadence."""
+        self.unknown_armed = True
+        self.unknown_valid_since_sec = None
+        self._clear_latch()
+
+    def _clear_latch(self):
+        """Cancel the current cadence without re-arming UNKNOWN."""
         self.started_sec = None
         self.latched = False
         self.latched_family = None
@@ -220,7 +240,8 @@ class CollisionFfbCadenceController:
             "unknown": {
                 "name": "single",
                 "duration_sec": self.unknown_pulse_duration_sec,
-                "retrigger": "clear_then_unknown",
+                "rearm_valid_sec": self.unknown_rearm_valid_sec,
+                "retrigger": "continuous_valid_measurement_then_unknown",
             },
         }
 
@@ -229,27 +250,46 @@ class CollisionFfbCadenceController:
         """Return an adapter-valid CLEAR command for a cadence gap."""
         return VirtualFfbCommand("CLEAR", False, 0.0, "off", reason)
 
-    def command(self, risk_level, policy):
+    def command(self, risk_level, policy, measurement_valid=None):
         """Return the current cadence command for one perception state."""
         base_command = policy.command(risk_level)
         level = base_command.risk_level
+        now_sec = float(self.monotonic_clock())
+        if not math.isfinite(now_sec):
+            raise ValueError("collision FFB cadence clock must be finite")
+        valid = (
+            level in {"CLEAR", "PATH"}
+            if measurement_valid is None
+            else bool(measurement_valid)
+        )
+        if valid:
+            if self.unknown_valid_since_sec is None:
+                self.unknown_valid_since_sec = now_sec
+            if (
+                not self.unknown_armed
+                and now_sec - self.unknown_valid_since_sec
+                >= self.unknown_rearm_valid_sec
+            ):
+                self.unknown_armed = True
+        else:
+            self.unknown_valid_since_sec = None
+
         if level in {"CLEAR", "PATH"}:
             was_latched = self.latched
-            self.reset()
+            self._clear_latch()
             if was_latched:
                 return self._inactive("cadence_cancelled_by_clear")
             return base_command
 
-        now_sec = float(self.monotonic_clock())
-        if not math.isfinite(now_sec):
-            raise ValueError("collision FFB cadence clock must be finite")
-
         if level == "UNKNOWN":
+            if not self.unknown_armed and self.latched_family != "unknown":
+                return self._inactive("unknown_waiting_for_valid_rearm")
             if not self.latched or self.latched_family != "unknown":
                 self.started_sec = now_sec
                 self.latched = True
                 self.latched_family = "unknown"
                 self.highest_alert_rank = 0
+                self.unknown_armed = False
             elapsed_sec = max(0.0, now_sec - self.started_sec)
             if elapsed_sec >= self.unknown_pulse_duration_sec:
                 return self._inactive("unknown_pulse_complete")
@@ -262,7 +302,7 @@ class CollisionFfbCadenceController:
             )
 
         if self.cadence == "continuous":
-            self.reset()
+            self._clear_latch()
             return base_command
 
         alert_rank = 2 if level == "CRITICAL" else 1
@@ -305,6 +345,7 @@ class CollisionFfbPublisherBridge:
         cadence_duration_sec=0.5,
         cadence_rate_hz=30.0,
         unknown_pulse_duration_sec=0.1,
+        unknown_rearm_valid_sec=0.5,
         freshness_mode="clock",
         challenge_topic="/collision/ffb_challenge",
         challenge_max_age_sec=0.1,
@@ -356,6 +397,7 @@ class CollisionFfbPublisherBridge:
             duration_sec=cadence_duration_sec,
             rate_hz=cadence_rate_hz,
             unknown_pulse_duration_sec=unknown_pulse_duration_sec,
+            unknown_rearm_valid_sec=unknown_rearm_valid_sec,
             monotonic_clock=monotonic_clock,
         )
         self.sequence = 0
@@ -535,7 +577,7 @@ class CollisionFfbPublisherBridge:
             "collision_ffb_challenge_token": token,
         }
 
-    def publish_risk(self, risk_level):
+    def publish_risk(self, risk_level, *, measurement_valid=None):
         """Map and publish one risk state, returning its recording fields."""
         if self._closed:
             raise RuntimeError("collision FFB publisher is closed")
@@ -615,7 +657,11 @@ class CollisionFfbPublisherBridge:
             # interruption cannot restart or lengthen the pattern.
             virtual_command = self.policy.command(risk_name)
         else:
-            virtual_command = self.cadence.command(risk_name, self.policy)
+            virtual_command = self.cadence.command(
+                risk_name,
+                self.policy,
+                measurement_valid=measurement_valid,
+            )
         payload = virtual_command_payload(virtual_command)
         sequence = self.sequence
         self.sequence += 1

@@ -166,6 +166,25 @@ class FieldExperimentRunnerTest(unittest.TestCase):
             command[command.index("--challenge-max-age-sec") + 1], "0.06"
         )
 
+    def test_v11_relay_command_includes_stability_and_diagnostics(self):
+        args = parsed_args(
+            "--config",
+            str(
+                SRC_DIR
+                / "bird_eye_config_ttc_v11_ffb_reliability_20260925.json"
+            ),
+        )
+
+        command = build_ffb_relay_command(args)
+
+        self.assertEqual(
+            command[command.index("--challenge-stable-sec") + 1], "1.0"
+        )
+        self.assertEqual(
+            command[command.index("--diagnostic-topic") + 1],
+            "/collision/ffb_relay_diagnostics",
+        )
+
     def test_relay_startup_failure_does_not_start_camera(self):
         args = parsed_args(
             "--config",
