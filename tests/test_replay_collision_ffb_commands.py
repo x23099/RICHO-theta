@@ -11,6 +11,7 @@ from replay_collision_ffb_commands import (
     select_detection_member,
     summarize_replay,
     validate_replay_settings,
+    write_results,
 )
 
 
@@ -95,6 +96,42 @@ def test_hardware_replay_requires_physical_acknowledgement():
         freshness_mode="challenge",
         acknowledge_physical_output=True,
     )
+
+
+def test_replay_report_records_unknown_single_pulse(tmp_path):
+    """Replay provenance must include the distinct UNKNOWN cadence."""
+    summary = {
+        "decision": "PASS",
+        "checks": {"synthetic": True},
+        "command_count": 1,
+        "active_command_count": 0,
+        "status_count": 1,
+        "active_status_count": 0,
+        "fault_count": 0,
+        "max_applied_magnitude": 0.0,
+    }
+
+    write_results(
+        tmp_path,
+        input_path=tmp_path / "synthetic.csv",
+        session="synthetic",
+        rate_hz=30.0,
+        cadence="triple",
+        cadence_duration_sec=0.5,
+        cadence_rate_hz=30.0,
+        unknown_pulse_duration_sec=0.1,
+        expected_output_mode="dry_run",
+        freshness_mode="challenge",
+        acknowledge_physical_output=False,
+        command_rows=[{"collision_ffb_publish_success": 1}],
+        status_rows=[{"output_active": 0}],
+        summary=summary,
+    )
+
+    report = (tmp_path / "replay_report.md").read_text()
+    payload = (tmp_path / "replay_summary.json").read_text()
+    assert "UNKNOWN cadence: `single` / `0.100 s`" in report
+    assert '"unknown_pulse_duration_sec": 0.1' in payload
 
 
 def test_replay_summary_passes_dry_run_transport():

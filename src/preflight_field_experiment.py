@@ -198,6 +198,19 @@ def validate_experiment_config(config):
             errors.append(
                 "collision_ffb_cadence_rate_hz must be within 10..60"
             )
+        unknown_pulse_duration = config.get(
+            "collision_ffb_unknown_pulse_duration_sec", 0.1
+        )
+        if (
+            not isinstance(unknown_pulse_duration, (int, float))
+            or isinstance(unknown_pulse_duration, bool)
+            or not math.isfinite(unknown_pulse_duration)
+            or not 0.0 < unknown_pulse_duration <= 0.1
+        ):
+            errors.append(
+                "collision_ffb_unknown_pulse_duration_sec must be within "
+                "(0, 0.1]"
+            )
         freshness_mode = config.get("collision_ffb_freshness_mode", "clock")
         if freshness_mode not in {"clock", "challenge"}:
             errors.append(
@@ -301,6 +314,8 @@ def check_config(config_path):
         f"illumination={config.get('blue_ground_contact_illumination_mode', 'none')}, "
         f"collision_ffb={ffb_detail}, "
         f"ffb_cadence={config.get('collision_ffb_cadence', 'continuous')}, "
+        "ffb_unknown=single:"
+        f"{config.get('collision_ffb_unknown_pulse_duration_sec', 0.1)}s, "
         f"ffb_freshness={config.get('collision_ffb_freshness_mode', 'clock')}, "
         "ffb_challenge_max_age="
         f"{config.get('collision_ffb_challenge_max_age_sec', 0.1)}",

@@ -260,6 +260,60 @@ class CollisionFfbPublisherTest(unittest.TestCase):
         self.assertEqual(completed["collision_ffb_reason"], "cadence_complete")
         bridge.close()
 
+    def test_unknown_is_one_finite_pulse_not_hazard_triple(self):
+        now = [0.0]
+        bridge = _bridge(
+            _RosApi(),
+            cadence="triple",
+            cadence_duration_sec=0.5,
+            cadence_rate_hz=30.0,
+            unknown_pulse_duration_sec=0.1,
+            monotonic_clock=lambda: now[0],
+        )
+
+        records = []
+        for index in range(15):
+            now[0] = index / 30.0
+            records.append(bridge.publish_risk("UNKNOWN"))
+
+        self.assertEqual(
+            [row["collision_ffb_active"] for row in records],
+            [1, 1, 1] + [0] * 12,
+        )
+        self.assertTrue(all(
+            row["collision_ffb_reason"].endswith("cadence_single")
+            for row in records[:3]
+        ))
+        self.assertTrue(all(
+            row["collision_ffb_reason"] == "unknown_pulse_complete"
+            for row in records[3:]
+        ))
+        bridge.close()
+
+    def test_unknown_to_warning_starts_hazard_triple(self):
+        now = [1.0]
+        bridge = _bridge(
+            _RosApi(),
+            cadence="triple",
+            monotonic_clock=lambda: now[0],
+        )
+
+        unknown = bridge.publish_risk("UNKNOWN")
+        now[0] = 1.2
+        warning = bridge.publish_risk("WARNING")
+
+        self.assertEqual(unknown["collision_ffb_pattern"], "pulse")
+        self.assertEqual(
+            unknown["collision_ffb_reason"],
+            "invalid_or_unknown_perception:cadence_single",
+        )
+        self.assertEqual(warning["collision_ffb_pattern"], "steady")
+        self.assertEqual(
+            warning["collision_ffb_reason"],
+            "ttc_warning:cadence_triple",
+        )
+        bridge.close()
+
     def test_clear_cancels_and_rearms_triple_cadence(self):
         now = [1.0]
         bridge = _bridge(
@@ -310,6 +364,7 @@ class CollisionFfbPublisherTest(unittest.TestCase):
             {"cadence": "other"},
             {"duration_sec": 0.51},
             {"rate_hz": 9.0},
+            {"unknown_pulse_duration_sec": 0.101},
         ):
             with self.subTest(kwargs=kwargs):
                 with self.assertRaises(ValueError):

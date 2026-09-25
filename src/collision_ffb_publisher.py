@@ -46,6 +46,7 @@ CADENCE_NAMES = ("continuous", "double", "triple")
 CADENCE_MAX_DURATION_SEC = 0.5
 CADENCE_MIN_RATE_HZ = 10.0
 CADENCE_MAX_RATE_HZ = 60.0
+UNKNOWN_PULSE_MAX_DURATION_SEC = 0.1
 
 try:
     import rclpy
@@ -168,6 +169,7 @@ class CollisionFfbCadenceController:
         cadence="continuous",
         duration_sec=0.5,
         rate_hz=30.0,
+        unknown_pulse_duration_sec=0.1,
         *,
         monotonic_clock=time.monotonic,
     ):
@@ -175,6 +177,17 @@ class CollisionFfbCadenceController:
         self.cadence = str(cadence).strip().lower()
         self.duration_sec = float(duration_sec)
         self.rate_hz = float(rate_hz)
+        self.unknown_pulse_duration_sec = float(unknown_pulse_duration_sec)
+        if (
+            not math.isfinite(self.unknown_pulse_duration_sec)
+            or self.unknown_pulse_duration_sec <= 0.0
+            or self.unknown_pulse_duration_sec
+            > UNKNOWN_PULSE_MAX_DURATION_SEC
+        ):
+            raise ValueError(
+                "collision FFB UNKNOWN pulse duration must be within "
+                f"(0, {UNKNOWN_PULSE_MAX_DURATION_SEC:.1f}] seconds"
+            )
         self.schedule = build_cadence_schedule(
             self.cadence,
             self.duration_sec,
@@ -187,6 +200,7 @@ class CollisionFfbCadenceController:
         """Re-arm the next alert entry and cancel an active cadence."""
         self.started_sec = None
         self.latched = False
+        self.latched_family = None
         self.highest_alert_rank = 0
 
     def describe(self):
@@ -198,6 +212,11 @@ class CollisionFfbCadenceController:
             "sample_count": len(self.schedule),
             "active_sample_count": sum(self.schedule),
             "retrigger": "clear_or_critical_escalation",
+            "unknown": {
+                "name": "single",
+                "duration_sec": self.unknown_pulse_duration_sec,
+                "retrigger": "clear_then_unknown",
+            },
         }
 
     @staticmethod
@@ -209,8 +228,6 @@ class CollisionFfbCadenceController:
         """Return the current cadence command for one perception state."""
         base_command = policy.command(risk_level)
         level = base_command.risk_level
-        if self.cadence == "continuous":
-            return base_command
         if level in {"CLEAR", "PATH"}:
             was_latched = self.latched
             self.reset()
@@ -218,13 +235,40 @@ class CollisionFfbCadenceController:
                 return self._inactive("cadence_cancelled_by_clear")
             return base_command
 
-        alert_rank = 2 if level == "CRITICAL" else 1
         now_sec = float(self.monotonic_clock())
         if not math.isfinite(now_sec):
             raise ValueError("collision FFB cadence clock must be finite")
-        if not self.latched or alert_rank > self.highest_alert_rank:
+
+        if level == "UNKNOWN":
+            if not self.latched or self.latched_family != "unknown":
+                self.started_sec = now_sec
+                self.latched = True
+                self.latched_family = "unknown"
+                self.highest_alert_rank = 0
+            elapsed_sec = max(0.0, now_sec - self.started_sec)
+            if elapsed_sec >= self.unknown_pulse_duration_sec:
+                return self._inactive("unknown_pulse_complete")
+            return VirtualFfbCommand(
+                base_command.risk_level,
+                base_command.active,
+                base_command.normalized_magnitude,
+                base_command.pattern,
+                f"{base_command.reason}:cadence_single",
+            )
+
+        if self.cadence == "continuous":
+            self.reset()
+            return base_command
+
+        alert_rank = 2 if level == "CRITICAL" else 1
+        if (
+            not self.latched
+            or self.latched_family != "hazard"
+            or alert_rank > self.highest_alert_rank
+        ):
             self.started_sec = now_sec
             self.latched = True
+            self.latched_family = "hazard"
             self.highest_alert_rank = alert_rank
 
         elapsed_sec = max(0.0, now_sec - self.started_sec)
@@ -255,6 +299,7 @@ class CollisionFfbPublisherBridge:
         cadence="continuous",
         cadence_duration_sec=0.5,
         cadence_rate_hz=30.0,
+        unknown_pulse_duration_sec=0.1,
         freshness_mode="clock",
         challenge_topic="/collision/ffb_challenge",
         challenge_max_age_sec=0.1,
@@ -294,6 +339,7 @@ class CollisionFfbPublisherBridge:
             cadence=cadence,
             duration_sec=cadence_duration_sec,
             rate_hz=cadence_rate_hz,
+            unknown_pulse_duration_sec=unknown_pulse_duration_sec,
             monotonic_clock=monotonic_clock,
         )
         self.sequence = 0

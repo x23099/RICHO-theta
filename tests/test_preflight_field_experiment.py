@@ -80,7 +80,26 @@ class FieldExperimentPreflightTest(unittest.TestCase):
 
         self.assertEqual(result.status, "PASS")
         self.assertIn("ffb_cadence=triple", result.detail)
+        self.assertIn("ffb_unknown=single:0.1s", result.detail)
         self.assertTrue(config_requires_ffb(config_path))
+
+    def test_accepts_v8_distinct_unknown_challenge_configuration(self):
+        config_path = (
+            SRC_DIR
+            / (
+                "bird_eye_config_ttc_v8_ffb_distinct_unknown_"
+                "challenge_20260925.json"
+            )
+        )
+
+        result = check_config(config_path)
+
+        self.assertEqual(result.status, "PASS")
+        self.assertIn("ffb_cadence=triple", result.detail)
+        self.assertIn("ffb_unknown=single:0.1s", result.detail)
+        self.assertIn("ffb_freshness=challenge", result.detail)
+        self.assertTrue(config_requires_ffb(config_path))
+        self.assertTrue(config_requires_challenge(config_path))
 
     def test_challenge_config_is_explicit_and_validated(self):
         config_path = (
@@ -143,6 +162,23 @@ class FieldExperimentPreflightTest(unittest.TestCase):
         self.assertTrue(any("cadence must be" in item for item in errors))
         self.assertTrue(any("duration_sec" in item for item in errors))
         self.assertTrue(any("rate_hz" in item for item in errors))
+
+    def test_rejects_long_unknown_ffb_pulse(self):
+        config = json.loads(
+            (
+                SRC_DIR
+                / "bird_eye_config_ttc_v7_ffb_triple_20260916.json"
+            ).read_text()
+        )
+        config["collision_ffb_unknown_pulse_duration_sec"] = 0.101
+
+        errors = validate_experiment_config(config)
+
+        self.assertIn(
+            "collision_ffb_unknown_pulse_duration_sec must be within "
+            "(0, 0.1]",
+            errors,
+        )
 
     def test_ttc_profile_mismatch_fails_preflight(self):
         config = json.loads(

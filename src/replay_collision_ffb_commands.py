@@ -160,6 +160,7 @@ def replay_rows(
     cadence: str,
     cadence_duration_sec: float,
     cadence_rate_hz: float,
+    unknown_pulse_duration_sec: float,
     discovery_sec: float,
     settle_sec: float,
     freshness_mode: str = "clock",
@@ -175,6 +176,7 @@ def replay_rows(
         cadence=cadence,
         cadence_duration_sec=cadence_duration_sec,
         cadence_rate_hz=cadence_rate_hz,
+        unknown_pulse_duration_sec=unknown_pulse_duration_sec,
         freshness_mode=freshness_mode,
     )
     command_rows = []
@@ -293,6 +295,7 @@ def write_results(
     cadence: str,
     cadence_duration_sec: float,
     cadence_rate_hz: float,
+    unknown_pulse_duration_sec: float,
     expected_output_mode: str,
     freshness_mode: str,
     acknowledge_physical_output: bool,
@@ -311,6 +314,7 @@ def write_results(
         "cadence": cadence,
         "cadence_duration_sec": cadence_duration_sec,
         "cadence_rate_hz": cadence_rate_hz,
+        "unknown_pulse_duration_sec": unknown_pulse_duration_sec,
         "expected_output_mode": expected_output_mode,
         "freshness_mode": freshness_mode,
         "acknowledge_physical_output": acknowledge_physical_output,
@@ -328,6 +332,10 @@ def write_results(
         f"- FFB cadence: `{cadence}` / "
         f"`{cadence_duration_sec:.3f} s` / "
         f"`{cadence_rate_hz:.1f} Hz`"
+    )
+    unknown_line = (
+        "- UNKNOWN cadence: `single` / "
+        f"`{unknown_pulse_duration_sec:.3f} s`"
     )
     scope_note = (
         "本結果は、録画済みriskからCollisionFfbPublisherBridge、ROS topic、"
@@ -348,6 +356,7 @@ def write_results(
 - freshness mode: `{freshness_mode}`
 - physical output acknowledged: `{acknowledge_physical_output}`
 {cadence_line}
+{unknown_line}
 
 | 項目 | 値 |
 |---|---:|
@@ -385,6 +394,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--cadence-duration", type=float, default=0.5)
     parser.add_argument("--cadence-rate", type=float, default=30.0)
+    parser.add_argument("--unknown-pulse-duration", type=float, default=0.1)
     parser.add_argument(
         "--expect-output-mode",
         choices=("dry_run", "hardware"),
@@ -422,6 +432,7 @@ def main(args=None) -> int:
             cadence=parsed.cadence,
             cadence_duration_sec=parsed.cadence_duration,
             cadence_rate_hz=parsed.cadence_rate,
+            unknown_pulse_duration_sec=parsed.unknown_pulse_duration,
             discovery_sec=parsed.discovery_sec,
             settle_sec=parsed.settle_sec,
             freshness_mode=parsed.freshness_mode,
@@ -439,6 +450,7 @@ def main(args=None) -> int:
             cadence=parsed.cadence,
             cadence_duration_sec=parsed.cadence_duration,
             cadence_rate_hz=parsed.cadence_rate,
+            unknown_pulse_duration_sec=parsed.unknown_pulse_duration,
             expected_output_mode=parsed.expect_output_mode,
             freshness_mode=parsed.freshness_mode,
             acknowledge_physical_output=(
