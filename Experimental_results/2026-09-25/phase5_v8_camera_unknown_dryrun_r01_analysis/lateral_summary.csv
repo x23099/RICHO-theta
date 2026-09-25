@@ -1,0 +1,2 @@
+experiment_label,source,frames,detected_frames,measurement_accepted_frames,normalized_area_rejection_frames,measurement_acceptance_rate,median_x_m,median_z_m,median_area_px,median_normalized_area,normalized_area_threshold,median_normalized_area_to_threshold
+phase5_v8_camera_unknown_dryrun_r01,/home/robo25/Downloads/recoding/phase5_v8_camera_unknown_dryrun_r01_20260925_160415_310.tar.xz::phase5_v8_camera_unknown_dryrun_r01_20260925_160415_310,1264,996,819,0,0.822289156626506,-0.0669,1.2402,2142.5,3066.3182934608676,1450.0,2.1147022713523227

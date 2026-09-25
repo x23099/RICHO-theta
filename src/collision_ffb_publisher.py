@@ -23,6 +23,8 @@ FFB_RECORDING_FIELDS = (
     "collision_ffb_publish_error",
     "collision_ffb_challenge_received_count",
     "collision_ffb_challenge_age_sec",
+    "collision_ffb_challenge_recovery_reason",
+    "collision_ffb_challenge_recovery_trigger_sec",
     "collision_ffb_challenge_session_id",
     "collision_ffb_challenge_token",
 )
@@ -47,6 +49,7 @@ CADENCE_MAX_DURATION_SEC = 0.5
 CADENCE_MIN_RATE_HZ = 10.0
 CADENCE_MAX_RATE_HZ = 60.0
 UNKNOWN_PULSE_MAX_DURATION_SEC = 0.1
+CHALLENGE_MAX_AGE_SEC = 0.1
 
 try:
     import rclpy
@@ -85,6 +88,8 @@ def empty_publish_record(*, enabled=False, risk_level=""):
         "collision_ffb_publish_error": "",
         "collision_ffb_challenge_received_count": "",
         "collision_ffb_challenge_age_sec": "",
+        "collision_ffb_challenge_recovery_reason": "",
+        "collision_ffb_challenge_recovery_trigger_sec": "",
         "collision_ffb_challenge_session_id": "",
         "collision_ffb_challenge_token": "",
     }
@@ -303,6 +308,7 @@ class CollisionFfbPublisherBridge:
         freshness_mode="clock",
         challenge_topic="/collision/ffb_challenge",
         challenge_max_age_sec=0.1,
+        challenge_recovery_sec=0.1,
         *,
         monotonic_clock=time.monotonic,
         ros_api=None,
@@ -324,12 +330,22 @@ class CollisionFfbPublisherBridge:
             raise ValueError("freshness_mode must be clock or challenge")
         self.challenge_topic = str(challenge_topic).strip()
         self.challenge_max_age_sec = float(challenge_max_age_sec)
+        self.challenge_recovery_sec = float(challenge_recovery_sec)
         if self.freshness_mode == "challenge" and (
             not self.challenge_topic
             or not math.isfinite(self.challenge_max_age_sec)
-            or self.challenge_max_age_sec <= 0.0
+            or not 0.0 < self.challenge_max_age_sec <= CHALLENGE_MAX_AGE_SEC
+            or not math.isfinite(self.challenge_recovery_sec)
+            or not (
+                0.0
+                < self.challenge_recovery_sec
+                <= CHALLENGE_MAX_AGE_SEC
+            )
         ):
-            raise ValueError("challenge topic and positive max age are required")
+            raise ValueError(
+                "challenge topic, max age within (0, 0.1], and recovery within "
+                "(0, 0.1] seconds are required"
+            )
         self.policy = VirtualFfbPolicy(
             warning_magnitude=warning_magnitude,
             critical_magnitude=critical_magnitude,
@@ -370,6 +386,11 @@ class CollisionFfbPublisherBridge:
 
         self._latest_challenge = None
         self._challenge_received_count = 0
+        self._last_used_challenge = None
+        self._challenge_recovery_until_sec = None
+        self._challenge_recovery_reason = ""
+        self._challenge_recovery_trigger_sec = ""
+        self._last_challenge_received_monotonic = None
         self._challenge_lock = threading.Lock()
 
         self._owns_rclpy = not self._ros.ok()
@@ -434,6 +455,14 @@ class CollisionFfbPublisherBridge:
                 if self.freshness_mode == "challenge"
                 else None
             ),
+            "challenge_recovery_sec": (
+                self.challenge_recovery_sec
+                if self.freshness_mode == "challenge"
+                else None
+            ),
+            "challenge_token_use": (
+                "single_use" if self.freshness_mode == "challenge" else ""
+            ),
             "warning_magnitude": self.policy.warning_magnitude,
             "critical_magnitude": self.policy.critical_magnitude,
             "unknown_magnitude": self.policy.unknown_magnitude,
@@ -450,16 +479,45 @@ class CollisionFfbPublisherBridge:
         session_id = int(message.session_id)
         token = int(message.token)
         if session_id > 0 and token > 0:
+            received_monotonic = float(self.cadence.monotonic_clock())
             with self._challenge_lock:
-                self._latest_challenge = (
-                    session_id, token, float(self.cadence.monotonic_clock())
-                )
                 self._challenge_received_count += 1
+                previous_received = self._last_challenge_received_monotonic
+                self._last_challenge_received_monotonic = received_monotonic
+                if (
+                    previous_received is not None
+                    and received_monotonic - previous_received
+                    > self.challenge_max_age_sec
+                ):
+                    # A long callback gap means this process may be draining a
+                    # DDS/executor backlog.  Wait for the newest depth-1 sample
+                    # instead of returning the first delayed token immediately.
+                    self._challenge_recovery_until_sec = max(
+                        self._challenge_recovery_until_sec
+                        or received_monotonic,
+                        received_monotonic + self.challenge_recovery_sec,
+                    )
+                    self._challenge_recovery_reason = "callback_gap"
+                    self._challenge_recovery_trigger_sec = (
+                        received_monotonic - previous_received
+                    )
+                latest = self._latest_challenge
+                if (
+                    latest is not None
+                    and latest[0] == session_id
+                    and token <= latest[1]
+                ):
+                    return
+                self._latest_challenge = (
+                    session_id, token, received_monotonic
+                )
 
     def _challenge_diagnostics(self, now):
         with self._challenge_lock:
             challenge = self._latest_challenge
             received_count = self._challenge_received_count
+            recovery_reason = self._challenge_recovery_reason
+            recovery_trigger_sec = self._challenge_recovery_trigger_sec
         age_sec = ""
         session_id = ""
         token = ""
@@ -469,6 +527,10 @@ class CollisionFfbPublisherBridge:
         return challenge, {
             "collision_ffb_challenge_received_count": received_count,
             "collision_ffb_challenge_age_sec": age_sec,
+            "collision_ffb_challenge_recovery_reason": recovery_reason,
+            "collision_ffb_challenge_recovery_trigger_sec": (
+                recovery_trigger_sec
+            ),
             "collision_ffb_challenge_session_id": session_id,
             "collision_ffb_challenge_token": token,
         }
@@ -480,7 +542,80 @@ class CollisionFfbPublisherBridge:
         if self.sequence > UINT64_MAX:
             raise RuntimeError("collision FFB sequence exhausted uint64 range")
 
-        virtual_command = self.cadence.command(risk_level, self.policy)
+        challenge = None
+        challenge_error = ""
+        challenge_diagnostics = {}
+        challenge_available = True
+        if self.freshness_mode == "challenge":
+            if self.executor_thread is not None:
+                try:
+                    self.executor_thread.raise_if_failed()
+                except Exception as error:
+                    with self._challenge_lock:
+                        self._latest_challenge = None
+                    error_text = (
+                        f"challenge_receive_error:{type(error).__name__}:{error}"
+                    )
+                    if error_text != self._last_error:
+                        print(f"[WARN] {error_text}")
+                    self._last_error = error_text
+                    challenge_error = error_text
+            now = float(self.cadence.monotonic_clock())
+            challenge, challenge_diagnostics = self._challenge_diagnostics(now)
+            age_sec = challenge_diagnostics[
+                "collision_ffb_challenge_age_sec"
+            ]
+            recent = (
+                challenge is not None
+                and age_sec != ""
+                and 0.0 <= age_sec <= self.challenge_max_age_sec
+            )
+            if not recent:
+                if challenge is not None and age_sec != "":
+                    with self._challenge_lock:
+                        self._challenge_recovery_until_sec = max(
+                            self._challenge_recovery_until_sec or now,
+                            now + self.challenge_recovery_sec,
+                        )
+                        if self._challenge_recovery_reason != "callback_gap":
+                            self._challenge_recovery_reason = "sender_age"
+                            self._challenge_recovery_trigger_sec = age_sec
+                        challenge_diagnostics[
+                            "collision_ffb_challenge_recovery_reason"
+                        ] = self._challenge_recovery_reason
+                        challenge_diagnostics[
+                            "collision_ffb_challenge_recovery_trigger_sec"
+                        ] = self._challenge_recovery_trigger_sec
+                challenge_available = False
+                if not challenge_error:
+                    challenge_error = "no_recent_receiver_challenge"
+            with self._challenge_lock:
+                recovery_until = self._challenge_recovery_until_sec
+            if recent and recovery_until is not None and now < recovery_until:
+                challenge_available = False
+                challenge_error = "receiver_challenge_recovery_cooldown"
+            elif recent and challenge[:2] == self._last_used_challenge:
+                challenge_available = False
+                challenge_error = "receiver_challenge_already_used"
+            elif recent:
+                with self._challenge_lock:
+                    self._challenge_recovery_until_sec = None
+                    self._challenge_recovery_reason = ""
+                    self._challenge_recovery_trigger_sec = ""
+
+        risk_name = str(risk_level or "CLEAR").strip().upper()
+        if (
+            self.freshness_mode == "challenge"
+            and not challenge_available
+            and not self.cadence.latched
+            and risk_name not in {"CLEAR", "PATH"}
+        ):
+            # Do not start a finite alert while delivery is unavailable.  Once
+            # any part has started, however, elapsed time continues so a link
+            # interruption cannot restart or lengthen the pattern.
+            virtual_command = self.policy.command(risk_name)
+        else:
+            virtual_command = self.cadence.command(risk_name, self.policy)
         payload = virtual_command_payload(virtual_command)
         sequence = self.sequence
         self.sequence += 1
@@ -498,41 +633,19 @@ class CollisionFfbPublisherBridge:
             "collision_ffb_publish_error": "",
             "collision_ffb_challenge_received_count": "",
             "collision_ffb_challenge_age_sec": "",
+            "collision_ffb_challenge_recovery_reason": "",
+            "collision_ffb_challenge_recovery_trigger_sec": "",
             "collision_ffb_challenge_session_id": "",
             "collision_ffb_challenge_token": "",
         }
         if self.freshness_mode == "challenge":
-            challenge_error = ""
-            if self.executor_thread is not None:
-                try:
-                    self.executor_thread.raise_if_failed()
-                except Exception as error:
-                    with self._challenge_lock:
-                        self._latest_challenge = None
-                    error_text = (
-                        f"challenge_receive_error:{type(error).__name__}:{error}"
-                    )
-                    if error_text != self._last_error:
-                        print(f"[WARN] {error_text}")
-                    self._last_error = error_text
-                    challenge_error = error_text
-            now = float(self.cadence.monotonic_clock())
-            challenge, diagnostics = self._challenge_diagnostics(now)
-            record.update(diagnostics)
-            age_sec = diagnostics["collision_ffb_challenge_age_sec"]
-            if (
-                challenge is None
-                or age_sec == ""
-                or not 0.0 <= age_sec <= self.challenge_max_age_sec
-            ):
-                self.cadence.reset()
+            record.update(challenge_diagnostics)
+            if not challenge_available:
                 record.update(
                     collision_ffb_active=0,
                     collision_ffb_requested_magnitude=0.0,
                     collision_ffb_reason="challenge_unavailable",
-                    collision_ffb_publish_error=(
-                        challenge_error or "no_recent_receiver_challenge"
-                    ),
+                    collision_ffb_publish_error=challenge_error,
                 )
                 self.last_record = record
                 return dict(record)
@@ -549,6 +662,10 @@ class CollisionFfbPublisherBridge:
             if self.freshness_mode == "challenge":
                 message.receiver_session_id = challenge[0]
                 message.receiver_token = challenge[1]
+                # Treat every receiver challenge as a nonce.  Mark it consumed
+                # before publish because a local publish exception cannot prove
+                # that no bytes reached DDS or the receiver.
+                self._last_used_challenge = challenge[:2]
             self.publisher.publish(message)
             record["collision_ffb_publish_success"] = 1
             self._last_error = ""

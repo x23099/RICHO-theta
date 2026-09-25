@@ -198,13 +198,209 @@ class CollisionFfbPublisherTest(unittest.TestCase):
         self.assertEqual(
             bridge.publish_risk("CLEAR")["collision_ffb_publish_success"], 1
         )
+        ros_api.node.subscription_callback(
+            SimpleNamespace(session_id=23, token=100)
+        )
         now[0] = 4.061
+        self.assertEqual(
+            bridge.publish_risk("CLEAR")["collision_ffb_publish_success"], 1
+        )
+        ros_api.node.subscription_callback(
+            SimpleNamespace(session_id=23, token=101)
+        )
+        now[0] = 4.122
         stale = bridge.publish_risk("CLEAR")
         self.assertEqual(stale["collision_ffb_publish_success"], 0)
         self.assertEqual(
             stale["collision_ffb_publish_error"],
             "no_recent_receiver_challenge",
         )
+        self.assertEqual(
+            stale["collision_ffb_challenge_recovery_reason"],
+            "sender_age",
+        )
+
+    def test_challenge_token_is_used_at_most_once_by_sender(self):
+        now = [5.0]
+        ros_api = _RosApi()
+        bridge = _bridge(
+            ros_api, freshness_mode="challenge", monotonic_clock=lambda: now[0]
+        )
+        ros_api.node.subscription_callback(
+            SimpleNamespace(session_id=29, token=7)
+        )
+
+        first = bridge.publish_risk("CLEAR")
+        second = bridge.publish_risk("CLEAR")
+
+        self.assertEqual(first["collision_ffb_publish_success"], 1)
+        self.assertEqual(second["collision_ffb_publish_success"], 0)
+        self.assertEqual(
+            second["collision_ffb_publish_error"],
+            "receiver_challenge_already_used",
+        )
+        self.assertEqual(len(ros_api.publisher.messages), 1)
+
+    def test_out_of_order_challenge_does_not_replace_latest_token(self):
+        now = [6.0]
+        ros_api = _RosApi()
+        bridge = _bridge(
+            ros_api, freshness_mode="challenge", monotonic_clock=lambda: now[0]
+        )
+        ros_api.node.subscription_callback(
+            SimpleNamespace(session_id=31, token=12)
+        )
+        ros_api.node.subscription_callback(
+            SimpleNamespace(session_id=31, token=11)
+        )
+
+        result = bridge.publish_risk("CLEAR")
+
+        self.assertEqual(result["collision_ffb_challenge_received_count"], 2)
+        self.assertEqual(result["collision_ffb_challenge_token"], 12)
+        self.assertEqual(ros_api.publisher.messages[-1].receiver_token, 12)
+
+    def test_challenge_recovery_cooldown_waits_for_queue_to_drain(self):
+        now = [7.0]
+        ros_api = _RosApi()
+        bridge = _bridge(
+            ros_api,
+            cadence="triple",
+            freshness_mode="challenge",
+            challenge_max_age_sec=0.06,
+            challenge_recovery_sec=0.1,
+            monotonic_clock=lambda: now[0],
+        )
+        ros_api.node.subscription_callback(
+            SimpleNamespace(session_id=37, token=1)
+        )
+        now[0] = 7.061
+        stale = bridge.publish_risk("WARNING")
+        ros_api.node.subscription_callback(
+            SimpleNamespace(session_id=37, token=2)
+        )
+        now[0] = 7.12
+        cooling_down = bridge.publish_risk("WARNING")
+        ros_api.node.subscription_callback(
+            SimpleNamespace(session_id=37, token=3)
+        )
+        now[0] = 7.162
+        recovered = bridge.publish_risk("WARNING")
+
+        self.assertEqual(stale["collision_ffb_publish_success"], 0)
+        self.assertEqual(
+            cooling_down["collision_ffb_publish_error"],
+            "receiver_challenge_recovery_cooldown",
+        )
+        self.assertEqual(recovered["collision_ffb_publish_success"], 1)
+        self.assertEqual(recovered["collision_ffb_active"], 1)
+        self.assertEqual(
+            recovered["collision_ffb_reason"],
+            "ttc_warning:cadence_triple",
+        )
+
+    def test_challenge_loss_does_not_restart_started_cadence(self):
+        now = [8.0]
+        ros_api = _RosApi()
+        bridge = _bridge(
+            ros_api,
+            cadence="triple",
+            freshness_mode="challenge",
+            challenge_max_age_sec=0.06,
+            challenge_recovery_sec=0.1,
+            monotonic_clock=lambda: now[0],
+        )
+        ros_api.node.subscription_callback(
+            SimpleNamespace(session_id=41, token=1)
+        )
+        first = bridge.publish_risk("WARNING")
+        now[0] = 8.07
+        unavailable = bridge.publish_risk("WARNING")
+        for token, received_at in enumerate(
+            (8.09, 8.11, 8.13, 8.15, 8.17, 8.19, 8.21, 8.23, 8.25, 8.27, 8.29),
+            start=2,
+        ):
+            now[0] = received_at
+            ros_api.node.subscription_callback(
+                SimpleNamespace(session_id=41, token=token)
+            )
+        now[0] = 8.305
+        ros_api.node.subscription_callback(
+            SimpleNamespace(session_id=41, token=13)
+        )
+        after_recovery = bridge.publish_risk("WARNING")
+
+        self.assertEqual(first["collision_ffb_active"], 1)
+        self.assertEqual(unavailable["collision_ffb_publish_success"], 0)
+        self.assertEqual(after_recovery["collision_ffb_publish_success"], 1)
+        self.assertEqual(after_recovery["collision_ffb_active"], 0)
+        self.assertEqual(
+            after_recovery["collision_ffb_reason"],
+            "cadence_gap:triple",
+        )
+
+    def test_long_callback_gap_enters_recovery_before_using_token(self):
+        now = [9.0]
+        ros_api = _RosApi()
+        bridge = _bridge(
+            ros_api,
+            freshness_mode="challenge",
+            challenge_max_age_sec=0.06,
+            challenge_recovery_sec=0.1,
+            monotonic_clock=lambda: now[0],
+        )
+        ros_api.node.subscription_callback(
+            SimpleNamespace(session_id=43, token=1)
+        )
+        self.assertEqual(
+            bridge.publish_risk("CLEAR")["collision_ffb_publish_success"], 1
+        )
+
+        # The token is locally new, but the 167 ms callback gap matches the
+        # observed live failure mode and must trigger backlog recovery.
+        now[0] = 9.167
+        ros_api.node.subscription_callback(
+            SimpleNamespace(session_id=43, token=9)
+        )
+        delayed = bridge.publish_risk("WARNING")
+        for token, received_at in enumerate(
+            (9.187, 9.207, 9.227, 9.247, 9.267), start=10
+        ):
+            now[0] = received_at
+            ros_api.node.subscription_callback(
+                SimpleNamespace(session_id=43, token=token)
+            )
+        now[0] = 9.268
+        recovered = bridge.publish_risk("WARNING")
+
+        self.assertEqual(delayed["collision_ffb_publish_success"], 0)
+        self.assertEqual(
+            delayed["collision_ffb_publish_error"],
+            "receiver_challenge_recovery_cooldown",
+        )
+        self.assertEqual(
+            delayed["collision_ffb_challenge_recovery_reason"],
+            "callback_gap",
+        )
+        self.assertAlmostEqual(
+            delayed["collision_ffb_challenge_recovery_trigger_sec"],
+            0.167,
+        )
+        self.assertEqual(recovered["collision_ffb_publish_success"], 1)
+        self.assertEqual(recovered["collision_ffb_challenge_token"], 14)
+
+    def test_challenge_settings_reject_values_above_safety_limit(self):
+        for kwargs in (
+            {"challenge_max_age_sec": 0.101},
+            {"challenge_recovery_sec": 0.101},
+        ):
+            with self.subTest(kwargs=kwargs):
+                with self.assertRaises(ValueError):
+                    _bridge(
+                        _RosApi(),
+                        freshness_mode="challenge",
+                        **kwargs,
+                    )
 
     def test_challenge_executor_failure_fails_closed(self):
         ros_api = _RosApi()

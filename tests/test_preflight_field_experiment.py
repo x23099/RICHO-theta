@@ -101,6 +101,19 @@ class FieldExperimentPreflightTest(unittest.TestCase):
         self.assertTrue(config_requires_ffb(config_path))
         self.assertTrue(config_requires_challenge(config_path))
 
+    def test_accepts_v9_challenge_recovery_configuration(self):
+        config_path = (
+            SRC_DIR
+            / "bird_eye_config_ttc_v9_ffb_challenge_recovery_20260925.json"
+        )
+
+        result = check_config(config_path)
+
+        self.assertEqual(result.status, "PASS")
+        self.assertIn("ffb_challenge_max_age=0.06", result.detail)
+        self.assertIn("ffb_challenge_recovery=0.1", result.detail)
+        self.assertTrue(config_requires_challenge(config_path))
+
     def test_challenge_config_is_explicit_and_validated(self):
         config_path = (
             SRC_DIR
@@ -123,6 +136,13 @@ class FieldExperimentPreflightTest(unittest.TestCase):
         config["collision_ffb_challenge_max_age_sec"] = 0.0
         self.assertTrue(any(
             "collision_ffb_challenge_max_age_sec" in item
+            for item in validate_experiment_config(config)
+        ))
+
+        config["collision_ffb_challenge_max_age_sec"] = 0.06
+        config["collision_ffb_challenge_recovery_sec"] = 0.101
+        self.assertTrue(any(
+            "collision_ffb_challenge_recovery_sec" in item
             for item in validate_experiment_config(config)
         ))
 

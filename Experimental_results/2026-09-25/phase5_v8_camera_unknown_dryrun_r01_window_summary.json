@@ -1,0 +1,62 @@
+{
+  "decision": {
+    "unknown_single_pulse": "PASS",
+    "cross_pc_integration": "FAIL",
+    "camera_fps_requirement": "FAIL"
+  },
+  "recording_window_jst": {
+    "start": "2026-09-25T16:04:15+09:00",
+    "end": "2026-09-25T16:04:58.091286+09:00"
+  },
+  "camera": {
+    "frames": 1264,
+    "effective_fps": 29.32529666960756,
+    "warning_frames": 99,
+    "warning_hold_frames": 74,
+    "unknown_frames": 25,
+    "unknown_active_frames": 3,
+    "unknown_active_sequences": [4906, 4907, 4908],
+    "unknown_active_start_sec": 17.322468,
+    "unknown_first_inactive_sec": 17.42385,
+    "unknown_onset_to_inactive_sec": 0.101382,
+    "unknown_pulse_complete_frames": 22,
+    "challenge_unavailable_frames": 24,
+    "ffb_publish_success_rate": 0.9810126582278481,
+    "challenge_age_p95_sec": 0.03337649139989477,
+    "challenge_age_max_sec": 0.2509283230001529
+  },
+  "bag_recording_window": {
+    "command_count": 1240,
+    "status_count": 1216,
+    "challenge_count": 2136,
+    "mock_odom_count": 563,
+    "active_command_count": 18,
+    "active_status_count": 12,
+    "warning_or_hold_active_command_count": 15,
+    "warning_or_hold_active_status_count": 9,
+    "unknown_active_command_count": 3,
+    "unknown_active_status_count": 3,
+    "fault_count": 24,
+    "fault_reasons": {
+      "invalid_request:unknown_receiver_token": 23,
+      "invalid_request:expired_receiver_token": 1
+    },
+    "status_modes": ["dry_run"],
+    "last_recording_status": {
+      "output_active": false,
+      "action": "none",
+      "reason": "inactive:clear",
+      "fault": false
+    },
+    "final_bag_status": {
+      "output_active": false,
+      "action": "stop",
+      "reason": "shutdown",
+      "fault": false
+    }
+  },
+  "inputs": {
+    "camera_archive_sha256": "dfc8fee1182bcce184186fa883590b5a602129fa674bf352635b41424f62deed",
+    "bag_archive_sha256": "154e8d4c3b4d3be1c9bab6c9474e9b01cc2cab7a49fa1c790766248c39ade3d5"
+  }
+}

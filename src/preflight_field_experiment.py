@@ -228,6 +228,19 @@ def validate_experiment_config(config):
             errors.append(
                 "collision_ffb_challenge_max_age_sec must be within (0, 0.1]"
             )
+        challenge_recovery = config.get(
+            "collision_ffb_challenge_recovery_sec", 0.1
+        )
+        if freshness_mode == "challenge" and (
+            not isinstance(challenge_recovery, (int, float))
+            or isinstance(challenge_recovery, bool)
+            or not math.isfinite(challenge_recovery)
+            or not 0.0 < challenge_recovery <= 0.1
+        ):
+            errors.append(
+                "collision_ffb_challenge_recovery_sec must be within "
+                "(0, 0.1]"
+            )
     return errors
 
 
@@ -318,7 +331,9 @@ def check_config(config_path):
         f"{config.get('collision_ffb_unknown_pulse_duration_sec', 0.1)}s, "
         f"ffb_freshness={config.get('collision_ffb_freshness_mode', 'clock')}, "
         "ffb_challenge_max_age="
-        f"{config.get('collision_ffb_challenge_max_age_sec', 0.1)}",
+        f"{config.get('collision_ffb_challenge_max_age_sec', 0.1)}, "
+        "ffb_challenge_recovery="
+        f"{config.get('collision_ffb_challenge_recovery_sec', 0.1)}",
     )
 
 

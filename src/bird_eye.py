@@ -744,6 +744,7 @@ class CalibrationWindow(QWidget):
             "collision_ffb_cadence_duration_sec": 0.5,
             "collision_ffb_cadence_rate_hz": 30.0,
             "collision_ffb_unknown_pulse_duration_sec": 0.1,
+            "collision_ffb_challenge_recovery_sec": 0.1,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -847,6 +848,7 @@ class CalibrationWindow(QWidget):
             "collision_ffb_cadence_duration_sec": 0.5,
             "collision_ffb_cadence_rate_hz": 30.0,
             "collision_ffb_unknown_pulse_duration_sec": 0.1,
+            "collision_ffb_challenge_recovery_sec": 0.1,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -907,6 +909,9 @@ class CalibrationWindow(QWidget):
             ),
             challenge_max_age_sec=self.params.get(
                 "collision_ffb_challenge_max_age_sec", 0.1
+            ),
+            challenge_recovery_sec=self.params.get(
+                "collision_ffb_challenge_recovery_sec", 0.1
             ),
         )
         print(

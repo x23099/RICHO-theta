@@ -17,6 +17,28 @@
 - archive SHA-256: `7a38ec860b9bf5af3ef380332582ed154c4ca5dad4b12c44b4f38485e20facf7`
 - 画像SHA-256: `017abf593ebeebc461776807229ae77ace9936ad3903f553096890b1d0a0f6bf`
 
+## `phase5_v8_warning_raw_frame_0407.png`
+
+- 内容: v8実カメラ・模擬ODOM・PC間dry-runで、WARNINGの3連FFB commandが開始した時点の生カメラ画像。
+- 元録画: `phase5_v8_camera_mock_odom_dryrun_r01_20260925_153955_320.tar.xz`内の`raw.avi`。
+- session: `phase5_v8_camera_mock_odom_dryrun_r01_20260925_153955_320`
+- CSV frame / time: `407` / `13.673189 s`
+- 条件: 青箱検出・観測採用、模擬ODOM `0.25 m/s`、TTC `4.1068 s`、risk `WARNING`、FFB sequence `9369`。
+- 画像処理: なし。切り抜き、リサイズ、注釈、色調整は行っていない。元解像度`1280×720`のフレームをPNG化した。
+- archive SHA-256: `5d60214d91b299d536b915d1aab01fce68cfb4d59e7127fea4a3d5f597cc4c93`
+- 画像SHA-256: `8f35c03b1c387ed492fd3ea8e09e7d086f4079bae8f5a6d55a7819175d1b2b2e`
+
+## `phase5_v8_unknown_raw_frame_0502.png`
+
+- 内容: v8実カメラUNKNOWN単発試験で、青箱遮蔽後にUNKNOWN activeが開始した時点の生カメラ画像。
+- 元録画: `phase5_v8_camera_unknown_dryrun_r01_20260925_160415_310.tar.xz`内の`raw.avi`。
+- session: `phase5_v8_camera_unknown_dryrun_r01_20260925_160415_310`
+- CSV frame / time: `502` / `17.322468 s`
+- 条件: 青箱未検出、模擬ODOM `0.25 m/s`、risk `UNKNOWN`、FFB sequence `4906`、reason `invalid_or_unknown_perception:cadence_single`。
+- 画像処理: なし。切り抜き、リサイズ、注釈、色調整は行っていない。元解像度`1280×720`のフレームをPNG化した。
+- archive SHA-256: `dfc8fee1182bcce184186fa883590b5a602129fa674bf352635b41424f62deed`
+- 画像SHA-256: `ebab2521e2fefa6220b951b640ebdd67c0fd7cc496d256c23f4817cc9fe9330c`
+
 ## 再生成
 
 両グラフは既存の`src/create_ffb_report_assets.py`にある`plot_replay`を使用した。再生成例:
@@ -38,4 +60,4 @@ plot_replay(
 PY
 ```
 
-本日は新しいカメラ録画を行っていないため、生カメラ画像は追加していない。
+後続の実カメラ試験から、WARNING開始フレームを生画像のまま追加した。
