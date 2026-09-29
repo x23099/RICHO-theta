@@ -8,6 +8,7 @@ sys.path.insert(0, str(SRC_DIR))
 
 from publish_mock_odom_scenario import (  # noqa: E402
     build_scenario_schedule,
+    publish_waiting_zeros,
     validate_topic,
 )
 
@@ -50,6 +51,19 @@ class MockOdomScenarioTest(unittest.TestCase):
         ):
             with self.subTest(kwargs=kwargs), self.assertRaises(ValueError):
                 build_scenario_schedule(**kwargs)
+
+    def test_waiting_publisher_keeps_zero_until_manual_start(self):
+        published = []
+        polls = iter((False, False, True))
+
+        count = publish_waiting_zeros(
+            publish_zero=published.append,
+            rate_hz=30.0,
+            poll_start=lambda _timeout: next(polls),
+        )
+
+        self.assertEqual(count, 3)
+        self.assertEqual(published, [0, 1, 2])
 
 
 if __name__ == "__main__":

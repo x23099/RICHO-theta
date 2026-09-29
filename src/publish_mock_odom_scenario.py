@@ -11,6 +11,8 @@ from __future__ import annotations
 import argparse
 import csv
 import math
+import select
+import sys
 import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -108,6 +110,14 @@ def build_parser():
     parser.add_argument("--rate-hz", type=float, default=30.0)
     parser.add_argument("--output-csv", type=Path, required=True)
     parser.add_argument(
+        "--wait-for-enter",
+        action="store_true",
+        help=(
+            "keep the same publisher alive at zero speed until Enter, then "
+            "run the scenario"
+        ),
+    )
+    parser.add_argument(
         "--dry-run", action="store_true",
         help="validate and print the schedule without importing ROS or writing CSV",
     )
@@ -116,12 +126,42 @@ def build_parser():
 
 CSV_FIELDS = (
     "sequence", "phase", "planned_elapsed_sec", "actual_elapsed_sec",
+    "run_elapsed_sec",
     "monotonic_sec", "wall_time_utc", "ros_stamp_sec", "ros_stamp_nanosec",
     "linear_mps", "angular_radps", "publish_success",
 )
 
 
-def run_scenario(args, *, monotonic_clock=time.monotonic, sleep=time.sleep) -> int:
+def poll_stdin_for_enter(timeout_sec: float, input_stream=sys.stdin) -> bool:
+    """Return True after consuming one input line, or False on timeout."""
+    readable, _, _ = select.select(
+        [input_stream], [], [], max(0.0, float(timeout_sec))
+    )
+    if not readable:
+        return False
+    if input_stream.readline() == "":
+        raise RuntimeError("standard input closed while waiting for Enter")
+    return True
+
+
+def publish_waiting_zeros(*, publish_zero, rate_hz, poll_start) -> int:
+    """Publish zero continuously until the operator requests scenario start."""
+    count = 0
+    period_sec = 1.0 / float(rate_hz)
+    while True:
+        publish_zero(count)
+        count += 1
+        if poll_start(period_sec):
+            return count
+
+
+def run_scenario(
+    args,
+    *,
+    monotonic_clock=time.monotonic,
+    sleep=time.sleep,
+    poll_start=poll_stdin_for_enter,
+) -> int:
     topic = validate_topic(args.topic)
     schedule = build_scenario_schedule(
         lead_in_sec=args.lead_in_sec,
@@ -134,7 +174,8 @@ def run_scenario(args, *, monotonic_clock=time.monotonic, sleep=time.sleep) -> i
     if args.dry_run:
         print(
             f"[DRY-RUN] topic={topic}, samples={len(schedule)}, "
-            f"duration={total_sec:.3f}s, speed={args.speed_mps:.3f}m/s"
+            f"duration={total_sec:.3f}s, speed={args.speed_mps:.3f}m/s, "
+            f"wait_for_enter={bool(args.wait_for_enter)}"
         )
         return 0
 
@@ -151,7 +192,7 @@ def run_scenario(args, *, monotonic_clock=time.monotonic, sleep=time.sleep) -> i
     rclpy.init(args=None)
     node = rclpy.create_node("phase5_mock_odom_scenario")
     publisher = node.create_publisher(Odometry, topic, 10)
-    start = monotonic_clock()
+    run_start = monotonic_clock()
     interrupted = False
     try:
         with output_csv.open("w", newline="") as output_file:
@@ -160,29 +201,45 @@ def run_scenario(args, *, monotonic_clock=time.monotonic, sleep=time.sleep) -> i
             output_file.flush()
             last_phase = None
 
-            def publish(sample, phase=None):
+            def publish(
+                *,
+                sequence,
+                phase,
+                planned_elapsed_sec,
+                linear_mps,
+                scenario_start,
+            ):
                 now_mono = monotonic_clock()
                 stamp = node.get_clock().now().to_msg()
                 message = Odometry()
                 message.header.stamp = stamp
                 message.header.frame_id = "odom"
                 message.child_frame_id = "base_footprint"
-                message.twist.twist.linear.x = float(sample.linear_mps)
+                message.twist.twist.linear.x = float(linear_mps)
                 success = True
                 try:
                     publisher.publish(message)
                 except Exception:
                     success = False
                 writer.writerow({
-                    "sequence": sample.sequence,
-                    "phase": phase or sample.phase,
-                    "planned_elapsed_sec": f"{sample.planned_elapsed_sec:.9f}",
-                    "actual_elapsed_sec": f"{now_mono - start:.9f}",
+                    "sequence": sequence,
+                    "phase": phase,
+                    "planned_elapsed_sec": (
+                        ""
+                        if planned_elapsed_sec is None
+                        else f"{planned_elapsed_sec:.9f}"
+                    ),
+                    "actual_elapsed_sec": (
+                        ""
+                        if scenario_start is None
+                        else f"{now_mono - scenario_start:.9f}"
+                    ),
+                    "run_elapsed_sec": f"{now_mono - run_start:.9f}",
                     "monotonic_sec": f"{now_mono:.9f}",
                     "wall_time_utc": datetime.now(timezone.utc).isoformat(),
                     "ros_stamp_sec": int(stamp.sec),
                     "ros_stamp_nanosec": int(stamp.nanosec),
-                    "linear_mps": f"{sample.linear_mps:.6f}",
+                    "linear_mps": f"{linear_mps:.6f}",
                     "angular_radps": "0.000000",
                     "publish_success": int(success),
                 })
@@ -190,6 +247,27 @@ def run_scenario(args, *, monotonic_clock=time.monotonic, sleep=time.sleep) -> i
                 if not success:
                     raise RuntimeError("mock ODOM publish failed")
 
+            sequence_offset = 0
+            if args.wait_for_enter:
+                print(
+                    "[WAIT] Publishing linear.x=0.000 m/s. "
+                    "Press Enter to start the stop/move/stop scenario.",
+                    flush=True,
+                )
+                sequence_offset = publish_waiting_zeros(
+                    publish_zero=lambda sequence: publish(
+                        sequence=sequence,
+                        phase="waiting_for_start",
+                        planned_elapsed_sec=None,
+                        linear_mps=0.0,
+                        scenario_start=None,
+                    ),
+                    rate_hz=args.rate_hz,
+                    poll_start=poll_start,
+                )
+                print("[START] Enter received; scenario begins.", flush=True)
+
+            start = monotonic_clock()
             for sample in schedule:
                 deadline = start + sample.planned_elapsed_sec
                 remaining = deadline - monotonic_clock()
@@ -203,7 +281,13 @@ def run_scenario(args, *, monotonic_clock=time.monotonic, sleep=time.sleep) -> i
                         flush=True,
                     )
                     last_phase = sample.phase
-                publish(sample)
+                publish(
+                    sequence=sequence_offset + sample.sequence,
+                    phase=sample.phase,
+                    planned_elapsed_sec=sample.planned_elapsed_sec,
+                    linear_mps=sample.linear_mps,
+                    scenario_start=start,
+                )
     except KeyboardInterrupt:
         interrupted = True
     finally:

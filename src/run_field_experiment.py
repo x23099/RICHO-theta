@@ -163,6 +163,9 @@ def build_ffb_relay_command(args: argparse.Namespace) -> list[str] | None:
     config = load_experiment_config(args)
     if config.get("collision_ffb_relay_enabled", 0) != 1:
         return None
+    challenge_max_age = config.get(
+        "collision_ffb_challenge_max_age_sec", 0.06
+    )
     return [
         sys.executable,
         str(FFB_RELAY_SCRIPT),
@@ -188,9 +191,16 @@ def build_ffb_relay_command(args: argparse.Namespace) -> list[str] | None:
         "--intent-max-age-sec",
         str(config.get("collision_ffb_intent_max_age_sec", 0.1)),
         "--challenge-max-age-sec",
-        str(config.get("collision_ffb_challenge_max_age_sec", 0.06)),
+        str(challenge_max_age),
         "--challenge-stable-sec",
         str(config.get("collision_ffb_challenge_stable_sec", 1.0)),
+        "--challenge-stream-timeout-sec",
+        str(
+            config.get(
+                "collision_ffb_challenge_stream_timeout_sec",
+                challenge_max_age,
+            )
+        ),
     ]
 
 

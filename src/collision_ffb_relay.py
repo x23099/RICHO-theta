@@ -21,6 +21,7 @@ INTENT_MAX_AGE_SEC = 0.1
 CHALLENGE_MAX_AGE_SEC = 0.1
 FUTURE_TOLERANCE_SEC = 0.02
 CHALLENGE_STABLE_MAX_SEC = 10.0
+CHALLENGE_STREAM_TIMEOUT_MAX_SEC = 1.0
 
 try:
     import rclpy
@@ -49,7 +50,9 @@ class RelayDecision:
     intent_age_sec: float | None = None
     challenge_age_sec: float | None = None
     challenge_stable_age_sec: float | None = None
+    challenge_previous_gap_sec: float | None = None
     challenge_received_count: int = 0
+    challenge_stream_restart_count: int = 0
 
 
 class CollisionFfbRelayGate:
@@ -62,12 +65,18 @@ class CollisionFfbRelayGate:
         intent_max_age_sec=0.1,
         challenge_max_age_sec=0.06,
         challenge_stable_sec=1.0,
+        challenge_stream_timeout_sec=None,
         future_tolerance_sec=FUTURE_TOLERANCE_SEC,
     ):
         self.expected_source = str(expected_source).strip()
         self.intent_max_age_sec = float(intent_max_age_sec)
         self.challenge_max_age_sec = float(challenge_max_age_sec)
         self.challenge_stable_sec = float(challenge_stable_sec)
+        self.challenge_stream_timeout_sec = float(
+            self.challenge_max_age_sec
+            if challenge_stream_timeout_sec is None
+            else challenge_stream_timeout_sec
+        )
         self.future_tolerance_sec = float(future_tolerance_sec)
         if not self.expected_source:
             raise ValueError("expected source must not be empty")
@@ -84,6 +93,18 @@ class CollisionFfbRelayGate:
             raise ValueError(
                 "challenge stable duration must be within [0, 10] seconds"
             )
+        if (
+            not math.isfinite(self.challenge_stream_timeout_sec)
+            or not (
+                self.challenge_max_age_sec
+                <= self.challenge_stream_timeout_sec
+                <= CHALLENGE_STREAM_TIMEOUT_MAX_SEC
+            )
+        ):
+            raise ValueError(
+                "challenge stream timeout must be at least challenge max "
+                "age and at most 1 second"
+            )
         if not 0.0 <= self.future_tolerance_sec <= FUTURE_TOLERANCE_SEC:
             raise ValueError("future tolerance must be within [0, 0.02] seconds")
         self.latest_challenge = None
@@ -91,6 +112,8 @@ class CollisionFfbRelayGate:
         self.challenge_received_count = 0
         self.challenge_stable_since = None
         self.last_challenge_received_monotonic = None
+        self.last_challenge_gap_sec = None
+        self.challenge_stream_restart_count = 0
 
     def receive_challenge(self, message, received_monotonic: float) -> bool:
         session_id = int(message.session_id)
@@ -101,15 +124,25 @@ class CollisionFfbRelayGate:
         latest = self.latest_challenge
         if latest is not None and latest[0] == session_id and token <= latest[1]:
             return False
+        previous_received = self.last_challenge_received_monotonic
+        gap_sec = (
+            None
+            if previous_received is None
+            else received_monotonic - previous_received
+        )
+        self.last_challenge_gap_sec = gap_sec
         stream_restarted = (
             latest is None
             or latest[0] != session_id
-            or self.last_challenge_received_monotonic is None
-            or received_monotonic - self.last_challenge_received_monotonic
-            > self.challenge_max_age_sec
+            or previous_received is None
+            or gap_sec is None
+            or not math.isfinite(gap_sec)
+            or gap_sec < 0.0
+            or gap_sec > self.challenge_stream_timeout_sec
         )
         if stream_restarted:
             self.challenge_stable_since = received_monotonic
+            self.challenge_stream_restart_count += 1
         self.latest_challenge = (session_id, token, received_monotonic)
         self.last_challenge_received_monotonic = received_monotonic
         self.challenge_received_count += 1
@@ -173,6 +206,13 @@ class CollisionFfbRelayGate:
             if self.challenge_stable_since is None
             else now_monotonic - self.challenge_stable_since
         )
+        decision_context = {
+            "challenge_previous_gap_sec": self.last_challenge_gap_sec,
+            "challenge_received_count": self.challenge_received_count,
+            "challenge_stream_restart_count": (
+                self.challenge_stream_restart_count
+            ),
+        }
         if (
             not math.isfinite(challenge_age_sec)
             or challenge_age_sec < 0.0
@@ -184,7 +224,7 @@ class CollisionFfbRelayGate:
                 intent_age_sec=intent_age_sec,
                 challenge_age_sec=challenge_age_sec,
                 challenge_stable_age_sec=challenge_stable_age_sec,
-                challenge_received_count=self.challenge_received_count,
+                **decision_context,
             )
         if (
             challenge_stable_age_sec is None
@@ -199,7 +239,7 @@ class CollisionFfbRelayGate:
                 intent_age_sec=intent_age_sec,
                 challenge_age_sec=challenge_age_sec,
                 challenge_stable_age_sec=challenge_stable_age_sec,
-                challenge_received_count=self.challenge_received_count,
+                **decision_context,
             )
         if challenge[:2] == self.last_used_challenge:
             return RelayDecision(
@@ -208,7 +248,7 @@ class CollisionFfbRelayGate:
                 intent_age_sec=intent_age_sec,
                 challenge_age_sec=challenge_age_sec,
                 challenge_stable_age_sec=challenge_stable_age_sec,
-                challenge_received_count=self.challenge_received_count,
+                **decision_context,
             )
 
         # Consume before publish.  A local publish exception cannot prove that
@@ -222,7 +262,7 @@ class CollisionFfbRelayGate:
             intent_age_sec=intent_age_sec,
             challenge_age_sec=challenge_age_sec,
             challenge_stable_age_sec=challenge_stable_age_sec,
-            challenge_received_count=self.challenge_received_count,
+            **decision_context,
         )
 
 
@@ -240,6 +280,7 @@ class CollisionFfbRelay:
         intent_max_age_sec=0.1,
         challenge_max_age_sec=0.06,
         challenge_stable_sec=1.0,
+        challenge_stream_timeout_sec=None,
         monotonic_clock=time.monotonic,
         ros_api=None,
         command_type=None,
@@ -270,6 +311,7 @@ class CollisionFfbRelay:
             intent_max_age_sec=intent_max_age_sec,
             challenge_max_age_sec=challenge_max_age_sec,
             challenge_stable_sec=challenge_stable_sec,
+            challenge_stream_timeout_sec=challenge_stream_timeout_sec,
         )
         self._ros = ros_api if ros_api is not None else rclpy
         self._command_type = command_type or CollisionFfbCommand
@@ -346,6 +388,16 @@ class CollisionFfbRelay:
                 decision.challenge_stable_age_sec
             ),
             "challenge_stable_required_sec": self.gate.challenge_stable_sec,
+            "challenge_previous_gap_sec": self._finite_or_none(
+                decision.challenge_previous_gap_sec
+            ),
+            "challenge_stream_timeout_sec": (
+                self.gate.challenge_stream_timeout_sec
+            ),
+            "challenge_stream_restart_count": int(
+                decision.challenge_stream_restart_count
+                or self.gate.challenge_stream_restart_count
+            ),
             "challenge_received_count": int(
                 decision.challenge_received_count
                 or self.gate.challenge_received_count
@@ -423,6 +475,16 @@ def nonnegative_stable_duration(value: str) -> float:
     return parsed
 
 
+def positive_stream_timeout(value: str) -> float:
+    parsed = float(value)
+    if (
+        not math.isfinite(parsed)
+        or not 0.0 < parsed <= CHALLENGE_STREAM_TIMEOUT_MAX_SEC
+    ):
+        raise argparse.ArgumentTypeError("must be within (0, 1]")
+    return parsed
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Relay fresh local FFB intents with receiver challenges"
@@ -445,6 +507,15 @@ def build_parser() -> argparse.ArgumentParser:
         type=nonnegative_stable_duration,
         default=1.0,
     )
+    parser.add_argument(
+        "--challenge-stream-timeout-sec",
+        type=positive_stream_timeout,
+        default=None,
+        help=(
+            "reset stream stabilization only after this sustained receive "
+            "gap; per-command freshness remains challenge-max-age-sec"
+        ),
+    )
     return parser
 
 
@@ -459,12 +530,14 @@ def main(argv=None) -> int:
         intent_max_age_sec=args.intent_max_age_sec,
         challenge_max_age_sec=args.challenge_max_age_sec,
         challenge_stable_sec=args.challenge_stable_sec,
+        challenge_stream_timeout_sec=args.challenge_stream_timeout_sec,
     )
     print(
         "[INFO] Collision FFB relay started: "
         f"{args.intent_topic} -> {args.command_topic}; "
         f"challenge={args.challenge_topic}, "
         f"stable={args.challenge_stable_sec:.3f}s, "
+        f"stream_timeout={relay.gate.challenge_stream_timeout_sec:.3f}s, "
         f"diagnostics={args.diagnostic_topic}",
         flush=True,
     )

@@ -1,0 +1,452 @@
+{
+  "camera_session": "phase5_v11_reliability_dryrun_r01_20260929_153520_912",
+  "camera_frames": 2412,
+  "camera_detected_frames": 2231,
+  "camera_odom_available_frames": 1518,
+  "camera_motion_frames": 448,
+  "camera_motion_elapsed_sec": [
+    32.654334,
+    47.62221
+  ],
+  "camera_warning_frames": 313,
+  "camera_warning_elapsed_sec": [
+    33.388217,
+    47.688239
+  ],
+  "camera_active_frames": 27,
+  "camera_min_finite_ttc_sec": 4.413133144378662,
+  "camera_active_requested_magnitudes": [
+    0.15,
+    0.25
+  ],
+  "camera_active_elapsed_sec": [
+    32.654334,
+    39.656096
+  ],
+  "camera_active_sequences": [
+    3053,
+    3054,
+    3055,
+    3056,
+    3075,
+    3076,
+    3077,
+    3078,
+    3080,
+    3081,
+    3082,
+    3083,
+    3086,
+    3087,
+    3088,
+    3159,
+    3160,
+    3161,
+    3251,
+    3252,
+    3253,
+    3256,
+    3257,
+    3258,
+    3261,
+    3262,
+    3263
+  ],
+  "camera_ffb_publish_failures": 0,
+  "recording_window": [
+    "2026-09-29T15:35:20.912+09:00",
+    "2026-09-29T15:36:41.934+09:00"
+  ],
+  "recording_window_counts": {
+    "/collision/ffb_intent": 2411,
+    "/collision/ffb_command": 1798,
+    "/collision/ffb_status": 1764,
+    "/collision/ffb_challenge": 4051,
+    "/collision/ffb_relay_diagnostics": 2411,
+    "/phase5/mock_odom": 759
+  },
+  "recording_window_active_intent_count": 27,
+  "recording_window_active_command_count": 12,
+  "recording_window_active_status_count": 11,
+  "recording_window_active_intent_without_command": [
+    3053,
+    3054,
+    3055,
+    3056,
+    3075,
+    3076,
+    3077,
+    3078,
+    3080,
+    3081,
+    3082,
+    3083,
+    3159,
+    3160,
+    3161
+  ],
+  "recording_window_active_command_without_status": [
+    3251
+  ],
+  "recording_window_active_intent_to_command_ms": {
+    "min": 0.249889,
+    "max": 0.532583,
+    "median": 0.450011
+  },
+  "recording_window_fault_count": 1,
+  "recording_window_fault_categories": {
+    "invalid_request:unknown_receiver_token": 1
+  },
+  "recording_window_relay_outcomes": {
+    "forwarded": 1798,
+    "rejected": 613
+  },
+  "recording_window_relay_reasons": {
+    "authorized": 1798,
+    "stale_receiver_challenge": 13,
+    "receiver_challenge_stream_not_stable": 567,
+    "receiver_challenge_already_used": 33
+  },
+  "bag_counts": {
+    "/collision/ffb_intent": 3947,
+    "/collision/ffb_command": 2965,
+    "/collision/ffb_status": 2900,
+    "/collision/ffb_challenge": 7370,
+    "/collision/ffb_relay_diagnostics": 3947,
+    "/phase5/mock_odom": 1736
+  },
+  "bag_spans": {
+    "/collision/ffb_intent": [
+      "2026-09-29T15:34:48.375+09:00",
+      "2026-09-29T15:37:00.614+09:00"
+    ],
+    "/collision/ffb_command": [
+      "2026-09-29T15:34:48.376+09:00",
+      "2026-09-29T15:37:00.615+09:00"
+    ],
+    "/collision/ffb_status": [
+      "2026-09-29T15:34:49.583+09:00",
+      "2026-09-29T15:37:00.621+09:00"
+    ],
+    "/collision/ffb_challenge": [
+      "2026-09-29T15:34:48.578+09:00",
+      "2026-09-29T15:37:15.951+09:00"
+    ],
+    "/collision/ffb_relay_diagnostics": [
+      "2026-09-29T15:34:48.376+09:00",
+      "2026-09-29T15:37:00.615+09:00"
+    ],
+    "/phase5/mock_odom": [
+      "2026-09-29T15:34:48.347+09:00",
+      "2026-09-29T15:35:46.180+09:00"
+    ]
+  },
+  "bag_odom_speed_counts": {
+    "0.0": 1736
+  },
+  "bag_positive_odom_count": 0,
+  "bag_positive_odom_span": null,
+  "bag_active_command_count": 12,
+  "bag_active_intent_count": 27,
+  "bag_active_intent_sequences": [
+    3053,
+    3054,
+    3055,
+    3056,
+    3075,
+    3076,
+    3077,
+    3078,
+    3080,
+    3081,
+    3082,
+    3083,
+    3086,
+    3087,
+    3088,
+    3159,
+    3160,
+    3161,
+    3251,
+    3252,
+    3253,
+    3256,
+    3257,
+    3258,
+    3261,
+    3262,
+    3263
+  ],
+  "bag_active_command_span": [
+    "2026-09-29T15:35:54.673+09:00",
+    "2026-09-29T15:36:00.573+09:00"
+  ],
+  "bag_active_command_sequences": [
+    3086,
+    3087,
+    3088,
+    3251,
+    3252,
+    3253,
+    3256,
+    3257,
+    3258,
+    3261,
+    3262,
+    3263
+  ],
+  "bag_active_commands_with_known_challenge": 12,
+  "bag_active_challenge_roundtrip_ms": {
+    "min": 0.613998,
+    "max": 20.556889,
+    "median": 9.9048275
+  },
+  "bag_command_risk_counts": {
+    "0": 2953,
+    "2": 12
+  },
+  "bag_command_reasons": {
+    "no_alert": 2703,
+    "cadence_gap:triple": 11,
+    "ttc_warning:cadence_triple": 12,
+    "cadence_complete": 153,
+    "unknown_pulse_complete": 85,
+    "cadence_cancelled_by_clear": 1
+  },
+  "bag_status_modes": {
+    "dry_run": 2900
+  },
+  "bag_status_actions": {
+    "none": 2882,
+    "stop": 7,
+    "apply": 11
+  },
+  "bag_active_status_count": 11,
+  "bag_active_status_span": [
+    "2026-09-29T15:35:54.680+09:00",
+    "2026-09-29T15:36:00.593+09:00"
+  ],
+  "bag_statuses_matching_active_sequences": [
+    {
+      "sequence": 3086,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790663754680270063
+    },
+    {
+      "sequence": 3087,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790663754712236935
+    },
+    {
+      "sequence": 3088,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790663754743300166
+    },
+    {
+      "sequence": 3252,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790663760226203381
+    },
+    {
+      "sequence": 3253,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790663760243567845
+    },
+    {
+      "sequence": 3256,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790663760344489717
+    },
+    {
+      "sequence": 3257,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790663760378020725
+    },
+    {
+      "sequence": 3258,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790663760424635462
+    },
+    {
+      "sequence": 3261,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790663760515798451
+    },
+    {
+      "sequence": 3262,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790663760553893180
+    },
+    {
+      "sequence": 3263,
+      "output_mode": "dry_run",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790663760593487591
+    }
+  ],
+  "active_command_to_status_bag_delay_ms": {
+    "min": 3.214815,
+    "max": 19.904742,
+    "median": 6.739643
+  },
+  "bag_active_output_count": 11,
+  "bag_fault_count": 3,
+  "bag_fault_categories": {
+    "invalid_request:unknown_receiver_token": 3
+  },
+  "bag_relay_outcomes": {
+    "forwarded": 2965,
+    "rejected": 982
+  },
+  "bag_relay_reasons": {
+    "authorized": 2965,
+    "receiver_challenge_already_used": 62,
+    "stale_receiver_challenge": 24,
+    "receiver_challenge_stream_not_stable": 896
+  },
+  "bag_fault_age_ms": null,
+  "bag_status_last": {
+    "stamp_ns": 1790663820634614546,
+    "frame_id": "",
+    "has_sequence": true,
+    "sequence": 5062,
+    "source": "bird_eye",
+    "output_mode": "dry_run",
+    "action": "none",
+    "command_active": false,
+    "output_active": false,
+    "requested_magnitude": 0.0,
+    "applied_magnitude": 0.0,
+    "pattern": 0,
+    "reason": "inactive:clear",
+    "fault": false,
+    "bag_ns": 1790663820621060437
+  },
+  "active_sequence_intersection_camera_command": [
+    3086,
+    3087,
+    3088,
+    3251,
+    3252,
+    3253,
+    3256,
+    3257,
+    3258,
+    3261,
+    3262,
+    3263
+  ],
+  "active_sequence_intersection_intent_command": [
+    3086,
+    3087,
+    3088,
+    3251,
+    3252,
+    3253,
+    3256,
+    3257,
+    3258,
+    3261,
+    3262,
+    3263
+  ],
+  "active_sequence_intersection_command_status": [
+    3086,
+    3087,
+    3088,
+    3252,
+    3253,
+    3256,
+    3257,
+    3258,
+    3261,
+    3262,
+    3263
+  ],
+  "command_stamp_minus_bag_ms": {
+    "min": -2.354487,
+    "max": -0.07489,
+    "mean": -0.2559205193929175
+  },
+  "active_command_stamp_minus_bag_ms": {
+    "min": -0.256484,
+    "max": -0.096522,
+    "median": -0.19340600000000002
+  }
+}

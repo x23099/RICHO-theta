@@ -1,0 +1,68 @@
+{
+  "source_bag": "K_rosbug_phase5_v11_reliability_kobuki_r01.tar.xz",
+  "source_db": "phase5_v11_reliability_kobuki_r01_0.db3",
+  "camera_recording_window": {
+    "start_jst": "2026-09-29T15:35:20.912+09:00",
+    "end_jst": "2026-09-29T15:36:41.934+09:00"
+  },
+  "relay_parameters": {
+    "challenge_max_age_sec": 0.06,
+    "challenge_stable_sec": 1.0,
+    "challenge_stream_timeout_sec": 0.2
+  },
+  "recording_window_intents": 2411,
+  "decision_reasons": {
+    "authorized": 2341,
+    "stale_receiver_challenge": 12,
+    "receiver_challenge_already_used": 58
+  },
+  "active_intent_count": 27,
+  "active_authorized_count": 26,
+  "active_rejected_count": 1,
+  "active_decision_reasons": {
+    "authorized": 26,
+    "stale_receiver_challenge": 1
+  },
+  "active_rejected_sequences": [3053],
+  "active_authorized_sequences": [
+    3054,
+    3055,
+    3056,
+    3075,
+    3076,
+    3077,
+    3078,
+    3080,
+    3081,
+    3082,
+    3083,
+    3086,
+    3087,
+    3088,
+    3159,
+    3160,
+    3161,
+    3251,
+    3252,
+    3253,
+    3256,
+    3257,
+    3258,
+    3261,
+    3262,
+    3263
+  ],
+  "challenge_stream_restart_count": 1,
+  "comparison": {
+    "v11_recorded_active_command_count": 12,
+    "v12_replayed_active_authorized_count": 26,
+    "v11_recorded_stream_not_stable_rejections": 567,
+    "v12_replayed_stream_not_stable_rejections": 0
+  },
+  "decision": "PASS",
+  "notes": [
+    "Sequence 3053 remains rejected because the latest individual challenge was older than 0.06 seconds.",
+    "The later three frames in the same UNKNOWN pulse are authorized, so the notification event is retained.",
+    "This is an offline relay-gate replay. A two-PC dry-run is still required before hardware output."
+  ]
+}

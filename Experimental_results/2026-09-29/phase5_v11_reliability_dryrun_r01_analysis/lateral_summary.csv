@@ -1,0 +1,2 @@
+experiment_label,source,frames,detected_frames,measurement_accepted_frames,normalized_area_rejection_frames,measurement_acceptance_rate,median_x_m,median_z_m,median_area_px,median_normalized_area,normalized_area_threshold,median_normalized_area_to_threshold
+phase5_v11_reliability_dryrun_r01,/home/robo25/Downloads/rokuga_phase5_v11_reliability_dryrun_r01_20260929_153520_912.tar.xz::phase5_v11_reliability_dryrun_r01_20260929_153520_912,2412,2231,2195,7,0.9838637382339758,-0.0422,1.1054,3699.0,4561.866580580978,1450.0,3.146114883159295

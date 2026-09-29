@@ -180,17 +180,37 @@ class CollisionFfbRelayGateTest(unittest.TestCase):
         self.assertTrue(stable.accepted)
         self.assertGreaterEqual(stable.challenge_stable_age_sec, 1.0)
 
-    def test_challenge_gap_resets_stability(self):
+    def test_short_challenge_gap_does_not_reset_stream_stability(self):
         gate = CollisionFfbRelayGate(
             challenge_max_age_sec=0.06,
             challenge_stable_sec=0.1,
+            challenge_stream_timeout_sec=0.2,
         )
         gate.receive_challenge(_challenge(token=1), 20.0)
         gate.receive_challenge(_challenge(token=2), 20.05)
-        gate.receive_challenge(_challenge(token=3), 20.15)
+        gate.receive_challenge(_challenge(token=3), 20.179)
 
         decision = gate.authorize(
-            _intent(), now_ros_sec=10.02, now_monotonic=20.16
+            _intent(), now_ros_sec=10.02, now_monotonic=20.189
+        )
+
+        self.assertTrue(decision.accepted)
+        self.assertAlmostEqual(decision.challenge_stable_age_sec, 0.189)
+        self.assertAlmostEqual(decision.challenge_previous_gap_sec, 0.129)
+        self.assertEqual(decision.challenge_stream_restart_count, 1)
+
+    def test_sustained_challenge_gap_resets_stability(self):
+        gate = CollisionFfbRelayGate(
+            challenge_max_age_sec=0.06,
+            challenge_stable_sec=0.1,
+            challenge_stream_timeout_sec=0.2,
+        )
+        gate.receive_challenge(_challenge(token=1), 20.0)
+        gate.receive_challenge(_challenge(token=2), 20.05)
+        gate.receive_challenge(_challenge(token=3), 20.26)
+
+        decision = gate.authorize(
+            _intent(), now_ros_sec=10.02, now_monotonic=20.27
         )
 
         self.assertFalse(decision.accepted)
@@ -198,6 +218,16 @@ class CollisionFfbRelayGateTest(unittest.TestCase):
             decision.reason, "receiver_challenge_stream_not_stable"
         )
         self.assertAlmostEqual(decision.challenge_stable_age_sec, 0.01)
+        self.assertAlmostEqual(decision.challenge_previous_gap_sec, 0.21)
+        self.assertEqual(decision.challenge_stream_restart_count, 2)
+
+    def test_rejects_invalid_stream_timeout(self):
+        for timeout in (0.05, 1.01, float("nan")):
+            with self.subTest(timeout=timeout), self.assertRaises(ValueError):
+                CollisionFfbRelayGate(
+                    challenge_max_age_sec=0.06,
+                    challenge_stream_timeout_sec=timeout,
+                )
 
     def test_rejects_stale_intent_before_consuming_token(self):
         gate = CollisionFfbRelayGate()
@@ -279,6 +309,8 @@ class CollisionFfbRelayRosTest(unittest.TestCase):
         self.assertTrue(diagnostic["accepted"])
         self.assertEqual(diagnostic["outcome"], "forwarded")
         self.assertGreaterEqual(diagnostic["challenge_stable_age_sec"], 0.01)
+        self.assertEqual(diagnostic["challenge_stream_timeout_sec"], 0.06)
+        self.assertEqual(diagnostic["challenge_stream_restart_count"], 1)
         relay.close()
 
     def test_rejected_intent_publishes_nothing(self):

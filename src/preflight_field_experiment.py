@@ -312,6 +312,24 @@ def validate_experiment_config(config):
                 errors.append(
                     "collision_ffb_challenge_stable_sec must be within (0, 10]"
                 )
+            challenge_stream_timeout = config.get(
+                "collision_ffb_challenge_stream_timeout_sec",
+                challenge_max_age,
+            )
+            if (
+                not isinstance(challenge_stream_timeout, (int, float))
+                or isinstance(challenge_stream_timeout, bool)
+                or not math.isfinite(challenge_stream_timeout)
+                or not isinstance(challenge_max_age, (int, float))
+                or isinstance(challenge_max_age, bool)
+                or not math.isfinite(challenge_max_age)
+                or not challenge_max_age <= challenge_stream_timeout <= 1.0
+            ):
+                errors.append(
+                    "collision_ffb_challenge_stream_timeout_sec must be "
+                    "at least collision_ffb_challenge_max_age_sec and "
+                    "at most 1.0"
+                )
             if freshness_mode != "challenge":
                 errors.append(
                     "collision_ffb_relay_enabled requires "
@@ -395,6 +413,10 @@ def check_config(config_path):
         if config.get("collision_ffb_relay_enabled", 0) == 1
         else "disabled"
     )
+    stream_timeout_detail = config.get(
+        "collision_ffb_challenge_stream_timeout_sec",
+        config.get("collision_ffb_challenge_max_age_sec", 0.1),
+    )
     return CheckResult(
         "Experiment config",
         "PASS",
@@ -417,7 +439,9 @@ def check_config(config_path):
         "ffb_challenge_max_age="
         f"{config.get('collision_ffb_challenge_max_age_sec', 0.1)}, "
         "ffb_challenge_recovery="
-        f"{config.get('collision_ffb_challenge_recovery_sec', 0.1)}",
+        f"{config.get('collision_ffb_challenge_recovery_sec', 0.1)}, "
+        "ffb_challenge_stream_timeout="
+        f"{stream_timeout_detail}",
     )
 
 
