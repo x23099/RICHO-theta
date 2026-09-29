@@ -1,0 +1,2 @@
+experiment_label,source,frames,detected_frames,measurement_accepted_frames,normalized_area_rejection_frames,measurement_acceptance_rate,median_x_m,median_z_m,median_area_px,median_normalized_area,normalized_area_threshold,median_normalized_area_to_threshold
+phase5_v12_hardware_warning_r01,/home/robo25/Downloads/rokuga_phase5_v12_hardware_warning_r01_20260929_180756_604.tar.xz::phase5_v12_hardware_warning_r01_20260929_180756_604,1258,1258,1258,0,1.0,0.0078,1.0869,4028.5,4758.868899319286,1450.0,3.28197855125468

@@ -1,0 +1,2 @@
+session,source,required_files_complete,csv_frames,frame_sequence_ok,timestamps_monotonic,time_alias_ok,raw_frames,bev_frames,detection_frames,video_counts_match,processing_timing_status,decision,reasons
+phase5_v12_hardware_unknown_r01_20260929_184546_956,/home/robo25/Downloads/rokuga_phase5_v12_hardware_unknown_r01_20260929_184546_956.tar.xz::phase5_v12_hardware_unknown_r01_20260929_184546_956,1,1301,1,1,1,1301,1301,1301,1,PASS,PASS,

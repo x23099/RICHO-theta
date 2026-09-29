@@ -1,0 +1,599 @@
+{
+  "camera_session": "phase5_v12_hardware_unknown_r01_20260929_184546_956",
+  "camera_frames": 1301,
+  "camera_detected_frames": 821,
+  "camera_odom_available_frames": 915,
+  "camera_motion_frames": 448,
+  "camera_motion_elapsed_sec": [
+    10.599121,
+    25.57949
+  ],
+  "camera_warning_frames": 269,
+  "camera_warning_elapsed_sec": [
+    13.415987,
+    25.355404
+  ],
+  "camera_active_frames": 22,
+  "camera_min_finite_ttc_sec": 4.3589558601379395,
+  "camera_active_requested_magnitudes": [
+    0.15,
+    0.25
+  ],
+  "camera_active_elapsed_sec": [
+    13.415987,
+    21.521337
+  ],
+  "camera_active_sequences": [
+    5510,
+    5511,
+    5512,
+    5513,
+    5515,
+    5516,
+    5517,
+    5519,
+    5520,
+    5521,
+    5677,
+    5678,
+    5738,
+    5739,
+    5740,
+    5741,
+    5744,
+    5745,
+    5746,
+    5748,
+    5749,
+    5750
+  ],
+  "camera_ffb_publish_failures": 0,
+  "recording_window": [
+    "2026-09-29T18:45:46.956+09:00",
+    "2026-09-29T18:46:30.914+09:00"
+  ],
+  "recording_window_counts": {
+    "/collision/ffb_intent": 1300,
+    "/collision/ffb_command": 1294,
+    "/collision/ffb_status": 1295,
+    "/collision/ffb_challenge": 2198,
+    "/collision/ffb_relay_diagnostics": 1300,
+    "/phase5/mock_odom": 917
+  },
+  "recording_window_active_intent_count": 22,
+  "recording_window_active_command_count": 22,
+  "recording_window_active_status_count": 22,
+  "recording_window_active_intent_without_command": [],
+  "recording_window_active_command_without_status": [],
+  "recording_window_active_intent_to_command_ms": {
+    "min": 0.179899,
+    "max": 0.952694,
+    "median": 0.511107
+  },
+  "recording_window_fault_count": 0,
+  "recording_window_fault_categories": {},
+  "recording_window_relay_outcomes": {
+    "forwarded": 1294,
+    "rejected": 6
+  },
+  "recording_window_relay_reasons": {
+    "authorized": 1294,
+    "receiver_challenge_already_used": 5,
+    "stale_receiver_challenge": 1
+  },
+  "bag_counts": {
+    "/collision/ffb_intent": 6525,
+    "/collision/ffb_command": 6446,
+    "/collision/ffb_status": 6440,
+    "/collision/ffb_challenge": 15281,
+    "/collision/ffb_relay_diagnostics": 6525,
+    "/phase5/mock_odom": 7530
+  },
+  "bag_spans": {
+    "/collision/ffb_intent": [
+      "2026-09-29T18:42:54.618+09:00",
+      "2026-09-29T18:46:34.290+09:00"
+    ],
+    "/collision/ffb_command": [
+      "2026-09-29T18:42:54.619+09:00",
+      "2026-09-29T18:46:34.291+09:00"
+    ],
+    "/collision/ffb_status": [
+      "2026-09-29T18:42:54.623+09:00",
+      "2026-09-29T18:46:40.880+09:00"
+    ],
+    "/collision/ffb_challenge": [
+      "2026-09-29T18:41:35.206+09:00",
+      "2026-09-29T18:46:40.872+09:00"
+    ],
+    "/collision/ffb_relay_diagnostics": [
+      "2026-09-29T18:42:54.619+09:00",
+      "2026-09-29T18:46:34.291+09:00"
+    ],
+    "/phase5/mock_odom": [
+      "2026-09-29T18:42:01.748+09:00",
+      "2026-09-29T18:46:17.532+09:00"
+    ]
+  },
+  "bag_odom_speed_counts": {
+    "0.0": 7080,
+    "0.25": 450
+  },
+  "bag_positive_odom_count": 450,
+  "bag_positive_odom_span": [
+    "2026-09-29T18:45:57.525+09:00",
+    "2026-09-29T18:46:12.492+09:00"
+  ],
+  "bag_active_command_count": 22,
+  "bag_active_intent_count": 22,
+  "bag_active_intent_sequences": [
+    5510,
+    5511,
+    5512,
+    5513,
+    5515,
+    5516,
+    5517,
+    5519,
+    5520,
+    5521,
+    5677,
+    5678,
+    5738,
+    5739,
+    5740,
+    5741,
+    5744,
+    5745,
+    5746,
+    5748,
+    5749,
+    5750
+  ],
+  "bag_active_command_span": [
+    "2026-09-29T18:46:00.378+09:00",
+    "2026-09-29T18:46:08.483+09:00"
+  ],
+  "bag_active_command_sequences": [
+    5510,
+    5511,
+    5512,
+    5513,
+    5515,
+    5516,
+    5517,
+    5519,
+    5520,
+    5521,
+    5677,
+    5678,
+    5738,
+    5739,
+    5740,
+    5741,
+    5744,
+    5745,
+    5746,
+    5748,
+    5749,
+    5750
+  ],
+  "bag_active_commands_with_known_challenge": 22,
+  "bag_active_challenge_roundtrip_ms": {
+    "min": 0.755118,
+    "max": 24.880267,
+    "median": 11.200055500000001
+  },
+  "bag_command_risk_counts": {
+    "0": 6422,
+    "1": 2,
+    "2": 20,
+    "5": 2
+  },
+  "bag_command_reasons": {
+    "no_alert": 6082,
+    "ttc_warning:cadence_triple": 20,
+    "cadence_gap:triple": 9,
+    "cadence_complete": 273,
+    "invalid_or_unknown_perception:cadence_single": 2,
+    "unknown_pulse_complete": 59,
+    "cadence_cancelled_by_clear": 1
+  },
+  "bag_status_modes": {
+    "hardware": 6440
+  },
+  "bag_status_actions": {
+    "none": 6410,
+    "apply": 22,
+    "stop": 8
+  },
+  "bag_active_status_count": 22,
+  "bag_active_status_span": [
+    "2026-09-29T18:46:00.382+09:00",
+    "2026-09-29T18:46:08.487+09:00"
+  ],
+  "bag_statuses_matching_active_sequences": [
+    {
+      "sequence": 5510,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675160382769287
+    },
+    {
+      "sequence": 5511,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675160416036035
+    },
+    {
+      "sequence": 5512,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675160448348102
+    },
+    {
+      "sequence": 5513,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675160481963306
+    },
+    {
+      "sequence": 5515,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675160572965760
+    },
+    {
+      "sequence": 5516,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675160631498301
+    },
+    {
+      "sequence": 5517,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675160641921624
+    },
+    {
+      "sequence": 5519,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675160723034249
+    },
+    {
+      "sequence": 5520,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675160754006554
+    },
+    {
+      "sequence": 5521,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675160788827891
+    },
+    {
+      "sequence": 5677,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.15000000596046448,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "invalid_or_unknown_perception:cadence_single",
+      "fault": false,
+      "bag_ns": 1790675166089772419
+    },
+    {
+      "sequence": 5678,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.15000000596046448,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "invalid_or_unknown_perception:cadence_single",
+      "fault": false,
+      "bag_ns": 1790675166127451329
+    },
+    {
+      "sequence": 5738,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675168081212588
+    },
+    {
+      "sequence": 5739,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675168111664398
+    },
+    {
+      "sequence": 5740,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675168143222824
+    },
+    {
+      "sequence": 5741,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675168178218945
+    },
+    {
+      "sequence": 5744,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675168277268031
+    },
+    {
+      "sequence": 5745,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675168311994510
+    },
+    {
+      "sequence": 5746,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675168346952463
+    },
+    {
+      "sequence": 5748,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675168419940825
+    },
+    {
+      "sequence": 5749,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675168453084296
+    },
+    {
+      "sequence": 5750,
+      "output_mode": "hardware",
+      "action": "apply",
+      "command_active": true,
+      "output_active": true,
+      "requested_magnitude": 0.25,
+      "applied_magnitude": 0.05000000074505806,
+      "reason": "ttc_warning:cadence_triple",
+      "fault": false,
+      "bag_ns": 1790675168487463330
+    }
+  ],
+  "active_command_to_status_bag_delay_ms": {
+    "min": 2.232365,
+    "max": 24.003829,
+    "median": 2.977312
+  },
+  "bag_active_output_count": 22,
+  "bag_fault_count": 0,
+  "bag_fault_categories": {},
+  "bag_relay_outcomes": {
+    "forwarded": 6446,
+    "rejected": 79
+  },
+  "bag_relay_reasons": {
+    "authorized": 6446,
+    "receiver_challenge_already_used": 34,
+    "stale_receiver_challenge": 15,
+    "receiver_challenge_stream_not_stable": 30
+  },
+  "bag_fault_age_ms": null,
+  "bag_status_last": {
+    "stamp_ns": 1790675200884880871,
+    "frame_id": "",
+    "has_sequence": true,
+    "sequence": 6524,
+    "source": "bird_eye",
+    "output_mode": "hardware",
+    "action": "stop",
+    "command_active": false,
+    "output_active": false,
+    "requested_magnitude": 0.0,
+    "applied_magnitude": 0.0,
+    "pattern": 0,
+    "reason": "shutdown",
+    "fault": false,
+    "bag_ns": 1790675200880861441
+  },
+  "active_sequence_intersection_camera_command": [
+    5510,
+    5511,
+    5512,
+    5513,
+    5515,
+    5516,
+    5517,
+    5519,
+    5520,
+    5521,
+    5677,
+    5678,
+    5738,
+    5739,
+    5740,
+    5741,
+    5744,
+    5745,
+    5746,
+    5748,
+    5749,
+    5750
+  ],
+  "active_sequence_intersection_intent_command": [
+    5510,
+    5511,
+    5512,
+    5513,
+    5515,
+    5516,
+    5517,
+    5519,
+    5520,
+    5521,
+    5677,
+    5678,
+    5738,
+    5739,
+    5740,
+    5741,
+    5744,
+    5745,
+    5746,
+    5748,
+    5749,
+    5750
+  ],
+  "active_sequence_intersection_command_status": [
+    5510,
+    5511,
+    5512,
+    5513,
+    5515,
+    5516,
+    5517,
+    5519,
+    5520,
+    5521,
+    5677,
+    5678,
+    5738,
+    5739,
+    5740,
+    5741,
+    5744,
+    5745,
+    5746,
+    5748,
+    5749,
+    5750
+  ],
+  "command_stamp_minus_bag_ms": {
+    "min": -3.648486,
+    "max": -0.073404,
+    "mean": -0.2248094855724477
+  },
+  "active_command_stamp_minus_bag_ms": {
+    "min": -0.482634,
+    "max": -0.102158,
+    "median": -0.1772035
+  }
+}

@@ -1,0 +1,2 @@
+session,source,required_files_complete,csv_frames,frame_sequence_ok,timestamps_monotonic,time_alias_ok,raw_frames,bev_frames,detection_frames,video_counts_match,processing_timing_status,decision,reasons
+phase5_v12_hardware_warning_r01_20260929_180756_604,/home/robo25/Downloads/rokuga_phase5_v12_hardware_warning_r01_20260929_180756_604.tar.xz::phase5_v12_hardware_warning_r01_20260929_180756_604,1,1258,1,1,1,1258,1258,1258,1,PASS,PASS,

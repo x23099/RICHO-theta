@@ -1,0 +1,2 @@
+experiment_label,source,frames,detected_frames,measurement_accepted_frames,normalized_area_rejection_frames,measurement_acceptance_rate,median_x_m,median_z_m,median_area_px,median_normalized_area,normalized_area_threshold,median_normalized_area_to_threshold
+phase5_v12_hardware_unknown_r01,/home/robo25/Downloads/rokuga_phase5_v12_hardware_unknown_r01_20260929_184546_956.tar.xz::phase5_v12_hardware_unknown_r01_20260929_184546_956,1301,821,767,19,0.9342265529841657,-0.025,1.09,3889.0,4643.104058511376,1450.0,3.2021407300078457
