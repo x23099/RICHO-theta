@@ -1,0 +1,30 @@
+{
+  "scope": "OFFLINE_ONLY_NOT_APPROVED_FOR_HARDWARE",
+  "settings": {
+    "window_sec": 0.3,
+    "minimum_span_sec": 0.2,
+    "minimum_samples": 5,
+    "maximum_gap_sec": 0.1,
+    "minimum_pair_span_sec": 0.06,
+    "residual_tolerance_m": 0.03,
+    "agreement_absolute_mps": 0.1,
+    "agreement_relative": 0.35,
+    "maximum_samples": 32,
+    "fast_critical_evidence": true
+  },
+  "inputs": [
+    "/tmp/phase5_v12_hardware_S8c5bt/phase5_v12_live_kobuki_hardware_r01_20261006_143236_125",
+    "/tmp/phase5_v12_hardware_r02_DoxaEd/phase5_v12_live_kobuki_hardware_r02_20261006_150430_183",
+    "/tmp/phase5_v12_hardware_r03_HUO5H0/phase5_v12_live_kobuki_hardware_r03_20261006_153755_541"
+  ],
+  "implementation_sha256": {
+    "evaluate_velocity_confidence_replay.py": "6533d778105bbd18a890af8104d4d705476bd916bdae835efc64055f52ae612c",
+    "offline_velocity_confidence.py": "9bf7e62964eaed5a9c74f7fc19b9f1a87e4698f538a062958208c062683521de"
+  },
+  "limits": [
+    "recorded tracks/path flags and recorded TTC retained",
+    "no distance correction or full raw pipeline replay",
+    "virtual demand is not a hardware status",
+    "thresholds exploratory; independent holdout required"
+  ]
+}

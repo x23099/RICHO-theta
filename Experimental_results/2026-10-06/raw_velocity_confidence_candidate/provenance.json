@@ -1,0 +1,48 @@
+{
+  "scope": "OFFLINE_ONLY_NO_PHYSICAL_OUTPUT",
+  "sessions": [
+    {
+      "session": "phase5_v12_live_kobuki_hardware_r01_20261006_143236_125",
+      "path": "/tmp/phase5_v12_hardware_S8c5bt/phase5_v12_live_kobuki_hardware_r01_20261006_143236_125",
+      "sha256": {
+        "raw.avi": "59efc555539b0a488f89ab5d6cb4b4ba464dce469f1c9a89a29e36ba87bebe73",
+        "detections.csv": "61e499b21ed03df8a03aa8d8a8b06099b7cb9384150f6bb635c4e9ec90116024",
+        "metadata.json": "2ecfd69da5c167298131cb971ef063f462bf3b2162b56525df2105bec21541d5"
+      }
+    },
+    {
+      "session": "phase5_v12_live_kobuki_hardware_r02_20261006_150430_183",
+      "path": "/tmp/phase5_v12_hardware_r02_DoxaEd/phase5_v12_live_kobuki_hardware_r02_20261006_150430_183",
+      "sha256": {
+        "raw.avi": "7ced73c69ca068ed2a3b880fcac03e90b00926b31179f4ccf1dea76755ab7b3b",
+        "detections.csv": "d93db8b63cc2042c06b0b3500d7fdd4ed577d2870106429ba0803e6ad7610105",
+        "metadata.json": "43447cbe61d6b284813094ca0445cbcf60b091c6d5dc594c579f6f79166852bb"
+      }
+    },
+    {
+      "session": "phase5_v12_live_kobuki_hardware_r03_20261006_153755_541",
+      "path": "/tmp/phase5_v12_hardware_r03_HUO5H0/phase5_v12_live_kobuki_hardware_r03_20261006_153755_541",
+      "sha256": {
+        "raw.avi": "0454851e61c4d3f35fa4b1926d9e6f6bb12f30c592e5dfb4da37da91bc347aa8",
+        "detections.csv": "648fea0f0cce14b0de474a6d697b362cb3fda1040db96989174fa25badc25e6b",
+        "metadata.json": "af5ee635e3b0ae377099bb18a031a6a845524a0fac7b73636a12f24a767fb284"
+      }
+    }
+  ],
+  "implementation_sha256": {
+    "evaluate_raw_velocity_confidence_replay.py": "ed5de0822b72b314893bbca0906837e7a1b1e77ab03cb985e700f7fb0f8584bd",
+    "evaluate_velocity_confidence_replay.py": "6e0e557544158c040630b3ee91d6206269fe190d1dc7f15d8797efb2abd4306b",
+    "offline_velocity_confidence.py": "9bf7e62964eaed5a9c74f7fc19b9f1a87e4698f538a062958208c062683521de",
+    "ground_contact.py": "a51c65ab01a4d7a4a1a0f368c2fca9e2e183a3c9c0b0c2c9ba00458a905b74cc",
+    "obstacle_tracking.py": "25bc0b14d1f470f9134eb5b32d14be02080d7152a577679358f19862b4d16aed",
+    "collision_risk.py": "3ebfdbb1658dc37ccf726aa2cd9f5812c7bf6a2cd4c0d62e3a8d55fd31849560",
+    "collision_ffb_publisher.py": "6bde3b6b59e3cb31e30c01341e625c7af9025e09e0bc2bfa61376b3c76c2ae42",
+    "virtual_ffb.py": "60c0e2d7441d58f230848bc0fc03a662690131451b216f7d86f64f34d02ca26a"
+  },
+  "limits": [
+    "recorded frame times and ODOM/CMD retained, not ROS bag timing replay",
+    "MJPG pixels differ from live capture",
+    "no GUI, YOLO, relay, adapter or hardware replay",
+    "metadata parameters frozen; no runtime config change"
+  ]
+}

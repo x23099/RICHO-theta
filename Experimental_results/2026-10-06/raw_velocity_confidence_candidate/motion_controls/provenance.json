@@ -1,0 +1,39 @@
+{
+  "scope": "OFFLINE_ONLY_NO_PHYSICAL_OUTPUT",
+  "sessions": [
+    {
+      "session": "retreat_center_v0p10_r01_20260908_143155_511",
+      "path": "/tmp/phase5_raw_video_controls__bkq_0b5/retreat_center_v0p10_r01_20260908_143155_511",
+      "sha256": {
+        "raw.avi": "5c64dffd729182ce2bd5cfbdecfd819ab32e88ae206601ed9b27035231b5ce4a",
+        "detections.csv": "9e65cb8b2153d5e9c8ba7c3a045e2330d881bc0ea67ddb724957fe3ca22c44d3",
+        "metadata.json": "9d42bb31c925da786cf97726c1df6d8e696363882e139d9052991737f9688859"
+      }
+    },
+    {
+      "session": "static_center_ttc_r01_20260908_142731_596",
+      "path": "/tmp/phase5_raw_video_controls__bkq_0b5/static_center_ttc_r01_20260908_142731_596",
+      "sha256": {
+        "raw.avi": "50bb0d5dd77279b29103f2065717a159d50b812e61511c8b19c159b82bbd1c70",
+        "detections.csv": "86da1f6876ffddbd2c65e8da8bb330f36509be0eeecd5d70ece19f9188339fcb",
+        "metadata.json": "df4f9d09befb61cf941138af0e8e4e7a71da3d90c64fadd4ad6c3c92527a434a"
+      }
+    }
+  ],
+  "implementation_sha256": {
+    "evaluate_raw_velocity_confidence_replay.py": "ed5de0822b72b314893bbca0906837e7a1b1e77ab03cb985e700f7fb0f8584bd",
+    "evaluate_velocity_confidence_replay.py": "6e0e557544158c040630b3ee91d6206269fe190d1dc7f15d8797efb2abd4306b",
+    "offline_velocity_confidence.py": "9bf7e62964eaed5a9c74f7fc19b9f1a87e4698f538a062958208c062683521de",
+    "ground_contact.py": "a51c65ab01a4d7a4a1a0f368c2fca9e2e183a3c9c0b0c2c9ba00458a905b74cc",
+    "obstacle_tracking.py": "25bc0b14d1f470f9134eb5b32d14be02080d7152a577679358f19862b4d16aed",
+    "collision_risk.py": "3ebfdbb1658dc37ccf726aa2cd9f5812c7bf6a2cd4c0d62e3a8d55fd31849560",
+    "collision_ffb_publisher.py": "6bde3b6b59e3cb31e30c01341e625c7af9025e09e0bc2bfa61376b3c76c2ae42",
+    "virtual_ffb.py": "60c0e2d7441d58f230848bc0fc03a662690131451b216f7d86f64f34d02ca26a"
+  },
+  "limits": [
+    "recorded frame times and ODOM/CMD retained, not ROS bag timing replay",
+    "MJPG pixels differ from live capture",
+    "no GUI, YOLO, relay, adapter or hardware replay",
+    "metadata parameters frozen; no runtime config change"
+  ]
+}

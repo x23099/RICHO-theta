@@ -1,0 +1,134 @@
+{
+  "frames": 479,
+  "duration_sec": 16.156478,
+  "detected_count": 479,
+  "measurement_accepted_count": 270,
+  "track_count": 270,
+  "moving_frame_count": 121,
+  "moving_segments": [
+    {
+      "start_frame": 174,
+      "end_frame": 174,
+      "start_sec": 5.858249,
+      "end_sec": 5.858249,
+      "count": 1
+    },
+    {
+      "start_frame": 177,
+      "end_frame": 296,
+      "start_sec": 5.958747,
+      "end_sec": 9.989504,
+      "count": 120
+    }
+  ],
+  "approach_odom_mps": {
+    "count": 121,
+    "min": 0.036249,
+    "max": 0.211098,
+    "median": 0.15779,
+    "mean": 0.15410729752066116,
+    "p95": 0.202569
+  },
+  "moving_cmd_mps": {
+    "count": 121,
+    "min": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "mean": 0.0,
+    "p95": 0.0
+  },
+  "moving_angular_abs_radps": {
+    "count": 121,
+    "min": 0,
+    "max": 0.048572,
+    "median": 0.016191,
+    "mean": 0.01458510743801653,
+    "p95": 0.032381
+  },
+  "distance_m_all_tracked": {
+    "count": 270,
+    "min": 0.7416,
+    "max": 1.3486,
+    "median": 0.75305,
+    "mean": 0.8391437037037037,
+    "p95": 1.2339
+  },
+  "distance_m_moving": {
+    "count": 87,
+    "min": 0.7416,
+    "max": 1.3486,
+    "median": 1.0179,
+    "mean": 1.0248931034482758,
+    "p95": 1.3033
+  },
+  "distance_start_moving_m": null,
+  "distance_end_moving_m": 0.7454,
+  "distance_final_tracked_m": 0.758,
+  "minimum_ttc_sec": 3.517515972400735,
+  "risk_counts": {
+    "CLEAR": 390,
+    "PATH": 62,
+    "WARNING": 27
+  },
+  "raw_risk_counts": {
+    "CLEAR": 392,
+    "PATH": 60,
+    "WARNING": 27
+  },
+  "active_count": 11,
+  "active_sequences": [
+    1605,
+    1606,
+    1607,
+    1608,
+    1610,
+    1611,
+    1612,
+    1615,
+    1616,
+    1617,
+    1618
+  ],
+  "active_reasons": {
+    "ttc_warning:cadence_triple": 11
+  },
+  "active_segments": [
+    {
+      "start_frame": 272,
+      "end_frame": 275,
+      "start_sec": 9.190538,
+      "end_sec": 9.28994,
+      "count": 4
+    },
+    {
+      "start_frame": 277,
+      "end_frame": 279,
+      "start_sec": 9.358258,
+      "end_sec": 9.424237,
+      "count": 3
+    },
+    {
+      "start_frame": 282,
+      "end_frame": 285,
+      "start_sec": 9.523273,
+      "end_sec": 9.622843,
+      "count": 4
+    }
+  ],
+  "warning_segments": [
+    {
+      "start_frame": 272,
+      "end_frame": 298,
+      "start_sec": 9.190538,
+      "end_sec": 10.057597,
+      "count": 27
+    }
+  ],
+  "publish_failures": 0,
+  "rejection_reasons": {
+    "calibration_range_gate": 207,
+    "reacquisition_confirmation": 2,
+    "initialized": 1,
+    "accepted": 269
+  }
+}

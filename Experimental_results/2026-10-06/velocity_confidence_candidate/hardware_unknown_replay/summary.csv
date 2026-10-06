@@ -1,0 +1,3 @@
+session,variant,frames,warning_frames,hold_frames,critical_frames,unknown_frames,withheld_frames,virtual_active_frames,virtual_active_groups,recorded_risk_compared_frames,recorded_risk_mismatches,first_warning_sec,first_critical_sec,source
+phase5_v12_hardware_unknown_r01_20260929_184546_956,baseline,1301,269,34,0,61,0,21,7,1301,0,13.415987,,/tmp/phase5_v12_hardware_unknown.ZiKT4g/phase5_v12_hardware_unknown_r01_20260929_184546_956
+phase5_v12_hardware_unknown_r01_20260929_184546_956,confidence_candidate,1301,269,34,0,61,0,21,7,1301,0,13.415987,,/tmp/phase5_v12_hardware_unknown.ZiKT4g/phase5_v12_hardware_unknown_r01_20260929_184546_956

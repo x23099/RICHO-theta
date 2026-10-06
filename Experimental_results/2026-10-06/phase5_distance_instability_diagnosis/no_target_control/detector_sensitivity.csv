@@ -1,0 +1,8 @@
+session,no_target,variant,frames,avi_detected,avi_detection_rate,avi_calibration_valid,avi_calibration_valid_rate,avi_z_median_m,avi_z_min_m,avi_z_max_m,avi_contact_y_std_px,adjacent_motion_residual_over_0p03m,adjacent_detected_pair_count,max_adjacent_motion_residual_m,avi_live_detection_mismatch_frames
+hakonasi_20260825_131458_522,1,baseline_v30_aspect1p5,853,0,0.0,0,0.0,,,,,0,0,,853
+hakonasi_20260825_131458_522,1,v20_aspect1p5,853,0,0.0,0,0.0,,,,,0,0,,853
+hakonasi_20260825_131458_522,1,v25_aspect1p5,853,0,0.0,0,0.0,,,,,0,0,,853
+hakonasi_20260825_131458_522,1,v35_aspect1p5,853,44,0.05158264947245018,0,0.0,0.3901298058663975,0.3846588368132051,0.45010468129423714,1.5946384859354317,0,14,0.009911493160231821,809
+hakonasi_20260825_131458_522,1,v30_aspect_unrestricted_diagnostic,853,853,1.0,0,0.0,0.41358741516997266,0.36844107802058274,0.49771438564238824,4.362236701590975,298,852,0.10184126429049917,0
+hakonasi_20260825_131458_522,1,v30_contact_fraction0p02,853,0,0.0,0,0.0,,,,,0,0,,853
+hakonasi_20260825_131458_522,1,v30_contact_fraction0p16,853,0,0.0,0,0.0,,,,,0,0,,853

@@ -1,0 +1,7 @@
+session,variant,frames,warning_frames,hold_frames,critical_frames,unknown_frames,withheld_frames,virtual_active_frames,virtual_active_groups,recorded_risk_compared_frames,recorded_risk_mismatches,first_warning_sec,first_critical_sec,source
+phase5_v12_live_kobuki_hardware_r01_20261006_143236_125,baseline,650,22,0,0,0,0,7,3,650,0,12.389616,,/tmp/phase5_v12_hardware_S8c5bt/phase5_v12_live_kobuki_hardware_r01_20261006_143236_125
+phase5_v12_live_kobuki_hardware_r01_20261006_143236_125,confidence_candidate,650,22,0,0,0,0,7,3,650,0,12.389616,,/tmp/phase5_v12_hardware_S8c5bt/phase5_v12_live_kobuki_hardware_r01_20261006_143236_125
+phase5_v12_live_kobuki_hardware_r02_20261006_150430_183,baseline,479,27,0,0,0,0,10,3,479,0,9.190538,,/tmp/phase5_v12_hardware_r02_DoxaEd/phase5_v12_live_kobuki_hardware_r02_20261006_150430_183
+phase5_v12_live_kobuki_hardware_r02_20261006_150430_183,confidence_candidate,479,27,0,0,0,0,10,3,479,0,9.190538,,/tmp/phase5_v12_hardware_r02_DoxaEd/phase5_v12_live_kobuki_hardware_r02_20261006_150430_183
+phase5_v12_live_kobuki_hardware_r03_20261006_153755_541,baseline,478,7,3,1,22,0,7,3,478,0,9.189131,9.052618,/tmp/phase5_v12_hardware_r03_HUO5H0/phase5_v12_live_kobuki_hardware_r03_20261006_153755_541
+phase5_v12_live_kobuki_hardware_r03_20261006_153755_541,confidence_candidate,478,0,0,0,28,6,1,1,478,13,,,/tmp/phase5_v12_hardware_r03_HUO5H0/phase5_v12_live_kobuki_hardware_r03_20261006_153755_541

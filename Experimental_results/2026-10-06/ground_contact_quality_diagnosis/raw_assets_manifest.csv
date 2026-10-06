@@ -1,0 +1,3 @@
+file,session,frame,time_sec,width,height,video_contact_z_m,contact_pixel_y,contact_z_iqr_m,modifications
+phase5_v12_live_hardware_r03_contact_jump_raw_frame_0306.png,phase5_v12_live_kobuki_hardware_r03_20261006_153755_541,306,10.18011,1280,720,1.73491840403261,399.0,0.0044702344400631144,none
+phase5_v12_live_hardware_r03_contact_jump_raw_frame_0307.png,phase5_v12_live_kobuki_hardware_r03_20261006_153755_541,307,10.215805,1280,720,1.2492924669513532,418.0,0.06118948198580698,none

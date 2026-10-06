@@ -1,0 +1,10 @@
+{
+  "sessions": 4,
+  "frames": 2460,
+  "production_contact_selection_matched": true,
+  "prior_raw_replay_z_matched": true,
+  "implementation_hash_matches": true,
+  "saved_png_pixels_match_decoded_video": true,
+  "hardware_approved": false,
+  "new_measurement_gate_implemented": false
+}

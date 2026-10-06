@@ -1,0 +1,39 @@
+{
+  "scope": "OFFLINE_ONLY_NO_PHYSICAL_OUTPUT",
+  "sessions": [
+    {
+      "session": "hakonasi_20260825_131458_522",
+      "path": "/tmp/phase5_no_target_control_kvnh8R/hakonasi_20260825_131458_522",
+      "sha256": {
+        "raw.avi": "377e1afc8358eacb4d18cb752a5b08b090c1f8a21f65cc7d1bc93c01172b417b",
+        "detections.csv": "f1b66653340e9a93b31c0c335d5039d1369a27a143ffbf21ae5243d1cb8919b8",
+        "metadata.json": "57285e469321e3fe110a6e5c66782c435a83fca550a43fe4e1a3e6a0a3609a47"
+      }
+    },
+    {
+      "session": "phase5_v12_hardware_unknown_r01_20260929_184546_956",
+      "path": "/tmp/phase5_v12_hardware_unknown.ZiKT4g/phase5_v12_hardware_unknown_r01_20260929_184546_956",
+      "sha256": {
+        "raw.avi": "4983539b42db8379c59fd963c9ebe5669892eefde728fe2260164ce93bbb4fd2",
+        "detections.csv": "fb7a717d3bda39f80bb07ee10414009de310d1476a1d01a303dfccf92e46e127",
+        "metadata.json": "1387db5c0ce15ed0a6a287f8693029b4baf1c8ecf7f97ea93780a4905e2bfd82"
+      }
+    }
+  ],
+  "implementation_sha256": {
+    "evaluate_raw_velocity_confidence_replay.py": "ed5de0822b72b314893bbca0906837e7a1b1e77ab03cb985e700f7fb0f8584bd",
+    "evaluate_velocity_confidence_replay.py": "6e0e557544158c040630b3ee91d6206269fe190d1dc7f15d8797efb2abd4306b",
+    "offline_velocity_confidence.py": "9bf7e62964eaed5a9c74f7fc19b9f1a87e4698f538a062958208c062683521de",
+    "ground_contact.py": "a51c65ab01a4d7a4a1a0f368c2fca9e2e183a3c9c0b0c2c9ba00458a905b74cc",
+    "obstacle_tracking.py": "25bc0b14d1f470f9134eb5b32d14be02080d7152a577679358f19862b4d16aed",
+    "collision_risk.py": "3ebfdbb1658dc37ccf726aa2cd9f5812c7bf6a2cd4c0d62e3a8d55fd31849560",
+    "collision_ffb_publisher.py": "6bde3b6b59e3cb31e30c01341e625c7af9025e09e0bc2bfa61376b3c76c2ae42",
+    "virtual_ffb.py": "60c0e2d7441d58f230848bc0fc03a662690131451b216f7d86f64f34d02ca26a"
+  },
+  "limits": [
+    "recorded frame times and ODOM/CMD retained, not ROS bag timing replay",
+    "MJPG pixels differ from live capture",
+    "no GUI, YOLO, relay, adapter or hardware replay",
+    "metadata parameters frozen; no runtime config change"
+  ]
+}

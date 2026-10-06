@@ -1,0 +1,133 @@
+{
+  "frames": 478,
+  "duration_sec": 15.913643,
+  "detected_count": 301,
+  "measurement_accepted_count": 85,
+  "track_count": 131,
+  "moving_frame_count": 118,
+  "moving_segments": [
+    {
+      "start_frame": 168,
+      "end_frame": 285,
+      "start_sec": 5.587789,
+      "end_sec": 9.480665,
+      "count": 118
+    }
+  ],
+  "approach_odom_mps": {
+    "count": 118,
+    "min": 0.034117,
+    "max": 0.144997,
+    "median": 0.125806,
+    "mean": 0.11519852542372881,
+    "p95": 0.1386
+  },
+  "moving_cmd_mps": {
+    "count": 118,
+    "min": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "mean": 0.0,
+    "p95": 0.0
+  },
+  "moving_angular_abs_radps": {
+    "count": 118,
+    "min": 0,
+    "max": 0.129525,
+    "median": 0.016191,
+    "mean": 0.019346516949152542,
+    "p95": 0.048572
+  },
+  "distance_m_all_tracked": {
+    "count": 131,
+    "min": 1.0433,
+    "max": 1.3416,
+    "median": 1.197,
+    "mean": 1.1810458015267176,
+    "p95": 1.3215
+  },
+  "distance_m_moving": {
+    "count": 80,
+    "min": 1.0433,
+    "max": 1.3416,
+    "median": 1.15725,
+    "mean": 1.16638,
+    "p95": 1.3256
+  },
+  "distance_start_moving_m": null,
+  "distance_end_moving_m": 1.1177,
+  "distance_final_tracked_m": 1.2142,
+  "minimum_ttc_sec": 1.799499338092148,
+  "risk_counts": {
+    "CLEAR": 402,
+    "PATH": 43,
+    "UNKNOWN": 22,
+    "CRITICAL": 1,
+    "WARNING_HOLD": 3,
+    "WARNING": 7
+  },
+  "raw_risk_counts": {
+    "CLEAR": 407,
+    "PATH": 65,
+    "WARNING": 5,
+    "CRITICAL": 1
+  },
+  "active_count": 7,
+  "active_sequences": [
+    5802,
+    5868,
+    5869,
+    5870,
+    5874,
+    5875,
+    5876
+  ],
+  "active_reasons": {
+    "invalid_or_unknown_perception:cadence_single": 1,
+    "ttc_critical:cadence_triple": 1,
+    "finite_warning_hold:cadence_triple": 2,
+    "ttc_warning:cadence_triple": 3
+  },
+  "active_segments": [
+    {
+      "start_frame": 206,
+      "end_frame": 206,
+      "start_sec": 6.856952,
+      "end_sec": 6.856952,
+      "count": 1
+    },
+    {
+      "start_frame": 272,
+      "end_frame": 274,
+      "start_sec": 9.052618,
+      "end_sec": 9.127389,
+      "count": 3
+    },
+    {
+      "start_frame": 278,
+      "end_frame": 280,
+      "start_sec": 9.24667,
+      "end_sec": 9.31411,
+      "count": 3
+    }
+  ],
+  "warning_segments": [
+    {
+      "start_frame": 273,
+      "end_frame": 282,
+      "start_sec": 9.087388,
+      "end_sec": 9.379887,
+      "count": 10
+    }
+  ],
+  "publish_failures": 0,
+  "rejection_reasons": {
+    "calibration_range_gate": 188,
+    "no_detection": 177,
+    "reacquisition_confirmation": 6,
+    "initialized": 2,
+    "accepted": 83,
+    "nis_gate": 21,
+    "nis_gate_track_expired": 1
+  }
+}

@@ -1,0 +1,2 @@
+session,source,required_files_complete,csv_frames,frame_sequence_ok,timestamps_monotonic,time_alias_ok,raw_frames,bev_frames,detection_frames,video_counts_match,processing_timing_status,decision,reasons
+phase5_v12_live_kobuki_hardware_r03_20261006_153755_541,/home/robo25/Downloads/rokuga_phase5_v12_live_kobuki_hardware_r03_20261006_153755_541.tar.xz::phase5_v12_live_kobuki_hardware_r03_20261006_153755_541,1,478,1,1,1,478,478,478,1,PASS,PASS,

@@ -1,0 +1,7 @@
+session,variant,frames,warning_frames,hold_frames,critical_frames,unknown_frames,withheld_frames,virtual_active_frames,virtual_active_groups,recorded_risk_compared_frames,recorded_risk_mismatches,first_warning_sec,first_critical_sec,detected_frames,accepted_frames
+retreat_center_v0p10_r01_20260908_143155_511,logged_measurement_rebuild,647,0,0,0,0,0,0,0,647,0,,,647,646
+retreat_center_v0p10_r01_20260908_143155_511,raw_video_baseline,647,0,0,0,0,0,0,0,647,0,,,647,646
+retreat_center_v0p10_r01_20260908_143155_511,raw_video_candidate,647,0,0,0,0,0,0,0,647,0,,,647,646
+static_center_ttc_r01_20260908_142731_596,logged_measurement_rebuild,622,0,0,0,0,0,0,0,622,0,,,622,621
+static_center_ttc_r01_20260908_142731_596,raw_video_baseline,622,0,0,0,0,0,0,0,622,0,,,622,621
+static_center_ttc_r01_20260908_142731_596,raw_video_candidate,622,0,0,0,0,0,0,0,622,0,,,622,621

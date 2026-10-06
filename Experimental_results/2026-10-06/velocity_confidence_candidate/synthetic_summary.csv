@@ -1,0 +1,13 @@
+scenario,variant,additional_critical_delay_sec,first_virtual_alert_delay_sec,critical_frames,critical_continuous_after_onset,unknown_frames,scenario_check
+clean_fast_moving_target_stationary_robot,baseline,0.0,0.0,45,True,0,PASS
+clean_fast_moving_target_stationary_robot,maturity_only_control,0.2,0.0,39,True,6,FAIL
+clean_fast_moving_target_stationary_robot,confidence_candidate,0.06666666666666667,0.0,43,True,2,PASS
+noisy_5mm_fast_moving_target,baseline,0.0,0.0,45,True,0,PASS
+noisy_5mm_fast_moving_target,maturity_only_control,0.2,0.0,39,True,6,FAIL
+noisy_5mm_fast_moving_target,confidence_candidate,0.06666666666666667,0.0,43,True,2,PASS
+reacquired_fast_moving_target,baseline,0.0,0.0,33,True,0,PASS
+reacquired_fast_moving_target,maturity_only_control,0.19999999999999996,0.0,27,True,6,FAIL
+reacquired_fast_moving_target,confidence_candidate,0.06666666666666665,0.0,31,True,2,PASS
+oscillating_contact_not_real_motion,baseline,0.0,0.0,45,True,0,FAIL
+oscillating_contact_not_real_motion,maturity_only_control,,0.0,0,False,45,PASS
+oscillating_contact_not_real_motion,confidence_candidate,,0.0,0,False,45,PASS

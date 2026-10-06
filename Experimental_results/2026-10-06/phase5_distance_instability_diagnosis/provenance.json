@@ -1,0 +1,28 @@
+{
+  "inputs": [
+    "/tmp/phase5_v12_hardware_S8c5bt/phase5_v12_live_kobuki_hardware_r01_20261006_143236_125",
+    "/tmp/phase5_v12_hardware_r02_DoxaEd/phase5_v12_live_kobuki_hardware_r02_20261006_150430_183",
+    "/tmp/phase5_v12_hardware_r03_HUO5H0/phase5_v12_live_kobuki_hardware_r03_20261006_153755_541"
+  ],
+  "baseline_checks": [
+    {
+      "session": "phase5_v12_live_kobuki_hardware_r01_20261006_143236_125",
+      "risk_mismatches": 0
+    },
+    {
+      "session": "phase5_v12_live_kobuki_hardware_r02_20261006_150430_183",
+      "risk_mismatches": 0
+    },
+    {
+      "session": "phase5_v12_live_kobuki_hardware_r03_20261006_153755_541",
+      "risk_mismatches": 0
+    }
+  ],
+  "scope": "offline diagnosis only; no ROS publishing, hardware access or production config changes",
+  "limits": [
+    "AVI is MJPG-reencoded; not pixel-identical to live capture",
+    "no new-floor ground-truth labels",
+    "TTC counterfactual retains live tracks and path flags",
+    "prior ablation isolates 14 frames; not full pipeline regression"
+  ]
+}

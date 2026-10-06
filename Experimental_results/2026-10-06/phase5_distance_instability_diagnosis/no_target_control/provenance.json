@@ -1,0 +1,13 @@
+{
+  "inputs": [
+    "/tmp/phase5_no_target_control_kvnh8R/hakonasi_20260825_131458_522"
+  ],
+  "baseline_checks": [],
+  "scope": "offline diagnosis only; no ROS publishing, hardware access or production config changes",
+  "limits": [
+    "AVI is MJPG-reencoded; not pixel-identical to live capture",
+    "no new-floor ground-truth labels",
+    "TTC counterfactual retains live tracks and path flags",
+    "prior ablation isolates 14 frames; not full pipeline regression"
+  ]
+}

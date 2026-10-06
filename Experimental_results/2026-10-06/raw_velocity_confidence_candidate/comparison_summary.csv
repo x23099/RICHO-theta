@@ -1,0 +1,8 @@
+session,frames,control_acceptance_difference_frames,control_risk_difference_frames,video_detection_difference_frames,video_acceptance_difference_frames,video_risk_difference_frames,candidate_added_risk_difference_frames
+phase5_v12_live_kobuki_hardware_r01_20261006_143236_125,650,0,0,0,0,0,0
+phase5_v12_live_kobuki_hardware_r02_20261006_150430_183,479,0,0,0,2,30,0
+phase5_v12_live_kobuki_hardware_r03_20261006_153755_541,478,0,0,178,105,40,0
+hakonasi_20260825_131458_522,853,0,0,0,0,0,0
+phase5_v12_hardware_unknown_r01_20260929_184546_956,1301,1,0,37,4,6,0
+retreat_center_v0p10_r01_20260908_143155_511,647,1,0,0,1,0,0
+static_center_ttc_r01_20260908_142731_596,622,1,0,0,1,0,0

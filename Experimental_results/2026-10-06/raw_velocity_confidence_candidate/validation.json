@@ -1,0 +1,11 @@
+{
+  "sessions": 7,
+  "frames": 5030,
+  "logged_measurement_control_risk_difference_frames": 0,
+  "candidate_added_risk_difference_frames": 0,
+  "candidate_added_virtual_active_difference_frames": 0,
+  "candidate_withheld_frames": 0,
+  "current_implementation_hash_matches": true,
+  "scope": "OFFLINE_COMPARISON_NOT_HARDWARE_ACCEPTANCE",
+  "hardware_approved": false
+}

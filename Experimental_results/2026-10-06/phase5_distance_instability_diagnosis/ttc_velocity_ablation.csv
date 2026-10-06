@@ -1,0 +1,13 @@
+session,mode,min_ttc_sec,raw_critical_frames,filtered_critical_frames,filtered_warning_including_hold_critical_frames,unknown_frames,risk_difference_vs_live_frames
+phase5_v12_live_kobuki_hardware_r01_20261006_143236_125,conservative,4.3740920096852305,0,0,22,0,0
+phase5_v12_live_kobuki_hardware_r01_20261006_143236_125,visual,4.3740920096852305,0,0,22,0,0
+phase5_v12_live_kobuki_hardware_r01_20261006_143236_125,odom_static,5.813234384662956,0,0,0,0,22
+phase5_v12_live_kobuki_hardware_r01_20261006_143236_125,coldstart_odom_0p3,4.3740920096852305,0,0,22,0,0
+phase5_v12_live_kobuki_hardware_r02_20261006_150430_183,conservative,3.517319963536919,0,0,27,0,0
+phase5_v12_live_kobuki_hardware_r02_20261006_150430_183,visual,3.517319963536919,0,0,24,0,3
+phase5_v12_live_kobuki_hardware_r02_20261006_150430_183,odom_static,4.333951838182819,0,0,16,0,11
+phase5_v12_live_kobuki_hardware_r02_20261006_150430_183,coldstart_odom_0p3,3.517319963536919,0,0,27,0,0
+phase5_v12_live_kobuki_hardware_r03_20261006_153755_541,conservative,1.7993380944086392,1,1,11,22,0
+phase5_v12_live_kobuki_hardware_r03_20261006_153755_541,visual,1.7993380944086392,1,1,11,22,0
+phase5_v12_live_kobuki_hardware_r03_20261006_153755_541,odom_static,7.292564673751871,0,0,0,22,11
+phase5_v12_live_kobuki_hardware_r03_20261006_153755_541,coldstart_odom_0p3,4.36028192371476,0,0,0,22,11
