@@ -1,0 +1,2 @@
+session,source,required_files_complete,csv_frames,frame_sequence_ok,timestamps_monotonic,time_alias_ok,raw_frames,bev_frames,detection_frames,video_counts_match,processing_timing_status,decision,reasons
+phase5_v12_live_kobuki_dryrun_r01_20261006_135700_661,/home/robo25/Downloads/phase5_v12_live_kobuki_dryrun_r01_20261006_135700_661.tar.xz::phase5_v12_live_kobuki_dryrun_r01_20261006_135700_661,1,572,1,1,1,572,572,572,1,PASS,PASS,

@@ -1,0 +1,2 @@
+experiment_label,source,frames,detected_frames,measurement_accepted_frames,normalized_area_rejection_frames,measurement_acceptance_rate,median_x_m,median_z_m,median_area_px,median_normalized_area,normalized_area_threshold,median_normalized_area_to_threshold
+phase5_v12_live_kobuki_dryrun_r01,/home/robo25/Downloads/phase5_v12_live_kobuki_dryrun_r01_20261006_135700_661.tar.xz::phase5_v12_live_kobuki_dryrun_r01_20261006_135700_661,572,572,306,0,0.534965034965035,0.02355,1.1872,3488.0,4018.658880604262,1450.0,2.771488883175353

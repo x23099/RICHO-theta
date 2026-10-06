@@ -1,0 +1,236 @@
+{
+  "bag_dir": "/tmp/phase5_v12_hardware_S8c5bt/phase5_v12_live_kobuki_hardware_kobuki_r01",
+  "recording_window": [
+    "2026-10-06T05:32:36.125000+00:00",
+    "2026-10-06T05:32:57.847638+00:00"
+  ],
+  "recording_window_counts": {
+    "/cmd_vel": 64,
+    "/collision/ffb_challenge": 1086,
+    "/collision/ffb_command": 636,
+    "/collision/ffb_intent": 649,
+    "/collision/ffb_relay_diagnostics": 649,
+    "/collision/ffb_status": 635,
+    "/odom": 1091
+  },
+  "recording_window_spans": {
+    "/cmd_vel": [
+      "2026-10-06T05:32:46.297553+00:00",
+      "2026-10-06T05:32:49.464729+00:00"
+    ],
+    "/collision/ffb_challenge": [
+      "2026-10-06T05:32:36.147761+00:00",
+      "2026-10-06T05:32:57.843898+00:00"
+    ],
+    "/collision/ffb_command": [
+      "2026-10-06T05:32:36.164523+00:00",
+      "2026-10-06T05:32:57.818465+00:00"
+    ],
+    "/collision/ffb_intent": [
+      "2026-10-06T05:32:36.163604+00:00",
+      "2026-10-06T05:32:57.817985+00:00"
+    ],
+    "/collision/ffb_relay_diagnostics": [
+      "2026-10-06T05:32:36.164737+00:00",
+      "2026-10-06T05:32:57.818616+00:00"
+    ],
+    "/collision/ffb_status": [
+      "2026-10-06T05:32:36.180409+00:00",
+      "2026-10-06T05:32:57.831690+00:00"
+    ],
+    "/odom": [
+      "2026-10-06T05:32:36.128643+00:00",
+      "2026-10-06T05:32:57.834180+00:00"
+    ]
+  },
+  "active_intent_count": 8,
+  "active_command_count": 8,
+  "active_status_count": 8,
+  "active_intent_sequences": [
+    6280,
+    6281,
+    6282,
+    6286,
+    6287,
+    6288,
+    6291,
+    6292
+  ],
+  "active_command_sequences": [
+    6280,
+    6281,
+    6282,
+    6286,
+    6287,
+    6288,
+    6291,
+    6292
+  ],
+  "active_status_sequences": [
+    6280,
+    6281,
+    6282,
+    6286,
+    6287,
+    6288,
+    6291,
+    6292
+  ],
+  "active_intent_without_command": [],
+  "active_command_without_status": [],
+  "intent_to_command_ms": {
+    "count": 8,
+    "min": 0.224108,
+    "max": 0.666215,
+    "median": 0.570912,
+    "mean": 0.513741875,
+    "p95": 0.666215
+  },
+  "command_to_status_ms": {
+    "count": 8,
+    "min": 2.508745,
+    "max": 19.574449,
+    "median": 6.2612205,
+    "mean": 7.7616385,
+    "p95": 19.574449
+  },
+  "fault_count": 0,
+  "output_modes": {
+    "hardware": 635
+  },
+  "relay_outcomes": {
+    "forwarded": 636,
+    "rejected": 13
+  },
+  "relay_reasons": {
+    "authorized": 636,
+    "receiver_challenge_already_used": 13
+  },
+  "odom_linear_mps": {
+    "count": 1091,
+    "min": -0.002132302208337933,
+    "max": 0.21323022083379328,
+    "median": 0.0,
+    "mean": 0.018897552751988518,
+    "p95": 0.17698108329204845
+  },
+  "odom_angular_abs_radps": {
+    "count": 1091,
+    "min": 0.0,
+    "max": 0.19428721716063171,
+    "median": 0.0,
+    "mean": 0.0031609515165913955,
+    "p95": 0.03238120286010528
+  },
+  "odom_positive_count": 134,
+  "odom_positive_span": [
+    "2026-10-06T05:32:46.442871+00:00",
+    "2026-10-06T05:32:49.230691+00:00"
+  ],
+  "odom_geometry": {
+    "initial_xy_m": [
+      -0.26352723019292074,
+      -0.23484651210804508
+    ],
+    "final_xy_m": [
+      0.13972953977979571,
+      -0.14879734760543897
+    ],
+    "net_displacement_m": 0.4123353989659691,
+    "max_displacement_from_initial_m": 0.41242068735983856,
+    "path_length_m": 0.4125151852250564,
+    "positive_speed_span_displacement_m": 0.4095636942410232
+  },
+  "cmd_linear_mps": {
+    "count": 64,
+    "min": 0.0,
+    "max": 0.2592,
+    "median": 0.1944,
+    "mean": 0.1663859375,
+    "p95": 0.2592
+  },
+  "cmd_angular_abs_radps": {
+    "count": 64,
+    "min": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "mean": 0.0,
+    "p95": 0.0
+  },
+  "bag_status_fault_count": 2,
+  "bag_status_output_modes": {
+    "hardware": 6590
+  },
+  "bag_status_reason_counts": {
+    "inactive:clear": 6551,
+    "invalid_request:unknown_receiver_token": 2,
+    "inactive:path": 28,
+    "ttc_warning:cadence_triple": 8,
+    "shutdown": 1
+  },
+  "bag_last_status": {
+    "bag_time_iso": "2026-10-06T05:34:26.170449+00:00",
+    "has_sequence": true,
+    "sequence": 6731,
+    "output_mode": "hardware",
+    "action": "stop",
+    "command_active": false,
+    "output_active": false,
+    "applied_magnitude": 0.0,
+    "reason": "shutdown",
+    "fault": false
+  },
+  "bag_fault_statuses": [
+    {
+      "bag_time_iso": "2026-10-06T05:32:19.805770+00:00",
+      "sequence": 5418,
+      "reason": "invalid_request:unknown_receiver_token",
+      "action": "stop"
+    },
+    {
+      "bag_time_iso": "2026-10-06T05:32:19.896770+00:00",
+      "sequence": 5421,
+      "reason": "invalid_request:unknown_receiver_token",
+      "action": "stop"
+    }
+  ],
+  "bag_counts": {
+    "/cmd_vel": 130,
+    "/collision/ffb_challenge": 18855,
+    "/collision/ffb_command": 6634,
+    "/collision/ffb_intent": 6733,
+    "/collision/ffb_relay_diagnostics": 6733,
+    "/collision/ffb_status": 6590,
+    "/odom": 19292
+  },
+  "bag_spans": {
+    "/cmd_vel": [
+      "2026-10-06T05:32:20.079834+00:00",
+      "2026-10-06T05:32:49.464729+00:00"
+    ],
+    "/collision/ffb_challenge": [
+      "2026-10-06T05:28:08.985472+00:00",
+      "2026-10-06T05:34:26.163094+00:00"
+    ],
+    "/collision/ffb_command": [
+      "2026-10-06T05:29:17.288065+00:00",
+      "2026-10-06T05:33:03.629596+00:00"
+    ],
+    "/collision/ffb_intent": [
+      "2026-10-06T05:29:17.287523+00:00",
+      "2026-10-06T05:33:03.633097+00:00"
+    ],
+    "/collision/ffb_relay_diagnostics": [
+      "2026-10-06T05:29:17.288122+00:00",
+      "2026-10-06T05:33:03.634220+00:00"
+    ],
+    "/collision/ffb_status": [
+      "2026-10-06T05:29:17.300515+00:00",
+      "2026-10-06T05:34:26.170449+00:00"
+    ],
+    "/odom": [
+      "2026-10-06T05:28:08.883230+00:00",
+      "2026-10-06T05:34:32.993202+00:00"
+    ]
+  }
+}
