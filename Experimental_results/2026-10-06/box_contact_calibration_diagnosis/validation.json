@@ -1,0 +1,25 @@
+{
+  "scope": "OFFLINE_DIAGNOSIS_NOT_CALIBRATION_ADOPTION",
+  "audit_groups": 39,
+  "detected_frames_audited": 21297,
+  "max_stored_coordinate_difference_m": 0.0,
+  "range_valid_mismatches": 0,
+  "implementation_and_inputs_unchanged": true,
+  "coefficients_fitted": false,
+  "runtime_changed": false,
+  "historical_nominal_layouts_trusted": false,
+  "geometry_sensitivity_is_full_pipeline_replay": false,
+  "inputs_sha256": {
+    "calibration_audit.csv": "a5f112a4a1131083507c3b1e7efa0b7e09dc499c43ac3a44e433edf47dc8bdea",
+    "coordinate_decomposition.csv": "66c48d4e288bf4a3d48c94bee16f2c6d7be1eaeb32677ca4c9e7915d7ba7bd76",
+    "paired_lateral_spans.csv": "10373c6d4ccffd69cf8e5ea62d3a3c2a39772bf036b879448caf8e868670277a",
+    "geometry_sensitivity.csv": "830a999c5a547746ba5594f78035c90b4d8a7c11a396b8d2589730de6488496f",
+    "trusted_baseline_reference.csv": "50dd91f6e31db39bf68f74796bd909e0c364fdd92e61ca1079745ae012a9c5b1",
+    "provenance.json": "c9c301d90c0e8435fd8414d9f6311f0f7bd9d12dcace586f7e27cb48828db555",
+    "create_diagnosis_assets.py": "1b6e710e6d8c7f91e82f6383d170920a18b1eaf5c1d02484a73f5bdc43aeb916"
+  },
+  "outputs_sha256": {
+    "lateral_span_decomposition.png": "13c5f58e72aa172d491c027afbaa036de7d7079e83df92b14559116682a41d8a",
+    "r02_fixed_pixel_geometry_sensitivity.png": "1acab9800be630b36574fb2fc55f9cd16fea1c94711eaff2f383a3783418fad5"
+  }
+}

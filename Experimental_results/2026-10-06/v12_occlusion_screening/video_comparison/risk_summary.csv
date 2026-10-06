@@ -1,0 +1,7 @@
+session,variant,frames,warning_frames,hold_frames,critical_frames,unknown_frames,withheld_frames,virtual_active_frames,virtual_active_groups,recorded_risk_compared_frames,recorded_risk_mismatches,first_warning_sec,first_critical_sec
+phase5_v12_hardware_unknown_r01_20260929_184546_956,baseline,1301,266,33,0,64,0,22,7,1301,6,13.451066,
+phase5_v12_hardware_unknown_r01_20260929_184546_956,seeded_s130_nearest,1301,275,31,0,59,0,21,7,1301,9,13.372801,
+phase5_v12_hardware_unknown_r01_20260929_184546_956,seeded_s130_bottom,1301,275,31,0,59,0,21,7,1301,9,13.372801,
+phase5_v12_reliability_dryrun_r01_20260929_162234_202,baseline,1045,288,70,0,90,0,24,8,1045,2,10.141563,
+phase5_v12_reliability_dryrun_r01_20260929_162234_202,seeded_s130_nearest,1045,299,69,0,80,0,24,8,1045,18,10.141563,
+phase5_v12_reliability_dryrun_r01_20260929_162234_202,seeded_s130_bottom,1045,299,69,0,80,0,24,8,1045,18,10.141563,

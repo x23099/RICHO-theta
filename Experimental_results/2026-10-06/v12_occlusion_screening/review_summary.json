@@ -1,0 +1,93 @@
+{
+  "scope": "OFFLINE_ONLY_NO_RUNTIME_OR_HARDWARE_APPROVAL",
+  "reviewed_frames": 72,
+  "continuous_review_frames": 42,
+  "phase_counts": {
+    "partial_occlusion": 47,
+    "uncertain": 6,
+    "fully_occluded": 2,
+    "visible": 17
+  },
+  "comparison_rows": 7038,
+  "source_frames": {
+    "phase5_v12_reliability_dryrun_r01_20260929_162234_202": 1045,
+    "phase5_v12_hardware_unknown_r01_20260929_184546_956": 1301
+  },
+  "reviewed_joined_rows": 216,
+  "fully_hidden_timestamp_span_sec": 0.035807999999999396,
+  "short_full_occlusion_motion": [
+    {
+      "frame": "763",
+      "time_sec": "25.480723",
+      "odom_available": "1",
+      "odom_linear_mps": "0.000000"
+    },
+    {
+      "frame": "764",
+      "time_sec": "25.516531",
+      "odom_available": "1",
+      "odom_linear_mps": "0.000000"
+    }
+  ],
+  "long_full_occlusion_assessment": "NOT_EVALUATED_INSUFFICIENT_CONFIRMED_DURATION",
+  "visible_recovery": [
+    {
+      "session": "phase5_v12_reliability_dryrun_r01_20260929_162234_202",
+      "variant": "baseline",
+      "visible_onset_frame": 773,
+      "first_accepted_after_visible_onset_frame": 773,
+      "delay_sec": 0.0,
+      "first_accepted_after_hidden_window_frame": 771,
+      "reviewed_phase_at_first_accepted_after_hidden_window": "partial_occlusion",
+      "assessment": "OBSERVED_VISIBLE_RECOVERY_NOT_FULL_OCCLUSION_LATENCY"
+    },
+    {
+      "session": "phase5_v12_reliability_dryrun_r01_20260929_162234_202",
+      "variant": "seeded_s130_nearest",
+      "visible_onset_frame": 773,
+      "first_accepted_after_visible_onset_frame": 773,
+      "delay_sec": 0.0,
+      "first_accepted_after_hidden_window_frame": 770,
+      "reviewed_phase_at_first_accepted_after_hidden_window": "partial_occlusion",
+      "assessment": "OBSERVED_VISIBLE_RECOVERY_NOT_FULL_OCCLUSION_LATENCY"
+    },
+    {
+      "session": "phase5_v12_reliability_dryrun_r01_20260929_162234_202",
+      "variant": "seeded_s130_bottom",
+      "visible_onset_frame": 773,
+      "first_accepted_after_visible_onset_frame": 773,
+      "delay_sec": 0.0,
+      "first_accepted_after_hidden_window_frame": 770,
+      "reviewed_phase_at_first_accepted_after_hidden_window": "partial_occlusion",
+      "assessment": "OBSERVED_VISIBLE_RECOVERY_NOT_FULL_OCCLUSION_LATENCY"
+    }
+  ],
+  "reviewed_pixels_verified_frames": 72,
+  "physical_ffb_tested": false,
+  "limits": [
+    "sparse images do not label intervals between them",
+    "continuous windows cover exactly 42 frames; other frames remain unreviewed",
+    "unknown is invalid perception, not an annotation of fully hidden box",
+    "frozen candidates, no threshold tuning",
+    "selected historical examples, not random independent holdout",
+    "saved MJPG pixels may differ from live pixels; virtual risk not ROS or physical FFB verification"
+  ],
+  "inputs_sha256": {
+    "Experimental_results/2026-10-06/v12_occlusion_screening/manual_review.csv": "b4ca878ebc49705351466bf17d45a1af3951b58772f39c7d611e103b2d42c7ca",
+    "Experimental_results/2026-10-06/v12_occlusion_screening/review_protocol.json": "f2f89be567c9bf478aeb4b6485e3cd0e08468c6bcf842bac9e008681bc87fa9e",
+    "Experimental_results/2026-10-06/v12_occlusion_screening/video_comparison/provenance.json": "e976d59dd56cdeba95d51a641609ced7dd9f9eec3ba7ac203236ef3daccbb6b5",
+    "Experimental_results/2026-10-06/v12_occlusion_screening/video_comparison/frame_results.csv": "127ba368fa3a4671a45979496b5fa78314f0c7ccbda3a79821dc133b79346d32",
+    "Experimental_results/2026-10-06/box_contact_candidates/provenance.json": "a63b75ed66944c252e335e52ab4304221657ac899b22cc4fc78e3c11c5770683",
+    "src/evaluate_reviewed_occlusion.py": "1dfd6c102dec6fbdc3b351371bacdc96197616c1c395eb8b95f4361ebade6255",
+    "Experimental_results/2026-10-06/v12_occlusion_screening/create_review_artifacts.py": "3adb0f586ae62cd3b38c97e0736f03b7c37a73e92335b53655723bb5715e79f0",
+    "Experimental_results/2026-10-06/v12_occlusion_screening/export_review_frames.py": "653a46202f851ffad694c9b855bd52a400e740008454c21e73f89fff65d56fe9"
+  },
+  "outputs_sha256": {
+    "Experimental_results/2026-10-06/v12_occlusion_screening/reviewed_frames.csv": "a1c03618afcf797b3462a3619c1808050fc95930ff95b5930c74c5bd648e8ba2",
+    "Experimental_results/2026-10-06/v12_occlusion_screening/phase_metrics.csv": "76070a80fe7cc21d9eb9b22e913aa4cf482d56a200ef92aea25a713eccb6c5bb",
+    "Experimental_results/2026-10-06/v12_occlusion_screening/raw_assets_manifest.csv": "75772392eac185ab7e2d38eab21280589ecde6ea89de108068305570fcfb8f94",
+    "Experimental_results/2026-10-06/v12_occlusion_screening/review_coverage.png": "b79ce853ed9681037358ad9c8c91bdb2f965de4de6bce22a51df07146070b0e0",
+    "Experimental_results/2026-10-06/v12_occlusion_screening/continuous_window_recovery.png": "540faa6f39961a2763188e64cc8d4cec80ad5acff4b09ab174e7cdae2fd14904",
+    "Experimental_results/2026-10-06/v12_occlusion_screening/visible_recovery_metrics.csv": "750df977ac17f8bb2533853c0adf453c992f953dcc7067debd5ca70162e30247"
+  }
+}

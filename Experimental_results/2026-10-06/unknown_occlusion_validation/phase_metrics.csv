@@ -1,0 +1,13 @@
+variant,reviewed_phase,frames,assessment,detected,detected_rate,measurement_accepted,measurement_accepted_rate,track_available,track_available_rate,track_predicted,track_predicted_rate
+baseline,visible,15,OBSERVED_NOT_CERTIFIED,15,1.0,15,1.0,15,1.0,0,0.0
+baseline,partial_occlusion,53,OBSERVED_NOT_CERTIFIED,19,0.3584905660377358,8,0.1509433962264151,11,0.20754716981132076,3,0.05660377358490566
+baseline,fully_occluded,4,OBSERVED_NOT_CERTIFIED,0,0.0,0,0.0,4,1.0,4,1.0
+baseline,uncertain,35,OBSERVED_NOT_CERTIFIED,4,0.11428571428571428,0,0.0,0,0.0,0,0.0
+seeded_s130_nearest,visible,15,OBSERVED_NOT_CERTIFIED,15,1.0,15,1.0,15,1.0,0,0.0
+seeded_s130_nearest,partial_occlusion,53,OBSERVED_NOT_CERTIFIED,12,0.22641509433962265,9,0.16981132075471697,12,0.22641509433962265,3,0.05660377358490566
+seeded_s130_nearest,fully_occluded,4,OBSERVED_NOT_CERTIFIED,0,0.0,0,0.0,4,1.0,4,1.0
+seeded_s130_nearest,uncertain,35,OBSERVED_NOT_CERTIFIED,0,0.0,0,0.0,0,0.0,0,0.0
+seeded_s130_bottom,visible,15,OBSERVED_NOT_CERTIFIED,15,1.0,15,1.0,15,1.0,0,0.0
+seeded_s130_bottom,partial_occlusion,53,OBSERVED_NOT_CERTIFIED,12,0.22641509433962265,9,0.16981132075471697,12,0.22641509433962265,3,0.05660377358490566
+seeded_s130_bottom,fully_occluded,4,OBSERVED_NOT_CERTIFIED,0,0.0,0,0.0,4,1.0,4,1.0
+seeded_s130_bottom,uncertain,35,OBSERVED_NOT_CERTIFIED,0,0.0,0,0.0,0,0.0,0,0.0

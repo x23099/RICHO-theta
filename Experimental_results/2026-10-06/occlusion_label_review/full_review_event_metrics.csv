@@ -1,0 +1,10 @@
+session,occlusion_event,variant,reviewed_frames,start_frame,end_frame,partial_occlusion_frames,fully_occluded_frames,uncertain_frames,detected,measurement_accepted
+x0.0mz1.2m_shahei_20260826_140829_186,1,baseline,60,142,201,60,0,0,8,0
+x0.0mz1.2m_shahei_20260826_140829_186,1,seeded_s130_bottom,60,142,201,60,0,0,11,0
+x0.0mz1.2m_shahei_20260826_140829_186,1,seeded_s130_nearest,60,142,201,60,0,0,11,0
+x0.0mz1.2m_shahei_20260826_140829_186,2,baseline,64,418,481,64,0,0,0,0
+x0.0mz1.2m_shahei_20260826_140829_186,2,seeded_s130_bottom,64,418,481,64,0,0,2,0
+x0.0mz1.2m_shahei_20260826_140829_186,2,seeded_s130_nearest,64,418,481,64,0,0,2,0
+x0.0mz1.2m_shahei_20260826_140829_186,3,baseline,58,766,823,58,0,0,0,0
+x0.0mz1.2m_shahei_20260826_140829_186,3,seeded_s130_bottom,58,766,823,58,0,0,0,0
+x0.0mz1.2m_shahei_20260826_140829_186,3,seeded_s130_nearest,58,766,823,58,0,0,0,0

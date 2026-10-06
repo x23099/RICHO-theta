@@ -1,0 +1,18 @@
+{
+  "scope": "SELECTED_FRAME_VISUAL_REVIEW_NOT_GLOBAL_FALSE_POSITIVE_EVALUATION",
+  "reviewed_frames": 13,
+  "candidate_regions_equal": true,
+  "partially_visible_box_frames": 13,
+  "accepted_reviewed_frames": 0,
+  "unreviewed_old_fully_occluded_frames": 169,
+  "historical_labels_modified": false,
+  "runtime_changed": false,
+  "inputs_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/occlusion_label_review/manual_review.csv": "1c1a77d8ec68b6de6caba8956c5d5a579a39be390829a3bd074813f025ad54ee",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/occlusion_label_review/create_review_artifacts.py": "b260ee496df50658cb02393a64c9dc6d2d29b961daf4e73bf21d2199f1d3bf0f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_validation/labelled_frames.csv": "914b629d356f98c64d92189eec5714e1bf6bfa5cff46f4360e778470d3e154f9",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_validation/spatial_occlusion/frame_results.csv": "b69aa1e6df426a82067616642584e7ea5d44c4f6589c03a0ad69c4510e967301",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_validation/spatial_occlusion/provenance.json": "fe8253cebe7d073d38cc5539167bd7fc5656802e60299f685d582c2dfbda9818"
+  },
+  "output_sha256": "778068d4052da6fa16d8f2dc51fad7e287c397dcc329dc77c4874b1de51dec1a"
+}

@@ -1,0 +1,163 @@
+{
+  "scope": "OFFLINE_ONLY_NO_RUNTIME_OR_HARDWARE_APPROVAL",
+  "manual_review_sha256": "b4ca878ebc49705351466bf17d45a1af3951b58772f39c7d611e103b2d42c7ca",
+  "label_order": "individual whole raw image review; labels frozen BEFORE offline detector comparison",
+  "variants": [
+    "baseline",
+    "seeded_s130_nearest",
+    "seeded_s130_bottom"
+  ],
+  "sessions": [
+    "phase5_v12_reliability_dryrun_r01_20260929_162234_202",
+    "phase5_v12_hardware_unknown_r01_20260929_184546_956"
+  ],
+  "expected_review_frames": {
+    "phase5_v12_reliability_dryrun_r01_20260929_162234_202": [
+      350,
+      367,
+      380,
+      400,
+      410,
+      411,
+      412,
+      413,
+      414,
+      415,
+      416,
+      417,
+      418,
+      419,
+      420,
+      421,
+      422,
+      423,
+      424,
+      425,
+      426,
+      427,
+      428,
+      429,
+      430,
+      535,
+      710,
+      730,
+      750,
+      760,
+      761,
+      762,
+      763,
+      764,
+      765,
+      766,
+      767,
+      768,
+      769,
+      770,
+      771,
+      772,
+      773,
+      774,
+      775,
+      776,
+      777,
+      778,
+      779,
+      780,
+      810,
+      840,
+      900,
+      960,
+      1020
+    ],
+    "phase5_v12_hardware_unknown_r01_20260929_184546_956": [
+      530,
+      550,
+      570,
+      590,
+      610,
+      750,
+      780,
+      810,
+      840,
+      900,
+      960,
+      1020,
+      1080,
+      1140,
+      1200,
+      1260,
+      1300
+    ]
+  },
+  "continuous_windows": {
+    "phase5_v12_reliability_dryrun_r01_20260929_162234_202": [
+      [
+        410,
+        430
+      ],
+      [
+        760,
+        780
+      ]
+    ],
+    "phase5_v12_hardware_unknown_r01_20260929_184546_956": []
+  },
+  "sparse_screening_original_frames": {
+    "phase5_v12_reliability_dryrun_r01_20260929_162234_202": [
+      350,
+      367,
+      380,
+      400,
+      420,
+      430,
+      535,
+      710,
+      730,
+      750,
+      780,
+      810,
+      840,
+      900,
+      960,
+      1020
+    ],
+    "phase5_v12_hardware_unknown_r01_20260929_184546_956": [
+      530,
+      550,
+      570,
+      590,
+      610,
+      750,
+      780,
+      810,
+      840,
+      900,
+      960,
+      1020,
+      1080,
+      1140,
+      1200,
+      1260,
+      1300
+    ]
+  },
+  "fully_hidden_frames": {
+    "phase5_v12_reliability_dryrun_r01_20260929_162234_202": [
+      763,
+      764
+    ],
+    "phase5_v12_hardware_unknown_r01_20260929_184546_956": []
+  },
+  "archive_sha256": {
+    "rokuga_phase5_v12_reliability_dryrun_r01_20260929_162234_202.tar.xz": "91ebc108cf5834c7932fdd62dc6759578bddfc9644db5fe87f6044942eca7a9f",
+    "rokuga_phase5_v12_hardware_unknown_r01_20260929_184546_956.tar.xz": "6d06b111008a3cd4bd40a172671d5712e1aef6a3a8c4dcea036120d1d08f94e0"
+  },
+  "limits": [
+    "sparse images do not label intervals between them",
+    "continuous windows cover exactly 42 frames; other frames remain unreviewed",
+    "unknown is invalid perception, not an annotation of fully hidden box",
+    "frozen candidates, no threshold tuning",
+    "selected historical examples, not random independent holdout",
+    "saved MJPG pixels may differ from live pixels; virtual risk not ROS or physical FFB verification"
+  ]
+}

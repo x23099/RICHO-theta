@@ -1,0 +1,4 @@
+session,variant,frames,warning_frames,hold_frames,critical_frames,unknown_frames,withheld_frames,virtual_active_frames,virtual_active_groups,recorded_risk_compared_frames,recorded_risk_mismatches,first_warning_sec,first_critical_sec
+phase5_v11_reliability_dryrun_r01_20260929_153520_912,baseline,2412,313,23,0,96,0,27,8,2412,0,33.388217,
+phase5_v11_reliability_dryrun_r01_20260929_153520_912,seeded_s130_nearest,2412,314,23,0,95,0,26,8,2412,1,33.388217,
+phase5_v11_reliability_dryrun_r01_20260929_153520_912,seeded_s130_bottom,2412,315,24,0,93,0,27,8,2412,4,33.388217,

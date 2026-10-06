@@ -1,0 +1,10 @@
+variant,reviewed_phase,frames,assessment,detected,detected_rate,measurement_accepted,measurement_accepted_rate,track_available,track_available_rate,track_predicted,track_predicted_rate
+baseline,partial_occlusion,182,OBSERVED_NOT_CERTIFIED,8,0.04395604395604396,0,0.0,0,0.0,0,0.0
+baseline,fully_occluded,0,NOT_EVALUATED,,,,,,,,
+baseline,uncertain,0,NOT_EVALUATED,,,,,,,,
+seeded_s130_nearest,partial_occlusion,182,OBSERVED_NOT_CERTIFIED,13,0.07142857142857142,0,0.0,1,0.005494505494505495,1,0.005494505494505495
+seeded_s130_nearest,fully_occluded,0,NOT_EVALUATED,,,,,,,,
+seeded_s130_nearest,uncertain,0,NOT_EVALUATED,,,,,,,,
+seeded_s130_bottom,partial_occlusion,182,OBSERVED_NOT_CERTIFIED,13,0.07142857142857142,0,0.0,1,0.005494505494505495,1,0.005494505494505495
+seeded_s130_bottom,fully_occluded,0,NOT_EVALUATED,,,,,,,,
+seeded_s130_bottom,uncertain,0,NOT_EVALUATED,,,,,,,,

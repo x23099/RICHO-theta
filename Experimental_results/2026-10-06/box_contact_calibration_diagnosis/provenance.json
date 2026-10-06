@@ -1,0 +1,39 @@
+{
+  "scope": "OFFLINE_CALIBRATION_DIAGNOSIS_NO_FITTING",
+  "frame_shape": [
+    720,
+    1280
+  ],
+  "inputs_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_validation/position_references.csv": "74b15b8c7cd2d219f5981e3839ebfab48ca11d2c7895c847b3e444e16a453e2a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-08-28/2026-08-28_lateral_calibration_points.csv": "1a21d15c8238141bd0f7884785bf61521143d3eb6b42a2ec62028b0bdd1b3dde",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_validation/spatial_occlusion/provenance.json": "fe8253cebe7d073d38cc5539167bd7fc5656802e60299f685d582c2dfbda9818",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_validation/spatial_occlusion/frame_results.csv": "b69aa1e6df426a82067616642584e7ea5d44c4f6589c03a0ad69c4510e967301",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_candidates/provenance.json": "a63b75ed66944c252e335e52ab4304221657ac899b22cc4fc78e3c11c5770683",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_candidates/frame_results.csv": "ff0761ca8cb0e2ee99e2bdef4cb7322ed7aca5bdad1ac616fbfaf0cc48a81e30"
+  },
+  "implementation_sha256": {
+    "diagnose_box_contact_calibration.py": "3eb3276446d4e3145fe92dc3927856f3dbb45e5dfb50f4aa27d0be88638cfd29",
+    "ground_contact.py": "a51c65ab01a4d7a4a1a0f368c2fca9e2e183a3c9c0b0c2c9ba00458a905b74cc",
+    "evaluate_raw_velocity_confidence_replay.py": "ed5de0822b72b314893bbca0906837e7a1b1e77ab03cb985e700f7fb0f8584bd",
+    "bird_eye.py": "338c8c3f5764261b87db4873134cc7c033c3b71526e8429873d7faa1cc08bbe3"
+  },
+  "candidate_settings": {
+    "weak_v_min": 10,
+    "opening_size": 5,
+    "minimum_seed_pixels": 100,
+    "minimum_seed_fraction": 0.1,
+    "bottom_central_fraction": 0.8,
+    "body_s_min": 130
+  },
+  "candidate_implementation_sha256": "1c399cd5a046f465d5b82303a3dbb81ba17beaad686fa424413e580dd0a65914",
+  "nominal_layouts_used_to_fit": false,
+  "runtime_changed": false,
+  "limits": [
+    "nominal placement labels not independent calibration ground truth",
+    "initial 1.3m origin confirmed as camera-under/Kobuki centre; x/z components and exact box endpoint unconfirmed",
+    "geometry sensitivity freezes a median pixel, not the mask or contour algorithm",
+    "historical trusted points have no raw-video candidate replay here",
+    "camera/robot rigid translation unknown; UI offsets not physical extrinsics"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "scope": "OFFLINE_ONLY_NO_RUNTIME_OR_HARDWARE_APPROVAL",
+  "session": "phase5_v11_reliability_dryrun_r01_20260929_153520_912",
+  "windows_one_based": [
+    [
+      950,
+      985
+    ],
+    [
+      1100,
+      1170
+    ]
+  ],
+  "reviewed_frames": 107,
+  "manual_review_sha256": "760e730dcb142e47edc18ad16d3eb289d19c31ddd7f0b1f44b03beb1127d03da",
+  "classification_order": "whole raw frames individually reviewed and labels frozen BEFORE candidate comparison",
+  "variants": [
+    "baseline",
+    "seeded_s130_nearest",
+    "seeded_s130_bottom"
+  ],
+  "candidate_freeze": "../box_contact_candidates/provenance.json",
+  "definitions": {
+    "visible": "target box unobscured by covering board",
+    "partial_occlusion": "target face or rim remains visible",
+    "fully_occluded": "no target face or rim identifiable",
+    "uncertain": "tiny boundary cannot be identified confidently; excluded from full occlusion denominator"
+  },
+  "limits": [
+    "visually selected windows, not random independent holdout",
+    "whole recordings were not completely reviewed",
+    "four fully hidden frames in one short run cannot certify loss/recovery delay",
+    "virtual risks are recomputed offline; not historical live ROS/physical FFB observations"
+  ]
+}

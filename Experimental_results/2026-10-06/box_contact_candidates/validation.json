@@ -1,0 +1,13 @@
+{
+  "sessions": 7,
+  "video_frames": 5030,
+  "variant_frame_rows": 30180,
+  "baseline_geometry_matches_prior_replay": true,
+  "implementation_hash_matches": true,
+  "raw_png_pixels_equal_decoded_video": true,
+  "coarse_label_frames": 7,
+  "labelled_visible_bases": 6,
+  "labels_used_by_candidate": false,
+  "production_changed": false,
+  "hardware_approved": false
+}

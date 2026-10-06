@@ -1,0 +1,10 @@
+session,variant,event,fully_occluded_start_video_index,fully_occluded_end_video_index,fully_occluded_frames,fully_occluded_detected,fully_occluded_accepted,track_loss_observed,first_loss_delay_sec,track_after_grace_frames,recovery_observed,first_recovery_recording_frame,recovery_delay_sec
+x0.0mz1.2m_shahei_20260826_140829_186,baseline,1,141,200,60,8,0,1,0.0,0,1,208,0.2414909999999999
+x0.0mz1.2m_shahei_20260826_140829_186,baseline,2,417,480,64,0,0,1,0.0,0,1,499,0.5203150000000001
+x0.0mz1.2m_shahei_20260826_140829_186,baseline,3,765,822,58,0,0,1,0.0,0,1,830,0.19211300000000264
+x0.0mz1.2m_shahei_20260826_140829_186,seeded_s130_nearest,1,141,200,60,11,0,1,0.03429899999999986,0,1,208,0.2414909999999999
+x0.0mz1.2m_shahei_20260826_140829_186,seeded_s130_nearest,2,417,480,64,2,0,1,0.0,0,1,499,0.5203150000000001
+x0.0mz1.2m_shahei_20260826_140829_186,seeded_s130_nearest,3,765,822,58,0,0,1,0.0,0,1,828,0.12409500000000051
+x0.0mz1.2m_shahei_20260826_140829_186,seeded_s130_bottom,1,141,200,60,11,0,1,0.03429899999999986,0,1,208,0.2414909999999999
+x0.0mz1.2m_shahei_20260826_140829_186,seeded_s130_bottom,2,417,480,64,2,0,1,0.0,0,1,499,0.5203150000000001
+x0.0mz1.2m_shahei_20260826_140829_186,seeded_s130_bottom,3,765,822,58,0,0,1,0.0,0,1,828,0.12409500000000051

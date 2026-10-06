@@ -1,0 +1,6 @@
+session,reference_kind,start_frame,end_frame,expected_x_m,expected_z_m,expected_distance_m,reference_source,reference_origin
+x-0.3mz0.9m_20260826_140020_944,static_layout,1,639,-0.30,0.90,,2026-08-26_recorded_placement,
+x0.3mz0.9m_20260826_140106_996,static_layout,1,729,0.30,0.90,,2026-08-26_recorded_placement,
+x-0.3mz1.2m_20260826_140621_686,static_layout,1,652,-0.30,1.20,,2026-08-26_recorded_placement,
+x0.3mz1.2m_20260826_140458_795,static_layout,1,659,0.30,1.20,,2026-08-26_recorded_placement,
+phase5_v12_live_kobuki_hardware_r02_20261006_150430_183,initial_distance_only,1,90,,,1.30,user_confirmed_initial_and_origin_2026-10-06,camera_under_and_kobuki_center

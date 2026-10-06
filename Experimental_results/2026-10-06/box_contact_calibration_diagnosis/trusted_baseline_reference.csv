@@ -1,0 +1,3 @@
+dataset,points,source_kind,x_mae_m,z_mae_m
+august07_final,4,historical_baseline_points_not_candidate_replay,0.014277918425195602,0.015308760317745168
+p0a_20260818,7,historical_baseline_points_not_candidate_replay,0.015085714285714289,0.036057142857142864

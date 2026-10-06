@@ -1,0 +1,48 @@
+{
+  "scope": "OFFLINE_VALIDATION_NOT_HARDWARE_APPROVAL",
+  "variants": [
+    "baseline",
+    "seeded_s130_nearest",
+    "seeded_s130_bottom"
+  ],
+  "settings": {
+    "weak_v_min": 10,
+    "opening_size": 5,
+    "minimum_seed_pixels": 100,
+    "minimum_seed_fraction": 0.1,
+    "bottom_central_fraction": 0.8,
+    "body_s_min": 130
+  },
+  "candidate_implementation_sha256": "1c399cd5a046f465d5b82303a3dbb81ba17beaad686fa424413e580dd0a65914",
+  "detector_config_sha256": "ee86e1b560508ef311e4068b0c0107c33260e69d43e6bee3fe758e46d559a148",
+  "phase_label_indexing": "zero-based inclusive video indices = comparison recording frame minus one",
+  "position_label_indexing": "one-based inclusive recording frames",
+  "missing_error_is_zero": false,
+  "inputs_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_validation/spatial_occlusion/frame_results.csv": "b69aa1e6df426a82067616642584e7ea5d44c4f6589c03a0ad69c4510e967301",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_validation/spatial_occlusion/risk_summary.csv": "5fd232dd1db785baecd257f7647a6224032550f66c597b7041affa870d200997",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_validation/spatial_occlusion/provenance.json": "fe8253cebe7d073d38cc5539167bd7fc5656802e60299f685d582c2dfbda9818",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_validation/approach/frame_results.csv": "f9d9e2ac5bf9afee5de49a8a6c2b6140160f6cd8745c75a099602cc39157df52",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_validation/approach/risk_summary.csv": "b716bfde4952fd7ed0114103fc2e6c7ecf48561b7d455240ef85c229234ddabc",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_validation/approach/provenance.json": "08366d8be4120a09c605db32693c02353570034631b719e7a3ea6acae1052a74",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_candidates/frame_results.csv": "ff0761ca8cb0e2ee99e2bdef4cb7322ed7aca5bdad1ac616fbfaf0cc48a81e30",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_candidates/risk_summary.csv": "614cceacd1b7a77792184111a0686778055656ba50d6e392c0d4233adc910f77",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_candidates/provenance.json": "a63b75ed66944c252e335e52ab4304221657ac899b22cc4fc78e3c11c5770683",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_validation/position_references.csv": "74b15b8c7cd2d219f5981e3839ebfab48ca11d2c7895c847b3e444e16a453e2a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-08-26/2026-08-26_raw_ground_distance_holdout_labels.csv": "7d9443ab870b60d794ebc47d9a6c2b4d5961e8ee9bffdff64e0d1f93c8091b3d",
+    "/home/robo25/theta_ws/RICHO-theta/src/dynamic_ttc_evaluation_profile_v6_candidate.json": "ee3006b440c5991efb7dc7e3763c35e73dbbe482db3c7b89eb3a6b140dd3e1d4"
+  },
+  "implementation_sha256": {
+    "evaluate_box_contact_validation.py": "23780a394265751c81ee5588430db6eb4fd58f7837bc48f304bc86e6ce34ac46",
+    "evaluate_dynamic_ttc_conditions.py": "b482edb0ee605b0cc0dcaa8a31fe9e7d7b221ed85810d6adb4dbea243437c84f",
+    "evaluate_collision_hysteresis_replay.py": "51270b1bd166108c2d04b4733053502356ff9ddcd2160de98a10b4e3fd619c01",
+    "evaluate_observation_gates.py": "acc8aa7a6c8fe0bba8eb7543cda4b59970dacd48aca65459fc8426afc38ae5df"
+  },
+  "limits": [
+    "historical data with previous use, not a blind prospectively collected holdout",
+    "distance labels have recorded placement accuracy, not metrology certification",
+    "dynamic profile keeps its own fixed decision conditions; no new nominal-speed rejection",
+    "risk_summary timing uses source metadata; fixed profile can produce a different state series",
+    "no runtime or ROS/network/physical timing validation"
+  ]
+}
