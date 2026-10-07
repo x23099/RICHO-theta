@@ -1,0 +1,11 @@
+frame,label,reason
+317,visible,box visible
+320,visible,box visible below descending cushion
+323,partial_occlusion,blue lower box remains visible below cushion
+326,full_occlusion,opaque cushion covers entire box location
+329,full_occlusion,opaque cushion covers entire box location
+407,full_occlusion,opaque cushion covers entire box location
+410,full_occlusion,opaque cushion covers entire box location
+413,full_occlusion,opaque cushion covers entire box location
+416,partial_occlusion,blue lower box reappears below cushion
+419,visible,box visible

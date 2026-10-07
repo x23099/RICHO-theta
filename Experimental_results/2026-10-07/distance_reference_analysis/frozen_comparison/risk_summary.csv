@@ -1,0 +1,13 @@
+session,variant,frames,warning_frames,hold_frames,critical_frames,unknown_frames,withheld_frames,virtual_active_frames,virtual_active_groups,recorded_risk_compared_frames,recorded_risk_mismatches,first_warning_sec,first_critical_sec
+record_reference_distance_reference_no_box_r01_20261007_174742_202,baseline,321,0,0,0,0,0,0,0,321,0,,
+record_reference_distance_reference_no_box_r01_20261007_174742_202,seeded_s130_nearest,321,0,0,0,0,0,0,0,321,0,,
+record_reference_distance_reference_no_box_r01_20261007_174742_202,seeded_s130_bottom,321,0,0,0,0,0,0,0,321,0,,
+record_reference_distance_reference_center_z0p90_r01_20261007_174846_806,baseline,618,0,0,0,0,0,0,0,618,0,,
+record_reference_distance_reference_center_z0p90_r01_20261007_174846_806,seeded_s130_nearest,618,0,0,0,0,0,0,0,618,0,,
+record_reference_distance_reference_center_z0p90_r01_20261007_174846_806,seeded_s130_bottom,618,0,0,0,0,0,0,0,618,0,,
+record_reference_distance_reference_center_z1p10_r01_20261007_174945_175,baseline,613,0,0,0,0,0,0,0,613,0,,
+record_reference_distance_reference_center_z1p10_r01_20261007_174945_175,seeded_s130_nearest,613,0,0,0,0,0,0,0,613,0,,
+record_reference_distance_reference_center_z1p10_r01_20261007_174945_175,seeded_s130_bottom,613,0,0,0,0,0,0,0,613,0,,
+record_reference_distance_reference_center_z1p30_r01_20261007_175040_153,baseline,742,0,0,0,0,0,0,0,742,0,,
+record_reference_distance_reference_center_z1p30_r01_20261007_175040_153,seeded_s130_nearest,742,0,0,0,0,0,0,0,742,0,,
+record_reference_distance_reference_center_z1p30_r01_20261007_175040_153,seeded_s130_bottom,742,0,0,0,0,0,0,0,742,0,,

@@ -1,0 +1,28 @@
+{
+  "script_syntax": true,
+  "actual_sequential_decode_counts": {
+    "raw.avi": 1372,
+    "bev.avi": 1372,
+    "detection.avi": 1372
+  },
+  "all_cdr_records_match_official_deserialization": {
+    "kobuki": {
+      "/phase5/mock_odom": 2852,
+      "/collision/ffb_challenge": 5860,
+      "/collision/ffb_status": 2871,
+      "/collision/ffb_command": 2872,
+      "/collision/ffb_relay_diagnostics": 2885,
+      "/collision/ffb_intent": 2885
+    },
+    "hsr": {
+      "/collision/ffb_challenge": 6258,
+      "/collision/ffb_status": 2871,
+      "/phase5/mock_odom": 3080,
+      "/collision/ffb_command": 2872,
+      "/collision/ffb_relay_diagnostics": 2885,
+      "/collision/ffb_intent": 2885
+    }
+  },
+  "delivery_cap_modes_and_frozen_comparison_consistent": true,
+  "representative_png_pixels_match_raw": 2
+}

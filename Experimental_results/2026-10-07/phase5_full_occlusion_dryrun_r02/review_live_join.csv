@@ -1,0 +1,42 @@
+frame,label,reason,time_sec,detected,measurement_accepted,collision_risk_level,odom_linear_mps
+1,visible,box visible,0.019582,1,1,CLEAR,0.000000
+60,visible,box visible,1.988328,1,1,CLEAR,0.000000
+120,visible,box visible,3.984824,1,1,CLEAR,0.000000
+180,visible,box visible,5.987923,1,1,CLEAR,0.000000
+240,visible,box visible,8.000164,1,1,CLEAR,0.000000
+300,visible,box visible,9.987332,1,1,CLEAR,0.000000
+360,partial_occlusion,board being lowered with lower blue face still visible,11.987862,1,0,WARNING_HOLD,0.250000
+375,partial_occlusion,lower blue face remains below board,12.483866,1,1,WARNING,0.250000
+390,full_occlusion,board covers entire box with margins,12.985979,0,0,WARNING_HOLD,0.250000
+405,full_occlusion,board covers entire box with margins,13.484730,0,0,UNKNOWN,0.250000
+420,full_occlusion,large foreground board covers entire box with margins,13.985602,0,0,UNKNOWN,0.250000
+435,full_occlusion,board covers entire box with margins,14.485563,0,0,UNKNOWN,0.250000
+450,full_occlusion,board covers entire box with margins,15.029019,0,0,UNKNOWN,0.250000
+464,full_occlusion,board covers entire box with margins,15.516230,0,0,UNKNOWN,0.250000
+478,full_occlusion,large foreground board covers entire box with margins,15.992117,0,0,UNKNOWN,0.250000
+493,full_occlusion,board covers entire box with margins,16.496134,0,0,UNKNOWN,0.250000
+508,visible,box visible below lifted board,16.986269,1,1,WARNING,0.250000
+523,visible,box visible,17.484635,1,1,WARNING,0.250000
+538,visible,box visible,18.009880,1,1,WARNING,0.250000
+598,visible,box visible,20.011930,1,1,WARNING,0.250000
+656,visible,box visible,21.985304,1,1,WARNING,0.250000
+716,visible,box visible below raised board,23.983861,1,1,WARNING,0.250000
+731,full_occlusion,board covers entire box with margins,24.490371,0,0,WARNING_HOLD,0.250000
+746,full_occlusion,board covers entire box with margins,24.982634,0,0,WARNING_HOLD,0.250000
+762,full_occlusion,board covers entire box with margins,25.516506,0,0,UNKNOWN,0.250000
+776,full_occlusion,large foreground board covers entire box with margins,25.985788,0,0,UNKNOWN,0.250000
+792,full_occlusion,board covers entire box with margins,26.516496,0,0,UNKNOWN,0.250000
+806,full_occlusion,board covers entire box with margins,26.984135,0,0,UNKNOWN,0.250000
+822,full_occlusion,board covers entire box with margins,27.516227,0,0,UNKNOWN,0.250000
+836,full_occlusion,large foreground board covers entire box with margins,27.982785,0,0,UNKNOWN,0.250000
+851,full_occlusion,board covers entire box with margins,28.483224,0,0,UNKNOWN,0.250000
+864,full_occlusion,board covers entire box with margins,28.986715,0,0,UNKNOWN,0.250000
+879,visible,box visible below lifted board,29.503669,1,1,WARNING,0.250000
+894,visible,box visible,29.985570,1,1,WARNING,0.250000
+954,visible,box visible,31.984835,1,1,CLEAR,0.000000
+1014,visible,box visible,33.984558,1,1,CLEAR,0.000000
+1074,visible,box visible below raised board,35.984296,1,1,CLEAR,
+1134,full_occlusion,large foreground board covers entire box with margins,37.985550,0,0,CLEAR,
+1194,full_occlusion,large foreground board covers entire box with margins,39.984044,0,0,CLEAR,
+1254,visible,box visible,41.986201,1,1,CLEAR,
+1314,visible,box visible,43.984221,1,1,CLEAR,

@@ -1,0 +1,17 @@
+session,variant,frames,maximum_coordinate_difference_m,tolerance_m,live_norm_comparison_window,live_median_z_m,live_median_planar_distance_m,live_planar_minus_forward_p95_m,detected_audited,range_valid_mismatches
+record_reference_distance_reference_no_box_r01_20261007_174742_202,live,321,0.0,0.00011,all_detections_after_2s,,,,,
+record_reference_distance_reference_no_box_r01_20261007_174742_202,baseline,321,,1e-10,,,,,0,0
+record_reference_distance_reference_no_box_r01_20261007_174742_202,seeded_s130_nearest,321,,1e-10,,,,,0,0
+record_reference_distance_reference_no_box_r01_20261007_174742_202,seeded_s130_bottom,321,,1e-10,,,,,0,0
+record_reference_distance_reference_center_z0p90_r01_20261007_174846_806,live,618,6.948732466137506e-05,0.00011,all_detections_after_2s,0.9179,0.9185,0.0020149999999999977,,
+record_reference_distance_reference_center_z0p90_r01_20261007_174846_806,baseline,618,0.0,1e-10,,,,,618,0
+record_reference_distance_reference_center_z0p90_r01_20261007_174846_806,seeded_s130_nearest,618,0.0,1e-10,,,,,618,0
+record_reference_distance_reference_center_z0p90_r01_20261007_174846_806,seeded_s130_bottom,618,0.0,1e-10,,,,,618,0
+record_reference_distance_reference_center_z1p10_r01_20261007_174945_175,live,613,6.7706039152092e-05,0.00011,all_detections_after_2s,1.0185,1.0195,0.0024999999999999467,,
+record_reference_distance_reference_center_z1p10_r01_20261007_174945_175,baseline,613,0.0,1e-10,,,,,613,0
+record_reference_distance_reference_center_z1p10_r01_20261007_174945_175,seeded_s130_nearest,613,0.0,1e-10,,,,,613,0
+record_reference_distance_reference_center_z1p10_r01_20261007_174945_175,seeded_s130_bottom,613,0.0,1e-10,,,,,613,0
+record_reference_distance_reference_center_z1p30_r01_20261007_175040_153,live,742,5.283784001785738e-05,0.00011,all_detections_after_2s,1.2949,1.2949,0.00019999999999997797,,
+record_reference_distance_reference_center_z1p30_r01_20261007_175040_153,baseline,742,0.0,1e-10,,,,,742,0
+record_reference_distance_reference_center_z1p30_r01_20261007_175040_153,seeded_s130_nearest,742,0.0,1e-10,,,,,742,0
+record_reference_distance_reference_center_z1p30_r01_20261007_175040_153,seeded_s130_bottom,742,0.0,1e-10,,,,,742,0

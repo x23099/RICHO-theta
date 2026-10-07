@@ -1,0 +1,25 @@
+frame,label,reason,time_sec,detected,measurement_accepted,collision_risk_level,odom_linear_mps
+1,visible,box visible,0.028944,1,1,CLEAR,0.000000
+60,visible,box visible,1.994537,1,1,CLEAR,0.000000
+120,visible,box visible,3.995596,1,1,CLEAR,0.000000
+178,visible,box visible,5.998634,1,1,CLEAR,0.000000
+238,visible,box visible,7.994115,1,1,CLEAR,0.000000
+298,partial_occlusion,blue upper and right parts remain visible beside board,9.993432,1,0,WARNING_HOLD,0.250000
+356,partial_occlusion,upper blue rim visible above board,11.994986,0,0,UNKNOWN,0.250000
+412,partial_occlusion,upper blue rim visible above board,13.994253,0,0,UNKNOWN,0.250000
+472,visible,box visible,16.004991,1,1,WARNING,0.250000
+530,visible,box visible,17.998896,1,1,WARNING,0.250000
+588,visible,box visible,19.993620,1,1,WARNING,0.250000
+648,partial_occlusion,upper blue rim visible above board,21.996350,0,0,WARNING_HOLD,0.250000
+708,partial_occlusion,upper blue rim visible above board,23.994678,0,0,UNKNOWN,0.250000
+766,partial_occlusion,upper blue rim visible above board,25.992993,0,0,UNKNOWN,0.250000
+826,visible,box visible,27.993575,1,1,WARNING,0.250000
+886,visible,box visible,29.993513,1,1,CLEAR,0.000000
+946,visible,box visible,31.995188,1,1,CLEAR,0.000000
+1006,partial_occlusion,blue upper and right parts remain visible beside board,33.994520,1,0,CLEAR,0.000000
+1066,partial_occlusion,upper blue rim visible above board,35.997988,0,0,CLEAR,
+1126,partial_occlusion,upper blue rim visible above board,37.995663,0,0,CLEAR,
+1186,visible,box visible,39.999950,1,1,CLEAR,
+1246,visible,board above operator not over box,41.995569,1,1,CLEAR,
+1304,visible,box visible,43.994050,1,1,CLEAR,
+1364,visible,box visible,45.994236,1,1,CLEAR,

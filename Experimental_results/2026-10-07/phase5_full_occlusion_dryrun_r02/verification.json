@@ -1,0 +1,30 @@
+{
+  "script_syntax": true,
+  "sequential_video_frame_counts": {
+    "raw.avi": 1359,
+    "bev.avi": 1359,
+    "detection.avi": 1359
+  },
+  "official_cdr_all_records_match": {
+    "kobuki": {
+      "/phase5/mock_odom": 3641,
+      "/collision/ffb_challenge": 6965,
+      "/collision/ffb_status": 3492,
+      "/collision/ffb_command": 3493,
+      "/collision/ffb_relay_diagnostics": 3544,
+      "/collision/ffb_intent": 3544
+    },
+    "hsr": {
+      "/collision/ffb_status": 3493,
+      "/collision/ffb_challenge": 9755,
+      "/phase5/mock_odom": 3908,
+      "/collision/ffb_command": 3492,
+      "/collision/ffb_relay_diagnostics": 3541,
+      "/collision/ffb_intent": 3540
+    }
+  },
+  "representative_png_pixels_match_raw": 2,
+  "frozen_rows": 4077,
+  "active_delivery_and_recording_window_checks": true,
+  "limitations_preserved_in_trial_assessment": true
+}

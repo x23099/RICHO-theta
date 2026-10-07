@@ -1,0 +1,9 @@
+kind,observation,stamp_ns,frame_id,sequence,source,risk_level,pattern,active,normalized_magnitude,reason,receiver_session_id,receiver_token,bag_ns,camera_relative_sec,in_camera_window,accepted,challenge_age_sec,challenge_previous_gap_sec,challenge_received_count,challenge_stable_age_sec,challenge_stable_required_sec,challenge_stream_restart_count,challenge_stream_timeout_sec,intent_active,intent_age_sec,intent_sequence,intent_source,outcome,relay_ros_time_sec,schema_version
+ffb_command,kobuki_only,1791359498398455796,,2320,bird_eye,0,0,False,0.0,no_alert,4622169276517035216,7909,1791359498398596959,7.966596959,True,,,,,,,,,,,,,,,
+ffb_intent,kobuki_only,1791359498397701288,,2320,bird_eye,0,0,False,0.0,no_alert,0,0,1791359498398184115,7.966184115,True,,,,,,,,,,,,,,,
+ffb_intent,kobuki_only,1791359498438115376,,2321,bird_eye,0,0,False,0.0,no_alert,0,0,1791359498438692982,8.006692982,True,,,,,,,,,,,,,,,
+ffb_intent,kobuki_only,1791359498467312840,,2322,bird_eye,0,0,False,0.0,no_alert,0,0,1791359498467675073,8.035675073,True,,,,,,,,,,,,,,,
+ffb_intent,kobuki_only,1791359498499919224,,2323,bird_eye,0,0,False,0.0,no_alert,0,0,1791359498500337111,8.068337111,True,,,,,,,,,,,,,,,
+ffb_relay_diagnostics,kobuki_only,,,,,,,,,authorized,4622169276517035216,7909,1791359498398728972,7.966728972,True,True,0.024591340999904787,0.015755318000628904,4270,85.58281856800022,1.0,1,0.2,False,0.0007040500640869141,2320,bird_eye,forwarded,1791359498.398558,1
+ffb_relay_diagnostics,kobuki_only,,,,,,,,,stale_receiver_challenge,0,0,1791359498440268349,8.008268349,True,False,0.06541182299952197,0.015755318000628904,4270,85.62363904999984,1.0,1,0.2,False,0.0010864734649658203,2321,bird_eye,rejected,1791359498.439976,1
+ffb_relay_diagnostics,kobuki_only,,,,,,,,,stale_receiver_challenge,0,0,1791359498468607577,8.036607577,True,False,0.0942049360000965,0.015755318000628904,4270,85.65243216300041,1.0,1,0.2,False,0.0006833076477050781,2322,bird_eye,rejected,1791359498.4680784,1

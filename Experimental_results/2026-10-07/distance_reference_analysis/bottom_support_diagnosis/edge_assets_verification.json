@@ -1,0 +1,13 @@
+{
+  "decision": "PASS_NUMERIC_GRAPH_AND_RAW_SOURCE_JOIN",
+  "inputs_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-07/distance_reference_analysis/bottom_support_diagnosis/representative_column_points.csv": "544d1e8a494c72da15e039d68cf031ff71f8cb74bf101f5e52eb8eaf54488f5f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-07/distance_reference_analysis/bottom_support_diagnosis/edge_event_column_points.csv": "993ce2104fb239c14d27443a2656e1427fa0ead517d2575adfe2a8ed91718b33",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-07/report_assets/distance_reference_z1p10_right_edge_export_manifest.csv": "02fa2362dda904198d9136af7ea0c004db9ac0c890c2dfb096edbe6f07935254",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-07/report_assets/distance_reference_z1p10_right_edge_raw_frame_0065.png": "bc275c43be626f4a29d5aa5c461bfa1172087540cb82bdd21905beeaaefe732f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-07/distance_reference_analysis/bottom_support_diagnosis/create_edge_assets.py": "a3a56203018dd9cec004ec7bb5d490f6623c14d89620ffe2ef31dc52f15bca10"
+  },
+  "raw_frame": 65,
+  "raw_pixels_match": true,
+  "camera_image_edited": false
+}

@@ -1,0 +1,19 @@
+frame,label,reason
+375,partial_occlusion,lower blue face remains below board
+390,full_occlusion,board covers entire box with margins
+405,full_occlusion,board covers entire box with margins
+435,full_occlusion,board covers entire box with margins
+450,full_occlusion,board covers entire box with margins
+464,full_occlusion,board covers entire box with margins
+493,full_occlusion,board covers entire box with margins
+508,visible,box visible below lifted board
+523,visible,box visible
+731,full_occlusion,board covers entire box with margins
+746,full_occlusion,board covers entire box with margins
+762,full_occlusion,board covers entire box with margins
+792,full_occlusion,board covers entire box with margins
+806,full_occlusion,board covers entire box with margins
+822,full_occlusion,board covers entire box with margins
+851,full_occlusion,board covers entire box with margins
+864,full_occlusion,board covers entire box with margins
+879,visible,box visible below lifted board

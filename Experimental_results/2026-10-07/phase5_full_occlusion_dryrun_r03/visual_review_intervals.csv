@@ -1,0 +1,3 @@
+name,first_reviewed_frame,last_reviewed_frame,first_reviewed_sec,last_reviewed_sec,reviewed_points,reviewed_span_sec,max_review_step_sec,all_reviewed_points_mock_forward,all_reviewed_points_no_detection,all_reviewed_points_no_accepted_measurement
+moving_occlusion_1,324,415,10.787774,13.822685,15,3.0349109999999992,0.5184559999999987,True,True,True
+moving_occlusion_2,583,716,19.504999,23.992841,10,4.487841999999997,0.5088259999999991,True,True,True

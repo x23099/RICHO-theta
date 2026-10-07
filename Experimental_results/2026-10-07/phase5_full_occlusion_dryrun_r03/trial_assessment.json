@@ -1,0 +1,117 @@
+{
+  "visual_condition": "PASS_WITH_0P5SEC_SAMPLED_RAW_REVIEW",
+  "visual_limit": "Intermediate frames were not individually visually labeled; reviewed spans are not exact boundary times.",
+  "active_delivery": "PASS_38_OF_38_BOTH_PCS",
+  "full_bag_communication": "REVIEW_REQUIRED",
+  "visual_intervals": [
+    {
+      "name": "moving_occlusion_1",
+      "first_reviewed_frame": 324,
+      "last_reviewed_frame": 415,
+      "first_reviewed_sec": 10.787774,
+      "last_reviewed_sec": 13.822685,
+      "reviewed_points": 15,
+      "reviewed_span_sec": 3.0349109999999992,
+      "max_review_step_sec": 0.5184559999999987,
+      "all_reviewed_points_mock_forward": true,
+      "all_reviewed_points_no_detection": true,
+      "all_reviewed_points_no_accepted_measurement": true
+    },
+    {
+      "name": "moving_occlusion_2",
+      "first_reviewed_frame": 583,
+      "last_reviewed_frame": 716,
+      "first_reviewed_sec": 19.504999,
+      "last_reviewed_sec": 23.992841,
+      "reviewed_points": 10,
+      "reviewed_span_sec": 4.487841999999997,
+      "max_review_step_sec": 0.5088259999999991,
+      "all_reviewed_points_mock_forward": true,
+      "all_reviewed_points_no_detection": true,
+      "all_reviewed_points_no_accepted_measurement": true
+    }
+  ],
+  "unknown_notifications": [
+    {
+      "value": "UNKNOWN",
+      "first_sec": 11.488497,
+      "last_sec": 13.88981,
+      "samples": 73,
+      "elapsed_first_to_last_sec": 2.401313,
+      "next_sample_sec": 13.924233,
+      "active_samples": 4,
+      "single_notice_start_sec": 11.488497,
+      "single_notice_last_active_sec": 11.587954,
+      "single_active_windows": 1
+    },
+    {
+      "value": "UNKNOWN",
+      "first_sec": 19.921837,
+      "last_sec": 24.122938,
+      "samples": 125,
+      "elapsed_first_to_last_sec": 4.201101000000001,
+      "next_sample_sec": 24.156898,
+      "active_samples": 4,
+      "single_notice_start_sec": 19.921837,
+      "single_notice_last_active_sec": 20.021269,
+      "single_active_windows": 1
+    }
+  ],
+  "notification_episodes": [
+    {
+      "risk": "WARNING",
+      "first_active_sec": 10.188878,
+      "last_active_sec": 10.621617,
+      "active_updates": 11,
+      "active_windows": 3,
+      "last_frame": 319,
+      "following_inactive_sec": 10.656046
+    },
+    {
+      "risk": "UNKNOWN",
+      "first_active_sec": 11.488497,
+      "last_active_sec": 11.587954,
+      "active_updates": 4,
+      "active_windows": 1,
+      "last_frame": 348,
+      "following_inactive_sec": 11.621704
+    },
+    {
+      "risk": "WARNING",
+      "first_active_sec": 13.924233,
+      "last_active_sec": 14.356319,
+      "active_updates": 10,
+      "active_windows": 3,
+      "last_frame": 431,
+      "following_inactive_sec": 14.390135
+    },
+    {
+      "risk": "UNKNOWN",
+      "first_active_sec": 19.921837,
+      "last_active_sec": 20.021269,
+      "active_updates": 4,
+      "active_windows": 1,
+      "last_frame": 599,
+      "following_inactive_sec": 20.054514
+    },
+    {
+      "risk": "WARNING",
+      "first_active_sec": 24.156898,
+      "last_active_sec": 24.589853,
+      "active_updates": 9,
+      "active_windows": 3,
+      "last_frame": 734,
+      "following_inactive_sec": 24.623286
+    }
+  ],
+  "fault_count_in_camera_window": {
+    "kobuki": 0,
+    "hsr": 0
+  },
+  "active_command_payloads_equal": true,
+  "shared_command_payloads_equal": true,
+  "common_command_count": 4398,
+  "cross_pc_bag_difference_count": 0,
+  "critical_frames": 0,
+  "hardware_or_production_promotion": false
+}

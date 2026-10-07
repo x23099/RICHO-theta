@@ -1,0 +1,13 @@
+condition,frame,label,reason
+no_box,1,no_target,no blue box in inspected whole raw frame
+no_box,150,no_target,no blue box in inspected whole raw frame
+no_box,321,no_target,no blue box in inspected whole raw frame
+z0p90,1,target_visible,whole blue box and lower edge visible
+z0p90,300,target_visible,whole blue box and lower edge visible
+z0p90,618,target_visible,whole blue box and lower edge visible
+z1p10,1,target_visible,whole blue box and lower edge visible
+z1p10,289,target_visible,whole blue box and lower edge visible
+z1p10,613,target_visible,whole blue box and lower edge visible
+z1p30,1,target_visible,whole blue box and lower edge visible
+z1p30,299,target_visible,whole blue box and lower edge visible
+z1p30,742,target_visible,whole blue box and lower edge visible

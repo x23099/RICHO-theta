@@ -1,0 +1,20 @@
+frame,label,reason
+285,visible,box visible
+315,visible,box visible below descending cushion
+330,full_occlusion,opaque cushion covers entire box location
+345,full_occlusion,opaque cushion covers entire box location
+375,full_occlusion,opaque cushion covers entire box location
+390,full_occlusion,opaque cushion covers entire box location
+405,full_occlusion,opaque cushion covers entire box location
+553,visible,box visible
+568,visible,box visible below descending cushion
+583,full_occlusion,opaque cushion covers entire box location
+613,full_occlusion,opaque cushion covers entire box location
+626,full_occlusion,opaque cushion covers entire box location
+641,full_occlusion,opaque cushion covers entire box location
+671,full_occlusion,opaque cushion covers entire box location
+686,full_occlusion,opaque cushion covers entire box location
+701,full_occlusion,opaque cushion covers entire box location
+731,visible,box visible
+746,visible,box visible
+760,visible,box visible

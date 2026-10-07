@@ -1,0 +1,70 @@
+{
+  "visual_condition": "PASS_WITH_0P5SEC_SAMPLED_RAW_REVIEW",
+  "visual_limit": "Intermediate frames were not individually visually labeled; reviewed spans are not exact boundary times.",
+  "active_delivery": "PASS_34_OF_34_BOTH_PCS",
+  "full_bag_communication": "NOT_CLEAN: see pre-recording fault, inactive bag differences and stream restart",
+  "visual_intervals": [
+    {
+      "name": "moving_occlusion_1",
+      "first_reviewed_frame": 390,
+      "last_reviewed_frame": 493,
+      "first_reviewed_sec": 12.985979,
+      "last_reviewed_sec": 16.496134,
+      "reviewed_points": 8,
+      "reviewed_span_sec": 3.510155000000001,
+      "max_review_step_sec": 0.543455999999999,
+      "all_reviewed_points_mock_forward": true,
+      "all_reviewed_points_no_detection": true,
+      "all_reviewed_points_no_accepted_measurement": true
+    },
+    {
+      "name": "moving_occlusion_2",
+      "first_reviewed_frame": 731,
+      "last_reviewed_frame": 864,
+      "first_reviewed_sec": 24.490371,
+      "last_reviewed_sec": 28.986715,
+      "reviewed_points": 10,
+      "reviewed_span_sec": 4.496344000000001,
+      "max_review_step_sec": 0.5338719999999988,
+      "all_reviewed_points_mock_forward": true,
+      "all_reviewed_points_no_detection": true,
+      "all_reviewed_points_no_accepted_measurement": true
+    }
+  ],
+  "unknown_notifications": [
+    {
+      "value": "UNKNOWN",
+      "first_sec": 13.385332,
+      "last_sec": 16.917555,
+      "samples": 105,
+      "elapsed_first_to_last_sec": 3.532223,
+      "next_sample_sec": 16.950548,
+      "active_samples": 4,
+      "single_notice_start_sec": 13.385332,
+      "single_notice_last_active_sec": 13.48473,
+      "single_active_windows": 1
+    },
+    {
+      "value": "UNKNOWN",
+      "first_sec": 25.01767,
+      "last_sec": 29.085335,
+      "samples": 121,
+      "elapsed_first_to_last_sec": 4.067665000000002,
+      "next_sample_sec": 29.117479,
+      "active_samples": 3,
+      "single_notice_start_sec": 25.01767,
+      "single_notice_last_active_sec": 25.085688,
+      "single_active_windows": 1
+    }
+  ],
+  "fault_count_in_camera_window": {
+    "kobuki": 0,
+    "hsr": 0
+  },
+  "active_command_payloads_equal": true,
+  "shared_command_payloads_equal": true,
+  "common_command_count": 3492,
+  "cross_pc_bag_difference_count": 8,
+  "critical_frames": 0,
+  "hardware_or_production_promotion": false
+}

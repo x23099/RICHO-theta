@@ -1,0 +1,20 @@
+{
+  "confirmed_on": "2026-10-07",
+  "source": "user_message_after_geometry_diagnosis",
+  "user_statement": "すべてカメラ直下、kobukiの中心からの距離です。また、高さや傾きは変えていません",
+  "conditions": ["z0p90", "z1p10", "z1p30"],
+  "reference_quality": "user_reported_camera_under_origin_pose_unchanged",
+  "reference_origin": "camera_under_kobuki_centre",
+  "reference_origin_confirmed": true,
+  "camera_height_changed_between_trials": false,
+  "camera_tilt_changed_between_trials": false,
+  "box_endpoint_explicitly_documented": false,
+  "physical_camera_height_m": null,
+  "physical_camera_angles_deg": null,
+  "placement_uncertainty_m": null,
+  "notes": [
+    "Origin and absence of height/tilt changes are user-confirmed, not merely inferred from metadata.",
+    "No absolute physical height/angle measurement, endpoint detail or numerical placement uncertainty supplied.",
+    "The reported distance labels are retained without relabelling; this is not calibration fitting."
+  ]
+}

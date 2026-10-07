@@ -1,0 +1,4 @@
+session,variant,frames,warning_frames,hold_frames,critical_frames,unknown_frames,withheld_frames,virtual_active_frames,virtual_active_groups,recorded_risk_compared_frames,recorded_risk_mismatches,first_warning_sec,first_critical_sec
+phase5_full_occlusion_dryrun_r03_20261007_171609_894,baseline,1131,325,52,1,200,0,30,9,1131,10,10.388447,10.588499
+phase5_full_occlusion_dryrun_r03_20261007_171609_894,seeded_s130_nearest,1131,352,48,0,196,0,39,11,1131,22,9.725153,
+phase5_full_occlusion_dryrun_r03_20261007_171609_894,seeded_s130_bottom,1131,352,48,0,196,0,39,11,1131,22,9.725153,

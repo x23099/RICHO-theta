@@ -1,0 +1,109 @@
+{
+  "decision": "PASS_EXACT_FROZEN_SUPPORT_REPLAY_NOT_GROUND_TRUTH_CALIBRATION",
+  "reference_conditions": {
+    "confirmed_on": "2026-10-07",
+    "source": "user_message_after_geometry_diagnosis",
+    "user_statement": "\u3059\u3079\u3066\u30ab\u30e1\u30e9\u76f4\u4e0b\u3001kobuki\u306e\u4e2d\u5fc3\u304b\u3089\u306e\u8ddd\u96e2\u3067\u3059\u3002\u307e\u305f\u3001\u9ad8\u3055\u3084\u50be\u304d\u306f\u5909\u3048\u3066\u3044\u307e\u305b\u3093",
+    "conditions": [
+      "z0p90",
+      "z1p10",
+      "z1p30"
+    ],
+    "reference_quality": "user_reported_camera_under_origin_pose_unchanged",
+    "reference_origin": "camera_under_kobuki_centre",
+    "reference_origin_confirmed": true,
+    "camera_height_changed_between_trials": false,
+    "camera_tilt_changed_between_trials": false,
+    "box_endpoint_explicitly_documented": false,
+    "physical_camera_height_m": null,
+    "physical_camera_angles_deg": null,
+    "placement_uncertainty_m": null,
+    "notes": [
+      "Origin and absence of height/tilt changes are user-confirmed, not merely inferred from metadata.",
+      "No absolute physical height/angle measurement, endpoint detail or numerical placement uncertainty supplied.",
+      "The reported distance labels are retained without relabelling; this is not calibration fitting."
+    ]
+  },
+  "windows": [
+    "all_frames_saved",
+    "after_2s_summary"
+  ],
+  "audit": [
+    {
+      "condition": "no_box",
+      "frames": 321,
+      "detected": 0,
+      "total_valid_support_points": 0,
+      "maximum_exact_replay_difference": 0.0
+    },
+    {
+      "condition": "z0p90",
+      "frames": 618,
+      "detected": 618,
+      "total_valid_support_points": 32065,
+      "maximum_exact_replay_difference": 0.0
+    },
+    {
+      "condition": "z1p10",
+      "frames": 613,
+      "detected": 613,
+      "total_valid_support_points": 29468,
+      "maximum_exact_replay_difference": 0.0
+    },
+    {
+      "condition": "z1p30",
+      "frames": 742,
+      "detected": 742,
+      "total_valid_support_points": 28304,
+      "maximum_exact_replay_difference": 0.0
+    }
+  ],
+  "frame_zone_rows": 7892,
+  "representative_points": 138,
+  "edge_example": {
+    "condition": "z1p10",
+    "session": "record_reference_distance_reference_center_z1p10_r01_20261007_174945_175",
+    "frame": 65,
+    "time_sec": "2.207211",
+    "selection": "first_after_2s_with_any_frozen_bottom_support_Z_ge_reported_Z_not_blind_review",
+    "decoded_bgr_pixels_sha256": "724771418d7009d8157f1ff14b1644950e43da60c9b5faabd574f061c9f99479"
+  },
+  "spatial_selection": "central_80_percent_then_fixed_spatial_thirds",
+  "labels_used_to_select_pixels": false,
+  "physical_contacts_independently_labelled": false,
+  "coefficient_fitting": false,
+  "runtime_changed": false,
+  "ros_or_hardware_output": false,
+  "inputs_sha256": {
+    "Experimental_results/2026-10-07/distance_reference_analysis/frozen_comparison/provenance.json": "10d6c7d93877e3e5af419fc8509e5fb80ed346bcadf08cb2f2a59a8c6899adfa",
+    "Experimental_results/2026-10-07/distance_reference_analysis/frozen_comparison/frame_results.csv": "a1d6a8665d465aa12a8966e05b1c1eb82b39b855318f3911ebc6451785cc3fd4",
+    "Experimental_results/2026-10-07/distance_reference_analysis/manual_lower_edge.csv": "8e8b058ec405c85707003866c9708a408a8accd278fee5d141d471aafc348a01",
+    "Experimental_results/2026-10-07/distance_reference_analysis/review_frame_manifest.csv": "9e1666281fcd80c0dd52caeee1d3d89ff8c1d0f5e254cfbe62db9912b22697bc",
+    "Experimental_results/2026-10-07/distance_reference_analysis/reference_conditions.json": "be699942e027cb0a183f3b78dcf700e4bc2e3f9816d27367e6386998449712e5",
+    "/tmp/theta_distance_reference_20261007_hwprv699/no_box/record_reference_distance_reference_no_box_r01_20261007_174742_202/metadata.json": "0cadafada46e184a621271b6fe35e627f638ec052f02a76b2b32badc24286d25",
+    "/tmp/theta_distance_reference_20261007_hwprv699/no_box/record_reference_distance_reference_no_box_r01_20261007_174742_202/detections.csv": "84870459a3fbddd5b3a278e752127cfcd8cb62d4572a99d1f4bb8b74b5a33478",
+    "/tmp/theta_distance_reference_20261007_hwprv699/no_box/record_reference_distance_reference_no_box_r01_20261007_174742_202/raw.avi": "192744e410b99d47a3465e019298eca3ea65461537ba0d40b5af210111625d95",
+    "/tmp/theta_distance_reference_20261007_hwprv699/z0p90/record_reference_distance_reference_center_z0p90_r01_20261007_174846_806/metadata.json": "d384c0f9862b88e0d431d9f18fdbfce83ed20a5a1444f37ca6f4acbc11eb45d5",
+    "/tmp/theta_distance_reference_20261007_hwprv699/z0p90/record_reference_distance_reference_center_z0p90_r01_20261007_174846_806/detections.csv": "64f209fa25f9c209372bf2470f99d615361765e50986e9e9a4e6d8ab60dfff31",
+    "/tmp/theta_distance_reference_20261007_hwprv699/z0p90/record_reference_distance_reference_center_z0p90_r01_20261007_174846_806/raw.avi": "46338959e73b071b434a25dbd5277a4b06017252bdcf755f2070a1076f80f77f",
+    "/tmp/theta_distance_reference_20261007_hwprv699/z1p10/record_reference_distance_reference_center_z1p10_r01_20261007_174945_175/metadata.json": "f772ecf4b7b3af462e5859a432f58347192f3203e92610feae34baa1dc461fdb",
+    "/tmp/theta_distance_reference_20261007_hwprv699/z1p10/record_reference_distance_reference_center_z1p10_r01_20261007_174945_175/detections.csv": "00656a9ba1cca023494d9268f16e5e6719381f2e2233ea5a0f57376838005529",
+    "/tmp/theta_distance_reference_20261007_hwprv699/z1p10/record_reference_distance_reference_center_z1p10_r01_20261007_174945_175/raw.avi": "078fd9bd6a58985429591026fc0b7f7d06682d0a9ebca199ab85a652035260c5",
+    "/tmp/theta_distance_reference_20261007_hwprv699/z1p30/record_reference_distance_reference_center_z1p30_r01_20261007_175040_153/metadata.json": "7a53aabbcc1cc7b8b63b528798270bb80918476f63eac6af6db75f18cf3d5665",
+    "/tmp/theta_distance_reference_20261007_hwprv699/z1p30/record_reference_distance_reference_center_z1p30_r01_20261007_175040_153/detections.csv": "041919f66cb362fa2c4446e7362eb7dba2be591f25036782042e5ac79c01bb3f",
+    "/tmp/theta_distance_reference_20261007_hwprv699/z1p30/record_reference_distance_reference_center_z1p30_r01_20261007_175040_153/raw.avi": "c357d6357268538d3f2baf5c715b9d19eb094bc94451629be385fb5bae28c8b2"
+  },
+  "implementation_sha256": {
+    "Experimental_results/2026-10-07/distance_reference_analysis/bottom_support_diagnosis/analyze_bottom_support.py": "4ce1e2e1253d652a53a0390c6f5eda2c613ba0ae4b6608cf90a78e9d58e02d12",
+    "src/ground_contact.py": "a51c65ab01a4d7a4a1a0f368c2fca9e2e183a3c9c0b0c2c9ba00458a905b74cc",
+    "src/offline_box_contact_candidates.py": "1c399cd5a046f465d5b82303a3dbb81ba17beaad686fa424413e580dd0a65914",
+    "Experimental_results/2026-10-07/distance_reference_analysis/diagnose_distance_geometry.py": "9986e4770411fa146e65e77bbf598b272d818cecfa92912a95976da7c4b159a9",
+    "Experimental_results/2026-10-07/distance_reference_analysis/analyze_distance_reference.py": "2d8362a9d2fa8608b94928704b0fe9a5a2305cde268bc442bce413ed4c944f8d"
+  },
+  "limits": [
+    "Only frozen S130 colour-mask bottom samples; not all possible physical lower-edge points",
+    "Manual estimates are nonblind and no independent floor-contact labels are available",
+    "Origin and no height/tilt changes confirmed; absolute pose and placement uncertainty unrecorded",
+    "One recording per distance; cannot isolate a unique physical cause or establish a calibration curve"
+  ]
+}

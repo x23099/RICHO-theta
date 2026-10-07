@@ -1,0 +1,5 @@
+condition,frames,detected,total_valid_support_points,maximum_exact_replay_difference
+no_box,321,0,0,0.0
+z0p90,618,618,32065,0.0
+z1p10,613,613,29468,0.0
+z1p30,742,742,28304,0.0

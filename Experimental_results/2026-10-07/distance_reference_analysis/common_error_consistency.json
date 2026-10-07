@@ -1,0 +1,47 @@
+{
+  "reference_conditions": {
+    "confirmed_on": "2026-10-07",
+    "source": "user_message_after_geometry_diagnosis",
+    "user_statement": "\u3059\u3079\u3066\u30ab\u30e1\u30e9\u76f4\u4e0b\u3001kobuki\u306e\u4e2d\u5fc3\u304b\u3089\u306e\u8ddd\u96e2\u3067\u3059\u3002\u307e\u305f\u3001\u9ad8\u3055\u3084\u50be\u304d\u306f\u5909\u3048\u3066\u3044\u307e\u305b\u3093",
+    "conditions": [
+      "z0p90",
+      "z1p10",
+      "z1p30"
+    ],
+    "reference_quality": "user_reported_camera_under_origin_pose_unchanged",
+    "reference_origin": "camera_under_kobuki_centre",
+    "reference_origin_confirmed": true,
+    "camera_height_changed_between_trials": false,
+    "camera_tilt_changed_between_trials": false,
+    "box_endpoint_explicitly_documented": false,
+    "physical_camera_height_m": null,
+    "physical_camera_angles_deg": null,
+    "placement_uncertainty_m": null,
+    "notes": [
+      "Origin and absence of height/tilt changes are user-confirmed, not merely inferred from metadata.",
+      "No absolute physical height/angle measurement, endpoint detail or numerical placement uncertainty supplied.",
+      "The reported distance labels are retained without relabelling; this is not calibration fitting."
+    ]
+  },
+  "separate_one_parameter_hypotheses": [
+    {
+      "parameter": "camera_height_m",
+      "intersection_lower": 0.6101498600290808,
+      "intersection_upper": 0.5835611375520863,
+      "common_value_possible": false,
+      "separation_gap": 0.02658872247699451
+    },
+    {
+      "parameter": "additional_z_offset_m",
+      "intersection_lower": 0.05435524648060763,
+      "intersection_upper": 0.005492181693801723,
+      "common_value_possible": false,
+      "separation_gap": 0.04886306478680591
+    }
+  ],
+  "conditional_only": true,
+  "measurement_uncertainty_not_modelled": true,
+  "pixel_band_not_independent_ground_truth": true,
+  "parameter_search_or_fit": false,
+  "limits": "Does not rule out joint pose/lens errors, endpoint effects or manual edge errors."
+}

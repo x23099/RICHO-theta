@@ -1,0 +1,3 @@
+value,first_sec,last_sec,samples,elapsed_first_to_last_sec,next_sample_sec,active_samples,single_notice_start_sec,single_notice_last_active_sec,single_active_windows
+UNKNOWN,11.488497,13.88981,73,2.401313,13.924233,4,11.488497,11.587954,1
+UNKNOWN,19.921837,24.122938,125,4.201101000000001,24.156898,4,19.921837,20.021269,1

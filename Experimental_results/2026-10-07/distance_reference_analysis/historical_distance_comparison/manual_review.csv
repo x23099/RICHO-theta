@@ -1,0 +1,5 @@
+session,frames_one_based,selection_rule,target_visible,occlusion_observed,notes
+holdout_xm0.22_z0.95,1/118/236,first_middle_last_before_candidate_results,1,0,青箱の全体と下端が見える。人物は箱と重ならない。物理接地点の独立ラベルではない。
+holdout_xm0.22_z1.20,1/107/214,first_middle_last_before_candidate_results,1,0,青箱の全体と下端が見える。人物の移動あり。物理接地点の独立ラベルではない。
+holdout_xp0.22_z0.95,1/155/310,first_middle_last_before_candidate_results,1,0,青箱の全体と下端が見える。人物は箱と重ならない。物理接地点の独立ラベルではない。
+holdout_xp0.22_z1.20,1/145/290,first_middle_last_before_candidate_results,1,0,青箱の全体と下端が見える。人物は箱と重ならない。物理接地点の独立ラベルではない。

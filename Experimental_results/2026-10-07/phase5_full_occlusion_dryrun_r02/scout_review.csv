@@ -1,0 +1,24 @@
+frame,label,reason
+1,visible,box visible
+60,visible,box visible
+120,visible,box visible
+180,visible,box visible
+240,visible,box visible
+300,visible,box visible
+360,partial_occlusion,board being lowered with lower blue face still visible
+420,full_occlusion,large foreground board covers entire box with margins
+478,full_occlusion,large foreground board covers entire box with margins
+538,visible,box visible
+598,visible,box visible
+656,visible,box visible
+716,visible,box visible below raised board
+776,full_occlusion,large foreground board covers entire box with margins
+836,full_occlusion,large foreground board covers entire box with margins
+894,visible,box visible
+954,visible,box visible
+1014,visible,box visible
+1074,visible,box visible below raised board
+1134,full_occlusion,large foreground board covers entire box with margins
+1194,full_occlusion,large foreground board covers entire box with margins
+1254,visible,box visible
+1314,visible,box visible

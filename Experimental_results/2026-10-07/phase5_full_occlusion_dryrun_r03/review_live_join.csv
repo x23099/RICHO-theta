@@ -1,0 +1,53 @@
+frame,label,reason,time_sec,detected,measurement_accepted,collision_risk_level,odom_linear_mps
+1,visible,box visible,0.023190,1,1,CLEAR,0.000000
+60,visible,box visible,2.004401,1,1,CLEAR,0.000000
+120,visible,box visible,3.988328,1,1,CLEAR,0.000000
+180,visible,box visible,5.988378,1,1,CLEAR,0.000000
+240,visible,box visible,7.989380,1,1,CLEAR,0.000000
+285,visible,box visible,9.491642,0,0,CLEAR,0.000000
+300,visible,box visible,9.989435,0,0,CLEAR,0.250000
+315,visible,box visible below descending cushion,10.487864,1,1,WARNING,0.250000
+317,visible,box visible,10.555232,1,1,WARNING,0.250000
+320,visible,box visible below descending cushion,10.656046,1,1,WARNING,0.250000
+323,partial_occlusion,blue lower box remains visible below cushion,10.754218,0,0,WARNING_HOLD,0.250000
+324,full_occlusion,opaque cushion covers entire box location,10.787774,0,0,WARNING_HOLD,0.250000
+325,full_occlusion,opaque cushion covers entire box location,10.820643,0,0,WARNING_HOLD,0.250000
+326,full_occlusion,opaque cushion covers entire box location,10.854631,0,0,WARNING_HOLD,0.250000
+329,full_occlusion,opaque cushion covers entire box location,10.953258,0,0,WARNING_HOLD,0.250000
+330,full_occlusion,opaque cushion covers entire box location,10.986573,0,0,WARNING_HOLD,0.250000
+345,full_occlusion,opaque cushion covers entire box location,11.488497,0,0,UNKNOWN,0.250000
+359,full_occlusion,opaque cushion covers entire box location,11.993116,0,0,UNKNOWN,0.250000
+375,full_occlusion,opaque cushion covers entire box location,12.511572,0,0,UNKNOWN,0.250000
+390,full_occlusion,opaque cushion covers entire box location,12.988698,0,0,UNKNOWN,0.250000
+405,full_occlusion,opaque cushion covers entire box location,13.498099,0,0,UNKNOWN,0.250000
+407,full_occlusion,opaque cushion covers entire box location,13.561849,0,0,UNKNOWN,0.250000
+410,full_occlusion,opaque cushion covers entire box location,13.655223,0,0,UNKNOWN,0.250000
+413,full_occlusion,opaque cushion covers entire box location,13.756250,0,0,UNKNOWN,0.250000
+414,full_occlusion,opaque cushion covers entire box location,13.788754,0,0,UNKNOWN,0.250000
+415,full_occlusion,opaque cushion covers entire box location,13.822685,0,0,UNKNOWN,0.250000
+416,partial_occlusion,blue lower box reappears below cushion,13.855763,0,0,UNKNOWN,0.250000
+419,visible,box visible,13.957445,1,1,WARNING,0.250000
+420,visible,box visible below raised cushion,13.990178,1,1,WARNING,0.250000
+480,visible,box visible,15.989385,1,1,WARNING,0.250000
+538,visible,box visible,18.004199,1,1,WARNING,0.250000
+553,visible,box visible,18.494158,1,1,WARNING,0.250000
+568,visible,box visible below descending cushion,18.990387,1,1,WARNING,0.250000
+583,full_occlusion,opaque cushion covers entire box location,19.504999,0,0,WARNING_HOLD,0.250000
+598,full_occlusion,opaque cushion covers entire box location,19.988568,0,0,UNKNOWN,0.250000
+613,full_occlusion,opaque cushion covers entire box location,20.497394,0,0,UNKNOWN,0.250000
+626,full_occlusion,opaque cushion covers entire box location,20.988856,0,0,UNKNOWN,0.250000
+641,full_occlusion,opaque cushion covers entire box location,21.491110,0,0,UNKNOWN,0.250000
+656,full_occlusion,opaque cushion covers entire box location,21.990126,0,0,UNKNOWN,0.250000
+671,full_occlusion,opaque cushion covers entire box location,22.491495,0,0,UNKNOWN,0.250000
+686,full_occlusion,opaque cushion covers entire box location,22.992413,0,0,UNKNOWN,0.250000
+701,full_occlusion,opaque cushion covers entire box location,23.489237,0,0,UNKNOWN,0.250000
+716,full_occlusion,opaque cushion covers entire box location,23.992841,0,0,UNKNOWN,0.250000
+731,visible,box visible,24.489884,1,1,WARNING,0.250000
+746,visible,box visible,24.990015,1,1,WARNING,0.250000
+760,visible,box visible,25.488310,1,1,WARNING,0.250000
+776,visible,box visible,26.003810,1,1,WARNING,0.250000
+836,visible,box visible,27.991112,1,1,WARNING,0.250000
+896,visible,box visible,29.989014,1,1,CLEAR,0.000000
+956,visible,box visible,31.987844,1,1,CLEAR,0.000000
+1016,visible,box visible,33.988027,1,1,CLEAR,0.000000
+1076,visible,box visible,35.988086,1,1,CLEAR,

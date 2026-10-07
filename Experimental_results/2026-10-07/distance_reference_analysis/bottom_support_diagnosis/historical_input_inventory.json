@@ -1,0 +1,27 @@
+{
+  "scope": "READ_ONLY_ARCHIVE_MEMBER_INVENTORY_NOT_REPLAY_OR_NEW_GROUND_TRUTH_VALIDATION",
+  "candidate_archive": "/home/robo25/Downloads/recoding/coding_20260807_6.tar.xz",
+  "reference_table": "Experimental_results/2026-08-07/2026-08-07_ground_contact_final_evaluation.csv",
+  "observed_sessions": [
+    "holdout_xm0.22_z0.95",
+    "holdout_xm0.22_z1.20",
+    "holdout_xp0.22_z0.95",
+    "holdout_xp0.22_z1.20"
+  ],
+  "each_listed_session_has": ["metadata.json", "detections.csv", "raw.avi", "bev.avi", "detection.avi"],
+  "checks_done": ["archive member names listed read-only", "session names match historical final evaluation table"],
+  "checks_pending": [],
+  "followup_completed": {
+    "report": "../historical_distance_comparison/README.md",
+    "verified": ["safe extraction", "all videos sequentially decoded and CSV counts matched", "recorded numerical camera geometry retained and matched current config", "24 historical coordinate/sample checks reproduced", "frozen distance-only candidate replay"],
+    "not_established": ["physical camera pose equivalence across dates", "historical physical measurement uncertainty and exact measured face", "tracking/TTC/network/physical FFB"]
+  },
+  "do_not_confuse_with": {
+    "archive": "/home/robo25/Downloads/recoding/holdout.tar.xz",
+    "reason": "This archive contains x=+/-0.15, z=0.90/1.15 sessions, not the +/-0.22, 0.95/1.20 final reference sessions."
+  },
+  "limits": [
+    "Historical holdout was previously inspected; do not describe it as a fresh blind final validation.",
+    "No coefficients are to be fitted or adopted based on archive names alone."
+  ]
+}

@@ -1,0 +1,25 @@
+frame,label,reason
+1,visible,box visible
+60,visible,box visible
+120,visible,box visible
+178,visible,box visible
+238,visible,box visible
+298,partial_occlusion,blue upper and right parts remain visible beside board
+356,partial_occlusion,upper blue rim visible above board
+412,partial_occlusion,upper blue rim visible above board
+472,visible,box visible
+530,visible,box visible
+588,visible,box visible
+648,partial_occlusion,upper blue rim visible above board
+708,partial_occlusion,upper blue rim visible above board
+766,partial_occlusion,upper blue rim visible above board
+826,visible,box visible
+886,visible,box visible
+946,visible,box visible
+1006,partial_occlusion,blue upper and right parts remain visible beside board
+1066,partial_occlusion,upper blue rim visible above board
+1126,partial_occlusion,upper blue rim visible above board
+1186,visible,box visible
+1246,visible,board above operator not over box
+1304,visible,box visible
+1364,visible,box visible

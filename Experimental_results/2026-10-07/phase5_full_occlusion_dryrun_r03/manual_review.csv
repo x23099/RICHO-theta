@@ -1,0 +1,53 @@
+frame,label,reason
+1,visible,box visible
+60,visible,box visible
+120,visible,box visible
+180,visible,box visible
+240,visible,box visible
+285,visible,box visible
+300,visible,box visible
+315,visible,box visible below descending cushion
+317,visible,box visible
+320,visible,box visible below descending cushion
+323,partial_occlusion,blue lower box remains visible below cushion
+324,full_occlusion,opaque cushion covers entire box location
+325,full_occlusion,opaque cushion covers entire box location
+326,full_occlusion,opaque cushion covers entire box location
+329,full_occlusion,opaque cushion covers entire box location
+330,full_occlusion,opaque cushion covers entire box location
+345,full_occlusion,opaque cushion covers entire box location
+359,full_occlusion,opaque cushion covers entire box location
+375,full_occlusion,opaque cushion covers entire box location
+390,full_occlusion,opaque cushion covers entire box location
+405,full_occlusion,opaque cushion covers entire box location
+407,full_occlusion,opaque cushion covers entire box location
+410,full_occlusion,opaque cushion covers entire box location
+413,full_occlusion,opaque cushion covers entire box location
+414,full_occlusion,opaque cushion covers entire box location
+415,full_occlusion,opaque cushion covers entire box location
+416,partial_occlusion,blue lower box reappears below cushion
+419,visible,box visible
+420,visible,box visible below raised cushion
+480,visible,box visible
+538,visible,box visible
+553,visible,box visible
+568,visible,box visible below descending cushion
+583,full_occlusion,opaque cushion covers entire box location
+598,full_occlusion,opaque cushion covers entire box location
+613,full_occlusion,opaque cushion covers entire box location
+626,full_occlusion,opaque cushion covers entire box location
+641,full_occlusion,opaque cushion covers entire box location
+656,full_occlusion,opaque cushion covers entire box location
+671,full_occlusion,opaque cushion covers entire box location
+686,full_occlusion,opaque cushion covers entire box location
+701,full_occlusion,opaque cushion covers entire box location
+716,full_occlusion,opaque cushion covers entire box location
+731,visible,box visible
+746,visible,box visible
+760,visible,box visible
+776,visible,box visible
+836,visible,box visible
+896,visible,box visible
+956,visible,box visible
+1016,visible,box visible
+1076,visible,box visible

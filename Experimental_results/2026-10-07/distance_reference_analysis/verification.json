@@ -1,0 +1,45 @@
+{
+  "integrity_and_sequential_decode": "PASS_ALL_FOUR_SESSIONS_ALL_THREE_VIDEOS",
+  "total_frames": 2294,
+  "frozen_rows": 6882,
+  "reviewed_raw_frames": 12,
+  "representative_png_pixels_match_raw": 2,
+  "parameter_differences": {},
+  "candidate_frozen": {
+    "reference": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-06/box_contact_candidates/provenance.json",
+    "sha256": "a63b75ed66944c252e335e52ab4304221657ac899b22cc4fc78e3c11c5770683",
+    "settings_match": true,
+    "candidate_implementation_matches": true
+  },
+  "contiguous_frames_and_matching_times": true,
+  "zero_motion_and_no_alerts": true,
+  "distance_statistics_keep_rejected_detections": true,
+  "coefficient_fitting": false,
+  "runtime_configuration_changed": false,
+  "downstream_delivery_or_hardware_evaluated": false,
+  "reference_conditions": {
+    "confirmed_on": "2026-10-07",
+    "source": "user_message_after_geometry_diagnosis",
+    "user_statement": "\u3059\u3079\u3066\u30ab\u30e1\u30e9\u76f4\u4e0b\u3001kobuki\u306e\u4e2d\u5fc3\u304b\u3089\u306e\u8ddd\u96e2\u3067\u3059\u3002\u307e\u305f\u3001\u9ad8\u3055\u3084\u50be\u304d\u306f\u5909\u3048\u3066\u3044\u307e\u305b\u3093",
+    "conditions": [
+      "z0p90",
+      "z1p10",
+      "z1p30"
+    ],
+    "reference_quality": "user_reported_camera_under_origin_pose_unchanged",
+    "reference_origin": "camera_under_kobuki_centre",
+    "reference_origin_confirmed": true,
+    "camera_height_changed_between_trials": false,
+    "camera_tilt_changed_between_trials": false,
+    "box_endpoint_explicitly_documented": false,
+    "physical_camera_height_m": null,
+    "physical_camera_angles_deg": null,
+    "placement_uncertainty_m": null,
+    "notes": [
+      "Origin and absence of height/tilt changes are user-confirmed, not merely inferred from metadata.",
+      "No absolute physical height/angle measurement, endpoint detail or numerical placement uncertainty supplied.",
+      "The reported distance labels are retained without relabelling; this is not calibration fitting."
+    ]
+  },
+  "reference_conditions_sha256": "be699942e027cb0a183f3b78dcf700e4bc2e3f9816d27367e6386998449712e5"
+}

@@ -1,0 +1,20 @@
+frame,label,reason
+1,visible,box visible
+60,visible,box visible
+120,visible,box visible
+180,visible,box visible
+240,visible,box visible
+300,visible,box visible
+359,full_occlusion,opaque cushion covers entire box location
+420,visible,box visible below raised cushion
+480,visible,box visible
+538,visible,box visible
+598,full_occlusion,opaque cushion covers entire box location
+656,full_occlusion,opaque cushion covers entire box location
+716,full_occlusion,opaque cushion covers entire box location
+776,visible,box visible
+836,visible,box visible
+896,visible,box visible
+956,visible,box visible
+1016,visible,box visible
+1076,visible,box visible
