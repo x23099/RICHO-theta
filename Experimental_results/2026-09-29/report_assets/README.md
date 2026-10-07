@@ -34,3 +34,7 @@ v12の詳細判定は `../phase5_v12_reliability_dryrun_r01_diagnosis.md` を参
 | `phase5_v12_hardware_recovery_raw_frame_0617.png` | 617 | 21.117 s | 青箱を再び見せ、有効測定とWARNINGへ復帰した場面 | `08a26fb5c4a1cfb8ed6e98037b3e6b96f5f1d7212a0d982f69bdf994d9ce5328` |
 
 hardware UNKNOWN試験の判定は `../phase5_v12_hardware_unknown_r01_diagnosis.md` を参照すること。
+
+## 2026-10-07追加：challenge間隔の図示
+
+9/29元bagに基づく[challenge間隔・安定待ちグラフ](../../2026-10-07/challenge_jitter_review/challenge_interval_and_stability.png)と[v11実記録／v12オフライン許可の比較](../../2026-10-07/challenge_jitter_review/relay_gate_recorded_vs_offline.png)を追加作成した。生成日と実験日を区別して10/7フォルダに保存している。[出典・再生成・原因と未確定事項](../../2026-10-07/challenge_jitter_review/README.md)を参照。既存カメラ画像は編集していない。

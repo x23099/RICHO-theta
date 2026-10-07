@@ -38,6 +38,8 @@ challenge受信間隔が一時的に60～129 msへ伸びただけでstream安定
 
 詳細は[v11診断](../Experimental_results/2026-09-29/phase5_v11_reliability_dryrun_r01_diagnosis.md)を参照する。
 
+2026-10-07追補：元bagから[challenge記録間隔とrelay安定待ちの図](../Experimental_results/2026-10-07/challenge_jitter_review/challenge_interval_and_stability.png)を作成した。発行元側最大21.014 msに対し、Kobuki側最大129.436 ms、60 ms超25回を再確認。短いgapを1秒の待ち直しへ増幅した設計上の原因と、ネットワーク・DDS・OS負荷等の内訳が未確定である点を[解説](../Experimental_results/2026-10-07/challenge_jitter_review/README.md)に分けて記載した。当日の実施結果を新しい実機試験で上書きしたものではない。
+
 ## 2. v12 reliability実装
 
 v11の安全条件を緩めず、challenge単体の鮮度とstream継続性を分離した。

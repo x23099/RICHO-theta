@@ -1,0 +1,50 @@
+{
+  "analysis_date": "2026-10-07",
+  "source_experiment_date": "2026-09-29",
+  "window": {
+    "start_jst": "2026-09-29T15:35:20.912+09:00",
+    "end_jst": "2026-09-29T15:36:41.934+09:00"
+  },
+  "interval_statistics": {
+    "hsr": {
+      "count": 4051,
+      "median_ms": 20.00032,
+      "p95_ms": 20.226782999999998,
+      "max_ms": 21.013797,
+      "over_60ms_count": 0,
+      "over_200ms_count": 0
+    },
+    "kobuki": {
+      "count": 4051,
+      "median_ms": 19.94358,
+      "p95_ms": 32.458487500000004,
+      "max_ms": 129.436007,
+      "over_60ms_count": 25,
+      "over_200ms_count": 0
+    }
+  },
+  "stream_not_stable_count": 567,
+  "comparison": {
+    "v11_recorded_active_command_count": 12,
+    "v12_replayed_active_authorized_count": 26,
+    "v11_recorded_stream_not_stable_rejections": 567,
+    "v12_replayed_stream_not_stable_rejections": 0
+  },
+  "clock_scope": "within each PC, bag receipt timestamps; not cross-PC one-way latency",
+  "root_cause_of_arrival_jitter": "NOT_DETERMINED_NO_NETWORK_CPU_DDS_TRACE",
+  "diagnostic_csv_time_precision": "millisecond-rounded historical export",
+  "interval_time_precision": "original sqlite bag nanoseconds",
+  "inputs_sha256": {
+    "/home/robo25/Downloads/H_rosbug_phase5_v11_reliability_hsr_r01.tar.xz": "c61d5ab47f2b3fe59b523bd8ebae372476139a8455850a0cec8b313bf3df6cbc",
+    "/home/robo25/Downloads/K_rosbug_phase5_v11_reliability_kobuki_r01.tar.xz": "b8cdc958ec694d78bacd5a72bd1a1ef6eaeee40550411ba07c3794c6ff695eb9",
+    "Experimental_results/2026-09-29/phase5_v11_reliability_kobuki_r01_events.csv": "5ebda2c87f520182cf2d6dfe20e0c97ea1708ab840407116144fabe9122ecaa7",
+    "Experimental_results/2026-09-29/phase5_v12_relay_offline_replay.json": "552192c5164a22d097a1a6369af8fb0c6862fbd9d9737b7fd811c7c9678758ce",
+    "Experimental_results/2026-10-07/challenge_jitter_review/create_challenge_jitter_plots.py": "64484364b9972426043e9c34a3c37bf3af30fb68e795f7b29a868b561d002cd6"
+  },
+  "outputs_sha256": {
+    "recorded_relay_diagnostics.csv": "1edcc8242cf0ea8e62c628668e7011da090e44bc20e3da9d544bd8f9764a4a3b",
+    "relay_gate_recorded_vs_offline.png": "b9fc2fe7d6b85c4a1cac0b253357ec6dc81035dccff8a4f1e246ef06bf9d0d96",
+    "challenge_interval_and_stability.png": "b15f002be93e3ef83a503d9598bf5ecd6107a9d2af185081ff9bf93ea2523c60",
+    "challenge_intervals.csv": "ee226a7f5c8fd5a9a50bd5f758bec0ed04829050489702783019338d657d3440"
+  }
+}
