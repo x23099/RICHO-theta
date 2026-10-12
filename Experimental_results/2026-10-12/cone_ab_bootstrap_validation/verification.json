@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-12",
+  "decision": "PASS_VAL_COMPLETION_NOT_DEPLOYMENT_APPROVAL",
+  "archive": "/home/robo25/Downloads/val_ab_bootstrap_v01_r01.tar.xz",
+  "archive_sha256": "cf88d9397a4c05260382e75f06f11454fde38b3cdfee891856d3aafdc3ae6c26",
+  "checks": {
+    "completed_val": true,
+    "physical_output_disabled": true,
+    "same_best_checkpoint": true,
+    "same_dataset_and_labels": true,
+    "val_split": true,
+    "gpu_device_zero": true,
+    "metrics_finite_and_bounded": true
+  },
+  "metrics": {
+    "metrics/precision(B)": 0.9377528566356297,
+    "metrics/recall(B)": 0.6428571428571429,
+    "metrics/mAP50(B)": 0.9413426047902731,
+    "metrics/mAP50-95(B)": 0.7723315021083366,
+    "fitness": 0.7723315021083366
+  },
+  "comparison": [
+    {
+      "metric": "metrics/precision(B)",
+      "training_reported": 0.938179558869214,
+      "standalone_val": 0.9377528566356297,
+      "delta_percentage_points": -0.04267022335843196
+    },
+    {
+      "metric": "metrics/recall(B)",
+      "training_reported": 0.6428571428571429,
+      "standalone_val": 0.6428571428571429,
+      "delta_percentage_points": 0.0
+    },
+    {
+      "metric": "metrics/mAP50(B)",
+      "training_reported": 0.9413577170527947,
+      "standalone_val": 0.9413426047902731,
+      "delta_percentage_points": -0.0015112262521599362
+    },
+    {
+      "metric": "metrics/mAP50-95(B)",
+      "training_reported": 0.7786957129526779,
+      "standalone_val": 0.7723315021083366,
+      "delta_percentage_points": -0.6364210844341356
+    }
+  ],
+  "payload_sha256": {
+    "environment_freeze.txt": "b1415a2e7e4a5f1474fd7fee6f4cbed64bcac68a21cf0df6d5743d76d8068182",
+    "provenance.json": "d18f80b0195922525448ee4a721825ec34335bb1e1489ad8795352c1d35b3caf",
+    "metrics.json": "bcfeecf8b432ffe3621854fdf01d3331e17574542c28da86b27cb60b824e074d"
+  },
+  "per_image_predictions_available": false,
+  "independent_test_available": false,
+  "local_model_inference_performed": false,
+  "checkpoints_deserialized": false
+}
