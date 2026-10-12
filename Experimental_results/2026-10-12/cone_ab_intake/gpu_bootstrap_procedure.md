@@ -63,6 +63,8 @@ fi
 
 ## 4. 初回学習→val
 
+初回runを受領した時点の[学習結果](../cone_ab_bootstrap_training/README.md)では、実保存先は`yolov8n/`だった。以下のval重みpathは、その実在する保存先に修正済み。別runではargs.yamlのsave_dirと実際のファイルを確認する。
+
 ```bash
 ./start_cone_yolo.sh train \
   --dataset datasets/cone/ab_bootstrap_v01 \
@@ -71,14 +73,14 @@ fi
 
 ./start_cone_yolo.sh val \
   --dataset datasets/cone/ab_bootstrap_v01 \
-  --weights runs/cone/train_ab_bootstrap_v01_r01/model/weights/best.pt \
+  --weights runs/cone/train_ab_bootstrap_v01_r01/yolov8n/weights/best.pt \
   --output-dir runs/cone/val_ab_bootstrap_v01_r01 \
   --device 0
 ```
 
 学習中にCUDAメモリ不足が出た場合は、エラーログを残して別run名でbatchを4等へ調整する。所要時間は未測定なので予告しない。dataのsplit、ラベルを結果が良くなるように事後変更しない。
 
-共有してほしい結果：両runの`metrics.json`・`provenance.json`、train側`model/results.csv`と`model/weights/best.pt`。実行環境は`environment_freeze.txt`で追跡できる。これらの取得後に検出漏れ・誤検知・推論時間のオフライン確認へ進む。
+共有してほしい結果：両runの`metrics.json`・`provenance.json`、train側`yolov8n/results.csv`と`yolov8n/weights/best.pt`。実行環境は`environment_freeze.txt`で追跡できる。これらの取得後に検出漏れ・誤検知・推論時間のオフライン確認へ進む。
 
 ## 限界と次段階
 

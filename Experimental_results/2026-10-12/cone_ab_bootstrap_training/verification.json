@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-12",
+  "decision": "PASS_TRAINING_COMPLETION_NOT_DEPLOYMENT_APPROVAL",
+  "archive": "/home/robo25/Downloads/train_ab_bootstrap_v01_r01.tar.xz",
+  "archive_sha256": "d34095f887022000fd4523b03ce387651b30d8d408c0a49e9c6cbe6cf315a365",
+  "epochs": 50,
+  "cumulative_epoch_time_sec": 76.4385,
+  "full_command_wall_time_available": false,
+  "time_scope": "CSV cumulative time through epoch 50; startup and final post-loop processing excluded",
+  "training_dataset_matches_accepted_human_review": true,
+  "final_reported_metrics": {
+    "metrics/precision(B)": 0.938179558869214,
+    "metrics/recall(B)": 0.6428571428571429,
+    "metrics/mAP50(B)": 0.9413577170527947,
+    "metrics/mAP50-95(B)": 0.7786957129526779,
+    "fitness": 0.7786957129526779
+  },
+  "epoch50_csv_metrics": {
+    "metrics/precision(B)": 0.93407,
+    "metrics/recall(B)": 0.64286,
+    "metrics/mAP50(B)": 0.94174,
+    "metrics/mAP50-95(B)": 0.77895
+  },
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+    "index": 0,
+    "torch_version": "2.7.1+cu118",
+    "torch_cuda_version": "11.8"
+  },
+  "dataset_counts": {
+    "train": {
+      "images": 35,
+      "positive": 35,
+      "negative": 0,
+      "boxes": 53
+    },
+    "val": {
+      "images": 38,
+      "positive": 38,
+      "negative": 0,
+      "boxes": 56
+    }
+  },
+  "actual_gpu_best_weights": "/home/hsr/yopi_ws/RICHO-theta/runs/cone/train_ab_bootstrap_v01_r01/yolov8n/weights/best.pt",
+  "actual_output_name": "yolov8n",
+  "requested_output_name": "model",
+  "artifacts": {
+    "provenance.json": {
+      "path": "/home/robo25/theta_ws/RICHO-theta/runs/cone/received_train_ab_bootstrap_v01_r01/provenance.json",
+      "bytes": 11298,
+      "sha256": "97226dd6f8150149e47e2d9b258947382aafc58fa4bc5b07703cbd03c64fa704"
+    },
+    "environment_freeze.txt": {
+      "path": "/home/robo25/theta_ws/RICHO-theta/runs/cone/received_train_ab_bootstrap_v01_r01/environment_freeze.txt",
+      "bytes": 4531,
+      "sha256": "b1415a2e7e4a5f1474fd7fee6f4cbed64bcac68a21cf0df6d5743d76d8068182"
+    },
+    "metrics.json": {
+      "path": "/home/robo25/theta_ws/RICHO-theta/runs/cone/received_train_ab_bootstrap_v01_r01/metrics.json",
+      "bytes": 211,
+      "sha256": "2ac597650d3b7947f49e8a704844e22568bd4656f71f4a07f3bdb20c9d484fd5"
+    },
+    "yolov8n/args.yaml": {
+      "path": "/home/robo25/theta_ws/RICHO-theta/runs/cone/received_train_ab_bootstrap_v01_r01/yolov8n/args.yaml",
+      "bytes": 1836,
+      "sha256": "f9ab645545ad6856e6b8147b7e17087fc8ecb1c3bd42dacaf01e0ade6074af7b"
+    },
+    "yolov8n/results.csv": {
+      "path": "/home/robo25/theta_ws/RICHO-theta/runs/cone/received_train_ab_bootstrap_v01_r01/yolov8n/results.csv",
+      "bytes": 6113,
+      "sha256": "5028a2347e649601a88e04d94f72e44aae09c641b480b834885a86a32173404e"
+    },
+    "yolov8n/weights/best.pt": {
+      "path": "/home/robo25/theta_ws/RICHO-theta/runs/cone/received_train_ab_bootstrap_v01_r01/yolov8n/weights/best.pt",
+      "bytes": 6522154,
+      "sha256": "f8f63446223ceac9e3d0f9227eae0ef814a2c569f1887748e10bf032821f8ad7"
+    },
+    "yolov8n/weights/last.pt": {
+      "path": "/home/robo25/theta_ws/RICHO-theta/runs/cone/received_train_ab_bootstrap_v01_r01/yolov8n/weights/last.pt",
+      "bytes": 6522154,
+      "sha256": "9c0e92799ccd2084f67e1de18ebcf53f3765beae760e2172c96d77496eff04ce"
+    }
+  },
+  "checkpoints_deserialized": false,
+  "local_model_inference_performed": false,
+  "independent_test_available": false,
+  "empty_cone_negative_images": 0,
+  "verifier_sha256": "a64fe550a5cf81d62757b36c4137ecb0511a22032cab64a951d7c5d64a983d05",
+  "graph": {
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-12/report_assets/cone_ab_bootstrap_training_curve.png",
+    "sha256": "36ddefe26d46206ec3d562ad1495144026fc0ab2ad3182df7df023ef9a6c6ccf",
+    "source_csv_sha256": "5028a2347e649601a88e04d94f72e44aae09c641b480b834885a86a32173404e"
+  },
+  "interpretation": "Red/yellow combined development metrics, not red-only or unseen-course accuracy; missed detections need per-image/threshold analysis."
+}

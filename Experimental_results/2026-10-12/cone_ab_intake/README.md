@@ -93,6 +93,10 @@ bootstrapは全73枚がpositiveで、コーンが全くないnegativeは0枚。�
 
 まず[GPU PC向け手順](gpu_bootstrap_procedure.md)でbootstrapの枠確認・初回学習を行う。実学習はまだ実施していない。追加録画はこの準備の必須条件ではない。
 
+後続のGPU PCでの枠確認記録を受領し、[人の確認結果の受入れ](human_review_receipt.md)で73/73枚の確認記録・109枠・変更0件・整合性PASSを確認した。前述のassistantのみの確認段階は初期履歴として残す。GPU PC側の確認済みdatasetで初回学習へ進める。手元の初期datasetは上書きしていない。
+
+さらにGPU PCの初回学習結果を受領し、[学習結果報告](../cone_ab_bootstrap_training/README.md)で50 epoch完了、CSV累積時間76.4385秒、best/last重みの保存を確認した。後続のvalコマンドは実保存先`yolov8n/weights/best.pt`を使う。初期準備段階の「学習未実施」という記述は当時の履歴であり、現在の到達点は後続報告へ分離して記録する。
+
 元400枚の残りをラベル付けする場合は以下。レビュー済みの73枚は通常起動ではスキップする。
 
 ```bash

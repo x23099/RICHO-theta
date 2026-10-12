@@ -11,3 +11,9 @@
 - [Bなし・frame286](cone_ab_b_nasi_raw_frame_000286.png)：赤コーンは見当たらないが、後方に黄色コーンが写ることをユーザー確認済み。`cone_nasi_block_b_r01_20261012_155435_017`、9.591073秒。単一クラス`traffic_cone`ではpositiveの例で、negativeではない。
 
 3枚とも1280×720・全画角・無加工。元rawの逐次デコードから取得し、画素一致を確認した。選択は各録画の最初／中央／最後という事前規則からで、モデル出力を見て成功例を選んでいない。[画像manifest](cone_ab_raw_asset_manifest.csv)、[入力・検証・来歴](../cone_ab_intake/README.md)。
+
+## 初回学習の学習曲線（後続作業）
+
+[cone_ab_bootstrap_training_curve.png](cone_ab_bootstrap_training_curve.png)：GPU PCで実施した50 epochの開発用val指標とtraining lossの推移。初回学習は完了したが、赤・黄色混合の少数valであり、独立testや実用精度の合格とは異なる。元カメラ画像は編集していない。
+
+根拠CSV：[results.csv](../cone_ab_bootstrap_training/results.csv)。生成：[analyze_training_result.py](../cone_ab_bootstrap_training/analyze_training_result.py)。CSV・生成コード・画像hash：[verification.json](../cone_ab_bootstrap_training/verification.json)。数値の解釈と未評価範囲：[学習結果](../cone_ab_bootstrap_training/README.md)。
