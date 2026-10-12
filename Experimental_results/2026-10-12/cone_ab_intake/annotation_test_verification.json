@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-12",
+  "command": "/home/robo25/theta-env/bin/python3 -m unittest discover -s tests -p 'test_*cone*.py'",
+  "result": "PASS",
+  "tests": 51,
+  "dataset_tests": 42,
+  "runner_tests": 9,
+  "syntax_check": "PASS",
+  "diff_whitespace_check": "PASS",
+  "bootstrap_build_idempotent_rerun": "PASS",
+  "training_command_preview": "PASS_PREVIEW_ONLY_NOT_GPU_VERIFIED",
+  "gpu_training_executed": false,
+  "physical_output": false,
+  "code_sha256": {
+    "src/annotate_cone_dataset.py": "78c0f4870cafe299b1ebeb6063d836ff5dcbb2a14945473b9671b22e7b35af2b",
+    "src/cone_dataset.py": "74f5beca6ef2df889617b8d563864c11f25494abebc706c6851b0af1612e9943",
+    "src/run_cone_yolo.py": "53dbbfc3a6f8dc9adc8ad7b31ad2faa9d9bf27a4f11ff7f5e0b0d015a37c5fa0",
+    "tests/test_cone_dataset.py": "63ba34c707f4593a7b322be1dcbf1f84fa00bb9ab09ae753ff8deac1ca10d2ef",
+    "tests/test_run_cone_yolo.py": "4d7c45c5bf68624967b9816af1f94e1e3310ae786e1640267130d93825c0f782"
+  }
+}

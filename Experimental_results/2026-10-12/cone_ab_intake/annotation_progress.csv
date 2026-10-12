@@ -1,0 +1,5 @@
+session,split,images,positive,negative,pending,boxes
+cone_nasi_20261012_154213_645,train,16,16,0,0,16
+cone_nasi_block_b_r01_20261012_155435_017,val,20,20,0,0,20
+cone_train_block_a_r01_20261012_153804_108,train,189,19,0,170,37
+cone_train_block_b_r01_20261012_155114_513,val,175,18,0,157,36

@@ -1,0 +1,5 @@
+session_dir,group_id,split,start_frame,end_frame,stride_frames,notes
+/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/a_cone/cone_train_block_a_r01_20261012_153804_108,block_a,train,1,,30,A=train B=val prototype; similar backgrounds; test deferred
+/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/a_no_cone/cone_nasi_20261012_154213_645,block_a,train,1,,30,A=train B=val prototype; similar backgrounds; test deferred
+/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/b_cone/cone_train_block_b_r01_20261012_155114_513,block_b,val,1,,30,A=train B=val prototype; similar backgrounds; test deferred
+/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/b_no_cone/cone_nasi_block_b_r01_20261012_155435_017,block_b,val,1,,30,A=train B=val prototype; similar backgrounds; test deferred

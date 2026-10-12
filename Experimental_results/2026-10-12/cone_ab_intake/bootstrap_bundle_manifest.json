@@ -1,0 +1,11 @@
+{
+  "archive": "recordings/2026-10-12_cone_ingest_ab/cone_ab_bootstrap_v01.tar.xz",
+  "archive_sha256": "e77ed20a59a11beef975a6b19d2a2de2c5323a8bfa0d6b0f403a2b66dac8bd02",
+  "bytes": 46727544,
+  "files_verified": 150,
+  "status": "PASS_ALL_BUNDLE_FILES_MATCH_VALIDATED_BOOTSTRAP",
+  "images": 73,
+  "label_files": 73,
+  "metadata_files": 4,
+  "independent_human_quality_review_complete": false
+}

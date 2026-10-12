@@ -48,7 +48,7 @@ def integer(value, name, minimum=1):
     return int(value)
 
 
-def load_plan(path):
+def load_plan(path, *, development_only=False):
     path = Path(path).resolve()
     rows = read_csv(path)
     if not rows or any(set(PLAN_FIELDS)-set(row) for row in rows):
@@ -75,14 +75,27 @@ def load_plan(path):
             raise ValueError("end_frame precedes start_frame")
         output.append(dict(row, session_dir=str(session), group_id=group, split=split,
                            start_frame=start, end_frame=end, stride_frames=stride))
-    if set(groups.values()) != set(SPLITS):
-        raise ValueError("explicit train, val and untouched test groups required")
+    required=set(SPLITS[:2] if development_only else SPLITS)
+    if set(groups.values()) != required:
+        raise ValueError("development-only requires train/val only" if development_only
+                         else "explicit train, val and untouched test groups required")
     return output
 
 
-def dataset_yaml(root):
+def dataset_yaml(root, *, development_only=False):
+    test="" if development_only else "test: images/test\n"
     return (f"path: {json.dumps(str(Path(root).resolve()))}\ntrain: images/train\n"
-            "val: images/val\ntest: images/test\nnames:\n  0: traffic_cone\n")
+            f"val: images/val\n{test}names:\n  0: traffic_cone\n")
+
+
+def available_splits(metadata):
+    dev=metadata.get('development_only',False)
+    if type(dev) is not bool:
+        raise ValueError("development_only must be an explicit boolean")
+    expected=SPLITS[:2] if dev else SPLITS
+    if metadata.get('available_splits',list(expected))!=list(expected):
+        raise ValueError("available_splits and dataset role disagree")
+    return expected
 
 
 def label_path(root, image):
@@ -132,18 +145,19 @@ def verify_image(root, row):
     return frame
 
 
-def prepare(plan_path, output):
+def prepare(plan_path, output, *, development_only=False):
     output = Path(output).resolve()
     if output.exists():
         raise ValueError("dataset output already exists; choose a new version (no overwrite)")
-    plan = load_plan(plan_path)
+    plan = load_plan(plan_path,development_only=development_only)
+    active_splits=SPLITS[:2] if development_only else SPLITS
     output.parent.mkdir(parents=True, exist_ok=True)
     sources, exported, skipped = [], [], []
     hashes, video_splits = {}, {}
     with tempfile.TemporaryDirectory(prefix=".cone_prepare_", dir=output.parent) as temporary:
         stage = Path(temporary)/"dataset"
         stage.mkdir()
-        for split in SPLITS:
+        for split in active_splits:
             (stage/"images"/split).mkdir(parents=True)
             (stage/"labels"/split).mkdir(parents=True)
         for entry in plan:
@@ -200,15 +214,16 @@ def prepare(plan_path, output):
                 capture.release()
             sources.append(dict(**entry,decoded_frames=decoded,
                 sha256={name:sha256(session/name) for name in ("raw.avi","metadata.json","detections.csv")}))
-        if any(not any(r["split"]==s for r in exported) for s in SPLITS):
+        if any(not any(r["split"]==s for r in exported) for s in active_splits):
             raise ValueError("each split needs exported images")
         write_csv(stage/"manifest.csv",exported)
         write_csv(stage/"reviews.csv",[dict(image=r["image"],status="pending",note="",label_sha256="") for r in exported],REVIEW_FIELDS)
         (stage/"dataset.json").write_text(json.dumps(dict(schema_version=1,classes=["traffic_cone"],
+            development_only=development_only,available_splits=list(active_splits),
             sources=sources,plan_sha256=sha256(plan_path),manifest_sha256=sha256(stage/"manifest.csv"),
             image_policy="whole raw frame; original resolution; no overlay/crop/resize/colour change",
             duplicate_same_split_skipped=skipped,leakage_limit="Exact-hash and declared-group checks only; similar re-encoded images and undisclosed capture overlap require manual review."),indent=2)+"\n")
-        (stage/"data.yaml").write_text(dataset_yaml(output))
+        (stage/"data.yaml").write_text(dataset_yaml(output,development_only=development_only))
         # Labels stay absent until an explicit human positive/negative review.
         stage.rename(output)
     return dict(dataset=str(output),images=len(exported),pending_annotations=len(exported))
@@ -242,14 +257,18 @@ def mark_review(root, image, status, note):
     write_csv(root/"reviews.csv",reviews,REVIEW_FIELDS)
 
 
-def validate(root):
+def validate(root, *, require_test=False):
     root=Path(root).resolve()
     metadata=json.loads((root/"dataset.json").read_text())
     if metadata.get("classes")!=["traffic_cone"] or metadata.get("schema_version")!=1:
         raise ValueError("unsupported dataset schema/classes")
+    active_splits=available_splits(metadata)
+    development_only=metadata.get('development_only',False)
+    if require_test and development_only:
+        raise ValueError("development-only dataset has no independent test; val is never reused as test")
     if sha256(root/"manifest.csv")!=metadata["manifest_sha256"]:
         raise ValueError("manifest changed since export")
-    if (root/"data.yaml").read_text()!=dataset_yaml(root):
+    if (root/"data.yaml").read_text()!=dataset_yaml(root,development_only=development_only):
         raise ValueError("data.yaml changed or dataset moved: regenerate only its path using relocate")
     rows=read_csv(root/"manifest.csv")
     reviews=read_csv(root/"reviews.csv")
@@ -259,11 +278,11 @@ def validate(root):
     if len({r["image"] for r in rows})!=len(rows):
         raise ValueError("duplicate manifest image")
     groups,video_splits,pixel_splits={}, {}, {}
-    counts={s:dict(images=0,positive=0,negative=0,boxes=0) for s in SPLITS}
+    counts={s:dict(images=0,positive=0,negative=0,boxes=0) for s in active_splits}
     label_hashes={}
     for r in rows:
         split=r["split"]
-        if split not in SPLITS or Path(r["image"]).parts[1]!=split:
+        if split not in active_splits or Path(r["image"]).parts[1]!=split:
             raise ValueError("image/split mismatch")
         for key,table in (("group_id",groups),("source_raw_sha256",video_splits),("decoded_bgr_sha256",pixel_splits)):
             value=r[key]
@@ -295,6 +314,7 @@ def validate(root):
     if any(c["positive"]==0 for c in counts.values()):
         raise ValueError("at least one positive image required in each split")
     return dict(status="PASS_DATASET_INTEGRITY_NOT_MODEL_ACCURACY",dataset=str(root),counts=counts,
+        development_only=development_only,independent_test_available=not development_only,
         manifest_sha256=sha256(root/"manifest.csv"),reviews_sha256=sha256(root/"reviews.csv"),
         data_yaml_sha256=sha256(root/"data.yaml"),labels_sha256=label_hashes,
         warnings=[f"{s}: no reviewed negatives" for s,c in counts.items() if not c["negative"]],
@@ -321,20 +341,24 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     sub=parser.add_subparsers(dest="mode",required=True)
     p=sub.add_parser("prepare"); p.add_argument("--plan",type=Path,required=True); p.add_argument("--output-dir",type=Path,required=True)
+    p.add_argument("--development-only",action="store_true",help="explicit train/val prototype; independent test deferred")
     p=sub.add_parser("check"); p.add_argument("--dataset",type=Path,required=True)
     p=sub.add_parser("review"); p.add_argument("--dataset",type=Path,required=True); p.add_argument("--image",required=True)
     p.add_argument("--status",choices=("positive","negative"),required=True); p.add_argument("--note",required=True)
     p=sub.add_parser("relocate"); p.add_argument("--dataset",type=Path,required=True)
     args=parser.parse_args()
     try:
-        if args.mode=="prepare": result=prepare(args.plan,args.output_dir)
+        if args.mode=="prepare": result=prepare(args.plan,args.output_dir,development_only=args.development_only)
         elif args.mode=="check": result=validate(args.dataset)
         elif args.mode=="review":
             mark_review(args.dataset,args.image,args.status,args.note); result=dict(reviewed=args.image)
         else:
             root=args.dataset.resolve()
             if not (root/"dataset.json").is_file(): raise ValueError("not an exported cone dataset")
-            (root/"data.yaml").write_text(dataset_yaml(root)); result=dict(relocated=str(root))
+            metadata=json.loads((root/"dataset.json").read_text())
+            available_splits(metadata)
+            (root/"data.yaml").write_text(dataset_yaml(root,development_only=metadata.get('development_only',False)))
+            result=dict(relocated=str(root))
     except (ValueError,OSError,KeyError) as error:
         parser.exit(2,f"[ERROR] {error}\n")
     print(json.dumps(result,indent=2))

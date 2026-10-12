@@ -1,16 +1,83 @@
 #!/usr/bin/env python3
 """Local GUI cone annotation. Draw only on screen; save labels, never images."""
 import argparse
+import json
+import math
 from pathlib import Path
 
 import cv2
 
-from cone_dataset import label_path, mark_review, parse_label, read_csv, verify_image
+from cone_dataset import label_path, mark_review, parse_label, read_csv, sha256, verify_image
+
+
+def import_visual_reviews(root, csv_path):
+    """Import explicit visual reviews, never infer cones from colour or filenames.
+
+    One CSV row per reviewed image: image,status,boxes_xyxy_json,note.
+    Coordinates are pixels in the untouched whole frame. Validate the entire
+    batch before writing; identical reruns resume, differing labels are refused.
+    This imports annotations, not an independent human quality approval.
+    """
+    root = Path(root).resolve()
+    metadata = json.loads((root / "dataset.json").read_text())
+    if metadata.get("schema_version") != 1 or metadata.get("classes") != ["traffic_cone"]:
+        raise ValueError("unsupported dataset schema/classes")
+    if sha256(root / "manifest.csv") != metadata["manifest_sha256"]:
+        raise ValueError("manifest changed since export")
+    manifest_rows = read_csv(root / "manifest.csv")
+    manifest = {r["image"]: r for r in manifest_rows}
+    review_rows = read_csv(root / "reviews.csv")
+    reviews = {r["image"]: r for r in review_rows}
+    if (len(manifest) != len(manifest_rows) or len(reviews) != len(review_rows)
+            or set(manifest) != set(reviews)):
+        raise ValueError("review table differs from manifest")
+    rows = read_csv(csv_path)
+    if not rows or any(set(("image", "status", "boxes_xyxy_json", "note")) - set(r) for r in rows):
+        raise ValueError("nonempty explicit visual review CSV required")
+    staged, seen = [], set()
+    for row in rows:
+        name, status, note = row["image"], row["status"], row["note"]
+        if name in seen or name not in manifest:
+            raise ValueError("duplicate or unknown annotation image")
+        seen.add(name)
+        if status not in ("positive", "negative") or not note.strip():
+            raise ValueError("explicit positive/negative review and note required")
+        boxes = json.loads(row["boxes_xyxy_json"])
+        if not isinstance(boxes, list) or bool(boxes) != (status == "positive"):
+            raise ValueError("boxes and positive/negative review disagree")
+        frame = verify_image(root, manifest[name])
+        normalized = []
+        for box in boxes:
+            if (not isinstance(box, list) or len(box) != 4
+                    or any(type(v) not in (int, float) or not math.isfinite(v) for v in box)):
+                raise ValueError("finite numeric pixel xyxy boxes required")
+            x1, y1, x2, y2 = box
+            normalized.append(normalized_box((x1, y1, x2-x1, y2-y1), frame.shape[1], frame.shape[0]))
+        content = "".join("0 " + " ".join(format(v, '.10f') for v in b) + "\n" for b in normalized)
+        path = label_path(root, name)
+        if path.is_symlink():
+            raise ValueError("label symlinks forbidden")
+        if path.exists() and path.read_text() != content:
+            raise ValueError("existing label differs; no overwrite")
+        old = reviews[name]
+        if old["status"] != "pending" and (old["status"] != status or old["note"] != note
+                or not path.exists() or old["label_sha256"] != sha256(path)):
+            raise ValueError("existing review differs; no overwrite")
+        staged.append((name, status, note, path, content))
+    for name, status, note, path, content in staged:
+        if not path.exists():
+            with path.open("x") as stream:
+                stream.write(content)
+        mark_review(root, name, status, note)
+    return {"imported_images": len(staged), "boxes": sum(len(json.loads(r["boxes_xyxy_json"])) for r in rows),
+            "remaining_pending": sum(r["status"] == "pending" for r in read_csv(root / "reviews.csv")),
+            "source_csv_sha256": sha256(csv_path), "independent_human_review_performed": False}
 
 
 def normalized_box(rectangle,width,height):
     x,y,w,h=map(float,rectangle)
-    if w<=0 or h<=0 or x<0 or y<0 or x+w>width or y+h>height:
+    if (not all(math.isfinite(v) for v in (x,y,w,h,width,height)) or width<=0 or height<=0
+            or w<=0 or h<=0 or x<0 or y<0 or x+w>width or y+h>height):
         raise ValueError("positive box inside whole raw frame required")
     return ((x+w/2)/width,(y+h/2)/height,w/width,h/height)
 
@@ -37,10 +104,20 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset",type=Path,required=True)
     parser.add_argument("--split",choices=("train","val","test"))
+    parser.add_argument("--import-csv", type=Path, help="Import explicit full-frame visual reviews without GUI")
+    parser.add_argument("--review-existing", action="store_true", help="Also display existing labels for independent human review")
     args=parser.parse_args()
     root=args.dataset.resolve()
+    if args.import_csv:
+        if args.split or args.review_existing:
+            parser.error("--split/--review-existing and --import-csv cannot be combined")
+        try:
+            print(json.dumps(import_visual_reviews(root, args.import_csv), indent=2))
+        except (ValueError, OSError, KeyError) as exc:
+            parser.exit(2, f"Annotation import refused: {exc}\n")
+        return
     reviews={r["image"]:r for r in read_csv(root/"reviews.csv")}
-    pending=[r for r in read_csv(root/"manifest.csv") if reviews[r["image"]]["status"]=="pending"
+    pending=[r for r in read_csv(root/"manifest.csv") if (args.review_existing or reviews[r["image"]]["status"]=="pending")
              and (args.split is None or r["split"]==args.split)]
     title="Cone annotation: P=boxes N=no cone S=skip Q=quit"
     try:

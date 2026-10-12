@@ -77,7 +77,7 @@ def main():
             print(json.dumps(dict(mode=args.mode,weights=str(args.weights),output=str(args.output_dir),
                 kwargs=kwargs,status='PREVIEW_ONLY_NO_DATASET_GPU_OR_MODEL_VERIFICATION'),indent=2))
             return
-        dataset_check=validate(args.dataset) if args.mode!='env' else None
+        dataset_check=validate(args.dataset,require_test=args.mode=='test') if args.mode!='env' else None
         import torch
         gpu=check_cuda(torch,args.device)
         args.output_dir.mkdir(parents=True)

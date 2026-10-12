@@ -1,0 +1,43 @@
+{
+  "scope": "DEVELOPMENT_DATA_PREPARATION_NOT_MODEL_ACCURACY",
+  "tests": {
+    "test_cone_dataset": 32,
+    "test_run_cone_yolo": 9,
+    "status": "PASS"
+  },
+  "real_recordings": 4,
+  "sequential_raw_frames": 11916,
+  "exported_images": 400,
+  "split_counts": {
+    "train": 205,
+    "val": 195
+  },
+  "pending_annotations": 400,
+  "label_files": 0,
+  "independent_test": "DEFERRED",
+  "negative_truth": "NOT_INFERRED_FROM_FILENAMES",
+  "yellow_object": "USER_CONFIRMATION_PENDING",
+  "checks": {
+    "pending_refusal": "PASS",
+    "test_refusal_before_GPU_or_model_load": "PASS_EXIT_2_NO_OUTPUT",
+    "raw_asset_pixels": "PASS_3",
+    "dataset_manifest_match": "PASS",
+    "local_links": "PASS",
+    "python_syntax": "PASS"
+  },
+  "actual_training": "NOT_RUN",
+  "source_sha256": {
+    "src/cone_dataset.py": "74f5beca6ef2df889617b8d563864c11f25494abebc706c6851b0af1612e9943",
+    "src/run_cone_yolo.py": "53dbbfc3a6f8dc9adc8ad7b31ad2faa9d9bf27a4f11ff7f5e0b0d015a37c5fa0",
+    "tests/test_cone_dataset.py": "3413874f4f4edb481309b4f5209d952c33c5323246392f424c949d215e5ab7ac",
+    "Experimental_results/2026-10-12/cone_ab_intake/inspect_inputs.py": "a96a1174fe7035cd3349d6410f76cd2906ba2d5031fbf0b8ebc2fa4a26ffb219"
+  },
+  "dataset_files_sha256": {
+    "dataset.json": "609daeb0da5c33211026fb25960ba3bbdeb95da6184887b8aca346eb9c8c518e",
+    "manifest.csv": "fabeabb86ae272021b269554cffcc5cd84359b943494f619811f293d1293e3c1",
+    "reviews.csv": "9fdf9f535c6e309e20eab70f3d525d9db6fd278088eaa8e7b330fe172b7fc499",
+    "data.yaml": "418bb99764c0882d693963768218abbc3ef48691a0980368a80e7772bf1744a9"
+  },
+  "runtime_changes": false,
+  "user_ground_contact_model_preserved": true
+}

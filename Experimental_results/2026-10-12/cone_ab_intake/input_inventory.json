@@ -1,0 +1,235 @@
+{
+  "sources": [
+    {
+      "key": "a_cone",
+      "archive": "/home/robo25/Downloads/cone_train_block_a_r01_20261012_153804_108.tar.xz",
+      "archive_sha256": "053f626a3c6afc858097b336cd020309ff09876cf9592589e9db822a1794bc6d",
+      "session_dir": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/a_cone/cone_train_block_a_r01_20261012_153804_108",
+      "session": "cone_train_block_a_r01_20261012_153804_108",
+      "group_id": "block_a",
+      "split": "train",
+      "frames": 5648,
+      "last_time_sec": 191.791721,
+      "image_shape": [
+        720,
+        1280,
+        3
+      ],
+      "raw_full_sequential_decode": "PASS",
+      "other_video_header_counts": {
+        "raw.avi": 5648,
+        "bev.avi": 5648,
+        "detection.avi": 5648
+      },
+      "other_videos_full_decode": "NOT_RUN_NOT_REQUIRED_FOR_IMAGE_DATASET",
+      "files_sha256": {
+        "raw.avi": "e68ece502c09e03a10410e257fae6ef4606cb8743dd973a6e4530df83e3ba804",
+        "metadata.json": "e9cf9ed12792b45baef7a651cfa37a1dbe48abfefc14d0900162497b8d61eb8e",
+        "detections.csv": "2c6aea0f239c4c6874abf0e2ca8d83274bbe2a27d70d2410d80eb400b6491d70"
+      },
+      "ffb_publish_enabled": 0,
+      "ai_enabled": 0,
+      "visual_truth": "NOT_ASSIGNED_BY_FILENAME",
+      "review": [
+        {
+          "key": "a_cone",
+          "session": "cone_train_block_a_r01_20261012_153804_108",
+          "frame": 1,
+          "time_sec": "0.025334",
+          "png": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/review/a_cone/a_cone_raw_frame_000001.png",
+          "decoded_bgr_sha256": "51c987c3512d816e7e3dbb9a8d589637a6ac04a945d250ac837b790bd6d98780"
+        },
+        {
+          "key": "a_cone",
+          "session": "cone_train_block_a_r01_20261012_153804_108",
+          "frame": 2824,
+          "time_sec": "94.539817",
+          "png": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/review/a_cone/a_cone_raw_frame_002824.png",
+          "decoded_bgr_sha256": "8ade80aad1d0fbf90b5c420ea2656e552033235e5bc1317d12493ecb2d459221"
+        },
+        {
+          "key": "a_cone",
+          "session": "cone_train_block_a_r01_20261012_153804_108",
+          "frame": 5648,
+          "time_sec": "191.791721",
+          "png": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/review/a_cone/a_cone_raw_frame_005648.png",
+          "decoded_bgr_sha256": "476c5ef4650a6e42c8da809f453b1e2412410f1d2f09714572bdefc6c1a5e5c1"
+        }
+      ]
+    },
+    {
+      "key": "a_no_cone",
+      "archive": "/home/robo25/Downloads/cone_nasi_block_a_20261012_154213_645.tar.xz",
+      "archive_sha256": "25f63b07885398b1b8644c5d2e1199e38a5bc2f71c9de1a689a53a26f5554dbf",
+      "session_dir": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/a_no_cone/cone_nasi_20261012_154213_645",
+      "session": "cone_nasi_20261012_154213_645",
+      "group_id": "block_a",
+      "split": "train",
+      "frames": 460,
+      "last_time_sec": 15.686722,
+      "image_shape": [
+        720,
+        1280,
+        3
+      ],
+      "raw_full_sequential_decode": "PASS",
+      "other_video_header_counts": {
+        "raw.avi": 460,
+        "bev.avi": 460,
+        "detection.avi": 460
+      },
+      "other_videos_full_decode": "NOT_RUN_NOT_REQUIRED_FOR_IMAGE_DATASET",
+      "files_sha256": {
+        "raw.avi": "8edaf751254e955cad5c24c0832cfbf63d7e97bff5d8d971b6d90f63820c5f45",
+        "metadata.json": "02e8c6a36c739230d970bb1c88cfb92463b7ba7cdd05220cb8b4070fb5277b9d",
+        "detections.csv": "aee1880a4c5a6e41aa862d9a32711ae16e9b9423bd32df383b656c9555d5720b"
+      },
+      "ffb_publish_enabled": 0,
+      "ai_enabled": 0,
+      "visual_truth": "NOT_ASSIGNED_BY_FILENAME",
+      "review": [
+        {
+          "key": "a_no_cone",
+          "session": "cone_nasi_20261012_154213_645",
+          "frame": 1,
+          "time_sec": "0.027830",
+          "png": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/review/a_no_cone/a_no_cone_raw_frame_000001.png",
+          "decoded_bgr_sha256": "79dbe36241622e20564c9fade0aee91beee18abc16ddcd6d37b6d1c2887b0df9"
+        },
+        {
+          "key": "a_no_cone",
+          "session": "cone_nasi_20261012_154213_645",
+          "frame": 230,
+          "time_sec": "7.962773",
+          "png": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/review/a_no_cone/a_no_cone_raw_frame_000230.png",
+          "decoded_bgr_sha256": "f8b57a1e967e7e088cdfe4648a7378e72a11de9a929ff5d884fc834ba4b819c9"
+        },
+        {
+          "key": "a_no_cone",
+          "session": "cone_nasi_20261012_154213_645",
+          "frame": 460,
+          "time_sec": "15.686722",
+          "png": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/review/a_no_cone/a_no_cone_raw_frame_000460.png",
+          "decoded_bgr_sha256": "cb0a85f29ef708dc17ad6f5efcc93e0eaa415907b63b3d78bcd71fe7f2d8f794"
+        }
+      ]
+    },
+    {
+      "key": "b_cone",
+      "archive": "/home/robo25/Downloads/cone_train_block_b_r01_20261012_155114_513.tar.xz",
+      "archive_sha256": "fa6ab81f6653f2207cce1ce6e3599cef1e325ef05bc6e8ae9dc40ab1ac6d8203",
+      "session_dir": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/b_cone/cone_train_block_b_r01_20261012_155114_513",
+      "session": "cone_train_block_b_r01_20261012_155114_513",
+      "group_id": "block_b",
+      "split": "val",
+      "frames": 5236,
+      "last_time_sec": 175.260612,
+      "image_shape": [
+        720,
+        1280,
+        3
+      ],
+      "raw_full_sequential_decode": "PASS",
+      "other_video_header_counts": {
+        "raw.avi": 5236,
+        "bev.avi": 5236,
+        "detection.avi": 5236
+      },
+      "other_videos_full_decode": "NOT_RUN_NOT_REQUIRED_FOR_IMAGE_DATASET",
+      "files_sha256": {
+        "raw.avi": "d2f1899d1f1cec88562892d0aba11f11ccbd38b4b84da45bb5a593e7ff03e49a",
+        "metadata.json": "64cba27a4370c77d33dd0e43a9da35f3769e356f68297b2423f71bd8b31fefc5",
+        "detections.csv": "6582387b21498e9d81771010077a9c489e49829a56209e37808c692a367917c5"
+      },
+      "ffb_publish_enabled": 0,
+      "ai_enabled": 0,
+      "visual_truth": "NOT_ASSIGNED_BY_FILENAME",
+      "review": [
+        {
+          "key": "b_cone",
+          "session": "cone_train_block_b_r01_20261012_155114_513",
+          "frame": 1,
+          "time_sec": "0.022692",
+          "png": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/review/b_cone/b_cone_raw_frame_000001.png",
+          "decoded_bgr_sha256": "bb985ea0c03d0d988e0d57bbd7be7e75153aee21eef7fcaefa8634e59bbbf74e"
+        },
+        {
+          "key": "b_cone",
+          "session": "cone_train_block_b_r01_20261012_155114_513",
+          "frame": 2618,
+          "time_sec": "87.723148",
+          "png": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/review/b_cone/b_cone_raw_frame_002618.png",
+          "decoded_bgr_sha256": "1733c11b49b0b3e48063381ee4b9c333acd8a1b0caa100124d62a5480331d805"
+        },
+        {
+          "key": "b_cone",
+          "session": "cone_train_block_b_r01_20261012_155114_513",
+          "frame": 5236,
+          "time_sec": "175.260612",
+          "png": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/review/b_cone/b_cone_raw_frame_005236.png",
+          "decoded_bgr_sha256": "833a21bfcbdde57c1112318a0e35779b2c380dbc59ad1461aac056a37a968a15"
+        }
+      ]
+    },
+    {
+      "key": "b_no_cone",
+      "archive": "/home/robo25/Downloads/cone_nasi_block_b_r01_20261012_155435_017.tar.xz",
+      "archive_sha256": "3d29233a5b938dabc828dc722f0d8589f6de17485d53c296aa7f8dc57e1cacac",
+      "session_dir": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/b_no_cone/cone_nasi_block_b_r01_20261012_155435_017",
+      "session": "cone_nasi_block_b_r01_20261012_155435_017",
+      "group_id": "block_b",
+      "split": "val",
+      "frames": 572,
+      "last_time_sec": 19.124547,
+      "image_shape": [
+        720,
+        1280,
+        3
+      ],
+      "raw_full_sequential_decode": "PASS",
+      "other_video_header_counts": {
+        "raw.avi": 572,
+        "bev.avi": 572,
+        "detection.avi": 572
+      },
+      "other_videos_full_decode": "NOT_RUN_NOT_REQUIRED_FOR_IMAGE_DATASET",
+      "files_sha256": {
+        "raw.avi": "e4aaba18ded89e9598cbf4e165d8b0c86e2b77c2c3aec832a4db603754d3cfa6",
+        "metadata.json": "ed868e6ec0a66bf3b14259b7aa269a627c490e2a541c787e2698dfae4dbf98cc",
+        "detections.csv": "d5c4529b97094032beb51b21fa7bb23ba368907d5f7ae29a64a2c24cd43700e4"
+      },
+      "ffb_publish_enabled": 0,
+      "ai_enabled": 0,
+      "visual_truth": "NOT_ASSIGNED_BY_FILENAME",
+      "review": [
+        {
+          "key": "b_no_cone",
+          "session": "cone_nasi_block_b_r01_20261012_155435_017",
+          "frame": 1,
+          "time_sec": "0.026417",
+          "png": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/review/b_no_cone/b_no_cone_raw_frame_000001.png",
+          "decoded_bgr_sha256": "c3ed9405f224b048943cb0d5bd571d0191736ce806c642ef71212964cc176fdf"
+        },
+        {
+          "key": "b_no_cone",
+          "session": "cone_nasi_block_b_r01_20261012_155435_017",
+          "frame": 286,
+          "time_sec": "9.591073",
+          "png": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/review/b_no_cone/b_no_cone_raw_frame_000286.png",
+          "decoded_bgr_sha256": "9f9ed18b42b8513846f3703ddbe00e198bcbb6a8a14392810a56793dbb0a4818"
+        },
+        {
+          "key": "b_no_cone",
+          "session": "cone_nasi_block_b_r01_20261012_155435_017",
+          "frame": 572,
+          "time_sec": "19.124547",
+          "png": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/review/b_no_cone/b_no_cone_raw_frame_000572.png",
+          "decoded_bgr_sha256": "1b7cc5f762794f862a466e210f7e3f9fdab3cc170355b26f2bcc8924b633685e"
+        }
+      ]
+    }
+  ],
+  "development_only": true,
+  "independent_test": "DEFERRED_NOT_FABRICATED",
+  "script_sha256": "a96a1174fe7035cd3349d6410f76cd2906ba2d5031fbf0b8ebc2fa4a26ffb219"
+}

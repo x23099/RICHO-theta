@@ -35,6 +35,12 @@
 
 ## 1. GPU PC：独立環境
 
+### A/B提出後の変更
+
+ユーザーよりC用の場所が用意しづらいと共有されたため、[A/B受入れ報告](../cone_ab_intake/README.md)で試作をtrain／valの2splitに分離した。3splitは最終評価まで揃える場合の構成であり、試作の着手条件ではない。明示`--development-only`のdatasetではtestを未取得として保持し、testコマンドでvalを流用しない。以下の3split説明は通常モードの記録で、今回A/B試作には受入れ報告の手順を優先する。
+
+その後、黄色コーンも対象と確認し、73枚・109枠の初回用`ab_bootstrap_v01`を作成した。枠はassistantの視覚レビューで、人の独立品質確認は残る。現在のGPU PCへの移行・初回学習は[bootstrap手順](../cone_ab_intake/gpu_bootstrap_procedure.md)を優先する。元400枚版も維持し、未確認327枚を背景として学習させない。
+
 このリポジトリの最新版をGPU PCへ取得し、**そのリポジトリrootで**実行する。ハンコンPCと同じPCでも、`yopi_ws`のFFBリポジトリ内ではなく、カメラ側リポジトリのrootを使う。今回の新規ファイルは未コミット／未pushであり、PC間反映は別途必要。
 
 ```bash
