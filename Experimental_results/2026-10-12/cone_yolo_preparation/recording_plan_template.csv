@@ -1,0 +1,4 @@
+session_dir,group_id,split,start_frame,end_frame,stride_frames,notes
+,train_block_a,train,1,,30,実測録画のsessionディレクトリを記入。隣接frameを別splitへ分けない
+,val_block_b,val,1,,30,学習とは別の収録ブロック
+,test_block_c,test,1,,30,モデル調整に使用しない最終評価用の別収録

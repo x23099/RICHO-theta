@@ -1,0 +1,3 @@
+# Install PyTorch/torchvision for the GPU first; keep ROS/theta-env separate.
+# Exact installed versions are frozen in every environment/train/validation run.
+ultralytics>=8.3,<9

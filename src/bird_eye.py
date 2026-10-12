@@ -633,6 +633,9 @@ class CalibrationWindow(QWidget):
         self.recording_csv_file = None
         self.recording_csv_writer = None
         self.recording_start_monotonic = None
+        # --auto-record-frames: 0 keeps the manual record button behaviour.
+        self.auto_record_target = max(0, int(getattr(self.args, "auto_record_frames", 0)))
+        self.auto_record_started = False
         self.current_frame_timing = {}
         self.frame_processing_started_perf = None
         self.yolo_model_obj = None
@@ -1481,6 +1484,42 @@ class CalibrationWindow(QWidget):
         else:
             self.start_recording()
 
+    def maybe_start_auto_recording(self):
+        """Begin recording on the first good frame when --auto-record-frames is set.
+
+        Field runs are driven by hand through the record button; an unattended
+        run has nobody to click it.  Starting here, immediately after a frame is
+        confirmed, keeps the session aligned with the capture stream instead of
+        with process start-up.
+        """
+        if self.auto_record_target <= 0 or self.auto_record_started:
+            return
+        self.auto_record_started = True
+        print(f"[INFO] Auto-record starting ({self.auto_record_target} frames)")
+        self.start_recording()
+
+    def maybe_finish_auto_recording(self):
+        """Stop once the requested frame count has been written."""
+        if not self.is_recording or self.auto_record_target <= 0:
+            return False
+        if self.recording_frame_count < self.auto_record_target:
+            return False
+        print(
+            f"[INFO] Auto-record target reached "
+            f"({self.recording_frame_count} frames); stopping capture"
+        )
+        self.stop_recording()
+        # Close the capture so an unattended run terminates on its own instead
+        # of waiting for a Ctrl+C that nobody is there to send.
+        if self.cap is not None:
+            try:
+                self.cap.release()
+            except Exception:
+                pass
+            self.cap = None
+        QTimer.singleShot(0, QApplication.quit)
+        return True
+
     @staticmethod
     def normalize_experiment_label(label):
         label = re.sub(r"[^A-Za-z0-9_.-]+", "_", str(label).strip())
@@ -2049,12 +2088,20 @@ class CalibrationWindow(QWidget):
         self.current_frame_timing["processing_capture_read_ms"] = elapsed_ms(
             stage_started
         )
+        if self.cap is None:
+            # Auto-record finished and released the device; let the quit timer
+            # drain the event loop instead of dereferencing a closed capture.
+            return
         if not ret:
             # Loop for video files
             if not self.args.mock_camera and not str(self.args.device).isdigit():
                 self.cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
                 return
             print("[WARN] Failed to read frame")
+            return
+
+        self.maybe_start_auto_recording()
+        if self.maybe_finish_auto_recording():
             return
 
         stage_started = time.perf_counter()
@@ -3233,6 +3280,16 @@ def main():
         "--experiment-label",
         default="trial",
         help="Initial label used in each recording folder and metadata",
+    )
+    parser.add_argument(
+        "--auto-record-frames",
+        type=int,
+        default=0,
+        help=(
+            "Start recording once the camera is open and stop automatically "
+            "after this many frames (0 disables). Lets an unattended run "
+            "produce a session without pressing the record button."
+        ),
     )
     parser.add_argument(
         "--odom-topic",

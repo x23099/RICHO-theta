@@ -1,0 +1,6 @@
+point_id,frame,pixel_x,pixel_y,measured_x_m,measured_z_m,x_half_width_m,z_half_width_m,pixel_half_width_px,measurement_note
+centre_near,,,,,,,,,
+centre_middle,,,,,,,,,
+centre_far,,,,,,,,,
+left_middle,,,,,,,,,
+right_middle,,,,,,,,,

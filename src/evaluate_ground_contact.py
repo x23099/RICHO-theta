@@ -113,6 +113,16 @@ def fit_lateral_calibration(rows):
     return np.linalg.lstsq(measured, expected_x, rcond=None)[0]
 
 
+def load_lateral_model(path):
+    """Read x_scale / x_offset_m from a saved ground-contact model."""
+    with Path(path).open() as model_file:
+        model = json.load(model_file)
+    missing = [key for key in ("x_scale", "x_offset_m") if key not in model]
+    if missing:
+        raise SystemExit(f"{path} is missing {', '.join(missing)}")
+    return np.asarray([float(model["x_scale"]), float(model["x_offset_m"])])
+
+
 def apply_ground_contact_model(rows, lateral_coefficients):
     evaluated = []
     for source in rows:
@@ -173,11 +183,24 @@ def main():
         "--model-output", type=Path,
         default=Path("ground_contact_model.json"),
     )
+    parser.add_argument(
+        "--model-input", type=Path,
+        help=(
+            "Evaluate with the lateral coefficients from this model file "
+            "instead of refitting them from --calibration. Use this to score a "
+            "holdout (or a simulated recording) against the coefficients the "
+            "live pipeline actually runs with; refitting on the evaluation set "
+            "would measure the fit, not the estimator."
+        ),
+    )
     args = parser.parse_args()
 
     calibration = collect_sessions(args.calibration, args)
     holdout = collect_sessions(args.holdout, args)
-    lateral_coefficients = fit_lateral_calibration(calibration)
+    if args.model_input is not None:
+        lateral_coefficients = load_lateral_model(args.model_input)
+    else:
+        lateral_coefficients = fit_lateral_calibration(calibration)
     evaluated = apply_ground_contact_model(holdout, lateral_coefficients)
     if not evaluated:
         raise SystemExit("No labelled holdout sessions were found")

@@ -1,0 +1,60 @@
+{
+  "work_date": "2026-10-12",
+  "scope": "CONE_YOLO_PREPARATION_NOT_TRAINED_MODEL",
+  "tests": [
+    {
+      "pattern": "test_cone_dataset.py",
+      "count": 26,
+      "status": "PASS"
+    },
+    {
+      "pattern": "test_run_cone_yolo.py",
+      "count": 9,
+      "status": "PASS"
+    },
+    {
+      "pattern": "test_preflight_field_experiment.py",
+      "count": 21,
+      "status": "PASS"
+    },
+    {
+      "pattern": "test_run_field_experiment.py",
+      "count": 13,
+      "status": "PASS"
+    }
+  ],
+  "python_syntax": "PASS",
+  "shell_syntax": "PASS",
+  "document_links": "PASS",
+  "capture_config_diff": [
+    "collision_ffb_publish_enabled:1->0",
+    "collision_ffb_relay_enabled:1->0",
+    "enable_ai:1->0"
+  ],
+  "capture_config_validation": "PASS",
+  "capture_relay_command": null,
+  "capture_command_verification": "DRY_RUN_ONLY_NO_CAMERA_OR_ROS_EXECUTION",
+  "real_cone_data": "NOT_PROVIDED",
+  "gpu_training": "NOT_RUN",
+  "ultralytics_actual_api_integration": "NOT_RUN_REQUIRES_GPU_PC_ENVIRONMENT",
+  "gui_interaction": "NOT_RUN_SCREEN_PREVIEW_AND_COORDINATE_FUNCTIONS_UNIT_TESTED",
+  "existing_user_changes_preserved": [
+    "src/bird_eye.py",
+    "src/evaluate_ground_contact.py"
+  ],
+  "runtime_ffb_lane_changes": false,
+  "source_sha256": {
+    "src/cone_dataset.py": "c12a4ef544bb7df2bc3b24c7ff64eba43f510522411cc13bf0ff0ccaa5750af1",
+    "src/annotate_cone_dataset.py": "a346d40504bd041aa1cf3ea449d0365ddd6c6b76c738d9f63a1d4a2e0c8d13ae",
+    "src/run_cone_yolo.py": "a233e649d8cadd96e132423f8c79fa6bcf3ce96f8adbfd6d70e63136026bcf8d",
+    "tests/test_cone_dataset.py": "f232c824adfdff5ce80b889f19e329a5af5d1695d638e2906c808478de5176de",
+    "tests/test_run_cone_yolo.py": "4d7c45c5bf68624967b9816af1f94e1e3310ae786e1640267130d93825c0f782",
+    "setup_cone_yolo.sh": "c8d4757447cb35aa34dbc42869404806f17063571a2a3d4901f9b167538da95a",
+    "start_cone_yolo.sh": "6485b95847ba6e60aa6efef10d96cbf38a93137517ed440cfdc385604c47900d",
+    "requirements-yolo.txt": "806056bd0eda4d6e67f1707eeffca88a5d8551e549b73411cd31150021d42335",
+    "Experimental_results/2026-10-12/cone_yolo_preparation/cone_capture_config.json": "d3770d7168633c48598d5278076cf47a720e8bc19722b2cdb7817e94203a46a0",
+    "Experimental_results/2026-10-12/cone_yolo_preparation/recording_plan_template.csv": "8d44d195ede23a0b93a0d9f072c857612d60de30b61f3330b23b513ed149ad02",
+    "src/bird_eye_config_ttc_v12_ffb_reliability_20260929.json": "ee86e1b560508ef311e4068b0c0107c33260e69d43e6bee3fe758e46d559a148",
+    "src/yolov8n.pt": "31e20dde3def09e2cf938c7be6fe23d9150bbbe503982af13345706515f2ef95"
+  }
+}

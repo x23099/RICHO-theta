@@ -1,0 +1,57 @@
+{
+  "work_date": "2026-10-08",
+  "work_date_basis": "explicit user request; no system clock or raw timestamp edits",
+  "scope": "PREPARATION_ONLY_NO_REAL_FLOOR_REFERENCE_ACCURACY_RESULT",
+  "config_diff": {
+    "enable_ai": {
+      "base": 1,
+      "capture": 0
+    },
+    "collision_ffb_relay_enabled": {
+      "base": 1,
+      "capture": 0
+    },
+    "collision_ffb_publish_enabled": {
+      "base": 1,
+      "capture": 0
+    }
+  },
+  "config_validation": "PASS",
+  "ffb_required": false,
+  "challenge_required": false,
+  "relay_launch_command": null,
+  "command_preview": "DRY_RUN_NO_EXECUTION",
+  "document_links": "PASS",
+  "python_syntax": "PASS",
+  "tests": [
+    {
+      "pattern": "test_evaluate_floor_reference.py",
+      "count": 15,
+      "status": "PASS"
+    },
+    {
+      "pattern": "test_diagnose_box_contact_calibration.py",
+      "count": 13,
+      "status": "PASS"
+    },
+    {
+      "pattern": "test_run_field_experiment.py",
+      "count": 13,
+      "status": "PASS"
+    },
+    {
+      "pattern": "test_preflight_field_experiment.py",
+      "count": 21,
+      "status": "PASS"
+    }
+  ],
+  "sha256": {
+    "src/evaluate_floor_reference.py": "86095db263011cd93895ae875ad795c86fe186be0abc40bb62bad569a3456995",
+    "tests/test_evaluate_floor_reference.py": "b4a7e7f518b917a105492332a3bc6fdc2e47cbd8cce94d5d8a52d8be201ddf65",
+    "Experimental_results/2026-10-08/floor_reference_preparation/floor_reference_capture_config.json": "d3770d7168633c48598d5278076cf47a720e8bc19722b2cdb7817e94203a46a0",
+    "src/bird_eye_config_ttc_v12_ffb_reliability_20260929.json": "ee86e1b560508ef311e4068b0c0107c33260e69d43e6bee3fe758e46d559a148"
+  },
+  "real_reference_data": "NOT_COLLECTED",
+  "ros_camera_hardware_tests": "NOT_RUN",
+  "production_config_changed": false
+}
