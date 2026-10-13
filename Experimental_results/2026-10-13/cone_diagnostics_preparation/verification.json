@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-13",
+  "scope": "DIAGNOSTICS_IMPLEMENTATION_NOT_REAL_MODEL_ACCURACY",
+  "decision": "PASS_LOCAL_CHECKS_GPU_EXECUTION_PENDING",
+  "unit_tests": {
+    "command": "/home/robo25/theta-env/bin/python3 -m unittest discover -s tests -p 'test_*cone*.py'",
+    "status": "PASS",
+    "total": 74,
+    "dataset": 42,
+    "runner": 9,
+    "diagnostics": 23,
+    "prediction_source": "Synthetic tensors/Mock; no model inference"
+  },
+  "checks": {
+    "python_syntax": "PASS",
+    "shell_syntax": "PASS",
+    "diff_whitespace": "PASS",
+    "actual_dataset_integrity": "PASS_DATASET_INTEGRITY_NOT_MODEL_ACCURACY",
+    "real_checkpoint_command_preview": "PASS_PREVIEW_ONLY_NO_DATASET_GPU_OR_MODEL_VERIFICATION",
+    "threshold_matching": "PASS_SYNTHETIC",
+    "duplicate_prediction_one_to_one": "PASS_SYNTHETIC",
+    "empty_predictions_and_negative_images": "PASS_SYNTHETIC",
+    "nonfinite_invalid_geometry_class_refusal": "PASS_SYNTHETIC",
+    "stale_attribute_label_refusal": "PASS_SYNTHETIC",
+    "dataset_refusal_before_gpu_or_output": "PASS_SYNTHETIC",
+    "dataset_images_labels_byte_preservation": "PASS_SYNTHETIC",
+    "raw_representative_byte_preservation": "PASS_SYNTHETIC",
+    "run_local_ultralytics_config_creation": "PASS_MOCKED_MAIN_GPU_WARNING_CHECK_PENDING"
+  },
+  "actual_input_ground_truth_only": {
+    "dataset": "datasets/cone/ab_bootstrap_v01",
+    "split": "val",
+    "images": 38,
+    "boxes": 56,
+    "size_band": {"small": 0, "medium": 5, "large": 51},
+    "image_half": {"left": 13, "right": 43},
+    "unknown_color": 56,
+    "unknown_front_rear_lens": 56
+  },
+  "source_sha256": {
+    "src/cone_detection_diagnostics.py": "ee206fc2960d413792a8e5866a653a9bff0efea7affe2feec08924ea2678f3a6",
+    "src/run_cone_yolo.py": "4b16f1b57e9b6a0f64135e8b0eff21449ccdfb8935ef7b5888037a660da7a438",
+    "tests/test_cone_detection_diagnostics.py": "f253ac5306697f30b0c3c847ee6187ea85f5b0539d49dfaf022d32b49744f39c"
+  },
+  "gpu_model_inference_performed": false,
+  "training_performed": false,
+  "physical_output": false,
+  "camera_recording_performed": false,
+  "independent_test_evaluation_performed": false,
+  "runtime_bird_eye_ttc_ffb_changed": false,
+  "committed_or_pushed_this_turn": false
+}
