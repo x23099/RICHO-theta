@@ -1,0 +1,157 @@
+{
+  "status": "PREPARED_UNLABELLED_BACKGROUND_CANDIDATES_NOT_TRAINED_OR_ADOPTED",
+  "candidate_images": 12,
+  "source_sessions": 3,
+  "human_confirmed_negative_images": 0,
+  "independent_test": false,
+  "model_results": {
+    "baseline_35": {
+      "boxes_at_0p01": 10,
+      "boxes_at_0p25": 0,
+      "max_score": 0.0770239308476448
+    },
+    "augmented_36": {
+      "boxes_at_0p01": 2,
+      "boxes_at_0p25": 0,
+      "max_score": 0.014587408863008022
+    }
+  },
+  "queue_metadata": {
+    "schema_version": 1,
+    "classes": [
+      "traffic_cone"
+    ],
+    "available_splits": [
+      "train"
+    ],
+    "development_only": true,
+    "purpose": "unlabelled legacy background review queue; NOT trainable dataset",
+    "manifest_sha256": "471cd0e9e7690dc2148991cf0374e630288757c68d9faafccf4e43a85eae4fe7",
+    "plan_sha256": "dca855874423ff57ec2fd9f4e8dba9b9ea6d689a069098bfd1b4285a2f6c2adb",
+    "reference_dataset": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_augmented_v03",
+    "reference_input_sha256": {
+      "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_augmented_v03/manifest.csv": "457bdc1c991cc9347a940105c3d3c6589bc21c14b42bf4296654270578d30a6b",
+      "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_augmented_v03/reviews.csv": "3542d81a66fabf8e3cf1a92c18825cd6ad6b6f3146c4380a29983702dbea4403",
+      "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_augmented_v03/dataset.json": "f18176d7f50f16bfb6f35491875eaa31a88e9bb3071d3100d304556b401f97e8"
+    },
+    "sources": [
+      {
+        "session_dir": "/home/robo25/theta_ws/recordings/real/cal_xm0.30_z0.80",
+        "group_id": "legacy_box_20260807",
+        "samples": 4,
+        "notes": "Legacy blue-box calibration; both lenses unreviewed for cones; training candidate only",
+        "sha256": {
+          "raw.avi": "df7ab587faa0ae991fb6ee523354c80aa9a938ab326b95a81b68a3f5611fe564",
+          "metadata.json": "d678bc52c6cc2aab7efbe1573eab89864e03fe8a01f65eab944d983ca725d3d9",
+          "detections.csv": "14471a62437a6078329cecd4c4a5b08296a99b10beb87c2dd36d68b222b33679"
+        },
+        "decoded_frames": 223
+      },
+      {
+        "session_dir": "/home/robo25/theta_ws/recordings/real/hakonasi_20260825_131458_522",
+        "group_id": "legacy_box_20260825",
+        "samples": 4,
+        "notes": "Legacy no-blue-box session; filename does NOT establish cone absence; training candidate only",
+        "sha256": {
+          "raw.avi": "377e1afc8358eacb4d18cb752a5b08b090c1f8a21f65cc7d1bc93c01172b417b",
+          "metadata.json": "57285e469321e3fe110a6e5c66782c435a83fca550a43fe4e1a3e6a0a3609a47",
+          "detections.csv": "f1b66653340e9a93b31c0c335d5039d1369a27a143ffbf21ae5243d1cb8919b8"
+        },
+        "decoded_frames": 853
+      },
+      {
+        "session_dir": "/home/robo25/theta_ws/recordings/real/approach_center_v0p10_r01_20260901_142324_230",
+        "group_id": "legacy_box_20260901",
+        "samples": 4,
+        "notes": "Legacy moving blue-box session; both lenses unreviewed for cones; training candidate only",
+        "sha256": {
+          "raw.avi": "5686fb7d85b44135b0a9e511334b39ec9330b4483c143bc11afa96a9ff8ab2ca",
+          "metadata.json": "9d83782d854c25a1bbd6b9ef47fbe5a758bce4ac38d548507f2c03f72a7d5437",
+          "detections.csv": "49486fd0db8031c4ccaefa97a768c018e31b9d89a6eb14ce21937519db5950d8"
+        },
+        "decoded_frames": 615
+      }
+    ],
+    "images": 12,
+    "script_sha256": "2fe2dd1d5d780a3e63bfb0a8d087704d1b15694cc8535c5d552dc562e7f81a6f",
+    "automatic_labels_created": false,
+    "data_yaml_created": false,
+    "training_performed": false,
+    "independent_test": false,
+    "image_policy": "whole original-resolution raw frame; unchanged BGR pixels",
+    "review_required": "Human must check BOTH lenses; visible red/yellow cones are positives, ambiguity stays pending",
+    "leakage_limit": "Hashes reject identical source/pixels; capture similarity and undisclosed overlap need human review"
+  },
+  "models": {
+    "baseline_35": {
+      "weights_sha256": "7052237babf12fcd1efbdcf3e15f8359c09c6b8c9e313e2f514e6d5741d5ae17",
+      "prediction_kwargs": {
+        "device": 0,
+        "imgsz": 960,
+        "conf": 0.01,
+        "iou": 0.7,
+        "max_det": 300,
+        "rect": false,
+        "quantize": 32,
+        "batch": 1,
+        "augment": false,
+        "save": false,
+        "save_txt": false,
+        "save_crop": false,
+        "show": false,
+        "visualize": false,
+        "verbose": false,
+        "stream": false
+      },
+      "versions": {
+        "torch": "2.14.1",
+        "torchvision": "0.29.1",
+        "ultralytics": "8.4.175",
+        "opencv-python": "5.0.0.93"
+      }
+    },
+    "augmented_36": {
+      "weights_sha256": "3a6e124adb15c16efd7d22c853406066371f48873c82f1d3cfc445b22ae5997b",
+      "prediction_kwargs": {
+        "device": 0,
+        "imgsz": 960,
+        "conf": 0.01,
+        "iou": 0.7,
+        "max_det": 300,
+        "rect": false,
+        "quantize": 32,
+        "batch": 1,
+        "augment": false,
+        "save": false,
+        "save_txt": false,
+        "save_crop": false,
+        "show": false,
+        "visualize": false,
+        "verbose": false,
+        "stream": false
+      },
+      "versions": {
+        "torch": "2.14.1",
+        "torchvision": "0.29.1",
+        "ultralytics": "8.4.175",
+        "opencv-python": "5.0.0.93"
+      }
+    }
+  },
+  "input_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_negative_baseline_diagnose_r01/predictions.csv": "7ffe61ebc42be9ee3a507574e7ad0a6388f4556a2cbcdb605aacc07f0bc17669",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_negative_baseline_diagnose_r01/provenance.json": "84693614f8ed464087b1ae4539f3e9c7901b86a9237a0bd9a8fe58d25e90f8df",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_negative_augmented_diagnose_r01/predictions.csv": "adb1404a3ded2e60c196aeb25307ecbb44de8c2501aea2046790aee9606b255f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_negative_augmented_diagnose_r01/provenance.json": "1a6684c38a9d32fe67ae75a313d2d9d6542d89e8bc89ce58174089bf75007e34"
+  },
+  "queue_manifest_sha256": "471cd0e9e7690dc2148991cf0374e630288757c68d9faafccf4e43a85eae4fe7",
+  "queue_reviews_sha256": "ed981ba7a59c4c9d47779139b1db204fe7ef1a88655b48af7277fcb41bb50968",
+  "analysis_script_sha256": "6bdb82225f26f79085e644e2884eca5765caaf902adaf8e3d8157a7436074ba5",
+  "limits": [
+    "Only 12 time-sampled images reviewed, not every source frame.",
+    "Mostly wall/floor legacy scenery, not current shelf/equipment false-positive backgrounds.",
+    "Assistant review is not explicit human annotation approval.",
+    "Same room and temporal similarity mean these are not 12 independent scenes.",
+    "Do not add B validation images or re-encoded/cropped copies to training."
+  ]
+}

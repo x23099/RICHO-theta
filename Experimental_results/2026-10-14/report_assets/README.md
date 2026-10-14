@@ -1,6 +1,7 @@
 # 2026-10-14 代表資料
 
-今回の作業は追加注釈の品質確認と確認ツールの修正。モデル学習・性能改善・FFB出力はまだ行っていない。
+今回の作業は追加注釈の品質確認、確認ツールの修正、同条件再学習の比較、負例候補の準備。
+モデルの運用採用・FFB出力は行っていない。
 
 | 資料 | 説明 |
 |---|---|
@@ -21,3 +22,9 @@ session/frame/time・画素/PNG/raw hashは[raw_example_manifest.csv](../cone_an
 
 グラフを含め、本日の代表資料は上記の原画像2点＋グラフ2点の計4点。
 比較CSV・生成script・hash・採用保留の根拠は[再学習比較報告](../cone_ab_retraining_comparison_r01/README.md)。
+
+補助原画像として、別日の[箱なしframe](../cone_negative_preparation_r01/raw_examples/legacy_box_20260825_377e1afc8358eacb_f000001.png)と
+[箱ありframe](../cone_negative_preparation_r01/raw_examples/legacy_box_20260901_5686fb7d85b44135_f000410.png)も保存した。
+両レンズでコーンを特定しなかった負例候補だが、人のGT確認はまだpending。
+どちらも1280×720・元PNGのバイト同一コピー。来歴と候補推論は[負例準備報告](../cone_negative_preparation_r01/README.md)。
+本日の代表資料4点の選定は維持し、上記2点は補助資料とする。

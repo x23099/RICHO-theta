@@ -1,0 +1,4 @@
+session_dir,group_id,samples,notes
+/home/robo25/theta_ws/recordings/real/cal_xm0.30_z0.80,legacy_box_20260807,4,Legacy blue-box calibration; both lenses unreviewed for cones; training candidate only
+/home/robo25/theta_ws/recordings/real/hakonasi_20260825_131458_522,legacy_box_20260825,4,Legacy no-blue-box session; filename does NOT establish cone absence; training candidate only
+/home/robo25/theta_ws/recordings/real/approach_center_v0p10_r01_20260901_142324_230,legacy_box_20260901,4,Legacy moving blue-box session; both lenses unreviewed for cones; training candidate only
