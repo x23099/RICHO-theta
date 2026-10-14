@@ -72,6 +72,13 @@ class ConeDatasetTest(unittest.TestCase):
         self.assertEqual(result['status'],'PASS_DATASET_INTEGRITY_NOT_MODEL_ACCURACY')
         self.assertEqual(result['counts']['test']['boxes'],3)
 
+    def test_exact_duplicate_annotations_do_not_pass_integrity_check(self):
+        rows=self.reviewed();path=label_path(self.output,rows[0]['image'])
+        path.write_text(path.read_text()*2)
+        reviews=read_csv(self.output/'reviews.csv');reviews[0]['label_sha256']=sha256(path)
+        write_csv(self.output/'reviews.csv',reviews)
+        with self.assertRaisesRegex(ValueError,'duplicate annotation'):validate(self.output)
+
     def test_plan_group_cannot_cross_splits(self):
         self.rows[1]['group_id']=self.rows[0]['group_id']
         write_csv(self.plan,self.rows,PLAN_FIELDS)

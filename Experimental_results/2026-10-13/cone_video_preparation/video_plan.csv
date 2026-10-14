@@ -1,0 +1,3 @@
+session_dir,note
+/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/b_cone/cone_train_block_b_r01_20261012_155114_513,Existing B development footage; manually moved red cone; not an independent test or Kobuki driving trial
+/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/b_no_cone/cone_nasi_block_b_r01_20261012_155435_017,Existing B red-absent footage; fixed yellow cone remains; not a cone-free negative

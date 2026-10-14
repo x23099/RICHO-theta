@@ -1,0 +1,22 @@
+{
+  "reviewer": "assistant original-resolution image review 2026-10-13",
+  "scope": "Selected point-wise region association only; NOT human-confirmed GT, bbox accuracy, color model output or training labels",
+  "predictions_sha256": "57fa14e33eb4861d6a89db5a9b784e2d5aa729647b1c90fc6ae1cf8042620f56",
+  "manifest_sha256": "b043f97ea82abc41c29a450ce6f273be9b65cd1b845c3883d0ef2955c6502c02",
+  "visibility_sha256": "7e92374536a5b0cf65408c38c78415a2f97b24a90e239bfd8f38162e0ad58727",
+  "review_floor": 0.05,
+  "frames": [
+    {"frame": 22, "red_candidate_index": 0, "category": "small_partial_carried", "note": "机の後ろで赤本体が部分的に見える。候補枠はその部分に重なる。床接地の証拠ではない。", "roles": {"0":"red_region", "1":"yellow"}},
+    {"frame": 33, "red_candidate_index": 0, "category": "small_partial_carried", "note": "小さい赤コーンと机脚が重なる。候補は赤本体部分に重なるが完全な物体形状は見えていない。", "roles": {"0":"red_region", "1":"yellow"}},
+    {"frame": 51, "red_candidate_index": 0, "category": "small_tilted_carried", "note": "人が運ぶ傾いた赤コーン。候補は赤本体と台座部分に重なる。", "roles": {"0":"red_region", "1":"yellow"}},
+    {"frame": 56, "red_candidate_index": 0, "category": "small_tilted_carried", "note": "小さい傾いたコーンに重なる候補。0.25との差は小さいが閾値採用を意味しない。", "roles": {"0":"red_region", "1":"yellow"}},
+    {"frame": 63, "red_candidate_index": 0, "category": "small_tilted_carried", "note": "運搬中の赤コーンの見える領域に候補が重なる。", "roles": {"0":"red_region", "1":"yellow"}},
+    {"frame": 1462, "red_candidate_index": 0, "category": "large_lifted_geometry_ambiguous", "note": "持ち上げた赤コーン。最高候補は本体左側・上部を十分含まない。index1は人と赤本体が混在。床への距離には使えない。", "roles": {"0":"red_incomplete", "1":"mixed_person_red", "2":"red_incomplete", "3":"red_incomplete", "4":"yellow"}},
+    {"frame": 2872, "red_candidate_index": 0, "category": "large_lifted_geometry_ambiguous", "note": "候補は赤コーンに重なるがy1が人物側へ伸び、枠全体の正確性は未確認。持ち上げ中で床接地ではない。", "roles": {"0":"mixed_person_red", "1":"yellow"}},
+    {"frame": 3207, "red_candidate_index": 0, "category": "fisheye_fragment", "note": "左レンズ右端の赤本体・台座断片。index1は手付近でコーンではない。完全な物体の検出成功とは数えない。", "roles": {"0":"red_fragment", "1":"noncone_hand", "2":"red_fragment", "3":"yellow"}},
+    {"frame": 3213, "red_candidate_index": null, "category": "fisheye_fragment_without_candidate", "note": "右レンズ左端に赤台座断片が見えるが0.01以上のNMS後候補はない。最高候補index0は左画像の人物の手で赤コーンではない。", "roles": {"0":"noncone_hand", "1":"yellow"}},
+    {"frame": 4553, "red_candidate_index": 0, "category": "bottom_step_pair", "note": "赤コーンが左右の魚眼端に分かれる。右画像最高候補の下端は実台座下端まで届いていないように見える。正確なGTは付けていない。", "roles": {"0":"red_fragment", "1":"red_fragment", "2":"yellow"}},
+    {"frame": 4554, "red_candidate_index": 0, "category": "bottom_step_pair", "note": "4553より右画像候補の下端が約28px下がる。魚眼端の部分形状と枠切替の可能性。静止物のノイズと断定しない。", "roles": {"0":"red_fragment", "1":"red_fragment", "2":"red_fragment", "3":"yellow", "4":"red_fragment"}},
+    {"frame": 4566, "red_candidate_index": 0, "category": "carried_geometry_ambiguous", "note": "左画像の赤本体・台座に重なるが上部先端を含まず下端が床側へ伸びる候補。閾値を下げても接地点の正確性は保証しない。", "roles": {"0":"red_incomplete", "1":"yellow"}}
+  ]
+}

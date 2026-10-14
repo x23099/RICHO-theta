@@ -1,0 +1,17 @@
+file,session,frame,time_sec,candidate_count,max_score,high_count,low_count,edge_high_count,priority_kind
+images/train/block_a_e68ece502c09e03a_f000661.png,cone_train_block_a_r01_20261012_153804_108,661,22.161173,3,0.8105067610740662,2,0,1,multiple_at_0p25
+images/train/block_a_e68ece502c09e03a_f004261.png,cone_train_block_a_r01_20261012_153804_108,4261,143.017145,3,0.8650708794593811,1,2,1,edge_band_candidate
+images/train/block_a_e68ece502c09e03a_f004651.png,cone_train_block_a_r01_20261012_153804_108,4651,157.555104,3,0.7319385409355164,1,2,0,lowest_single_score
+images/train/block_a_e68ece502c09e03a_f000571.png,cone_train_block_a_r01_20261012_153804_108,571,19.096017,6,0.8308380842208862,2,0,1,multiple_at_0p25
+images/train/block_a_e68ece502c09e03a_f004411.png,cone_train_block_a_r01_20261012_153804_108,4411,148.828473,4,0.8711581826210022,1,2,1,edge_band_candidate
+images/train/block_a_e68ece502c09e03a_f005491.png,cone_train_block_a_r01_20261012_153804_108,5491,186.559014,2,0.7486894130706787,1,1,0,lowest_single_score
+images/train/block_a_e68ece502c09e03a_f000421.png,cone_train_block_a_r01_20261012_153804_108,421,14.09234,6,0.8378709554672241,2,2,1,multiple_at_0p25
+images/train/block_a_e68ece502c09e03a_f004351.png,cone_train_block_a_r01_20261012_153804_108,4351,146.488565,4,0.8811259269714355,1,3,1,edge_band_candidate
+images/train/block_a_e68ece502c09e03a_f005071.png,cone_train_block_a_r01_20261012_153804_108,5071,171.599874,3,0.9123377203941345,1,0,0,lowest_single_score
+images/train/block_a_e68ece502c09e03a_f000481.png,cone_train_block_a_r01_20261012_153804_108,481,16.092836,4,0.841367244720459,2,0,1,multiple_at_0p25
+images/train/block_a_e68ece502c09e03a_f004471.png,cone_train_block_a_r01_20261012_153804_108,4471,151.19081,4,0.8889358639717102,1,3,1,edge_band_candidate
+images/train/block_a_e68ece502c09e03a_f004861.png,cone_train_block_a_r01_20261012_153804_108,4861,164.573248,3,0.9159510135650635,1,2,0,lowest_single_score
+images/train/block_a_e68ece502c09e03a_f003331.png,cone_train_block_a_r01_20261012_153804_108,3331,111.508503,6,0.86137455701828,2,2,1,multiple_at_0p25
+images/train/block_a_e68ece502c09e03a_f004771.png,cone_train_block_a_r01_20261012_153804_108,4771,161.566802,3,0.9209455251693726,1,2,0,lowest_single_score
+images/train/block_a_e68ece502c09e03a_f004591.png,cone_train_block_a_r01_20261012_153804_108,4591,155.389251,10,0.868692934513092,2,0,1,multiple_at_0p25
+images/train/block_a_e68ece502c09e03a_f004951.png,cone_train_block_a_r01_20261012_153804_108,4951,167.580745,3,0.9254848957061768,1,2,0,lowest_single_score

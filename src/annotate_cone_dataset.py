@@ -4,10 +4,12 @@ import argparse
 import json
 import math
 from pathlib import Path
+import tempfile
 
 import cv2
 
 from cone_dataset import label_path, mark_review, parse_label, read_csv, sha256, verify_image
+from cone_detection_diagnostics import intersection_over_union
 
 
 def import_visual_reviews(root, csv_path):
@@ -53,6 +55,8 @@ def import_visual_reviews(root, csv_path):
                 raise ValueError("finite numeric pixel xyxy boxes required")
             x1, y1, x2, y2 = box
             normalized.append(normalized_box((x1, y1, x2-x1, y2-y1), frame.shape[1], frame.shape[0]))
+        if len(set(normalized))!=len(normalized):
+            raise ValueError('duplicate visual-review boxes; no labels imported')
         content = "".join("0 " + " ".join(format(v, '.10f') for v in b) + "\n" for b in normalized)
         path = label_path(root, name)
         if path.is_symlink():
@@ -86,11 +90,60 @@ def label_preview(frame,boxes):
     """Screen-only copy. The saved raw image and caller's pixels stay intact."""
     preview=frame.copy()
     height,width=frame.shape[:2]
-    for x,y,w,h in boxes:
+    for index,(x,y,w,h) in enumerate(boxes,1):
         a=(round((x-w/2)*width),round((y-h/2)*height))
         b=(round((x+w/2)*width),round((y+h/2)*height))
         cv2.rectangle(preview,a,b,(0,255,0),2)
+        cv2.putText(preview,str(index),(a[0],max(12,a[1]-3)),cv2.FONT_HERSHEY_SIMPLEX,.5,(0,255,0),1)
     return preview
+
+
+def unique_roi_boxes(rectangles,width,height):
+    """Remove repeated identical NEW selections before explicit Y confirmation."""
+    boxes=[]
+    for rectangle in rectangles:
+        box=normalized_box(rectangle,width,height)
+        if box not in boxes:boxes.append(box)
+    return boxes
+
+
+def overlapping_boxes(boxes,minimum_iou=.5):
+    coords=[dict(x1=x-w/2,y1=y-h/2,x2=x+w/2,y2=y+h/2) for x,y,w,h in boxes]
+    return [(i+1,j+1) for i in range(len(boxes)) for j in range(i+1,len(boxes))
+            if intersection_over_union(coords[i],coords[j])>=minimum_iou]
+
+
+def save_reviewed_boxes(root,row,boxes,*,replace_existing=False):
+    """Called only after human Y; back up existing labels/reviews before replacement."""
+    root=Path(root).resolve()
+    metadata=json.loads((root/'dataset.json').read_text())
+    if (metadata.get('schema_version')!=1 or metadata.get('classes')!=['traffic_cone']
+            or sha256(root/'manifest.csv')!=metadata['manifest_sha256']):
+        raise ValueError('dataset manifest changed')
+    manifest={r['image']:r for r in read_csv(root/'manifest.csv')}
+    if manifest.get(row['image'])!=row:raise ValueError('image differs from dataset manifest')
+    verify_image(root,row)
+    if not boxes or len(set(boxes))!=len(boxes):
+        raise ValueError('nonempty unique reviewed positive boxes required')
+    for x,y,w,h in boxes:
+        normalized_box((x-w/2,y-h/2,w,h),1,1)
+    content=''.join('0 '+' '.join(format(v,'.10f') for v in box)+'\n' for box in boxes)
+    path=label_path(root,row['image'])
+    if path.is_symlink():raise ValueError('label symlinks forbidden')
+    backup=None
+    if path.exists() and path.read_text()!=content:
+        if not replace_existing:raise ValueError('existing label differs; explicit edit-existing confirmation required')
+        backups=root/'annotation_backups'
+        if backups.is_symlink():raise ValueError('backup symlinks forbidden')
+        backups.mkdir(exist_ok=True)
+        backup=Path(tempfile.mkdtemp(prefix=path.stem+'_',dir=backups))
+        (backup/'label.txt').write_bytes(path.read_bytes())
+        (backup/'reviews.csv').write_bytes((root/'reviews.csv').read_bytes())
+        (backup/'record.json').write_text(json.dumps(dict(image=row['image'],old_label_sha256=sha256(path),
+            png_sha256=row['png_sha256'],trigger='human Y after edit-existing',source_tool_sha256=sha256(Path(__file__))),indent=2)+'\n')
+    if not path.exists() or path.read_text()!=content:path.write_text(content)
+    mark_review(root,row['image'],'positive','human full-frame review: all visible cone boxes annotated')
+    return backup
 
 
 def wait_choice(allowed):
@@ -106,19 +159,24 @@ def main():
     parser.add_argument("--split",choices=("train","val","test"))
     parser.add_argument("--import-csv", type=Path, help="Import explicit full-frame visual reviews without GUI")
     parser.add_argument("--review-existing", action="store_true", help="Also display existing labels for independent human review")
+    parser.add_argument("--edit-existing", action="store_true", help="Redraw selected existing boxes; replace only after Y, with backup")
+    parser.add_argument("--image", help="Review only this exact manifest image (others remain unchanged)")
     args=parser.parse_args()
     root=args.dataset.resolve()
     if args.import_csv:
-        if args.split or args.review_existing:
-            parser.error("--split/--review-existing and --import-csv cannot be combined")
+        if args.split or args.review_existing or args.edit_existing or args.image:
+            parser.error("GUI selection/edit options and --import-csv cannot be combined")
         try:
             print(json.dumps(import_visual_reviews(root, args.import_csv), indent=2))
         except (ValueError, OSError, KeyError) as exc:
             parser.exit(2, f"Annotation import refused: {exc}\n")
         return
     reviews={r["image"]:r for r in read_csv(root/"reviews.csv")}
-    pending=[r for r in read_csv(root/"manifest.csv") if (args.review_existing or reviews[r["image"]]["status"]=="pending")
-             and (args.split is None or r["split"]==args.split)]
+    manifest=read_csv(root/"manifest.csv")
+    if args.image and not any(r['image']==args.image and (args.split is None or r['split']==args.split) for r in manifest):
+        parser.error('--image must identify an existing manifest image in the selected split')
+    pending=[r for r in manifest if (args.review_existing or args.edit_existing or reviews[r["image"]]["status"]=="pending")
+             and (args.split is None or r["split"]==args.split) and (args.image is None or r['image']==args.image)]
     title="Cone annotation: P=boxes N=no cone S=skip Q=quit"
     try:
         for index,row in enumerate(pending,1):
@@ -134,19 +192,29 @@ def main():
                 if wait_choice({ord('y'),ord('s'),27}) != ord('y'): continue
                 mark_review(root,row["image"],"negative","human full-frame review: no visible traffic cone")
             elif key==ord('p'):
-                if path.exists():
+                if path.exists() and not args.edit_existing:
                     boxes=parse_label(path)
                     cv2.imshow(title,label_preview(frame,boxes))
                     print("Existing label found. Y=accept displayed existing boxes; S/Esc=skip (no overwrite)",flush=True)
                     if wait_choice({ord('y'),ord('s'),27}) != ord('y'): continue
                 else:
-                    print("Select ALL cones including base, in both lenses. Enter/Space=next box, Esc=finish selection.",flush=True)
+                    if path.exists():
+                        cv2.imshow(title,label_preview(frame,parse_label(path,reject_duplicates=False)))
+                        print('Existing numbered boxes shown. R=redraw all visible cones; S/Esc=skip; Q=quit. Old label stays intact until Y.',flush=True)
+                        edit_choice=wait_choice({ord('r'),ord('s'),ord('q'),27})
+                        if edit_choice==ord('q'):break
+                        if edit_choice!=ord('r'):continue
+                    print("Select ALL cones including base, in both lenses. Enter ONCE per different cone; Esc=finish selection.",flush=True)
                     rectangles=cv2.selectROIs(title,frame,showCrosshair=True,fromCenter=False)
                     if len(rectangles)==0: continue  # never turn cancel into a negative
-                    boxes=[normalized_box(r,frame.shape[1],frame.shape[0]) for r in rectangles]
-                    print("Y=confirm all visible cones labelled; S/Esc=skip",flush=True)
+                    boxes=unique_roi_boxes(rectangles,frame.shape[1],frame.shape[0])
+                    cv2.imshow(title,label_preview(frame,boxes))
+                    print(f"{len(boxes)} unique boxes selected ({len(rectangles)-len(boxes)} identical repeated selections removed). Y=confirm all visible cones; S/Esc=skip",flush=True)
+                    overlaps=overlapping_boxes(boxes)
+                    if overlaps:print(f'[WARN] Overlapping boxes {overlaps}. Ensure they represent different visible objects/regions, not repeated boxes on the same cone.',flush=True)
                     if wait_choice({ord('y'),ord('s'),27}) != ord('y'): continue
-                    path.write_text("".join("0 "+" ".join(format(v,'.10f') for v in box)+"\n" for box in boxes))
+                    backup=save_reviewed_boxes(root,row,boxes,replace_existing=args.edit_existing)
+                    if backup:print(f'Previous label/review backed up: {backup}',flush=True)
                 mark_review(root,row["image"],"positive","human full-frame review: all visible cone boxes annotated")
         print("Labels/reviews saved. Raw PNG files were not edited.")
     finally:

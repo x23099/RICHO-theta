@@ -1,0 +1,9 @@
+confidence_threshold,dimension,value,gt_count,detected,missed,recall
+0.25,size_band,large,51,13,38,0.2549019607843137
+0.25,size_band,medium,5,5,0,1.0
+0.25,image_half,left,13,13,0,1.0
+0.25,image_half,right,43,5,38,0.11627906976744186
+0.25,color,red,18,18,0,1.0
+0.25,color,yellow,38,0,38,0.0
+0.25,lens,unknown,56,18,38,0.32142857142857145
+0.25,occlusion,unknown,56,18,38,0.32142857142857145

@@ -3,9 +3,11 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import Mock
+from unittest.mock import patch
+import os
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
-from run_cone_yolo import build_parser,check_cuda,model_kwargs,validated_args
+from run_cone_yolo import build_parser,check_cuda,configure_offline,model_kwargs,validated_args
 
 
 class ConeRunnerTest(unittest.TestCase):
@@ -20,6 +22,28 @@ class ConeRunnerTest(unittest.TestCase):
         self.assertFalse(kwargs['plots'])
         self.assertEqual(kwargs['flipud'],0.)
         self.assertEqual(kwargs['data'],str(args.dataset/'data.yaml'))
+
+    def test_offline_training_requires_explicit_fp32(self):
+        with self.assertRaisesRegex(ValueError,'explicit --amp-mode fp32'):
+            validated_args(self.args('train','--offline'))
+        args=validated_args(self.args('train','--offline','--amp-mode','fp32'))
+        self.assertFalse(model_kwargs(args)['amp'])
+        self.assertNotIn('amp',model_kwargs(validated_args(self.args())))
+
+    def test_amp_mode_is_not_silently_applied_to_evaluation(self):
+        with self.assertRaisesRegex(ValueError,'only to train'):
+            validated_args(self.args('val','--amp-mode','fp32'))
+
+    def test_offline_font_is_in_actual_library_subdirectory(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source=Path(directory)/'local-font.ttf';source.write_bytes(b'synthetic font fixture, never rendered')
+            config=Path(directory)/'config'
+            with patch.dict(os.environ,{}),patch('matplotlib.font_manager.findfont',return_value=str(source)):
+                setup=configure_offline(config)
+                self.assertEqual((config/'Ultralytics/Arial.ttf').read_bytes(),source.read_bytes())
+                self.assertEqual(setup['font_family'],'DejaVu Sans')
+                self.assertEqual(os.environ['YOLO_OFFLINE'],'true')
+                self.assertEqual(os.environ['YOLO_AUTOINSTALL'],'false')
 
     def test_val_and_test_are_explicit(self):
         for mode in ('val','test'):

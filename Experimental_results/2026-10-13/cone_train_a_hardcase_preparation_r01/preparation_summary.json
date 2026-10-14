@@ -1,0 +1,80 @@
+{
+  "status": "TRAIN_ONLY_REVIEW_QUEUE_READY_NOT_LABELLED_NOT_TRAINED",
+  "pending_train_pool": 170,
+  "model_candidates": 819,
+  "selected_queue": 16,
+  "advisory_candidates": 45,
+  "pool_priority_counts": {
+    "multiple_at_0p25": 138,
+    "lowest_single_score": 26,
+    "edge_band_candidate": 6
+  },
+  "selected_priority_counts": {
+    "multiple_at_0p25": 6,
+    "edge_band_candidate": 4,
+    "lowest_single_score": 6
+  },
+  "minimum_same_session_spacing_sec": 2.0,
+  "queue_path": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02",
+  "queue_metadata": {
+    "schema_version": 1,
+    "classes": [
+      "traffic_cone"
+    ],
+    "purpose": "train-only pending annotation queue; NOT trainable dataset",
+    "available_splits": [
+      "train"
+    ],
+    "development_only": true,
+    "manifest_sha256": "94b5d43b2cee36c09bd19632f63c202403ee9f42a514e84ac254746e1ad1fe59",
+    "source_dataset": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_dev_v01",
+    "reference_dataset": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01",
+    "selection_count": 16,
+    "reference_manifest_sha256": "f5f5870af1a34701bfc31c7b97bc2d0d083b88081234599b1c8be8713309ca7e",
+    "reference_reviews_sha256": "dc13b6fda3fb060fbca24d76433051764593ab7225601f2fb979e11b971f8b3e",
+    "source_manifest_sha256": "fabeabb86ae272021b269554cffcc5cd84359b943494f619811f293d1293e3c1",
+    "selection_limit": 16,
+    "within_session_min_spacing_sec": 2.0,
+    "source_pool_manifest_sha256": "be0c220e75deeb78fb9f403b5599413ca440fc7d1c4299d176d8bce3756c7534",
+    "predictions_sha256": "6859ad3788ed69201147d32f1ab6e6650012cd80c0ddbaa9e220e0ba166607f0",
+    "model_weights_sha256": "f8f63446223ceac9e3d0f9227eae0ef814a2c569f1887748e10bf032821f8ad7",
+    "script_sha256": "0f7a9ee053be2255393acf930f343e1e3d9614b43131c2adf1c2e7bbad362e16",
+    "image_policy": "byte-identical whole original PNG; no crop/overlay/resize/colour changes",
+    "automatic_labels_created": false,
+    "data_yaml_created": false,
+    "training_performed": false,
+    "independent_test": false,
+    "review_required": "All visible cones in BOTH lenses, including yellow; candidates are not labels"
+  },
+  "raw_examples": 2,
+  "originals_and_baseline_unchanged": true,
+  "protected_evaluation_overlap": 0,
+  "human_review_performed": false,
+  "automatic_labels_created": false,
+  "training_performed": false,
+  "physical_output": false,
+  "limitations": [
+    "Selection priorities are not verified FP/FN; multiple predictions can be real multiple cones.",
+    "Existing A capture group only; not an independent test or guaranteed cure for B failures.",
+    "All visible yellow/red cones in both lenses need human labels; absence of predictions is not a negative."
+  ],
+  "input_sha256": {
+    "Experimental_results/2026-10-13/cone_train_a_hardcase_preparation_r01/inventory.json": "69f634321f7996744520dc7e0795211a80ec0d0702b207123673acd0ca0d6727",
+    "Experimental_results/2026-10-13/cone_train_a_hardcase_preparation_r01/candidate_manifest.csv": "be0c220e75deeb78fb9f403b5599413ca440fc7d1c4299d176d8bce3756c7534",
+    "datasets/cone/a_hardcase_review_v02/dataset.json": "3492af74dc9a478520cbbdff3e4ec74ca0cfab5145bf4ff043ecf8c44a71ae12",
+    "datasets/cone/a_hardcase_review_v02/manifest.csv": "94b5d43b2cee36c09bd19632f63c202403ee9f42a514e84ac254746e1ad1fe59",
+    "datasets/cone/a_hardcase_review_v02/reviews.csv": "c3a1842c38e021d2866be73db49b088b26960d79f7fdf9113968e479629f5931",
+    "Experimental_results/2026-10-13/cone_train_a_pending_inference_r02/summary.json": "7fc2623bb4051da96fdab90bece465367950e7179810457fbecb3aa1d960c444",
+    "Experimental_results/2026-10-13/cone_train_a_pending_inference_r02/provenance.json": "a48dab8c9db6cc45d99276da11a617e8ec560d22d2d8e34322012f0877311b76",
+    "Experimental_results/2026-10-13/cone_train_a_pending_inference_r02/predictions.csv": "6859ad3788ed69201147d32f1ab6e6650012cd80c0ddbaa9e220e0ba166607f0"
+  },
+  "output_sha256": {
+    "queue_manifest.csv": "94b5d43b2cee36c09bd19632f63c202403ee9f42a514e84ac254746e1ad1fe59",
+    "queue_reviews.csv": "c3a1842c38e021d2866be73db49b088b26960d79f7fdf9113968e479629f5931",
+    "queue_review_queue.csv": "4f97a61bf9365e172dbd63c26e527742a4e757aa8405de9965baf61ca3e7b9c3",
+    "queue_candidate_features.csv": "a9ad156a6d2aad5c7994da289a0259bd34898f8df2a4829cf35da069dabd62ac",
+    "queue_advisory_model_candidates.csv": "8197494a2c0fc6c9647af6e52ed8bcb589e09dc42155a2da225b0b953e292d68",
+    "raw_example_manifest.csv": "f26550d13ff67fc7a4c18065a4b82851063737cd5209d58c5b82fe5f0c7fbe22"
+  },
+  "script_sha256": "1ce289a25d5e39c3bde977d37b54d30a2f6ad374abd4f307fb4c48232ffe3356"
+}

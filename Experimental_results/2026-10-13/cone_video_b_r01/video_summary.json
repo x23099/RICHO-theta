@@ -1,0 +1,99 @@
+{
+  "status": "COMPLETED_OFFLINE_VIDEO_NOT_DEPLOYMENT_APPROVAL",
+  "confidence": 0.25,
+  "track_iou": 0.3,
+  "total_frames": 5808,
+  "sessions": [
+    {
+      "session": "cone_train_block_b_r01_20261012_155114_513",
+      "frames": 5236,
+      "detection_frames": 5188,
+      "multi_detection_frames": 59,
+      "tracks": 50,
+      "zero_runs": 10,
+      "internal_zero_runs": 10,
+      "max_zero_sample_span_sec": 0.4044620000000001,
+      "wall_time_sec": 108.6774450110097,
+      "sequential_processing_fps": 48.179270311972836,
+      "post_first_pipeline_ms": {
+        "count": 5235,
+        "mean": 20.289400239917494,
+        "p50": 19.800370006123558,
+        "p95": 25.23731799738016,
+        "max": 78.23414099402726
+      },
+      "post_first_inference_ms": {
+        "count": 5235,
+        "mean": 7.525682335619062,
+        "p50": 7.207592003396712,
+        "p95": 10.17186400713399,
+        "max": 35.420784988673404
+      },
+      "bottom_step_max_per_frame_px": {
+        "count": 5174,
+        "mean": 0.8821394869969486,
+        "p50": 0.3406461221395841,
+        "p95": 3.888951801866052,
+        "max": 28.25045060857568
+      }
+    },
+    {
+      "session": "cone_nasi_block_b_r01_20261012_155435_017",
+      "frames": 572,
+      "detection_frames": 0,
+      "multi_detection_frames": 0,
+      "tracks": 0,
+      "zero_runs": 1,
+      "internal_zero_runs": 0,
+      "max_zero_sample_span_sec": 19.09813,
+      "wall_time_sec": 11.026781606007717,
+      "sequential_processing_fps": 51.87370353724585,
+      "post_first_pipeline_ms": {
+        "count": 571,
+        "mean": 19.130747131313175,
+        "p50": 18.5585660074139,
+        "p95": 23.525617987615988,
+        "max": 61.45037300302647
+      },
+      "post_first_inference_ms": {
+        "count": 571,
+        "mean": 7.6351301171576305,
+        "p50": 7.218343002023175,
+        "p95": 10.903232003329322,
+        "max": 25.886450996040367
+      },
+      "bottom_step_max_per_frame_px": {
+        "count": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "max": null
+      }
+    }
+  ],
+  "annotated_anchor_images": 38,
+  "annotated_anchor_gt": 56,
+  "anchor_summary": [
+    {
+      "confidence_threshold": 0.25,
+      "images": 38,
+      "gt_count": 56,
+      "tp": 18,
+      "fp": 0,
+      "fn": 38,
+      "precision": 1.0,
+      "recall": 0.32142857142857145
+    }
+  ],
+  "anchor_pixel_mismatches": 0,
+  "max_det_reached_frames": 0,
+  "physical_output": false,
+  "independent_test_approval": false,
+  "limitations": [
+    "Zero detection intervals are not automatically false negatives without visibility labels.",
+    "Bottom-coordinate changes include real object/camera motion, not pure measurement jitter.",
+    "Consecutive IoU track fragments do not establish physical object identity.",
+    "Sequential offline throughput is not live camera/GUI/ROS/FFB latency.",
+    "Dataset-anchor GT remains sparse; all-frame precision/recall is not measured."
+  ]
+}

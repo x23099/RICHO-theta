@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-14",
+  "status": "AUDITED_NOT_APPROVED_FOR_TRAINING",
+  "images": 16,
+  "boxes": 23,
+  "red_region_boxes": 22,
+  "yellow_region_boxes": 1,
+  "exact_duplicate_pairs": 3,
+  "exact_duplicate_frames": [
+    421,
+    4351,
+    4651
+  ],
+  "warning_overlap_frames": [
+    421,
+    4261,
+    4351,
+    4651
+  ],
+  "proposed_inclusions": 1,
+  "proposed_holds": 15,
+  "policy": "Maintain red and yellow traffic_cone; defer additions with unresolved annotation scope. Inclusion still requires reannotation.",
+  "source_queue_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/manifest.csv": "94b5d43b2cee36c09bd19632f63c202403ee9f42a514e84ac254746e1ad1fe59",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/reviews.csv": "9919ad8909050f949ec99dec7a454d369d29e9774aabde129ab76d5fd2377099",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/dataset.json": "3492af74dc9a478520cbbdff3e4ec74ca0cfab5145bf4ff043ecf8c44a71ae12",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/labels/train/block_a_e68ece502c09e03a_f000661.txt": "f760788012811d77709339c7f8d2de04a154d37594bddd1d0ea3966fd26a911b",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/labels/train/block_a_e68ece502c09e03a_f004261.txt": "0e066daa8d7021542ade247fe22aeb7a9cf1fc4e0b4e0be716fbdb3601bf83d4",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/labels/train/block_a_e68ece502c09e03a_f004651.txt": "e2608ff1399f442240f84adf7d8a59509108dc69b65078653267298c97f6186a",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/labels/train/block_a_e68ece502c09e03a_f000571.txt": "5d41ee19a4e0293b1839082743f901efe75375eff9b113774ed1cd24d1746460",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/labels/train/block_a_e68ece502c09e03a_f004411.txt": "9e52e5a038e0d36369bb1c6be896727d69591652c0e4f35e27c3580d73fc44d1",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/labels/train/block_a_e68ece502c09e03a_f005491.txt": "fc3f92412be8fe6f877a8e0046776fc76ca5ba8da42278bf1d42ccb245ad84c5",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/labels/train/block_a_e68ece502c09e03a_f000421.txt": "365e1129c6f062b369c6b9bbd9221b302d7437c92ecef8b12699cfe1c953b560",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/labels/train/block_a_e68ece502c09e03a_f004351.txt": "8742c280726366d53300ca246a7e45f695775652709174d06a85baddacd73cdd",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/labels/train/block_a_e68ece502c09e03a_f005071.txt": "0b4c28e646a704f7dd7649252f5e1909d84407326785ed819ee6261e24b91047",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/labels/train/block_a_e68ece502c09e03a_f000481.txt": "7f80f737b8d54c8afdb713a7dd24f1759525f1848d1d3b59974e74fc1fd6098a",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/labels/train/block_a_e68ece502c09e03a_f004471.txt": "9750505b8d11a55fdb63512ac29afb383976b8e45fff443a2fb570421d83976b",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/labels/train/block_a_e68ece502c09e03a_f004861.txt": "160216df31c20c6c9d56d3430a0e48df0ed45e097d35d58f5bca0b4dea3ae233",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/labels/train/block_a_e68ece502c09e03a_f003331.txt": "7c994235a64acab5f4ca1694f6ab873f199c92cc80e4ffcacc71164be68d9e70",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/labels/train/block_a_e68ece502c09e03a_f004771.txt": "e635debefd9439ef547cd43e5e94901aea81b8dd182dc469c5900c22d08b3a3e",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/labels/train/block_a_e68ece502c09e03a_f004591.txt": "a5320c58581683b80d4151902296377f1018b54535a0cd31a215babfcaefa0fd",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/a_hardcase_review_v02/labels/train/block_a_e68ece502c09e03a_f004951.txt": "e48e5e36182325c734839735cebe75cd56c66845b337b69eee4d6b44ec2b9e45"
+  },
+  "selection_policy_sha256": "419e92ab120412f6d07746a5ef874d79ee3d3d6557119f04e5d747393ba1df7f",
+  "script_sha256": "f4d2f3f7d98ace332d044cd172c1a993ac220e14fc87055fc53a5b758cca4787",
+  "output_sha256": {
+    "label_boxes.csv": "0ca6f29e41cb3a598d8c98267c16bb20a68634db0faf6f998b9f8fb46b53d08c",
+    "overlapping_annotation_pairs.csv": "d98e187512499d7fd7864104f49c44cc95df89ef71776bde58f93b9efafc1126",
+    "raw_example_manifest.csv": "15307cce3e35ba0769bb71e0d26c65ba33772457105b9037734a48e4b475898f"
+  },
+  "user_annotations_modified": false,
+  "original_images_modified": false,
+  "training_performed": false,
+  "physical_output": false,
+  "limitations": [
+    "Assistant color/region review is not independent human label quality approval.",
+    "Unlabelled yellow scope is unresolved; do not claim 15 proven false-negative labels.",
+    "Exact duplicate prevention is structural; nonidentical duplicate-object boxes still need human review."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-13",
+  "reviewer": "assistant full-resolution original-image visual review; not independent human approval",
+  "scope": "All 38 val PNGs inspected; colors linked to the existing zero-based GT order; no bbox or image edits",
+  "prior_train_yellow_reference_boxes": [[1173,311,1196,355],[1243,329,1261,353]],
+  "user_confirmation": "2026-10-13: far-right B lens-rim objects around x1250,y340-390 are NOT cones; ambiguity resolved without changing labels",
+  "groups": [
+    {
+      "prefix": "block_b_d2f1899d1f1cec88_f",
+      "frames": [1,301,601,901,1201,1501,1801,2101,2401,2701,3001,3301,3601,3901,4201,4501,4801,5101],
+      "gt_colors_in_existing_label_order": ["red", "yellow"]
+    },
+    {
+      "prefix": "block_b_e4aaba18ded89e95_f",
+      "frames": [1,31,61,91,121,151,181,211,241,271,301,331,361,391,421,451,481,511,541,571],
+      "gt_colors_in_existing_label_order": ["yellow"]
+    }
+  ],
+  "fp_review_at_confidence_0p05": [
+    {"image": "images/val/block_b_d2f1899d1f1cec88_f000301.png", "prediction_index": 2, "category": "non_cone_region", "note": "Tiny region on far-right fisheye rim/equipment. User explicitly confirmed this region is NOT a cone on 2026-10-13. Exact background object is not identified."},
+    {"image": "images/val/block_b_d2f1899d1f1cec88_f002101.png", "prediction_index": 1, "category": "duplicate_red", "note": "A second box on the already matched red cone, not an additional object. Compare IoU to ALL GT, not just unmatched GT."},
+    {"image": "images/val/block_b_d2f1899d1f1cec88_f003001.png", "prediction_index": 1, "category": "duplicate_red", "note": "A second partial/short box on the red cone at the lens boundary; no extra cone."},
+    {"image": "images/val/block_b_d2f1899d1f1cec88_f003301.png", "prediction_index": 1, "category": "non_cone_region", "note": "Small box around a person's hand/clothing-adjacent region in the left image; no cone there. Exact pixel-level cause is not established."},
+    {"image": "images/val/block_b_d2f1899d1f1cec88_f003301.png", "prediction_index": 2, "category": "merged_red_yellow_extent", "note": "Wide box covers adjacent red and yellow cones. Red is already matched; yellow IoU remains below 0.50. Do not count this as an independent third object."},
+    {"image": "images/val/block_b_d2f1899d1f1cec88_f004201.png", "prediction_index": 2, "category": "duplicate_red", "note": "Second box on the red cone in the right image, shifted/narrower relative to the existing matched box."},
+    {"image": "images/val/block_b_e4aaba18ded89e95_f000541.png", "prediction_index": 1, "category": "non_cone_region", "note": "Tiny far-right lens-rim/equipment region. User explicitly confirmed this region is NOT a cone on 2026-10-13. Exact background object is not identified."}
+  ],
+  "fn_review_at_confidence_0p05": [
+    {"image": "images/val/block_b_d2f1899d1f1cec88_f003301.png", "gt_index": 1, "category": "correct_candidate_below_threshold_with_adjacent_red", "note": "Yellow cone is visible beside a red cone. A separate yellow-aligned candidate exists below 0.05; the broader mixed candidate is not a valid yellow match at IoU 0.50."},
+    {"image": "images/val/block_b_e4aaba18ded89e95_f000451.png", "gt_index": 0, "category": "correct_candidate_just_below_threshold", "note": "Visible stationary yellow cone has a well-aligned candidate, but confidence is just below 0.05. It was not completely absent from raw saved predictions."}
+  ]
+}

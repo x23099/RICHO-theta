@@ -1,0 +1,19 @@
+{
+  "status": "PENDING_TRAIN_POOL_NOT_LABELLED_OR_TRAINABLE",
+  "images": 170,
+  "dataset": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_dev_v01",
+  "reference_dataset": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01",
+  "manifest_sha256": "be0c220e75deeb78fb9f403b5599413ca440fc7d1c4299d176d8bce3756c7534",
+  "input_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_dev_v01/manifest.csv": "fabeabb86ae272021b269554cffcc5cd84359b943494f619811f293d1293e3c1",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_dev_v01/reviews.csv": "b21b9c1c9d0e7192c54c0868139ece3e8cfb3f38f007f9e1910926aba3717907",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_dev_v01/dataset.json": "609daeb0da5c33211026fb25960ba3bbdeb95da6184887b8aca346eb9c8c518e",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/manifest.csv": "f5f5870af1a34701bfc31c7b97bc2d0d083b88081234599b1c8be8713309ca7e",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/reviews.csv": "dc13b6fda3fb060fbca24d76433051764593ab7225601f2fb979e11b971f8b3e",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/dataset.json": "78b0553929e35fdf4bdbef81c70735c6901bc9eaf0970f480fc41cf7e974e5a8"
+  },
+  "script_sha256": "8b69b638bb3286c33f54023e5445c34c8c55a789fe7e00df86331e33c4759c92",
+  "protected_evaluation_overlap": 0,
+  "automatic_labels_created": false,
+  "training_performed": false
+}

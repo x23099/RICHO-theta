@@ -1,0 +1,138 @@
+{
+  "date": "2026-10-14",
+  "status": "COMPLETED_DEVELOPMENT_COMPARISON_NOT_MODEL_ADOPTION",
+  "aggregate": [
+    {
+      "model": "baseline_35",
+      "train_images": 35,
+      "train_boxes": 53,
+      "val_images": 38,
+      "precision": 0.9607581547358471,
+      "recall": 0.9821428571428571,
+      "map50": 0.98419912776291,
+      "map50_95": 0.7894153844120659,
+      "epoch_csv_cumulative_sec": 151.426,
+      "weights_path": "/home/robo25/theta_ws/RICHO-theta/runs/cone/train_ab_baseline_local_20261014_r01/yolov8n/weights/best.pt",
+      "weights_sha256": "7052237babf12fcd1efbdcf3e15f8359c09c6b8c9e313e2f514e6d5741d5ae17",
+      "scope": "training-final best validation; not fixed-threshold recall"
+    },
+    {
+      "model": "augmented_36",
+      "train_images": 36,
+      "train_boxes": 55,
+      "val_images": 38,
+      "precision": 0.9723945685151073,
+      "recall": 0.9821428571428571,
+      "map50": 0.9888297503467406,
+      "map50_95": 0.7830940123772212,
+      "epoch_csv_cumulative_sec": 154.639,
+      "weights_path": "/home/robo25/theta_ws/RICHO-theta/runs/cone/train_ab_augmented_v03_local_20261014_r01/yolov8n/weights/best.pt",
+      "weights_sha256": "3a6e124adb15c16efd7d22c853406066371f48873c82f1d3cfc445b22ae5997b",
+      "scope": "training-final best validation; not fixed-threshold recall"
+    }
+  ],
+  "color_recall_at_0p25": [
+    {
+      "confidence_threshold": "0.25",
+      "dimension": "color",
+      "value": "red",
+      "gt_count": "18",
+      "detected": "18",
+      "missed": "0",
+      "recall": "1.0",
+      "model": "baseline_35"
+    },
+    {
+      "confidence_threshold": "0.25",
+      "dimension": "color",
+      "value": "yellow",
+      "gt_count": "38",
+      "detected": "38",
+      "missed": "0",
+      "recall": "1.0",
+      "model": "baseline_35"
+    },
+    {
+      "confidence_threshold": "0.25",
+      "dimension": "color",
+      "value": "red",
+      "gt_count": "18",
+      "detected": "18",
+      "missed": "0",
+      "recall": "1.0",
+      "model": "augmented_36"
+    },
+    {
+      "confidence_threshold": "0.25",
+      "dimension": "color",
+      "value": "yellow",
+      "gt_count": "38",
+      "detected": "38",
+      "missed": "0",
+      "recall": "1.0",
+      "model": "augmented_36"
+    }
+  ],
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 3070",
+    "index": 0,
+    "torch_version": "2.14.1+cu130",
+    "torch_cuda_version": "13.0"
+  },
+  "versions": {
+    "torch": "2.14.1",
+    "torchvision": "0.29.1",
+    "ultralytics": "8.4.175",
+    "opencv-python": "5.0.0.93"
+  },
+  "actual_arg_differences": {
+    "project": [
+      "/home/robo25/theta_ws/RICHO-theta/runs/cone/train_ab_baseline_local_20261014_r01",
+      "/home/robo25/theta_ws/RICHO-theta/runs/cone/train_ab_augmented_v03_local_20261014_r01"
+    ],
+    "save_dir": [
+      "/home/robo25/theta_ws/RICHO-theta/runs/cone/train_ab_baseline_local_20261014_r01/yolov8n",
+      "/home/robo25/theta_ws/RICHO-theta/runs/cone/train_ab_augmented_v03_local_20261014_r01/yolov8n"
+    ],
+    "data": [
+      "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/data.yaml",
+      "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_augmented_v03/data.yaml"
+    ]
+  },
+  "identical_validation_images_and_labels": true,
+  "initial_weights_sha256": "31e20dde3def09e2cf938c7be6fe23d9150bbbe503982af13345706515f2ef95",
+  "single_seed_only": true,
+  "independent_test": false,
+  "model_adopted": false,
+  "physical_output": false,
+  "sources_sha256": {
+    "runs/cone/train_ab_baseline_local_20261014_r01/provenance.json": "73b9100a388ece0e556c3e2fa87cad762a15e5c3067dad62ea43e775e57a9941",
+    "runs/cone/train_ab_baseline_local_20261014_r01/metrics.json": "86191ddc7a9632e20bd997ce870a452f17b57d56caf86954082640473ba653d5",
+    "runs/cone/train_ab_baseline_local_20261014_r01/yolov8n/results.csv": "4058c7561cd3bf1cfb3cd0aa4edf2ef784f2d3e6ac46de3c48d81f4d96e9e425",
+    "runs/cone/train_ab_baseline_local_20261014_r01/yolov8n/args.yaml": "81b33e41ae7c5c1b8ebb1d77b944dec60e29a95b78f0593ab3b0a0f2ea8863a0",
+    "Experimental_results/2026-10-14/cone_baseline_fp32_diagnose_r01/provenance.json": "fb26986cdcc0a73e11f9711526368977cbd41189c76a51eb6583d254a2d293b0",
+    "Experimental_results/2026-10-14/cone_baseline_fp32_diagnose_r01/predictions.csv": "e319f4d546d6e22bfe8fcb17218e36fc7c4c82c7a57bd5092b30d0c3408a57a1",
+    "Experimental_results/2026-10-14/cone_baseline_fp32_diagnose_r01/matches.csv": "002e34be00c27ca3bffec9d090145ec7bb3aaf117262e87ac39efa2106d0626f",
+    "Experimental_results/2026-10-14/cone_baseline_fp32_diagnose_r01/ground_truth.csv": "f58487f0ccee82cb1ab24526e0025d714a46e8eb6a813371d4b4234c82aafec3",
+    "Experimental_results/2026-10-14/cone_baseline_fp32_diagnose_r01/stratum_recall.csv": "08ce7dabe8a722c5db0c3aa2d4946b790528893ad825a62fa5bf658ec278d30b",
+    "Experimental_results/2026-10-14/cone_baseline_fp32_diagnose_r01/threshold_summary.csv": "7a61e705865a8420feece8816b5b374450b783802baf01182934d6a519c099fc",
+    "runs/cone/train_ab_augmented_v03_local_20261014_r01/provenance.json": "c6f7700301366cb643d7f11a462b436124b278c1be1044705291b4d0b6627e26",
+    "runs/cone/train_ab_augmented_v03_local_20261014_r01/metrics.json": "9227f56d8ca5bae18482a7ba883f0f1ed0c91fefda5c129951d4b99ce089b00a",
+    "runs/cone/train_ab_augmented_v03_local_20261014_r01/yolov8n/results.csv": "c38d3a39ad8ae99de24261606ea81a435cc91d1fe2ebea534e1000c97fb9cec6",
+    "runs/cone/train_ab_augmented_v03_local_20261014_r01/yolov8n/args.yaml": "3bff89137e373b854ec402e6d6ae6b5f39e466df9b927181bb92fed503a4f95e",
+    "Experimental_results/2026-10-14/cone_augmented_v03_fp32_diagnose_r01/provenance.json": "35b7098e3821f75119026019a729c3fb9d789667dbd668d179d3fe12d3bbcd48",
+    "Experimental_results/2026-10-14/cone_augmented_v03_fp32_diagnose_r01/predictions.csv": "1536158215d5732c4c8e5a5303f8840dedcd942e36ca71e465ee74089c6c76be",
+    "Experimental_results/2026-10-14/cone_augmented_v03_fp32_diagnose_r01/matches.csv": "70db3e87614887789487b4bcb1904e9ebc44db31d2f0f37f906e5c3ec8f45d7b",
+    "Experimental_results/2026-10-14/cone_augmented_v03_fp32_diagnose_r01/ground_truth.csv": "f58487f0ccee82cb1ab24526e0025d714a46e8eb6a813371d4b4234c82aafec3",
+    "Experimental_results/2026-10-14/cone_augmented_v03_fp32_diagnose_r01/stratum_recall.csv": "ae09996d1f0f07561d65802deb5f71f2fabc29aefe78755af781d1eab58d5ad1",
+    "Experimental_results/2026-10-14/cone_augmented_v03_fp32_diagnose_r01/threshold_summary.csv": "4fecb5802045b163e751b8bf77c823b25e60888bf62b3e2be9a0bb97154fdd77"
+  },
+  "graph_sha256": "a3f74d11f93a0db6958b52f307e5df0983d346a2fba4a9a68103112f2f22e76c",
+  "script_sha256": "0b4599d0d3a16579e973e5f25cbee2ff3be68ccf39792db5b3ff0f764a3d36b1",
+  "limitations": [
+    "All val images contain cones; no true cone-free negative or independent course test.",
+    "Single seed on a very small dataset: any difference is not proven causal benefit of the added frame.",
+    "Older RTX4070/cu118/AMP training is not the matched baseline for the new frame.",
+    "First baseline setup downloaded an Arial font after the initial font alias was placed one directory too high; no auxiliary model was downloaded. Font lookup fixed and verified for later runs."
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-13",
+  "decision": "PASS_OFFLINE_VIDEO_INTAKE_NOT_DEPLOYMENT_APPROVAL",
+  "frames_checked": 5808,
+  "anchors_checked": 38,
+  "anchor_pixel_mismatches": 0,
+  "raw_review_images": 12,
+  "raw_pixels_unchanged": true,
+  "source_sha256": {
+    "frames.csv": "dad9fad7dd81fea2cf758df5e03ba241376f213cc28fd1ca1f360c48e01bda3e",
+    "predictions.csv": "70a23ffc2859ebd60afd1a77d8a730fb869bba17c60a767c18cff484f32b682f",
+    "zero_detection_runs.csv": "43c729fdc4e712619aacfb6ca5458d561fb3f703ceb312bc8bbf88fc4faa7213",
+    "video_summary.json": "bec1c4632c25111d6b414976e507db36c1ddb0f7e8bbea7a9ca398b22a8350a8",
+    "provenance.json": "f46e8f4e725cde096e592966d88bce2d90574983be41700724635f30a6e63837",
+    "anchor_pixels.csv": "b256f38b0debf43aa141685cebdd5782ee1875ff4246b6a569c8b459c1ed9ce5"
+  },
+  "script_sha256": "f2d2dce0eb9bd60ef6ace794f0ee7414822bf396cfc26a1b651d0926f4889051",
+  "graph_sha256": "481df38ff91c9d9457527675f724498686bc6cf41f2be8625e15e6bb12d786a8",
+  "no_ground_truth_interpolation": true,
+  "physical_output": false
+}

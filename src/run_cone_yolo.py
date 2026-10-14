@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import shutil
 
 from cone_dataset import invalidate_label_caches, sha256, validate
 from cone_detection_diagnostics import diagnostic_config, prediction_kwargs, prepare_inputs, run_diagnostics
@@ -25,6 +26,8 @@ def build_parser():
     parser.add_argument("--batch",type=int,default=8)
     parser.add_argument("--imgsz",type=int,default=960)
     parser.add_argument("--seed",type=int,default=0)
+    parser.add_argument('--amp-mode',choices=('default','fp32'),default='default',help='train only: fp32 avoids auxiliary AMP-check checkpoint downloads')
+    parser.add_argument('--offline',action='store_true',help='Disable package auto-update/checks and prepare a local font; offline train requires fp32')
     parser.add_argument("--diagnostic-split",choices=('val','test'),default='val')
     parser.add_argument("--confidence-thresholds",type=float,nargs='+',default=[.05,.1,.25,.5,.75])
     parser.add_argument("--prediction-floor",type=float,default=.01)
@@ -40,6 +43,9 @@ def validated_args(args):
     if args.device<0 or args.epochs<1 or args.batch<1 or args.imgsz<32 or args.imgsz%32:
         raise ValueError("device>=0, epochs/batch>=1, imgsz positive multiple of 32 required")
     args.output_dir=args.output_dir.expanduser().resolve()
+    if args.amp_mode!='default' and args.mode!='train':raise ValueError('amp-mode applies only to train')
+    if args.offline and args.mode=='train' and args.amp_mode!='fp32':
+        raise ValueError('offline train requires explicit --amp-mode fp32 to avoid auxiliary AMP model download')
     if args.mode in ('env','train') and args.weights is None:
         args.weights=REPO/'src/yolov8n.pt'
     if args.weights is None: raise ValueError("explicit trained --weights required for val/test/diagnose")
@@ -71,6 +77,7 @@ def model_kwargs(args):
         # Test remains excluded. Match inference's fixed camera orientation.
         common.update(epochs=args.epochs,seed=args.seed,deterministic=True,
                       flipud=0.,fliplr=0.,degrees=0.,perspective=0.)
+        if args.amp_mode=='fp32':common['amp']=False
     else:
         common['split']='test' if args.mode=='test' else 'val'
     return common
@@ -83,6 +90,22 @@ def check_cuda(torch,device):
     torch.ones((2,2),device=f'cuda:{device}').sum().item()
     return dict(name=torch.cuda.get_device_name(device),index=device,torch_version=str(torch.__version__),
                 torch_cuda_version=torch.version.cuda)
+
+
+def configure_offline(config_dir):
+    """No driver/dependency/global-setting changes; satisfy font lookup locally."""
+    os.environ['YOLO_OFFLINE']='true'
+    os.environ['YOLO_AUTOINSTALL']='false'
+    os.environ['MPLCONFIGDIR']=str(config_dir/'matplotlib')
+    from matplotlib import font_manager
+    source=Path(font_manager.findfont('DejaVu Sans',fallback_to_default=False))
+    if not source.is_file():raise ValueError('local font required; no automatic font download')
+    target=config_dir/'Ultralytics'/'Arial.ttf'
+    target.parent.mkdir(parents=True,exist_ok=True)
+    shutil.copyfile(source,target)
+    return dict(package_offline_requested=True,autoinstall=False,
+                font_alias='Arial.ttf (local lookup alias, not Arial font family)',font_family='DejaVu Sans',
+                font_source=str(source),font_target=str(target),font_sha256=sha256(target))
 
 
 def main():
@@ -107,7 +130,15 @@ def main():
         config_dir=args.output_dir/'ultralytics_config'
         (config_dir/'Ultralytics').mkdir(parents=True)
         os.environ['YOLO_CONFIG_DIR']=str(config_dir)
+        offline_setup=configure_offline(config_dir) if args.offline else None
         from ultralytics import YOLO
+        if offline_setup:
+            from ultralytics.utils import USER_CONFIG_DIR,ONLINE,AUTOINSTALL
+            if (ONLINE or AUTOINSTALL or Path(USER_CONFIG_DIR).resolve()!=(config_dir/'Ultralytics').resolve()
+                    or sha256(Path(USER_CONFIG_DIR)/'Arial.ttf')!=offline_setup['font_sha256']):
+                raise ValueError('Ultralytics offline/config/font contract differs; refuse automatic downloads')
+            offline_setup.update(library_config_dir=str(USER_CONFIG_DIR),library_online=bool(ONLINE),
+                                 library_autoinstall=bool(AUTOINSTALL))
         # Disable third-party experiment uploads; do not alter user's global settings.
         from ultralytics import settings
         for key in ('wandb','comet','clearml','mlflow','neptune','hub'):
@@ -120,7 +151,8 @@ def main():
             for name in ('torch','torchvision','ultralytics','opencv-python')},
             dataset_check=dataset_check,weights_sha256=sha256(args.weights or REPO/'src/yolov8n.pt'),
             kwargs=kwargs,runner_sha256=sha256(Path(__file__)),dataset_tool_sha256=sha256(Path(__file__).with_name('cone_dataset.py')),
-            status='STARTED_NOT_MODEL_ACCURACY_PASS',physical_output=False,regenerable_label_caches_removed=caches_removed)
+            status='STARTED_NOT_MODEL_ACCURACY_PASS',physical_output=False,regenerable_label_caches_removed=caches_removed,
+            offline_setup=offline_setup,amp_mode=args.amp_mode)
         if args.mode=='diagnose':
             provenance.update(diagnostic_config=diagnostic_config(args),
                 diagnostic_tool_sha256=sha256(Path(__file__).with_name('cone_detection_diagnostics.py')),

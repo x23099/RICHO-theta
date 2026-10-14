@@ -1,0 +1,7 @@
+image,frame,first_index,second_index,exact_duplicate,iou,scope
+images/train/block_a_e68ece502c09e03a_f004261.png,4261,1,2,0,0.5526315796454252,warning pair; visual object association required for nonidentical overlaps
+images/train/block_a_e68ece502c09e03a_f004651.png,4651,0,1,0,0.8304597700662123,warning pair; visual object association required for nonidentical overlaps
+images/train/block_a_e68ece502c09e03a_f004651.png,4651,0,2,0,0.8304597700662123,warning pair; visual object association required for nonidentical overlaps
+images/train/block_a_e68ece502c09e03a_f004651.png,4651,1,2,1,1.0,warning pair; visual object association required for nonidentical overlaps
+images/train/block_a_e68ece502c09e03a_f000421.png,421,0,1,1,1.0,warning pair; visual object association required for nonidentical overlaps
+images/train/block_a_e68ece502c09e03a_f004351.png,4351,0,1,1,1.0,warning pair; visual object association required for nonidentical overlaps

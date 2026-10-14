@@ -1,0 +1,4 @@
+confidence_threshold,selected_images,candidates,red_overlap_candidates,yellow_candidates,noncone_hand_candidates,selected_images_with_red_overlap,zero_examples_with_red_overlap,total_zero_examples,scope
+0.05,12,33,19,12,2,11,9,10,"assistant point-wise region review; NOT TP/FP counts, recall or independent accuracy"
+0.1,12,18,17,0,1,11,9,10,"assistant point-wise region review; NOT TP/FP counts, recall or independent accuracy"
+0.25,12,2,2,0,0,2,0,10,"assistant point-wise region review; NOT TP/FP counts, recall or independent accuracy"

@@ -1,0 +1,5 @@
+model,image,matched_prediction_index,confidence,reference_iou,retained_at_0p25,retained_at_0p50,scope
+baseline_35,images/val/block_b_d2f1899d1f1cec88_f000301.png,5,0.024581890553236008,0.7209915075283335,False,False,previously user-confirmed non-cone region in this exact image; not automatic proof for other images
+baseline_35,images/val/block_b_e4aaba18ded89e95_f000541.png,5,0.015321576967835426,0.7139862275580334,False,False,previously user-confirmed non-cone region in this exact image; not automatic proof for other images
+augmented_36,images/val/block_b_d2f1899d1f1cec88_f000301.png,1,0.5932576656341553,0.8254184859984564,True,True,previously user-confirmed non-cone region in this exact image; not automatic proof for other images
+augmented_36,images/val/block_b_e4aaba18ded89e95_f000541.png,0,0.5583537817001343,0.6061159139966088,True,True,previously user-confirmed non-cone region in this exact image; not automatic proof for other images

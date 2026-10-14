@@ -1,0 +1,17 @@
+image,png_sha256,decision,reason
+images/train/block_a_e68ece502c09e03a_f000661.png,7a0295a6f780baf010999b5f192cd66c2d3ba7269d56936ccdc3061b5fc9f21b,hold,User reported uncertain yellow visibility; defer addition without claiming a definite missing GT
+images/train/block_a_e68ece502c09e03a_f004261.png,0ab563d6a69738e61530a48018d9301039ca42004c1bca0bf21ffae79d69958a,hold,Uncertain yellow visibility and multiple annotations of the same red base fragment
+images/train/block_a_e68ece502c09e03a_f004651.png,352914adfe833213529f8ed1ea0429986a86f315b2b7d9ad3f9399e4486d805e,include,Only candidate with a human yellow box; must redraw duplicate red boxes and reconfirm all visible cones before merge
+images/train/block_a_e68ece502c09e03a_f000571.png,882ae8d7e61ff6e9a9e3a320bcba0f10684eb0f79c0b724ef63583449d8c7a45,hold,User reported uncertain yellow visibility; defer addition without claiming a definite missing GT
+images/train/block_a_e68ece502c09e03a_f004411.png,f47a81c1c9269d212216596860e8e9c47608a10a46d4d558ee91b806a9517ba5,hold,Uncertain yellow scope and partial red base at fisheye rim
+images/train/block_a_e68ece502c09e03a_f005491.png,e6ddf7670a15d365d3ae8373f924a9c1cb8eeb518bcc44c95b13d8b9f40c2e23,hold,User reported uncertain yellow visibility; defer addition without claiming a definite missing GT
+images/train/block_a_e68ece502c09e03a_f000421.png,b0d5e0bd690cf0e07bc516f71aef803fd9ad36d98a3e38b221820f6620081145,hold,Uncertain yellow scope and exact repeated red box
+images/train/block_a_e68ece502c09e03a_f004351.png,4d7043446fb1cc19448ac17e06857ae3a8ec1c07d0f3bb79a554520ab38817d8,hold,Uncertain yellow scope and exact repeated red fragment box
+images/train/block_a_e68ece502c09e03a_f005071.png,0ce529571f6751e6d0b9f7327ab5a4b00dadae177170247ede218c983639cd47,hold,Uncertain background visibility with person and board; do not assume a visible or absent yellow cone
+images/train/block_a_e68ece502c09e03a_f000481.png,540e83bc2baf7e564274fa57c1ce48fc4d825bd40dfad7f004cd4180c9c1fe05,hold,User reported uncertain yellow visibility; defer addition without claiming a definite missing GT
+images/train/block_a_e68ece502c09e03a_f004471.png,4554b06decff112ed16a68fc4c9723b65e748264a59225190048cd10f3a804e9,hold,Uncertain yellow scope and partial red base at fisheye rim
+images/train/block_a_e68ece502c09e03a_f004861.png,93b8ef1f92cdfc2758e7b63714b5c8ca7bc0301d869ebd722e5b3efe68eb9b0a,hold,Uncertain background visibility with person and board; do not assume a visible or absent yellow cone
+images/train/block_a_e68ece502c09e03a_f003331.png,f4fa1fdc897062740b5b7180abda8bc25747692ba160f50bdadf50a570bfdc06,hold,User reported uncertain yellow visibility; defer addition without claiming a definite missing GT
+images/train/block_a_e68ece502c09e03a_f004771.png,afe082855a8ad3033a1feea80588e26cc2307f97b2db8a28517adeef80cbf6cd,hold,Uncertain background visibility with person and board; do not assume a visible or absent yellow cone
+images/train/block_a_e68ece502c09e03a_f004591.png,b73497839447b10a9736a032598e04e3ab3fc3a5d665b9eb7b6666f65ffb3c13,hold,Uncertain yellow visibility despite visible red body; no guessed yellow annotation added
+images/train/block_a_e68ece502c09e03a_f004951.png,f1779aaf37f6a344045687ffb7836a265934ebc774bb36e44a6e288439439411,hold,Uncertain background visibility with person and board; do not assume a visible or absent yellow cone

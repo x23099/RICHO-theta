@@ -1,0 +1,13 @@
+session,frame,red_visibility,observed_condition,reviewer,scope
+cone_train_block_b_r01_20261012_155114_513,22,visible_partial,Small carried/tilted red cone partly behind the table; not completely absent,assistant original-frame review 2026-10-13,Only this sampled frame; not the full zero run
+cone_train_block_b_r01_20261012_155114_513,33,visible_partial,Small carried/tilted red cone behind table legs,assistant original-frame review 2026-10-13,Only this sampled frame; not the full zero run
+cone_train_block_b_r01_20261012_155114_513,51,visible,Small tilted red cone carried by a person,assistant original-frame review 2026-10-13,Only this sampled frame; not the full zero run
+cone_train_block_b_r01_20261012_155114_513,56,visible,Small tilted red cone carried by a person,assistant original-frame review 2026-10-13,Only this sampled frame; not the full zero run
+cone_train_block_b_r01_20261012_155114_513,63,visible,Small tilted red cone carried by a person,assistant original-frame review 2026-10-13,Only this sampled frame; not the full zero run
+cone_train_block_b_r01_20261012_155114_513,1462,visible,Large tilted red cone being lifted/transported; base is not resting on floor,assistant original-frame review 2026-10-13,Only this sampled frame; not the full zero run
+cone_train_block_b_r01_20261012_155114_513,2872,visible,Large tilted red cone being lifted/transported; base is not resting on floor,assistant original-frame review 2026-10-13,Only this sampled frame; not the full zero run
+cone_train_block_b_r01_20261012_155114_513,3207,visible_fragment,Lens-boundary transition; only a small red portion/base visible at the left-image rim,assistant original-frame review 2026-10-13,Not a full object-visibility claim
+cone_train_block_b_r01_20261012_155114_513,3213,visible_fragment,Lens-boundary transition; small red base portion at the right-image left rim,assistant original-frame review 2026-10-13,Not a full object-visibility claim
+cone_train_block_b_r01_20261012_155114_513,4553,visible_partial,Red cone portions at opposite fisheye rims; physically moving across boundary,assistant original-frame review 2026-10-13,Largest bottom-step comparison; not a stationary-noise sample
+cone_train_block_b_r01_20261012_155114_513,4554,visible_partial,Red cone portions at opposite fisheye rims; physically moving across boundary,assistant original-frame review 2026-10-13,Largest bottom-step comparison; not a stationary-noise sample
+cone_train_block_b_r01_20261012_155114_513,4566,visible,Red cone near left lens edge is visible after boundary transition,assistant original-frame review 2026-10-13,Only this sampled frame; not the full zero run

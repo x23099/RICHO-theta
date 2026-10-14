@@ -1,0 +1,19 @@
+{
+  "settings_version": "0.0.8",
+  "datasets_dir": "/home/robo25/theta_ws/datasets",
+  "weights_dir": "/home/robo25/theta_ws/RICHO-theta/weights",
+  "runs_dir": "/home/robo25/theta_ws/RICHO-theta/runs",
+  "uuid": "0e4d2d5f3b4ae988806ae9186db7e28aed9eb55d7e267c9fe87428257c270d48",
+  "sync": true,
+  "api_key": "",
+  "openai_api_key": "",
+  "clearml": false,
+  "comet": false,
+  "dvc": true,
+  "mlflow": false,
+  "raytune": true,
+  "tensorboard": false,
+  "wandb": false,
+  "vscode_msg": true,
+  "openvino_msg": true
+}

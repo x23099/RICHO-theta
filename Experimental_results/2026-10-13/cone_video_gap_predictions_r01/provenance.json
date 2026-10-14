@@ -1,0 +1,191 @@
+{
+  "status": "COMPLETED_SELECTED_FRAMES_NOT_ACCURACY_OR_DEPLOYMENT_APPROVAL",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 3070",
+    "index": 0,
+    "torch_version": "2.14.1+cu130",
+    "torch_cuda_version": "13.0"
+  },
+  "input_dir": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-13/cone_video_b_r01",
+  "weights": "/home/robo25/theta_ws/RICHO-theta/runs/cone/received_train_ab_bootstrap_v01_r01/yolov8n/weights/best.pt",
+  "weights_sha256": "f8f63446223ceac9e3d0f9227eae0ef814a2c569f1887748e10bf032821f8ad7",
+  "manifest_sha256": "b043f97ea82abc41c29a450ce6f273be9b65cd1b845c3883d0ef2955c6502c02",
+  "images": [
+    {
+      "file": "raw_reviews/cone_train_block_b_r01_20261012_155114_513_raw_f000022.png",
+      "session": "cone_train_block_b_r01_20261012_155114_513",
+      "frame": "22",
+      "time_sec": "0.721392",
+      "width": "1280",
+      "height": "720",
+      "reason": "zero-output midpoint; run 22..22",
+      "decoded_bgr_sha256": "18468ae7052d0f492bb4b8d4ee14069d28e082e43a85de801b44b817c23544df",
+      "png_sha256": "fe3e7e17c34d28617f18fc799606c548352b83f5c7564f0a4b6c0ba12241e851",
+      "source_raw_sha256": "d2f1899d1f1cec88562892d0aba11f11ccbd38b4b84da45bb5a593e7ff03e49a"
+    },
+    {
+      "file": "raw_reviews/cone_train_block_b_r01_20261012_155114_513_raw_f000033.png",
+      "session": "cone_train_block_b_r01_20261012_155114_513",
+      "frame": "33",
+      "time_sec": "1.089737",
+      "width": "1280",
+      "height": "720",
+      "reason": "zero-output midpoint; run 28..38",
+      "decoded_bgr_sha256": "1519d3a6492dea763092272dc41f982985444b9c080254a92e536926b7bffd77",
+      "png_sha256": "ed7180a5cabfa461c7b5ffc8dd5892be81018918db0b78a1c8c2706ca877f794",
+      "source_raw_sha256": "d2f1899d1f1cec88562892d0aba11f11ccbd38b4b84da45bb5a593e7ff03e49a"
+    },
+    {
+      "file": "raw_reviews/cone_train_block_b_r01_20261012_155114_513_raw_f000051.png",
+      "session": "cone_train_block_b_r01_20261012_155114_513",
+      "frame": "51",
+      "time_sec": "1.754615",
+      "width": "1280",
+      "height": "720",
+      "reason": "zero-output midpoint; run 51..52",
+      "decoded_bgr_sha256": "6791e6bcbdf67482d07d7741ddf67797922b4ce86508c319275dad024ef31168",
+      "png_sha256": "2dc50d7409759b36915691de6f21f01d4405892f8e563b1e9cecf9de0cadf39f",
+      "source_raw_sha256": "d2f1899d1f1cec88562892d0aba11f11ccbd38b4b84da45bb5a593e7ff03e49a"
+    },
+    {
+      "file": "raw_reviews/cone_train_block_b_r01_20261012_155114_513_raw_f000056.png",
+      "session": "cone_train_block_b_r01_20261012_155114_513",
+      "frame": "56",
+      "time_sec": "1.921046",
+      "width": "1280",
+      "height": "720",
+      "reason": "zero-output midpoint; run 55..57",
+      "decoded_bgr_sha256": "04afda42f78efeabf6a57800973ab1f2860311157197d03b07425b85ed462e96",
+      "png_sha256": "b5e3f26f7856e4ec757ea508da935b31120c7f0ca6c7acfb24e20627e3344cef",
+      "source_raw_sha256": "d2f1899d1f1cec88562892d0aba11f11ccbd38b4b84da45bb5a593e7ff03e49a"
+    },
+    {
+      "file": "raw_reviews/cone_train_block_b_r01_20261012_155114_513_raw_f000063.png",
+      "session": "cone_train_block_b_r01_20261012_155114_513",
+      "frame": "63",
+      "time_sec": "2.154504",
+      "width": "1280",
+      "height": "720",
+      "reason": "zero-output midpoint; run 59..68",
+      "decoded_bgr_sha256": "142ce6957bf6726d6c360260e870a81575ea9eb1c8c738fc5ca3c83b878eb423",
+      "png_sha256": "25a441e193091f70cd0260cfe1d1eac284be29c108fb6d58a3f8b08440d64e39",
+      "source_raw_sha256": "d2f1899d1f1cec88562892d0aba11f11ccbd38b4b84da45bb5a593e7ff03e49a"
+    },
+    {
+      "file": "raw_reviews/cone_train_block_b_r01_20261012_155114_513_raw_f001462.png",
+      "session": "cone_train_block_b_r01_20261012_155114_513",
+      "frame": "1462",
+      "time_sec": "48.991382",
+      "width": "1280",
+      "height": "720",
+      "reason": "zero-output midpoint; run 1459..1465",
+      "decoded_bgr_sha256": "a9486286f8ee1bf83f1d666af86b8aa60cfbf543e93439b9369469cfd8656d9a",
+      "png_sha256": "4fd309b5420d50344ad9d5ab315ffe81cb4af0ff2cf8ea8f10b9e518a3486889",
+      "source_raw_sha256": "d2f1899d1f1cec88562892d0aba11f11ccbd38b4b84da45bb5a593e7ff03e49a"
+    },
+    {
+      "file": "raw_reviews/cone_train_block_b_r01_20261012_155114_513_raw_f002872.png",
+      "session": "cone_train_block_b_r01_20261012_155114_513",
+      "frame": "2872",
+      "time_sec": "96.190266",
+      "width": "1280",
+      "height": "720",
+      "reason": "zero-output midpoint; run 2871..2874",
+      "decoded_bgr_sha256": "70015e93c330b66dd2289a6a9dd228f7adbfba1b99d502bf2076bd2d39593d70",
+      "png_sha256": "e8a20dcf64cb518e40454c48f619eeeed7ef51cdc024916eb01d1060b1b38151",
+      "source_raw_sha256": "d2f1899d1f1cec88562892d0aba11f11ccbd38b4b84da45bb5a593e7ff03e49a"
+    },
+    {
+      "file": "raw_reviews/cone_train_block_b_r01_20261012_155114_513_raw_f003207.png",
+      "session": "cone_train_block_b_r01_20261012_155114_513",
+      "frame": "3207",
+      "time_sec": "107.424013",
+      "width": "1280",
+      "height": "720",
+      "reason": "zero-output midpoint; run 3207..3207",
+      "decoded_bgr_sha256": "0e7e18d61f8d79881be96faab907d30e2d863a13730de208680a52fde2b53572",
+      "png_sha256": "67b9cb68dafe4b251899e9115307598563e29e3aa51239336a02a65addc58756",
+      "source_raw_sha256": "d2f1899d1f1cec88562892d0aba11f11ccbd38b4b84da45bb5a593e7ff03e49a"
+    },
+    {
+      "file": "raw_reviews/cone_train_block_b_r01_20261012_155114_513_raw_f003213.png",
+      "session": "cone_train_block_b_r01_20261012_155114_513",
+      "frame": "3213",
+      "time_sec": "107.623695",
+      "width": "1280",
+      "height": "720",
+      "reason": "zero-output midpoint; run 3210..3217",
+      "decoded_bgr_sha256": "bb161bece9bdaf5753a67a592bc41a1bd98db18dabcee08785dd4f95111b40d9",
+      "png_sha256": "61bb30838c1e4e0af67855355e57927416dccc5c89ff75c09e6818375416c59e",
+      "source_raw_sha256": "d2f1899d1f1cec88562892d0aba11f11ccbd38b4b84da45bb5a593e7ff03e49a"
+    },
+    {
+      "file": "raw_reviews/cone_train_block_b_r01_20261012_155114_513_raw_f004553.png",
+      "session": "cone_train_block_b_r01_20261012_155114_513",
+      "frame": "4553",
+      "time_sec": "152.42549",
+      "width": "1280",
+      "height": "720",
+      "reason": "largest linked bottom-point change; comparison frame; delta 28.25045060857568 px",
+      "decoded_bgr_sha256": "8086f14fba16c558f4c908af1edb2b89d3885b16ea698777b6a74494c9aac011",
+      "png_sha256": "8fe9f5f31e22eaf1646fefa8e4eae5b832ae18efddd19927bcf3b711be1b39e6",
+      "source_raw_sha256": "d2f1899d1f1cec88562892d0aba11f11ccbd38b4b84da45bb5a593e7ff03e49a"
+    },
+    {
+      "file": "raw_reviews/cone_train_block_b_r01_20261012_155114_513_raw_f004554.png",
+      "session": "cone_train_block_b_r01_20261012_155114_513",
+      "frame": "4554",
+      "time_sec": "152.458875",
+      "width": "1280",
+      "height": "720",
+      "reason": "largest linked bottom-point change; comparison frame; delta 28.25045060857568 px",
+      "decoded_bgr_sha256": "f3bc52d5b4ad2800f17bcb4f1c7b65cd051011ceea9d09dddb5f03943bac9e08",
+      "png_sha256": "e67833f7b357677238b66cc3edbcfc9c1726300fd2739c7741d5a8e42ed46c76",
+      "source_raw_sha256": "d2f1899d1f1cec88562892d0aba11f11ccbd38b4b84da45bb5a593e7ff03e49a"
+    },
+    {
+      "file": "raw_reviews/cone_train_block_b_r01_20261012_155114_513_raw_f004566.png",
+      "session": "cone_train_block_b_r01_20261012_155114_513",
+      "frame": "4566",
+      "time_sec": "152.925195",
+      "width": "1280",
+      "height": "720",
+      "reason": "zero-output midpoint; run 4566..4566",
+      "decoded_bgr_sha256": "74a33746ec4d336e9c76673214aaa9ee60e81b4bb5987cc752e8255cb11c791e",
+      "png_sha256": "7175db99c3f057abf00be75eb097997d4cda9898e8116f1514b90c14207d04f3",
+      "source_raw_sha256": "d2f1899d1f1cec88562892d0aba11f11ccbd38b4b84da45bb5a593e7ff03e49a"
+    }
+  ],
+  "prediction_kwargs": {
+    "device": 0,
+    "imgsz": 960,
+    "conf": 0.01,
+    "iou": 0.7,
+    "max_det": 300,
+    "rect": false,
+    "quantize": 32,
+    "batch": 1,
+    "augment": false,
+    "save": false,
+    "save_txt": false,
+    "save_crop": false,
+    "show": false,
+    "visualize": false,
+    "verbose": false,
+    "stream": false
+  },
+  "versions": {
+    "torch": "2.14.1",
+    "torchvision": "0.29.1",
+    "ultralytics": "8.4.175",
+    "opencv-python": "5.0.0.93"
+  },
+  "code_sha256": {
+    "run_cone_review_frames.py": "6b926bb704a2a9ab954ae75b9de3206f10e81ed842c16c0f34cf323b0f4e7f89",
+    "cone_detection_diagnostics.py": "ee206fc2960d413792a8e5866a653a9bff0efea7affe2feec08924ea2678f3a6",
+    "run_cone_yolo.py": "4b16f1b57e9b6a0f64135e8b0eff21449ccdfb8935ef7b5888037a660da7a438",
+    "cone_dataset.py": "74f5beca6ef2df889617b8d563864c11f25494abebc706c6851b0af1612e9943"
+  },
+  "training_performed": false,
+  "physical_output": false
+}

@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-14",
+  "rows": 4,
+  "reference_cases": 2,
+  "input_sha256": {
+    "Experimental_results/2026-10-13/cone_ab_visual_review_r01/reviewed_error_cases.csv": "5a2fd692c8defced59a96664379b4651826bbdcec519fc1005876c29f1ae1336",
+    "Experimental_results/2026-10-14/cone_baseline_fp32_diagnose_r01/predictions.csv": "e319f4d546d6e22bfe8fcb17218e36fc7c4c82c7a57bd5092b30d0c3408a57a1",
+    "Experimental_results/2026-10-14/cone_augmented_v03_fp32_diagnose_r01/predictions.csv": "1536158215d5732c4c8e5a5303f8840dedcd942e36ca71e465ee74089c6c76be"
+  },
+  "output_sha256": "e09cef306d58fa8dc33a21b641e667f94e48127e94334e45954ea015c839ed5d",
+  "script_sha256": "1619911716155e99f707393576f0c108f617943db144cc6f64948e92fce74359",
+  "val_labels_modified": false,
+  "physical_output": false
+}

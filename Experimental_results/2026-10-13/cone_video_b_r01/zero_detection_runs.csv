@@ -1,0 +1,12 @@
+session,start_frame,end_frame,zero_frames,start_time_sec,end_time_sec,sample_span_sec,bounded_by_detection,truth
+cone_train_block_b_r01_20261012_155114_513,22,22,1,0.721392,0.721392,0.0,1,unknown: no per-frame visibility labels; NOT an automatic FN interval
+cone_train_block_b_r01_20261012_155114_513,28,38,11,0.921524,1.325986,0.4044620000000001,1,unknown: no per-frame visibility labels; NOT an automatic FN interval
+cone_train_block_b_r01_20261012_155114_513,51,52,2,1.754615,1.787842,0.033226999999999896,1,unknown: no per-frame visibility labels; NOT an automatic FN interval
+cone_train_block_b_r01_20261012_155114_513,55,57,3,1.887896,1.954553,0.06665699999999997,1,unknown: no per-frame visibility labels; NOT an automatic FN interval
+cone_train_block_b_r01_20261012_155114_513,59,68,10,2.021303,2.321398,0.3000949999999998,1,unknown: no per-frame visibility labels; NOT an automatic FN interval
+cone_train_block_b_r01_20261012_155114_513,1459,1465,7,48.890439,49.091351,0.20091200000000242,1,unknown: no per-frame visibility labels; NOT an automatic FN interval
+cone_train_block_b_r01_20261012_155114_513,2871,2874,4,96.156962,96.257049,0.10008700000000204,1,unknown: no per-frame visibility labels; NOT an automatic FN interval
+cone_train_block_b_r01_20261012_155114_513,3207,3207,1,107.424013,107.424013,0.0,1,unknown: no per-frame visibility labels; NOT an automatic FN interval
+cone_train_block_b_r01_20261012_155114_513,3210,3217,8,107.523849,107.757478,0.23362900000000764,1,unknown: no per-frame visibility labels; NOT an automatic FN interval
+cone_train_block_b_r01_20261012_155114_513,4566,4566,1,152.925195,152.925195,0.0,1,unknown: no per-frame visibility labels; NOT an automatic FN interval
+cone_nasi_block_b_r01_20261012_155435_017,1,572,572,0.026417,19.124547,19.09813,0,unknown: no per-frame visibility labels; NOT an automatic FN interval

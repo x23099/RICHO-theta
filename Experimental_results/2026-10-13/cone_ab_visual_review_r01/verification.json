@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-13",
+  "decision": "PASS_OFFLINE_VISUAL_REVIEW_NOT_DEPLOYMENT_APPROVAL",
+  "reviewed_images": 38,
+  "reviewed_gt": 56,
+  "color_counts": {
+    "red": 18,
+    "yellow": 38
+  },
+  "fp_categories": {
+    "non_cone_region": 3,
+    "duplicate_red": 3,
+    "merged_red_yellow_extent": 1
+  },
+  "model_inference_performed": false,
+  "training_performed": false,
+  "physical_output": false,
+  "original_png_hash_and_pixels": "PASS_ALL_38",
+  "original_label_hash": "PASS_ALL_56_GT",
+  "original_global_metrics_reproduced": true,
+  "source_sha256": {
+    "provenance.json": "30a3a98f96410f4a30e31a930e4ef7fc9bb9b1c5cea6d1b4e002a55d35cd603a",
+    "diagnostic_summary.json": "c16e41e391fbcf141fd547d606b84e8fc9d855fa213e1bb7baf6a56228e62e4a",
+    "ground_truth.csv": "0fa9f9072d0302fb3bff776a02ee22f5b5d3fe8570bea24a3467ad9f2de881c2",
+    "predictions.csv": "75ab2d494628c5fa4c1d1a292e377beed2cf020ab419cc1efd39a45e9a3f0d6b",
+    "image_manifest.csv": "1f942f3349edd7fedad940495718542bed5975fb485272d728b0352e9cf869b4"
+  },
+  "review_catalog_sha256": "1ab002245ec7aedab7e627a9fe4382884751c61a6914cc91591e4c661551ee1e",
+  "script_sha256": "d11e84e34df215953035ae468e5d9f9ce5d3626d8e59c3fd8ff98a89bd2833d6",
+  "attributes_sha256": "e67d1e588e2350f6b6c677bd12bba6f4f62bccc3d6e81aeba13bb27083dae4c5",
+  "reviewer": "assistant full-resolution original-image visual review; not independent human approval",
+  "prior_train_reference_source_sha256": "bcf2d772494531de75be30c7e58087b124e650f25e70e268332da7d63763729e",
+  "graph": {
+    "path": "report_assets/cone_color_recall_by_confidence.png",
+    "sha256": "87e207e0c6713a413470728f5468d1975931fcd285fac002a02eb108758d9808",
+    "source_csv_sha256": "ce50e43d9221ca296fe88bda2d839ff40d5d4a3dab19af4e2ced286f2f91d0b3"
+  }
+}

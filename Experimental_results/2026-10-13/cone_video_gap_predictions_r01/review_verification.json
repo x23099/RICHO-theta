@@ -1,0 +1,30 @@
+{
+  "status": "COMPLETED_POINT_REVIEW_NOT_ACCURACY_APPROVAL",
+  "selected_frames": 12,
+  "zero_point_examples": 10,
+  "zero_points_with_red_region_candidate": 9,
+  "original_images_unchanged": true,
+  "same_checkpoint_as_video": true,
+  "high_confidence_reproduced_count": 2,
+  "high_confidence_max_absolute_delta": 0.0,
+  "input_sha256": {
+    "cone_video_gap_predictions_r01/predictions.csv": "57fa14e33eb4861d6a89db5a9b784e2d5aa729647b1c90fc6ae1cf8042620f56",
+    "cone_video_gap_predictions_r01/provenance.json": "f46c69b1e78ad57ab2d83d800598e9977619f3768962fb0b8fe0aebdd34a06bd",
+    "cone_video_gap_predictions_r01/review_catalog.json": "a10eafbd2152026e002771b000c4c91de9293c504d72a9f577ad99e967bd45f9",
+    "cone_video_b_r01/raw_review_manifest.csv": "b043f97ea82abc41c29a450ce6f273be9b65cd1b845c3883d0ef2955c6502c02",
+    "cone_video_b_r01/visibility_review.csv": "7e92374536a5b0cf65408c38c78415a2f97b24a90e239bfd8f38162e0ad58727",
+    "cone_video_b_r01/predictions.csv": "70a23ffc2859ebd60afd1a77d8a730fb869bba17c60a767c18cff484f32b682f",
+    "cone_video_b_r01/provenance.json": "f46e8f4e725cde096e592966d88bce2d90574983be41700724635f30a6e63837"
+  },
+  "output_sha256": {
+    "gap_point_diagnosis.csv": "548251a027109847a86e88599ad48a8c0a47979281461b2e8d2ed6ba3e96aba7",
+    "reviewed_candidates.csv": "85ec48c300473f069222f3c96b26acf35a06be764370eccad16ced53d3dfafd3",
+    "review_threshold_summary.csv": "df70eb46db3564c2b36d6f338b25151c779d4d4c9e0f38d5a30e34fb5c1a98d2",
+    "gap_candidate_confidence.png": "f4cc2f635a0ed6f7d924ef4c1689a30776ea2dce02bed0ecf054eb35840ef957"
+  },
+  "script_sha256": "3ade231f864d288f898bf3d82ef0104d35f36e1a46401a9b1e674dc45073ce61",
+  "physical_output": false,
+  "training_performed": false,
+  "threshold_adopted": false,
+  "precision_recall_computed": false
+}

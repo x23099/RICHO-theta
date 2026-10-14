@@ -1,0 +1,4 @@
+scope,gt_count,width_px,height_px
+train_A_prior_yellow_reference,17,23,44
+train_A_prior_yellow_reference,16,18,24
+val_B_reviewed_yellow,38,74.0,140.0

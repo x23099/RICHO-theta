@@ -109,7 +109,7 @@ def label_path(root, image):
     return result
 
 
-def parse_label(path):
+def parse_label(path, *, reject_duplicates=True):
     boxes = []
     for line in Path(path).read_text().splitlines():
         if not line.strip():
@@ -125,7 +125,10 @@ def parse_label(path):
             raise ValueError(f"{path}: finite normalized positive box sizes required")
         if min(x-w/2,y-h/2) < -1e-6 or max(x+w/2,y+h/2) > 1+1e-6:
             raise ValueError(f"{path}: box outside image")
-        boxes.append((x,y,w,h))
+        box=(x,y,w,h)
+        if reject_duplicates and box in boxes:
+            raise ValueError(f"{path}: duplicate annotation box; explicitly correct/review labels before training")
+        boxes.append(box)
     return boxes
 
 
