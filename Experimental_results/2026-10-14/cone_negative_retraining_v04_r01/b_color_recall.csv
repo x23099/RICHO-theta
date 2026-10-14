@@ -1,0 +1,13 @@
+model,confidence_threshold,dimension,value,gt_count,detected,missed,recall
+baseline_35,0.25,color,red,18,18,0,1.0
+baseline_35,0.25,color,yellow,38,38,0,1.0
+baseline_35,0.5,color,red,18,18,0,1.0
+baseline_35,0.5,color,yellow,38,37,1,0.9736842105263158
+augmented_36,0.25,color,red,18,18,0,1.0
+augmented_36,0.25,color,yellow,38,38,0,1.0
+augmented_36,0.5,color,red,18,18,0,1.0
+augmented_36,0.5,color,yellow,38,32,6,0.8421052631578947
+negative_52,0.25,color,red,18,16,2,0.8888888888888888
+negative_52,0.25,color,yellow,38,37,1,0.9736842105263158
+negative_52,0.5,color,red,18,13,5,0.7222222222222222
+negative_52,0.5,color,yellow,38,0,38,0.0

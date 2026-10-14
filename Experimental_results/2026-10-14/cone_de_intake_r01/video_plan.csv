@@ -1,0 +1,6 @@
+session_dir,note
+/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/d01/cone_negative_train_d01_c_20261014_164134_986,d01; train; no human GT yet
+/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/d02/cone_negative_train_d02_c_20261014_164419_986,d02; train; no human GT yet
+/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/e01/cone_negative_eval_e01_c_20261014_164701_256,e01; val; no human GT yet
+/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/e02/cone_positive_eval_e02_c_20261014_165209_894,e02; val; no human GT yet
+/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/e03/cone_positive_eval_e03_c_20261014_165444_176,e03; val; no human GT yet

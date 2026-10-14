@@ -1,0 +1,5 @@
+model,confidence,sampled_images,images_with_bottle_false_prediction,false_prediction_boxes,distinct_physical_bottles
+baseline,0.25,8,8,8,1
+baseline,0.5,8,8,8,1
+augmented,0.25,8,3,3,1
+augmented,0.5,8,0,0,1

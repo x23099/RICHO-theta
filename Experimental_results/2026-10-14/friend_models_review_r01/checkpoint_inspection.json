@@ -1,0 +1,487 @@
+{
+  "status": "CHECKPOINT_METADATA_INSPECTED_NOT_DEPLOYED",
+  "files": {
+    "cone.pt": {
+      "source": "/home/robo25/Downloads/cone.pt",
+      "retained": "/home/robo25/theta_ws/RICHO-theta/runs/cone/received_friend_models_20261014_r01/cone.pt",
+      "bytes": 5448282,
+      "sha256": "39c94a4b37d8997ed8faf67a7602c4e6e7aaeba5770faf0d16f68a6b4dc06b2d",
+      "unsafe_globals": [
+        "ultralytics.nn.modules.block.C3k",
+        "ultralytics.nn.modules.conv.Concat",
+        "ultralytics.nn.modules.block.C2PSA",
+        "ultralytics.nn.modules.block.PSABlock",
+        "torch.nn.modules.upsampling.Upsample",
+        "ultralytics.nn.modules.conv.DWConv",
+        "torch.nn.modules.linear.Identity",
+        "ultralytics.nn.tasks.DetectionModel",
+        "torch.nn.modules.activation.SiLU",
+        "ultralytics.nn.modules.block.C3k2",
+        "ultralytics.nn.modules.block.SPPF",
+        "ultralytics.nn.modules.conv.Conv",
+        "ultralytics.nn.modules.block.Attention",
+        "torch.nn.modules.container.Sequential",
+        "ultralytics.nn.modules.head.Detect",
+        "torch.nn.modules.pooling.MaxPool2d",
+        "ultralytics.nn.modules.block.DFL",
+        "torch.nn.modules.conv.Conv2d",
+        "torch.nn.modules.container.ModuleList",
+        "torch.nn.modules.batchnorm.BatchNorm2d",
+        "ultralytics.nn.modules.block.Bottleneck"
+      ]
+    },
+    "shiho_lane_mask_v2_best.pth": {
+      "source": "/home/robo25/Downloads/shiho_lane_mask_v2_best.pth",
+      "retained": "/home/robo25/theta_ws/RICHO-theta/runs/cone/received_friend_models_20261014_r01/shiho_lane_mask_v2_best.pth",
+      "bytes": 32041923,
+      "sha256": "5b27059d531604246ffc2c38e410be229801157f14c97b3a8417e85200f705eb",
+      "unsafe_globals": []
+    }
+  },
+  "load_policy": "weights_only=True; cone permits only listed installed torch/Ultralytics NN classes; reconstruct from tensors",
+  "cone": {
+    "architecture": "YOLO11n DetectionModel",
+    "original_names": {
+      "0": "cone"
+    },
+    "target_mapping": {
+      "0 cone": "0 traffic_cone"
+    },
+    "original_training_version": "8.4.123",
+    "date": "2026-09-21T22:57:24.307907+09:00",
+    "train_args": {
+      "task": "detect",
+      "mode": "train",
+      "model": "yolo11n.pt",
+      "data": "data/tasks/cone/dataset/data.yaml",
+      "epochs": 50,
+      "time": null,
+      "patience": 100,
+      "batch": 16,
+      "imgsz": 640,
+      "save": true,
+      "save_period": -1,
+      "cache": false,
+      "device": "mps",
+      "workers": 0,
+      "project": "runs/train",
+      "name": "cone",
+      "exist_ok": true,
+      "pretrained": true,
+      "cls_remap": true,
+      "optimizer": "auto",
+      "verbose": true,
+      "seed": 0,
+      "deterministic": true,
+      "single_cls": false,
+      "rect": false,
+      "cos_lr": false,
+      "close_mosaic": 10,
+      "resume": false,
+      "amp": true,
+      "fraction": 1.0,
+      "profile": false,
+      "freeze": null,
+      "multi_scale": 0.0,
+      "compile": false,
+      "channels_last": false,
+      "overlap_mask": true,
+      "mask_ratio": 4,
+      "dropout": 0.0,
+      "val": true,
+      "split": "val",
+      "save_json": false,
+      "conf": null,
+      "iou": 0.7,
+      "max_det": 300,
+      "quantize": null,
+      "dnn": false,
+      "plots": true,
+      "end2end": null,
+      "source": null,
+      "vid_stride": 1,
+      "stream_buffer": false,
+      "visualize": false,
+      "augment": false,
+      "agnostic_nms": false,
+      "classes": null,
+      "retina_masks": false,
+      "embed": null,
+      "show": false,
+      "save_frames": false,
+      "save_txt": false,
+      "save_conf": false,
+      "save_crop": false,
+      "show_labels": true,
+      "show_conf": true,
+      "show_boxes": true,
+      "line_width": null,
+      "format": "torchscript",
+      "keras": false,
+      "optimize": false,
+      "dynamic": false,
+      "simplify": true,
+      "opset": null,
+      "workspace": null,
+      "nms": false,
+      "lr0": 0.01,
+      "lrf": 0.01,
+      "momentum": 0.937,
+      "weight_decay": 0.0005,
+      "warmup_epochs": 3.0,
+      "warmup_momentum": 0.8,
+      "warmup_bias_lr": 0.0,
+      "distill_model": null,
+      "dis": 6.0,
+      "box": 7.5,
+      "cls": 0.5,
+      "cls_pw": 0.0,
+      "dfl": 1.5,
+      "pose": 12.0,
+      "kobj": 1.0,
+      "rle": 1.0,
+      "angle": 1.0,
+      "dlog": 1.0,
+      "dgrad": 0.5,
+      "dlam": 1.0,
+      "nbs": 64,
+      "hsv_h": 0.015,
+      "hsv_s": 0.7,
+      "hsv_v": 0.4,
+      "degrees": 0.0,
+      "translate": 0.1,
+      "scale": 0.5,
+      "shear": 0.0,
+      "perspective": 0.0,
+      "flipud": 0.0,
+      "fliplr": 0.5,
+      "bgr": 0.0,
+      "mosaic": 1.0,
+      "mixup": 0.0,
+      "cutmix": 0.0,
+      "copy_paste": 0.0,
+      "copy_paste_mode": "flip",
+      "auto_augment": "randaugment",
+      "erasing": 0.4,
+      "cfg": null,
+      "tracker": "tracktrack.yaml"
+    },
+    "reported_training_metrics": {
+      "metrics/precision(B)": 0.96115,
+      "metrics/recall(B)": 0.98491,
+      "metrics/mAP50(B)": 0.99082,
+      "metrics/mAP50-95(B)": 0.82407,
+      "val/box_loss": 0.60202,
+      "val/cls_loss": 0.34599,
+      "val/dfl_loss": 0.8062,
+      "fitness": 0.82407
+    },
+    "cfg": {
+      "nc": 1,
+      "scales": {
+        "n": [
+          0.5,
+          0.25,
+          1024
+        ],
+        "s": [
+          0.5,
+          0.5,
+          1024
+        ],
+        "m": [
+          0.5,
+          1.0,
+          512
+        ],
+        "l": [
+          1.0,
+          1.0,
+          512
+        ],
+        "x": [
+          1.0,
+          1.5,
+          512
+        ]
+      },
+      "backbone": [
+        [
+          -1,
+          1,
+          "Conv",
+          [
+            64,
+            3,
+            2
+          ]
+        ],
+        [
+          -1,
+          1,
+          "Conv",
+          [
+            128,
+            3,
+            2
+          ]
+        ],
+        [
+          -1,
+          2,
+          "C3k2",
+          [
+            256,
+            false,
+            0.25
+          ]
+        ],
+        [
+          -1,
+          1,
+          "Conv",
+          [
+            256,
+            3,
+            2
+          ]
+        ],
+        [
+          -1,
+          2,
+          "C3k2",
+          [
+            512,
+            false,
+            0.25
+          ]
+        ],
+        [
+          -1,
+          1,
+          "Conv",
+          [
+            512,
+            3,
+            2
+          ]
+        ],
+        [
+          -1,
+          2,
+          "C3k2",
+          [
+            512,
+            true
+          ]
+        ],
+        [
+          -1,
+          1,
+          "Conv",
+          [
+            1024,
+            3,
+            2
+          ]
+        ],
+        [
+          -1,
+          2,
+          "C3k2",
+          [
+            1024,
+            true
+          ]
+        ],
+        [
+          -1,
+          1,
+          "SPPF",
+          [
+            1024,
+            5
+          ]
+        ],
+        [
+          -1,
+          2,
+          "C2PSA",
+          [
+            1024
+          ]
+        ]
+      ],
+      "head": [
+        [
+          -1,
+          1,
+          "nn.Upsample",
+          [
+            "None",
+            2,
+            "nearest"
+          ]
+        ],
+        [
+          [
+            -1,
+            6
+          ],
+          1,
+          "Concat",
+          [
+            1
+          ]
+        ],
+        [
+          -1,
+          2,
+          "C3k2",
+          [
+            512,
+            false
+          ]
+        ],
+        [
+          -1,
+          1,
+          "nn.Upsample",
+          [
+            "None",
+            2,
+            "nearest"
+          ]
+        ],
+        [
+          [
+            -1,
+            4
+          ],
+          1,
+          "Concat",
+          [
+            1
+          ]
+        ],
+        [
+          -1,
+          2,
+          "C3k2",
+          [
+            256,
+            false
+          ]
+        ],
+        [
+          -1,
+          1,
+          "Conv",
+          [
+            256,
+            3,
+            2
+          ]
+        ],
+        [
+          [
+            -1,
+            13
+          ],
+          1,
+          "Concat",
+          [
+            1
+          ]
+        ],
+        [
+          -1,
+          2,
+          "C3k2",
+          [
+            512,
+            false
+          ]
+        ],
+        [
+          -1,
+          1,
+          "Conv",
+          [
+            512,
+            3,
+            2
+          ]
+        ],
+        [
+          [
+            -1,
+            10
+          ],
+          1,
+          "Concat",
+          [
+            1
+          ]
+        ],
+        [
+          -1,
+          2,
+          "C3k2",
+          [
+            1024,
+            true
+          ]
+        ],
+        [
+          [
+            16,
+            19,
+            22
+          ],
+          1,
+          "Detect",
+          [
+            "nc"
+          ]
+        ]
+      ],
+      "scale": "n",
+      "yaml_file": "yolo11n.yaml",
+      "ch": 3,
+      "channels": 3
+    },
+    "tensor_only_path": "/home/robo25/theta_ws/RICHO-theta/runs/cone/received_friend_models_20261014_r01/cone_tensor_only.pth",
+    "tensor_only_sha256": "9e2c76a05e9fa8f2e0f561e28e0903f23823551ff0b8e6e04ed227edb2b3b417",
+    "training_image_count_verified": false,
+    "training_color_coverage_verified": false
+  },
+  "lane": {
+    "format": "state_dict checkpoint, not standalone YOLO detector",
+    "tensor_entries": 542,
+    "epoch": 50,
+    "reported_best_iou": 0.6839998858315605,
+    "final_convolution_shape": [
+      2,
+      8,
+      3,
+      3
+    ],
+    "metadata_keys": [
+      "state_dict",
+      "epoch",
+      "best_iou"
+    ],
+    "inference_performed": false,
+    "missing": [
+      "model architecture/forward definition",
+      "resize/letterbox/input dimensions",
+      "RGB/BGR and normalization",
+      "foreground/background channel mapping and postprocessing"
+    ],
+    "note": "2 output channels suggest segmentation, but task/architecture/channel meaning cannot be proven from shape alone"
+  },
+  "runtime_changed": false,
+  "ffb_output": false,
+  "script_sha256": "2a674d43279a0e9dc7b9d4271ceb5a8302697be84926649988026f08052f1300"
+}

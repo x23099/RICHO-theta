@@ -1,0 +1,13 @@
+model,key,color,references,associated_at_0p25,associated_at_0p50,human_GT
+baseline_35,e02,red,8,8,8,pending
+baseline_35,e02,yellow,8,8,8,pending
+baseline_35,e03,red,8,8,8,pending
+baseline_35,e03,yellow,8,7,1,pending
+augmented_36,e02,red,8,8,8,pending
+augmented_36,e02,yellow,8,8,8,pending
+augmented_36,e03,red,8,8,8,pending
+augmented_36,e03,yellow,8,8,5,pending
+negative_52,e02,red,8,8,8,pending
+negative_52,e02,yellow,8,8,8,pending
+negative_52,e03,red,8,8,8,pending
+negative_52,e03,yellow,8,6,6,pending

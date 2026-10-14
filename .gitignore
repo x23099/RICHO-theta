@@ -43,3 +43,7 @@ Experimental_results/*/regression_runs/
 /yolo-env/
 /datasets/cone/
 /runs/cone/
+
+# Regenerable framework settings/font caches; numerical provenance is retained separately.
+Experimental_results/**/ultralytics_config/
+Experimental_results/**/matplotlib_config/

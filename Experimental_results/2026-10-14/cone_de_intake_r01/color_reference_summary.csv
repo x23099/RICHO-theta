@@ -1,0 +1,9 @@
+model,key,color,visible_reference_instances,associated_at_0p25,associated_at_0p50,reference_actor
+baseline,e02,red,8,8,8,assistant_nonblinded_NOT_human_GT
+baseline,e02,yellow,8,8,8,assistant_nonblinded_NOT_human_GT
+baseline,e03,red,8,8,8,assistant_nonblinded_NOT_human_GT
+baseline,e03,yellow,8,7,1,assistant_nonblinded_NOT_human_GT
+augmented,e02,red,8,8,8,assistant_nonblinded_NOT_human_GT
+augmented,e02,yellow,8,8,8,assistant_nonblinded_NOT_human_GT
+augmented,e03,red,8,8,8,assistant_nonblinded_NOT_human_GT
+augmented,e03,yellow,8,8,5,assistant_nonblinded_NOT_human_GT

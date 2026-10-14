@@ -1,0 +1,63 @@
+{
+  "misses": [
+    {
+      "scope": "B human reviewed labels",
+      "image": "images/val/block_b_d2f1899d1f1cec88_f002101.png",
+      "color": "red",
+      "best_overlap_iou": 0.8341261451533738,
+      "score": 0.1894964873790741,
+      "threshold": 0.25,
+      "explanation": "overlapping candidate exists below threshold",
+      "model": "negative_52"
+    },
+    {
+      "scope": "B human reviewed labels",
+      "image": "images/val/block_b_d2f1899d1f1cec88_f003601.png",
+      "color": "yellow",
+      "best_overlap_iou": 0.9131236801267795,
+      "score": 0.2300087809562683,
+      "threshold": 0.25,
+      "explanation": "overlapping candidate exists below threshold",
+      "model": "negative_52"
+    },
+    {
+      "scope": "B human reviewed labels",
+      "image": "images/val/block_b_d2f1899d1f1cec88_f004201.png",
+      "color": "red",
+      "best_overlap_iou": 0.9208396484786483,
+      "score": 0.19801072776317596,
+      "threshold": 0.25,
+      "explanation": "overlapping candidate exists below threshold",
+      "model": "negative_52"
+    },
+    {
+      "scope": "E assistant reference, NOT human GT",
+      "image": "images/val/block_e_20261014_acec4adbfa04e57a_f000940.png",
+      "color": "yellow",
+      "best_overlap_iou": "",
+      "score": "0.13657408952713013",
+      "threshold": 0.25,
+      "explanation": "associated candidate below threshold",
+      "model": "negative_52"
+    },
+    {
+      "scope": "E assistant reference, NOT human GT",
+      "image": "images/val/block_e_20261014_acec4adbfa04e57a_f001097.png",
+      "color": "yellow",
+      "best_overlap_iou": "",
+      "score": "0.14047138392925262",
+      "threshold": 0.25,
+      "explanation": "associated candidate below threshold",
+      "model": "negative_52"
+    }
+  ],
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_negative_v04_b_diagnose_r01/matches.csv": "7c8598275f0490fbeebbd82e8b2f834e7bd5df5856cca2a48faef01fd952fdda",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_negative_v04_b_diagnose_r01/ground_truth.csv": "f58487f0ccee82cb1ab24526e0025d714a46e8eb6a813371d4b4234c82aafec3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_negative_v04_b_diagnose_r01/predictions.csv": "11fc36e77e75e7cd80162a86338fa3804ca409a9af299b0a9125abc0aed1d13e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_negative_retraining_v04_r01/e_target_associations.csv": "78e503ae66cdedb0a33bfaa8247644920d5b1d02e5f7eedf5b7d59f77751557a"
+  },
+  "script_sha256": "2ce279aea5bf04a3b65a0e560454c1807f4a2021941254405e2e3b923be7f182",
+  "threshold_changed": false,
+  "labels_changed": false
+}

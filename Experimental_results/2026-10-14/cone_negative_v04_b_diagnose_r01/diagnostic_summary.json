@@ -1,0 +1,84 @@
+{
+  "status": "COMPLETED_DIAGNOSTICS_NOT_DEPLOYMENT_APPROVAL",
+  "config": {
+    "split": "val",
+    "confidence_thresholds": [
+      0.05,
+      0.1,
+      0.25,
+      0.5,
+      0.75
+    ],
+    "prediction_floor": 0.01,
+    "match_iou": 0.5,
+    "nms_iou": 0.7,
+    "max_det": 300,
+    "matching": "confidence-descending greedy; best unmatched GT IoU; one-to-one",
+    "size_bands": "GT height in original pixels: small <32; medium <96; large >=96",
+    "image_half": "GT centre relative to width/2; NOT a front/rear assignment",
+    "precision_recall_scope": "fixed-threshold diagnostics, NOT Ultralytics val/mAP reproduction"
+  },
+  "image_count": 38,
+  "gt_count": 56,
+  "prediction_count": 432,
+  "threshold_summary": [
+    {
+      "confidence_threshold": 0.05,
+      "images": 38,
+      "gt_count": 56,
+      "tp": 56,
+      "fp": 149,
+      "fn": 0,
+      "precision": 0.2731707317073171,
+      "recall": 1.0
+    },
+    {
+      "confidence_threshold": 0.1,
+      "images": 38,
+      "gt_count": 56,
+      "tp": 56,
+      "fp": 123,
+      "fn": 0,
+      "precision": 0.3128491620111732,
+      "recall": 1.0
+    },
+    {
+      "confidence_threshold": 0.25,
+      "images": 38,
+      "gt_count": 56,
+      "tp": 53,
+      "fp": 12,
+      "fn": 3,
+      "precision": 0.8153846153846154,
+      "recall": 0.9464285714285714
+    },
+    {
+      "confidence_threshold": 0.5,
+      "images": 38,
+      "gt_count": 56,
+      "tp": 13,
+      "fp": 0,
+      "fn": 43,
+      "precision": 1.0,
+      "recall": 0.23214285714285715
+    },
+    {
+      "confidence_threshold": 0.75,
+      "images": 38,
+      "gt_count": 56,
+      "tp": 12,
+      "fp": 0,
+      "fn": 44,
+      "precision": 1.0,
+      "recall": 0.21428571428571427
+    }
+  ],
+  "physical_output": false,
+  "max_det_reached_images": 0,
+  "limitations": [
+    "Post-NMS predictions only; scores below prediction floor are unavailable.",
+    "No independent test approval or Ultralytics mAP reproduction.",
+    "Unknown color/lens/occlusion are not inferred from filenames or HSV.",
+    "Timing includes first call; not live camera throughput or FFB latency."
+  ]
+}

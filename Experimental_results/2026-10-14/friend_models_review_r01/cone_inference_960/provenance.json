@@ -1,0 +1,39 @@
+{
+  "status": "COMPLETED_SELECTED_FRAMES_NOT_ACCURACY_OR_DEPLOYMENT_APPROVAL",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 3070",
+    "index": 0,
+    "torch_version": "2.14.1+cu130",
+    "torch_cuda_version": "13.0"
+  },
+  "checkpoint_sha256": "39c94a4b37d8997ed8faf67a7602c4e6e7aaeba5770faf0d16f68a6b4dc06b2d",
+  "tensor_checkpoint_sha256": "9e2c76a05e9fa8f2e0f561e28e0903f23823551ff0b8e6e04ed227edb2b3b417",
+  "prediction_kwargs": {
+    "device": 0,
+    "imgsz": 960,
+    "conf": 0.01,
+    "iou": 0.7,
+    "max_det": 300,
+    "rect": false,
+    "quantize": 32,
+    "batch": 1,
+    "augment": false,
+    "save": false,
+    "save_txt": false,
+    "save_crop": false,
+    "show": false,
+    "visualize": false,
+    "verbose": false
+  },
+  "manifest_sha256": "74563eddc04a926f0b71291d6087f5802cde50e7594f88923fef7267e93559c0",
+  "all_tensors_strictly_loaded": true,
+  "original_names": {
+    "0": "cone"
+  },
+  "canonical_mapping": "class0 cone -> class0 traffic_cone for comparison ONLY",
+  "architecture_reconstructed": true,
+  "training_performed": false,
+  "ffb_output": false,
+  "model_source_data_overlap_unknown": true,
+  "script_sha256": "2a674d43279a0e9dc7b9d4271ceb5a8302697be84926649988026f08052f1300"
+}

@@ -1,0 +1,4 @@
+confidence_threshold,image,session,frame,time_sec,gt_count,tp,fp,fn,file,png_sha256
+0.25,images/val/block_b_d2f1899d1f1cec88_f000301.png,cone_train_block_b_r01_20261012_155114_513,301,10.154666,2,2,2,0,raw_examples/block_b_d2f1899d1f1cec88_f000301.png,605acf6bf81e9ac652a6a5721fffaf2202620cbceb4e57d50807cd3e5d7bb251
+0.25,images/val/block_b_d2f1899d1f1cec88_f002101.png,cone_train_block_b_r01_20261012_155114_513,2101,70.356757,2,1,1,1,raw_examples/block_b_d2f1899d1f1cec88_f002101.png,14d6bfe533fd9fdee2d0dcacb14f19af561c3e00ae47dad2ce4b1c075330e0f1
+0.25,images/val/block_b_d2f1899d1f1cec88_f003301.png,cone_train_block_b_r01_20261012_155114_513,3301,110.557359,2,2,2,0,raw_examples/block_b_d2f1899d1f1cec88_f003301.png,9de5e4faf5ab09f9846f9d3c3acec0c534538a0451f965010f5e173741fc4aa2

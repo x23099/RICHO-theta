@@ -1,0 +1,24 @@
+{
+  "models": {
+    "baseline_35": {
+      "path": "/home/robo25/theta_ws/RICHO-theta/runs/cone/train_ab_baseline_local_20261014_r01/yolov8n/weights/best.pt",
+      "sha256": "7052237babf12fcd1efbdcf3e15f8359c09c6b8c9e313e2f514e6d5741d5ae17"
+    },
+    "augmented_36": {
+      "path": "/home/robo25/theta_ws/RICHO-theta/runs/cone/train_ab_augmented_v03_local_20261014_r01/yolov8n/weights/best.pt",
+      "sha256": "3a6e124adb15c16efd7d22c853406066371f48873c82f1d3cfc445b22ae5997b"
+    }
+  },
+  "confidence_thresholds": [
+    0.25,
+    0.5
+  ],
+  "prediction_floor": 0.01,
+  "nms_iou": 0.7,
+  "imgsz": 960,
+  "selection": "8 equally spaced whole frames per session, determined before model inference",
+  "use": "D train review, E same-room separate-capture evaluation; E never training",
+  "user_note": "E02 kept as fixed-position coverage; E03 adds repositioned coverage",
+  "limitations": "No independent-background claim; repeated comparisons/tuning make E development evaluation",
+  "source_script_sha256": "faca308d2ced8df63bff71186fa1eeb81adf810c9aa3b4ba1e609364f73aba08"
+}

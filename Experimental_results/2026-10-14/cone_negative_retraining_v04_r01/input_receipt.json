@@ -1,0 +1,68 @@
+{
+  "status": "FIXED_INPUTS_NOT_TRAINING_OR_MODEL_APPROVAL",
+  "counts": {
+    "train": {
+      "images": 52,
+      "positive": 36,
+      "negative": 16,
+      "boxes": 55
+    },
+    "val": {
+      "images": 38,
+      "positive": 38,
+      "negative": 0,
+      "boxes": 56
+    }
+  },
+  "human_confirmation": {
+    "user_message": "\u5168\u3066\u30b3\u30fc\u30f3\u3092\u78ba\u8a8d\u3067\u304d\u307e\u305b\u3093\u3067\u3057\u305f\u3002\u9032\u3081\u3066\u304f\u3060\u3055\u3044",
+    "context": "preceding instruction: 16 D images, N->Y when both lenses contain no cone",
+    "original_gui_saved_negative": 15,
+    "original_gui_pending": 1,
+    "original_reviews_sha256": "0f10195e907c4d9877d4e332d02ad3a8b2ad705e4f4a9dac72de2497941804a1",
+    "completed_by_chat_confirmation_image": "images/train/block_d_20261014_b1e739125cc2a88d_f000001.png",
+    "final_reviews_sha256": "083cb59a321ea64ba9c243da185c9718ee85a3b4530e2dd7758aff2765bf7d37",
+    "date": "2026-10-14"
+  },
+  "original_reference_images_and_labels_byte_identical": true,
+  "e_not_in_training": true,
+  "input_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_negative_augmented_v04/manifest.csv": "d38249fe3c7903beaa0f22b1019ea64b64425b4eae5793e3186b95faa8173779",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_negative_augmented_v04/reviews.csv": "4d8873c387e24319f8a7641ddfe76fae70932c7d1a5a171fbd4fd3e1902237f1",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_negative_augmented_v04/dataset.json": "a172812adab779738c53c8774257adb3115b377e9eeea91e6bcfe59ae6e63842",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_augmented_v03/manifest.csv": "457bdc1c991cc9347a940105c3d3c6589bc21c14b42bf4296654270578d30a6b",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_augmented_v03/reviews.csv": "3542d81a66fabf8e3cf1a92c18825cd6ad6b6f3146c4380a29983702dbea4403",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_augmented_v03/dataset.json": "f18176d7f50f16bfb6f35491875eaa31a88e9bb3071d3100d304556b401f97e8",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/de_negative_train_review_v01/manifest.csv": "06d467498f06a8d7a4a2c0c69089a99f4db5a60f5334b5de3b593b8051418e2d",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/de_negative_train_review_v01/reviews.csv": "083cb59a321ea64ba9c243da185c9718ee85a3b4530e2dd7758aff2765bf7d37",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/de_negative_train_review_v01/dataset.json": "2b5624e9240d5af19befa726b92cbd30e68819294095dc6ae8d393d529a4dc0b",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/de_evaluation_review_v01/manifest.csv": "671152a346e78ba267dc4c6604138987c35ba4b16995c2758f38e326b36c2a15",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/de_evaluation_review_v01/reviews.csv": "4580182923f82ca207a2622ed7be65787db71ebefb7007941e13d8b7fd6d1fa1",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/de_evaluation_review_v01/dataset.json": "b3b4a42873a29937447c591ec907201433036d3fc8221695307469f2734500d7",
+    "/home/robo25/theta_ws/RICHO-theta/src/yolov8n.pt": "31e20dde3def09e2cf938c7be6fe23d9150bbbe503982af13345706515f2ef95",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_negative_augmented_v04/data.yaml": "20ffc381bcded6e8e9e48d9d0a79cd534d5355040c8336cd9528610c7dc6fad1",
+    "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_augmented_v03/data.yaml": "79340b57eb67b1dc85d8bf0e9e1355dcd200861b920286a35ff01fe705d47ca3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_de_intake_r01/assistant_reference_boxes.csv": "82bcf1fb020db29c68c2df2413fe3f2c03b6c204e59af7e804be499d8b8a8974",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_de_intake_r01/positive_target_associations.csv": "62699652cb26e6aaddd245478f2ccbdf3bd66a5fa348400ab601a9ead7803675",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_de_intake_r01/frozen_comparison.json": "a0bdc4464b92bf0812c7bc689bf8e469da35df9068837ec401376162980bbe07"
+  },
+  "recipe": {
+    "epochs": 50,
+    "batch": 8,
+    "imgsz": 960,
+    "seed": 0,
+    "amp": false,
+    "offline": true,
+    "initial_weights_sha256": "31e20dde3def09e2cf938c7be6fe23d9150bbbe503982af13345706515f2ef95"
+  },
+  "frozen_thresholds": [
+    0.25,
+    0.5
+  ],
+  "limits": [
+    "Water bottle D02 samples are now training data; their post-training score is resubstitution, NOT holdout accuracy.",
+    "B is repeated development validation used to select best epoch; E is separate capture, never training.",
+    "E color reference boxes remain assistant/nonblinded unless explicitly human reviewed.",
+    "No automatic runtime deployment or FFB activation."
+  ]
+}

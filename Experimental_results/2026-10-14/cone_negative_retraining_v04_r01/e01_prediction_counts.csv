@@ -1,0 +1,7 @@
+model,confidence,key,sampled_images,images_with_prediction,prediction_boxes,human_GT
+baseline_35,0.25,e01,8,0,0,pending
+baseline_35,0.5,e01,8,0,0,pending
+augmented_36,0.25,e01,8,0,0,pending
+augmented_36,0.5,e01,8,0,0,pending
+negative_52,0.25,e01,8,0,0,pending
+negative_52,0.5,e01,8,0,0,pending

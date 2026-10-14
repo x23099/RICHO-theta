@@ -1,0 +1,366 @@
+{
+  "status": "COMPLETED_SPARSE_OFFLINE_DIAGNOSIS_NOT_MODEL_ADOPTION",
+  "recording_sessions": 5,
+  "total_recorded_frames": 5589,
+  "sampled_images": 40,
+  "human_confirmed_image_labels": 0,
+  "training_performed": false,
+  "models_adopted": false,
+  "ffb_output": false,
+  "water_bottle_identity_confirmation": "User: \u8d64\u8272\u306e\u6c34\u7b52\u3067\u3059\u3002\u30b3\u30fc\u30f3\u3067\u306f\u306a\u3044\u3067\u3059",
+  "prediction_counts": [
+    {
+      "model": "baseline",
+      "key": "d01",
+      "confidence": 0.25,
+      "sampled_images": 8,
+      "images_with_prediction": 0,
+      "prediction_boxes": 0,
+      "max_score": 0.024407533928751945,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "baseline",
+      "key": "d01",
+      "confidence": 0.5,
+      "sampled_images": 8,
+      "images_with_prediction": 0,
+      "prediction_boxes": 0,
+      "max_score": 0.024407533928751945,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "baseline",
+      "key": "d02",
+      "confidence": 0.25,
+      "sampled_images": 8,
+      "images_with_prediction": 8,
+      "prediction_boxes": 8,
+      "max_score": 0.6075811982154846,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "baseline",
+      "key": "d02",
+      "confidence": 0.5,
+      "sampled_images": 8,
+      "images_with_prediction": 8,
+      "prediction_boxes": 8,
+      "max_score": 0.6075811982154846,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "baseline",
+      "key": "e01",
+      "confidence": 0.25,
+      "sampled_images": 8,
+      "images_with_prediction": 0,
+      "prediction_boxes": 0,
+      "max_score": 0,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "baseline",
+      "key": "e01",
+      "confidence": 0.5,
+      "sampled_images": 8,
+      "images_with_prediction": 0,
+      "prediction_boxes": 0,
+      "max_score": 0,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "baseline",
+      "key": "e02",
+      "confidence": 0.25,
+      "sampled_images": 8,
+      "images_with_prediction": 8,
+      "prediction_boxes": 16,
+      "max_score": 0.8850999474525452,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "baseline",
+      "key": "e02",
+      "confidence": 0.5,
+      "sampled_images": 8,
+      "images_with_prediction": 8,
+      "prediction_boxes": 16,
+      "max_score": 0.8850999474525452,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "baseline",
+      "key": "e03",
+      "confidence": 0.25,
+      "sampled_images": 8,
+      "images_with_prediction": 8,
+      "prediction_boxes": 15,
+      "max_score": 0.90379399061203,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "baseline",
+      "key": "e03",
+      "confidence": 0.5,
+      "sampled_images": 8,
+      "images_with_prediction": 8,
+      "prediction_boxes": 9,
+      "max_score": 0.90379399061203,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "augmented",
+      "key": "d01",
+      "confidence": 0.25,
+      "sampled_images": 8,
+      "images_with_prediction": 0,
+      "prediction_boxes": 0,
+      "max_score": 0.12851381301879883,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "augmented",
+      "key": "d01",
+      "confidence": 0.5,
+      "sampled_images": 8,
+      "images_with_prediction": 0,
+      "prediction_boxes": 0,
+      "max_score": 0.12851381301879883,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "augmented",
+      "key": "d02",
+      "confidence": 0.25,
+      "sampled_images": 8,
+      "images_with_prediction": 3,
+      "prediction_boxes": 3,
+      "max_score": 0.2790650725364685,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "augmented",
+      "key": "d02",
+      "confidence": 0.5,
+      "sampled_images": 8,
+      "images_with_prediction": 0,
+      "prediction_boxes": 0,
+      "max_score": 0.2790650725364685,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "augmented",
+      "key": "e01",
+      "confidence": 0.25,
+      "sampled_images": 8,
+      "images_with_prediction": 0,
+      "prediction_boxes": 0,
+      "max_score": 0.11752919852733612,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "augmented",
+      "key": "e01",
+      "confidence": 0.5,
+      "sampled_images": 8,
+      "images_with_prediction": 0,
+      "prediction_boxes": 0,
+      "max_score": 0.11752919852733612,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "augmented",
+      "key": "e02",
+      "confidence": 0.25,
+      "sampled_images": 8,
+      "images_with_prediction": 8,
+      "prediction_boxes": 16,
+      "max_score": 0.9619826674461365,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "augmented",
+      "key": "e02",
+      "confidence": 0.5,
+      "sampled_images": 8,
+      "images_with_prediction": 8,
+      "prediction_boxes": 16,
+      "max_score": 0.9619826674461365,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "augmented",
+      "key": "e03",
+      "confidence": 0.25,
+      "sampled_images": 8,
+      "images_with_prediction": 8,
+      "prediction_boxes": 16,
+      "max_score": 0.9609549045562744,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    },
+    {
+      "model": "augmented",
+      "key": "e03",
+      "confidence": 0.5,
+      "sampled_images": 8,
+      "images_with_prediction": 8,
+      "prediction_boxes": 13,
+      "max_score": 0.9609549045562744,
+      "human_GT": "pending",
+      "scope": "candidate counts NOT accuracy"
+    }
+  ],
+  "color_reference_summary": [
+    {
+      "model": "baseline",
+      "key": "e02",
+      "color": "red",
+      "visible_reference_instances": 8,
+      "associated_at_0p25": 8,
+      "associated_at_0p50": 8,
+      "reference_actor": "assistant_nonblinded_NOT_human_GT"
+    },
+    {
+      "model": "baseline",
+      "key": "e02",
+      "color": "yellow",
+      "visible_reference_instances": 8,
+      "associated_at_0p25": 8,
+      "associated_at_0p50": 8,
+      "reference_actor": "assistant_nonblinded_NOT_human_GT"
+    },
+    {
+      "model": "baseline",
+      "key": "e03",
+      "color": "red",
+      "visible_reference_instances": 8,
+      "associated_at_0p25": 8,
+      "associated_at_0p50": 8,
+      "reference_actor": "assistant_nonblinded_NOT_human_GT"
+    },
+    {
+      "model": "baseline",
+      "key": "e03",
+      "color": "yellow",
+      "visible_reference_instances": 8,
+      "associated_at_0p25": 7,
+      "associated_at_0p50": 1,
+      "reference_actor": "assistant_nonblinded_NOT_human_GT"
+    },
+    {
+      "model": "augmented",
+      "key": "e02",
+      "color": "red",
+      "visible_reference_instances": 8,
+      "associated_at_0p25": 8,
+      "associated_at_0p50": 8,
+      "reference_actor": "assistant_nonblinded_NOT_human_GT"
+    },
+    {
+      "model": "augmented",
+      "key": "e02",
+      "color": "yellow",
+      "visible_reference_instances": 8,
+      "associated_at_0p25": 8,
+      "associated_at_0p50": 8,
+      "reference_actor": "assistant_nonblinded_NOT_human_GT"
+    },
+    {
+      "model": "augmented",
+      "key": "e03",
+      "color": "red",
+      "visible_reference_instances": 8,
+      "associated_at_0p25": 8,
+      "associated_at_0p50": 8,
+      "reference_actor": "assistant_nonblinded_NOT_human_GT"
+    },
+    {
+      "model": "augmented",
+      "key": "e03",
+      "color": "yellow",
+      "visible_reference_instances": 8,
+      "associated_at_0p25": 8,
+      "associated_at_0p50": 5,
+      "reference_actor": "assistant_nonblinded_NOT_human_GT"
+    }
+  ],
+  "water_bottle_threshold_summary": [
+    {
+      "model": "baseline",
+      "confidence": 0.25,
+      "sampled_images": 8,
+      "images_with_bottle_false_prediction": 8,
+      "false_prediction_boxes": 8,
+      "distinct_physical_bottles": 1
+    },
+    {
+      "model": "baseline",
+      "confidence": 0.5,
+      "sampled_images": 8,
+      "images_with_bottle_false_prediction": 8,
+      "false_prediction_boxes": 8,
+      "distinct_physical_bottles": 1
+    },
+    {
+      "model": "augmented",
+      "confidence": 0.25,
+      "sampled_images": 8,
+      "images_with_bottle_false_prediction": 3,
+      "false_prediction_boxes": 3,
+      "distinct_physical_bottles": 1
+    },
+    {
+      "model": "augmented",
+      "confidence": 0.5,
+      "sampled_images": 8,
+      "images_with_bottle_false_prediction": 0,
+      "false_prediction_boxes": 0,
+      "distinct_physical_bottles": 1
+    }
+  ],
+  "frozen_comparison_sha256": "a0bdc4464b92bf0812c7bc689bf8e469da35df9068837ec401376162980bbe07",
+  "source_inference_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_de_d_baseline_diagnose_r01/predictions.csv": "859ec35b307ab2533cfcc302e08968e70a18d33688f891f775031c9c0d2b9e10",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_de_d_baseline_diagnose_r01/provenance.json": "c9c0cd9952ce571228a647cc256b76465554c7fb4be186a3c3d9acb1cdb503ec",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_de_d_baseline_diagnose_r01/summary.json": "2d9dfae12cfd0d4ad3703e8a6a79e9661d19c44ad74ca5449e4c158685521b5b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_de_d_augmented_diagnose_r01/predictions.csv": "faf126ea2f0a4090268968a07e432792fe7e3ff49051f456af505708ff87678b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_de_d_augmented_diagnose_r01/provenance.json": "33408e7b354c7f7753baeec45734c348c3910e4bf54b50a877da766baeaa0642",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_de_d_augmented_diagnose_r01/summary.json": "2d9dfae12cfd0d4ad3703e8a6a79e9661d19c44ad74ca5449e4c158685521b5b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_de_e_baseline_diagnose_r01/predictions.csv": "79243613b9fabf82217e53eb3ec80318d3bcfc8e11bb56848f2383bf87a9f167",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_de_e_baseline_diagnose_r01/provenance.json": "3d8eb49c1cab7456c7695be0608ff8ec6d00e5acee275dc9127a296b2a1a5f1d",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_de_e_baseline_diagnose_r01/summary.json": "209b45241d4d88ffca09ef4ee40e5636136d811032143ad32a95be1d84401fe4",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_de_e_augmented_diagnose_r01/predictions.csv": "c5229551c6e0b95644cdd441d079f1c39f201e5cdf50cf5e437b7e5e2fb00232",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_de_e_augmented_diagnose_r01/provenance.json": "020cf12b8373d9c4da46020cd49f18627e7c0108b4f19ff28f7aab8fa72d2626",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-14/cone_de_e_augmented_diagnose_r01/summary.json": "5e2275918a1ce1b19f9574a6fbb5b77db914cea76610d1ac4baf77cfb15f1b3c"
+  },
+  "analysis_script_sha256": "92be165cf059dba59ebb667cea01f394eb7354b83f30b09a8a2d872e4edaa21b",
+  "graph_sha256": "9d4be0a8910c94f75a472918bb285a9b7200109567ed491fa2a4971451de9faf",
+  "limits": [
+    "Only 8 selected frames per video were visually reviewed and inferred, not every video frame.",
+    "E02 fixed-position repetition is not independent objects; E03 includes partial occlusion/repositioning.",
+    "E reference boxes are assistant/nonblinded pilot references, not independent human annotation.",
+    "D/E were separated; E remains evaluation-only and must not be merged into training.",
+    "An earlier frozen note assumed same-room capture; observed D/E01/E02/E03 show different indoor views. No unseen-site claim.",
+    "No threshold or runtime setting was changed."
+  ]
+}

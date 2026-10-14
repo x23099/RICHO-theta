@@ -1,0 +1,6 @@
+scope,image,color,best_overlap_iou,score,threshold,explanation,model
+B human reviewed labels,images/val/block_b_d2f1899d1f1cec88_f002101.png,red,0.8341261451533738,0.1894964873790741,0.25,overlapping candidate exists below threshold,negative_52
+B human reviewed labels,images/val/block_b_d2f1899d1f1cec88_f003601.png,yellow,0.9131236801267795,0.2300087809562683,0.25,overlapping candidate exists below threshold,negative_52
+B human reviewed labels,images/val/block_b_d2f1899d1f1cec88_f004201.png,red,0.9208396484786483,0.19801072776317596,0.25,overlapping candidate exists below threshold,negative_52
+"E assistant reference, NOT human GT",images/val/block_e_20261014_acec4adbfa04e57a_f000940.png,yellow,,0.13657408952713013,0.25,associated candidate below threshold,negative_52
+"E assistant reference, NOT human GT",images/val/block_e_20261014_acec4adbfa04e57a_f001097.png,yellow,,0.14047138392925262,0.25,associated candidate below threshold,negative_52

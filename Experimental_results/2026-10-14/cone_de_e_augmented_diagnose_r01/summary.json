@@ -1,0 +1,15 @@
+{
+  "status": "COMPLETED_SELECTED_FRAMES_NOT_ACCURACY_OR_DEPLOYMENT_APPROVAL",
+  "images": 24,
+  "predictions": 58,
+  "original_pixels_verified": true,
+  "max_det_reached_images": 0,
+  "physical_output": false,
+  "training_performed": false,
+  "limitations": [
+    "Selected failure/jump examples, not independent or unbiased test images.",
+    "Candidate existence is not a TP without object/location review.",
+    "The single traffic_cone class includes yellow and red cones.",
+    "A visible/lifted cone does not establish a valid floor contact point."
+  ]
+}

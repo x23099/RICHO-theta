@@ -1,0 +1,7 @@
+model,confidence,images_with_bottle_prediction,sampled_images,scope
+baseline_35,0.25,8,8,D02 is training resubstitution for negative_52; NOT independent generalization
+baseline_35,0.5,8,8,D02 is training resubstitution for negative_52; NOT independent generalization
+augmented_36,0.25,3,8,D02 is training resubstitution for negative_52; NOT independent generalization
+augmented_36,0.5,0,8,D02 is training resubstitution for negative_52; NOT independent generalization
+negative_52,0.25,0,8,D02 is training resubstitution for negative_52; NOT independent generalization
+negative_52,0.5,0,8,D02 is training resubstitution for negative_52; NOT independent generalization

@@ -1,0 +1,17 @@
+model,image,confidence,iou_to_visual_bottle_region,object_identity
+baseline,images/train/block_d_20261014_1eba1760023abcce_f000001.png,0.6010494828224182,0.6164179008772798,red water bottle: user confirmed NOT cone
+baseline,images/train/block_d_20261014_1eba1760023abcce_f000131.png,0.5501090288162231,0.6887149794953307,red water bottle: user confirmed NOT cone
+baseline,images/train/block_d_20261014_1eba1760023abcce_f000261.png,0.5593233704566956,0.6929963767988317,red water bottle: user confirmed NOT cone
+baseline,images/train/block_d_20261014_1eba1760023abcce_f000391.png,0.5507907271385193,0.6526706079217026,red water bottle: user confirmed NOT cone
+baseline,images/train/block_d_20261014_1eba1760023abcce_f000522.png,0.548214852809906,0.6631723613508286,red water bottle: user confirmed NOT cone
+baseline,images/train/block_d_20261014_1eba1760023abcce_f000652.png,0.5896229147911072,0.6688698540542269,red water bottle: user confirmed NOT cone
+baseline,images/train/block_d_20261014_1eba1760023abcce_f000782.png,0.6075811982154846,0.6294883603300654,red water bottle: user confirmed NOT cone
+baseline,images/train/block_d_20261014_1eba1760023abcce_f000912.png,0.5976591110229492,0.6659292797407796,red water bottle: user confirmed NOT cone
+augmented,images/train/block_d_20261014_1eba1760023abcce_f000001.png,0.15389606356620789,0.6948592684170821,red water bottle: user confirmed NOT cone
+augmented,images/train/block_d_20261014_1eba1760023abcce_f000131.png,0.1710088700056076,0.7501404474934806,red water bottle: user confirmed NOT cone
+augmented,images/train/block_d_20261014_1eba1760023abcce_f000261.png,0.20925955474376678,0.7401108940367188,red water bottle: user confirmed NOT cone
+augmented,images/train/block_d_20261014_1eba1760023abcce_f000391.png,0.20709051191806793,0.7004057027289818,red water bottle: user confirmed NOT cone
+augmented,images/train/block_d_20261014_1eba1760023abcce_f000522.png,0.18237097561359406,0.7573921678256019,red water bottle: user confirmed NOT cone
+augmented,images/train/block_d_20261014_1eba1760023abcce_f000652.png,0.2790650725364685,0.7157507703481516,red water bottle: user confirmed NOT cone
+augmented,images/train/block_d_20261014_1eba1760023abcce_f000782.png,0.27764126658439636,0.7479078560704456,red water bottle: user confirmed NOT cone
+augmented,images/train/block_d_20261014_1eba1760023abcce_f000912.png,0.26307323575019836,0.7874186616848114,red water bottle: user confirmed NOT cone
