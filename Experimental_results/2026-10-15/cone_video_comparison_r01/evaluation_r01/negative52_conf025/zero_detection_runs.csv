@@ -1,0 +1,4 @@
+session,start_frame,end_frame,zero_frames,start_time_sec,end_time_sec,sample_span_sec,bounded_by_detection,truth
+cone_negative_train_d01_c_20261014_164134_986,1,1104,1104,0.032132,36.854067,36.821935,0,unknown: no per-frame visibility labels; NOT an automatic FN interval
+cone_negative_train_d02_c_20261014_164419_986,1,912,912,0.024914,33.240165,33.215250999999995,0,unknown: no per-frame visibility labels; NOT an automatic FN interval
+cone_negative_eval_e01_c_20261014_164701_256,1,1320,1320,0.025445,44.192647,44.167202,0,unknown: no per-frame visibility labels; NOT an automatic FN interval

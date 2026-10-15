@@ -1,0 +1,25 @@
+{
+  "name": "negative52_conf025",
+  "weights_sha256": "e613f9a5c20d83fc537bb41495e358d7583c3962b7ed2d229454abef70225c5d",
+  "prediction_kwargs": {
+    "device": 0,
+    "imgsz": 960,
+    "conf": 0.25,
+    "iou": 0.7,
+    "max_det": 300,
+    "rect": false,
+    "quantize": 32,
+    "batch": 1,
+    "augment": false,
+    "save": false,
+    "save_txt": false,
+    "save_crop": false,
+    "show": false,
+    "visualize": false,
+    "verbose": false,
+    "stream": false,
+    "half": false
+  },
+  "annotated_anchor_images": 78,
+  "anchor_pixel_mismatches": 0
+}

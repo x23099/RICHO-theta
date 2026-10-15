@@ -1,0 +1,8 @@
+session_dir,note
+../../../recordings/2026-10-12_cone_ingest_ab/b_cone/cone_train_block_b_r01_20261012_155114_513,B positive/moving; legacy sparse visual labels; not floor-distance truth
+../../../recordings/2026-10-12_cone_ingest_ab/b_no_cone/cone_nasi_block_b_r01_20261012_155435_017,B no red foreground cone; yellow background cone is present
+../../../recordings/2026-10-14_cone_ingest_de/d01/cone_negative_train_d01_c_20261014_164134_986,D01 intended negative; human confirmation on eight sampled frames only; training reuse for 52
+../../../recordings/2026-10-14_cone_ingest_de/d02/cone_negative_train_d02_c_20261014_164419_986,D02 intended negative with bottle; human confirmation on eight sampled frames only; training reuse for 52
+../../../recordings/2026-10-14_cone_ingest_de/e01/cone_negative_eval_e01_c_20261014_164701_256,E01 intended negative; human confirmation on eight sampled frames only
+../../../recordings/2026-10-14_cone_ingest_de/e02/cone_positive_eval_e02_c_20261014_165209_894,E02 stationary cones; no all-frame identity/visibility labels
+../../../recordings/2026-10-14_cone_ingest_de/e03/cone_positive_eval_e03_c_20261014_165444_176,E03 includes repositioning/occlusion; no all-frame identity/visibility labels

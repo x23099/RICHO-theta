@@ -1,0 +1,264 @@
+{
+  "status": "COMPLETED_OFFLINE_VIDEO_NOT_DEPLOYMENT_APPROVAL",
+  "confidence": 0.5,
+  "track_iou": 0.3,
+  "total_frames": 11397,
+  "sessions": [
+    {
+      "session": "cone_train_block_b_r01_20261012_155114_513",
+      "frames": 5236,
+      "detection_frames": 5232,
+      "multi_detection_frames": 4695,
+      "tracks": 1449,
+      "zero_runs": 3,
+      "internal_zero_runs": 3,
+      "max_zero_sample_span_sec": 0.033584999999999976,
+      "wall_time_sec": 117.02517164798337,
+      "sequential_processing_fps": 44.74251074589412,
+      "post_first_pipeline_ms": {
+        "count": 5235,
+        "mean": 21.84652974426572,
+        "p50": 20.763022010214627,
+        "p95": 28.590482979780063,
+        "max": 88.40745000634342
+      },
+      "post_first_inference_ms": {
+        "count": 5235,
+        "mean": 8.114384015944921,
+        "p50": 7.574754999950528,
+        "p95": 11.662396020255983,
+        "max": 53.02909901365638
+      },
+      "bottom_step_max_per_frame_px": {
+        "count": 5224,
+        "mean": 1.1404296716346256,
+        "p50": 0.798560844202956,
+        "p95": 3.625740773178078,
+        "max": 19.869127584439244
+      }
+    },
+    {
+      "session": "cone_nasi_block_b_r01_20261012_155435_017",
+      "frames": 572,
+      "detection_frames": 549,
+      "multi_detection_frames": 156,
+      "tracks": 160,
+      "zero_runs": 23,
+      "internal_zero_runs": 23,
+      "max_zero_sample_span_sec": 0.0,
+      "wall_time_sec": 11.3715910440078,
+      "sequential_processing_fps": 50.30078885059908,
+      "post_first_pipeline_ms": {
+        "count": 571,
+        "mean": 19.757541626832086,
+        "p50": 19.467959995381534,
+        "p95": 23.95661099581048,
+        "max": 63.96169200888835
+      },
+      "post_first_inference_ms": {
+        "count": 571,
+        "mean": 7.1204798661548345,
+        "p50": 6.895117985550314,
+        "p95": 8.964501990703866,
+        "max": 29.4548969832249
+      },
+      "bottom_step_max_per_frame_px": {
+        "count": 501,
+        "mean": 0.8137747135841986,
+        "p50": 0.7475015853981442,
+        "p95": 1.567888794985878,
+        "max": 3.4044088937775903
+      }
+    },
+    {
+      "session": "cone_negative_train_d01_c_20261014_164134_986",
+      "frames": 1104,
+      "detection_frames": 0,
+      "multi_detection_frames": 0,
+      "tracks": 0,
+      "zero_runs": 1,
+      "internal_zero_runs": 0,
+      "max_zero_sample_span_sec": 36.821935,
+      "wall_time_sec": 20.952762823028024,
+      "sequential_processing_fps": 52.68994878263284,
+      "post_first_pipeline_ms": {
+        "count": 1103,
+        "mean": 18.943537430245012,
+        "p50": 18.55972400517203,
+        "p95": 23.067581991199404,
+        "max": 66.07707400689833
+      },
+      "post_first_inference_ms": {
+        "count": 1103,
+        "mean": 7.267401884914716,
+        "p50": 6.879659980768338,
+        "p95": 9.069702995475382,
+        "max": 35.43721602181904
+      },
+      "bottom_step_max_per_frame_px": {
+        "count": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "max": null
+      }
+    },
+    {
+      "session": "cone_negative_train_d02_c_20261014_164419_986",
+      "frames": 912,
+      "detection_frames": 0,
+      "multi_detection_frames": 0,
+      "tracks": 0,
+      "zero_runs": 1,
+      "internal_zero_runs": 0,
+      "max_zero_sample_span_sec": 33.215250999999995,
+      "wall_time_sec": 17.095911416981835,
+      "sequential_processing_fps": 53.3460882988716,
+      "post_first_pipeline_ms": {
+        "count": 911,
+        "mean": 18.700250162286572,
+        "p50": 18.641192000359297,
+        "p95": 21.80102901184,
+        "max": 58.842323982389644
+      },
+      "post_first_inference_ms": {
+        "count": 911,
+        "mean": 7.170315446713162,
+        "p50": 6.8432090047281235,
+        "p95": 8.90432801679708,
+        "max": 24.833365983795375
+      },
+      "bottom_step_max_per_frame_px": {
+        "count": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "max": null
+      }
+    },
+    {
+      "session": "cone_negative_eval_e01_c_20261014_164701_256",
+      "frames": 1320,
+      "detection_frames": 0,
+      "multi_detection_frames": 0,
+      "tracks": 0,
+      "zero_runs": 1,
+      "internal_zero_runs": 0,
+      "max_zero_sample_span_sec": 44.167202,
+      "wall_time_sec": 24.297589514026185,
+      "sequential_processing_fps": 54.326376665389304,
+      "post_first_pipeline_ms": {
+        "count": 1319,
+        "mean": 18.374456892530006,
+        "p50": 18.03078400553204,
+        "p95": 21.301967004546896,
+        "max": 62.392513995291665
+      },
+      "post_first_inference_ms": {
+        "count": 1319,
+        "mean": 7.237841240045635,
+        "p50": 6.832430983195081,
+        "p95": 9.050924010807648,
+        "max": 32.378429983509704
+      },
+      "bottom_step_max_per_frame_px": {
+        "count": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "max": null
+      }
+    },
+    {
+      "session": "cone_positive_eval_e02_c_20261014_165209_894",
+      "frames": 1156,
+      "detection_frames": 1156,
+      "multi_detection_frames": 1156,
+      "tracks": 2,
+      "zero_runs": 0,
+      "internal_zero_runs": 0,
+      "max_zero_sample_span_sec": 0,
+      "wall_time_sec": 22.974159145000158,
+      "sequential_processing_fps": 50.3174019429381,
+      "post_first_pipeline_ms": {
+        "count": 1155,
+        "mean": 19.843216595749947,
+        "p50": 19.35756701277569,
+        "p95": 23.613957018824294,
+        "max": 56.898007984273136
+      },
+      "post_first_inference_ms": {
+        "count": 1155,
+        "mean": 7.185300491479109,
+        "p50": 6.905032001668587,
+        "p95": 8.988893998321146,
+        "max": 24.00891500292346
+      },
+      "bottom_step_max_per_frame_px": {
+        "count": 1155,
+        "mean": 0.4190503516550883,
+        "p50": 0.3834086685447951,
+        "p95": 0.8335985653989776,
+        "max": 1.463257509325133
+      }
+    },
+    {
+      "session": "cone_positive_eval_e03_c_20261014_165444_176",
+      "frames": 1097,
+      "detection_frames": 1096,
+      "multi_detection_frames": 729,
+      "tracks": 158,
+      "zero_runs": 1,
+      "internal_zero_runs": 1,
+      "max_zero_sample_span_sec": 0.0,
+      "wall_time_sec": 21.662908284983132,
+      "sequential_processing_fps": 50.6395533586064,
+      "post_first_pipeline_ms": {
+        "count": 1096,
+        "mean": 19.71192043413256,
+        "p50": 19.225340511184186,
+        "p95": 24.197756982175633,
+        "max": 62.44887498905882
+      },
+      "post_first_inference_ms": {
+        "count": 1096,
+        "mean": 7.284135368005135,
+        "p50": 6.938073493074626,
+        "p95": 9.14433499565348,
+        "max": 28.969359991606325
+      },
+      "bottom_step_max_per_frame_px": {
+        "count": 1094,
+        "mean": 0.627731599744949,
+        "p50": 0.3366946039175481,
+        "p95": 2.0753424183933196,
+        "max": 7.587450943240124
+      }
+    }
+  ],
+  "annotated_anchor_images": 78,
+  "annotated_anchor_gt": 88,
+  "anchor_summary": [
+    {
+      "confidence_threshold": 0.5,
+      "images": 78,
+      "gt_count": 88,
+      "tp": 79,
+      "fp": 7,
+      "fn": 9,
+      "precision": 0.9186046511627907,
+      "recall": 0.8977272727272727
+    }
+  ],
+  "anchor_pixel_mismatches": 0,
+  "max_det_reached_frames": 0,
+  "physical_output": false,
+  "independent_test_approval": false,
+  "limitations": [
+    "Zero detection intervals are not automatically false negatives without visibility labels.",
+    "Bottom-coordinate changes include real object/camera motion, not pure measurement jitter.",
+    "Consecutive IoU track fragments do not establish physical object identity.",
+    "Sequential offline throughput is not live camera/GUI/ROS/FFB latency.",
+    "Dataset-anchor GT remains sparse; all-frame precision/recall is not measured."
+  ]
+}

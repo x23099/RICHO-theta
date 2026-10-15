@@ -1,0 +1,70 @@
+{
+  "status": "COMPLETED_OFFLINE_VIDEO_COMPARISON_NOT_DEPLOYMENT",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 3070",
+    "index": 0,
+    "torch_version": "2.14.1+cu130",
+    "torch_cuda_version": "13.0"
+  },
+  "offline_setup": {
+    "package_offline_requested": true,
+    "autoinstall": false,
+    "font_alias": "Arial.ttf (local lookup alias, not Arial font family)",
+    "font_family": "DejaVu Sans",
+    "font_source": "/home/robo25/theta_ws/RICHO-theta/yolo-env/lib/python3.10/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf",
+    "font_target": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_video_comparison_r01/evaluation_r01/ultralytics_config/Ultralytics/Arial.ttf",
+    "font_sha256": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22"
+  },
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_video_comparison_r01/profiles.json": "2dcd4e46cecf40d4c3dde4ca71bb2c440555aac0f863e1783291e9afaa41ed0b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_video_comparison_r01/video_plan.csv": "464a6323c04ee43bcfbe9cac13a78d8d8a10fcd7aee12fb8874bfe714cf37556",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_ffb_readiness_r01/evaluation_r01/summary.json": "63ac2e392d52c5091c0074cbb3c145fd1916faf4d6c9dc8d8eb0d7ad4f358552",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_video_comparison_r01/run_comparison.py": "e9477e5be559444873b56a346abffc065224c3be03b8f99904964ecd1d40c0b0",
+    "/home/robo25/theta_ws/RICHO-theta/runs/cone/train_ab_augmented_v03_local_20261014_r01/yolov8n/weights/best.pt": "3a6e124adb15c16efd7d22c853406066371f48873c82f1d3cfc445b22ae5997b",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/b_cone/cone_train_block_b_r01_20261012_155114_513/raw.avi": "d2f1899d1f1cec88562892d0aba11f11ccbd38b4b84da45bb5a593e7ff03e49a",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/b_cone/cone_train_block_b_r01_20261012_155114_513/metadata.json": "64cba27a4370c77d33dd0e43a9da35f3769e356f68297b2423f71bd8b31fefc5",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/b_cone/cone_train_block_b_r01_20261012_155114_513/detections.csv": "6582387b21498e9d81771010077a9c489e49829a56209e37808c692a367917c5",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/b_no_cone/cone_nasi_block_b_r01_20261012_155435_017/raw.avi": "e4aaba18ded89e9598cbf4e165d8b0c86e2b77c2c3aec832a4db603754d3cfa6",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/b_no_cone/cone_nasi_block_b_r01_20261012_155435_017/metadata.json": "ed868e6ec0a66bf3b14259b7aa269a627c490e2a541c787e2698dfae4dbf98cc",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-12_cone_ingest_ab/b_no_cone/cone_nasi_block_b_r01_20261012_155435_017/detections.csv": "d5c4529b97094032beb51b21fa7bb23ba368907d5f7ae29a64a2c24cd43700e4",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/d01/cone_negative_train_d01_c_20261014_164134_986/raw.avi": "b1e739125cc2a88d9c29212f674324f01a12dc61acec7337179b9928d7fee5ee",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/d01/cone_negative_train_d01_c_20261014_164134_986/metadata.json": "f71a2ff6324cace2605c23bbc9936c93e884d235ab4cc85e38519ddad4c0a58f",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/d01/cone_negative_train_d01_c_20261014_164134_986/detections.csv": "a58aa56f71c8219e11a9fc9944ae39359f5635a69b2cfc7bdf2eb35995ec7839",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/d02/cone_negative_train_d02_c_20261014_164419_986/raw.avi": "1eba1760023abcce179525ae0cb48f5c4e75da19c563a80b9fbd2b3fc5220370",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/d02/cone_negative_train_d02_c_20261014_164419_986/metadata.json": "00a8d1e92ea1e87afc4fc81da7c7c9c1bf30ad58631f8efc5a36f9c04420bdde",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/d02/cone_negative_train_d02_c_20261014_164419_986/detections.csv": "b68001da876c00d8a43f3f938df79a63873c028855387caf9d4e888f854fd72c",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/e01/cone_negative_eval_e01_c_20261014_164701_256/raw.avi": "3a63803f4e59ea76e2bfa01dc23ba2feeb1ad1c1c9236347ab2b74484e484092",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/e01/cone_negative_eval_e01_c_20261014_164701_256/metadata.json": "9efc4156406850d6d4128bf8d3c29d37a66e581134304273997333ca98a20a8f",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/e01/cone_negative_eval_e01_c_20261014_164701_256/detections.csv": "941a62cfcd35d1dea6b5e9ee9b4043cb3c6ba6789e99f7361d2e745134e83254",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/e02/cone_positive_eval_e02_c_20261014_165209_894/raw.avi": "b6fd99bdae17dfd42118ac1948eb35b79c1c0fbe28ce207333c53831c0a9a4dd",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/e02/cone_positive_eval_e02_c_20261014_165209_894/metadata.json": "0f65ac920621b0ad0922c002c75980f45bfdc0278292091ea78cc04134303464",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/e02/cone_positive_eval_e02_c_20261014_165209_894/detections.csv": "5bfd63ddc8b2820833405ec5a0588227cc5ab66cdda60d64592340424035bd09",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/e03/cone_positive_eval_e03_c_20261014_165444_176/raw.avi": "acec4adbfa04e57a696480c54f45f0f4f270cd21b29a032a2f1442cfa83bf284",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/e03/cone_positive_eval_e03_c_20261014_165444_176/metadata.json": "da54471d7c9080834283d8518d4b9399d8d44c70e0c204d8d14e5e397f2a11ff",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-14_cone_ingest_de/e03/cone_positive_eval_e03_c_20261014_165444_176/detections.csv": "72c501478c413bc23a589038a9f7447a810503be2cd8a3bab9f01423b53ab7be",
+    "/home/robo25/theta_ws/RICHO-theta/runs/cone/train_ab_negative_v04_local_20261014_r01/yolov8n/weights/best.pt": "e613f9a5c20d83fc537bb41495e358d7583c3962b7ed2d229454abef70225c5d"
+  },
+  "versions": {
+    "torch": "2.14.1",
+    "torchvision": "0.29.1",
+    "ultralytics": "8.4.175",
+    "opencv-python": "5.0.0.93"
+  },
+  "code_sha256": {
+    "run_cone_video.py": "d91eb83b3ff4246adf841a7dd27054b601f88a481dfa511f083de5da7e77ac90",
+    "cone_dataset.py": "cbe4001c7f79ff910a991f2e456d0fb130c136045f11cf69c030877d92d6ed3f",
+    "cone_detection_diagnostics.py": "ee206fc2960d413792a8e5866a653a9bff0efea7affe2feec08924ea2678f3a6",
+    "run_cone_yolo.py": "9ca45040e610f4b99c38e1a6965d818da3cdc49797b6ffc69be5f48e3d885799"
+  },
+  "physical_output": false,
+  "ros_used": false,
+  "trained": false,
+  "adopted": false,
+  "fp32": true,
+  "torch_num_threads": 2,
+  "completed_profiles": [
+    "augmented36_conf050",
+    "negative52_conf025"
+  ],
+  "input_hashes_unchanged": true
+}

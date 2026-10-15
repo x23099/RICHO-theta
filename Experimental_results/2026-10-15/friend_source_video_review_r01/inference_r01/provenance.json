@@ -1,0 +1,34 @@
+{
+  "status": "COMPLETED_REFERENCE_SAMPLES_NOT_ACCURACY_OR_DEPLOYMENT_APPROVAL",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 3070",
+    "index": 0,
+    "torch_version": "2.14.1+cu130",
+    "torch_cuda_version": "13.0"
+  },
+  "offline_setup": {
+    "package_offline_requested": true,
+    "autoinstall": false,
+    "font_alias": "Arial.ttf (local lookup alias, not Arial font family)",
+    "font_family": "DejaVu Sans",
+    "font_source": "/home/robo25/theta_ws/RICHO-theta/yolo-env/lib/python3.10/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf",
+    "font_target": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/friend_source_video_review_r01/inference_r01/ultralytics_config/Ultralytics/Arial.ttf",
+    "font_sha256": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22"
+  },
+  "tensor_checkpoint_sha256": "9e2c76a05e9fa8f2e0f561e28e0903f23823551ff0b8e6e04ed227edb2b3b417",
+  "friend_original_checkpoint_sha256": "39c94a4b37d8997ed8faf67a7602c4e6e7aaeba5770faf0d16f68a6b4dc06b2d",
+  "own_checkpoint_sha256": "3a6e124adb15c16efd7d22c853406066371f48873c82f1d3cfc445b22ae5997b",
+  "manifest_sha256": "bc5149b893e098fdce407c9294d138d43e794a310e0e4a51728826291e991c4d",
+  "intake_summary_sha256": "bd8e8a84ee385dfd04704edd4fed7093a8d851aa40cf77998abb44efebc6e208",
+  "receipt_sha256": "7982034483412689470e48c6eedb21177ebdde15fda8c805502f0fcc857cb00f",
+  "script_sha256": "410596c7806feca5d64b82bad5b06b78f86f2737eb732b8dd1aabb027915f829",
+  "confirmed_training_membership": false,
+  "trained": false,
+  "adopted": false,
+  "physical_output": false,
+  "completed_profiles": [
+    "friend_640",
+    "friend_960",
+    "own36_960"
+  ]
+}

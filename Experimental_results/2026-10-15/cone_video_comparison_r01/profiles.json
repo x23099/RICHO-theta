@@ -1,0 +1,24 @@
+{
+  "status": "FROZEN_BEFORE_VIDEO_INFERENCE_NOT_DEPLOYMENT",
+  "selection_basis": "previous fixed-point static comparison; this is development evaluation, not blind test",
+  "imgsz": 960,
+  "nms_iou": 0.7,
+  "track_iou": 0.3,
+  "max_det": 300,
+  "profiles": [
+    {
+      "name": "augmented36_conf050",
+      "weights": "runs/cone/train_ab_augmented_v03_local_20261014_r01/yolov8n/weights/best.pt",
+      "weights_sha256": "3a6e124adb15c16efd7d22c853406066371f48873c82f1d3cfc445b22ae5997b",
+      "confidence": 0.5
+    },
+    {
+      "name": "negative52_conf025",
+      "weights": "runs/cone/train_ab_negative_v04_local_20261014_r01/yolov8n/weights/best.pt",
+      "weights_sha256": "e613f9a5c20d83fc537bb41495e358d7583c3962b7ed2d229454abef70225c5d",
+      "confidence": 0.25
+    }
+  ],
+  "physical_output": false,
+  "training_performed": false
+}

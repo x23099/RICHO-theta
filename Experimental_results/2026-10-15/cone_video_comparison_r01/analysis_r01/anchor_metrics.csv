@@ -1,0 +1,13 @@
+profile,set,scope,confidence_threshold,images,gt_count,tp,fp,fn,precision,recall
+augmented36_conf050,b,all_view_detection,0.5,38,56,50,7,6,0.8771929824561403,0.8928571428571429
+augmented36_conf050,b,front_centre_detection,0.5,38,13,13,0,0,1.0,1.0
+augmented36_conf050,d,all_view_detection,0.5,16,0,0,0,0,,
+augmented36_conf050,d,front_centre_detection,0.5,16,0,0,0,0,,
+augmented36_conf050,e,all_view_detection,0.5,24,32,29,0,3,1.0,0.90625
+augmented36_conf050,e,front_centre_detection,0.5,24,16,16,0,0,1.0,1.0
+negative52_conf025,b,all_view_detection,0.25,38,56,53,12,3,0.8153846153846154,0.9464285714285714
+negative52_conf025,b,front_centre_detection,0.25,38,13,12,2,1,0.8571428571428571,0.9230769230769231
+negative52_conf025,d,all_view_detection,0.25,16,0,0,0,0,,
+negative52_conf025,d,front_centre_detection,0.25,16,0,0,0,0,,
+negative52_conf025,e,all_view_detection,0.25,24,32,30,2,2,0.9375,0.9375
+negative52_conf025,e,front_centre_detection,0.25,24,16,16,2,0,0.8888888888888888,1.0

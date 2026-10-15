@@ -1,0 +1,25 @@
+{
+  "name": "augmented36_conf050",
+  "weights_sha256": "3a6e124adb15c16efd7d22c853406066371f48873c82f1d3cfc445b22ae5997b",
+  "prediction_kwargs": {
+    "device": 0,
+    "imgsz": 960,
+    "conf": 0.5,
+    "iou": 0.7,
+    "max_det": 300,
+    "rect": false,
+    "quantize": 32,
+    "batch": 1,
+    "augment": false,
+    "save": false,
+    "save_txt": false,
+    "save_crop": false,
+    "show": false,
+    "visualize": false,
+    "verbose": false,
+    "stream": false,
+    "half": false
+  },
+  "annotated_anchor_images": 78,
+  "anchor_pixel_mismatches": 0
+}

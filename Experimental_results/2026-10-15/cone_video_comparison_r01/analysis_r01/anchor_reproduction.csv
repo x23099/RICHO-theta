@@ -1,0 +1,13 @@
+profile,set,scope,counts_match_previous,previous_tp,previous_fp,previous_fn,current_tp,current_fp,current_fn
+augmented36_conf050,b,all_view_detection,True,50,7,6,50,7,6
+augmented36_conf050,b,front_centre_detection,True,13,0,0,13,0,0
+augmented36_conf050,d,all_view_detection,True,0,0,0,0,0,0
+augmented36_conf050,d,front_centre_detection,True,0,0,0,0,0,0
+augmented36_conf050,e,all_view_detection,True,29,0,3,29,0,3
+augmented36_conf050,e,front_centre_detection,True,16,0,0,16,0,0
+negative52_conf025,b,all_view_detection,True,53,12,3,53,12,3
+negative52_conf025,b,front_centre_detection,True,12,2,1,12,2,1
+negative52_conf025,d,all_view_detection,True,0,0,0,0,0,0
+negative52_conf025,d,front_centre_detection,True,0,0,0,0,0,0
+negative52_conf025,e,all_view_detection,True,30,2,2,30,2,2
+negative52_conf025,e,front_centre_detection,True,16,2,0,16,2,0

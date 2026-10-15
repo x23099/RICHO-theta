@@ -1,0 +1,28 @@
+{
+  "status": "COMPLETED_REFERENCE_VIDEO_INTAKE_NOT_CONFIRMED_TRAINING_DATA",
+  "archive": "/home/robo25/Downloads/video-20261015T041958Z-1-001.zip",
+  "archive_sha256": "8fb8c82c6a92269be22ef888b56083d04ec8f1bc878d710c139a0c49765b2cb6",
+  "retained": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_friend_video_intake_r01",
+  "file_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_friend_video_intake_r01/video/camera_stamps.csv": "04a493d1ccc22e57657a55fa6962af5f80ff504d7dcf001b833745f8e15fd3d0",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_friend_video_intake_r01/video/camera_ffmpeg.log": "850b9f60e7b974d87a0de774e9779f2a810a5f502aa6712a4bdb0e8819bf12b0",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_friend_video_intake_r01/video/camera.mp4": "dee6429b1f2a67d445df3bf34c2d18e5b2e5b2e042d3a9e9b08251d49ff84711"
+  },
+  "width": 640,
+  "height": 360,
+  "decoded_frames": 9746,
+  "fps_nominal": 14.63978849966953,
+  "fps_stream": "22150/1513",
+  "duration_stream_sec": 665.72,
+  "timestamp_rows": 9746,
+  "timestamp_indices_zero_based_contiguous": true,
+  "frame_csv_count_matches": true,
+  "nonincreasing_stamp_intervals": 0,
+  "nonincreasing_receive_intervals": 0,
+  "raw_sample_count": 12,
+  "input_timestamp_warning_log": "video/camera_ffmpeg.log",
+  "confirmed_training_membership": false,
+  "trained": false,
+  "physical_output": false,
+  "source_script_sha256": "5cfc4160940c0148f056873db7d3fcd6eda4215e980ade4b113a0fa26efdd902"
+}

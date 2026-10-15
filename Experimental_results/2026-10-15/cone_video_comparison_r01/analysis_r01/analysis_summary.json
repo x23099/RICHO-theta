@@ -1,0 +1,34 @@
+{
+  "status": "COMPLETED_OFFLINE_TEMPORAL_DIAGNOSTICS_NOT_DEPLOYMENT",
+  "physical_output": false,
+  "adopted": false,
+  "floor_contact_verified": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_video_comparison_r01/evaluation_r01/augmented36_conf050/frames.csv": "759ffa73911c9800a6c85fb1794475a4207abda7452008b03e03c5ddca175dfd",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_video_comparison_r01/evaluation_r01/augmented36_conf050/predictions.csv": "772feffa6468413b96da4d68ac0ebe501991d127b2096272a2a4bfbccd5d883e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_video_comparison_r01/evaluation_r01/augmented36_conf050/video_summary.json": "af48335dc46ca04d448ca8a5592cc149f4f605f9a19ea7cc9248b59f3afa4da4",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_video_comparison_r01/evaluation_r01/augmented36_conf050/anchor_pixels.csv": "abbac05c4466938f8a30a5eee5354180b2f9b44a6b00053bb5c6e7698e0b3223",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_video_comparison_r01/evaluation_r01/augmented36_conf050/conditions.json": "869bfab35a7b8540a3634943b6bb373ddc9e6063d9915ecfdf81bc0eb517d599",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_video_comparison_r01/evaluation_r01/negative52_conf025/frames.csv": "aa6d8972421f564a1aa30cfb5b4e080faf00a7211e728c9e9fa5d61341853074",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_video_comparison_r01/evaluation_r01/negative52_conf025/predictions.csv": "d0a0ec7b8d89766242801d811b49cbbfed4d11e321c7bc20840a1095fe22847a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_video_comparison_r01/evaluation_r01/negative52_conf025/video_summary.json": "dc8a8144137756c85d7666e23ca6ca2ae5280df27a8e4a5773e6641b1c6c20a2",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_video_comparison_r01/evaluation_r01/negative52_conf025/anchor_pixels.csv": "abbac05c4466938f8a30a5eee5354180b2f9b44a6b00053bb5c6e7698e0b3223",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_video_comparison_r01/evaluation_r01/negative52_conf025/conditions.json": "468f66bf4d3638a3a09b65c46d232bd84aeac24c0de7bc03e7507d3a9c347b4a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_video_comparison_r01/evaluation_r01/comparison_provenance.json": "49493c9739b74bfbde2de13429fb07a8100c91b37eab50969f553bcd95200cff",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-12/cone_yolo_preparation/cone_capture_config.json": "d3770d7168633c48598d5278076cf47a720e8bc19722b2cdb7817e94203a46a0",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_video_comparison_r01/analyze.py": "b60750210c7a973ea61fa46e64ece74eb4411f5954359b9e7852da164b136b2c",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_video_readiness.py": "b41a43e68b75d808b2bd6828aac62f3b435c2aada6e2a3cb1735b49035528040"
+  },
+  "frames_per_profile": 11397,
+  "sparse_anchors_per_profile": 78,
+  "all_anchor_counts_match_previous": true,
+  "graph_sha256": "e37391b539876054178db5b573f3454ab711f1954acde789cbbf2e72f855a006",
+  "limitations": [
+    "Full video candidate coverage is not target recall or all-frame FP precision.",
+    "D/E negative truth is human-confirmed on sparse anchor frames only.",
+    "B labels include legacy assistant visual review; not new human GT.",
+    "D is training reuse for negative52; all clips are development, not blind test.",
+    "No persistent target identity or real-world distance GT.",
+    "Offline timing does not include camera buffering, GUI, ROS, relay, or hardware."
+  ]
+}
