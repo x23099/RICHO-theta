@@ -1,0 +1,37 @@
+{
+  "status": "COMPLETED_DIAGNOSTIC_APPEARANCE_CHECK_NOT_CALIBRATION_OR_FFB_APPROVAL",
+  "cases": 80,
+  "region_rows": 400,
+  "state_counts": {
+    "LOCAL_APPEARANCE_MATCH": 39,
+    "LOCAL_CHANGE_OBSERVED": 29,
+    "INSUFFICIENT_EVIDENCE": 12
+  },
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_view_consistency_r01/run.py": "20fd0214f2a56a26e1e21845e3a6c6a1c745fa86207cab1e8c84bfb6bfc06d0c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_view_consistency_r01/method.md": "21b3f478a4350c4d12009c66ff61dbdb3579474d2483aa7057669799bb1b1dc9",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_view_consistency.py": "39214682312f185c68e2df2eabc11248d8eadf2c6d42ecff48fb7189bea0dc15",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_cone_view_consistency.py": "49b79ebec1ad72066b3b89bf096ddbc265c9a254d71b4ced0103d9b24c821798",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_distance_bias_diagnosis_r01/results_r01/local_feature_matches.csv": "640d92c8e4b79fddcdba808b16f6d456702c570e80720fc1489a4c75d958c4e7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_distance_bias_diagnosis_r01/wide_search_r01/local_feature_matches.csv": "3d0ed2dc4ad06570e827b9266d426cd2028b6fee6aadf413e74da9f1ae56292e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/analysis_r01/within_video_vehicle_features.csv": "20dde6855d077d7e3c851bcf92cfbdc9e533d592765114930800281e4901d24f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/view_audit_r01/local_feature_matches.csv": "bf55937cf08273b837590fdc1d8023c293b1a6e41df5ad8fa02ee91ddcff72a2"
+  },
+  "output_sha256": {
+    "combined_summary.csv": "57ccbabb72492d10e0a322bc9dda2120afb041df308ba506d038ee9271ba2339",
+    "local_appearance_matrix.png": "afa0693d72ce05fc39322653757a5b738623c6ccc4c02cebdc8183cc1ed802f7",
+    "cross_wide40/summary.json": "d7ad70faa9b6ab82aff11e30bf6cac0100c8e878795cfd93649ba24f8a30c560",
+    "cross_wide40/view_consistency.csv": "9884341cc52342c84fdb0bb3a775a0399742dbceffbdcd8765244c9dc2767e2f",
+    "previous_controls_and_transfer/summary.json": "74018e09bb55a9c9dc0631c73ba0be24433651963f33e510d813bf7dbaf147e2",
+    "previous_controls_and_transfer/view_consistency.csv": "29138fabea608b00b49c835c80b56c5a2e67c2c2b679474bd10f330a9307aea2",
+    "cross_primary20/summary.json": "9e9fead4bcf61e0baec09eb74a0790e0ad49f61523a56a2efc2d3f8249fb0a6c",
+    "cross_primary20/view_consistency.csv": "9b3543ff802d970e518762c61e99556257062e1d025b716436c68c095b83e240",
+    "within_same_video/summary.json": "93b4373dd8a1ffe25e32a35ba9e52955dea48390d8618b4132a9ab205dcdf017",
+    "within_same_video/view_consistency.csv": "1f6c92423c81935aca7f311e8899f1c03ec9610a915c4d8914a926cd698fcf59"
+  },
+  "thresholds_optimized": false,
+  "input_images_changed": false,
+  "parameters_fitted": false,
+  "production_settings_changed": false,
+  "physical_output": false
+}

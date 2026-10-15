@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-15",
+  "status": "USER_REPORT_FAR_V_APEX_UNRESOLVED_NOT_PIXEL_GROUND_TRUTH",
+  "user_reply_verbatim": "1.3まではかろうじてわかるが、それ以上遠くなるとV字の先端を認識するのは厳しい。形が潰れてほとんどまるっぽくなっている",
+  "question_scope": "Previous floor frame187 and current floor frame141, central markers at1.30m and2.00m; user did not separate answers per recording.",
+  "interpretation": {
+    "through_1p30m": "barely distinguishable; exact pixel and reading uncertainty not confirmed",
+    "beyond_1p30m": "V apex not reliably distinguishable; collapsed approximately round appearance",
+    "individual_near_or_lateral_points_reviewed": false,
+    "pixel_positions_human_confirmed": false,
+    "pixel_uncertainty_measured": false,
+    "placement_uncertainty_measured": false
+  },
+  "decisions": {
+    "use_unresolved_far_points_as_calibration_truth": false,
+    "promote_barely_visible_1p30m_to_precise_truth": false,
+    "refit_to_make_existing_candidates_agree": false,
+    "adopt_previous_floor_fit_candidates": false,
+    "infer_mechanical_fault_from_floor_pixel_difference": false,
+    "establish_unique_distance_bias_cause": false,
+    "keep_old_analyses_as_exploratory_records": true,
+    "runtime_settings_changed": false,
+    "physical_output": false
+  },
+  "next_minimal_check": "Use a larger high-contrast reference with an identifiable central junction, first at2.00m in a stationary live view. Confirm visibility before recording a full calibration sequence. This is a proposed visibility test, not a guaranteed marker specification or completed calibration.",
+  "reference_images": [
+    "Experimental_results/2026-10-15/cone_floor_reference_real_r01/raw_samples/floor_reference_f000187.png",
+    "Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/raw_samples/same_pose_f000141.png"
+  ]
+}

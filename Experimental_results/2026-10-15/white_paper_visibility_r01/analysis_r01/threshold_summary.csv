@@ -1,0 +1,4 @@
+threshold,frames,candidate_frames,pixel_x_median,pixel_y_median,pixel_x_min,pixel_x_max,pixel_y_min,pixel_y_max,bbox_width_median,bbox_height_median
+140,467,467,308.0,381.0,308,308,381,381,39.0,14.0
+170,467,467,308.0,381.0,308,308,381,381,39.0,13.0
+200,467,400,309.0,381.0,309,309,381,381,37.0,13.0

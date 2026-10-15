@@ -1,0 +1,23 @@
+{
+  "target_scope": "central red cone only for static distance comparison; retain all-view predictions including genuine yellow/background cones",
+  "central_bbox_midpoint_x_px_inclusive": [270, 350],
+  "scope_selected_from_native_images_not_reference_error": true,
+  "runtime_multi_object_policy": "NOT_IMPLEMENTED_OR_VALIDATED_BY_THIS_DIAGNOSTIC_ROI",
+  "phase_windows": [
+    {"name":"floor_before","start_frame":1,"end_frame":300,"reference_z_m":null,"expected_central_cone":false},
+    {"name":"placement_transition","start_frame":301,"end_frame":562,"reference_z_m":null,"expected_central_cone":null},
+    {"name":"cone_130","start_frame":563,"end_frame":780,"reference_z_m":1.3,"expected_central_cone":true},
+    {"name":"move_transition","start_frame":781,"end_frame":999,"reference_z_m":null,"expected_central_cone":null},
+    {"name":"cone_200","start_frame":1000,"end_frame":1547,"reference_z_m":2.0,"expected_central_cone":true}
+  ],
+  "phase_definition": "native-image review, static windows bounded by reviewed frames563/780/1000/1547; frame480 still has hand contact so is retained as placement transition; passer occlusion remains in cone_200; no distance-error-based selection",
+  "reference_source": "user confirms floor V markers at1.3m and2.0m; cone placements follow requested front-edge alignment sequence",
+  "marker_physical_reference": "tip of V tape; cone vehicle-side base edge midpoint, not cone/base centre in Z",
+  "camera_height_reference_m": 0.59,
+  "height_reference_basis": "prior user measurement floor to lens centre; no independent new height measurement",
+  "floor_after": "NOT_RECORDED_CONFIRMED_BY_USER",
+  "user_reply": "1.3m , 2.0mであっています。最後の床は完全に忘れていました",
+  "fit_to_new_floor_or_cone_data": false,
+  "new_accuracy_threshold_chosen": false,
+  "physical_output": false
+}

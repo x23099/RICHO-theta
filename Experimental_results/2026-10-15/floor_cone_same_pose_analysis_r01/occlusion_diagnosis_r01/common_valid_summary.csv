@@ -1,0 +1,7 @@
+phase,model,common_valid_frames,z_median_m,z_std_m,z_error_median_m,scope
+cone_130,recorded58,218,1.2707738656720333,0.001288726887967068,-0.029226134327966724,secondary common-range-valid subset; primary data including rejected/outlier frames remains intact
+cone_130,measured59,218,1.292683759907758,0.0013109463170699598,-0.007316240092241966,secondary common-range-valid subset; primary data including rejected/outlier frames remains intact
+cone_130,frozen_centre2,218,1.2031711737282096,0.0011718765000018172,-0.09682882627179046,secondary common-range-valid subset; primary data including rejected/outlier frames remains intact
+cone_200,recorded58,539,1.8699333706817827,0.011820617935489533,-0.13006662931821733,secondary common-range-valid subset; primary data including rejected/outlier frames remains intact
+cone_200,measured59,539,1.9021736012107788,0.012024421692997968,-0.09782639878922117,secondary common-range-valid subset; primary data including rejected/outlier frames remains intact
+cone_200,frozen_centre2,539,1.7298190779245557,0.010181219050641833,-0.2701809220754443,secondary common-range-valid subset; primary data including rejected/outlier frames remains intact

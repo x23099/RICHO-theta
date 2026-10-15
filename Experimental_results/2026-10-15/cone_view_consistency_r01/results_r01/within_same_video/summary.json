@@ -1,0 +1,28 @@
+{
+  "status": "COMPLETED_LOCAL_APPEARANCE_CHECK_NOT_CALIBRATION_APPROVAL",
+  "settings": {
+    "min_reliable_regions": 2,
+    "max_local_offset_px": 2.0,
+    "min_ncc": 0.8,
+    "min_peak_margin": 0.02,
+    "max_reverse_error_px": 1.0
+  },
+  "pairs": 15,
+  "region_rows": 75,
+  "state_counts": {
+    "LOCAL_APPEARANCE_MATCH": 15
+  },
+  "reference_column": null,
+  "reference_id": "same_pose_frame141",
+  "case_column": "frame",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/analysis_r01/within_video_vehicle_features.csv": "20dde6855d077d7e3c851bcf92cfbdc9e533d592765114930800281e4901d24f",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_view_consistency.py": "39214682312f185c68e2df2eabc11248d8eadf2c6d42ecff48fb7189bea0dc15"
+  },
+  "output_sha256": {
+    "view_consistency.csv": "1f6c92423c81935aca7f311e8899f1c03ec9610a915c4d8914a926cd698fcf59"
+  },
+  "physical_output": false,
+  "production_settings_changed": false,
+  "calibration_selected": false
+}

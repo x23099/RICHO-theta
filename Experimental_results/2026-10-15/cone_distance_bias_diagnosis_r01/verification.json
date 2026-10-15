@@ -1,0 +1,16 @@
+{
+  "status": "PASS_BOOKKEEPING_EQUATIONS_AND_FROZEN_INPUTS_NOT_CALIBRATION_APPROVAL",
+  "decompositions": 8,
+  "metadata_sessions": 8,
+  "matched_metadata_settings": true,
+  "local_feature_checks": 270,
+  "sensitivity_rows": 24,
+  "old_accepted_local_offsets_preserved_under_wider_search": true,
+  "original_camera_images_and_runtime_configs_unchanged": true,
+  "physical_output": false,
+  "parameters_fitted": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_distance_bias_diagnosis_r01/verify.py": "9e387426a312400864d8eda700e7283e37987aaa76459238817a114fa0703c58",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_distance_bias_diagnosis_r01/test_bias_decomposition.py": "038a326b8dcbe857b94193367d05562868d42d31d14b10630f777163f13978fe"
+  }
+}

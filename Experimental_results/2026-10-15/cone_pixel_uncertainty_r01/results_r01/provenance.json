@@ -1,0 +1,116 @@
+{
+  "status": "COMPLETED_PIXEL_ASSUMPTION_AND_FIXED_MODEL_DIAGNOSIS_NOT_CALIBRATION_APPROVAL",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_pixel_uncertainty_r01/analyze.py": "001e53b50c5b7cefaeb4e4ba130facbae82defd3376cffc6d788336c5bedd667",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_pixel_uncertainty_r01/method.md": "4ab827ca72a8a36dea179423840b33cb1eba7c66b83c3cefe1dec75666ebcd0c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/results_r01/candidate_parameters.json": "a913f567468aef64e1a050ab059e6a8cd9ead28a75fc4b4443f83930e0d1f0b2",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_floor_reference_real_r01/point_candidates.csv": "9babbc7796b6f00bd1e54ace191bb32ef0b4775d912da45c924f394125dc0ec1",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/manual_contact_candidates.csv": "8ac78209b232c6a1f3c827abee7d9ae5705dbe72623031014a85e28e8f053d1c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/contact_candidates.csv": "63cb54cde2d6c1ce3b3a1d91c16ea715a2f530cf3e5fe521586a35eed200a0b3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/capture_path_review_r01/audit.json": "7ffd01ecc7aea843507e48d540af9f84818c9dc23bab2efd79417bf62901dc7c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/geometry_models.py": "0e36cdb3322d90a40933c3d573c7040e64ef051e808f18a6ab35bfb5841135da",
+    "/home/robo25/theta_ws/RICHO-theta/src/ground_contact.py": "a51c65ab01a4d7a4a1a0f368c2fca9e2e183a3c9c0b0c2c9ba00458a905b74cc",
+    "/home/robo25/theta_ws/RICHO-theta/src/diagnose_box_contact_calibration.py": "3eb3276446d4e3145fe92dc3927856f3dbb45e5dfb50f4aa27d0be88638cfd29",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_floor_reference_real_r01/raw_samples/floor_reference_f000187.png": "ddd89826bf0e389c57e6a531375c7482b348671f748c3db07a24716e5f4a1edd",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/raw_samples/same_pose_f000141.png": "a80eec8ccbe9352f2b63fd5f965709940fb3ab5743749517d2a1656888b315b9",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_080_f000241.png": "3102dc7026673e64007dd2c0f92d07fcf45a6d6cc35e2799e54ebc3fd8c7b68f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_130_f000217.png": "67c3d68aa08cf8266e77a124b1a8ccbaf729ccca28066ce38be59e4cea3047b3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_200_f000211.png": "8626c83c69cc27485caff49acc6c33717a0dd9ea07fdb2f5cd404a73edd259b8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/raw_samples/same_pose_f000563.png": "73aae2cd5d96c277acc84530e4c1e47f082599f1c9bb59d345f1421990db555a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/raw_samples/same_pose_f001265.png": "869cd6e60ee8df746dcb7cf9a4ea2d0363297535b3a250e47b2810c1ac851fc3"
+  },
+  "models": {
+    "recorded58": {
+      "camera_height": 0.58,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -80,
+      "front_cy_offset": -21,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    },
+    "measured59": {
+      "camera_height": 0.59,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -80,
+      "front_cy_offset": -21,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    },
+    "centre2": {
+      "camera_height": 0.59,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -92.96974027040832,
+      "front_cy_offset": -25.514984107178453,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    },
+    "pose3": {
+      "camera_height": 0.59,
+      "pitch_deg": -0.4670483155884151,
+      "roll_deg": -0.6582535437847806,
+      "yaw_deg": -3.273129389388152,
+      "radius_scale": 0.86,
+      "front_cx_offset": -80,
+      "front_cy_offset": -21,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    },
+    "centre_radius3": {
+      "camera_height": 0.59,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.910427375380841,
+      "front_cx_offset": -93.13214810593227,
+      "front_cy_offset": -30.1657358244981,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    },
+    "centre_pose5": {
+      "camera_height": 0.59,
+      "pitch_deg": 7.812007206865689,
+      "roll_deg": 0.5693886042643627,
+      "yaw_deg": 4.748837369603465,
+      "radius_scale": 0.86,
+      "front_cx_offset": -104.99999999999999,
+      "front_cy_offset": -45.99999999999999,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    }
+  },
+  "point_count": 14,
+  "models_count": 6,
+  "band_half_widths_px": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    8
+  ],
+  "overlap_pairs": 4,
+  "residual_rows": 84,
+  "sensitivity_rows": 504,
+  "parameters_fitted": false,
+  "candidate_pixels_changed": false,
+  "model_selected": false,
+  "physical_output": false,
+  "production_settings_changed": false,
+  "output_sha256": {
+    "c200_pixel_band_sensitivity.png": "648bc706085474ab718efd61847bd5210dcb6c583e61a8977522244df3acb6e5",
+    "fixed_model_summary.csv": "ee9f506726027085f26ccb06762d3caa77aa9d3ef63a2d245fc4613bf0915309",
+    "point_overlap.csv": "2bb90fec1a09c47bd9a71959fab4a332433125437dbe7959ec19ef8b795f80bf",
+    "fixed_model_pixel_requirements.png": "1a5ce2f689be814fb42f43e9a7d6d2da8defe2ebcc22b2fc31d7eab79cd9a3ed",
+    "fixed_model_residuals.csv": "adaae4439281d32caa7ada0de5489df5f306aab206d2278f14c1356c8d86b79b",
+    "pixel_band_sensitivity.csv": "3818505671f4681c0b3b1bd5e4168456c4d1e6e23d6db0255647d21188ec76e9"
+  }
+}

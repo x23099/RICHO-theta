@@ -1,0 +1,16 @@
+{
+  "status": "PASS_INTEGRITY_SPLIT_AND_EQUATION_CHECKS_NOT_DISTANCE_TTC_OR_HARDWARE_APPROVAL",
+  "original_frames_retained": 1547,
+  "all_view_predictions_retained": 2784,
+  "model_observation_rows": 4641,
+  "native_pngs_verified": 17,
+  "phase_statistics_independently_recomputed": true,
+  "missing_and_partial_occlusion_rows_preserved": true,
+  "new_fit_points": 0,
+  "original_runtime_configs_and_camera_images_unchanged": true,
+  "final_empty_floor_not_fabricated": true,
+  "frozen_previous_geometry_promoted": false,
+  "baseline_or_height59_accuracy_approved": false,
+  "physical_output": false,
+  "verification_script_sha256": "283fd45d6551bad40f01b461e10e22fd2d530c7e2163f1bd021b6e74ce9cd1ae"
+}

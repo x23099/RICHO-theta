@@ -1,0 +1,248 @@
+{
+  "status": "COMPLETED_CAPTURE_METADATA_AND_CURRENT_CODE_REVIEW_NOT_ROOT_CAUSE_OR_CALIBRATION_APPROVAL",
+  "user_confirmation": {
+    "verbatim": "聞かれたことに関しては全て問題ないです。",
+    "scope": "previous questions: mounting play, cable pull, lens-ground distance origin, removal/reinstallation or equipment/load changes",
+    "interpretation": "user reports no issues; not independently measured by assistant",
+    "intentional_height_or_tilt_change_reported": false,
+    "mounting_fault_established": false
+  },
+  "photos": [
+    {
+      "path": "/home/robo25/Downloads/IMG_0799.jpeg",
+      "sha256": "e67c9c19b603c1665969bfa8a5a63bc1ecc9838afff8fb457bdd9305fad6b09d",
+      "stored_size": [
+        5712,
+        4284
+      ],
+      "exif_orientation": 6,
+      "file_changed": false
+    },
+    {
+      "path": "/home/robo25/Downloads/IMG_0800.jpeg",
+      "sha256": "325ad22e962d19e0db776de3dace17e718ba6508ae1f6b3fae9ebb1fb9cd590c",
+      "stored_size": [
+        5712,
+        4284
+      ],
+      "exif_orientation": null,
+      "file_changed": false
+    }
+  ],
+  "metadata_sessions": [
+    {
+      "session": "cone_static_center_z1p30_r01_20261015_135329_732",
+      "metadata": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_center_z1p30_r01_20261015_135329_732/metadata.json",
+      "sha256": "807887296f22a94a4e77de89f9903f36b697a17892bb32c451fcb2cf7dc8aabd",
+      "camera_capture_properties": {
+        "backend": "V4L2",
+        "frame_width": 1280.0,
+        "frame_height": 720.0,
+        "fps": 30.0,
+        "fourcc": 1196444237.0,
+        "fourcc_text": "MJPG",
+        "auto_exposure": 0.0,
+        "exposure": -1.0,
+        "gain": -1.0,
+        "brightness": -1.0,
+        "contrast": -1.0,
+        "saturation": -1.0,
+        "hue": -1.0,
+        "auto_white_balance": -1.0,
+        "white_balance_blue_u": -1.0,
+        "white_balance_temperature": -1.0
+      },
+      "historical_code_commit_recorded": false
+    },
+    {
+      "session": "cone_static_center_z2p00_r01_20261015_135414_399",
+      "metadata": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_center_z2p00_r01_20261015_135414_399/metadata.json",
+      "sha256": "bbdb52017eefbc41957ed8c6bdc9d270fc0f2479bb0db4062399a3907a338936",
+      "camera_capture_properties": {
+        "backend": "V4L2",
+        "frame_width": 1280.0,
+        "frame_height": 720.0,
+        "fps": 30.0,
+        "fourcc": 1196444237.0,
+        "fourcc_text": "MJPG",
+        "auto_exposure": 0.0,
+        "exposure": -1.0,
+        "gain": -1.0,
+        "brightness": -1.0,
+        "contrast": -1.0,
+        "saturation": -1.0,
+        "hue": -1.0,
+        "auto_white_balance": -1.0,
+        "white_balance_blue_u": -1.0,
+        "white_balance_temperature": -1.0
+      },
+      "historical_code_commit_recorded": false
+    },
+    {
+      "session": "cone_static_left_z1p30_r01_20261015_135541_436",
+      "metadata": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_left_z1p30_r01_20261015_135541_436/metadata.json",
+      "sha256": "8382bb5a38d4e1570fad17ba56789939087b38a27afd896800cb39f2d05bb625",
+      "camera_capture_properties": {
+        "backend": "V4L2",
+        "frame_width": 1280.0,
+        "frame_height": 720.0,
+        "fps": 30.0,
+        "fourcc": 1196444237.0,
+        "fourcc_text": "MJPG",
+        "auto_exposure": 0.0,
+        "exposure": -1.0,
+        "gain": -1.0,
+        "brightness": -1.0,
+        "contrast": -1.0,
+        "saturation": -1.0,
+        "hue": -1.0,
+        "auto_white_balance": -1.0,
+        "white_balance_blue_u": -1.0,
+        "white_balance_temperature": -1.0
+      },
+      "historical_code_commit_recorded": false
+    },
+    {
+      "session": "cone_static_no_cone_r01_20261015_134940_713",
+      "metadata": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_no_cone_r01_20261015_134940_713/metadata.json",
+      "sha256": "705dcb3158f441dc537fb175a2f2636a0e34d5af34bf4bc754af83dcba8c704c",
+      "camera_capture_properties": {
+        "backend": "V4L2",
+        "frame_width": 1280.0,
+        "frame_height": 720.0,
+        "fps": 30.0,
+        "fourcc": 1196444237.0,
+        "fourcc_text": "MJPG",
+        "auto_exposure": 0.0,
+        "exposure": -1.0,
+        "gain": -1.0,
+        "brightness": -1.0,
+        "contrast": -1.0,
+        "saturation": -1.0,
+        "hue": -1.0,
+        "auto_white_balance": -1.0,
+        "white_balance_blue_u": -1.0,
+        "white_balance_temperature": -1.0
+      },
+      "historical_code_commit_recorded": false
+    },
+    {
+      "session": "cone_static_right_z1p30_r01_20261015_135630_973",
+      "metadata": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_right_z1p30_r01_20261015_135630_973/metadata.json",
+      "sha256": "51578de1eb6085c49c5cf93c33b11fd2500d1095c15fb030643780ee9d7a4e00",
+      "camera_capture_properties": {
+        "backend": "V4L2",
+        "frame_width": 1280.0,
+        "frame_height": 720.0,
+        "fps": 30.0,
+        "fourcc": 1196444237.0,
+        "fourcc_text": "MJPG",
+        "auto_exposure": 0.0,
+        "exposure": -1.0,
+        "gain": -1.0,
+        "brightness": -1.0,
+        "contrast": -1.0,
+        "saturation": -1.0,
+        "hue": -1.0,
+        "auto_white_balance": -1.0,
+        "white_balance_blue_u": -1.0,
+        "white_balance_temperature": -1.0
+      },
+      "historical_code_commit_recorded": false
+    },
+    {
+      "session": "one_static_center_z0p80_r01_20261015_135155_823",
+      "metadata": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/one_static_center_z0p80_r01_20261015_135155_823/metadata.json",
+      "sha256": "952ea891dbc6b7a112ae224f6e8c13029ab3a1c1b89d5473717542ed8aecb119",
+      "camera_capture_properties": {
+        "backend": "V4L2",
+        "frame_width": 1280.0,
+        "frame_height": 720.0,
+        "fps": 30.0,
+        "fourcc": 1196444237.0,
+        "fourcc_text": "MJPG",
+        "auto_exposure": 0.0,
+        "exposure": -1.0,
+        "gain": -1.0,
+        "brightness": -1.0,
+        "contrast": -1.0,
+        "saturation": -1.0,
+        "hue": -1.0,
+        "auto_white_balance": -1.0,
+        "white_balance_blue_u": -1.0,
+        "white_balance_temperature": -1.0
+      },
+      "historical_code_commit_recorded": false
+    },
+    {
+      "session": "floor_reference_real_r01_20261015_144248_636",
+      "metadata": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_floor_reference_real_intake_r01/floor_reference_real_r01_20261015_144248_636/metadata.json",
+      "sha256": "a341b1b4a4ac0f2fdfc8183428a21a88a1e298eab5ba2e68a1ff06efbe2c0841",
+      "camera_capture_properties": {
+        "backend": "V4L2",
+        "frame_width": 1280.0,
+        "frame_height": 720.0,
+        "fps": 30.0,
+        "fourcc": 1196444237.0,
+        "fourcc_text": "MJPG",
+        "auto_exposure": 0.0,
+        "exposure": -1.0,
+        "gain": -1.0,
+        "brightness": -1.0,
+        "contrast": -1.0,
+        "saturation": -1.0,
+        "hue": -1.0,
+        "auto_white_balance": -1.0,
+        "white_balance_blue_u": -1.0,
+        "white_balance_temperature": -1.0
+      },
+      "historical_code_commit_recorded": false
+    },
+    {
+      "session": "floor_cone_same_pose_r01_20261015_160621_378",
+      "metadata": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_floor_cone_same_pose_intake_r01/floor_cone_same_pose_r01_20261015_160621_378/metadata.json",
+      "sha256": "fd1d06f6329e740e3636f86b5d929b5ae32db0181cd9deb93753f9eaaeb5175c",
+      "camera_capture_properties": {
+        "backend": "V4L2",
+        "frame_width": 1280.0,
+        "frame_height": 720.0,
+        "fps": 30.0,
+        "fourcc": 1196444237.0,
+        "fourcc_text": "MJPG",
+        "auto_exposure": 0.0,
+        "exposure": -1.0,
+        "gain": -1.0,
+        "brightness": -1.0,
+        "contrast": -1.0,
+        "saturation": -1.0,
+        "hue": -1.0,
+        "auto_white_balance": -1.0,
+        "white_balance_blue_u": -1.0,
+        "white_balance_temperature": -1.0
+      },
+      "historical_code_commit_recorded": false
+    }
+  ],
+  "capture_properties_equal_all_eight": true,
+  "current_source": {
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/bird_eye.py",
+    "sha256": "8f42d0388d30f603d06f2ee0f5b846012869619ed0f83aaced1d90feca61acc0",
+    "capture_read_line": 2087,
+    "record_call_line": 2527,
+    "raw_write_line": 1623,
+    "direct_geometric_transform_calls_in_update": []
+  },
+  "limits": [
+    "source audit covers current code, not a proven historical executable snapshot",
+    "reported OpenCV properties do not attest hidden camera/capture-device processing",
+    "-1 controls can mean unsupported, not proof that exposure/white balance was fixed",
+    "local feature changes do not uniquely identify camera pose or a mechanical fault",
+    "photos are not metric calibration measurements"
+  ],
+  "changed_runtime_code": false,
+  "changed_parameters": false,
+  "physical_output": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/capture_path_review_r01/audit.py": "c7a386dd040528fcb8b62d7b7d4fcfbc852ff0c1b099c7093c9161447d93fb81"
+  }
+}

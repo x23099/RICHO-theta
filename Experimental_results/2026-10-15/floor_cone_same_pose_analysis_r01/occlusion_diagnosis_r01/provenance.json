@@ -1,0 +1,18 @@
+{
+  "status": "COMPLETED_RETAINED_OCCLUSION_DIAGNOSTIC_NO_GATE_OR_MODEL_CHANGE",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/analysis_r01/observations.csv": "9d385f35c5463517ee119a9c98515d169f1700216b2e31b06fca8e6aeb20a980",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/diagnose_occlusion.py": "48a1a9cadf39ff60dda7ec8568cdafa48c2f650737a42aa5af23421d4cb825a7",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_floor_cone_same_pose_intake_r01/floor_cone_same_pose_r01_20261015_160621_378/raw.avi": "2a7cb1f97177d3bace9be530c0160326e3ec4331249a0ead6f4d75ebadcdcbe1"
+  },
+  "physical_output": false,
+  "primary_rows_removed": 0,
+  "fitted_parameters": false,
+  "output_sha256": {
+    "occlusion_raw_f001134.png": "8e4f6062184eacab59f75798c13a54f104c0c9a24d4ea0db1d9a853605477a10",
+    "raw_manifest.csv": "7b635a1053b00486ed5a7218b727957dabc8211dda703efd6d266690f68aeb97",
+    "common_valid_summary.csv": "21c486147a1e905c66cf8c27bc7fec882533d1be92105b56a8f27fa548419739",
+    "all_failure_rows.csv": "db21080641dafd0a913df26c63af1865cef3fa6471f08be3dc5644c68e030ff3",
+    "occlusion_raw_f001133.png": "5bb9cd1108893990cfe7764c2f296ec846a90c9a9be5fab33a9836d62a6a2790"
+  }
+}

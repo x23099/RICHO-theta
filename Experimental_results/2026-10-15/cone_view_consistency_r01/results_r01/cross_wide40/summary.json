@@ -1,0 +1,30 @@
+{
+  "status": "COMPLETED_LOCAL_APPEARANCE_CHECK_NOT_CALIBRATION_APPROVAL",
+  "settings": {
+    "min_reliable_regions": 2,
+    "max_local_offset_px": 2.0,
+    "min_ncc": 0.8,
+    "min_peak_margin": 0.02,
+    "max_reverse_error_px": 1.0
+  },
+  "pairs": 27,
+  "region_rows": 135,
+  "state_counts": {
+    "LOCAL_APPEARANCE_MATCH": 9,
+    "LOCAL_CHANGE_OBSERVED": 14,
+    "INSUFFICIENT_EVIDENCE": 4
+  },
+  "reference_column": "reference_case",
+  "reference_id": null,
+  "case_column": "current_case",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_distance_bias_diagnosis_r01/wide_search_r01/local_feature_matches.csv": "3d0ed2dc4ad06570e827b9266d426cd2028b6fee6aadf413e74da9f1ae56292e",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_view_consistency.py": "39214682312f185c68e2df2eabc11248d8eadf2c6d42ecff48fb7189bea0dc15"
+  },
+  "output_sha256": {
+    "view_consistency.csv": "9884341cc52342c84fdb0bb3a775a0399742dbceffbdcd8765244c9dc2767e2f"
+  },
+  "physical_output": false,
+  "production_settings_changed": false,
+  "calibration_selected": false
+}

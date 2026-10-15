@@ -1,0 +1,5 @@
+kind,point_id,dx_new_minus_old_px,dy_new_minus_old_px,minimum_equal_half_width_for_overlap_px,overlap_at_assumed_half_width_1px,overlap_at_assumed_half_width_2px,overlap_at_assumed_half_width_3px,overlap_at_assumed_half_width_4px,overlap_at_assumed_half_width_6px,overlap_at_assumed_half_width_8px,source_pixels_changed,reading_error_measured,placement_error_measured
+floor,C130,0.0,4.0,2.0,False,True,True,True,True,True,False,False,False
+floor,C200,0.0,6.0,3.0,False,False,True,True,True,True,False,False,False
+cone,C130,-3.0,12.0,6.0,False,False,False,False,True,True,False,False,False
+cone,C200,-2.0,14.0,7.0,False,False,False,False,False,True,False,False,False

@@ -1,0 +1,68 @@
+{
+  "status": "COMPLETED_STATIC_CONE_INFERENCE_NOT_DISTANCE_OR_FFB_APPROVAL",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 3070",
+    "index": 0,
+    "torch_version": "2.14.1+cu130",
+    "torch_cuda_version": "13.0"
+  },
+  "candidate": {
+    "path": "/home/robo25/theta_ws/RICHO-theta/runs/cone/train_ab_augmented_v03_local_20261014_r01/yolov8n/weights/best.pt",
+    "sha256": "3a6e124adb15c16efd7d22c853406066371f48873c82f1d3cfc445b22ae5997b",
+    "confidence": 0.5,
+    "imgsz": 960,
+    "nms_iou": 0.7,
+    "max_det": 300
+  },
+  "kwargs": {
+    "device": 0,
+    "imgsz": 960,
+    "conf": 0.5,
+    "iou": 0.7,
+    "max_det": 300,
+    "rect": false,
+    "quantize": 32,
+    "batch": 1,
+    "augment": false,
+    "save": false,
+    "save_txt": false,
+    "save_crop": false,
+    "show": false,
+    "visualize": false,
+    "verbose": false,
+    "stream": false,
+    "half": false
+  },
+  "offline_setup": {
+    "package_offline_requested": true,
+    "autoinstall": false,
+    "font_alias": "Arial.ttf (local lookup alias, not Arial font family)",
+    "font_family": "DejaVu Sans",
+    "font_source": "/home/robo25/theta_ws/RICHO-theta/yolo-env/lib/python3.10/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf",
+    "font_target": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/inference_r01/ultralytics_config/Ultralytics/Arial.ttf",
+    "font_sha256": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22"
+  },
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/video_plan.csv": "7f47fe7439d2c21defa12446f9fc63838e0141e3cdeabb3f3b0e7c9e2615a55e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/intake_summary.json": "101b5dc1d2ccdc4974584966f951110b7d3fa0316132d75ffb737b8d5af50473",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/infer.py": "880c6ab471512fd740ae000d6ec00e4fb5d7fe03f4e18a2b9b6259d83129dcd7",
+    "/home/robo25/theta_ws/RICHO-theta/src/run_cone_video.py": "d91eb83b3ff4246adf841a7dd27054b601f88a481dfa511f083de5da7e77ac90"
+  },
+  "native_dimensions": [
+    1280,
+    720
+  ],
+  "source_sessions": {
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_floor_cone_same_pose_intake_r01/floor_cone_same_pose_r01_20261015_160621_378": {
+      "raw.avi": "2a7cb1f97177d3bace9be530c0160326e3ec4331249a0ead6f4d75ebadcdcbe1",
+      "metadata.json": "fd1d06f6329e740e3636f86b5d929b5ae32db0181cd9deb93753f9eaaeb5175c",
+      "detections.csv": "c73dd9bb16036d66169be3ed8291589e73760acf953aef883a99ebe305eed49a"
+    }
+  },
+  "torch_num_threads": 2,
+  "ground_truth_bboxes_provided": false,
+  "physical_output": false,
+  "trained": false,
+  "adopted": false,
+  "source_hashes_unchanged": true
+}

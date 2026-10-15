@@ -1,0 +1,13 @@
+{
+  "status": "PASS_OFFLINE_INTEGRITY_AND_CAUSAL_REPLAY_NOT_HARDWARE_APPROVAL",
+  "observations_checked": 15429,
+  "model_dataset_replays": 6,
+  "all_frames_preserved": true,
+  "withheld_observations_not_filled": true,
+  "prior_frozen_sources_native_images_and_production_configs_unchanged": true,
+  "all_partial_failure_rows_withheld": true,
+  "physical_output": false,
+  "verification_script_sha256": "1a7a8bd3b8936e7bac5ec804c5bf4c2283dde38518b6919ae423d6de92d5ac51",
+  "bookkeeping_test_sha256": "1650e0bb84767e2504268aeb8109ae9cf8d3e4213f025590ec453dcc75f0c095",
+  "provenance_sha256": "ee5941d6dd3d6894a9ba9d9ba186de8e79aa33d2c28bac1e763cf041231bcf5a"
+}

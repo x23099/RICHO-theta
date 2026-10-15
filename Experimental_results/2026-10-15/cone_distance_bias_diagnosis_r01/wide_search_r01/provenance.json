@@ -1,0 +1,33 @@
+{
+  "status": "COMPLETED_WIDE_LOCAL_SEARCH_NOT_POSE_OR_DISTANCE_CORRECTION",
+  "rows": 135,
+  "all_original_pairs_retained": true,
+  "search_margin_px": 40,
+  "thresholds_changed": false,
+  "transitions": {
+    "False->False": 88,
+    "False->True": 4,
+    "True->True": 43
+  },
+  "physical_output": false,
+  "correction_applied": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_floor_reference_real_r01/raw_samples/floor_reference_f000187.png": "ddd89826bf0e389c57e6a531375c7482b348671f748c3db07a24716e5f4a1edd",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_080_f000241.png": "3102dc7026673e64007dd2c0f92d07fcf45a6d6cc35e2799e54ebc3fd8c7b68f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_130_f000217.png": "67c3d68aa08cf8266e77a124b1a8ccbaf729ccca28066ce38be59e4cea3047b3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_200_f000211.png": "8626c83c69cc27485caff49acc6c33717a0dd9ea07fdb2f5cd404a73edd259b8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/left_130_f000210.png": "e124ad8083302c885f4babb07111f12fb90183990c80da2daa53ab039bf62413",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/right_130_f000211.png": "a2c164de33de44f54de0eb440c7cd25e43aca05fbcb6e2a8a858ab5e6d291efc",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/raw_samples/same_pose_f000141.png": "a80eec8ccbe9352f2b63fd5f965709940fb3ab5743749517d2a1656888b315b9",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/raw_samples/same_pose_f000563.png": "73aae2cd5d96c277acc84530e4c1e47f082599f1c9bb59d345f1421990db555a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/raw_samples/same_pose_f001265.png": "869cd6e60ee8df746dcb7cf9a4ea2d0363297535b3a250e47b2810c1ac851fc3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_distance_bias_diagnosis_r01/wide_search.py": "a1661b207c2b434b2dd2d590917bc9ba2bfa4fc73f0173513f4811d29ed6af2e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_distance_bias_diagnosis_r01/wide_search_method.md": "bc2b20a0421ab148d9a2cc8b8c572c4cc3af08f4455419063578a28bb7a856ef",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_distance_bias_diagnosis_r01/results_r01/provenance.json": "729307e43168ed4a6e22013bc43a1bf57f98afd8ee9d6d732acf95001a32c332",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_distance_bias_diagnosis_r01/results_r01/local_feature_matches.csv": "640d92c8e4b79fddcdba808b16f6d456702c570e80720fc1489a4c75d958c4e7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/view_registration.py": "a1405b2f1b97bb9dc2d2e4ec99d2261e4f0b39288bfbb4d448145836060c2500"
+  },
+  "output_sha256": {
+    "local_feature_matches.csv": "3d0ed2dc4ad06570e827b9266d426cd2028b6fee6aadf413e74da9f1ae56292e"
+  }
+}

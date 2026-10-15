@@ -1,0 +1,15 @@
+{
+  "status": "PASS_RAW_PNG_AND_REPLAY_CHECKS_NOT_DISTANCE_CALIBRATION_APPROVAL",
+  "raw_frames": 467,
+  "native_pngs_verified": 8,
+  "corner_rows_replayed": 1401,
+  "projection_rows_checked": 2802,
+  "images_unedited": true,
+  "missing_candidates_not_filled": true,
+  "previous_sources_and_runtime_configs_unchanged": true,
+  "physical_output": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/white_paper_visibility_r01/verify.py": "9dd69922083eff6c0f19994909c865ac8d1162b8ba073c2e6c24b9b19cc6fefc",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/white_paper_visibility_r01/test_paper_visibility.py": "1bb278cf0ee4bae1a9365c8fb7563324f0a5205d2320cb1ff65e9318cc3f31ee"
+  }
+}

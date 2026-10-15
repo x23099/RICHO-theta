@@ -1,0 +1,8 @@
+point_id,role,threshold,start_sec,end_sec,frames,candidate_frames,failure_counts_json,reference_x_m,reference_z_m,physical_corner_verified,usable_for_ffb,pixel_x,pixel_x_min,pixel_x_max,pixel_y,pixel_y_min,pixel_y_max
+C080,diagnostic,170,1,15,420,420,{},0.0,0.8,False,False,315.0,315,315,440.0,440,440
+C130,diagnostic,170,27,34,210,210,{},0.0,1.3,False,False,312.0,312,312,404.0,404,404
+C200,diagnostic,170,46,51,146,43,"{""not_convex_quadrilateral"": 103}",0.0,2.0,False,False,309.0,309,310,378.0,378,378
+L130,diagnostic,170,126,130,120,120,{},-0.4,1.3,False,False,258.0,258,258,403.0,403,403
+R130,diagnostic,170,146,151,148,148,{},0.4,1.3,False,False,363.0,363,363,398.0,398,398
+H100,held_out_from_future_fit,170,205,209,120,120,{},0.0,1.0,False,False,313.0,313,314,425.0,425,425
+H160,held_out_from_future_fit,170,231,238,210,210,{},0.0,1.6,False,False,310.0,310,311,390.0,390,390

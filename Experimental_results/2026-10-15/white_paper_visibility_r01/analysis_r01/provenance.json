@@ -1,0 +1,73 @@
+{
+  "status": "COMPLETED_PAPER_CORNER_VISIBILITY_DIAGNOSIS_NOT_METRIC_CALIBRATION_APPROVAL",
+  "frames": 467,
+  "corner_rows": 1401,
+  "projection_rows": 2802,
+  "roi_native_xywh": [
+    295,
+    360,
+    60,
+    30
+  ],
+  "thresholds": [
+    140,
+    170,
+    200
+  ],
+  "models": {
+    "recorded58": {
+      "camera_height": 0.58,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -80,
+      "front_cy_offset": -21,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    },
+    "measured59": {
+      "camera_height": 0.59,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -80,
+      "front_cy_offset": -21,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    }
+  },
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_white_paper_visibility_intake_r01/itikakunin_20261015_181034_492/raw.avi": "4124449eaf22697000d3fb012f2e229cb101ad885e5c4b651a53af27836b6e7d",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_white_paper_visibility_intake_r01/itikakunin_20261015_181034_492/metadata.json": "ef8704266356c418987284831414a891d2b301b51217c63b588d2218e30c05c0",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_white_paper_visibility_intake_r01/itikakunin_20261015_181034_492/detections.csv": "23ffe1c5e7c32be9ebbda4c0d815955fa83d2a5c3edd6020379acc069cdd5b55",
+    "/home/robo25/Downloads/itikakunin_20261015_181034_492.tar.xz": "57e0f3e7eef032a64f012244a845f11768ee8444204d5610c62423fb16a18bc1",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/white_paper_visibility_r01/analyze.py": "3af181d00977c807906fdcb2c8b899ef7b04b3a9b8a41133f0b07b774f51b8f2",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/white_paper_visibility_r01/method.md": "027a37e9c4779ab29b6af33cd5d533f18215f0f1f5b763aec4692640f2e35d5e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/white_paper_visibility_r01/intake.py": "b346d0b205a209c67223e5a57037436bad0237e9bd091f88e64242bf8a6fd838",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/white_paper_visibility_r01/intake_summary.json": "d0ce30f8f5647bfff416da2382cc0721d1a8987c93108ea5f13e13adbafbba3e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/white_paper_visibility_r01/raw_sample_manifest.csv": "b1daa7e2676ea3b20b5988ea4eb4805e698497d22652ec9d29305f5e75132438",
+    "/home/robo25/theta_ws/RICHO-theta/src/ground_contact.py": "a51c65ab01a4d7a4a1a0f368c2fca9e2e183a3c9c0b0c2c9ba00458a905b74cc",
+    "/home/robo25/theta_ws/RICHO-theta/src/diagnose_box_contact_calibration.py": "3eb3276446d4e3145fe92dc3927856f3dbb45e5dfb50f4aa27d0be88638cfd29",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/white_paper_visibility_r01/raw_samples/paper_f000001.png": "3a235380879864406d739287b9d74563061c72bb34b5f23dd31a4391073e06f6",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/white_paper_visibility_r01/raw_samples/paper_f000067.png": "4af3bed2501b20e0da7f8c426bc7c9b342ca8b2e38d75b208a5827b999b3b231",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/white_paper_visibility_r01/raw_samples/paper_f000134.png": "a310d71d14bc78b407be59338fd728d116ad2ddf400acea26fc1020484ad8c7c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/white_paper_visibility_r01/raw_samples/paper_f000200.png": "32192bb96f9e1dc2134729a8efa387908ac8fb8d1661e987068583b02335513c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/white_paper_visibility_r01/raw_samples/paper_f000267.png": "40c2c8f0fd4496775bb2ac088694d8c035ad73e5ff77f264a2ddee44f17e4900",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/white_paper_visibility_r01/raw_samples/paper_f000333.png": "52462cd8cd38392f68c338f8829a773e2039f196313330eeeec000c0725051d3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/white_paper_visibility_r01/raw_samples/paper_f000400.png": "e9a05b57c797d2c793e9923fbe377f0c03726b54791861fbab318efa5ca157e2",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/white_paper_visibility_r01/raw_samples/paper_f000467.png": "945fb83c5a1add5ba70e777cb7b96bcb554ff7a0dc2288de34c0c62614374d96"
+  },
+  "fitted_parameters": false,
+  "thresholds_selected_by_distance_error": false,
+  "runtime_detector_implemented": false,
+  "physical_output": false,
+  "production_settings_changed": false,
+  "output_sha256": {
+    "corner_candidates.csv": "0e3243079d34a0ea5ddad7d774e4e314dceece1975baa3725dae068c78086448",
+    "fixed_projection_reference.csv": "8b713244c358741c215f4b6d25290f4b65550efd189bbf9792696b6cfc34eedd",
+    "corner_pixel_stability.png": "0e90b28a76b138236fe37193526f050501146bb29efd841e21d8952caaf4eada",
+    "threshold_summary.csv": "da5c11fda3ab0f795b74b381668cc5ce4b467fa3a993ecb1e3c25aa60db33ce4"
+  }
+}

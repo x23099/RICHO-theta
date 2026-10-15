@@ -1,0 +1,92 @@
+{
+  "status": "COMPLETED_OFFLINE_QUALITY_REPLAY_NOT_CONTACT_TTC_OR_FFB_APPROVAL",
+  "settings": {
+    "confirmation_frames": 3,
+    "confirmation_distance_m": 0.15,
+    "max_nis": 9.21,
+    "measurement_std_m": 0.03,
+    "process_accel_std_mps2": 1.5,
+    "track_memory_sec": 0.5,
+    "max_frame_gap_sec": 0.2,
+    "shape_memory_sec": 1.0,
+    "max_shape_factor": 2.0
+  },
+  "models": {
+    "recorded58": {
+      "camera_height": 0.58,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -80,
+      "front_cy_offset": -21,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    },
+    "measured59": {
+      "camera_height": 0.59,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -80,
+      "front_cy_offset": -21,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    },
+    "frozen_centre2": {
+      "camera_height": 0.59,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -92.96974027040832,
+      "front_cy_offset": -25.514984107178453,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    }
+  },
+  "observation_rows": 15429,
+  "no_threshold_search": true,
+  "same_pose_roi_is_evaluation_association_only": true,
+  "dynamic_cone_recording_tested": false,
+  "physical_output": false,
+  "production_settings_changed": false,
+  "ground_truth_used_by_gate": false,
+  "known_partial_bbox_frames_1133_1134_withheld_all_models": true,
+  "recovery_after_1134": {
+    "recorded58": {
+      "first_accepted_frame": 1137,
+      "time_sec": "38.02205"
+    },
+    "measured59": {
+      "first_accepted_frame": 1137,
+      "time_sec": "38.02205"
+    },
+    "frozen_centre2": {
+      "first_accepted_frame": 1137,
+      "time_sec": "38.02205"
+    }
+  },
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_observation_quality_r01/replay.py": "ef92d13541e1dedb6509d2587acad783f095572414ccf439d777bafdae7cfb75",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_observation_quality_r01/method.md": "384bc4e8e7b0f40f2626bcce0b8483bfccf970490f1cc38aa8d75caca447a0d9",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/analysis_r01/summary.json": "256eddc35436c53f4f30bd8adc2ff82fcae3350126a955d9e461417f4b046e0b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/scope.json": "ab25cc0172190b77fd931e1e38f8556a6c9c36f5f06951e90576691bbd06679a",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_observation_quality.py": "8523794abea3cd68e953bc73822ae3c69577c13ce9572188d9d0900eedf1b018",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_observation.py": "e42d2d53c6163370b0db04dd677aed442f86a05dae2dac1851b924fd6c62b633",
+    "/home/robo25/theta_ws/RICHO-theta/src/obstacle_tracking.py": "25bc0b14d1f470f9134eb5b32d14be02080d7152a577679358f19862b4d16aed",
+    "/home/robo25/theta_ws/RICHO-theta/src/ground_contact.py": "a51c65ab01a4d7a4a1a0f368c2fca9e2e183a3c9c0b0c2c9ba00458a905b74cc",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_cone_observation_quality.py": "041452da22ad53b506794fa794bfe9ce2c66938bba3f6b5d1f0eeefc9393e420",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/inference_r01/frames.csv": "e8fe6e1e571065fec0bffe2b6237367533594d5fb7ffc3980d756ce2af669a95",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/inference_r01/predictions.csv": "660203d9e53a2ef16e306b0d38dc5d64c3bb48ea25840c6b5d8955f33bb6960a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/frames.csv": "0751eb49dbb12d6fc73520c5c450b2a97bbede26d0c2e353ed9da2feac40abe3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/predictions.csv": "6c31f798aec4dd3a65c1fbbe0bd986a3bb65d03d48833f0d4f7fb6e275ea8204"
+  },
+  "output_sha256": {
+    "occlusion_rows.csv": "0090386bc120e6d746d087fb99ea1394f303d6047db6b9b95b2a5a341dbacf0a",
+    "occlusion_gate.png": "bfce8e7f8f3452e2cc0d7780807cf85550753cce91ceb71d0068ac9924d98b55",
+    "summary.csv": "87acd09bda0e381a620eef0734c77ea6858214f7486f12ee2d912586db07be12",
+    "observations.csv": "02c56073796259430fb1d5f6a2153356e74787b22b5b0a58ec9555b94101bd11"
+  }
+}

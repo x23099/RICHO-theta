@@ -1,0 +1,29 @@
+{
+  "status": "COMPLETED_LOCAL_APPEARANCE_CHECK_NOT_CALIBRATION_APPROVAL",
+  "settings": {
+    "min_reliable_regions": 2,
+    "max_local_offset_px": 2.0,
+    "min_ncc": 0.8,
+    "min_peak_margin": 0.02,
+    "max_reverse_error_px": 1.0
+  },
+  "pairs": 11,
+  "region_rows": 55,
+  "state_counts": {
+    "LOCAL_APPEARANCE_MATCH": 6,
+    "LOCAL_CHANGE_OBSERVED": 5
+  },
+  "reference_column": "reference",
+  "reference_id": null,
+  "case_column": "case",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/view_audit_r01/local_feature_matches.csv": "bf55937cf08273b837590fdc1d8023c293b1a6e41df5ad8fa02ee91ddcff72a2",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_view_consistency.py": "39214682312f185c68e2df2eabc11248d8eadf2c6d42ecff48fb7189bea0dc15"
+  },
+  "output_sha256": {
+    "view_consistency.csv": "29138fabea608b00b49c835c80b56c5a2e67c2c2b679474bd10f330a9307aea2"
+  },
+  "physical_output": false,
+  "production_settings_changed": false,
+  "calibration_selected": false
+}

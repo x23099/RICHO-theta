@@ -1,0 +1,5 @@
+kind,point_id,frame,pixel_x,pixel_y,reference_x_m,reference_z_m,reviewer,review_kind,visibility
+floor,C130,141,310,416,0,1.3,assistant,nonblind_visual_candidate,V-tip visible but small
+floor,C200,141,311,393,0,2.0,assistant,nonblind_visual_candidate,V-tip only a few pixels and exact edge uncertain
+cone,C130,563,310,417,0,1.3,assistant,nonblind_visual_candidate,visible near base lower edge near centre
+cone,C200,1265,310,393,0,2.0,assistant,nonblind_visual_candidate,visible far base lower edge near centre; few pixels

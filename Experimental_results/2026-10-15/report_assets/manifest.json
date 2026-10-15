@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-15",
+  "assets": [
+    {
+      "file": "raw_cone_center1p30_f000217.png",
+      "source": "cone_static_distance_r01/raw_samples/center_130_f000217.png",
+      "kind": "raw",
+      "source_sha256": "67c3d68aa08cf8266e77a124b1a8ccbaf729ccca28066ce38be59e4cea3047b3",
+      "session": "cone_static_center_z1p30_r01_20261015_135329_732",
+      "frame": 217,
+      "time_sec": 7.221865,
+      "width": 1280,
+      "height": 720,
+      "decoded_bgr_sha256": "d1b192c0430d3ee81938cfaa16464502e483f0167d48df98254ca394d3e78e65",
+      "source_raw_sha256": "905084fe5f21b7db84e552da0e91ff40959f3c0023927223b337ab79d90015d0",
+      "image_edits": false
+    },
+    {
+      "file": "raw_paper_center2p00_f001481.png",
+      "source": "paper_reference7_r01/raw_samples/paper7_f001481.png",
+      "kind": "raw",
+      "source_sha256": "b4db1ce22223adcb98e1d8dfa7386dcf6c079b84f321732b7332e49d163f87f9",
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 1481,
+      "time_sec": 49.497848,
+      "width": 1280,
+      "height": 720,
+      "decoded_bgr_sha256": "2f719a7e55b9bd3c2594f483efec60fdbf9d406b59ea6d963ab8bbb49200e611",
+      "source_raw_sha256": "20ab6ffc653d5e8ffc6f5618cd7d62f110a5598ef4d2a42620ffd6d5607d09b0",
+      "image_edits": false
+    },
+    {
+      "file": "cone_occlusion_quality_gate.png",
+      "source": "cone_observation_quality_r01/results_r01/occlusion_gate.png",
+      "kind": "graph",
+      "source_sha256": "bfce8e7f8f3452e2cc0d7780807cf85550753cce91ceb71d0068ac9924d98b55"
+    },
+    {
+      "file": "paper_reference_projection_comparison.png",
+      "source": "paper_reference7_r01/analysis_r01/projection_comparison.png",
+      "kind": "graph",
+      "source_sha256": "209ef5746ef641093ec05cc21dc240cc7a19fe54d3571b1a7e50512bd37e072b"
+    }
+  ],
+  "camera_images_edited": false,
+  "script_sha256": "cd2357ae87f4d8182521fb61f88539c0daa4478ba1cac626fd6d5955f51eac62"
+}

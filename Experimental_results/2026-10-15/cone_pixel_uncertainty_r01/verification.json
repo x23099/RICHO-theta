@@ -1,0 +1,17 @@
+{
+  "status": "PASS_FROZEN_SOURCE_AND_SENSITIVITY_EQUATIONS_NOT_METRIC_ACCURACY_APPROVAL",
+  "fixed_models": 6,
+  "fixed_point_candidates": 14,
+  "model_point_residuals": 84,
+  "band_rows_recomputed": 504,
+  "pair_overlap_checks": 4,
+  "point_candidates_and_frozen_models_unchanged": true,
+  "original_images_and_runtime_configs_unchanged": true,
+  "parameters_fitted": false,
+  "model_selected": false,
+  "physical_output": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_pixel_uncertainty_r01/verify.py": "9e3c85b93d6cbeb8fbb91febe228c165a509b93d8ad2a6429d5f4eb2f2d6e601",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_pixel_uncertainty_r01/test_pixel_uncertainty.py": "e4f09c679b87246dafb36e9bcfb629e3314e61736692a9f1dd70209ee1b52819"
+  }
+}

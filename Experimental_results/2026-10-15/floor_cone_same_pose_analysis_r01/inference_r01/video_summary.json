@@ -1,0 +1,55 @@
+{
+  "status": "COMPLETED_OFFLINE_VIDEO_NOT_DEPLOYMENT_APPROVAL",
+  "confidence": 0.5,
+  "track_iou": 0.3,
+  "total_frames": 1547,
+  "sessions": [
+    {
+      "session": "floor_cone_same_pose_r01_20261015_160621_378",
+      "frames": 1547,
+      "detection_frames": 1547,
+      "multi_detection_frames": 1234,
+      "tracks": 12,
+      "zero_runs": 0,
+      "internal_zero_runs": 0,
+      "max_zero_sample_span_sec": 0,
+      "wall_time_sec": 28.610667577013373,
+      "sequential_processing_fps": 54.070741126044325,
+      "post_first_pipeline_ms": {
+        "count": 1546,
+        "mean": 17.22606230182058,
+        "p50": 17.29015848832205,
+        "p95": 19.399481010623276,
+        "max": 109.26343899336644
+      },
+      "post_first_inference_ms": {
+        "count": 1546,
+        "mean": 6.406834231359603,
+        "p50": 6.187306513311341,
+        "p95": 7.43668302311562,
+        "max": 99.77165499003604
+      },
+      "bottom_step_max_per_frame_px": {
+        "count": 1546,
+        "mean": 0.7511511187510119,
+        "p50": 0.5002253902244927,
+        "p95": 1.847856983318085,
+        "max": 26.98775740698069
+      }
+    }
+  ],
+  "annotated_anchor_images": 0,
+  "annotated_anchor_gt": 0,
+  "anchor_summary": [],
+  "anchor_pixel_mismatches": 0,
+  "max_det_reached_frames": 0,
+  "physical_output": false,
+  "independent_test_approval": false,
+  "limitations": [
+    "Zero detection intervals are not automatically false negatives without visibility labels.",
+    "Bottom-coordinate changes include real object/camera motion, not pure measurement jitter.",
+    "Consecutive IoU track fragments do not establish physical object identity.",
+    "Sequential offline throughput is not live camera/GUI/ROS/FFB latency.",
+    "Dataset-anchor GT remains sparse; all-frame precision/recall is not measured."
+  ]
+}

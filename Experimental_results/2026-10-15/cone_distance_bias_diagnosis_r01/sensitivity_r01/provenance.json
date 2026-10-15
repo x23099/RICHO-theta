@@ -1,0 +1,16 @@
+{
+  "status": "DIAGNOSTIC_SYMMETRIC_PIXEL_SENSITIVITY_NOT_PROPOSED_CORRECTION",
+  "rows": 24,
+  "chosen_shift_or_calibration": null,
+  "correction_applied": false,
+  "physical_output": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_distance_bias_diagnosis_r01/pixel_sensitivity.py": "bfa232f39a1002651457f3723b00881b25b141c2a6125b947e77326a49dda780",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_distance_bias_diagnosis_r01/results_r01/distance_decomposition.csv": "5df031a11f3fdf5ec7c14dd7019a14228d03da94db2299c5385e5473246c4278",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_distance_bias_diagnosis_r01/results_r01/provenance.json": "729307e43168ed4a6e22013bc43a1bf57f98afd8ee9d6d732acf95001a32c332",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/geometry_models.py": "0e36cdb3322d90a40933c3d573c7040e64ef051e808f18a6ab35bfb5841135da"
+  },
+  "output_sha256": {
+    "uniform_pixel_shift.csv": "e4d37a869e8dae6625d5421891b356e3889303e29894b6f66d17a5eae25a6a35"
+  }
+}

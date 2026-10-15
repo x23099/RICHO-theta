@@ -1,0 +1,53 @@
+{
+  "family": "centre2",
+  "parameters": {
+    "camera_height": 0.59,
+    "pitch_deg": 1,
+    "roll_deg": 2,
+    "yaw_deg": 0,
+    "radius_scale": 0.86,
+    "front_cx_offset": -91.36974027724838,
+    "front_cy_offset": -34.7149841072099,
+    "back_cx_offset": 82,
+    "back_cy_offset": -18
+  },
+  "fit_ids": [
+    "C080",
+    "C130",
+    "C200",
+    "L130",
+    "R130"
+  ],
+  "free_parameters": [
+    "front_cx_offset",
+    "front_cy_offset"
+  ],
+  "pixel_sse": 31.89161397473735,
+  "pixel_point_rmse": 2.5255341603208357,
+  "solver_success": true,
+  "active_bounds": {
+    "front_cx_offset": 0,
+    "front_cy_offset": 0
+  },
+  "search_bounds": {
+    "front_cx_offset": [
+      -105.0,
+      -55.0
+    ],
+    "front_cy_offset": [
+      -46.0,
+      4.0
+    ]
+  },
+  "normalized_jacobian_singular_values": [
+    55.90169943893056,
+    55.9016994340936
+  ],
+  "normalized_jacobian_rank": 2,
+  "normalized_jacobian_condition": 1.0000000000865261,
+  "starts": 3,
+  "offline_only": true,
+  "physical_output_authorized": false,
+  "usable_for_ffb": false,
+  "interpretation": "offline paper near-left corner candidate; not physical intrinsics/pose or runtime approval"
+}

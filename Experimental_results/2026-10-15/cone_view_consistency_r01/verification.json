@@ -1,0 +1,13 @@
+{
+  "status": "PASS_OFFLINE_DECISION_AND_FROZEN_INPUT_CHECKS_NOT_CALIBRATION_APPROVAL",
+  "pairs_checked": 80,
+  "region_rows_checked": 400,
+  "current_video_local_matches": 15,
+  "all_outputs_ineligible_for_ffb": true,
+  "old_input_camera_images_and_runtime_configs_unchanged": true,
+  "physical_output": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_view_consistency_r01/verify.py": "407e91434e37a74b2bd83352f5a7ab1b9f7866f90daa1f9bee4a840ff7e2963a",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_cone_view_consistency.py": "49b79ebec1ad72066b3b89bf096ddbc265c9a254d71b4ced0103d9b24c821798"
+  }
+}

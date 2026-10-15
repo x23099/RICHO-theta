@@ -1,0 +1,16 @@
+reference,case,state,reason,appearance_consistent,supplied_regions,reliable_regions,shifted_regions,unreliable_regions,invalid_regions,shifted_region_names,invalid_region_names,max_reliable_local_offset_px,calibration_validated,floor_contact_verified,usable_for_ffb
+same_pose_frame141,1,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,5,3,0,2,0,,,0.0,False,False,False
+same_pose_frame141,141,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,5,3,0,2,0,,,0.0,False,False,False
+same_pose_frame141,282,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,5,3,0,2,0,,,0.0,False,False,False
+same_pose_frame141,422,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,5,3,0,2,0,,,0.0,False,False,False
+same_pose_frame141,563,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,5,3,0,2,0,,,0.0,False,False,False
+same_pose_frame141,703,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,5,3,0,2,0,,,0.0,False,False,False
+same_pose_frame141,844,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,5,3,0,2,0,,,0.0,False,False,False
+same_pose_frame141,984,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,5,3,0,2,0,,,0.0,False,False,False
+same_pose_frame141,1125,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,5,3,0,2,0,,,0.0,False,False,False
+same_pose_frame141,1265,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,5,3,0,2,0,,,0.0,False,False,False
+same_pose_frame141,1406,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,5,3,0,2,0,,,0.0,False,False,False
+same_pose_frame141,1547,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,5,3,0,2,0,,,0.0,False,False,False
+same_pose_frame141,480,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,5,3,0,2,0,,,0.0,False,False,False
+same_pose_frame141,780,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,5,3,0,2,0,,,0.0,False,False,False
+same_pose_frame141,1000,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,5,3,0,2,0,,,0.0,False,False,False
