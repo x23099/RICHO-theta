@@ -1,0 +1,87 @@
+{
+  "status": "COMPLETED_NONBLIND_CONTACT_DIAGNOSIS_NOT_CAUSAL_PROOF_OR_CALIBRATION",
+  "point_count": 5,
+  "original_images_unchanged": true,
+  "physical_output": false,
+  "calibration_changed": false,
+  "corrections_applied": false,
+  "fitted_parameters": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/contact_diagnose.py": "cb025c280ae05280c48949f7e0f08eb163d3f1a4d0ecdb2d50b2e305feb77b20",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/manual_contact_candidates.csv": "8ac78209b232c6a1f3c827abee7d9ae5705dbe72623031014a85e28e8f053d1c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_sample_manifest.csv": "c7562c8bd33b56f4abc887da03ad2d854f8417f3fc9f162686d7e72dada18461",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/intake_summary.json": "b99afc0cf6897d51d8b7305701bc582529fb5e4f189b1c514444d04484ac3b78",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/analysis_r01/positions.csv": "1136b8d6b9c46eb185fdd09f8fa628faa935d927c3fc951e0463a14013396511",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_observation.py": "e42d2d53c6163370b0db04dd677aed442f86a05dae2dac1851b924fd6c62b633",
+    "/home/robo25/theta_ws/RICHO-theta/src/ground_contact.py": "a51c65ab01a4d7a4a1a0f368c2fca9e2e183a3c9c0b0c2c9ba00458a905b74cc",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_080_f000241.png": "3102dc7026673e64007dd2c0f92d07fcf45a6d6cc35e2799e54ebc3fd8c7b68f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_130_f000217.png": "67c3d68aa08cf8266e77a124b1a8ccbaf729ccca28066ce38be59e4cea3047b3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_200_f000211.png": "8626c83c69cc27485caff49acc6c33717a0dd9ea07fdb2f5cd404a73edd259b8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/left_130_f000210.png": "e124ad8083302c885f4babb07111f12fb90183990c80da2daa53ab039bf62413",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/right_130_f000211.png": "a2c164de33de44f54de0eb440c7cd25e43aca05fbcb6e2a8a858ab5e6d291efc"
+  },
+  "manual_point_definition": "visible lower base edge near centre; not independently surveyed",
+  "selection": "one pre-exported mid-session frame per positive condition; assistant had seen nominal/bbox results",
+  "uncertainty": "+/-3 pixels is a hypothetical 49-point sensitivity square, NOT measured annotation uncertainty or a confidence interval",
+  "camera_geometry": {
+    "center_080": {
+      "camera_height": 0.58,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -80,
+      "front_cy_offset": -21,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    },
+    "center_130": {
+      "camera_height": 0.58,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -80,
+      "front_cy_offset": -21,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    },
+    "center_200": {
+      "camera_height": 0.58,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -80,
+      "front_cy_offset": -21,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    },
+    "left_130": {
+      "camera_height": 0.58,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -80,
+      "front_cy_offset": -21,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    },
+    "right_130": {
+      "camera_height": 0.58,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -80,
+      "front_cy_offset": -21,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    }
+  },
+  "output_sha256": {
+    "paired_contact_comparison.csv": "e10e59290277b3b35b8709bde44f7be8bed7e6a11c086f4e9a0e519b56da3f54",
+    "paired_contact_comparison.png": "c6a7485655f6d8cb688b0f6d303c89dbbed5a36931f11b0b4dc2724715ffae63"
+  }
+}

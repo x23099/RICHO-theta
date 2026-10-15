@@ -1,0 +1,8 @@
+point_id,assumed_pixel_half_width_px,x_min_m,x_max_m,z_min_m,z_max_m,interpretation
+C080,2,-0.03181329902207683,-0.010693832302034802,0.7617426035165051,0.7997317203114173,hypothetical fixed-candidate pixel sensitivity; NOT CI or measured annotation error
+H100,2,-0.034308536992197755,-0.008551857498423451,0.9733850883535975,1.0270087025686643,hypothetical fixed-candidate pixel sensitivity; NOT CI or measured annotation error
+C130,2,-0.013901637539602387,0.018902462273069173,1.26259099044152,1.3445181299612832,hypothetical fixed-candidate pixel sensitivity; NOT CI or measured annotation error
+H160,2,-0.0032715914442635018,0.03736849623352188,1.5523158617578423,1.6703119983829875,hypothetical fixed-candidate pixel sensitivity; NOT CI or measured annotation error
+C200,2,0.0007548257083903321,0.051973893036408064,1.9432938327586184,2.1227821861346445,hypothetical fixed-candidate pixel sensitivity; NOT CI or measured annotation error
+L130,2,-0.4524429153835832,-0.39637619944856434,1.2731882267999501,1.3600875933049263,hypothetical fixed-candidate pixel sensitivity; NOT CI or measured annotation error
+R130,2,0.4058729901349558,0.4625602569532109,1.2547993822361696,1.3455102115779314,hypothetical fixed-candidate pixel sensitivity; NOT CI or measured annotation error

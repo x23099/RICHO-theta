@@ -1,0 +1,7 @@
+session_dir,note
+/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_center_z1p30_r01_20261015_135329_732,center_130; stationary floor-cone reference; no per-frame bbox GT
+/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_center_z2p00_r01_20261015_135414_399,center_200; stationary floor-cone reference; no per-frame bbox GT
+/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_left_z1p30_r01_20261015_135541_436,left_130; stationary floor-cone reference; no per-frame bbox GT
+/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_no_cone_r01_20261015_134940_713,none; stationary floor-cone reference; no per-frame bbox GT
+/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_right_z1p30_r01_20261015_135630_973,right_130; stationary floor-cone reference; no per-frame bbox GT
+/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/one_static_center_z0p80_r01_20261015_135155_823,center_080; stationary floor-cone reference; no per-frame bbox GT

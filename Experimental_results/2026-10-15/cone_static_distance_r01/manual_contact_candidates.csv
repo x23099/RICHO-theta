@@ -1,0 +1,6 @@
+condition,frame,file,pixel_x,pixel_y,reviewer,review_kind,point_definition,scope
+center_080,241,raw_samples/center_080_f000241.png,318,443,assistant,nonblind_illustrative,visible lower base edge near centre,not human ground truth; not calibration; nominal results already known
+center_130,217,raw_samples/center_130_f000217.png,313,405,assistant,nonblind_illustrative,visible lower base edge near centre,not human ground truth; not calibration; nominal results already known
+center_200,211,raw_samples/center_200_f000211.png,312,379,assistant,nonblind_illustrative,visible lower base edge near centre,not human ground truth; not calibration; nominal results already known
+left_130,210,raw_samples/left_130_f000210.png,242,406,assistant,nonblind_illustrative,visible lower base edge near centre,not human ground truth; not calibration; nominal results already known
+right_130,211,raw_samples/right_130_f000211.png,379,401,assistant,nonblind_illustrative,visible lower base edge near centre,not human ground truth; not calibration; nominal results already known

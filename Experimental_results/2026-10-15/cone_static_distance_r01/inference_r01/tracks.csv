@@ -1,0 +1,8 @@
+session,track_id,image_half,first_frame,last_frame,frames,first_time_sec,last_time_sec,identity_scope
+cone_static_center_z1p30_r01_20261015_135329_732,1,left,1,651,651,0.026835,21.756231,consecutive-frame IoU association only; no semantic identity guarantee
+cone_static_center_z2p00_r01_20261015_135414_399,1,left,1,632,632,0.019752,21.095442,consecutive-frame IoU association only; no semantic identity guarantee
+cone_static_left_z1p30_r01_20261015_135541_436,1,left,1,628,628,0.035979,21.001549,consecutive-frame IoU association only; no semantic identity guarantee
+cone_static_right_z1p30_r01_20261015_135630_973,1,left,1,631,631,0.032045,21.390418,consecutive-frame IoU association only; no semantic identity guarantee
+cone_static_right_z1p30_r01_20261015_135630_973,2,left,54,54,1,1.788361,1.788361,consecutive-frame IoU association only; no semantic identity guarantee
+cone_static_right_z1p30_r01_20261015_135630_973,3,left,56,57,2,1.864965,1.900202,consecutive-frame IoU association only; no semantic identity guarantee
+one_static_center_z0p80_r01_20261015_135155_823,1,left,1,722,722,0.018818,24.120328,consecutive-frame IoU association only; no semantic identity guarantee

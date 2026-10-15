@@ -1,0 +1,16 @@
+{
+  "status": "PASS_INTERNAL_SPLIT_HASH_AND_EQUATION_CHECKS_NOT_PHYSICAL_CALIBRATION",
+  "fitted_model_families": 4,
+  "checks_never_fitted": true,
+  "holdout_mutation_invariance": true,
+  "deterministic_primary_refit": true,
+  "point_equations_verified": 42,
+  "cone_frames_retained": 3596,
+  "cone_positions_recomputed": 3261,
+  "sensitivity_scenarios": 25,
+  "unused_cone_frames_preserved": 335,
+  "runtime_configs_preserved": 13,
+  "physical_output": false,
+  "calibration_promoted": false,
+  "verification_script_sha256": "527ae8a9220d114edfc0e282f5cd10983e90dd78d58cc460fc0f20766bdca825"
+}

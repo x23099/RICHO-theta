@@ -1,0 +1,8 @@
+file,reviewer,observation,scope
+raw_samples/none_f000111.png,assistant,no cone identified in either lens; corridor and room; no floor reflection resembling cone base at this point,one native sample; not full-video human bbox GT
+raw_samples/center_080_f000241.png,assistant,one red cone upright on front floor with base visible; person behind camera; tape measure visible,native whole frame; no verified metric contact pixel annotation
+raw_samples/center_130_f000217.png,assistant,one red cone upright on front floor with base visible; tape measure along floor; person in rear lens,native whole frame; no verified metric contact pixel annotation
+raw_samples/center_200_f000211.png,assistant,one smaller red cone upright on front floor with visible base; tape measure on floor; person in rear lens,native whole frame; no verified metric contact pixel annotation
+raw_samples/left_130_f000210.png,assistant,red cone on left/front floor with base visible; tape measure crosses floor to the right of cone,native whole frame; no verified metric contact pixel annotation
+raw_samples/right_130_f000211.png,assistant,red cone on right/front floor with base visible; distant person in corridor and person in rear lens,native whole frame; no verified metric contact pixel annotation
+diagnosis_r01/right_130_f000054.png,assistant,red cone on right/front floor; extra bbox x246-272/y244-293 corresponds to passing person's upper-body/arm area rather than the cone,first of three extra-output frames inspected; not all-frame label creation

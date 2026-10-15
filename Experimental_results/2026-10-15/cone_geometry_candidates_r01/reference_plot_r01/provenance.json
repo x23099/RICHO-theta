@@ -1,0 +1,9 @@
+{
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/reference_update_r01/cone_transfer_summary_updated.csv": "1e4988081274e0f096be1463651a135465f3d88062f7b4ca885c06185891b96f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/plot_updated_reference.py": "cba65bed3c9136a9563b4c284d311339cce009b48f86540f21a06c2c4f4bfa7c"
+  },
+  "interpretation": "re-scored coordinates only; no model fit or image edits; X assumes axis-aligned square base",
+  "physical_output": false,
+  "graph_sha256": "81c744baea15e949e080f27b2f8b00623580fcacfe27f45a9b9716561145695b"
+}

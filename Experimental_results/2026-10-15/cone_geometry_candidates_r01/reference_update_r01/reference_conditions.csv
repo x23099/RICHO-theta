@@ -1,0 +1,6 @@
+condition,reference_x_m,reference_z_m,physical_point,x_basis,orientation_assumption,base_side_m,physical_contact_verified
+center_080,0,0.8,midpoint of vehicle-side/front base edge,central placement,base edges approximately parallel to vehicle axes; unmeasured,0.375,False
+center_130,0,1.3,midpoint of vehicle-side/front base edge,central placement,base edges approximately parallel to vehicle axes; unmeasured,0.375,False
+center_200,0,2.0,midpoint of vehicle-side/front base edge,central placement,base edges approximately parallel to vehicle axes; unmeasured,0.375,False
+left_130,-0.5875,1.3,midpoint of vehicle-side/front base edge,base centre inferred from inner edge and width,base edges approximately parallel to vehicle axes; unmeasured,0.375,False
+right_130,0.5875,1.3,midpoint of vehicle-side/front base edge,base centre inferred from inner edge and width,base edges approximately parallel to vehicle axes; unmeasured,0.375,False

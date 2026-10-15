@@ -1,0 +1,287 @@
+{
+  "status": "EXPLORATORY_OFFLINE_CANDIDATES_NOT_RUNTIME_CONFIG_OR_PHYSICAL_CALIBRATION",
+  "predeclared_primary": "centre2",
+  "selection_uses_holdout": false,
+  "models": {
+    "recorded58": {
+      "parameters": {
+        "camera_height": 0.58,
+        "pitch_deg": 1,
+        "roll_deg": 2,
+        "yaw_deg": 0,
+        "radius_scale": 0.86,
+        "front_cx_offset": -80,
+        "front_cy_offset": -21,
+        "back_cx_offset": 82,
+        "back_cy_offset": -18
+      },
+      "fit_ids": [],
+      "free_parameters": []
+    },
+    "measured59": {
+      "parameters": {
+        "camera_height": 0.59,
+        "pitch_deg": 1,
+        "roll_deg": 2,
+        "yaw_deg": 0,
+        "radius_scale": 0.86,
+        "front_cx_offset": -80,
+        "front_cy_offset": -21,
+        "back_cx_offset": 82,
+        "back_cy_offset": -18
+      },
+      "fit_ids": [],
+      "free_parameters": []
+    },
+    "centre2": {
+      "family": "centre2",
+      "parameters": {
+        "camera_height": 0.59,
+        "pitch_deg": 1,
+        "roll_deg": 2,
+        "yaw_deg": 0,
+        "radius_scale": 0.86,
+        "front_cx_offset": -92.96974027040832,
+        "front_cy_offset": -25.514984107178453,
+        "back_cx_offset": 82,
+        "back_cy_offset": -18
+      },
+      "fit_ids": [
+        "C080",
+        "C130",
+        "C200",
+        "L130",
+        "R130"
+      ],
+      "free_parameters": [
+        "front_cx_offset",
+        "front_cy_offset"
+      ],
+      "pixel_sse": 47.617714349671445,
+      "pixel_point_rmse": 3.0860237960738877,
+      "solver_success": true,
+      "active_bounds": {
+        "front_cx_offset": 0,
+        "front_cy_offset": 0
+      },
+      "search_bounds": {
+        "front_cx_offset": [
+          -105.0,
+          -55.0
+        ],
+        "front_cy_offset": [
+          -46.0,
+          4.0
+        ]
+      },
+      "normalized_jacobian_singular_values": [
+        55.90169943826599,
+        55.901699436083646
+      ],
+      "normalized_jacobian_rank": 2,
+      "normalized_jacobian_condition": 1.000000000039039,
+      "starts": 3,
+      "offline_only": true,
+      "physical_output_authorized": false,
+      "usable_for_ffb": false,
+      "interpretation": "provisional model for unverified assistant pixel candidates; not measured physical intrinsics/pose"
+    },
+    "pose3": {
+      "family": "pose3",
+      "parameters": {
+        "camera_height": 0.59,
+        "pitch_deg": -0.4670483155884151,
+        "roll_deg": -0.6582535437847806,
+        "yaw_deg": -3.273129389388152,
+        "radius_scale": 0.86,
+        "front_cx_offset": -80,
+        "front_cy_offset": -21,
+        "back_cx_offset": 82,
+        "back_cy_offset": -18
+      },
+      "fit_ids": [
+        "C080",
+        "C130",
+        "C200",
+        "L130",
+        "R130"
+      ],
+      "free_parameters": [
+        "yaw_deg",
+        "pitch_deg",
+        "roll_deg"
+      ],
+      "pixel_sse": 45.532417995790595,
+      "pixel_point_rmse": 3.0176950805470923,
+      "solver_success": true,
+      "active_bounds": {
+        "yaw_deg": 0,
+        "pitch_deg": 0,
+        "roll_deg": 0
+      },
+      "search_bounds": {
+        "yaw_deg": [
+          -8.0,
+          8.0
+        ],
+        "pitch_deg": [
+          -7.0,
+          9.0
+        ],
+        "roll_deg": [
+          -6.0,
+          10.0
+        ]
+      },
+      "normalized_jacobian_singular_values": [
+        56.096113242372915,
+        54.139551876170906,
+        11.398369124045592
+      ],
+      "normalized_jacobian_rank": 3,
+      "normalized_jacobian_condition": 4.921415742190219,
+      "starts": 3,
+      "offline_only": true,
+      "physical_output_authorized": false,
+      "usable_for_ffb": false,
+      "interpretation": "provisional model for unverified assistant pixel candidates; not measured physical intrinsics/pose"
+    },
+    "centre_radius3": {
+      "family": "centre_radius3",
+      "parameters": {
+        "camera_height": 0.59,
+        "pitch_deg": 1,
+        "roll_deg": 2,
+        "yaw_deg": 0,
+        "radius_scale": 0.910427375380841,
+        "front_cx_offset": -93.13214810593227,
+        "front_cy_offset": -30.1657358244981,
+        "back_cx_offset": 82,
+        "back_cy_offset": -18
+      },
+      "fit_ids": [
+        "C080",
+        "C130",
+        "C200",
+        "L130",
+        "R130"
+      ],
+      "free_parameters": [
+        "front_cx_offset",
+        "front_cy_offset",
+        "radius_scale"
+      ],
+      "pixel_sse": 24.162226415202994,
+      "pixel_point_rmse": 2.1982823483439518,
+      "solver_success": true,
+      "active_bounds": {
+        "front_cx_offset": 0,
+        "front_cy_offset": 0,
+        "radius_scale": 0
+      },
+      "search_bounds": {
+        "front_cx_offset": [
+          -105.0,
+          -55.0
+        ],
+        "front_cy_offset": [
+          -46.0,
+          4.0
+        ],
+        "radius_scale": [
+          0.8,
+          0.92
+        ]
+      },
+      "normalized_jacobian_singular_values": [
+        57.27004763351763,
+        55.90169943889902,
+        5.624767659802605
+      ],
+      "normalized_jacobian_rank": 3,
+      "normalized_jacobian_condition": 10.181762358434456,
+      "starts": 3,
+      "offline_only": true,
+      "physical_output_authorized": false,
+      "usable_for_ffb": false,
+      "interpretation": "provisional model for unverified assistant pixel candidates; not measured physical intrinsics/pose"
+    },
+    "centre_pose5": {
+      "family": "centre_pose5",
+      "parameters": {
+        "camera_height": 0.59,
+        "pitch_deg": 7.812007206865689,
+        "roll_deg": 0.5693886042643627,
+        "yaw_deg": 4.748837369603465,
+        "radius_scale": 0.86,
+        "front_cx_offset": -104.99999999999999,
+        "front_cy_offset": -45.99999999999999,
+        "back_cx_offset": 82,
+        "back_cy_offset": -18
+      },
+      "fit_ids": [
+        "C080",
+        "C130",
+        "C200",
+        "L130",
+        "R130"
+      ],
+      "free_parameters": [
+        "front_cx_offset",
+        "front_cy_offset",
+        "yaw_deg",
+        "pitch_deg",
+        "roll_deg"
+      ],
+      "pixel_sse": 23.045955007281492,
+      "pixel_point_rmse": 2.1469026529995014,
+      "solver_success": true,
+      "active_bounds": {
+        "front_cx_offset": -1,
+        "front_cy_offset": -1,
+        "yaw_deg": 0,
+        "pitch_deg": 0,
+        "roll_deg": 0
+      },
+      "search_bounds": {
+        "front_cx_offset": [
+          -105.0,
+          -55.0
+        ],
+        "front_cy_offset": [
+          -46.0,
+          4.0
+        ],
+        "yaw_deg": [
+          -8.0,
+          8.0
+        ],
+        "pitch_deg": [
+          -7.0,
+          9.0
+        ],
+        "roll_deg": [
+          -6.0,
+          10.0
+        ]
+      },
+      "normalized_jacobian_singular_values": [
+        82.70409864877449,
+        77.78157979493027,
+        11.242397211970724,
+        1.4569870858723695,
+        0.9080505327331979
+      ],
+      "normalized_jacobian_rank": 5,
+      "normalized_jacobian_condition": 91.07874029855834,
+      "starts": 3,
+      "offline_only": true,
+      "physical_output_authorized": false,
+      "usable_for_ffb": false,
+      "interpretation": "provisional model for unverified assistant pixel candidates; not measured physical intrinsics/pose"
+    }
+  },
+  "pixel_labels_verified": false,
+  "physical_output_authorized": false,
+  "usable_for_ffb": false
+}

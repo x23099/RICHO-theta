@@ -1,0 +1,24 @@
+{
+  "status": "COMPLETED_REFERENCE_POINT_COMPARISON_NOT_PHYSICAL_CONTACT_PROOF",
+  "geometry": "centre2",
+  "pixel_points_moved": false,
+  "parameters_fitted": false,
+  "physical_output": false,
+  "interpretation": "predicted pixels from nominal coordinates explain residual direction only; NEVER move actual labels to these pixels",
+  "limits": "different source sessions; cone base endpoint/dimensions pending clarification; assistant manual points nonblind and unverified",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/compare_contacts.py": "70075841515bfbc78962e1c2c1d698de64ad78c88c4f4f8397ea355014d3ad85",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/geometry_models.py": "0e36cdb3322d90a40933c3d573c7040e64ef051e808f18a6ab35bfb5841135da",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/results_r01/candidate_parameters.json": "a913f567468aef64e1a050ab059e6a8cd9ead28a75fc4b4443f83930e0d1f0b2",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/manual_contact_candidates.csv": "8ac78209b232c6a1f3c827abee7d9ae5705dbe72623031014a85e28e8f053d1c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/analysis_r01/positions.csv": "1136b8d6b9c46eb185fdd09f8fa628faa935d927c3fc951e0463a14013396511",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_080_f000241.png": "3102dc7026673e64007dd2c0f92d07fcf45a6d6cc35e2799e54ebc3fd8c7b68f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_130_f000217.png": "67c3d68aa08cf8266e77a124b1a8ccbaf729ccca28066ce38be59e4cea3047b3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_200_f000211.png": "8626c83c69cc27485caff49acc6c33717a0dd9ea07fdb2f5cd404a73edd259b8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/left_130_f000210.png": "e124ad8083302c885f4babb07111f12fb90183990c80da2daa53ab039bf62413",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/right_130_f000211.png": "a2c164de33de44f54de0eb440c7cd25e43aca05fbcb6e2a8a858ab5e6d291efc"
+  },
+  "output_sha256": {
+    "contact_representatives.csv": "8795a071e02bc7674c807f906fbc384732ae87919676573ea3d09c70e92ab065"
+  }
+}

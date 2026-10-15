@@ -1,0 +1,22 @@
+{
+  "source": "explicit user reply in this conversation, 2026-10-15 JST",
+  "user_statement_coordinates": "全テープにおいて指定通りの距離においています",
+  "user_statement_height": "床からカメラのレンズ中心までで59cmでした",
+  "user_statement_marker": "V字になっているテープの交点の先端が目標距離になっています",
+  "coordinate_origin": "customary camera-ground projection / Kobuki centre; X right, Z forward",
+  "placements_m": {
+    "C080": [0.0, 0.8],
+    "H100": [0.0, 1.0],
+    "C130": [0.0, 1.3],
+    "H160": [0.0, 1.6],
+    "C200": [0.0, 2.0],
+    "L130": [-0.4, 1.3],
+    "R130": [0.4, 1.3]
+  },
+  "reported_lens_centre_height_m": 0.59,
+  "placement_uncertainty_m": null,
+  "height_uncertainty_m": null,
+  "pixel_labels": "assistant nonblind visual candidates; not operator verified exact V apex",
+  "physical_camera_height_or_pose_changed_by_analysis": false,
+  "original_metadata_changed": false
+}

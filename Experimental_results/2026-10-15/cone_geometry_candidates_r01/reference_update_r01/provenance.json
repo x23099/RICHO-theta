@@ -1,0 +1,23 @@
+{
+  "status": "COMPLETED_USER_REFERENCE_RESCORE_NO_PARAMETER_OR_COORDINATE_CHANGE",
+  "reference_source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/cone_reference_confirmation.json",
+  "base_orientation_assumption_explicit": true,
+  "derived_abs_midpoint_x_m": 0.5875,
+  "forward_edge_reference_preserved": true,
+  "frames_retained": 3596,
+  "parameters_refitted": false,
+  "predicted_coordinates_changed": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/update_cone_reference.py": "eda1bf615b80be333e166d237a9711d529fa4707a3420d2519be753a6848e3ff",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/cone_reference_confirmation.json": "59f15e7fed1d8aef6d3e2b0d3317c9942ec2423ce71423993afb3d88dd4412c0",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/results_r01/cone_transfer_frames.csv": "a61459932f0316f70571588f16f860d3ae81486db77da85f622864adc9aeb54a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/results_r01/candidate_parameters.json": "a913f567468aef64e1a050ab059e6a8cd9ead28a75fc4b4443f83930e0d1f0b2"
+  },
+  "output_sha256": {
+    "reference_conditions.csv": "7ee84cb9f7d53de30a8a049281e8b6dff055e752cae551c9e89b3562e3e25070",
+    "cone_transfer_frames_updated.csv": "cd2f6ae76dcc90a7458a7dbee356c43a4ff75d565f0fedfca3a714dc122cba4f",
+    "cone_transfer_summary_updated.csv": "1e4988081274e0f096be1463651a135465f3d88062f7b4ca885c06185891b96f"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "status": "COMPLETED_LOCAL_VEHICLE_FEATURE_DIAGNOSIS_NOT_POSE_CALIBRATION",
+  "regions": [
+    [
+      "front_centre_lower",
+      300,
+      550,
+      45,
+      40
+    ],
+    [
+      "front_left_holes",
+      220,
+      500,
+      60,
+      50
+    ],
+    [
+      "front_right_device",
+      405,
+      532,
+      55,
+      42
+    ],
+    [
+      "rear_right_holes",
+      1050,
+      520,
+      65,
+      50
+    ],
+    [
+      "rear_lower_right_tape",
+      1110,
+      518,
+      47,
+      45
+    ]
+  ],
+  "criteria": {
+    "min_ncc": 0.8,
+    "min_separated_peak_margin": 0.02,
+    "max_reverse_error_px": 1
+  },
+  "threshold_scope": "diagnostic heuristic, not calibrated probability of a correct match",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/view_registration.py": "a1405b2f1b97bb9dc2d2e4ec99d2261e4f0b39288bfbb4d448145836060c2500",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/test_view_registration.py": "7df28104b463bbbd14b1baff692fb3f25e6286926ff49ec5e2abc871c7974472",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_floor_reference_real_r01/raw_samples/floor_reference_f000187.png": "ddd89826bf0e389c57e6a531375c7482b348671f748c3db07a24716e5f4a1edd",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_floor_reference_real_r01/raw_samples/floor_reference_f000094.png": "3c2cc91971caa24dbe7d76385f45569c0c456e0d361510e775230577bcd117f6",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_floor_reference_real_r01/raw_samples/floor_reference_f000280.png": "e4ca0adc78d3d5247aa59abe8881e4c2a4df0a16d9023fb3b0f250c2c5712f66",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_floor_reference_real_r01/raw_samples/floor_reference_f000373.png": "0e10be9369d0838f44952f66b0e92e9f6d0754c3318d9f0f6c81158b28983f7b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_080_f000241.png": "3102dc7026673e64007dd2c0f92d07fcf45a6d6cc35e2799e54ebc3fd8c7b68f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_130_f000217.png": "67c3d68aa08cf8266e77a124b1a8ccbaf729ccca28066ce38be59e4cea3047b3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_200_f000211.png": "8626c83c69cc27485caff49acc6c33717a0dd9ea07fdb2f5cd404a73edd259b8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/left_130_f000210.png": "e124ad8083302c885f4babb07111f12fb90183990c80da2daa53ab039bf62413",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/right_130_f000211.png": "a2c164de33de44f54de0eb440c7cd25e43aca05fbcb6e2a8a858ab5e6d291efc",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_130_f000001.png": "e22925f7880fdac4cb84e50c6941392dca3f7456594293a43ca83f1a7a002355",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_130_f000434.png": "06222f61d120672fe9036e362e9ddac5bc4b4a59a688fe66b8e485a3c5157c65",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_130_f000651.png": "467ebcb9d0325bb684113f324625851a5120451f83384a0f56ec936beae51840"
+  },
+  "rows": 55,
+  "reliable_counts": {
+    "within_floor": 9,
+    "within_cone": 12,
+    "cone_vs_floor": 5
+  },
+  "limits": [
+    "assumes compared vehicle features did not physically move/change",
+    "local translations can differ across a fisheye image; no rigid global shift or pose estimated",
+    "paper/occlusion/low texture/repeating holes can change appearance or produce false matches",
+    "all chosen ROI results retained, including unreliable ones",
+    "does not prove operator changed camera height/angle; does not isolate camera/vehicle flex or capture processing"
+  ],
+  "source_images_changed": false,
+  "cropped_or_annotated_images_saved": false,
+  "correction_applied": false,
+  "physical_output": false,
+  "reference": "https://docs.opencv.org/4.13.0/d4/dc6/tutorial_py_template_matching.html",
+  "output_sha256": {
+    "fixed_feature_offsets.png": "2e7f4532e105b5996228552b607f0ef08db99c9748ceff2be3bcf2ee2465ba2c",
+    "local_feature_matches.csv": "bf55937cf08273b837590fdc1d8023c293b1a6e41df5ad8fa02ee91ddcff72a2"
+  }
+}

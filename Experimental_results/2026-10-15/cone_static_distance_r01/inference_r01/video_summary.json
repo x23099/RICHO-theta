@@ -1,0 +1,220 @@
+{
+  "status": "COMPLETED_OFFLINE_VIDEO_NOT_DEPLOYMENT_APPROVAL",
+  "confidence": 0.5,
+  "track_iou": 0.3,
+  "total_frames": 3596,
+  "sessions": [
+    {
+      "session": "cone_static_center_z1p30_r01_20261015_135329_732",
+      "frames": 651,
+      "detection_frames": 651,
+      "multi_detection_frames": 0,
+      "tracks": 1,
+      "zero_runs": 0,
+      "internal_zero_runs": 0,
+      "max_zero_sample_span_sec": 0,
+      "wall_time_sec": 13.71538554300787,
+      "sequential_processing_fps": 47.464943508779534,
+      "post_first_pipeline_ms": {
+        "count": 650,
+        "mean": 18.088767118483354,
+        "p50": 17.716105983708985,
+        "p95": 22.583042009500787,
+        "max": 55.926762986928225
+      },
+      "post_first_inference_ms": {
+        "count": 650,
+        "mean": 6.726109460130549,
+        "p50": 6.339732513879426,
+        "p95": 8.681460021762177,
+        "max": 26.42257700790651
+      },
+      "bottom_step_max_per_frame_px": {
+        "count": 650,
+        "mean": 0.24370001528871513,
+        "p50": 0.20949942324606152,
+        "p95": 0.5717098023537274,
+        "max": 1.0361564578028788
+      }
+    },
+    {
+      "session": "cone_static_center_z2p00_r01_20261015_135414_399",
+      "frames": 632,
+      "detection_frames": 632,
+      "multi_detection_frames": 0,
+      "tracks": 1,
+      "zero_runs": 0,
+      "internal_zero_runs": 0,
+      "max_zero_sample_span_sec": 0,
+      "wall_time_sec": 11.032984263001708,
+      "sequential_processing_fps": 57.282779068158824,
+      "post_first_pipeline_ms": {
+        "count": 631,
+        "mean": 17.447924759112027,
+        "p50": 17.24820100935176,
+        "p95": 19.738403003429994,
+        "max": 70.66262498847209
+      },
+      "post_first_inference_ms": {
+        "count": 631,
+        "mean": 6.655068034911307,
+        "p50": 6.317336985375732,
+        "p95": 7.615107984747738,
+        "max": 31.897432985715568
+      },
+      "bottom_step_max_per_frame_px": {
+        "count": 631,
+        "mean": 0.2368630770552318,
+        "p50": 0.2143881871663682,
+        "p95": 0.4911204998041863,
+        "max": 0.7841755944391036
+      }
+    },
+    {
+      "session": "cone_static_left_z1p30_r01_20261015_135541_436",
+      "frames": 628,
+      "detection_frames": 628,
+      "multi_detection_frames": 0,
+      "tracks": 1,
+      "zero_runs": 0,
+      "internal_zero_runs": 0,
+      "max_zero_sample_span_sec": 0,
+      "wall_time_sec": 10.971951774990885,
+      "sequential_processing_fps": 57.23685383228197,
+      "post_first_pipeline_ms": {
+        "count": 627,
+        "mean": 17.46350860264393,
+        "p50": 17.171768005937338,
+        "p95": 19.54660500632599,
+        "max": 57.287771021947265
+      },
+      "post_first_inference_ms": {
+        "count": 627,
+        "mean": 6.637627645787461,
+        "p50": 6.3631749944761395,
+        "p95": 7.621636992553249,
+        "max": 30.20522798760794
+      },
+      "bottom_step_max_per_frame_px": {
+        "count": 627,
+        "mean": 0.44300813056875565,
+        "p50": 0.40251906064217613,
+        "p95": 0.895831438346184,
+        "max": 1.3582182378570269
+      }
+    },
+    {
+      "session": "cone_static_no_cone_r01_20261015_134940_713",
+      "frames": 332,
+      "detection_frames": 0,
+      "multi_detection_frames": 0,
+      "tracks": 0,
+      "zero_runs": 1,
+      "internal_zero_runs": 0,
+      "max_zero_sample_span_sec": 11.031032,
+      "wall_time_sec": 5.644989827007521,
+      "sequential_processing_fps": 58.813214934702074,
+      "post_first_pipeline_ms": {
+        "count": 331,
+        "mean": 16.99651296757333,
+        "p50": 16.99525400181301,
+        "p95": 19.501409988151863,
+        "max": 51.33873500744812
+      },
+      "post_first_inference_ms": {
+        "count": 331,
+        "mean": 6.596708489656504,
+        "p50": 6.298188993241638,
+        "p95": 7.986608979990706,
+        "max": 21.729159983806312
+      },
+      "bottom_step_max_per_frame_px": {
+        "count": 0,
+        "mean": null,
+        "p50": null,
+        "p95": null,
+        "max": null
+      }
+    },
+    {
+      "session": "cone_static_right_z1p30_r01_20261015_135630_973",
+      "frames": 631,
+      "detection_frames": 631,
+      "multi_detection_frames": 3,
+      "tracks": 3,
+      "zero_runs": 0,
+      "internal_zero_runs": 0,
+      "max_zero_sample_span_sec": 0,
+      "wall_time_sec": 11.272195953002665,
+      "sequential_processing_fps": 55.97844489492888,
+      "post_first_pipeline_ms": {
+        "count": 630,
+        "mean": 17.856146454846204,
+        "p50": 17.918520999955945,
+        "p95": 20.082631992409006,
+        "max": 53.455326007679105
+      },
+      "post_first_inference_ms": {
+        "count": 630,
+        "mean": 6.571982773242607,
+        "p50": 6.301276502199471,
+        "p95": 7.722441019723192,
+        "max": 19.67758301179856
+      },
+      "bottom_step_max_per_frame_px": {
+        "count": 630,
+        "mean": 0.3152909002068075,
+        "p50": 0.2502252612841114,
+        "p95": 0.7224249656541416,
+        "max": 6.0947568731963155
+      }
+    },
+    {
+      "session": "one_static_center_z0p80_r01_20261015_135155_823",
+      "frames": 722,
+      "detection_frames": 722,
+      "multi_detection_frames": 0,
+      "tracks": 1,
+      "zero_runs": 0,
+      "internal_zero_runs": 0,
+      "max_zero_sample_span_sec": 0,
+      "wall_time_sec": 13.994840229977854,
+      "sequential_processing_fps": 51.590442487040995,
+      "post_first_pipeline_ms": {
+        "count": 721,
+        "mean": 19.379474612756344,
+        "p50": 18.65389000158757,
+        "p95": 25.254868989577517,
+        "max": 66.9601030240301
+      },
+      "post_first_inference_ms": {
+        "count": 721,
+        "mean": 7.262410234899522,
+        "p50": 6.698103999951854,
+        "p95": 9.58553099189885,
+        "max": 26.754068006994203
+      },
+      "bottom_step_max_per_frame_px": {
+        "count": 721,
+        "mean": 0.19950442462680257,
+        "p50": 0.17254907533745692,
+        "p95": 0.42983918655403924,
+        "max": 0.930871470557262
+      }
+    }
+  ],
+  "annotated_anchor_images": 0,
+  "annotated_anchor_gt": 0,
+  "anchor_summary": [],
+  "anchor_pixel_mismatches": 0,
+  "max_det_reached_frames": 0,
+  "physical_output": false,
+  "independent_test_approval": false,
+  "limitations": [
+    "Zero detection intervals are not automatically false negatives without visibility labels.",
+    "Bottom-coordinate changes include real object/camera motion, not pure measurement jitter.",
+    "Consecutive IoU track fragments do not establish physical object identity.",
+    "Sequential offline throughput is not live camera/GUI/ROS/FFB latency.",
+    "Dataset-anchor GT remains sparse; all-frame precision/recall is not measured."
+  ]
+}

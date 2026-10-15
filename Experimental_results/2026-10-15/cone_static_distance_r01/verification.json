@@ -1,0 +1,17 @@
+{
+  "status": "PASS_BOOKKEEPING_HASH_AND_STATISTICS_NOT_DISTANCE_ACCURACY",
+  "frames_retained": 3596,
+  "raw_samples_verified": 24,
+  "diagnostic_raw_verified": 1,
+  "position_rows_recomputed": 3261,
+  "ambiguous_frames_retained": 3,
+  "independent_stats_recomputed": true,
+  "source_hashes_unchanged": true,
+  "physical_output": false,
+  "physical_position_accuracy_approved": false,
+  "graphs_sha256": {
+    "position_comparison.png": "b82c34b203ff7b37512ad9b35c0eadb0a78945cb67a251b8f89b83a1d244bf8f",
+    "position_time_series.png": "6e7e919f15a10d24d820e0b80cb136a7407dac67fd323ef45d31cb2e8dfd2a0b"
+  },
+  "verification_script_sha256": "0fcd04bce6911a5c4de87aa38787cf69c911228764d2194619af7f8fd3f7ad65"
+}

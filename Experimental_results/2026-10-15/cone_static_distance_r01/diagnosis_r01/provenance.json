@@ -1,0 +1,12 @@
+{
+  "status": "COMPLETED_FIXED_PIXEL_SENSITIVITY_NOT_CAUSAL_PROOF_OR_CALIBRATION",
+  "physical_output": false,
+  "corrections_applied": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/diagnose.py": "49acf1a048990dfab1f302643394a7f2027ad27e9f504e2ba6d0c9fe55eab4c0",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/analysis_r01/positions.csv": "1136b8d6b9c46eb185fdd09f8fa628faa935d927c3fc951e0463a14013396511",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/analysis_r01/summary.csv": "baf9bb42368cb743af541c84a77206f8f8906e484fbc07871e81ebfde6831dd2",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/intake_summary.json": "b99afc0cf6897d51d8b7305701bc582529fb5e4f189b1c514444d04484ac3b78",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_observation.py": "e42d2d53c6163370b0db04dd677aed442f86a05dae2dac1851b924fd6c62b633"
+  }
+}

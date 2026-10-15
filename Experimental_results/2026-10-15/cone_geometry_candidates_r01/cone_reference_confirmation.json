@@ -1,0 +1,14 @@
+{
+  "source": "explicit user replies in this conversation, 2026-10-15 JST",
+  "user_statement_front": "中心においているとき、左右にずらしておいているときに変わらず車体側の辺を目標距離において計測しています",
+  "user_statement_size": "台座の一辺の長さは37.5cmです",
+  "user_statement_lateral": "台座の内側、言い方を変えて車体に近い側の辺を４０ｃｍに合わせています",
+  "base_side_m": 0.375,
+  "lateral_inner_edge_abs_x_m": 0.4,
+  "forward_reference": "vehicle-side/front edge, NOT base centre; keep .8/1.3/2.0m unchanged",
+  "derived_front_edge_midpoint_abs_x_m_if_axis_aligned": 0.5875,
+  "orientation_assumption": "base edges approximately parallel to vehicle X/Z axes; not explicitly measured or confirmed",
+  "orientation_sensitivity_abs_centre_x_range_if_inner_support_at_point4": [0.5875, 0.6651650429449554],
+  "unknowns": ["base orientation angle", "placement uncertainty", "exact source-frame physical contact point"],
+  "fit_or_pixel_adjustment_used_to_obtain_reference": false
+}

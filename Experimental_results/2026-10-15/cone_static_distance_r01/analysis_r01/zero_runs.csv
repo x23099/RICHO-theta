@@ -1,0 +1,4 @@
+condition,scope,session,start_frame,end_frame,zero_frames,start_time_sec,end_time_sec,sample_span_sec,bounded_by_detection,truth
+none,all_view,cone_static_no_cone_r01_20261015_134940_713,1,332,332,0.021748,11.05278,11.031032,0,unknown: no per-frame visibility labels; NOT an automatic FN interval
+none,front_centre,cone_static_no_cone_r01_20261015_134940_713,1,332,332,0.021748,11.05278,11.031032,0,unknown: no per-frame visibility labels; NOT an automatic FN interval
+none,projection_hypotheses,cone_static_no_cone_r01_20261015_134940_713,1,332,332,0.021748,11.05278,11.031032,0,unknown: no per-frame visibility labels; NOT an automatic FN interval

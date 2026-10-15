@@ -1,0 +1,45 @@
+{
+  "status": "COMPLETED_FIXED_GEOMETRY_CANDIDATE_DIAGNOSIS_NOT_CALIBRATION_APPROVAL",
+  "user_reference_confirmation": "\u5168\u30c6\u30fc\u30d7\u306b\u304a\u3044\u3066\u6307\u5b9a\u901a\u308a\u306e\u8ddd\u96e2\u306b\u304a\u3044\u3066\u3044\u307e\u3059",
+  "user_camera_height_confirmation": "\u5e8a\u304b\u3089\u30ab\u30e1\u30e9\u306e\u30ec\u30f3\u30ba\u4e2d\u5fc3\u307e\u3067\u306759cm",
+  "coordinate_basis": "user-confirmed planned coordinates, V-tip reference; no instrumented coordinate table supplied",
+  "visibility_review_frames": [
+    94,
+    187,
+    280,
+    373
+  ],
+  "primary_frame": 187,
+  "pixel_selection": "assistant visual candidates; planned layout and earlier cone results known; no inverse solve or pixel fitting",
+  "uncertainty": "physical placement/height uncertainty not provided; +/-2px is illustrative sensitivity, NOT confidence interval or measured annotation error",
+  "unresolved_apex": "farther markers only a few native pixels; exact V apex not independently verified",
+  "real_camera_height_applied_to_production": false,
+  "physical_output": false,
+  "fitted_parameters": false,
+  "production_settings_changed": false,
+  "fit_points_used": 0,
+  "coordinate_rows": 7,
+  "different_session_comparison": "cone medians use their own captures/nominal placement labels, NOT same-frame or paired physical points",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_floor_reference_real_r01/analyze.py": "3122d437de02b620acfa34dbcdadba72ab4c252f27082f33d49c948eaf7533ca",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_floor_reference_real_r01/point_candidates.csv": "9babbc7796b6f00bd1e54ace191bb32ef0b4775d912da45c924f394125dc0ec1",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_floor_reference_real_r01/intake_summary.json": "acfbebfb247f125a61ebaec36d26960a00b8e7818f2985cb796fb8ee160cacff",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_floor_reference_real_r01/raw_sample_manifest.csv": "25aae78b4e3dc54ea5a4b662d79781c871370243a25412d6f77268592192f52a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/analysis_r01/summary.csv": "baf9bb42368cb743af541c84a77206f8f8906e484fbc07871e81ebfde6831dd2",
+    "/home/robo25/theta_ws/RICHO-theta/src/ground_contact.py": "a51c65ab01a4d7a4a1a0f368c2fca9e2e183a3c9c0b0c2c9ba00458a905b74cc",
+    "/home/robo25/theta_ws/RICHO-theta/src/diagnose_box_contact_calibration.py": "3eb3276446d4e3145fe92dc3927856f3dbb45e5dfb50f4aa27d0be88638cfd29",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_floor_reference_real_intake_r01/floor_reference_real_r01_20261015_144248_636/raw.avi": "62de179fe7598f2835177659d299966cdddc2c1f76804ff4b1873f57d297b516",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_floor_reference_real_intake_r01/floor_reference_real_r01_20261015_144248_636/metadata.json": "a341b1b4a4ac0f2fdfc8183428a21a88a1e298eab5ba2e68a1ff06efbe2c0841",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_floor_reference_real_intake_r01/floor_reference_real_r01_20261015_144248_636/detections.csv": "d5b920c2bd77bd2bfc617c715f82bba50c45ffe637aa31b89084241c8755729a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_floor_reference_real_r01/raw_samples/floor_reference_f000001.png": "07dca5984ddc25f9cca58cebd206877752a2ebad0de1ddfbb3dab07068023102",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_floor_reference_real_r01/raw_samples/floor_reference_f000094.png": "3c2cc91971caa24dbe7d76385f45569c0c456e0d361510e775230577bcd117f6",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_floor_reference_real_r01/raw_samples/floor_reference_f000187.png": "ddd89826bf0e389c57e6a531375c7482b348671f748c3db07a24716e5f4a1edd",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_floor_reference_real_r01/raw_samples/floor_reference_f000280.png": "e4ca0adc78d3d5247aa59abe8881e4c2a4df0a16d9023fb3b0f250c2c5712f66",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_floor_reference_real_r01/raw_samples/floor_reference_f000373.png": "0e10be9369d0838f44952f66b0e92e9f6d0754c3318d9f0f6c81158b28983f7b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_floor_reference_real_r01/raw_samples/floor_reference_f000467.png": "5dde4ede347c6e090cae866a88ef93f5b396fd26ec8056b644289accddd32f09"
+  },
+  "output_sha256": {
+    "floor_candidate_errors.csv": "2a7260b748c76b5f72b4af155dcc3dde52fd41509d517c8aaf2635e1bd2b288b",
+    "floor_reference_comparison.png": "9b53e3bac710b4f7083422f59b8a77159060affa692d5ddd4f49992481765a64"
+  }
+}

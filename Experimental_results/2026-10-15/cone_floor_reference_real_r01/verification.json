@@ -1,0 +1,14 @@
+{
+  "status": "PASS_INTERNAL_HASH_PIXEL_AND_EQUATION_CHECKS_NOT_CALIBRATION_ACCURACY",
+  "frames_retained": 467,
+  "native_pngs_verified": 6,
+  "point_equations_verified": 7,
+  "source_hashes_unchanged": true,
+  "confirmation_matches_all_rows": true,
+  "unknown_measurement_uncertainty_preserved": true,
+  "physical_output": false,
+  "physical_apex_verified": false,
+  "calibration_promoted": false,
+  "reference_confirmation_sha256": "45a8872e2bc0dfadac83d651fe7a6359e1645dc8decb6bb3c4ca7b0f03c31d57",
+  "verification_script_sha256": "68f6c06e47d954f0b4fa1e62e80c6c38248f28990ce92f0ee7b07f189f52a737"
+}

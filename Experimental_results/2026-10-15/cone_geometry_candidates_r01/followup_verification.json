@@ -1,0 +1,13 @@
+{
+  "status": "PASS_FOLLOWUP_HASH_REFERENCE_AND_LOCAL_DIAGNOSTIC_CHECKS_NOT_CALIBRATION_APPROVAL",
+  "predicted_cone_coordinates_unchanged": 3596,
+  "updated_reference_summaries_verified": 5,
+  "forward_edge_distances_unchanged": true,
+  "side_reference_centre_abs_x_m": 0.5875,
+  "side_reference_orientation_assumption_preserved": true,
+  "local_comparisons_retained": 55,
+  "local_comparisons_accepted": 26,
+  "production_settings_changed": false,
+  "physical_output": false,
+  "verification_script_sha256": "0aa0604013882d24cf2861db44e029bbfea41b3cc9fd5993999152492e7315e3"
+}
