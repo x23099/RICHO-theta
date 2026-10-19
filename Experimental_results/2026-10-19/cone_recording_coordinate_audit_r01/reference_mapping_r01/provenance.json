@@ -1,0 +1,18 @@
+{
+  "status": "REFERENCE_MAPPING_AUDIT_NO_COORDINATE_OR_PREDICTION_CHANGES",
+  "rows": 12,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/session_conditions.csv": "8973480c85e80fac5eef5e54d1390f31d69ee3ff6a99be99bedd385409027fae",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/reference_update_r01/reference_conditions.csv": "7ee84cb9f7d53de30a8a049281e8b6dff055e752cae551c9e89b3562e3e25070",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/paper_reference7_r01/analysis_r01/reference_points_primary170.csv": "4528460e3901e6458a4365b0f6fb77d878218a791046846baca5dc707d16b211",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_distance_methods_r01/results_r01/summary.csv": "451d443261f78bd2b936d7487013ba797131d8d3a701faa54fb16b451a984382",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_support_projection_r01/results_r01/summary.csv": "018954f291335ae0b37232d616fdc7950b1c5a3e5bd3297d9d641d93667b59bb",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_recording_coordinate_audit_r01/audit_reference_mapping.py": "b22aa27d42626cc546638c1d298d0ff20bbd346985a5ec321bd4a1dc3fa3d684",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_recording_coordinate_audit_r01/test_reference_mapping.py": "29c658a5466e1ff95e204aad16a81ec9bdff34301222c9d26843cf947dc46fbf"
+  },
+  "output_sha256": {
+    "reference_mapping.csv": "e20d1b7e0021e8a6ec569244b68520b0e0680bfcc08b24b9cd56e2065df29ea6"
+  },
+  "physical_output": false,
+  "usable_for_ffb": false
+}

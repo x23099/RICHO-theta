@@ -1,0 +1,53 @@
+{
+  "current_contract": {
+    "cap_read_assigns_ret_frame": true,
+    "records_input_frame_not_bev": true,
+    "raw_writer_receives_raw_frame": true,
+    "input_frame_not_reassigned": true,
+    "explicit_raw_calibration_overlay_calls": 0,
+    "scope": "AST route check plus manual reader inspection; not execution trace of historical capture"
+  },
+  "historical_contract": {
+    "cap_read_assigns_ret_frame": true,
+    "records_input_frame_not_bev": true,
+    "raw_writer_receives_raw_frame": true,
+    "input_frame_not_reassigned": true,
+    "explicit_raw_calibration_overlay_calls": 0,
+    "scope": "AST route check plus manual reader inspection; not execution trace of historical capture"
+  },
+  "historical_revision": "a77483ca1deba4f927b7d8be46435cc030666eda",
+  "historical_source_sha256": "8f42d0388d30f603d06f2ee0f5b846012869619ed0f83aaced1d90feca61acc0",
+  "capture_runtime_revision_proved": false,
+  "methods": [
+    {
+      "method": "start_capture",
+      "current_line": 2022,
+      "historical_revision": "a77483c",
+      "ast_equal": true
+    },
+    {
+      "method": "start_recording",
+      "current_line": 1528,
+      "historical_revision": "a77483c",
+      "ast_equal": true
+    },
+    {
+      "method": "_open_recording_writers",
+      "current_line": 1583,
+      "historical_revision": "a77483c",
+      "ast_equal": true
+    },
+    {
+      "method": "record_frames",
+      "current_line": 1613,
+      "historical_revision": "a77483c",
+      "ast_equal": true
+    },
+    {
+      "method": "update_frame",
+      "current_line": 2078,
+      "historical_revision": "a77483c",
+      "ast_equal": true
+    }
+  ]
+}

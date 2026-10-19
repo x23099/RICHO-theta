@@ -1,0 +1,3 @@
+group,predictions,native_bounds_valid,x2_larger_than_model_imgsz960,max_x2,max_y2,inference_imgsz,native_width,native_height,interpretation
+cone_static_distance_r01,3267,True,0,406.6729431152344,446.6189880371094,960,1280,720,native coordinate contract consistent; no normalization or imgsz rescaling applied downstream
+floor_cone_same_pose_analysis_r01,2784,True,0,589.826416015625,470.652099609375,960,1280,720,native coordinate contract consistent; no normalization or imgsz rescaling applied downstream

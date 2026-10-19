@@ -62,3 +62,22 @@
 
 元CSV・新しい独立module・限界テストは[支持範囲の時間品質README](../cone_support_quality_r01/README.md)。
 初期からの誤境界やゆっくり進む遮蔽は通り得る。物理接地の証明・本番FFBへの接続は行っていない。
+
+## 同日後続：下辺範囲の条件付き床投影
+
+- [同じ採用frameで比較した3校正の下辺Z範囲](../cone_support_projection_r01/results_r01/conditional_support_ranges.png)
+- [同じ実観測画素列を異なる校正で投影した例](../cone_support_projection_r01/results_r01/same_columns_different_geometries.png)
+
+根拠CSV・再現script・49件の検証範囲は[下辺投影README](../cone_support_projection_r01/README.md)。
+区間は観測境界を床上と仮定した投影範囲で、信頼区間や真の台座占有範囲ではない。
+画像下辺の広がりとは別に録画間の距離差が残る。元カメラ画像・本番設定・FFB出力は変更していない。
+
+## 同日後続：保存経路・座標系・物理基準の監査
+
+- [実収録間隔と宣言fpsの区別](../cone_recording_coordinate_audit_r01/results_r01/recording_rate_audit.png)
+- [同一動画の不確かなV先端候補の仮定感度](../cone_recording_coordinate_audit_r01/results_r01/same_video_reference_sensitivity.png)
+
+根拠CSV・18件のテスト・残った最小の物理情報は[座標系監査README](../cone_recording_coordinate_audit_r01/README.md)。
+10session/13,727frame/原PNG106枚/元archive5本を再照合。
+保存/解析経路の座標取り違えは確認されなかったが、別録画の白紙校正をコーンへ転用できる保証ではない。
+元カメラ画像の編集・新規保存、設定変更、実機出力は行っていない。
