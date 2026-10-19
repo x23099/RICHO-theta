@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-19",
+  "assets": [
+    {
+      "source": "paper_cone_2m_validation_r01/raw_samples/paper_cone_f001019.png",
+      "file": "daily_summary_raw_cone_2m_f001019.png",
+      "kind": "unaltered_native_camera_frame",
+      "source_sha256": "908928eb42382d645100b0b1c6d3b634f6283e7b40714122760c99ba1e3e5e9e",
+      "reference": "paper_cone_2m_validation_r01/raw_sample_manifest.csv",
+      "session": "paper_cone_center_z2p00_r01_20261019_180411_245",
+      "frame": 1019,
+      "time_sec": 33.962826,
+      "width": 1280,
+      "height": 720,
+      "decoded_bgr_sha256": "a2a9ee45ca7965f6b35167919bcfd97256a45957da7c55f50d008c258f2c8937",
+      "source_raw_sha256": "b57e81476310975d1bbcdb582e4e4c31963f959a714f9e8a381a2e51d1818a55",
+      "edits": "none; byte-for-byte file copy, no overlay/crop/resize/color changes"
+    },
+    {
+      "source": "paper_cone_2m_validation_r01/analysis_r01/paper_cone_same_column.png",
+      "file": "daily_summary_paper_cone_same_column.png",
+      "kind": "numeric_plot",
+      "source_sha256": "7f57a8d61dbdc118beab40c120d65cf080e4b56f1155a23ee72bc5e8f9e4168a",
+      "reference": "paper_cone_2m_validation_r01/analysis_r01/summary.json"
+    },
+    {
+      "source": "cone_support_quality_r01/results_r02/support_occlusion_recovery.png",
+      "file": "daily_summary_support_occlusion_recovery.png",
+      "kind": "numeric_plot",
+      "source_sha256": "39085df354db1e74dfcec3db0a69ff76328b0021e1d3f10c8869fa740466e3bb",
+      "reference": "cone_support_quality_r01/results_r02/observations.csv"
+    },
+    {
+      "source": "cone_virtual_pinhole_r01/presentation_r01/pinhole_geometry_and_rounding.png",
+      "file": "daily_summary_pinhole_comparison.png",
+      "kind": "numeric_plot",
+      "source_sha256": "0633510e6d253831bb3641974315d02857182f315108aa17ea3bf6d62c990485",
+      "reference": "cone_virtual_pinhole_r01/results_r01/summary.csv"
+    }
+  ],
+  "original_assets_preserved": true,
+  "collector_sha256": "9c3d855389623fcece2965bcae6472febd55259ae386bb65334ff401b43eac3f"
+}

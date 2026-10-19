@@ -118,3 +118,16 @@
 格子は印刷用の生成物、グラフも合成テストであって実カメラの精度ではない。
 元CSV相当の合成候補JSON・再現script・39件のテストは[内部校正準備README](../fisheye_intrinsic_preparation_r01/README.md)。
 実レンズK/Dはまだ未取得。本番設定、カメラ原画像、FFBは変更していない。
+
+## 日報用の最終代表資料4点
+
+- [同一2m・コーン静置中の未編集原画像](daily_summary_raw_cone_2m_f001019.png)
+  ：`paper_cone_center_z2p00_r01_20261019_180411_245`のframe1019、1280×720。
+- [紙前後・台座の同じ列と条件付き距離](daily_summary_paper_cone_same_column.png)
+- [遮蔽中の支持範囲保留・復帰](daily_summary_support_occlusion_recovery.png)
+- [魚眼直接/仮想ピンホールの一致と丸め感度](daily_summary_pinhole_comparison.png)
+
+上記は[複製script](collect_daily.py)で元ファイルをbyte一致コピーしたもの。
+[来歴manifest](daily_summary_manifest.json)に元パス・hash、原画像のsession/frame/時刻と画素hashを保存。
+元画像の編集や古い代表資料の上書きはしていない。
+解釈・検証・次回手順は[10/19日報](../../../Daily_reports/2026-10-19_daily_report.md)。
