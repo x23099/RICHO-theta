@@ -1,0 +1,22 @@
+dataset,condition,frame,model,pixel_x,pixel_y,reference_x_m,reference_z_m,x_m,z_m,error_z_m,reference_kind,usable_for_ffb
+static,center_080,241,recorded58,318,443,0,0.8,-0.03226952466430607,0.8938395113181702,0.09383951131817014,"prior nonblind assistant base candidate, not human physical GT",False
+static,center_080,241,height_only59,318,443,0,0.8,-0.0328258957792079,0.9092505373753801,0.10925053737538004,"prior nonblind assistant base candidate, not human physical GT",False
+static,center_080,241,paper_centre2,318,443,0,0.8,0.026877706445613547,0.7663805382546413,-0.03361946174535879,"prior nonblind assistant base candidate, not human physical GT",False
+static,center_130,217,recorded58,313,405,0,1.3,-0.08588951161030964,1.5503810232306252,0.25038102323062517,"prior nonblind assistant base candidate, not human physical GT",False
+static,center_130,217,height_only59,313,405,0,1.3,-0.08737036525876325,1.577111730527705,0.2771117305277049,"prior nonblind assistant base candidate, not human physical GT",False
+static,center_130,217,paper_centre2,313,405,0,1.3,0.01215102445907724,1.2592715997577022,-0.040728400242297846,"prior nonblind assistant base candidate, not human physical GT",False
+static,center_200,211,recorded58,312,379,0,2.0,-0.14846294961822984,2.7299880410555297,0.7299880410555297,"prior nonblind assistant base candidate, not human physical GT",False
+static,center_200,211,height_only59,312,379,0,2.0,-0.15102265564613038,2.7770568003840737,0.7770568003840737,"prior nonblind assistant base candidate, not human physical GT",False
+static,center_200,211,paper_centre2,312,379,0,2.0,0.017330154407493158,1.9797655446633204,-0.020234455336679558,"prior nonblind assistant base candidate, not human physical GT",False
+static,left_130,210,recorded58,242,406,-0.5875,1.3,-0.7568562900258438,1.4677100187903647,0.16771001879036462,"prior nonblind assistant base candidate, not human physical GT",False
+static,left_130,210,height_only59,242,406,-0.5875,1.3,-0.7699055364055998,1.4930153639419228,0.19301536394192276,"prior nonblind assistant base candidate, not human physical GT",False
+static,left_130,210,paper_centre2,242,406,-0.5875,1.3,-0.5413528958905398,1.2104097617371155,-0.08959023826288459,"prior nonblind assistant base candidate, not human physical GT",False
+static,right_130,211,recorded58,379,401,0.5875,1.3,0.5382935877214385,1.536470081434395,0.23647008143439496,"prior nonblind assistant base candidate, not human physical GT",False
+static,right_130,211,height_only59,379,401,0.5875,1.3,0.5475745116476702,1.562960944907402,0.26296094490740196,"prior nonblind assistant base candidate, not human physical GT",False
+static,right_130,211,paper_centre2,379,401,0.5875,1.3,0.5294964115749174,1.2182073459444933,-0.08179265405550673,"prior nonblind assistant base candidate, not human physical GT",False
+sequence,cone_130,563,recorded58,310,417,0,1.3,-0.0986767849571371,1.2773001484145516,-0.022699851585448405,"prior nonblind assistant base candidate, not human physical GT",False
+sequence,cone_130,563,height_only59,310,417,0,1.3,-0.10037810883570844,1.2993225647665267,-0.0006774352334733003,"prior nonblind assistant base candidate, not human physical GT",False
+sequence,cone_130,563,paper_centre2,310,417,0,1.3,-0.012154996101814084,1.064721412644264,-0.23527858735573615,"prior nonblind assistant base candidate, not human physical GT",False
+sequence,cone_200,1265,recorded58,310,393,0,2.0,-0.13601368872724368,1.9503685322672824,-0.04963146773271765,"prior nonblind assistant base candidate, not human physical GT",False
+sequence,cone_200,1265,height_only59,310,393,0,2.0,-0.13835875232598926,1.983995575927063,-0.016004424072936896,"prior nonblind assistant base candidate, not human physical GT",False
+sequence,cone_200,1265,paper_centre2,310,393,0,2.0,-0.009052116565111942,1.525251787713708,-0.47474821228629205,"prior nonblind assistant base candidate, not human physical GT",False

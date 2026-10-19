@@ -1,0 +1,10 @@
+dataset,condition,adjacent_envelope_pairs,also_both_line_consistent,support_column_iou_median,usable_for_ffb,dx_lo_px_p95,dx_hi_px_p95,legacy_dx_px_p95,envelope_dy_abs_median_px_p95,envelope_dy_abs_p95_px_p95
+sequence,cone_130,217,209,1.0,False,2.0,2.0,2.0,0.0,2.0
+sequence,cone_200,538,434,0.9393939393939394,False,2.0,2.0,4.0,0.0,2.0
+sequence,move_transition,192,146,0.9761904761904762,False,2.0,2.0,10.674999999999983,1.0,2.0
+sequence,placement_transition,178,97,0.9565217391304348,False,4.0,2.0,12.075000000000003,1.5750000000000028,2.0
+static,center_080,643,16,0.9692307692307692,False,2.0,2.0,19.5,2.0,2.0
+static,center_130,650,37,0.975609756097561,False,2.0,0.0,22.5,2.0,2.0
+static,center_200,631,94,0.9655172413793104,False,2.0,1.0,7.0,2.0,2.0
+static,left_130,613,11,0.9767441860465116,False,3.0,2.0,16.0,2.0,2.0999999999999943
+static,right_130,621,3,1.0,False,2.0,2.0,3.0,0.0,2.0999999999999943

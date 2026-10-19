@@ -1,0 +1,16 @@
+{
+  "decision": "DEFER_SIMPLE_BBOX_AREA",
+  "max_abs_group_bias_limit_m": 0.1,
+  "p95_abs_error_limit_m": 0.2,
+  "heldout_conditions": 5,
+  "failures": [
+    {
+      "dataset": "sequence",
+      "condition": "cone_200",
+      "bias": -0.2214576158191952,
+      "p95": 0.23875949081961578
+    }
+  ],
+  "runtime_approval": false,
+  "usable_for_ffb": false
+}

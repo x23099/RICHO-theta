@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-19",
+  "assets": [
+    {
+      "file": "distance_method_comparison.png",
+      "source": "Experimental_results/2026-10-19/cone_distance_methods_r01/results_r01/distance_method_comparison.png",
+      "sha256": "eea7176c26e3c4b3d8aa4bf2022ce2ca851b17045150ec8844fc4e4e120646d6",
+      "kind": "numeric_graph",
+      "session": null,
+      "frame": null,
+      "source_image_edited": false
+    },
+    {
+      "file": "occlusion_method_comparison.png",
+      "source": "Experimental_results/2026-10-19/cone_distance_methods_r01/results_r01/occlusion_method_comparison.png",
+      "sha256": "08b8a1e30ceb9ee1184d754969e21b5070b6aa98e42bac324c966aa7e6ad96d6",
+      "kind": "numeric_graph",
+      "session": null,
+      "frame": null,
+      "source_image_edited": false
+    },
+    {
+      "file": "raw_paper_reference_f001481.png",
+      "source": "Experimental_results/2026-10-15/paper_reference7_r01/raw_samples/paper7_f001481.png",
+      "sha256": "b4db1ce22223adcb98e1d8dfa7386dcf6c079b84f321732b7332e49d163f87f9",
+      "kind": "unedited_native1280x720",
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 1481,
+      "source_image_edited": false
+    },
+    {
+      "file": "raw_cone_occlusion_f001134.png",
+      "source": "Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/occlusion_diagnosis_r01/occlusion_raw_f001134.png",
+      "sha256": "8e4f6062184eacab59f75798c13a54f104c0c9a24d4ea0db1d9a853605477a10",
+      "kind": "unedited_native1280x720",
+      "session": "floor_cone_same_pose_r01_20261015_160621_378",
+      "frame": 1134,
+      "source_image_edited": false
+    }
+  ],
+  "note": "raw images were recorded on 2026-10-15 and reused unchanged for this day's analysis"
+}

@@ -1,0 +1,15 @@
+case,total_fixed_regions,texture_missing_regions,state,reason,appearance_consistent,supplied_regions,reliable_regions,shifted_regions,unreliable_regions,invalid_regions,shifted_region_names,invalid_region_names,max_reliable_local_offset_px,calibration_validated,floor_contact_verified,usable_for_ffb
+self,5,1,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,4,3,0,1,0,,,0.0,False,False,False
+paper_control_247,5,1,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,4,3,0,1,0,,,0.0,False,False,False
+paper_control_987,5,1,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,4,3,0,1,0,,,0.0,False,False,False
+paper_control_6169,5,1,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,4,3,0,1,0,,,0.0,False,False,False
+paper_control_6909,5,1,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,4,3,0,1,0,,,0.0,False,False,False
+previous_paper_2m,5,1,LOCAL_APPEARANCE_MATCH,multiple_local_features_within_development_bound,True,4,3,0,1,0,,,2.0,False,False,False
+static_center_080,5,1,LOCAL_CHANGE_OBSERVED,reliable_local_offset_exceeds_development_bound,False,4,2,2,2,0,front_centre_lower|front_right_device,,19.0,False,False,False
+static_center_130,5,1,LOCAL_CHANGE_OBSERVED,reliable_local_offset_exceeds_development_bound,False,4,1,1,3,0,front_right_device,,17.0,False,False,False
+static_center_200,5,1,LOCAL_CHANGE_OBSERVED,reliable_local_offset_exceeds_development_bound,False,4,1,1,3,0,front_right_device,,17.0,False,False,False
+static_left_130,5,1,LOCAL_CHANGE_OBSERVED,reliable_local_offset_exceeds_development_bound,False,4,1,1,3,0,front_right_device,,16.0,False,False,False
+static_right_130,5,1,LOCAL_CHANGE_OBSERVED,reliable_local_offset_exceeds_development_bound,False,4,1,1,3,0,front_right_device,,16.0,False,False,False
+sequence_141,5,1,LOCAL_CHANGE_OBSERVED,reliable_local_offset_exceeds_development_bound,False,4,3,3,1,0,front_centre_lower|front_left_holes|front_right_device,,14.0,False,False,False
+sequence_563,5,1,LOCAL_CHANGE_OBSERVED,reliable_local_offset_exceeds_development_bound,False,4,3,3,1,0,front_centre_lower|front_left_holes|front_right_device,,14.0,False,False,False
+sequence_1265,5,1,LOCAL_CHANGE_OBSERVED,reliable_local_offset_exceeds_development_bound,False,4,3,3,1,0,front_centre_lower|front_left_holes|front_right_device,,14.0,False,False,False

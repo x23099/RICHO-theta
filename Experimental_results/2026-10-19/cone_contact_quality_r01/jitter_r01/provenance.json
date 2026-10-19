@@ -1,0 +1,16 @@
+{
+  "status": "POST_REPLAY_DIAGNOSTIC_NOT_GATE_INPUT",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_contact_quality_r01/audit_jitter.py": "81eddad8928b2c95539df57fef47cb96c0c5c175b77fc8abfcababdbdf1f8cbb",
+    "Experimental_results/2026-10-19/cone_contact_quality_r01/results_r02/observations.csv": "150fce495f2122960b3762636f5866ff6a5b4ee5630a7b22c3ce41e4419c6bb8",
+    "Experimental_results/2026-10-19/cone_contact_quality_r01/results_r02/provenance.json": "4e9f5951658e9ecb84f9856483b498f734a222540ef2662a42e3a7fc089a56be"
+  },
+  "metric_definition": "adjacent original frames with both projections and same condition; no missing-value bridge",
+  "no_parameter_fitting": true,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "jitter_summary.csv": "cfbeffbc69fc5a9e4fa7622a5a49af8bc5af6ae11fd5af8bf1e5d2c97c304275",
+    "left_position_instability.png": "d88269434ec0c97dcacfdf88a13b4dd83fcbb6212e9ed94e98cd9a1c227c9c67",
+    "consecutive_steps.csv": "7724c87d2d6d3e512a6bef63822dada1fce7b1cf124976697e772608d0b56187"
+  }
+}

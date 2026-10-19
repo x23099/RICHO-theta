@@ -1,0 +1,12 @@
+dataset,condition,frames,envelopes,line_fitted,line_consistent,withheld_reasons,physical_support_gt_available,usable_for_ffb,span_px_median,perpendicular_residual_p90_px_median,slope_median
+sequence,cone_130,218,218,218,214,"{""nonlinear_or_multiedge_lower_boundary"": 4}",False,False,41.0,0.0,0.0
+sequence,cone_200,548,541,541,467,"{""no_candidate"": 7, ""nonlinear_or_multiedge_lower_boundary"": 73, ""steep_lower_boundary"": 1}",False,False,31.0,0.0,0.0
+sequence,floor_before,300,0,0,0,"{""no_candidate"": 300}",False,False,,,
+sequence,move_transition,219,195,195,164,"{""colour_contour_reaches_roi_edge"": 24, ""nonlinear_or_multiedge_lower_boundary"": 31}",False,False,31.0,0.0,0.0
+sequence,placement_transition,262,188,188,130,"{""colour_contour_reaches_roi_edge"": 27, ""no_candidate"": 47, ""nonlinear_or_multiedge_lower_boundary"": 58}",False,False,43.0,1.1451245695994658,-0.04083678766813252
+static,center_080,722,682,682,104,"{""colour_contour_reaches_roi_edge"": 40, ""nonlinear_or_multiedge_lower_boundary"": 578}",False,False,63.0,1.8637152273741548,-0.013778157372864341
+static,center_130,651,651,651,149,"{""nonlinear_or_multiedge_lower_boundary"": 502}",False,False,39.0,1.7718799461621528,-1.134740765977929e-13
+static,center_200,632,632,632,243,"{""nonlinear_or_multiedge_lower_boundary"": 389}",False,False,27.0,1.6130616659124144,-0.04157959604375937
+static,left_130,628,621,621,77,"{""colour_contour_reaches_roi_edge"": 7, ""nonlinear_or_multiedge_lower_boundary"": 544}",False,False,41.0,2.0,0.0007315491673318547
+static,none,332,0,0,0,"{""no_candidate"": 332}",False,False,,,
+static,right_130,631,626,626,24,"{""ambiguous_candidates"": 3, ""colour_contour_reaches_roi_edge"": 2, ""nonlinear_or_multiedge_lower_boundary"": 602}",False,False,41.0,2.1901130168508187,-0.11431006357806303

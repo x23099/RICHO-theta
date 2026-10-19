@@ -1,0 +1,64 @@
+# 2026-10-19 代表資料
+
+当日は既存録画の再解析。カメラ原画像2枚は10/15の録画由来で、新規撮影ではない。
+既存PNGをバイト同一でコピーした。全画角1280×720を維持し、注釈・合成・切抜き・リサイズ・色補正なし。
+`manifest.json`に出典・session/frame・hashを記録。生成/コピー用scriptは`collect.py`。
+
+| 資料 | 用途・根拠 |
+|---|---|
+| [距離方式比較](distance_method_comparison.png) | [summary.csv](../cone_distance_methods_r01/results_r01/summary.csv)から[analyze.py](../cone_distance_methods_r01/analyze.py)で生成。static080/200は面積方式の調整点なので、検証成績と混同しない |
+| [遮蔽周辺の推定](occlusion_method_comparison.png) | [occlusion_rows.csv](../cone_distance_methods_r01/results_r01/occlusion_rows.csv)。raw同士の比較で、面積方式の時間ゲートは未実装 |
+| [白紙基準の無加工画像](raw_paper_reference_f001481.png) | `itiawase2_20261015_183552_599` frame1481。白紙の手前左角が基準点 |
+| [遮蔽時の無加工画像](raw_cone_occlusion_f001134.png) | `floor_cone_same_pose_r01_20261015_160621_378` frame1134。枠下端/見える面積が台座までを表さない例 |
+
+原画像は説明用の参照であり、全frameの人確認済みGTではない。
+結果の意味と制限は[解析README](../cone_distance_methods_r01/README.md)に記載。
+
+## 同日後続：追加録画なしの接地点診断
+
+後続の数値図は、各解析の出典CSVと一緒に保存した（元画像を加工したものではない）。
+
+- [既存全7録画のbbox/色下端比較](../cone_contact_reuse_r01/full_plots_r01/all_recordings_contact_comparison.png)
+- [全frameの遮蔽周辺](../cone_contact_reuse_r01/full_plots_r01/all_frame_occlusion_contact.png)
+- [同一frameのpixel差](../cone_contact_reuse_r01/results_r01/same_frame_contact_comparison.png)
+
+解釈・元CSV・生成scriptは[接地点診断README](../cone_contact_reuse_r01/README.md)。
+代表4点の元ファイル/manifestは上書きせず保持する。
+
+## 同日後続：品質判定と左右の揺れ
+
+- [遮蔽時の保留・復帰](../cone_contact_quality_r01/results_r02/occlusion_quality_comparison.png)
+- [採用率と残る距離偏り](../cone_contact_quality_r01/results_r02/coverage_and_remaining_bias.png)
+- [静止左配置の左右・奥行の揺れ](../cone_contact_quality_r01/jitter_r01/left_position_instability.png)
+
+根拠CSV・再現script・解釈は[品質判定の解析README](../cone_contact_quality_r01/README.md)。
+追加録画なし。カメラ原画像の編集・新規保存なし。
+
+## 同日後続：下端点の左偏りの再現と修正候補
+
+- [同じ高さの点を左から打ち切る偏りの再現](../cone_bottom_ties_r01/results_r01/synthetic_tie_selection.png)
+  （数値の合成輪郭グラフ。カメラ画像や正解接地点ではない）
+- [Xだけ修正した案の左右・奥行比較](../cone_bottom_ties_r01/x_only_r01/x_only_xy_comparison.png)
+- [改善と悪化を含めた採用率・距離偏り](../cone_bottom_ties_r01/x_only_r01/x_only_coverage_bias.png)
+
+根拠・制限・生成scriptは[下端点診断README](../cone_bottom_ties_r01/README.md)。
+左配置は改善したが中央配置の悪化と録画間の距離偏りが残る。実機接続の承認資料ではない。
+
+## 同日後続：台座下辺/観測支持範囲の表現
+
+- [下包絡・補助線・旧代表点の比較](../cone_support_extent_r01/results_r01/observed_support_examples.png)
+- [直線不適合も含む左配置の観測範囲](../cone_support_extent_r01/extent_audit_r01/all_envelope_ranges.png)
+- [下包絡の保持数と単一直線の形状判定](../cone_support_extent_r01/extent_audit_r01/observed_range_coverage.png)
+- [遮蔽時の可視境界の変化](../cone_support_extent_r01/extent_audit_r01/occlusion_observed_ranges.png)
+
+いずれも数値CSVからのグラフで、元カメラ画像の加工ではない。
+「支持範囲」は画像上の観測区間。遮蔽境界にも線分が出るため、物理接地の認識成功とは扱わない。
+元CSV・生成script・検証と制限は[支持範囲の解析README](../cone_support_extent_r01/README.md)。
+
+## 同日後続：観測支持範囲の時間品質判定
+
+- [遮蔽時の急変保留・再確認・復帰](../cone_support_quality_r01/results_r02/support_occlusion_recovery.png)
+- [一本線screenと時間品質採用の違い](../cone_support_quality_r01/results_r02/support_quality_coverage.png)
+
+元CSV・新しい独立module・限界テストは[支持範囲の時間品質README](../cone_support_quality_r01/README.md)。
+初期からの誤境界やゆっくり進む遮蔽は通り得る。物理接地の証明・本番FFBへの接続は行っていない。

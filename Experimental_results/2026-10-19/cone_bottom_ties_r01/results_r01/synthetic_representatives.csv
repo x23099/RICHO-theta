@@ -1,0 +1,3 @@
+method,colour_candidate,reason,pixel_x,pixel_y,floor_contact_verified,usable_for_ffb,contour_points,nominal_bottom_count,selected_points,cutoff_y,cutoff_ties,excluded_cutoff_ties,bottom_span_px
+legacy,True,unverified_visible_colour_bottom,313.5,396.0,False,False,248,20,20,396.0,33,13,32.0
+tie_inclusive,True,unverified_visible_colour_bottom,320.0,396.0,False,False,248,20,33,396.0,33,0,32.0

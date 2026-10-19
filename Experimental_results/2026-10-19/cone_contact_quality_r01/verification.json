@@ -1,0 +1,40 @@
+{
+  "status": "PASS_SCOPED_OFFLINE_VERIFICATION_NOT_METRIC_OR_FFB_APPROVAL",
+  "date": "2026-10-19",
+  "source_frames": 5143,
+  "methods": ["bbox", "colour"],
+  "models": ["recorded58", "height_only59", "paper_centre2"],
+  "observation_rows": 30858,
+  "previous_bbox_quality_decisions_and_observed_xy_identical_rows": 15429,
+  "test_suites": [
+    {"directory": "Experimental_results/2026-10-19/cone_contact_quality_r01", "pattern": "test_*.py", "passed": 27},
+    {"directory": "tests", "pattern": "test_cone_observation.py", "passed": 17},
+    {"directory": "tests", "pattern": "test_cone_observation_quality.py", "passed": 15},
+    {"directory": "tests", "pattern": "test_obstacle_tracking.py", "passed": 12},
+    {"directory": "tests", "pattern": "test_ground_contact.py", "environment": {"PYTHONPATH": "src"}, "passed": 9}
+  ],
+  "total_passed": 80,
+  "initial_test_expectation_corrected": {
+    "original": "all methods recover at frame1137",
+    "observation": "color h58/h59 XY step exceeds 0.15m, confirmation restarts and recovers1138",
+    "gate_algorithm_or_settings_changed": false,
+    "r01_r02_all_four_csv_and_two_png_sha256_identical": true,
+    "archived_r01_source_test_hash_refers_to_initial_test_version": true
+  },
+  "initial_ground_contact_import_failure_resolved_by_pythonpath_src": true,
+  "plots_generated_and_viewed": [
+    "results_r02/occlusion_quality_comparison.png",
+    "results_r02/coverage_and_remaining_bias.png",
+    "jitter_r01/left_position_instability.png"
+  ],
+  "unresolved": ["cross_recording_metric_bias", "color_bottom_lateral_instability", "physical_contact_unverified"],
+  "runtime_changed": false,
+  "thresholds_relaxed": false,
+  "new_inference": false,
+  "new_recording": false,
+  "source_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "whole_repository_tests_run": false,
+  "ros_or_hardware_tests_run": false
+}

@@ -1,0 +1,70 @@
+{
+  "status": "LOCAL_IMAGE_AUDIT_NOT_PHYSICAL_POSE_OR_CALIBRATION_APPROVAL",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_distance_methods_r01/audit_transfer_views.py": "330906b86b95748ea22db1053433a000ab8b4cbcb5fb7df21ff3cf99dd7b7b61",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_distance_methods_r01/transfer_view_method.md": "1ffe727729bccf1a8930b6cdc1da9387999053983244124d7d1dbac1e077b484",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_view_consistency.py": "39214682312f185c68e2df2eabc11248d8eadf2c6d42ecff48fb7189bea0dc15",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_geometry_candidates_r01/view_registration.py": "a1405b2f1b97bb9dc2d2e4ec99d2261e4f0b39288bfbb4d448145836060c2500",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/paper_reference7_r01/raw_samples/paper7_f001481.png": "b4db1ce22223adcb98e1d8dfa7386dcf6c079b84f321732b7332e49d163f87f9",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/paper_reference7_r01/raw_samples/paper7_f000247.png": "3a9868d66e30913e599c3c69102ffe857b0771b50a64d07e61fb3819f55ae9fd",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/paper_reference7_r01/raw_samples/paper7_f000987.png": "f83cfe42cfa2070a4335bf6a98ad0f1caf0ed3695277dc9c84e5fd605f9bb71b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/paper_reference7_r01/raw_samples/paper7_f006169.png": "6a35d28c1b773253ada53695d1591d5a310da34bf35d87ab376222c2def774e1",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/paper_reference7_r01/raw_samples/paper7_f006909.png": "be621774f377f6583e9c221263a22802e582e8812ae9141e87d4115de9025d32",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/white_paper_visibility_r01/raw_samples/paper_f000200.png": "32192bb96f9e1dc2134729a8efa387908ac8fb8d1661e987068583b02335513c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_080_f000241.png": "3102dc7026673e64007dd2c0f92d07fcf45a6d6cc35e2799e54ebc3fd8c7b68f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_130_f000217.png": "67c3d68aa08cf8266e77a124b1a8ccbaf729ccca28066ce38be59e4cea3047b3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_200_f000211.png": "8626c83c69cc27485caff49acc6c33717a0dd9ea07fdb2f5cd404a73edd259b8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/left_130_f000210.png": "e124ad8083302c885f4babb07111f12fb90183990c80da2daa53ab039bf62413",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/right_130_f000211.png": "a2c164de33de44f54de0eb440c7cd25e43aca05fbcb6e2a8a858ab5e6d291efc",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/raw_samples/same_pose_f000141.png": "a80eec8ccbe9352f2b63fd5f965709940fb3ab5743749517d2a1656888b315b9",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/raw_samples/same_pose_f000563.png": "73aae2cd5d96c277acc84530e4c1e47f082599f1c9bb59d345f1421990db555a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/raw_samples/same_pose_f001265.png": "869cd6e60ee8df746dcb7cf9a4ea2d0363297535b3a250e47b2810c1ac851fc3"
+  },
+  "regions": [
+    [
+      "front_centre_lower",
+      300,
+      550,
+      45,
+      40
+    ],
+    [
+      "front_left_holes",
+      220,
+      500,
+      60,
+      50
+    ],
+    [
+      "front_right_device",
+      405,
+      532,
+      55,
+      42
+    ],
+    [
+      "rear_right_holes",
+      1050,
+      520,
+      65,
+      50
+    ],
+    [
+      "rear_lower_right_tape",
+      1110,
+      518,
+      47,
+      45
+    ]
+  ],
+  "pairs": 14,
+  "matches": 70,
+  "margin": 20,
+  "images_edited": false,
+  "geometry_changed": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "local_matches.csv": "17476f11c1a6f6ce5a1f08ab6f7240f32c68be2007267a6ec398a559da1a5a73",
+    "summary.csv": "a8a26e5f2dc6cc8a343a82cf3eb7bc11ac1370cbb315390f3d5a4f6edfd196cd"
+  }
+}

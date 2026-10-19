@@ -1,0 +1,24 @@
+{
+  "status": "IMAGE_RANGE_DIAGNOSIS_INCLUDES_NONLINEAR_ENVELOPES",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_support_extent_r01/extent_audit.py": "7b8dc6860d8822c50392cc8794cafd23e2d4e0350515c575901c7ce70b7e8946",
+    "Experimental_results/2026-10-19/cone_support_extent_r01/results_r01/provenance.json": "3d0f946ddff3e8ad3a8a2f6905b4c89305bc9cfd0cd0d7dfd05f4da899b7b45b",
+    "Experimental_results/2026-10-19/cone_support_extent_r01/results_r01/observations.csv": "0c87cb222de8fd3fbbdbc009fc87faa2b8b46d4265a178b62b3c466e58efdeea",
+    "Experimental_results/2026-10-19/cone_support_extent_r01/results_r01/lower_envelopes.csv": "112ef9d522fe0d04b7183a3fbaed7c1b73fc7e5bde6db99af143f7c8e8a6c6b5",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_support_extent_r01/analyze_support.py": "9728a6da4a688f22f0d4e68bc007c28583020fee479988e814a34500ddf2b857",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_support_extent_r01/support.py": "2d396303128be8417c1726081a4e9a68826f65cb0dd07afe2dda8cdfd9a73c6a"
+  },
+  "source_frames": 5143,
+  "no_line_consistency_filter": true,
+  "correspondence": "actual shared integer image columns only; no interpolation or missing-frame bridge",
+  "geometry_or_metric_projection_used": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "occlusion_observed_ranges.png": "af2850c4d589e1ab21907215bd91f36aa2f372688ad439f9cce5c07ef8639dcd",
+    "observed_range_coverage.png": "10da275b9fcbc227636188ff9493974508bc10d6e1d66498cb5a883424489442",
+    "range_stability_summary.csv": "42dcd7a0456c5848d4eda6a1e98239549b24f826fefb207d30171930bd9edadc",
+    "adjacent_envelopes.csv": "9ad038a606c989d26944ac41bf36a63a06861abd58eaf6052c7fe0344e05618c",
+    "observed_ranges.csv": "0c981b62a1dbd560cd95503803ffe2c33e0b4a4bbbc1cf6d8e13895a5eafb6db",
+    "all_envelope_ranges.png": "372c1031d7fcefc8b6b2e6620ebc0ddd7e8ca7f585031f53b221f06e75dd06cd"
+  }
+}

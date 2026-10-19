@@ -1,0 +1,45 @@
+{
+  "status": "PASS_SCOPED_VERIFICATION_CANDIDATES_NOT_PROMOTED_TO_RUNTIME",
+  "date": "2026-10-19",
+  "source_frames": 5143,
+  "original_colour_candidates_v30": 4354,
+  "legacy_cutoff_ties_truncated_frames": 4131,
+  "legacy_pixels_and_rejections_verified_frames": 5143,
+  "legacy_quality_observations_reproduced_rows": 30858,
+  "tie_inclusive_new_quality_rows": 15429,
+  "tie_x_only_new_quality_rows": 15429,
+  "native_sample_images_and_pixel_hashes_verified": 41,
+  "test_suites": [
+    {"directory": "Experimental_results/2026-10-19/cone_bottom_ties_r01", "pattern": "test_*.py", "passed": 30},
+    {"directory": "Experimental_results/2026-10-19/cone_contact_quality_r01", "pattern": "test_*.py", "passed": 27},
+    {"directory": "tests", "pattern": "test_ground_contact.py", "environment": {"PYTHONPATH": "src"}, "passed": 9},
+    {"directory": "tests", "pattern": "test_cone_observation.py", "passed": 17},
+    {"directory": "tests", "pattern": "test_cone_observation_quality.py", "passed": 15},
+    {"directory": "tests", "pattern": "test_obstacle_tracking.py", "passed": 12}
+  ],
+  "total_passed": 110,
+  "plots_generated_and_viewed": [
+    "results_r01/synthetic_tie_selection.png",
+    "results_r01/left_xy_comparison.png",
+    "results_r01/coverage_bias_comparison.png",
+    "x_only_r01/x_only_xy_comparison.png",
+    "x_only_r01/x_only_coverage_bias.png"
+  ],
+  "development_recordings_reused_not_independent_holdout": true,
+  "adverse_results_retained": true,
+  "geometry_refitted": false,
+  "quality_thresholds_changed": false,
+  "runtime_changed": false,
+  "new_recording_or_inference": false,
+  "source_images_edited": false,
+  "new_camera_images_saved": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "whole_repository_tests_run": false,
+  "ros_or_hardware_tests_run": false,
+  "remaining_limitations": [
+    "central static conditions still lose quality acceptance versus legacy",
+    "cross-recording metric bias unresolved",
+    "visible contour representative is not verified physical floor contact"
+  ]
+}

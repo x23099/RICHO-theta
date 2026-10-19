@@ -1,0 +1,13 @@
+{
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_contact_reuse_r01/plot_full_replay.py": "b64764a721ef11960d7b974f680f60ffecd95cc0e2d42e033ef5b7a5884d24ec",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_contact_reuse_r01/full_replay_r01/summary.csv": "b2da16cd2bb591446c88a905820dc20d613a774a7c843c99fcbb3f606a6fccc7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_contact_reuse_r01/full_replay_r01/occlusion_rows.csv": "94d28c0d758dc66f4ebcf5ff00175107c66eb69a14bfcff456415260cf2f3187",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_contact_reuse_r01/full_replay_r01/provenance.json": "e322ecdfde6d2bb49975a4ee588b591148fd91f14319561ab925f842ac6684c5"
+  },
+  "source_images_edited": false,
+  "output_sha256": {
+    "all_recordings_contact_comparison.png": "caa338a9ea86a1c942f6a8ccb046ad55baa8d238dc0e355e316775eb0b1d9e8b",
+    "all_frame_occlusion_contact.png": "738ab77fce54ee762f6a7cfe585a49a9b89ebf4e4129b98afbcdb8dbb2191ed9"
+  }
+}

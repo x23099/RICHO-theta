@@ -1,0 +1,10 @@
+dataset,condition,adjacent_consistent_pairs,usable_for_ffb,dx_lo_px_abs_p95,dx_hi_px_abs_p95,dy_same_x_px_abs_p95,legacy_dx_px_abs_p95,legacy_dy_px_abs_p95,x_interval_iou_median
+sequence,cone_130,209,False,2.0,2.0,0.26008562592761564,2.0,0.7999999999999972,1.0
+sequence,cone_200,434,False,2.0,2.0,0.0,3.5,0.0,0.967741935483871
+sequence,move_transition,146,False,2.0,2.0,0.530740980561319,4.75,1.0,0.9761904761904762
+sequence,placement_transition,97,False,4.0,2.0,0.7745056038882921,9.0,2.0,0.9767441860465116
+static,center_080,16,False,2.0,2.0,0.5773430266340114,12.5,0.0,0.9692307692307692
+static,center_130,37,False,2.0,0.0,1.5735132488205177,23.799999999999994,1.0,1.0
+static,center_200,94,False,2.0,1.0,1.0865114628310664,6.674999999999997,0.0,0.9655172413793104
+static,left_130,11,False,2.5,1.5,0.9014840435369535,12.75,1.0,1.0
+static,right_130,3,False,1.7999999999999998,0.0,0.3730229930761879,0.95,0.0,1.0

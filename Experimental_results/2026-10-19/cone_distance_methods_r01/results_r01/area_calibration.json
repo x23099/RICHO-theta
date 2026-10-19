@@ -1,0 +1,30 @@
+{
+  "model": "Z=k/sqrt(q)",
+  "scale": 0.09524360165879661,
+  "anchors": [
+    {
+      "condition": "center_080",
+      "session": "one_static_center_z0p80_r01_20261015_135155_823",
+      "frames": 722,
+      "valid_bbox_frames": 722,
+      "q_median": 0.011977402900060951,
+      "reference_z_m": 0.8
+    },
+    {
+      "condition": "center_200",
+      "session": "cone_static_center_z2p00_r01_20261015_135414_399",
+      "frames": 632,
+      "valid_bbox_frames": 632,
+      "q_median": 0.00268374109187486,
+      "reference_z_m": 2.0
+    }
+  ],
+  "fitted_conditions": [
+    "center_080",
+    "center_200"
+  ],
+  "fitted_from_group_medians": true,
+  "includes_holdouts": false,
+  "mask_area_used": false,
+  "usable_for_ffb": false
+}

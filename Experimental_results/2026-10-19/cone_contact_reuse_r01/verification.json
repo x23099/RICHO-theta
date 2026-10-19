@@ -1,0 +1,33 @@
+{
+  "status": "PASS_INTERNAL_EXISTING_RECORDING_DIAGNOSIS_NOT_RUNTIME_APPROVAL",
+  "date": "2026-10-19",
+  "new_tests_passed": 24,
+  "existing_ground_contact_tests_passed": 9,
+  "existing_cone_projection_tests_passed": 17,
+  "existing_quality_tests_passed": 15,
+  "total_tests_passed": 65,
+  "native_pngs_verified": 41,
+  "native_raw_frames_decoded": 5143,
+  "full_pixel_rows": 15429,
+  "full_projection_rows": 46287,
+  "same_frame_manual_pair_rows": 21,
+  "checks": [
+    "all existing selected PNGs retained, including missing/transition/occlusion",
+    "pixel reader fixed before sample evaluation; unchanged for all native raw frames",
+    "color point selection independent of geometry and reference labels",
+    "native PNG pixels/file hashes and raw hashes match frozen 2026-10-15 intakes",
+    "full raw results match 123 PNG/threshold observations exactly",
+    "all 15429 old bbox projections match prior comparison results",
+    "all saved color floor intersections recomputed",
+    "same-frame residual identities telescope; no static-session floor GT invented",
+    "missing/ambiguous/ROI-boundary/insufficient-color cases not interpolated",
+    "all source/runtime/config/result hashes unchanged"
+  ],
+  "new_recording_requested_as_requirement": false,
+  "physical_ground_contact_verified": false,
+  "geometry_refitted": false,
+  "adopted_for_runtime_or_ffb": false,
+  "runtime_or_production_config_changed": false,
+  "source_camera_images_edited": false,
+  "physical_output": false
+}

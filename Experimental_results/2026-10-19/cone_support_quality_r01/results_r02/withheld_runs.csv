@@ -1,0 +1,54 @@
+dataset,session,start_frame,end_frame,withheld_frames,previous_accepted_frame,next_accepted_frame,accepted_gap_sec,reasons,usable_for_ffb
+sequence,floor_cone_same_pose_r01_20261015_160621_378,1,349,349,,350,,"{""no_candidate"": 347, ""support_confirmation_pending"": 2}",False
+sequence,floor_cone_same_pose_r01_20261015_160621_378,352,383,32,351,384,1.099176,"{""abrupt_support_endpoint_change"": 8, ""support_confirmation_pending"": 4, ""unavailable_support:colour_contour_reaches_roi_edge"": 20}",False
+sequence,floor_cone_same_pose_r01_20261015_160621_378,386,395,10,385,396,0.3659169999999996,"{""support_confirmation_pending"": 4, ""unavailable_support:colour_contour_reaches_roi_edge"": 6}",False
+sequence,floor_cone_same_pose_r01_20261015_160621_378,402,404,3,401,405,0.13364200000000004,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+sequence,floor_cone_same_pose_r01_20261015_160621_378,864,894,31,863,895,1.0750430000000009,"{""abrupt_lower_boundary_y_change"": 5, ""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 24}",False
+sequence,floor_cone_same_pose_r01_20261015_160621_378,1124,1138,15,1123,1139,0.5333090000000027,"{""abrupt_support_endpoint_change"": 1, ""abrupt_support_width_change"": 3, ""no_candidate"": 7, ""support_confirmation_pending"": 4}",False
+static,cone_static_center_z1p30_r01_20261015_135329_732,1,2,2,,3,,"{""support_confirmation_pending"": 2}",False
+static,cone_static_center_z2p00_r01_20261015_135414_399,1,2,2,,3,,"{""support_confirmation_pending"": 2}",False
+static,cone_static_left_z1p30_r01_20261015_135541_436,1,2,2,,3,,"{""support_confirmation_pending"": 2}",False
+static,cone_static_left_z1p30_r01_20261015_135541_436,79,81,3,78,82,0.14103599999999972,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,cone_static_left_z1p30_r01_20261015_135541_436,193,195,3,192,196,0.12360300000000013,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,cone_static_left_z1p30_r01_20261015_135541_436,203,205,3,202,206,0.1238999999999999,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,cone_static_left_z1p30_r01_20261015_135541_436,208,210,3,207,211,0.138115,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,cone_static_left_z1p30_r01_20261015_135541_436,382,384,3,381,385,0.13222400000000079,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,cone_static_left_z1p30_r01_20261015_135541_436,441,443,3,440,444,0.13546799999999948,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,cone_static_left_z1p30_r01_20261015_135541_436,532,534,3,531,535,0.1345710000000011,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,cone_static_no_cone_r01_20261015_134940_713,1,332,332,,,,"{""no_candidate"": 332}",False
+static,cone_static_right_z1p30_r01_20261015_135630_973,1,2,2,,3,,"{""support_confirmation_pending"": 2}",False
+static,cone_static_right_z1p30_r01_20261015_135630_973,45,47,3,44,48,0.13287300000000002,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,cone_static_right_z1p30_r01_20261015_135630_973,54,59,6,53,60,0.23672300000000002,"{""ambiguous_candidates"": 3, ""support_confirmation_pending"": 3}",False
+static,cone_static_right_z1p30_r01_20261015_135630_973,625,627,3,624,628,0.11566799999999944,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,1,4,4,,5,,"{""support_confirmation_pending"": 3, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,46,48,3,45,49,0.13382800000000006,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,55,57,3,54,58,0.1337649999999999,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,67,71,5,66,72,0.20047900000000007,"{""support_confirmation_pending"": 3, ""unavailable_support:colour_contour_reaches_roi_edge"": 2}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,82,84,3,81,85,0.13351199999999963,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,135,137,3,134,138,0.13454699999999953,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,144,146,3,143,147,0.13353599999999943,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,150,152,3,149,153,0.1325189999999994,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,158,160,3,157,161,0.13234499999999993,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,187,189,3,186,190,0.13019800000000004,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,197,202,6,196,203,0.2323580000000005,"{""support_confirmation_pending"": 4, ""unavailable_support:colour_contour_reaches_roi_edge"": 2}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,216,218,3,215,219,0.1340849999999998,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,241,246,6,240,247,0.22551400000000044,"{""support_confirmation_pending"": 4, ""unavailable_support:colour_contour_reaches_roi_edge"": 2}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,296,298,3,295,299,0.13461299999999987,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,326,329,4,325,330,0.16819500000000076,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 2}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,381,384,4,380,385,0.16803600000000074,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 2}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,393,395,3,392,396,0.13500699999999988,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,398,400,3,397,401,0.13095100000000137,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,413,415,3,412,416,0.12826800000000027,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,463,467,5,462,468,0.19618299999999955,"{""support_confirmation_pending"": 3, ""unavailable_support:colour_contour_reaches_roi_edge"": 2}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,469,473,5,468,474,0.20162299999999966,"{""support_confirmation_pending"": 3, ""unavailable_support:colour_contour_reaches_roi_edge"": 2}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,475,477,3,474,478,0.13852100000000078,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,519,521,3,518,522,0.1376400000000011,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,566,568,3,565,569,0.13768599999999864,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,586,588,3,585,589,0.12820500000000123,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,631,636,6,630,637,0.231893000000003,"{""support_confirmation_pending"": 4, ""unavailable_support:colour_contour_reaches_roi_edge"": 2}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,641,643,3,640,644,0.12937300000000107,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,646,648,3,645,649,0.13243500000000097,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,667,669,3,666,670,0.13720299999999952,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,674,676,3,673,677,0.13491000000000142,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,692,694,3,691,695,0.13182099999999863,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False
+static,one_static_center_z0p80_r01_20261015_135155_823,700,702,3,699,703,0.13272300000000214,"{""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 1}",False

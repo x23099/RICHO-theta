@@ -1,0 +1,41 @@
+{
+  "status": "PASS_IMAGE_REPRESENTATION_FEASIBILITY_NOT_PHYSICAL_BASE_OR_FFB_APPROVAL",
+  "date": "2026-10-19",
+  "source_frames": 5143,
+  "envelopes_retained_frames": 4354,
+  "lower_envelope_points": 231362,
+  "line_shape_consistent_frames": 1572,
+  "original_segmentation_guards_and_legacy_pixels_reproduced_frames": 5143,
+  "native_png_file_and_decoded_bgr_hashes_verified": 41,
+  "test_suites": [
+    {"directory": "Experimental_results/2026-10-19/cone_support_extent_r01", "pattern": "test_*.py", "passed": 30},
+    {"directory": "tests", "pattern": "test_ground_contact.py", "environment": {"PYTHONPATH": "src"}, "passed": 9},
+    {"directory": "tests", "pattern": "test_cone_observation.py", "passed": 17},
+    {"directory": "tests", "pattern": "test_cone_observation_quality.py", "passed": 15},
+    {"directory": "tests", "pattern": "test_obstacle_tracking.py", "passed": 12}
+  ],
+  "total_passed": 83,
+  "plots_generated_and_viewed": [
+    "results_r01/observed_support_examples.png",
+    "results_r01/support_extent_timeline.png",
+    "results_r01/support_coverage.png",
+    "extent_audit_r01/all_envelope_ranges.png",
+    "extent_audit_r01/observed_range_coverage.png",
+    "extent_audit_r01/occlusion_observed_ranges.png"
+  ],
+  "important_counterexample": "occluded frames1133/1134 have consistent image lines but remain physically unverified",
+  "range_analysis_includes_line_inconsistent_frames": true,
+  "same_actual_image_columns_compared": true,
+  "missing_frames_or_columns_interpolated": false,
+  "geometry_refitted_or_metric_projection_performed": false,
+  "reference_distances_used_by_estimator": false,
+  "source_images_edited": false,
+  "new_camera_images_saved": false,
+  "new_inference_or_training": false,
+  "runtime_changed": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "extra_recording_requested": false,
+  "whole_repository_tests_run": false,
+  "ros_hardware_or_realtime_speed_tested": false
+}

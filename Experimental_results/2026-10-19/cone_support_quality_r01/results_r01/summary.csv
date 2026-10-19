@@ -1,0 +1,12 @@
+dataset,condition,frames,envelopes,shape_line_consistent,support_quality_accepted,accepted_without_single_line_consistency,withheld_reasons,floor_contact_verified,usable_for_ffb
+sequence,cone_130,218,218,214,218,4,{},False,False
+sequence,cone_200,548,541,467,533,72,"{""abrupt_support_endpoint_change"": 1, ""abrupt_support_width_change"": 3, ""no_candidate"": 7, ""support_confirmation_pending"": 4}",False,False
+sequence,floor_before,300,0,0,0,0,"{""no_candidate"": 300}",False,False
+sequence,move_transition,219,195,164,188,26,"{""abrupt_lower_boundary_y_change"": 5, ""support_confirmation_pending"": 2, ""unavailable_support:colour_contour_reaches_roi_edge"": 24}",False,False
+sequence,placement_transition,262,188,130,168,45,"{""abrupt_support_endpoint_change"": 8, ""no_candidate"": 47, ""support_confirmation_pending"": 12, ""unavailable_support:colour_contour_reaches_roi_edge"": 27}",False,False
+static,center_080,722,682,104,608,516,"{""support_confirmation_pending"": 74, ""unavailable_support:colour_contour_reaches_roi_edge"": 40}",False,False
+static,center_130,651,651,149,649,500,"{""support_confirmation_pending"": 2}",False,False
+static,center_200,632,632,243,630,387,"{""support_confirmation_pending"": 2}",False,False
+static,left_130,628,621,77,605,531,"{""support_confirmation_pending"": 16, ""unavailable_support:colour_contour_reaches_roi_edge"": 7}",False,False
+static,none,332,0,0,0,0,"{""no_candidate"": 332}",False,False
+static,right_130,631,626,24,617,593,"{""ambiguous_candidates"": 3, ""support_confirmation_pending"": 9, ""unavailable_support:colour_contour_reaches_roi_edge"": 2}",False,False

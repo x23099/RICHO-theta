@@ -1,0 +1,45 @@
+{
+  "status": "PASS_SCOPED_IMAGE_SUPPORT_CONTINUITY_NOT_PHYSICAL_CONTACT_OR_FFB_APPROVAL",
+  "date": "2026-10-19",
+  "source_frames": 5143,
+  "input_envelopes": 4354,
+  "accepted_image_observations": 4216,
+  "accepted_without_single_line_consistency": 2674,
+  "test_suites": [
+    {"directory": "tests", "pattern": "test_cone_support_quality.py", "passed": 22},
+    {"directory": "tests", "pattern": "test_cone_support_quality_limits.py", "passed": 2},
+    {"directory": "Experimental_results/2026-10-19/cone_support_quality_r01", "pattern": "test_replay.py", "passed": 9},
+    {"directory": "tests", "pattern": "test_ground_contact.py", "environment": {"PYTHONPATH": "src"}, "passed": 9},
+    {"directory": "tests", "pattern": "test_cone_observation.py", "passed": 17},
+    {"directory": "tests", "pattern": "test_cone_observation_quality.py", "passed": 15},
+    {"directory": "tests", "pattern": "test_obstacle_tracking.py", "passed": 12}
+  ],
+  "total_passed": 86,
+  "all_5143_r01_existing_columns_identical_after_pending_telemetry_addition": true,
+  "summary_withheld_runs_and_two_pngs_r01_r02_byte_identical": true,
+  "r01_source_hashes_refer_to_initial_pre_telemetry_revision": true,
+  "reviewed_occlusion_1125_through_1134_accepted_frames": [],
+  "first_accepted_after_1134": 1139,
+  "recorded_timestamp_gap_since_1135_sec": 0.13383000000000322,
+  "plots_generated_and_viewed": [
+    "results_r02/support_occlusion_recovery.png",
+    "results_r02/support_quality_coverage.png"
+  ],
+  "limits_tested": [
+    "stable incorrect boundary at startup can initialize",
+    "stable incorrect boundary after anchor expiry can initialize",
+    "gradual shrinking and rising boundary can be followed"
+  ],
+  "line_shape_flag_used_by_gate": false,
+  "reference_distance_or_evaluation_frame_id_used_by_gate": false,
+  "future_frames_used": false,
+  "missing_observations_filled": false,
+  "metric_projection_or_geometry_fit": false,
+  "runtime_integration_performed": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "new_recording_or_inference": false,
+  "source_images_edited_or_saved": false,
+  "whole_repository_tests_run": false,
+  "ros_hardware_or_realtime_speed_tested": false
+}

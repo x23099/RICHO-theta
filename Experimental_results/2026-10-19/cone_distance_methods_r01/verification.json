@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-19",
+  "status": "PASS_INTERNAL_REPRODUCTION_NOT_DISTANCE_OR_FFB_APPROVAL",
+  "new_tests": 22,
+  "existing_cone_projection_tests": 17,
+  "existing_quality_tests": 15,
+  "existing_local_view_tests": 16,
+  "total_tests_passed": 70,
+  "source_frames_retained": 5143,
+  "method_rows_retained": 20572,
+  "view_comparisons": 14,
+  "fixed_view_region_rows": 70,
+  "low_texture_region_rows_retained_without_invented_offsets": 14,
+  "checks": [
+    "exact two area calibration conditions; heldout rows excluded",
+    "area inverse-square-root formula and fixed group-median scale",
+    "area is bbox proxy; floor ray and reference distance not consumed by area predictor",
+    "invalid boxes and out-of-range estimates not silently clipped into valid data",
+    "all source frames retained and four method rows per frame",
+    "no-target and multiple detections remain missing/ambiguous",
+    "replay does not consume ground truth or future frames",
+    "all saved ground coordinates independently recomputed by pixel-ray projection",
+    "heldout area group errors and prespecified screen independently recomputed",
+    "partial occlusion withheld by existing geometry quality gate",
+    "native PNG/source/config/geometry/output hashes unchanged",
+    "all local feature matches recomputed from original images"
+  ],
+  "distance_accuracy_approved": false,
+  "paper_geometry_adopted": false,
+  "bbox_area_adopted": false,
+  "runtime_or_production_config_changed": false,
+  "physical_output": false,
+  "limits": [
+    "bbox area only; no object segmentation mask",
+    "single-seed historical predictions, no per-frame human bbox ground truth",
+    "static same-day recording groups, not independent deployment validation",
+    "local image shifts do not establish a physical camera pose fault",
+    "no full repository test suite, GPU, ROS, live camera or hardware test executed"
+  ]
+}
