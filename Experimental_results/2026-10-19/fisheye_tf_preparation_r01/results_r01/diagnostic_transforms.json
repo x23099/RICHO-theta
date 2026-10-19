@@ -1,0 +1,125 @@
+{
+  "recorded58": {
+    "target_frame": "camera_ground_reference_diagnostic",
+    "source_frame": "front_fisheye_optical_diagnostic",
+    "data_transform": "p_target = R_target_from_optical * p_optical + t_target_from_optical",
+    "target_from_optical": [
+      [
+        0.0006090802009086826,
+        0.017441774902830158,
+        0.9998476951563913,
+        0.0
+      ],
+      [
+        -0.9993908270190958,
+        0.03489949670250097,
+        0.0,
+        0.0
+      ],
+      [
+        -0.03489418134011367,
+        -0.9992386149554826,
+        0.01745240643728351,
+        0.58
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "camera": {
+      "width": 1280,
+      "height": 720,
+      "cx": 320.0,
+      "cy": 339.0,
+      "radius": 275.2
+    },
+    "measured_extrinsics": false,
+    "base_link_transform": false,
+    "physical_output_permitted": false
+  },
+  "height_only59": {
+    "target_frame": "camera_ground_reference_diagnostic",
+    "source_frame": "front_fisheye_optical_diagnostic",
+    "data_transform": "p_target = R_target_from_optical * p_optical + t_target_from_optical",
+    "target_from_optical": [
+      [
+        0.0006090802009086826,
+        0.017441774902830158,
+        0.9998476951563913,
+        0.0
+      ],
+      [
+        -0.9993908270190958,
+        0.03489949670250097,
+        0.0,
+        0.0
+      ],
+      [
+        -0.03489418134011367,
+        -0.9992386149554826,
+        0.01745240643728351,
+        0.59
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "camera": {
+      "width": 1280,
+      "height": 720,
+      "cx": 320.0,
+      "cy": 339.0,
+      "radius": 275.2
+    },
+    "measured_extrinsics": false,
+    "base_link_transform": false,
+    "physical_output_permitted": false
+  },
+  "paper_centre2": {
+    "target_frame": "camera_ground_reference_diagnostic",
+    "source_frame": "front_fisheye_optical_diagnostic",
+    "data_transform": "p_target = R_target_from_optical * p_optical + t_target_from_optical",
+    "target_from_optical": [
+      [
+        0.0006090802009086826,
+        0.017441774902830158,
+        0.9998476951563913,
+        0.0
+      ],
+      [
+        -0.9993908270190958,
+        0.03489949670250097,
+        0.0,
+        0.0
+      ],
+      [
+        -0.03489418134011367,
+        -0.9992386149554826,
+        0.01745240643728351,
+        0.59
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "camera": {
+      "width": 1280,
+      "height": 720,
+      "cx": 308.6302597227516,
+      "cy": 325.2850158927901,
+      "radius": 275.2
+    },
+    "measured_extrinsics": false,
+    "base_link_transform": false,
+    "physical_output_permitted": false
+  }
+}

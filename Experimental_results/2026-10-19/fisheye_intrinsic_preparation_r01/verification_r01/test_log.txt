@@ -1,0 +1,44 @@
+test_blank_and_non_native_images_do_not_invent_board (test_fisheye_intrinsic_calibration.FisheyeIntrinsicTests) ... ok
+test_corners_must_not_cross_lenses_or_be_nonfinite (test_fisheye_intrinsic_calibration.FisheyeIntrinsicTests) ... ok
+test_coverage_reports_native_domain (test_fisheye_intrinsic_calibration.FisheyeIntrinsicTests) ... ok
+test_detector_restores_native_roi_origin_and_does_not_mutate (test_fisheye_intrinsic_calibration.FisheyeIntrinsicTests) ... ok
+test_fit_command_schema_and_source_hashes (test_fisheye_intrinsic_calibration.FisheyeIntrinsicTests) ... ok
+test_fitted_views_must_have_native_single_lens_schema (test_fisheye_intrinsic_calibration.FisheyeIntrinsicTests) ... ok
+test_grid_dimensions_and_metric_units (test_fisheye_intrinsic_calibration.FisheyeIntrinsicTests) ... ok
+test_grid_symmetry_is_near_duplicate (test_fisheye_intrinsic_calibration.FisheyeIntrinsicTests) ... ok
+test_insufficient_and_duplicate_views_refused (test_fisheye_intrinsic_calibration.FisheyeIntrinsicTests) ... ok
+test_measured_square_size_does_not_fake_metric_accuracy (test_fisheye_intrinsic_calibration.FisheyeIntrinsicTests) ... ok
+test_print_target_physical_page_and_no_overwrite (test_fisheye_intrinsic_calibration.FisheyeIntrinsicTests) ... ok
+test_synthetic_intrinsics_recovered_not_physical_validation (test_fisheye_intrinsic_calibration.FisheyeIntrinsicTests) ... ok
+test_validation_points_do_not_change_fitted_intrinsics (test_fisheye_intrinsic_calibration.FisheyeIntrinsicTests) ... ok
+test_validation_split_is_fixed_before_fit (test_fisheye_intrinsic_calibration.FisheyeIntrinsicTests) ... ok
+test_video_extract_saves_only_native_pixels_and_rejects_duplicates (test_fisheye_intrinsic_calibration.FisheyeIntrinsicTests) ... ok
+test_actual_image_size_mismatch_rejected (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_bad_plane_and_camera_side_rejected (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_bad_transform_and_reflection_rejected (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_empty_input (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_inputs_not_mutated (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_invalid_intrinsics_not_defaulted (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_invalid_lens_pixels_keep_order_and_duplicates (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_known_floor_point_subpixel_without_rectification (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_legacy_equivalence_with_general_angles_and_no_ui_offset (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_nonfinite_and_complex_pixels_rejected (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_optical_centre_limiting_ray (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_target_rotation_does_not_change_physical_intersection (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_tilted_floor_plane_and_nonzero_offset (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_translation_applies_to_origin_not_direction (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_upward_and_grazing_rays_do_not_intersect (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_blue_hsv_value_threshold_is_configurable (test_ground_contact.GroundContactGeometryTest) ... ok
+test_clahe_candidate_preserves_hsv_shape (test_ground_contact.GroundContactGeometryTest) ... ok
+test_front_pixel_round_trip_recovers_vehicle_ray (test_ground_contact.GroundContactGeometryTest) ... ok
+test_missing_aspect_filter_preserves_previous_detector_behavior (test_ground_contact.GroundContactGeometryTest) ... ok
+test_optional_aspect_filter_rejects_horizontal_floor_candidate (test_ground_contact.GroundContactGeometryTest) ... ok
+test_ray_floor_intersection_recovers_metric_ground_point (test_ground_contact.GroundContactGeometryTest) ... ok
+test_rejects_unknown_illumination_mode (test_ground_contact.GroundContactGeometryTest) ... ok
+test_lateral_fit_does_not_modify_geometric_z (test_ground_contact.HeadlessEvaluationTest) ... ok
+test_parse_expected_position (test_ground_contact.HeadlessEvaluationTest) ... ok
+
+----------------------------------------------------------------------
+Ran 39 tests in 3.167s
+
+OK

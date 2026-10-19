@@ -1,0 +1,43 @@
+{
+  "date_jst": "2026-10-19",
+  "status": "PASS_OFFLINE_DIAGNOSTICS_NOT_PHYSICAL_APPROVAL",
+  "python": "/home/robo25/theta-env/bin/python3",
+  "cwd": "/home/robo25/theta_ws/RICHO-theta",
+  "test_runs": [
+    {
+      "command": "/home/robo25/theta-env/bin/python3 -m unittest discover -s Experimental_results/2026-10-19/paper_cone_2m_validation_r01 -p test_analysis.py -v",
+      "tests": 7,
+      "elapsed_sec": 0.419,
+      "exit_code": 0
+    },
+    {
+      "command": "/home/robo25/theta-env/bin/python3 -m unittest discover -s Experimental_results/2026-10-19/cone_virtual_pinhole_r01 -p test_pinhole.py -v",
+      "tests": 19,
+      "elapsed_sec": 71.100,
+      "exit_code": 0
+    },
+    {
+      "command": "/home/robo25/theta-env/bin/python3 -m unittest discover -s Experimental_results/2026-10-19/cone_support_projection_r01 -p test_projection.py -v",
+      "tests": 16,
+      "elapsed_sec": 17.949,
+      "exit_code": 0
+    }
+  ],
+  "total_tests": 42,
+  "recording_integrity": "PASS",
+  "all_native_frames_consumed": 1733,
+  "unedited_native_pngs_pixel_verified": 18,
+  "source_and_frozen_geometry_hash_checks": "PASS",
+  "git_diff_check_exit_code": 0,
+  "production_settings_changed": false,
+  "yolo_reinference": false,
+  "calibration_fit": false,
+  "ros_tf_broadcast": false,
+  "physical_output": false,
+  "git_commit_or_push_performed": false,
+  "notes": [
+    "CUDA unavailable in current connection; no driver/environment changes or CPU YOLO fallback.",
+    "Non-fatal local matplotlib Axes3D warning occurred; saved 2D numeric graph inspected.",
+    "Geometry equivalence is not metric accuracy. Nominal 2m does not agree with frozen calibration."
+  ]
+}

@@ -81,3 +81,40 @@
 10session/13,727frame/原PNG106枚/元archive5本を再照合。
 保存/解析経路の座標取り違えは確認されなかったが、別録画の白紙校正をコーンへ転用できる保証ではない。
 元カメラ画像の編集・新規保存、設定変更、実機出力は行っていない。
+
+## 同日後続：仮想ピンホールと剛体変換の比較
+
+- [同一の下辺・校正での数値比較と仮想整数画素への丸め感度](../cone_virtual_pinhole_r01/presentation_r01/pinhole_geometry_and_rounding.png)
+
+元CSV・再現script・28件のテストは[仮想ピンホール比較README](../cone_virtual_pinhole_r01/README.md)。
+現行魚眼と提案経路は数値一致。新しい物理校正を得た結果ではなく、距離の偏りも残る。
+透視画像はメモリ内生成のみで保存せず、元カメラ画像は不変。
+変換後YOLO再推論、ROS TF配信、実機FFBは今回行っていない。
+
+## 同日後続：白紙・コーン同一2m録画と方式選定
+
+- [白紙前後の画素反復性と、同じ画素の床投影](../paper_cone_2m_validation_r01/analysis_r01/paper_cone_same_column.png)
+- [白紙前の未編集原画像](../paper_cone_2m_validation_r01/raw_samples/paper_cone_f000306.png)
+- [コーン静置中の未編集原画像](../paper_cone_2m_validation_r01/raw_samples/paper_cone_f001019.png)
+- [白紙後の未編集原画像](../paper_cone_2m_validation_r01/raw_samples/paper_cone_f001529.png)
+
+全18枚は1280×720のdecode画素をそのままPNG保存。manifest/hashは[解析README](../paper_cone_2m_validation_r01/README.md)から参照。
+同じ列の紙角と台座下辺は画素一致したが、既存幾何の床投影は名目2mに合っていない。
+ピンホール化だけでは偏りが変わらない。既知ROIの色輪郭診断であり、YOLO再推論・校正採用・実機FFB試験ではない。
+
+## 同日後続：魚眼直接測距＋TFの計算コア
+
+- [1点の床基準による校正識別性](../fisheye_tf_preparation_r01/results_r01/one_point_identifiability.png)
+
+固定スケールのJacobianを示す数値グラフ。実測誤差の棒グラフではない。
+実装・全1,733frameの保存観測との照合・29件のテストは[TF準備README](../fisheye_tf_preparation_r01/README.md)。
+実TF配信・新規校正のfit・本番FFB接続は未実施。カメラ原画像の加工/追加保存なし。
+
+## 同日後続：独立内部校正ツールの準備
+
+- [印刷用A3格子PDF](../fisheye_intrinsic_preparation_r01/target_a3/checkerboard.pdf)
+- [合成データでの内部校正ツール確認](../fisheye_intrinsic_preparation_r01/presentation_r01/synthetic_tool_validation.png)
+
+格子は印刷用の生成物、グラフも合成テストであって実カメラの精度ではない。
+元CSV相当の合成候補JSON・再現script・39件のテストは[内部校正準備README](../fisheye_intrinsic_preparation_r01/README.md)。
+実レンズK/Dはまだ未取得。本番設定、カメラ原画像、FFBは変更していない。

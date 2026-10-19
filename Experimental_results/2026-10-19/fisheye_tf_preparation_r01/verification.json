@@ -1,0 +1,38 @@
+{
+  "date_jst": "2026-10-19",
+  "status": "PASS_OFFLINE_CORE_AND_SAVED_SUPPORT_REPLAY",
+  "test_runs": [
+    {
+      "command": "env PYTHONPATH=src /home/robo25/theta-env/bin/python3 -m unittest discover -s tests -p test_fisheye_floor_geometry.py -v",
+      "tests": 15,
+      "elapsed_sec": 0.064,
+      "exit_code": 0
+    },
+    {
+      "command": "/home/robo25/theta-env/bin/python3 -m unittest discover -s Experimental_results/2026-10-19/fisheye_tf_preparation_r01 -p test_audit.py -v",
+      "tests": 5,
+      "elapsed_sec": 0.450,
+      "exit_code": 0
+    },
+    {
+      "command": "env PYTHONPATH=src /home/robo25/theta-env/bin/python3 -m unittest discover -s tests -p test_ground_contact.py -v",
+      "tests": 9,
+      "elapsed_sec": 0.026,
+      "exit_code": 0
+    }
+  ],
+  "total_tests": 29,
+  "initial_failure": "New unit-test invocation omitted PYTHONPATH=src; import failed before tests ran. Corrected invocation passed; no code workaround.",
+  "git_diff_check_exit_code": 0,
+  "saved_support_columns_compared_all_models": 43614,
+  "maximum_coordinate_difference_m": 3.552713678800501e-15,
+  "jacobian_rank_at_current_model": 2,
+  "unknown_parameter_count": 6,
+  "first_order_nullity": 4,
+  "production_call_sites_changed": false,
+  "calibration_fit": false,
+  "ros_dependencies_added": false,
+  "live_tf_broadcast": false,
+  "hardware_output": false,
+  "git_commit_or_push": false
+}

@@ -1,0 +1,56 @@
+{
+  "schema": "single_fisheye_native_corners_v1",
+  "image_size": [
+    1280,
+    720
+  ],
+  "roi_native_xywh": [
+    0,
+    0,
+    640,
+    720
+  ],
+  "selected_lens": "front_left",
+  "board": {
+    "inner_columns": 9,
+    "inner_rows": 6,
+    "square_mm": 30.0
+  },
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-19_paper_cone_2m_intake_r01/paper_cone_center_z2p00_r01_20261019_180411_245/raw.avi": "b57e81476310975d1bbcdb582e4e4c31963f959a714f9e8a381a2e51d1818a55",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/fisheye_intrinsic_preparation_r01/target_a3/board_spec.json": "8cda8493a0e6162d4c140e28368d6313270be6a878394eca312c2cf9481c15c3"
+  },
+  "frames_decoded": 1733,
+  "sample_every": 600,
+  "max_frames": 1800,
+  "limit_reached": false,
+  "attempts": [
+    {
+      "frame": 1,
+      "corners_native": null,
+      "retained": false,
+      "reason": "board_not_found",
+      "nearest_prior_pose_rms_px": null
+    },
+    {
+      "frame": 601,
+      "corners_native": null,
+      "retained": false,
+      "reason": "board_not_found",
+      "nearest_prior_pose_rms_px": null
+    },
+    {
+      "frame": 1201,
+      "corners_native": null,
+      "retained": false,
+      "reason": "board_not_found",
+      "nearest_prior_pose_rms_px": null
+    }
+  ],
+  "retained_views": [],
+  "enough_views_for_fit": false,
+  "detector": "OpenCV findChessboardCornersSB",
+  "detector_version": "4.5.5",
+  "source_pixels_edited": false,
+  "usable_for_ffb": false
+}

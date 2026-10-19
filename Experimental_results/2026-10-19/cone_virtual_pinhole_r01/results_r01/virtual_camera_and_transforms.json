@@ -1,0 +1,191 @@
+{
+  "view": {
+    "width": 960,
+    "height": 960,
+    "horizontal_fov_deg": 90.0
+  },
+  "virtual_K": [
+    [
+      480.00000000000006,
+      0.0,
+      479.5
+    ],
+    [
+      0.0,
+      480.00000000000006,
+      479.5
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "models": {
+    "recorded58": {
+      "ground_from_virtual_optical": [
+        [
+          0.0006090802009086826,
+          0.017441774902830158,
+          0.9998476951563913,
+          0.0
+        ],
+        [
+          -0.9993908270190958,
+          0.03489949670250097,
+          0.0,
+          0.0
+        ],
+        [
+          -0.03489418134011367,
+          -0.9992386149554826,
+          0.01745240643728351,
+          0.58
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "source_frame": "virtual_front_optical",
+      "target_frame": "camera_ground_reference_ROS_axes",
+      "actual_tf_published": false,
+      "measured_robot_extrinsic": false,
+      "assumed_equidistant_K": [
+        [
+          175.19776135555838,
+          0.0,
+          320.0
+        ],
+        [
+          0.0,
+          175.19776135555838,
+          339.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "assumed_fisheye_D": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "height_only59": {
+      "ground_from_virtual_optical": [
+        [
+          0.0006090802009086826,
+          0.017441774902830158,
+          0.9998476951563913,
+          0.0
+        ],
+        [
+          -0.9993908270190958,
+          0.03489949670250097,
+          0.0,
+          0.0
+        ],
+        [
+          -0.03489418134011367,
+          -0.9992386149554826,
+          0.01745240643728351,
+          0.59
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "source_frame": "virtual_front_optical",
+      "target_frame": "camera_ground_reference_ROS_axes",
+      "actual_tf_published": false,
+      "measured_robot_extrinsic": false,
+      "assumed_equidistant_K": [
+        [
+          175.19776135555838,
+          0.0,
+          320.0
+        ],
+        [
+          0.0,
+          175.19776135555838,
+          339.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "assumed_fisheye_D": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "paper_centre2": {
+      "ground_from_virtual_optical": [
+        [
+          0.0006090802009086826,
+          0.017441774902830158,
+          0.9998476951563913,
+          0.0
+        ],
+        [
+          -0.9993908270190958,
+          0.03489949670250097,
+          0.0,
+          0.0
+        ],
+        [
+          -0.03489418134011367,
+          -0.9992386149554826,
+          0.01745240643728351,
+          0.59
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "source_frame": "virtual_front_optical",
+      "target_frame": "camera_ground_reference_ROS_axes",
+      "actual_tf_published": false,
+      "measured_robot_extrinsic": false,
+      "assumed_equidistant_K": [
+        [
+          175.19776135555838,
+          0.0,
+          308.6302597227516
+        ],
+        [
+          0.0,
+          175.19776135555838,
+          325.2850158927901
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "assumed_fisheye_D": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_virtual_pinhole_r01/results_r01/summary.csv": "67f6269dad2a5ee49d82be5422f110cba94bcd73bc44cbe4896a260cec0a1b9e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_virtual_pinhole_r01/present_results.py": "affbb9ab283867f0e587bded7bdd9ea68a7b4bfd51aabc5358258b07d1ae07eb"
+  },
+  "output_sha256": {
+    "pinhole_geometry_and_rounding.png": "0633510e6d253831bb3641974315d02857182f315108aa17ea3bf6d62c990485"
+  },
+  "numeric_data_changed": false,
+  "camera_images_edited": false
+}

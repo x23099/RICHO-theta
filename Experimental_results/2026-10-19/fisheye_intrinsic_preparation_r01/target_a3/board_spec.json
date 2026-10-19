@@ -1,0 +1,31 @@
+{
+  "board": {
+    "inner_columns": 9,
+    "inner_rows": 6,
+    "square_mm": 30.0
+  },
+  "paper": "A3",
+  "page_mm": [
+    420.0,
+    297.0
+  ],
+  "pattern_mm": [
+    300.0,
+    210.0
+  ],
+  "pattern_squares": [
+    10,
+    7
+  ],
+  "inner_corners": [
+    9,
+    6
+  ],
+  "generated_not_camera_image": true,
+  "print_scale_required_percent": 100,
+  "physical_square_must_be_measured": true,
+  "output_sha256": {
+    "checkerboard.svg": "b68c7a9ef8dce7ee1f71d20c9d977b85036aa1df148500fabcfc429bc793fd96",
+    "checkerboard.pdf": "5639f636ff97db3bdbf61924c75bd06f3a11005c6dd75b1e9f56c4fed2084af5"
+  }
+}

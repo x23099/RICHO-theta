@@ -1,0 +1,11 @@
+{
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/fisheye_intrinsic_preparation_r01/verification_r01/SYNTHETIC_intrinsics_NOT_FOR_CAMERA.json": "518aefb70611cdcff351e5f687ae67f8945d326259a64cd9be0589ee527956c7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/fisheye_intrinsic_preparation_r01/verification_r01/summary.json": "3c1a8c2f50fe130ff44fc47b1787ac2f72c3e7e5d8090a17dd5dbe1a62a3e662",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_fisheye_intrinsic_calibration.py": "5ccd2875a648693992487f5c20b4927d065e0fb8699b1992749e3d15a1ce7301",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/fisheye_intrinsic_preparation_r01/present_results.py": "7a26b6d54974ad42aced9c5586676f62de74083cd6960e2182b240080fded5bf"
+  },
+  "original_results_unchanged": true,
+  "synthetic_not_real": true,
+  "output_sha256": "8a8ec22e7399ed08147e21189c3afe5ce18dab5f376c1121754d2b461dad9fd2"
+}
