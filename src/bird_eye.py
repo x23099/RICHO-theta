@@ -51,9 +51,8 @@ from ros_odometry import RosOdometryBridge
 from PySide6.QtCore import Qt, QTimer, QPoint, QRectF
 from PySide6.QtGui import QImage, QPixmap, QPainter, QColor, QPen, QBrush, QFont, QKeyEvent
 from PySide6.QtWidgets import (
-    QApplication, QWidget, QLabel, QSlider, QGridLayout, QVBoxLayout,
-    QHBoxLayout, QPushButton, QGroupBox, QFormLayout, QFileDialog, QCheckBox,
-    QDoubleSpinBox, QSpinBox, QComboBox, QLineEdit, QScrollArea, QSizePolicy
+    QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton,
+    QLineEdit, QSizePolicy,
 )
 
 
@@ -379,6 +378,102 @@ def make_floor_projection_map(
     return map_x.astype(np.float32), map_y.astype(np.float32)
 
 
+def make_rectilinear_view_map(
+    in_w,
+    in_h,
+    out_w,
+    out_h,
+    yaw_deg=0.0,
+    pitch_deg=0.0,
+    fov_deg=100.0,
+    front_lens="left",
+    radius_scale=0.96,
+    front_cx_offset=0.0,
+    front_cy_offset=0.0,
+    back_cx_offset=0.0,
+    back_cy_offset=0.0,
+    roll_deg=0.0,
+):
+    """Build a pinhole-style view map from a dual-fisheye frame.
+
+    The lens geometry and mounting correction follow
+    :func:`make_floor_projection_map`, so the human-facing view stays aligned
+    with the calibrated bird's-eye projection.
+    """
+    if min(in_w, in_h, out_w, out_h) <= 0:
+        raise ValueError("input and output dimensions must be positive")
+    if not 0.0 < float(fov_deg) < 180.0:
+        raise ValueError("fov_deg must be between 0 and 180 degrees")
+    if float(radius_scale) <= 0.0:
+        raise ValueError("radius_scale must be positive")
+    if front_lens not in ("left", "right"):
+        raise ValueError("front_lens must be 'left' or 'right'")
+
+    radius = min(in_w / 4.0, in_h / 2.0) * float(radius_scale)
+    cy_base = in_h / 2.0
+    if front_lens == "left":
+        front_cx_base = in_w * 0.3125
+        back_cx_base = in_w * 0.6875
+    else:
+        front_cx_base = in_w * 0.6875
+        back_cx_base = in_w * 0.3125
+
+    front_cx = front_cx_base + float(front_cx_offset)
+    front_cy = cy_base + float(front_cy_offset)
+    back_cx = back_cx_base + float(back_cx_offset)
+    back_cy = cy_base + float(back_cy_offset)
+
+    xs, ys = np.meshgrid(np.arange(out_w), np.arange(out_h))
+    fov = np.deg2rad(float(fov_deg))
+    focal = (out_w / 2.0) / np.tan(fov / 2.0)
+
+    # Desired rectilinear pixels become vehicle-frame viewing rays.
+    x_w = (xs - out_w / 2.0) / focal
+    y_w = -(ys - out_h / 2.0) / focal
+    z_w = np.ones_like(x_w)
+    norm = np.sqrt(x_w * x_w + y_w * y_w + z_w * z_w)
+    x_w /= norm
+    y_w /= norm
+    z_w /= norm
+
+    # Match the calibrated vehicle-to-camera rotation used by the BEV map.
+    yaw = np.deg2rad(float(yaw_deg))
+    pitch = np.deg2rad(float(pitch_deg))
+    roll = np.deg2rad(float(roll_deg))
+    x1 = x_w * np.cos(yaw) + z_w * np.sin(yaw)
+    y1 = y_w
+    z1 = -x_w * np.sin(yaw) + z_w * np.cos(yaw)
+    x2 = x1
+    y2 = y1 * np.cos(pitch) - z1 * np.sin(pitch)
+    z2 = y1 * np.sin(pitch) + z1 * np.cos(pitch)
+    x_c = x2 * np.cos(roll) - y2 * np.sin(roll)
+    y_c = x2 * np.sin(roll) + y2 * np.cos(roll)
+    z_c = z2
+
+    use_front = z_c >= 0.0
+    cx = np.where(use_front, front_cx, back_cx)
+    cy = np.where(use_front, front_cy, back_cy)
+    lens_x = np.where(use_front, x_c, -x_c)
+    lens_y = y_c
+    lens_z = np.clip(np.where(use_front, z_c, -z_c), -1.0, 1.0)
+
+    theta = np.arccos(lens_z)
+    sin_theta = np.sin(theta)
+    radial = radius * theta / (np.pi / 2.0)
+    map_dx = np.zeros_like(theta)
+    map_dy = np.zeros_like(theta)
+    valid = sin_theta > 1e-6
+    map_dx[valid] = radial[valid] * lens_x[valid] / sin_theta[valid]
+    map_dy[valid] = -radial[valid] * lens_y[valid] / sin_theta[valid]
+
+    map_x = cx + map_dx
+    map_y = cy + map_dy
+    invalid = theta > (np.pi / 2.0)
+    map_x[invalid] = -1
+    map_y[invalid] = -1
+    return map_x.astype(np.float32), map_y.astype(np.float32)
+
+
 def calibrate_obstacle_coordinates(
     raw_x_m, raw_z_m, x_scale=1.0, z_scale=1.0, z_offset_m=0.0
 ):
@@ -573,6 +668,8 @@ class CalibrationWindow(QWidget):
         # Canvas Size
         self.bev_w = 500
         self.bev_h = 600
+        self.rectilinear_w = 800
+        self.rectilinear_h = 450
 
         # Prediction path variables (matching zc33s_ui.py)
         self.last_odom_time = 0.0
@@ -611,10 +708,6 @@ class CalibrationWindow(QWidget):
             Qt.Key_D: False,
         }
 
-        # STEP 2: Local Occupancy Grid Map Memory (Accumulated map)
-        self.occupancy_map = np.zeros((self.bev_h, self.bev_w), dtype=np.float32)
-        self.last_map_update_time = time.time()
-
         # Camera streams setup
         self.cap = None
         self.timer = QTimer(self)
@@ -622,6 +715,8 @@ class CalibrationWindow(QWidget):
         
         self.map_x = None
         self.map_y = None
+        self.rectilinear_map_x = None
+        self.rectilinear_map_y = None
         self.map_dirty = True
 
         # Experiment recording state. Writers are opened on the first frame so
@@ -765,128 +860,6 @@ class CalibrationWindow(QWidget):
             except Exception as e:
                 print(f"[WARN] Failed to load config: {e}")
         return defaults
-
-    def save_config(self):
-        try:
-            with open(self.config_path, "w") as f:
-                json.dump(self.params, f, indent=4)
-            print(f"[INFO] Config saved to {self.config_path}")
-        except Exception as e:
-            print(f"[ERROR] Failed to save config: {e}")
-
-    def reset_config(self):
-        self.params = {
-            "camera_height": 0.58,
-            "scale": 0.005,
-            "pitch_deg": 0.0,
-            "roll_deg": 0.0,
-            "yaw_deg": 0.0,
-            "radius_scale": 0.96,
-            "front_cx_offset": 0.0,
-            "front_cy_offset": 0.0,
-            "back_cx_offset": 0.0,
-            "back_cy_offset": 0.0,
-            "car_offset_x": 0.0,
-            "car_offset_z": 0.0,
-            "vehicle_profile": "kobuki",
-            "footprint_shape": "circle",
-            "car_width": 0.354,
-            "car_length": 0.354,
-            "show_circles": 1,
-            "bowl_curve": 1.2,
-            "forward_stretch": 0.0,
-            "backward_stretch": 0.0,
-            "white_thresh": 185,
-            "sat_thresh": 60,
-            "roi_forward": 2.5,
-            "roi_side": 1.5,
-            "max_area": 5000,
-            "detect_blue_obstacle": 1,
-            "blue_min_area": 250,
-            "blue_position_method": "ground_contact",
-            "blue_ground_contact_min_area": 300,
-            "blue_ground_contact_fraction": 0.08,
-            "blue_ground_contact_hsv_v_min": 30,
-            "blue_ground_contact_illumination_mode": "none",
-            "blue_ground_contact_x_scale": 0.607688741902197,
-            "blue_ground_contact_x_offset_m": 0.022595727915692983,
-            "blue_ground_contact_z_offset_m": 0.0,
-            "blue_calibration_x_scale": 1.0,
-            "blue_calibration_z_scale": 1.0,
-            "blue_calibration_z_offset_m": 0.0,
-            "blue_calibration_input_x_max_m": 0.5,
-            "blue_calibration_input_z_min_m": 0.65,
-            "blue_calibration_input_z_max_m": 1.35,
-            "blue_region_x_max_m": 0.5,
-            "blue_region_distance_min_m": 0.75,
-            "blue_region_distance_max_m": 1.4,
-            "blue_region_hysteresis_margin_m": 0.03,
-            "blue_region_confirm_frames": 3,
-            "blue_tracking_enabled": 1,
-            "blue_tracking_process_accel_std_mps2": 1.5,
-            "blue_tracking_measurement_std_m": 0.03,
-            "blue_tracking_max_missing_sec": 0.25,
-            "blue_tracking_max_dt_sec": 0.2,
-            "blue_observation_gate_enabled": 1,
-            "blue_observation_area_distance_mode": "forward_z",
-            "blue_observation_normalized_area_min": 2503.678448310634,
-            "blue_observation_nis_max": 9.210,
-            "blue_observation_confirmation_frames": 2,
-            "blue_observation_confirmation_distance_m": 0.15,
-            "blue_ttc_enabled": 1,
-            "blue_ttc_velocity_window_sec": 0.3,
-            "blue_ttc_deadband_mps": 0.05,
-            "blue_ttc_velocity_source": "visual",
-            "blue_collision_candidate_enabled": 1,
-            "blue_collision_safety_margin_m": 0.10,
-            "blue_collision_warning_ttc_sec": 4.0,
-            "blue_collision_critical_ttc_sec": 2.0,
-            "blue_collision_warning_exit_ttc_sec": 5.0,
-            "blue_collision_warning_confirm_frames": 3,
-            "blue_collision_warning_clear_frames": 3,
-            "blue_collision_warning_hold_sec": 0.8,
-            "blue_collision_forward_motion_threshold_mps": 0.03,
-            "collision_ffb_publish_enabled": 0,
-            "collision_ffb_relay_enabled": 0,
-            "collision_ffb_intent_topic": "/collision/ffb_intent",
-            "collision_ffb_intent_max_age_sec": 0.1,
-            "collision_ffb_command_topic": "/collision/ffb_command",
-            "collision_ffb_challenge_topic": "/collision/ffb_challenge",
-            "collision_ffb_source": "bird_eye",
-            "collision_ffb_warning_magnitude": 0.25,
-            "collision_ffb_critical_magnitude": 0.40,
-            "collision_ffb_unknown_magnitude": 0.15,
-            "collision_ffb_cadence": "continuous",
-            "collision_ffb_cadence_duration_sec": 0.5,
-            "collision_ffb_cadence_rate_hz": 30.0,
-            "collision_ffb_unknown_pulse_duration_sec": 0.1,
-            "collision_ffb_unknown_rearm_valid_sec": 0.5,
-            "collision_ffb_challenge_recovery_sec": 0.1,
-            "enable_ai": 0,
-            "yolo_model": "yolov8s.pt"
-        }
-        self.update_sliders()
-        if hasattr(self, "chk_blue_observation_gate"):
-            self.chk_blue_observation_gate.setChecked(True)
-        if hasattr(self, "chk_blue_ttc"):
-            self.chk_blue_ttc.setChecked(True)
-        if hasattr(self, "chk_blue_collision_candidate"):
-            self.chk_blue_collision_candidate.setChecked(True)
-        self.map_dirty = True
-        (
-            self.blue_range_hysteresis,
-            self.blue_side_hysteresis,
-        ) = self.create_blue_region_hysteresis()
-        self.blue_obstacle_tracker = self.create_blue_obstacle_tracker()
-        self.blue_observation_gate = self.create_blue_observation_gate()
-        self.blue_ttc_estimator = self.create_blue_ttc_estimator()
-        self.collision_risk_hysteresis = self.create_collision_risk_hysteresis()
-        self.last_blue_track = None
-        self.last_blue_collision = None
-        if getattr(self, "collision_ffb_publisher", None) is not None:
-            self.collision_ffb_publisher.close()
-            self.collision_ffb_publisher = None
-        self.last_collision_ffb_publish = empty_publish_record(enabled=False)
 
     def create_collision_ffb_publisher(self):
         if self.params.get("collision_ffb_publish_enabled", 0) != 1:
@@ -1078,41 +1051,15 @@ class CalibrationWindow(QWidget):
         return range_hysteresis, side_hysteresis
 
     def init_ui(self):
-        self.setWindowTitle("360 Camera Bird's Eye View (AVM) Calibration Tool")
+        self.setWindowTitle("360 Camera Bird's Eye View Monitor")
         self.setStyleSheet("""
             QWidget {
                 background-color: #121214;
                 color: #e1e1e6;
                 font-family: 'Segoe UI', Arial, sans-serif;
             }
-            QGroupBox {
-                border: 2px solid #282830;
-                border-radius: 8px;
-                margin-top: 1ex;
-                font-weight: bold;
-            }
-            QGroupBox::title {
-                subcontrol-origin: margin;
-                left: 10px;
-                padding: 0 3px;
-                color: #00e5ff;
-            }
             QLabel {
                 font-size: 11px;
-            }
-            QSlider::groove:horizontal {
-                border: 1px solid #282830;
-                height: 4px;
-                background: #1e1e22;
-                border-radius: 2px;
-            }
-            QSlider::handle:horizontal {
-                background: #00e5ff;
-                border: 1px solid #00b3cc;
-                width: 14px;
-                height: 14px;
-                margin: -5px 0;
-                border-radius: 7px;
             }
             QPushButton {
                 background-color: #202024;
@@ -1126,32 +1073,65 @@ class CalibrationWindow(QWidget):
                 background-color: #282830;
                 border-color: #00e5ff;
             }
-            QPushButton#saveBtn {
-                background-color: #004d40;
-                border-color: #00e5ff;
-            }
-            QPushButton#saveBtn:hover {
-                background-color: #00796b;
-            }
         """)
 
-        main_layout = QHBoxLayout(self)
+        main_layout = QVBoxLayout(self)
         main_layout.setContentsMargins(8, 8, 8, 8)
         main_layout.setSpacing(8)
 
-        # 1. Left Layout - Bird's Eye View Label
-        left_layout = QVBoxLayout()
+        views_layout = QHBoxLayout()
+        views_layout.setSpacing(8)
+
+        bev_layout = QVBoxLayout()
         bev_title = QLabel("BIRD'S EYE VIEW (TOP-DOWN FLOOR PROJECTION)")
         bev_title.setFont(QFont("Arial", 11, QFont.Bold))
         bev_title.setStyleSheet("color: #00e5ff;")
-        left_layout.addWidget(bev_title)
-        
+        bev_layout.addWidget(bev_title)
+
         self.bev_label = QLabel()
         self.bev_label.setMinimumSize(260, 312)
         self.bev_label.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
         self.bev_label.setAlignment(Qt.AlignCenter)
         self.bev_label.setStyleSheet("border: 2px solid #282830; background-color: #050508;")
-        left_layout.addWidget(self.bev_label, 1)
+        bev_layout.addWidget(self.bev_label, 1)
+        views_layout.addLayout(bev_layout, 5)
+
+        camera_views_layout = QVBoxLayout()
+        camera_views_layout.setSpacing(8)
+
+        rectilinear_layout = QVBoxLayout()
+        rectilinear_title = QLabel("FRONT VIEW (DEWARPED RECTILINEAR)")
+        rectilinear_title.setFont(QFont("Arial", 11, QFont.Bold))
+        rectilinear_title.setStyleSheet("color: #00e5ff;")
+        rectilinear_layout.addWidget(rectilinear_title)
+
+        self.rectilinear_label = QLabel()
+        self.rectilinear_label.setMinimumSize(400, 180)
+        self.rectilinear_label.setSizePolicy(
+            QSizePolicy.Ignored, QSizePolicy.Ignored
+        )
+        self.rectilinear_label.setAlignment(Qt.AlignCenter)
+        self.rectilinear_label.setStyleSheet(
+            "border: 2px solid #282830; background-color: #050508;"
+        )
+        rectilinear_layout.addWidget(self.rectilinear_label, 1)
+        camera_views_layout.addLayout(rectilinear_layout, 1)
+
+        raw_layout = QVBoxLayout()
+        raw_title = QLabel("RAW CAMERA FEED (DUAL FISHEYE)")
+        raw_title.setFont(QFont("Arial", 11, QFont.Bold))
+        raw_title.setStyleSheet("color: #00e5ff;")
+        raw_layout.addWidget(raw_title)
+
+        self.raw_label = QLabel()
+        self.raw_label.setMinimumSize(400, 180)
+        self.raw_label.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
+        self.raw_label.setAlignment(Qt.AlignCenter)
+        self.raw_label.setStyleSheet("border: 2px solid #282830; background-color: #050508;")
+        raw_layout.addWidget(self.raw_label, 1)
+        camera_views_layout.addLayout(raw_layout, 1)
+        views_layout.addLayout(camera_views_layout, 8)
+        main_layout.addLayout(views_layout, 1)
 
         record_layout = QHBoxLayout()
         self.record_btn = QPushButton("Start Recording")
@@ -1160,7 +1140,9 @@ class CalibrationWindow(QWidget):
         self.record_status_label.setStyleSheet("color: #9e9e9e;")
         record_layout.addWidget(self.record_btn)
         record_layout.addWidget(self.record_status_label)
-        left_layout.addLayout(record_layout)
+        record_layout.addStretch()
+        main_layout.addLayout(record_layout)
+
         experiment_layout = QHBoxLayout()
         experiment_layout.addWidget(QLabel("Trial label:"))
         self.experiment_label_edit = QLineEdit(self.args.experiment_label)
@@ -1168,302 +1150,7 @@ class CalibrationWindow(QWidget):
             "e.g. straight_center_v0p10_r01"
         )
         experiment_layout.addWidget(self.experiment_label_edit)
-        left_layout.addLayout(experiment_layout)
-        main_layout.addLayout(left_layout, 1)
-
-        # 2. Center Layout - Lane Detection & Occupancy Mask
-        center_layout = QVBoxLayout()
-        lane_mask_title = QLabel("WHITE LANE DETECTION & OCCUPANCY MASK")
-        lane_mask_title.setFont(QFont("Arial", 11, QFont.Bold))
-        lane_mask_title.setStyleSheet("color: #00e5ff;")
-        center_layout.addWidget(lane_mask_title)
-
-        self.lane_mask_label = QLabel()
-        self.lane_mask_label.setMinimumSize(260, 312)
-        self.lane_mask_label.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
-        self.lane_mask_label.setAlignment(Qt.AlignCenter)
-        self.lane_mask_label.setStyleSheet("border: 2px solid #282830; background-color: #050508;")
-        center_layout.addWidget(self.lane_mask_label, 1)
-
-        # Bottom info section
-        info_box = QGroupBox("Kobuki Robot Specifications")
-        info_layout = QGridLayout()
-        info_layout.addWidget(QLabel("Chassis:"), 0, 0)
-        info_layout.addWidget(QLabel("Circular (Diameter: 354 mm / 0.354 m)"), 0, 1)
-        info_layout.addWidget(QLabel("Default Height:"), 1, 0)
-        info_layout.addWidget(QLabel("Camera is mounted at 580 mm (0.58 m) above floor"), 1, 1)
-        info_box.setLayout(info_layout)
-        center_layout.addWidget(info_box)
-        main_layout.addLayout(center_layout, 1)
-
-        # 3. Right Layout - Calibration Sliders & Actions
-        right_layout = QVBoxLayout()
-        right_layout.setContentsMargins(10, 0, 10, 0)
-        
-        # Helper method to create synced slider + spinbox row
-        self.control_widgets = {} # Stores (slider, spinbox, multiplier) for update_sliders
-        
-        def add_control(group_layout, name, unit, key, min_val, max_val, init_val, decimals, multiplier, callback):
-            label = QLabel(f"{name} ({unit}):")
-            label.setMinimumWidth(120)
-            
-            slider = QSlider(Qt.Horizontal)
-            slider.setMinimum(int(round(min_val * multiplier)))
-            slider.setMaximum(int(round(max_val * multiplier)))
-            slider.setValue(int(round(init_val * multiplier)))
-            
-            if decimals == 0:
-                spinbox = QSpinBox()
-                spinbox.setRange(int(min_val), int(max_val))
-                spinbox.setValue(int(init_val))
-            else:
-                spinbox = QDoubleSpinBox()
-                spinbox.setRange(float(min_val), float(max_val))
-                spinbox.setDecimals(decimals)
-                spinbox.setSingleStep(1.0 / multiplier)
-                spinbox.setValue(float(init_val))
-                
-            spinbox.setFixedWidth(70)
-            
-            # Sync slider -> spinbox
-            def on_slider_val_changed(val):
-                real_val = val / float(multiplier)
-                if abs(spinbox.value() - real_val) > 1e-6:
-                    spinbox.blockSignals(True)
-                    spinbox.setValue(real_val)
-                    spinbox.blockSignals(False)
-                callback()
-                
-            # Sync spinbox -> slider
-            def on_spin_val_changed(val):
-                slider_val = int(round(val * multiplier))
-                if slider.value() != slider_val:
-                    slider.blockSignals(True)
-                    slider.setValue(slider_val)
-                    slider.blockSignals(False)
-                callback()
-                
-            slider.valueChanged.connect(on_slider_val_changed)
-            spinbox.valueChanged.connect(on_spin_val_changed)
-            
-            row_layout = QHBoxLayout()
-            row_layout.addWidget(slider)
-            row_layout.addWidget(spinbox)
-            group_layout.addRow(label, row_layout)
-            
-            self.control_widgets[key] = (slider, spinbox, multiplier)
-            return slider, spinbox
-
-        # Projection Calibration Group
-        proj_group = QGroupBox("1. Floor Projection Math")
-        proj_layout = QFormLayout()
-        
-        self.sl_height, self.sp_height = add_control(
-            proj_layout, "Cam Height (H)", "m", "camera_height", 0.20, 2.00, self.params["camera_height"], 2, 100.0, self.on_proj_slider_changed
-        )
-        self.sl_scale, self.sp_scale = add_control(
-            proj_layout, "Scale (mm/px)", "mm", "scale", 0.001, 0.100, self.params["scale"], 3, 1000.0, self.on_proj_slider_changed
-        )
-        self.sl_pitch, self.sp_pitch = add_control(
-            proj_layout, "Pitch (Tilt Forward)", "deg", "pitch_deg", -90.0, 90.0, self.params["pitch_deg"], 0, 1.0, self.on_proj_slider_changed
-        )
-        self.sl_roll, self.sp_roll = add_control(
-            proj_layout, "Roll (Tilt Side)", "deg", "roll_deg", -30.0, 30.0, self.params["roll_deg"], 0, 1.0, self.on_proj_slider_changed
-        )
-        self.sl_yaw, self.sp_yaw = add_control(
-            proj_layout, "Yaw (Rotate)", "deg", "yaw_deg", -180.0, 180.0, self.params["yaw_deg"], 0, 1.0, self.on_proj_slider_changed
-        )
-        self.sl_bowl, self.sp_bowl = add_control(
-            proj_layout, "Bowl Distortion", "", "bowl_curve", 0.00, 50.00, self.params.get("bowl_curve", 0.0), 2, 100.0, self.on_proj_slider_changed
-        )
-        self.sl_forward_stretch, self.sp_forward_stretch = add_control(
-            proj_layout, "Forward Stretch", "", "forward_stretch", 0.00, 3.00, self.params.get("forward_stretch", 0.0), 2, 100.0, self.on_proj_slider_changed
-        )
-        self.sl_backward_stretch, self.sp_backward_stretch = add_control(
-            proj_layout, "Backward Stretch", "", "backward_stretch", 0.00, 3.00, self.params.get("backward_stretch", 0.0), 2, 100.0, self.on_proj_slider_changed
-        )
-        
-        proj_group.setLayout(proj_layout)
-        right_layout.addWidget(proj_group)
-
-        # Lens Calibration Group
-        lens_group = QGroupBox("2. Fisheye Lens Calibration")
-        lens_layout = QFormLayout()
-        
-        self.sl_rad_scale, self.sp_rad_scale = add_control(
-            lens_layout, "Lens Radius Scale", "%", "radius_scale", 0.80, 1.20, self.params["radius_scale"], 2, 100.0, self.on_proj_slider_changed
-        )
-        self.sl_fcx, self.sp_fcx = add_control(
-            lens_layout, "Front Lens CX Off", "px", "front_cx_offset", -100.0, 100.0, self.params["front_cx_offset"], 0, 1.0, self.on_proj_slider_changed
-        )
-        self.sl_fcy, self.sp_fcy = add_control(
-            lens_layout, "Front Lens CY Off", "px", "front_cy_offset", -100.0, 100.0, self.params["front_cy_offset"], 0, 1.0, self.on_proj_slider_changed
-        )
-        self.sl_bcx, self.sp_bcx = add_control(
-            lens_layout, "Back Lens CX Off", "px", "back_cx_offset", -100.0, 100.0, self.params["back_cx_offset"], 0, 1.0, self.on_proj_slider_changed
-        )
-        self.sl_bcy, self.sp_bcy = add_control(
-            lens_layout, "Back Lens CY Off", "px", "back_cy_offset", -100.0, 100.0, self.params["back_cy_offset"], 0, 1.0, self.on_proj_slider_changed
-        )
-
-        lens_group.setLayout(lens_layout)
-        right_layout.addWidget(lens_group)
-
-        # Vehicle geometry is independent of camera calibration so the same
-        # perception pipeline can be moved from Kobuki to AI-FORMULA.
-        robot_group = QGroupBox("3. Vehicle Geometry & Camera Offset")
-        robot_layout = QFormLayout()
-
-        self.combo_vehicle_profile = QComboBox()
-        self.vehicle_profile_keys = list(VEHICLE_PROFILES.keys())
-        for key in self.vehicle_profile_keys:
-            self.combo_vehicle_profile.addItem(VEHICLE_PROFILES[key]["label"], key)
-        current_profile = self.params.get("vehicle_profile", "custom")
-        profile_index = self.combo_vehicle_profile.findData(current_profile)
-        self.combo_vehicle_profile.setCurrentIndex(max(0, profile_index))
-        self.combo_vehicle_profile.currentIndexChanged.connect(self.on_vehicle_profile_changed)
-        robot_layout.addRow(QLabel("Vehicle Profile:"), self.combo_vehicle_profile)
-        
-        self.sl_car_x, self.sp_car_x = add_control(
-            robot_layout, "Offset X", "cm", "car_offset_x", -1.00, 1.00, self.params["car_offset_x"], 2, 100.0, self.on_car_slider_changed
-        )
-        self.sl_car_z, self.sp_car_z = add_control(
-            robot_layout, "Offset Z (Fwd/Bwd)", "cm", "car_offset_z", -1.00, 1.00, self.params["car_offset_z"], 2, 100.0, self.on_car_slider_changed
-        )
-        self.sl_car_width, self.sp_car_width = add_control(
-            robot_layout, "Vehicle Width", "cm", "car_width", 0.10, 3.00, self.params["car_width"], 3, 100.0, self.on_car_slider_changed
-        )
-        self.sl_car_length, self.sp_car_length = add_control(
-            robot_layout, "Vehicle Length", "cm", "car_length", 0.10, 3.00, self.params["car_length"], 3, 100.0, self.on_car_slider_changed
-        )
-        
-        robot_group.setLayout(robot_layout)
-        right_layout.addWidget(robot_group)
-
-        # Lane Detection Threshold & Mask Group
-        lane_group = QGroupBox("4. Lane Detection Parameters")
-        lane_layout = QFormLayout()
-        
-        self.sl_white, self.sp_white = add_control(
-            lane_layout, "White Threshold", "", "white_thresh", 100, 255, self.params.get("white_thresh", 185), 0, 1.0, self.on_lane_slider_changed
-        )
-        self.sl_sat, self.sp_sat = add_control(
-            lane_layout, "Sat Threshold", "", "sat_thresh", 10, 255, self.params.get("sat_thresh", 60), 0, 1.0, self.on_lane_slider_changed
-        )
-        self.sl_roi_fwd, self.sp_roi_fwd = add_control(
-            lane_layout, "ROI Forward", "m", "roi_forward", 0.5, 10.0, self.params.get("roi_forward", 2.5), 2, 100.0, self.on_lane_slider_changed
-        )
-        self.sl_roi_side, self.sp_roi_side = add_control(
-            lane_layout, "ROI Side", "m", "roi_side", 0.5, 10.0, self.params.get("roi_side", 1.5), 2, 100.0, self.on_lane_slider_changed
-        )
-        self.sl_max_area, self.sp_max_area = add_control(
-            lane_layout, "Max Area", "px", "max_area", 500, 30000, self.params.get("max_area", 5000), 0, 1.0, self.on_lane_slider_changed
-        )
-        
-        lane_group.setLayout(lane_layout)
-        right_layout.addWidget(lane_group)
-
-        # AI Perception Group
-        ai_group = QGroupBox("5. AI Perception & 3D Box (YOLOv8)")
-        ai_layout = QFormLayout()
-        
-        self.chk_enable_ai = QCheckBox("Enable YOLOv8 AI Detection")
-        self.chk_enable_ai.setChecked(self.params.get("enable_ai", 0) == 1)
-        self.chk_enable_ai.stateChanged.connect(self.on_ai_checkbox_changed)
-        ai_layout.addRow(self.chk_enable_ai)
-
-        self.combo_yolo_model = QComboBox()
-        self.combo_yolo_model.addItems(["yolov8n.pt (Nano - Faster)", "yolov8s.pt (Small - Balanced)", "yolov8m.pt (Medium - Precise)"])
-        cur_model = self.params.get("yolo_model", "yolov8s.pt")
-        if "yolov8n" in cur_model:
-            self.combo_yolo_model.setCurrentIndex(0)
-        elif "yolov8m" in cur_model:
-            self.combo_yolo_model.setCurrentIndex(2)
-        else:
-            self.combo_yolo_model.setCurrentIndex(1)
-        self.combo_yolo_model.currentIndexChanged.connect(self.on_yolo_model_changed)
-        ai_layout.addRow(QLabel("YOLO Model Size:"), self.combo_yolo_model)
-
-        ai_group.setLayout(ai_layout)
-        right_layout.addWidget(ai_group)
-
-        # Action layout
-        btn_layout = QVBoxLayout()
-        
-        self.chk_circles = QCheckBox("Show lens calibration circles on raw feed")
-        self.chk_circles.setChecked(self.params["show_circles"] == 1)
-        self.chk_circles.stateChanged.connect(self.on_checkbox_changed)
-        btn_layout.addWidget(self.chk_circles)
-
-        self.chk_blue_obstacle = QCheckBox("Detect blue obstacle")
-        self.chk_blue_obstacle.setChecked(
-            self.params.get("detect_blue_obstacle", 1) == 1
-        )
-        self.chk_blue_obstacle.stateChanged.connect(self.on_checkbox_changed)
-        btn_layout.addWidget(self.chk_blue_obstacle)
-
-        self.chk_blue_observation_gate = QCheckBox(
-            "Enable blue-obstacle observation gate"
-        )
-        self.chk_blue_observation_gate.setChecked(
-            self.params.get("blue_observation_gate_enabled", 1) == 1
-        )
-        self.chk_blue_observation_gate.stateChanged.connect(
-            self.on_tracking_feature_checkbox_changed
-        )
-        btn_layout.addWidget(self.chk_blue_observation_gate)
-
-        self.chk_blue_ttc = QCheckBox("Show blue-obstacle TTC")
-        self.chk_blue_ttc.setChecked(
-            self.params.get("blue_ttc_enabled", 1) == 1
-        )
-        self.chk_blue_ttc.stateChanged.connect(
-            self.on_tracking_feature_checkbox_changed
-        )
-        btn_layout.addWidget(self.chk_blue_ttc)
-
-        self.chk_blue_collision_candidate = QCheckBox(
-            "Show path-collision candidate (no control output)"
-        )
-        self.chk_blue_collision_candidate.setChecked(
-            self.params.get("blue_collision_candidate_enabled", 1) == 1
-        )
-        self.chk_blue_collision_candidate.stateChanged.connect(
-            self.on_tracking_feature_checkbox_changed
-        )
-        btn_layout.addWidget(self.chk_blue_collision_candidate)
-        
-        h_btn_layout = QHBoxLayout()
-        save_btn = QPushButton("Save Config")
-        save_btn.setObjectName("saveBtn")
-        save_btn.clicked.connect(self.save_config)
-        
-        reset_btn = QPushButton("Reset Defaults")
-        reset_btn.clicked.connect(self.reset_config)
-        
-        h_btn_layout.addWidget(save_btn)
-        h_btn_layout.addWidget(reset_btn)
-        btn_layout.addLayout(h_btn_layout)
-
-        right_layout.addLayout(btn_layout)
-        right_layout.addStretch()
-
-        # Calibration controls are taller than many laptop/remote-desktop
-        # viewports. Keep the video and recording controls visible and scroll
-        # this panel independently instead of forcing an oversized window.
-        right_panel = QWidget()
-        right_panel.setLayout(right_layout)
-        self.settings_scroll_area = QScrollArea()
-        self.settings_scroll_area.setWidgetResizable(True)
-        self.settings_scroll_area.setHorizontalScrollBarPolicy(
-            Qt.ScrollBarAsNeeded
-        )
-        self.settings_scroll_area.setVerticalScrollBarPolicy(
-            Qt.ScrollBarAsNeeded
-        )
-        self.settings_scroll_area.setMinimumWidth(390)
-        self.settings_scroll_area.setWidget(right_panel)
-        main_layout.addWidget(self.settings_scroll_area)
+        main_layout.addLayout(experiment_layout)
 
         # Start inside the available desktop area while retaining normal
         # maximize/minimize and edge-resize behavior.
@@ -1797,121 +1484,6 @@ class CalibrationWindow(QWidget):
         self.record_status_label.setStyleSheet("color: #69f0ae;")
         print(f"[INFO] Recording stopped: {saved_dir} ({frame_count} frames)")
 
-    def update_sliders(self):
-        # Temporarily block signals to avoid triggering multiple updates
-        for key, (slider, spinbox, multiplier) in self.control_widgets.items():
-            slider.blockSignals(True)
-            spinbox.blockSignals(True)
-            
-            val = float(self.params.get(key, 0.0))
-            slider.setValue(int(round(val * multiplier)))
-            spinbox.setValue(val)
-            
-            slider.blockSignals(False)
-            spinbox.blockSignals(False)
-
-    def on_proj_slider_changed(self):
-        # Update values from controls
-        self.params["camera_height"] = self.sp_height.value()
-        self.params["scale"] = self.sp_scale.value()
-        self.params["pitch_deg"] = self.sp_pitch.value()
-        self.params["roll_deg"] = self.sp_roll.value()
-        self.params["yaw_deg"] = self.sp_yaw.value()
-        self.params["radius_scale"] = self.sp_rad_scale.value()
-        self.params["front_cx_offset"] = self.sp_fcx.value()
-        self.params["front_cy_offset"] = self.sp_fcy.value()
-        self.params["back_cx_offset"] = self.sp_bcx.value()
-        self.params["back_cy_offset"] = self.sp_bcy.value()
-        self.params["bowl_curve"] = self.sp_bowl.value()
-        self.params["forward_stretch"] = self.sp_forward_stretch.value()
-        self.params["backward_stretch"] = self.sp_backward_stretch.value()
-        
-        # Mark remapping matrices as dirty to force rebuild
-        self.map_dirty = True
-
-    def on_car_slider_changed(self):
-        self.params["car_offset_x"] = self.sp_car_x.value()
-        self.params["car_offset_z"] = self.sp_car_z.value()
-        self.params["car_width"] = self.sp_car_width.value()
-        self.params["car_length"] = self.sp_car_length.value()
-        self.map_dirty = True
-
-    def on_vehicle_profile_changed(self, index):
-        profile_key = self.combo_vehicle_profile.itemData(index)
-        if profile_key not in VEHICLE_PROFILES:
-            return
-
-        profile = VEHICLE_PROFILES[profile_key]
-        self.params["vehicle_profile"] = profile_key
-        self.params["footprint_shape"] = profile.get(
-            "footprint_shape", self.params.get("footprint_shape", "rectangle")
-        )
-
-        # Apply only dimensions that are verified.  AI-FORMULA deliberately
-        # retains the current editable values until the real chassis is measured.
-        if "width" in profile:
-            self.params["car_width"] = profile["width"]
-        if "length" in profile:
-            self.params["car_length"] = profile["length"]
-        if "camera_height" in profile:
-            self.params["camera_height"] = profile["camera_height"]
-
-        self.update_sliders()
-        self.map_dirty = True
-
-    def on_lane_slider_changed(self):
-        self.params["white_thresh"] = self.sp_white.value()
-        self.params["sat_thresh"] = self.sp_sat.value()
-        self.params["roi_forward"] = self.sp_roi_fwd.value()
-        self.params["roi_side"] = self.sp_roi_side.value()
-        self.params["max_area"] = self.sp_max_area.value()
-
-    def on_checkbox_changed(self, state):
-        self.params["show_circles"] = 1 if self.chk_circles.isChecked() else 0
-        self.params["detect_blue_obstacle"] = (
-            1 if self.chk_blue_obstacle.isChecked() else 0
-        )
-        if not self.chk_blue_obstacle.isChecked():
-            self.blue_obstacle_tracker.reset()
-            self.blue_observation_gate.reset()
-            self.blue_ttc_estimator.reset()
-            self.blue_range_hysteresis.reset()
-            self.blue_side_hysteresis.reset()
-            self.collision_risk_hysteresis.reset()
-
-    def on_tracking_feature_checkbox_changed(self, state):
-        del state
-        self.params["blue_observation_gate_enabled"] = (
-            1 if self.chk_blue_observation_gate.isChecked() else 0
-        )
-        self.params["blue_ttc_enabled"] = (
-            1 if self.chk_blue_ttc.isChecked() else 0
-        )
-        self.params["blue_collision_candidate_enabled"] = (
-            1 if self.chk_blue_collision_candidate.isChecked() else 0
-        )
-        self.blue_obstacle_tracker.reset()
-        self.blue_observation_gate = self.create_blue_observation_gate()
-        self.blue_ttc_estimator = self.create_blue_ttc_estimator()
-        self.collision_risk_hysteresis = self.create_collision_risk_hysteresis()
-        self.last_blue_track = None
-        self.last_blue_collision = None
-
-    def on_ai_checkbox_changed(self, state):
-        self.params["enable_ai"] = 1 if self.chk_enable_ai.isChecked() else 0
-        if self.params["enable_ai"] == 1 and self.yolo_model_obj is None:
-            self.yolo_load_attempted = False
-            self.load_yolo_model()
-
-    def on_yolo_model_changed(self, index):
-        models = ["yolov8n.pt", "yolov8s.pt", "yolov8m.pt"]
-        if 0 <= index < len(models):
-            self.params["yolo_model"] = models[index]
-            if self.params.get("enable_ai", 0) == 1:
-                self.yolo_model_obj = None
-                self.yolo_load_attempted = False
-                self.load_yolo_model()
-
     def load_yolo_model(self):
         self.yolo_load_attempted = True
         if not HAS_ULTRALYTICS:
@@ -2108,7 +1680,11 @@ class CalibrationWindow(QWidget):
         in_h, in_w = frame.shape[:2]
 
         # Recompute projection map if dirty
-        if self.map_dirty or self.map_x is None:
+        if (
+            self.map_dirty
+            or self.map_x is None
+            or self.rectilinear_map_x is None
+        ):
             self.map_x, self.map_y = make_floor_projection_map(
                 in_w=in_w,
                 in_h=in_h,
@@ -2130,9 +1706,27 @@ class CalibrationWindow(QWidget):
                 forward_stretch=self.params.get("forward_stretch", 0.0),
                 backward_stretch=self.params.get("backward_stretch", 0.0)
             )
+            (
+                self.rectilinear_map_x,
+                self.rectilinear_map_y,
+            ) = make_rectilinear_view_map(
+                in_w=in_w,
+                in_h=in_h,
+                out_w=self.rectilinear_w,
+                out_h=self.rectilinear_h,
+                yaw_deg=self.params["yaw_deg"],
+                pitch_deg=self.params["pitch_deg"],
+                roll_deg=self.params["roll_deg"],
+                fov_deg=100.0,
+                radius_scale=self.params["radius_scale"],
+                front_cx_offset=self.params["front_cx_offset"],
+                front_cy_offset=self.params["front_cy_offset"],
+                back_cx_offset=self.params["back_cx_offset"],
+                back_cy_offset=self.params["back_cy_offset"],
+            )
             self.map_dirty = False
 
-        # Process STEP 1: White Lane Detection & Mask Generation
+        # Build both calibrated projections. The raw frame remains untouched.
         bev_img = cv2.remap(
             frame,
             self.map_x,
@@ -2141,7 +1735,14 @@ class CalibrationWindow(QWidget):
             borderMode=cv2.BORDER_CONSTANT,
             borderValue=(0, 0, 0)
         )
-        lane_mask_visual = self.process_white_lane_detection(bev_img)
+        rectilinear_img = cv2.remap(
+            frame,
+            self.rectilinear_map_x,
+            self.rectilinear_map_y,
+            interpolation=cv2.INTER_LINEAR,
+            borderMode=cv2.BORDER_CONSTANT,
+            borderValue=(0, 0, 0),
+        )
         self.current_frame_timing["processing_bev_preprocess_ms"] = elapsed_ms(
             stage_started
         )
@@ -2494,7 +2095,6 @@ class CalibrationWindow(QWidget):
         stage_started = time.perf_counter()
         if self.params.get("enable_ai", 0) == 1:
             self.process_ai_perception(bev_img)
-            self.process_ai_perception(lane_mask_visual)
         self.current_frame_timing["processing_ai_perception_ms"] = elapsed_ms(
             stage_started
         )
@@ -2506,9 +2106,6 @@ class CalibrationWindow(QWidget):
         self.draw_blue_obstacle_detection(
             bev_img, self.last_blue_detection, self.last_blue_track
         )
-        self.draw_blue_obstacle_detection(
-            lane_mask_visual, self.last_blue_detection, self.last_blue_track
-        )
         self.current_frame_timing["processing_overlay_render_ms"] = elapsed_ms(
             stage_started
         )
@@ -2516,15 +2113,16 @@ class CalibrationWindow(QWidget):
         # Display images to UI
         stage_started = time.perf_counter()
         self.display_image(self.bev_label, bev_img)
-        self.display_image(self.lane_mask_label, lane_mask_visual)
+        self.display_image(self.rectilinear_label, rectilinear_img)
+        self.display_image(self.raw_label, frame)
         self.current_frame_timing["processing_display_ms"] = elapsed_ms(
             stage_started
         )
 
-        # Save the camera input and both processed views for later evaluation.
-        # Recording happens last so the same row can contain display and video
-        # write timings for this frame.
-        self.record_frames(frame, bev_img, lane_mask_visual)
+        # Preserve the established raw/bev/detection recording contract.  The
+        # third stream now contains the annotated BEV instead of the retired
+        # white-lane mask so existing archive tooling still sees three videos.
+        self.record_frames(frame, bev_img, bev_img)
 
     @staticmethod
     def draw_blue_obstacle_detection(img, detection, track=None):
@@ -2626,184 +2224,6 @@ class CalibrationWindow(QWidget):
                 1,
                 cv2.LINE_AA,
             )
-
-    def process_white_lane_detection(self, bev_img):
-        """
-        STEP 1 Prototype: Detects white lane markings (solid, dashed, curves) from BEV image,
-        applies sliding window polynomial fitting, and returns a binary/color mask image.
-        """
-        h, w = bev_img.shape[:2]
-
-        # 1. Convert to HLS color space (L: Lightness, S: Saturation)
-        hls = cv2.cvtColor(bev_img, cv2.COLOR_BGR2HLS)
-        l_channel = hls[:, :, 1]
-        s_channel = hls[:, :, 2]
-
-        # 2. Strict thresholding on Lightness (L >= white_thresh) to ignore grey floor
-        white_t = int(self.params.get("white_thresh", 185))
-        _, l_mask = cv2.threshold(l_channel, white_t, 255, cv2.THRESH_BINARY)
-
-        # 3. Saturation filter (S < sat_thresh) to exclude colored reflections
-        sat_t = int(self.params.get("sat_thresh", 60))
-        _, s_mask = cv2.threshold(s_channel, sat_t, 255, cv2.THRESH_BINARY_INV)
-
-        # Combine L and S masks (pure bright white line only)
-        binary_mask = cv2.bitwise_and(l_mask, s_mask)
-
-        # Morphological close to bridge dashed lines
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 7))
-        binary_mask = cv2.morphologyEx(binary_mask, cv2.MORPH_CLOSE, kernel)
-
-        # 4. ROI (Region of Interest) Physical Distance Masking
-        roi_fwd = float(self.params.get("roi_forward", 2.5))
-        roi_side = float(self.params.get("roi_side", 1.5))
-        scale = float(self.params.get("scale", 0.005))
-        if scale <= 0.0:
-            scale = 0.005
-
-        cx_px = w / 2.0 + (self.params.get("car_offset_x", 0.0) / scale)
-        cy_px = h / 2.0 - (self.params.get("car_offset_z", 0.0) / scale)
-
-        y_coords, x_coords = np.ogrid[:h, :w]
-        dist_x_m = np.abs(x_coords - cx_px) * scale
-        dist_z_m = np.abs(cy_px - y_coords) * scale
-
-        roi_mask = (dist_x_m <= roi_side) & (dist_z_m <= roi_fwd)
-        binary_mask[~roi_mask] = 0
-
-        # 5. Create visual output image (BGR)
-        mask_visual = cv2.cvtColor(binary_mask, cv2.COLOR_GRAY2BGR)
-
-        # Draw ROI boundary box on mask visual (Red line)
-        roi_min_x = int(max(0, cx_px - roi_side / scale))
-        roi_max_x = int(min(w - 1, cx_px + roi_side / scale))
-        roi_min_y = int(max(0, cy_px - roi_fwd / scale))
-        roi_max_y = int(min(h - 1, cy_px + roi_fwd / scale))
-        cv2.rectangle(mask_visual, (roi_min_x, roi_min_y), (roi_max_x, roi_max_y), (80, 80, 220), 1)
-
-        # 6. Robust Localized Fitting using cv2.fitLine (Prevents wild screen-wide crossing lines)
-        contours, _ = cv2.findContours(binary_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        max_area = float(self.params.get("max_area", 5000))
-
-        for cnt in contours:
-            area = cv2.contourArea(cnt)
-            # Ignore small noise dots AND huge background regions (walls/reflections)
-            if area < 30 or area > max_area:
-                continue
-
-            # Bounding box of the detected tape segment
-            x_box, y_box, w_box, h_box = cv2.boundingRect(cnt)
-            cv2.rectangle(mask_visual, (x_box, y_box), (x_box + w_box, y_box + h_box), (0, 255, 120), 1)
-
-            # Require minimum height or width to avoid fitting random small spots
-            if h_box < 15 and w_box < 15:
-                continue
-
-            # Fit straight line direction vector (vx, vy) and point (x0, y0) for THIS contour only
-            [vx, vy, x0, y0] = cv2.fitLine(cnt, cv2.DIST_L2, 0, 0.01, 0.01)
-            
-            vx = float(vx[0])
-            vy = float(vy[0])
-            x0 = float(x0[0])
-            y0 = float(y0[0])
-
-            # Calculate line endpoints restricted strictly to the Y-span of this contour segment
-            if abs(vy) > 1e-4:
-                y1 = float(y_box)
-                y2 = float(y_box + h_box)
-                x1 = x0 + (y1 - y0) * (vx / vy)
-                x2 = x0 + (y2 - y0) * (vx / vy)
-
-                # Clamp endpoints to image boundaries
-                x1 = max(0, min(w - 1, int(x1)))
-                x2 = max(0, min(w - 1, int(x2)))
-                y1 = int(y1)
-                y2 = int(y2)
-
-                # Draw fitted yellow line segment OVER the actual detected tape region only
-                cv2.line(mask_visual, (x1, y1), (x2, y2), (0, 229, 255), 3, cv2.LINE_AA)
-
-        # Header info overlay
-        cv2.putText(mask_visual, "STEP 1: LOCALIZED CONTOUR FITLINE (STABLE)", (15, 25),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 255, 120), 1, cv2.LINE_AA)
-
-        # STEP 2: Update persistent local occupancy grid map memory with vehicle motion
-        accumulated_map_visual = self.update_occupancy_map(binary_mask)
-
-        # Blend accumulated persistent map with current frame's fitted lines
-        final_visual = cv2.addWeighted(accumulated_map_visual, 0.65, mask_visual, 0.35, 0)
-        cv2.putText(final_visual, "STEP 2: LOCAL OCCUPANCY MAP ACCUMULATION (TESLA STYLE)", (15, 25),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 229, 255), 1, cv2.LINE_AA)
-
-        return final_visual
-
-    def update_occupancy_map(self, binary_mask):
-        """
-        STEP 2: Accumulates detected white lines into a persistent local occupancy grid map,
-        and scrolls/rotates the map matrix according to vehicle odometry (v, w) velocity commands.
-        """
-        now = time.time()
-        dt = now - self.last_map_update_time
-        self.last_map_update_time = now
-
-        # Prevent large jump on first frame
-        if dt > 0.2:
-            dt = 0.04
-
-        h, w = binary_mask.shape[:2]
-        center_x = w / 2.0
-        center_y = h / 2.0
-        scale = float(self.params["scale"])
-        if scale <= 0:
-            scale = 0.005
-
-        # Robot vehicle velocities (WASD commands or odom)
-        v = float(self.cmd_linear_x)
-        w_rad = float(self.cmd_angular_z)
-
-        # 1. Calculate map scroll shift & rotation based on vehicle motion over dt
-        # Forward displacement in meters
-        d_s = v * dt
-        # Pixel shift (Forward motion moves background map downwards)
-        dy_px = d_s / scale
-
-        # Heading angle rotation in degrees
-        d_yaw_deg = math.degrees(w_rad * dt)
-
-        # Rotation center at vehicle position
-        rob_offset_x_px = int(self.params["car_offset_x"] / scale)
-        rob_offset_z_px = int(self.params["car_offset_z"] / scale)
-        rx = center_x + rob_offset_x_px
-        ry = center_y - rob_offset_z_px
-
-        # Compute affine transformation matrix for map scrolling & rotation
-        # Note: If vehicle turns left (+w), background map rotates right (-d_yaw_deg)
-        M = cv2.getRotationMatrix2D((rx, ry), -d_yaw_deg, 1.0)
-        M[1, 2] += dy_px  # Scroll map downwards when moving forward
-
-        # Apply warpAffine to scroll existing map memory
-        self.occupancy_map = cv2.warpAffine(
-            self.occupancy_map, M, (w, h),
-            borderMode=cv2.BORDER_CONSTANT, borderValue=0.0
-        )
-
-        # 2. Apply decay filter to gradually fade out stale noise (decay factor = 0.985)
-        self.occupancy_map *= 0.985
-
-        # 3. Fuse current frame binary mask into accumulated map
-        current_mask = (binary_mask.astype(np.float32) / 255.0)
-        self.occupancy_map = np.clip(self.occupancy_map + current_mask * 0.45, 0.0, 1.0)
-
-        # 4. Generate color visualization for accumulated map (Glowing Cyan/Blue)
-        map_uint8 = (self.occupancy_map * 255).astype(np.uint8)
-        accumulated_visual = cv2.cvtColor(map_uint8, cv2.COLOR_GRAY2BGR)
-        
-        active_mask = map_uint8 > 25
-        accumulated_visual[active_mask, 0] = np.clip(map_uint8[active_mask] * 1.0, 0, 255) # B
-        accumulated_visual[active_mask, 1] = np.clip(map_uint8[active_mask] * 0.8, 0, 255) # G
-        accumulated_visual[active_mask, 2] = np.clip(map_uint8[active_mask] * 0.2, 0, 255) # R
-
-        return accumulated_visual
 
     def draw_fisheye_calibration_circles(self, frame):
         """
