@@ -1,0 +1,92 @@
+{
+  "rotation_increment_target_xyz_deg": [
+    0.8479205016803609,
+    -0.32418762936397294,
+    -4.131643988237705
+  ],
+  "fit_pixel_point_rmse": 1.3856480201575325,
+  "optimizer_success": true,
+  "optimizer_message": "`ftol` termination condition is satisfied.",
+  "active_bounds": [
+    0,
+    0,
+    0
+  ],
+  "numerical_rank": 3,
+  "jacobian_singular_values": [
+    436.7825470894792,
+    413.2004879930968,
+    87.15885471860229
+  ],
+  "fixed_height_m": 0.59,
+  "fixed_xy_m": [
+    0.0,
+    0.0
+  ],
+  "intrinsics_refitted": false,
+  "physical_transform_independently_measured": false,
+  "usable_for_ffb": false,
+  "schema": "conditional_paper5_floor_rotation_v1",
+  "fit_ids": [
+    "C080",
+    "C130",
+    "C200",
+    "L130",
+    "R130"
+  ],
+  "target_frame": "paper7_ground_reference",
+  "source_frame": "front_optical",
+  "transform_target_from_source": [
+    [
+      -0.07113623045670295,
+      0.026090686157095266,
+      0.9971253245265927,
+      0.0
+    ],
+    [
+      -0.996219311142765,
+      0.048118199326061706,
+      -0.07233065048686059,
+      0.0
+    ],
+    [
+      -0.04986703142002578,
+      -0.9985008337450048,
+      0.022569098074243243,
+      0.59
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "nominal_transform": [
+    [
+      0.0006090802009086826,
+      0.017441774902830158,
+      0.9998476951563913,
+      0.0
+    ],
+    [
+      -0.9993908270190958,
+      0.03489949670250097,
+      0.0,
+      0.0
+    ],
+    [
+      -0.03489418134011367,
+      -0.9992386149554826,
+      0.01745240643728351,
+      0.59
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "published_to_ros": false
+}

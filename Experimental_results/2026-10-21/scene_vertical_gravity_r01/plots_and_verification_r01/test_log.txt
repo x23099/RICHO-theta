@@ -1,0 +1,33 @@
+test_same_frozen_frame_split_and_metric_row_retention (test_scene_geometry.SavedSceneTests) ... ok
+test_scene_support_is_actual_native_canny_pixels_without_cones (test_scene_geometry.SavedSceneTests) ... ok
+test_sources_outputs_images_and_hardware_flags (test_scene_geometry.SavedSceneTests) ... ok
+test_detector_does_not_modify_native_image_and_blank_is_empty (test_scene_geometry.SceneGeometryTests) ... ok
+test_inference_apis_accept_no_object_labels (test_scene_geometry.SceneGeometryTests) ... ok
+test_insufficient_diversity_return_no_direction (test_scene_geometry.SceneGeometryTests) ... ok
+test_insufficient_planes_return_no_direction (test_scene_geometry.SceneGeometryTests) ... ok
+test_integer_observed_projection_restores_line_plane (test_scene_geometry.SceneGeometryTests) ... ok
+test_outlier_planes_do_not_define_consensus (test_scene_geometry.SceneGeometryTests) ... ok
+test_shortest_rotation_aligns_up_preserving_translation (test_scene_geometry.SceneGeometryTests) ... ok
+test_sign_is_fixed_without_yaw_or_height (test_scene_geometry.SceneGeometryTests) ... ok
+test_subpixel_or_short_pixel_support_rejected (test_scene_geometry.SceneGeometryTests) ... ok
+test_synthetic_up_recovered_without_metric_data (test_scene_geometry.SceneGeometryTests) ... ok
+test_unit_refuses_nonfinite_and_zero (test_scene_geometry.SceneGeometryTests) ... ok
+test_up_identity_and_antiparallel_guard (test_scene_geometry.SceneGeometryTests) ... ok
+test_wrong_dimensions_are_rejected (test_scene_geometry.SceneGeometryTests) ... ok
+test_wrong_direction_outside_prior_is_not_adopted (test_scene_geometry.SceneGeometryTests) ... ok
+test_candidate_schema_must_be_explicit (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_empty_and_duplicate_pixels (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_grazing_or_upward_rays_not_forced_to_floor (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_input_calibration_copied_and_readonly (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_invalid_roi_domain_and_image_size (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_known_offset_is_not_implicitly_subtracted_from_reference (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_known_segment_recovers_positive_depth_and_base_height (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_nonmonotonic_and_invalid_camera_refused (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_optical_centre_limit (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_roundtrip_across_90_degrees_preserves_order (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_synthetic_floor_coordinates_restore_with_subpixel_precision (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 2.149s
+
+OK

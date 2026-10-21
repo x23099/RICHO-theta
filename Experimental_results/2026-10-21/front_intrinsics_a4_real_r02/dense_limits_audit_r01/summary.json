@@ -1,0 +1,25 @@
+{
+  "selected_frames": 168,
+  "attempted_frames": 168,
+  "new_eligible_distinct_views": 0,
+  "retained_views": [],
+  "counts": {
+    "board_not_found": 129,
+    "grid_too_small": 39
+  },
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/extraction_r01/observations.json": "0652c6381bfad8d522f03d6e834035b112708a700f43a65873823227b72e3731",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/audit_sparse_limits.py": "e10d957bcd2b012b66dfdcaa03a035e0411f562ee7d3a7496529824a1f755c6d",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/extract.py": "10d4a164b541afd47dc9a12a20fdf7bcb953d2c7463e2b5e054aa8cbf44d428a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/recover_exports.py": "52b93a200cd33ca857e3fa5a347c682490f9e660c399360a07b9b5b2023a0290",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-21_front_intrinsic_a4_intake_r02/front_fisheye_intrinsic_a4_r02_20261021_173517_156/raw.avi": "0ba1a6732b962d2a92e13693d01294cf7d8442946003006cfe436346dc15033a",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-21_front_intrinsic_a4_intake_r02/front_fisheye_intrinsic_a4_r02_20261021_173517_156/detections.csv": "692bd817840351572a894f90c9434d523dea5d538dd29dc62858b77e3fe28116",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-21_front_intrinsic_a4_intake_r02/front_fisheye_intrinsic_a4_r02_20261021_173517_156/metadata.json": "14344ae236807d3f8397408c71f378dfe0d54a700c552537e0b4fa471bfa60bc",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/fisheye_intrinsic_target_a4_r01/board_spec.json": "bee11131134ebbd8dbcb050b1de9d189895037aea5bb4124c4f96703fee71e10",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/method.md": "138b1795979f2ab3a5b61f226c784dbaec13817820caeb0e454521675e5612fa",
+    "/home/robo25/theta_ws/RICHO-theta/src/fisheye_intrinsic_calibration.py": "24902214663e2c6553bec75e65bd3d52c3494d091dbb947d6a336a4a957fa416"
+  },
+  "intrinsic_solver_attempted": false,
+  "source_pixels_edited": false,
+  "usable_for_ffb": false
+}

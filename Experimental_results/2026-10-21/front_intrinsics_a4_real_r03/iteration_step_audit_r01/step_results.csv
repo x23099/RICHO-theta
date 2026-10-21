@@ -1,0 +1,6 @@
+steps,completed,training_rms_px,error
+0,True,1.2517458202772997,
+1,False,,"OpenCV(4.5.5) /io/opencv/modules/calib3d/src/fisheye.cpp:1449: error: (-3:Internal error) CALIB_CHECK_COND - Ill-conditioned matrix for input array 27 in function 'CalibrateExtrinsics'
+"
+2,False,,"OpenCV(4.5.5) /io/opencv/modules/calib3d/src/fisheye.cpp:1449: error: (-3:Internal error) CALIB_CHECK_COND - Ill-conditioned matrix for input array 27 in function 'CalibrateExtrinsics'
+"

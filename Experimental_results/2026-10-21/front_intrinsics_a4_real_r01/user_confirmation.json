@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-21",
+  "measured_square_mm": 20.0,
+  "target": "person-held paper checkerboard, not stationary window checkerboard",
+  "board_backing": "paper_only_user_confirmed",
+  "planarity_verified": false,
+  "physical_warp_measured": false,
+  "note": "紙だけで持ったとのユーザー回答。画像上の曲がりをレンズ歪みと物理的な湾曲に分離測定した結果ではない。"
+}

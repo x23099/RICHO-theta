@@ -1,0 +1,29 @@
+{
+  "status": "PASS_OFFLINE_CONTACT_CHECKS_NOT_METRIC_APPROVAL",
+  "tests": 29,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_contact_consistency_r01/results_r01/condition_summary.csv": "c8dd4204dfdbab1048f7c4d21fbb78f11185add147e7302d553f57debf154ea7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_contact_consistency_r01/results_r01/summary.json": "cbb5c26156fe5ebf05f72a030fd30dc65f9ff86a73f035720cf07c5ede6ac289",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_contact_consistency_r01/plot_and_verify.py": "bf7c9c90430c77f825c9523e1d09b8b22d715ef22e8a1bae339077d5e73b301f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_contact_consistency_r01/test_contact_geometry.py": "31586d443305a07b491b26c3f6049dd55146fda5a4db11bbc87ca7891283d191",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_sample_manifest.csv": "c7562c8bd33b56f4abc887da03ad2d854f8417f3fc9f162686d7e72dada18461",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/raw_samples/center_200_f000421.png": "33ff2c76ce5256ce649e89e01b270a5be6144daabc133157cccd3ae68a19739c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/raw_sample_manifest.csv": "b48b710beb120fe449a4bedd6468f32cd6f6f6330911d5576a74e959bc8f5f75",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/raw_samples/same_pose_f001265.png": "869cd6e60ee8df746dcb7cf9a4ea2d0363297535b3a250e47b2810c1ac851fc3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/paper_cone_2m_validation_r01/raw_sample_manifest.csv": "06b4b96c242c83469943cc215ca70d6d325b00deccbbb8bab3248f346442c6bc",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/paper_cone_2m_validation_r01/raw_samples/paper_cone_f001019.png": "908928eb42382d645100b0b1c6d3b634f6283e7b40714122760c99ba1e3e5e9e"
+  },
+  "verified_unchanged_native_pngs": 3,
+  "raw_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "tip_and_floor_necessary_conditions.png": "df381fb1363fface0c0f3ba6535f1664ac32883dc2a7de63346e587e937285c8",
+    "test_log.txt": "9a6d5e47cd8814a2687a90d04a3f9c0dd3321f87d79027cc136b9a3a89f13baa",
+    "same_frame_contact_selection.png": "d3618cee77d8191b98c64bf5c3c6fd73a4cba0a334be4f30a471f2646373a145",
+    "native_sample_manifest.csv": "fe0044744d7a7fccb9c2f328ef1c288d71a6f9415a0274c83af62d758227e335"
+  }
+}

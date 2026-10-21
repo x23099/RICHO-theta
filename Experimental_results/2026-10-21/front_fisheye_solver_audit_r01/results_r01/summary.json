@@ -1,0 +1,97 @@
+{
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r03/combined_candidate_r01/merged_observations.json": "02b9b416686d67981ac67aa47ac65340cb60f5edab61fd8014476c67074b3f67",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/run.py": "168348403939b173085063a0a6d8e75cc98e6bc5af11d85c31faca329ee210b6",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/method.md": "fb23c83d3ca133c6ad1ccbb8aeeeb54ff5e13e2788dae2e775d0b9a6b751d444",
+    "/home/robo25/theta_ws/RICHO-theta/src/fisheye_bundle_diagnostic.py": "7d805992d695ea0c8798ef78663e696db2bb190bf9065e74f12423489bf9c368",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_fisheye_bundle_diagnostic.py": "e1e0cd6e3f53e93abbee26c2bad72f878b0f52fbdc262376a6a038d9effc678e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r03/method.md": "122470ae2997a90d30ae97726bdf837f2424391d613bceb173f524e1bd42122b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r03/target_review.json": "c491f2237049e33c8bdb2e329291cf130fd94042cd8a61f2035e574c013044ac",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r03/merge_and_fit.py": "89b64cbad232c517c123ef92eb92c50b4756d0204e15df556bf8c602d87bb9b8",
+    "/home/robo25/theta_ws/RICHO-theta/src/fisheye_intrinsic_calibration.py": "24902214663e2c6553bec75e65bd3d52c3494d091dbb947d6a336a4a957fa416",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-21_front_intrinsic_a4_intake_r02/front_fisheye_intrinsic_a4_r02_20261021_173517_156/raw.avi": "0ba1a6732b962d2a92e13693d01294cf7d8442946003006cfe436346dc15033a",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-21_front_intrinsic_a4_intake_r02/front_fisheye_intrinsic_a4_r02_20261021_173517_156/detections.csv": "692bd817840351572a894f90c9434d523dea5d538dd29dc62858b77e3fe28116",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-21_front_intrinsic_a4_intake_r02/front_fisheye_intrinsic_a4_r02_20261021_173517_156/metadata.json": "14344ae236807d3f8397408c71f378dfe0d54a700c552537e0b4fa471bfa60bc",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/fisheye_intrinsic_target_a4_r01/board_spec.json": "bee11131134ebbd8dbcb050b1de9d189895037aea5bb4124c4f96703fee71e10",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/method.md": "138b1795979f2ab3a5b61f226c784dbaec13817820caeb0e454521675e5612fa",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/extract.py": "10d4a164b541afd47dc9a12a20fdf7bcb953d2c7463e2b5e054aa8cbf44d428a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/extraction_r01/observations.json": "0652c6381bfad8d522f03d6e834035b112708a700f43a65873823227b72e3731",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/intake_summary.json": "141a2736be3ae40925ff3d9a1d3dc3ea53bc38e32430af4119d4fe094dd45d37",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-21_front_intrinsic_a4_intake_r03/front_fisheye_intrinsic_a4_r03_20261021_182522_716/raw.avi": "c9a34c00be55543288c22bec8f0402598661f841139b765d3380232e1c30675d",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-21_front_intrinsic_a4_intake_r03/front_fisheye_intrinsic_a4_r03_20261021_182522_716/metadata.json": "921ff3469e1f8f3dfca6186951730cf84e4360fb107adc764f84522262505172",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-21_front_intrinsic_a4_intake_r03/front_fisheye_intrinsic_a4_r03_20261021_182522_716/detections.csv": "2bc11e98a31c7d52944ab61a2e1ce42e14f4e824d5553c949bc6c9db9a81d29a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/raw_samples/raw_f000472.png": "607b859a503302b62c2760592300f98c74a1007e5335e8430b594e7ddf1bafae",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r03/extract.py": "c3e0cc9ef3ffca4d2f72364f4ca25d0e7a105ee09a075f428c25bbd053838c56",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r03/extraction_r01/observations.json": "a510565850031fd4a986a48b214aeba78eb7517a6d5d82015350e3826912f1bf",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r03/intake_summary.json": "d106e2999ddfde7e77f443d25b404f75170ef3981c81ac6fb2492c7f9c6bf63d"
+  },
+  "source_view_count": 57,
+  "train_count": 46,
+  "validation_count": 11,
+  "intrinsic_solver_attempted": true,
+  "original_pixels_edited": false,
+  "production_settings_changed": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "decision": "JOINT_DIAGNOSTIC_CANDIDATE_ONLY",
+  "initial_train_rms_px": 1.2517458202772997,
+  "calibration_rms_px": 0.6131624363840983,
+  "pose_validation_rms_px": 0.7548758592861674,
+  "normal_spread_deg": 89.79428274921538,
+  "train_pose_condition_max": 163.1789217736301,
+  "checks": {
+    "train_rms": true,
+    "validation_rms": true,
+    "normal_diversity": true,
+    "centre_in_selected_lens": true,
+    "focal_ratio": true,
+    "monotonic_in_observed_train_angle": true,
+    "optimizer_converged": true,
+    "all_points_in_front": true,
+    "train_pose_condition_below_1e6": true
+  },
+  "K": [
+    [
+      198.579034736262,
+      0.0,
+      319.67529364638114
+    ],
+    [
+      0.0,
+      198.91903790179154,
+      311.08995152782603
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "D": [
+    -0.023043853319522786,
+    0.017396295131513577,
+    -0.006961667475566674,
+    0.00019913015262707328
+  ],
+  "optimizer": {
+    "method": "scipy_trf_joint",
+    "loss": "linear",
+    "x_scale": "jac",
+    "max_nfev": 300,
+    "status": 3,
+    "success": true,
+    "message": "`xtol` termination condition is satisfied.",
+    "nfev": 34,
+    "njev": 13,
+    "cost": 466.9524713534644,
+    "optimality": 237823.38764854733
+  },
+  "source_files_verified": true,
+  "output_sha256": {
+    "input_provenance.json": "39aad273d202ad06add1fc8d0fa2370627780bf645975dd4b309e72ca29462e9",
+    "joint_diagnostic_candidate.json": "95e58397bc30f3d9a400e38dd28d49dd019d49ce64d85b2fd6c475048f80dcdf",
+    "corner_audit.csv": "43dd1072a7729437fee29fe3e8d311ff10a49b5bea0cef26c40a1f24ed8d45a0",
+    "evaluation_trace.csv": "033bbb0c419ba26e450533d0b40e8ee59cf13ae28717ffbd4bd35cffadf42d90",
+    "reprojection_by_view.csv": "6d32227e14a932e0754df1eaf48793348a2847db230a86efa8f8c7300aa04bc4"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "prefit_checks": {
+    "enough_views": true,
+    "training_centre_bins": false,
+    "training_span": false
+  },
+  "retained_views": 54,
+  "measured_square_mm": 20.0,
+  "intrinsic_solver_attempted": false,
+  "physical_output": false,
+  "original_images_edited": false,
+  "production_settings_changed": false,
+  "usable_for_ffb": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/extraction_r01/observations.json": "0652c6381bfad8d522f03d6e834035b112708a700f43a65873823227b72e3731",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/user_confirmation.json": "acb8385be2aa255901e0b1052f32df661bdd4948e7e37b889f23fb4441e2b4a7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/target_review.json": "bfb16e1cb1b00882abff9f7973de62c94066ebafcae4dd003ff7d08197e57027",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/method.md": "138b1795979f2ab3a5b61f226c784dbaec13817820caeb0e454521675e5612fa",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/extract.py": "10d4a164b541afd47dc9a12a20fdf7bcb953d2c7463e2b5e054aa8cbf44d428a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/calibrate.py": "cbf2032c986044011ce7bcdc829d52b08120fbf1d5bd287704fdb928ec597405",
+    "/home/robo25/theta_ws/RICHO-theta/src/fisheye_intrinsic_calibration.py": "24902214663e2c6553bec75e65bd3d52c3494d091dbb947d6a336a4a957fa416",
+    "/home/robo25/theta_ws/RICHO-theta/src/prepare_fisheye_calibration.py": "edff7c141eb3719a025fef9c874af03ed983aca6a9ff162d8c27136d868e7f51",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/raw_samples/raw_f000472.png": "607b859a503302b62c2760592300f98c74a1007e5335e8430b594e7ddf1bafae"
+  },
+  "source_reference_matches_native_manifest": true,
+  "decision": "NO_FIT_INSUFFICIENT_OBSERVATIONS",
+  "output_sha256": {}
+}

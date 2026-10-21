@@ -1,0 +1,13 @@
+{
+  "moving_board_identity_representatives_confirmed": true,
+  "reviewer": "assistant visual native image review",
+  "uniform_native_frames_reviewed": [1, 344, 860, 1376, 1892, 2408, 2924, 3268],
+  "retained_native_frames_reviewed": [2761, 2771, 2786],
+  "all_r03_retained_images_individually_reviewed_for_target_identity": true,
+  "target_identity": "person-held checkerboard in front left lens; not stationary window pattern or rear lens",
+  "every_corner_human_subpixel_verified": false,
+  "board_size_basis": "same 20 mm r02 board supplement requested; not separately remeasured for r03",
+  "board_planarity_basis": "same board-fixed setup as r02 procedure; visual curvature alone not interpreted as physical bending",
+  "r02_identity_review": "../front_intrinsics_a4_real_r02/target_review.json",
+  "usable_for_ffb": false
+}

@@ -1,0 +1,9 @@
+{
+  "entrypoint": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/intake.py",
+  "entrypoint_sha256": "0f667b036fbf2aa5633f978b860052a37d0b29598ae1639d27bc1825dfa200c0",
+  "helper": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r01/intake.py",
+  "helper_sha256": "39aa9708432eac9f31c7cbd0ed936325fe7e2191111a57fe20215b91d2e84eb0",
+  "differences_from_helper": "archive, destination and result directory only",
+  "original_images_edited": false,
+  "usable_for_ffb": false
+}

@@ -1,0 +1,7 @@
+frame,native_png,target_identity,assistant_native_identity_review,human_full_corner_review,planarity_not_established_from_fisheye_image,image_edited,png_sha256
+1,../extraction_r01/raw_frames/raw_f000001.png,"person-held paper, not stationary window",True,False,True,False,a2e8dfa974277f7800d755ceac09bb2a5d437273742f8c9f231fac85bdce128c
+51,../extraction_r01/raw_frames/raw_f000051.png,"person-held paper, not stationary window",True,False,True,False,4bd3a557c4f2fc223ae82d4754d7c8b05b7d2071e9245509350a72ee177b34b9
+55,../extraction_r01/raw_frames/raw_f000055.png,"person-held paper, not stationary window",True,False,True,False,a9e985127e1c84c32cbbb7cda10d8077174f67c6e9ec25e24759dd6aae078e06
+61,../extraction_r01/raw_frames/raw_f000061.png,"person-held paper, not stationary window",True,False,True,False,4f8d50ec603680f539fbd705fd5fd34d1de6c2c8a30fa76fa8f0f69889f3f541
+68,../extraction_r01/raw_frames/raw_f000068.png,"person-held paper, not stationary window",True,False,True,False,62199e0fc275463db09e65eaecd7735df4b5aae4e53568565ab3b1f770347acb
+77,../extraction_r01/raw_frames/raw_f000077.png,"person-held paper, not stationary window",True,False,True,False,c3784ab960cd2ff94e41bf9ae66e8589bbd000af90471266cdd3bde2bbaf0023

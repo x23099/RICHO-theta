@@ -1,0 +1,20 @@
+{
+  "status": "PASS_DAILY_REPORT_AND_FROZEN_ARTIFACTS",
+  "manifests": 12,
+  "source_hash_checks": 350,
+  "output_hash_checks": 42,
+  "historical_source_resolutions": 3,
+  "representative_assets": 4,
+  "report_local_links_checked": 104,
+  "original_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Daily_reports/2026-10-21_daily_report.md": "aecd1593e41bdc57aba6785acbee555bfe3e926e947b95c3fef932576f80a28e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/report_assets/README.md": "9383a3cf88219dde5fc95f1927a1bc9ff360a53d11f4ba17f10c45a2c017cd87",
+    "/home/robo25/theta_ws/RICHO-theta/Daily_reports/README.md": "c60d92941192f54b6ac171d1cc385d5364b749aac79597b6b6740c08c1c09bbe",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/report_assets/verify_daily_closeout.py": "3a8904b500a66e676f019daf0bfb47b64f4aee499fc22ebc57a268f9ec71ee39",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/report_assets/collect_daily_final.py": "3278c04c525ffbef6f4caae20e6094f4bb3a4a21f6eb8c571874f40565a41bcb",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/report_assets/daily_final_manifest.json": "b21b495c1bc0a7f3447119602901eca05e300b48f6da38e3f55cc388ecaf2e29"
+  }
+}

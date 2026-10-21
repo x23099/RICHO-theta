@@ -1,0 +1,57 @@
+{
+  "status": "EXPORTS_RECOVERED_NOT_CALIBRATION_APPROVAL",
+  "attempts": 896,
+  "retained_views": 54,
+  "train_views": 44,
+  "validation_views": 10,
+  "counts": {
+    "board_not_found": 695,
+    "grid_too_small": 67,
+    "no_signal_reference": 19,
+    "handheld_candidate_needs_native_review": 54,
+    "near_duplicate_pose": 61
+  },
+  "train_coverage": {
+    "centre_bins": 3,
+    "span_fraction_x": 0.8578476339578629,
+    "span_fraction_y": 0.2357266320122613,
+    "observed_pixel_min": [
+      27.206701278686523,
+      225.09970092773438
+    ],
+    "observed_pixel_max": [
+      576.2291870117188,
+      394.8228759765625
+    ]
+  },
+  "prefit_checks": {
+    "enough_views": true,
+    "training_centre_bins": false,
+    "training_span": false
+  },
+  "no_signal_reference_matched_frames": 96,
+  "no_signal_intervals": [
+    {
+      "first_frame": 377,
+      "last_frame": 472,
+      "first_time_sec": 14.994639,
+      "last_time_sec": 25.441412,
+      "frames": 96
+    }
+  ],
+  "source_files_verified": true,
+  "original_partial_csv": "extraction_r01/attempts.csv (incomplete; do not use)",
+  "observation_json_sha256": "0652c6381bfad8d522f03d6e834035b112708a700f43a65873823227b72e3731",
+  "recovery_script_sha256": "52b93a200cd33ca857e3fa5a347c682490f9e660c399360a07b9b5b2023a0290",
+  "reference_png_sha256": "607b859a503302b62c2760592300f98c74a1007e5335e8430b594e7ddf1bafae",
+  "output_sha256": {
+    "signal_audit.csv": "1b636b517bab71cef794fe14735d60b515e20ea16521d26f9f7124b25c7cc724",
+    "attempts.csv": "8d14fdb2a0f513fe7e436caf1317eba4d75a0c0bb36215548c40a236457bac21",
+    "no_signal_intervals.csv": "0cc6815b9fc1ab48581b064109c215763f9bd363388a14fad7a2b85784fe4a8b",
+    "coverage_diagnosis.png": "d7494570e7ca46596f8de0328a4e61c2593d85d69b91d7af4d9075dbab33bd4d",
+    "raw_frame_manifest.csv": "420a4b780b9588b87258b189bc18c843bed9f616a712beb79e3fd1402905a65e"
+  },
+  "original_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false
+}

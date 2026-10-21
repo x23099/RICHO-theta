@@ -1,0 +1,10 @@
+session,images,usable_estimate_frames,usable_heldout_frames,accepted,reason,up_optical_json,estimate_spread_max_deg,heldout_direction_max_difference_deg,delta_from_paper5_up_deg,conditional_transform_json,architectural_vertical_independently_verified,usable_for_ffb
+cone_static_center_z1p30_r01_20261015_135329_732,4,0,1,False,fewer_than_two_usable_estimate_images,,,,,,False,False
+cone_static_center_z2p00_r01_20261015_135414_399,4,0,0,False,fewer_than_two_usable_estimate_images,,,,,,False,False
+cone_static_left_z1p30_r01_20261015_135541_436,4,0,0,False,fewer_than_two_usable_estimate_images,,,,,,False,False
+cone_static_no_cone_r01_20261015_134940_713,4,1,1,False,fewer_than_two_usable_estimate_images,,,,,,False,False
+cone_static_right_z1p30_r01_20261015_135630_973,4,0,0,False,fewer_than_two_usable_estimate_images,,,,,,False,False
+floor_cone_same_pose_r01_20261015_160621_378,12,2,1,True,conditional_scene_up_not_floor_survey,"[-0.02133961073275143, -0.9938808975470561, 0.10837611593350692]",0.07497731991089254,0.1047269295147361,5.18949500109822,"[[-0.06815184078950268, 0.10959474241113239, 0.9916371912311679, 0.0], [-0.9974467141711266, 0.013775119850507065, -0.07007352183476473, 0.0], [-0.021339610732751424, -0.9938808975470561, 0.10837611593350696, 0.59], [0.0, 0.0, 0.0, 1.0]]",False,False
+itiawase2_20261015_183552_599,32,0,0,False,fewer_than_two_usable_estimate_images,,,,,,False,False
+one_static_center_z0p80_r01_20261015_135155_823,4,0,0,False,fewer_than_two_usable_estimate_images,,,,,,False,False
+paper_cone_center_z2p00_r01_20261019_180411_245,18,0,0,False,fewer_than_two_usable_estimate_images,,,,,,False,False

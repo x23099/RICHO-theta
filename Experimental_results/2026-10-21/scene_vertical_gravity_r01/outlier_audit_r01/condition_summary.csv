@@ -1,0 +1,3 @@
+dataset,condition,estimated_reference_frames,median_bias_m,abs_error_p95_m,maximum_abs_error_m,over20cm_frames,outlier_frames_json,outliers_previously_quality_rejected,rows_removed,usable_for_ffb
+sequence,cone_130,218,0.03293129518437188,0.03293129518437188,0.033308946854077925,0,[],0,0,False
+sequence,cone_200,541,-0.011530251809487302,0.01237759644407177,3.437657074833809,3,"[1133, 1134, 1135]",3,0,False

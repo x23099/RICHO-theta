@@ -1,0 +1,15 @@
+{
+  "status": "PASS_FROZEN_DIAGNOSTIC_ARTIFACTS_NOT_HARDWARE_APPROVAL",
+  "verified_unique_sources": 30,
+  "verified_output_hashes": 9,
+  "verified_native_pngs": 57,
+  "historical_test_sources_resolved": [
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/source_snapshots/test_fisheye_angular_bundle_diagnostic.py",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/source_snapshots/test_fisheye_bundle_diagnostic.py"
+  ],
+  "split_unchanged": true,
+  "all_57_views_retained": true,
+  "angular_quality_screens_passed": true,
+  "physical_output": false,
+  "usable_for_ffb": false
+}

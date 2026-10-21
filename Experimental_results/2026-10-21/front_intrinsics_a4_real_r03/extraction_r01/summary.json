@@ -1,0 +1,28 @@
+{
+  "retained_views": 3,
+  "attempts": 654,
+  "counts": {
+    "board_not_found": 633,
+    "grid_too_small": 17,
+    "handheld_candidate_needs_native_review": 3,
+    "near_duplicate_pose": 1
+  },
+  "no_signal_reference_matched_frames": 0,
+  "train_only_coverage": null,
+  "all_retained_coverage": {
+    "centre_bins": 1,
+    "span_fraction_x": 0.1445301055908203,
+    "span_fraction_y": 0.13777525160047743,
+    "observed_pixel_min": [
+      287.54840087890625,
+      31.065994262695312
+    ],
+    "observed_pixel_max": [
+      380.04766845703125,
+      130.26417541503906
+    ]
+  },
+  "intrinsic_solver_attempted": false,
+  "source_files_verified": true,
+  "usable_for_ffb": false
+}

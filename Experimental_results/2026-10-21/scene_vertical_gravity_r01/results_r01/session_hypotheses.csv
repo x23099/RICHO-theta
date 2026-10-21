@@ -1,0 +1,10 @@
+session,sample_frames,estimate_frames,heldout_frames,usable_estimate_frames,usable_heldout_frames,accepted,reason,up_optical_json,estimate_spread_max_deg,heldout_direction_max_difference_deg,delta_from_paper5_up_deg,heldout_all_plane_count,heldout_all_plane_median_residual_deg,heldout_all_plane_within_one_degree,conditional_transform_json,height_or_yaw_independently_measured,architectural_vertical_independently_verified,usable_for_ffb
+cone_static_center_z1p30_r01_20261015_135329_732,4,2,2,0,0,False,fewer_than_two_usable_estimate_images,,,,,0,,0,,False,False,False
+cone_static_center_z2p00_r01_20261015_135414_399,4,2,2,0,0,False,fewer_than_two_usable_estimate_images,,,,,0,,0,,False,False,False
+cone_static_left_z1p30_r01_20261015_135541_436,4,2,2,0,0,False,fewer_than_two_usable_estimate_images,,,,,0,,0,,False,False,False
+cone_static_no_cone_r01_20261015_134940_713,4,2,2,0,0,False,fewer_than_two_usable_estimate_images,,,,,0,,0,,False,False,False
+cone_static_right_z1p30_r01_20261015_135630_973,4,2,2,0,0,False,fewer_than_two_usable_estimate_images,,,,,0,,0,,False,False,False
+floor_cone_same_pose_r01_20261015_160621_378,12,6,6,0,0,False,fewer_than_two_usable_estimate_images,,,,,0,,0,,False,False,False
+itiawase2_20261015_183552_599,32,16,16,0,0,False,fewer_than_two_usable_estimate_images,,,,,0,,0,,False,False,False
+one_static_center_z0p80_r01_20261015_135155_823,4,2,2,0,0,False,fewer_than_two_usable_estimate_images,,,,,0,,0,,False,False,False
+paper_cone_center_z2p00_r01_20261019_180411_245,18,9,9,0,0,False,fewer_than_two_usable_estimate_images,,,,,0,,0,,False,False,False

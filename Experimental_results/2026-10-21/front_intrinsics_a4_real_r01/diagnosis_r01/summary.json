@@ -1,0 +1,66 @@
+{
+  "decision": "NO_FIT_INSUFFICIENT_OBSERVATIONS",
+  "calibration_fit_executed": false,
+  "K_D_produced": false,
+  "measured_square_mm": 20.0,
+  "frames": 2844,
+  "attempts": 689,
+  "detected": 120,
+  "retained_views": 6,
+  "retained_frame_numbers": [
+    1,
+    51,
+    55,
+    61,
+    68,
+    77
+  ],
+  "retained_time_range_sec": [
+    0.052341,
+    2.631054
+  ],
+  "reasons": {
+    "handheld_candidate_needs_native_review": 6,
+    "near_duplicate_pose": 77,
+    "grid_too_small": 36,
+    "board_not_found": 569,
+    "stationary_window_or_ambiguous_overlap": 1
+  },
+  "all_retained_coverage": {
+    "centre_bins": 1,
+    "span_fraction_x": 0.3233818531036377,
+    "span_fraction_y": 0.21020143296983507,
+    "observed_pixel_min": [
+      222.50778198242188,
+      253.50787353515625
+    ],
+    "observed_pixel_max": [
+      429.47216796875,
+      404.8529052734375
+    ]
+  },
+  "prefit_checks": {
+    "enough_views": false,
+    "training_centre_bins": false,
+    "training_span": false
+  },
+  "fixed_window_retained_views": 0,
+  "all_retained_assistant_identity_reviewed": true,
+  "human_full_corner_review": false,
+  "physical_board_flatness_not_confirmed": true,
+  "sample_is_not_all_frame_corner_search": true,
+  "thresholds_not_relaxed": true,
+  "raw_archive_unchanged": true,
+  "physical_output": false,
+  "production_settings_changed": false,
+  "usable_for_ffb": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r01/extraction_r01/observations.json": "b5ee5e65037bd1900fd5af8bf09453d2463c1fc5f32a8e7721c3e45c5b16d2ee",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r01/intake_summary.json": "ca100f56f1789cd906c47704ca21571cac43944008eae00989bd368bddd29af9",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r01/present_results.py": "66a9483cbe423556acbd79c5138fd10d2eaaa4c20bd27c893ba6bc59750adccb"
+  },
+  "output_sha256": {
+    "target_review.csv": "9e4de05c0805ffe8c1d4442428db0481e0d05a43c35758cdc5edec54942a1507",
+    "extraction_diagnostics.png": "c27cdc6e0fdf48d8444e18c9e7e4e59161591982933e45794ecdd2d4fe957579"
+  }
+}

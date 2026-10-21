@@ -1,0 +1,46 @@
+{
+  "assets": [
+    {
+      "file": "daily_final_raw_intrinsic_r03_f002771.png",
+      "source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r03/extraction_r01/raw_frames/raw_f002771.png",
+      "sha256": "6079dc5b9f429cec7db4aed716614eba47155e9470f12a9695a5238f01e5a5d0",
+      "kind": "native_camera",
+      "session": "front_fisheye_intrinsic_a4_r03_20261021_182522_716",
+      "frame": 2771,
+      "source_byte_identical": true,
+      "camera_image_edited": false
+    },
+    {
+      "file": "daily_final_intrinsic_solver.png",
+      "source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/plots_r01/solver_domain_comparison.png",
+      "sha256": "1f887372ed20cc2e6e55ee25d4ea93939441bba9065c74977036e33e0eb749d0",
+      "kind": "numerical_plot",
+      "session": null,
+      "frame": null,
+      "source_byte_identical": true,
+      "camera_image_edited": false
+    },
+    {
+      "file": "daily_final_floor_validation.png",
+      "source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/plots_r01/floor_metric_validation.png",
+      "sha256": "ba32ab1836ce5eb9625c8d4972d954857b98db93cc23bc76f5b7356efd775f85",
+      "kind": "numerical_plot",
+      "session": null,
+      "frame": null,
+      "source_byte_identical": true,
+      "camera_image_edited": false
+    },
+    {
+      "file": "daily_final_scene_metric.png",
+      "source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/plots_and_verification_r01/sequence_metric_crosscheck.png",
+      "sha256": "0a3f03c03c3a540e8f1e56688d35d649dc51f10cbe0a51c2658bb61c4d465666",
+      "kind": "numerical_plot",
+      "session": null,
+      "frame": null,
+      "source_byte_identical": true,
+      "camera_image_edited": false
+    }
+  ],
+  "collector_sha256": "3278c04c525ffbef6f4caae20e6094f4bb3a4a21f6eb8c571874f40565a41bcb",
+  "physical_output": false
+}

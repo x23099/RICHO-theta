@@ -1,0 +1,10 @@
+{
+  "entrypoint_sha256": "a938ef436b13866d43c3d86b8f41b195f5edcd627f8cec5e653b0e45c75668d9",
+  "helper": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r01/intake.py",
+  "helper_sha256": "39aa9708432eac9f31c7cbd0ed936325fe7e2191111a57fe20215b91d2e84eb0",
+  "changed_inputs": "archive, result folder and extraction destination only",
+  "measured_square_mm": 20.0,
+  "square_size_basis": "same-board supplement to r02 procedure; no new measurement supplied",
+  "physical_output": false,
+  "original_images_edited": false
+}

@@ -1,0 +1,50 @@
+{
+  "rows": [
+    {
+      "steps": 0,
+      "completed": true,
+      "training_rms_px": 1.2517458202772997,
+      "error": null
+    },
+    {
+      "steps": 1,
+      "completed": false,
+      "training_rms_px": null,
+      "error": "OpenCV(4.5.5) /io/opencv/modules/calib3d/src/fisheye.cpp:1449: error: (-3:Internal error) CALIB_CHECK_COND - Ill-conditioned matrix for input array 27 in function 'CalibrateExtrinsics'\n"
+    },
+    {
+      "steps": 2,
+      "completed": false,
+      "training_rms_px": null,
+      "error": "OpenCV(4.5.5) /io/opencv/modules/calib3d/src/fisheye.cpp:1449: error: (-3:Internal error) CALIB_CHECK_COND - Ill-conditioned matrix for input array 27 in function 'CalibrateExtrinsics'\n"
+    }
+  ],
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r03/combined_candidate_r01/merged_observations.json": "02b9b416686d67981ac67aa47ac65340cb60f5edab61fd8014476c67074b3f67",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r03/audit_iteration_step.py": "d5c3b34d91861aa9aad29cb565eb2cf080888e267829f47c800eb35679b2e0ec",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r03/initialization_diagnosis_method.md": "13d3d251edd37f25dbaa61c4788d69aa11eb37421f7a65c227018482b93b68df",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r03/method.md": "122470ae2997a90d30ae97726bdf837f2424391d613bceb173f524e1bd42122b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r03/target_review.json": "c491f2237049e33c8bdb2e329291cf130fd94042cd8a61f2035e574c013044ac",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r03/merge_and_fit.py": "89b64cbad232c517c123ef92eb92c50b4756d0204e15df556bf8c602d87bb9b8",
+    "/home/robo25/theta_ws/RICHO-theta/src/fisheye_intrinsic_calibration.py": "24902214663e2c6553bec75e65bd3d52c3494d091dbb947d6a336a4a957fa416",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-21_front_intrinsic_a4_intake_r02/front_fisheye_intrinsic_a4_r02_20261021_173517_156/raw.avi": "0ba1a6732b962d2a92e13693d01294cf7d8442946003006cfe436346dc15033a",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-21_front_intrinsic_a4_intake_r02/front_fisheye_intrinsic_a4_r02_20261021_173517_156/detections.csv": "692bd817840351572a894f90c9434d523dea5d538dd29dc62858b77e3fe28116",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-21_front_intrinsic_a4_intake_r02/front_fisheye_intrinsic_a4_r02_20261021_173517_156/metadata.json": "14344ae236807d3f8397408c71f378dfe0d54a700c552537e0b4fa471bfa60bc",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/fisheye_intrinsic_target_a4_r01/board_spec.json": "bee11131134ebbd8dbcb050b1de9d189895037aea5bb4124c4f96703fee71e10",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/method.md": "138b1795979f2ab3a5b61f226c784dbaec13817820caeb0e454521675e5612fa",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/extract.py": "10d4a164b541afd47dc9a12a20fdf7bcb953d2c7463e2b5e054aa8cbf44d428a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/extraction_r01/observations.json": "0652c6381bfad8d522f03d6e834035b112708a700f43a65873823227b72e3731",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/intake_summary.json": "141a2736be3ae40925ff3d9a1d3dc3ea53bc38e32430af4119d4fe094dd45d37",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-21_front_intrinsic_a4_intake_r03/front_fisheye_intrinsic_a4_r03_20261021_182522_716/raw.avi": "c9a34c00be55543288c22bec8f0402598661f841139b765d3380232e1c30675d",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-21_front_intrinsic_a4_intake_r03/front_fisheye_intrinsic_a4_r03_20261021_182522_716/metadata.json": "921ff3469e1f8f3dfca6186951730cf84e4360fb107adc764f84522262505172",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-21_front_intrinsic_a4_intake_r03/front_fisheye_intrinsic_a4_r03_20261021_182522_716/detections.csv": "2bc11e98a31c7d52944ab61a2e1ce42e14f4e824d5553c949bc6c9db9a81d29a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r02/raw_samples/raw_f000472.png": "607b859a503302b62c2760592300f98c74a1007e5335e8430b594e7ddf1bafae",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r03/extract.py": "c3e0cc9ef3ffca4d2f72364f4ca25d0e7a105ee09a075f428c25bbd053838c56",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r03/extraction_r01/observations.json": "a510565850031fd4a986a48b214aeba78eb7517a6d5d82015350e3826912f1bf",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r03/intake_summary.json": "d106e2999ddfde7e77f443d25b404f75170ef3981c81ac6fb2492c7f9c6bf63d"
+  },
+  "conclusion": "initial poses can be computed with cy=300; first intrinsic update still rejected",
+  "early_terminated_K_not_calibrated": true,
+  "usable_for_ffb": false,
+  "physical_output": false
+}

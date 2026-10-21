@@ -1,0 +1,13 @@
+{
+  "moving_paper_identity_representatives_confirmed": true,
+  "reviewer": "assistant visual native image review",
+  "retained_representative_frames_reviewed": [691, 1646, 3546, 3661, 3751],
+  "representative_review_covers": "early, middle and late retained intervals; centre and both lateral positions",
+  "non_retained_native_samples_reviewed": [236, 472, 708, 943, 1179, 1415, 1651, 1886, 2122, 2358, 2594, 2829, 3065, 3301, 3537, 3772, 4008, 4244, 4480],
+  "target": "the moving board in front/left lens, not the small stationary window grid or rear/right lens",
+  "all_retained_images_individually_reviewed": false,
+  "every_corner_human_subpixel_verified": false,
+  "board_planarity": "user confirmed same 20 mm paper fixed to flat rigid board; not independently measured",
+  "limited_to_prefit_diagnosis": true,
+  "usable_for_ffb": false
+}

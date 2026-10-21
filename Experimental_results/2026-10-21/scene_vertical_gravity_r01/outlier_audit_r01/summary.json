@@ -1,0 +1,18 @@
+{
+  "status": "COMPLETED_ALL_ROWS_RETAINED_OUTLIER_AUDIT",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_height_pinhole_r01/results_r01/observed_pixels.csv": "630a5d66820865ff4e1833eb120957bb1ed2d2c30f849e3ed112ff4f2c24b693",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/curve_results_r01/cone_all_frames.csv": "b2a4fd191900ca7b61064787722b6b393da63559eee4039fd8a0ca9bc5362459",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/audit_metric_outliers.py": "52c3050911b4b3d5f83c0fd94817ca064866b4730eec43f63b81817eb226dea1"
+  },
+  "rows": 6876,
+  "rows_removed": 0,
+  "threshold_is_diagnostic_not_safety_requirement": true,
+  "production_gate_changed": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "all_frame_quality_join.csv": "c3121533424b33f63278a4dc42e63f25a856f22f2cd1768155d9a561088b3dc0",
+    "condition_summary.csv": "5fe4b257b767937fa18ae76c82f70c2ccf01c6fda40e2858b7991c9e1daf661e"
+  }
+}

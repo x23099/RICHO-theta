@@ -1,0 +1,26 @@
+{
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/summary.json": "c369471f6c355d534f26f9eda3a4fb10fe28ad78df7e07f7f62c00f9faa47e09",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_reference_results.csv": "9f63a48858bca5caae31308a326e17e7a8f73f4c0146919e1f68f6cd998edeaf",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/cone_summary.csv": "256451486d888f134529b96a02d3d1654434074fad8929cca43aaffaab1f84d7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/plot_results.py": "1c37e08fedbd4874bba56338847af6bcc771c39c9d695893fa54b44f2a66855a"
+  },
+  "paper7_to_oct19_native_delta_px": [
+    4.0,
+    -7.0
+  ],
+  "paper7_to_oct19_calibrated_ray_angle_deg": 2.443908626991947,
+  "paper7_to_oct19_depth_difference_m": 0.2889828705823627,
+  "sensitivity_interpretation": "Finite sensitivity scenarios, not measured corner uncertainty or confidence intervals",
+  "independently_measured_pose_change": false,
+  "usable_for_ffb": false,
+  "original_images_edited": false,
+  "output_sha256": {
+    "pixel_sensitivity_and_reference_projection.csv": "9ef1915059ab9e1ec02d82e606591eb8b9da170219d482b2d418dce6bb58e262",
+    "cone_height_consistency.png": "0c69c255335dc208477b8879619228eaf2f183e946459199b2208dfb86c5d197",
+    "floor_metric_validation.png": "ba32ab1836ce5eb9625c8d4972d954857b98db93cc23bc76f5b7356efd775f85",
+    "cone_metric_comparison.png": "98af9a4ffe67d688161674e2c0070896f2cdee97db2a08a4cf624e6b2a380fa7"
+  }
+}

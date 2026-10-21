@@ -1,0 +1,39 @@
+{
+  "status": "PASS_OFFLINE_SCENE_GEOMETRY_TESTS_NOT_FFB_APPROVAL",
+  "tests": 28,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "native_images": 86,
+  "sessions": 9,
+  "ordinary_lsd_accepted_frames": 0,
+  "curved_accepted_frames": 6,
+  "curved_accepted_sessions": 1,
+  "ordinary_reason_counts": {
+    "fewer_than_six_distinct_planes": 86
+  },
+  "curved_reason_counts": {
+    "insufficient_consensus": 54,
+    "conditional_architectural_up": 6,
+    "fewer_than_six_distinct_planes": 26
+  },
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/results_r01/image_diagnostics.csv": "aa85de32e881ecf206be293f14fe9faa094b3121db8b41c9c8c4099379740295",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/curve_results_r01/image_diagnostics.csv": "f5156591b9095472e0dda825cd6d9e7259a38c78da9b3f9277261902972b1818",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/curve_results_r01/line_candidates.csv": "94535acd6ce56769391ea72ce07cecdf81924784d25ba4bf073a977c1bfe8a42",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/curve_results_r01/session_hypotheses.csv": "546c33aa77cfc6c94e26d1b08ed654c10e6a4d96466c4b808065068ef775825a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/curve_results_r01/cone_condition_summary.csv": "6f65cc85c3fad618ef6a8d21f0389e907aadae9fa6ae9cb14e632d8b7b5f4061",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/test_scene_geometry.py": "71ac311e2f1ec53270957baf4c34b495b3f3f6a193d9f45894d338cb16494d77",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/plot_and_verify.py": "6750f580ea31aa99dd6397455e75c0261a78d37e3f17855690e7bfae7227c44f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/cone_summary.csv": "256451486d888f134529b96a02d3d1654434074fad8929cca43aaffaab1f84d7"
+  },
+  "original_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "test_log.txt": "8c13ebf60e2008e073e541e8edbe19ff3ab55089b8f0be9e4f53058c0337609a",
+    "sequence_metric_crosscheck.png": "0a3f03c03c3a540e8f1e56688d35d649dc51f10cbe0a51c2658bb61c4d465666",
+    "selected_scene_edges.csv": "a74968e2a9767199a5165ac43967addf1d65afed876cd4ec47ac42af22ac9697",
+    "scene_up_coverage.png": "829d9451057a8661188faa05813c5499f623ef36c501e178e9f836a8fc44864d"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "date": "2026-10-21",
+  "measured_square_mm": 20.0,
+  "target": "same A4 checkerboard fixed to flat rigid board, user confirmed",
+  "background_window_checkerboard_is_not_target": true,
+  "planarity_mechanically_measured": false
+}

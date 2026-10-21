@@ -1,0 +1,21 @@
+{
+  "status": "PASS_OFFLINE_TESTS_NOT_METRIC_OR_HARDWARE_APPROVAL",
+  "tests_run": 58,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "numpy": "1.24.4",
+  "opencv": "4.5.5",
+  "scipy": "1.11.4",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/verify_results.py": "6c7fae323fe37ba4bc7731d22ae2b8d12889ee673c58d3a5fabcf400e29d76ed",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/test_results.py": "1c7d7eaf280ef0bf7576ecdfec9b3b7ab16af21539667a688910ef681ef84ffd",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/test_validation.py": "f5ac36f05bcd542592605fb8f61f44261a0f76f188550a3e9b7d751c20a7da85",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/verification_tests.txt": "7c873f966425351f7866f62ef37058fc877e00fe289a88df3c35511092459371",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_angular_fisheye_geometry.py": "131fe0cf000c91f4403c789ed9ae094c3f15ac4722eb4907b603e7432348dff9",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_dataset.py": "cbe4001c7f79ff910a991f2e456d0fb130c136045f11cf69c030877d92d6ed3f"
+  },
+  "physical_output": false,
+  "usable_for_ffb": false
+}

@@ -1,0 +1,34 @@
+test_actual_observed_point_only (test_contact_geometry.ContactGeometryTests) ... ok
+test_adjacent_distinct_roots_not_merged (test_contact_geometry.ContactGeometryTests) ... ok
+test_downward_tip_cannot_be_taller_than_camera_for_any_bottom (test_contact_geometry.ContactGeometryTests) ... ok
+test_exact_zero_not_double_counted (test_contact_geometry.ContactGeometryTests) ... ok
+test_floor_height_consistency_restores_true_tip_for_both_offsets (test_contact_geometry.ContactGeometryTests) ... ok
+test_floor_rejects_upward_bottom (test_contact_geometry.ContactGeometryTests) ... ok
+test_invalid_order_subpixel_and_delta_refused (test_contact_geometry.ContactGeometryTests) ... ok
+test_no_bridging_invalid_ray (test_contact_geometry.ContactGeometryTests) ... ok
+test_no_bridging_missing_columns (test_contact_geometry.ContactGeometryTests) ... ok
+test_no_extrapolation_or_insufficient_support (test_contact_geometry.ContactGeometryTests) ... ok
+test_no_height_or_reference_distance_fit_in_implied_height_api (test_contact_geometry.ContactGeometryTests) ... ok
+test_no_input_mutation (test_contact_geometry.ContactGeometryTests) ... ok
+test_plane_is_rotation_and_segment_scale_invariant (test_contact_geometry.ContactGeometryTests) ... ok
+test_ray_plane_agrees_with_pinhole_signed_zero (test_contact_geometry.ContactGeometryTests) ... ok
+test_all_rows_missing_and_observed_selection_retained (test_contact_geometry.SavedContactTests) ... ok
+test_frozen_sources_and_outputs (test_contact_geometry.SavedContactTests) ... ok
+test_no_refit_or_physical_output (test_contact_geometry.SavedContactTests) ... ok
+test_selected_native_pixels_are_exactly_in_original_envelopes (test_contact_geometry.SavedContactTests) ... ok
+test_candidate_schema_must_be_explicit (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_empty_and_duplicate_pixels (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_grazing_or_upward_rays_not_forced_to_floor (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_input_calibration_copied_and_readonly (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_invalid_roi_domain_and_image_size (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_known_offset_is_not_implicitly_subtracted_from_reference (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_known_segment_recovers_positive_depth_and_base_height (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_nonmonotonic_and_invalid_camera_refused (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_optical_centre_limit (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_roundtrip_across_90_degrees_preserves_order (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_synthetic_floor_coordinates_restore_with_subpixel_precision (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 2.775s
+
+OK

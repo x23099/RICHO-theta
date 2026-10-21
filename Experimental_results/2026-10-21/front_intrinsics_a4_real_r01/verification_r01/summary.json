@@ -1,0 +1,20 @@
+{
+  "tests": 52,
+  "failures": 0,
+  "errors": 0,
+  "real_extraction_tests": 13,
+  "existing_intrinsic_tests": 15,
+  "existing_geometry_tests": 24,
+  "real_calibration_solver_not_called": true,
+  "source_hashes_and_native_pngs_verified": true,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r01/test_real_extraction.py": "d510af293c1d169450e7ec53c2451a71f21e527e4e95de811e7ce5c4e2a16e50",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_fisheye_intrinsic_calibration.py": "5ccd2875a648693992487f5c20b4927d065e0fb8699b1992749e3d15a1ce7301",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_fisheye_floor_geometry.py": "08981d05554fe73091104bb6918cd4734d05c5cb092016b2e06d4c7220ef5d38",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_ground_contact.py": "240613a2032f18f6910c6e8347e7b32bf44474bb2ce4a45a0497a5cfa8acc965",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_intrinsics_a4_real_r01/verify.py": "b85a345f27ff6b8d1030b7dd57c2a8b4db27825253414f0dcdc5e5f6a5c5a0fa"
+  },
+  "test_log_sha256": "d85702009777233e91f93d1bcda93ea8fe8d9a159ba8d39366969678ce9f310f"
+}

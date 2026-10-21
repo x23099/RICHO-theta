@@ -1,0 +1,16 @@
+{
+  "snapshots": [
+    {
+      "original_path": "/home/robo25/theta_ws/RICHO-theta/tests/test_fisheye_bundle_diagnostic.py",
+      "sha256": "e1e0cd6e3f53e93abbee26c2bad72f878b0f52fbdc262376a6a038d9effc678e",
+      "archived_path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/source_snapshots/test_fisheye_bundle_diagnostic.py",
+      "reason": "Exact test source used for calibration artifacts, before adding optional-SciPy import skip for non-analysis PCs."
+    },
+    {
+      "original_path": "/home/robo25/theta_ws/RICHO-theta/tests/test_fisheye_angular_bundle_diagnostic.py",
+      "sha256": "689d3d984faed9e4d269348519c2eb52a9f1fc420241ba16ee2da6d14ccf958f",
+      "archived_path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/source_snapshots/test_fisheye_angular_bundle_diagnostic.py",
+      "reason": "Exact test source used for calibration artifacts, before adding optional-SciPy import skip for non-analysis PCs."
+    }
+  ]
+}
