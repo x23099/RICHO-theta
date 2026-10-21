@@ -1,0 +1,46 @@
+test_bad_width_nan_or_reflection_cannot_be_approved (test_known_width.KnownWidthTests) ... ok
+test_camera_height_does_not_scale_known_width_depth (test_known_width.KnownWidthTests) ... ok
+test_envelope_keeps_full_actual_endpoints_not_trimmed_support (test_known_width.KnownWidthTests) ... ok
+test_known_frontal_edge_recovers_position_without_floor_intersection (test_known_width.KnownWidthTests) ... ok
+test_no_mutation_of_calibration_or_endpoints (test_known_width.KnownWidthTests) ... ok
+test_outside_diagnostic_range_is_retained_not_clipped (test_known_width.KnownWidthTests) ... ok
+test_partial_visible_width_overestimates_distance (test_known_width.KnownWidthTests) ... ok
+test_reference_labels_cannot_affect_replay_estimate (test_known_width.KnownWidthTests) ... ok
+test_square_yaw_is_not_silently_treated_as_same_physical_edge (test_known_width.KnownWidthTests) ... ok
+test_virtual_focal_resolution_choice_not_a_distance_fit (test_known_width.KnownWidthTests) ... ok
+test_wrong_known_size_scales_depth (test_known_width.KnownWidthTests) ... ok
+test_58_59_height_changes_not_misreported_as_width_depth_improvement (test_known_width.SavedStudyTests) ... ok
+test_all_frames_and_methods_retained (test_known_width.SavedStudyTests) ... ok
+test_all_saved_rectification_and_positions_with_independent_ray_math (test_known_width.SavedStudyTests) ... ok
+test_new_2m_negative_windows_not_invented_as_known_size_objects (test_known_width.SavedStudyTests) ... ok
+test_saved_summary_recomputes_exactly (test_known_width.SavedStudyTests) ... ok
+test_sources_and_outputs_unchanged (test_known_width.SavedStudyTests) ... ok
+test_actual_image_size_mismatch_rejected (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_bad_plane_and_camera_side_rejected (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_bad_transform_and_reflection_rejected (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_empty_input (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_inputs_not_mutated (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_invalid_intrinsics_not_defaulted (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_invalid_lens_pixels_keep_order_and_duplicates (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_known_floor_point_subpixel_without_rectification (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_legacy_equivalence_with_general_angles_and_no_ui_offset (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_nonfinite_and_complex_pixels_rejected (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_optical_centre_limiting_ray (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_target_rotation_does_not_change_physical_intersection (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_tilted_floor_plane_and_nonzero_offset (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_translation_applies_to_origin_not_direction (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_upward_and_grazing_rays_do_not_intersect (test_fisheye_floor_geometry.FisheyeFloorTests) ... ok
+test_blue_hsv_value_threshold_is_configurable (test_ground_contact.GroundContactGeometryTest) ... ok
+test_clahe_candidate_preserves_hsv_shape (test_ground_contact.GroundContactGeometryTest) ... ok
+test_front_pixel_round_trip_recovers_vehicle_ray (test_ground_contact.GroundContactGeometryTest) ... ok
+test_missing_aspect_filter_preserves_previous_detector_behavior (test_ground_contact.GroundContactGeometryTest) ... ok
+test_optional_aspect_filter_rejects_horizontal_floor_candidate (test_ground_contact.GroundContactGeometryTest) ... ok
+test_ray_floor_intersection_recovers_metric_ground_point (test_ground_contact.GroundContactGeometryTest) ... ok
+test_rejects_unknown_illumination_mode (test_ground_contact.GroundContactGeometryTest) ... ok
+test_lateral_fit_does_not_modify_geometric_z (test_ground_contact.HeadlessEvaluationTest) ... ok
+test_parse_expected_position (test_ground_contact.HeadlessEvaluationTest) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 3.302s
+
+OK

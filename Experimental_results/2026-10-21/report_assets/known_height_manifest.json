@@ -1,0 +1,9 @@
+{
+  "kind": "numeric_graph_not_camera_image",
+  "file": "known_height_comparison.png",
+  "source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_height_pinhole_r01/results_r01/height_comparison.png",
+  "sha256": "53ac9bb2c8c7a7c7b6f5afe4376411ab04d504e37b17d2c4a2c9e228f691f5f5",
+  "byte_identical_copy": true,
+  "data": "../cone_known_height_pinhole_r01/results_r01/summary.csv",
+  "script": "../cone_known_height_pinhole_r01/analyze_height.py"
+}

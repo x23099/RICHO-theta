@@ -1,0 +1,19 @@
+{
+  "paper7_native_pixel": [
+    309.0,
+    378.0
+  ],
+  "paper19_native_pixel": [
+    313.0,
+    371.0
+  ],
+  "delta_x_px": 4.0,
+  "delta_y_px": -7.0,
+  "separation_px": 8.06225774829855,
+  "single_projection_minimax_residual_lower_bound_px": 4.031128874149275,
+  "conditional_on_same_physical_point_and_mapping": true,
+  "physical_reference_verified": false,
+  "usable_for_ffb": false,
+  "corner_methods_differ": true,
+  "one_fixed_model_cannot_make_identical_points_project_to_two_different_pixels": true
+}

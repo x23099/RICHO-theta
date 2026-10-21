@@ -1,0 +1,80 @@
+{
+  "status": "COMPLETED_DIRECTION_CONSISTENCY_DIAGNOSTIC_NOT_CALIBRATION",
+  "physical_camera_height_m": 0.59,
+  "physical_cone_height_m": 0.73,
+  "models": {
+    "recorded58": {
+      "camera_height": 0.58,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -80,
+      "front_cy_offset": -21,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    },
+    "height_only59": {
+      "camera_height": 0.59,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -80,
+      "front_cy_offset": -21,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    },
+    "paper_centre2": {
+      "camera_height": 0.59,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -91.36974027724838,
+      "front_cy_offset": -34.7149841072099,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    }
+  },
+  "floor7_independent_positions": 7,
+  "paper19_frames": 1733,
+  "paper19_primary_before_after_frames": 631,
+  "cone_static_frames": 299,
+  "paired_rows": 2691,
+  "new_calibration_fit": false,
+  "new_yolo_inference": false,
+  "original_images_edited": false,
+  "physical_output": false,
+  "live_tf": false,
+  "production_settings_changed": false,
+  "usable_for_ffb": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/paper_reference7_r01/analysis_r01/reference_points_primary170.csv": "4528460e3901e6458a4365b0f6fb77d878218a791046846baca5dc707d16b211",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/paper_reference7_r01/analysis_r01/provenance.json": "fe688b6533c759efaf46e0fb03f7127067e46c985f6e4ddcb6c018c0b5819002",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/paper_cone_2m_validation_r01/analysis_r01/paper_corner_diagnostics.csv": "56f39b1c51732a24816d2e6a4ef1c52e6cde6e2d99f50d1048d093d56e4af972",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/paper_cone_2m_validation_r01/analysis_r01/summary.json": "ea8b35cacc32ce9dbac7afde7d01c6fca4ac8cfd06cbaec6a5e0e86c0f562ade",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_height_pinhole_r01/results_r01/observed_pixels.csv": "630a5d66820865ff4e1833eb120957bb1ed2d2c30f849e3ed112ff4f2c24b693",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_height_pinhole_r01/results_r01/provenance.json": "01eb03a056483494c65507cd0593a0ddef12344650422c4aad5d3eee124701a3",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_paper_reference7_intake_r01/itiawase2_20261015_183552_599/metadata.json": "41a3c32e4ee2425b615f3523960df99de88a94b134c495b5c285f167b43e0580",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-19_paper_cone_2m_intake_r01/paper_cone_center_z2p00_r01_20261019_180411_245/metadata.json": "def29b7ac8f9c590721d84d0c4974d2fb92001fbcbdf9b47d49cc3e06af5fcd7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_absolute_bearing_audit_r01/method.md": "4603649aef9b58747b27bc6adecc2f2f3d502a29cb904e6dae83a94a850f1e2d",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_absolute_bearing_audit_r01/bearing.py": "1c5da89f32ab1f1addb131b6e574ed9dc7e7812a7210d3986ebf66666dbb532e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_absolute_bearing_audit_r01/analyze_bearing.py": "24f77787e695648bc9b38a71bb76a5325c553aa443ff7da6edadbf83a8fb1f2a",
+    "/home/robo25/theta_ws/RICHO-theta/src/fisheye_floor_geometry.py": "b012f42743d155aa675a43dbb0c1dc86d11f1586da61b38b2938e59d30470419",
+    "/home/robo25/theta_ws/RICHO-theta/src/ground_contact.py": "a51c65ab01a4d7a4a1a0f368c2fca9e2e183a3c9c0b0c2c9ba00458a905b74cc"
+  },
+  "output_sha256": {
+    "floor7_bearings.csv": "c2f015dff8ec1e31d3fec348dcea797ce9a00a4e256f29915cbbec9d10fbca53",
+    "absolute_vs_relative_bearing.png": "72171b630123d1596d37618c171ef8ba4d8c748df093757da0246bfc260abfaa",
+    "pixel_repeatability.json": "ac470a2058762d8aef3e1069c839e4d6984bbf9cd48ad9332c4d7391f8510882",
+    "paper19_all_observations.csv": "f503b4f41a262e57e029597e85301769fc8d7a48ef09afe82a3a930d2ef010b1",
+    "synthetic_meridian_ambiguity.csv": "3ca710af4f8e5bd53afd27d6e0af889c3d372f9e9c74341c8efa3533e0cd3c09",
+    "pixel_sensitivity.csv": "66a6692135e33af58f6fd0b83a13f0699f1ea09f21ec3f9c58bbf78f6b11556b",
+    "synthetic_identifiability.json": "38499f2c1a4c01f6ab40acaaae40e720a7573971319e5ef8bd35d3fa5787716f",
+    "floor_references_and_repeatability.png": "474633b662cb56fe849ebc50db3a15307a45a464a1e9872da68b6057d2334f55",
+    "metadata_comparison.json": "d541866a25f339e3810278d8396103741b066b85ecc12595fae63662bfa4a74d",
+    "angle_gap_summary.csv": "49b43599fa503355f16004b716952725ee8d0ad3151879fe5d42002f08c45a83",
+    "cone19_paired_bearings.csv": "999ffbedf4aca0ccec70b66a8df1754272f1bc66dc58c80a48a04d15dc122770"
+  }
+}

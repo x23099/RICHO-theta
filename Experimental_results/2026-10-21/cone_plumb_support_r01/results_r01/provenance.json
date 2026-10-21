@@ -1,0 +1,77 @@
+{
+  "frames": 6876,
+  "rows": 41256,
+  "models": {
+    "recorded58": {
+      "camera_height": 0.58,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -80,
+      "front_cy_offset": -21,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    },
+    "height_only59": {
+      "camera_height": 0.59,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -80,
+      "front_cy_offset": -21,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    },
+    "paper_centre2": {
+      "camera_height": 0.59,
+      "pitch_deg": 1,
+      "roll_deg": 2,
+      "yaw_deg": 0,
+      "radius_scale": 0.86,
+      "front_cx_offset": -91.36974027724838,
+      "front_cy_offset": -34.7149841072099,
+      "back_cx_offset": 82,
+      "back_cy_offset": -18
+    }
+  },
+  "methods": {
+    "plumb_vertical": [
+      "colour_vertical_proxy",
+      0.0
+    ],
+    "plumb_near_edge_assumption": [
+      "colour_near_edge_offset_assumption",
+      0.1875
+    ]
+  },
+  "height_m": 0.73,
+  "geometry_or_size_fit": false,
+  "new_yolo_inference": false,
+  "raw_images_edited": false,
+  "physical_output": false,
+  "live_tf": false,
+  "production_settings_changed": false,
+  "usable_for_ffb": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_height_pinhole_r01/results_r01/provenance.json": "01eb03a056483494c65507cd0593a0ddef12344650422c4aad5d3eee124701a3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_size_pinhole_r01/results_r01/provenance.json": "ad9f316f267c95310130a48558851c3082383592332036195654ccd0336047c3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_height_pinhole_r01/results_r01/observed_pixels.csv": "630a5d66820865ff4e1833eb120957bb1ed2d2c30f849e3ed112ff4f2c24b693",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_height_pinhole_r01/results_r01/all_frame_estimates.csv": "d6761224ef0fccd35b30bf296b996dbcfd1063d72990cec0640d2af0be2a6fa2",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_support_extent_r01/results_r01/lower_envelopes.csv": "112ef9d522fe0d04b7183a3fbaed7c1b73fc7e5bde6db99af143f7c8e8a6c6b5",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_size_pinhole_r01/results_r01/additional_full_envelopes.csv": "6cb8f850bb0333e84ded8da27e97affce63718c73e3d6f3f3259c22e5eee0b96",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_plumb_support_r01/method.md": "c78684e7dd074a49bcdf88981c779a053120e30c20144f6480b472f909ed5cab",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_plumb_support_r01/analyze_plumb.py": "f52f7f649afad907f720d4735389174bd70763cd8e9cc5fe0d7528b2e724f9d1",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_plumb_support_r01/plumb_support.py": "5a4872877da705590b0c47002f0e6d52149f460848061d5803fe9c8be97ed870",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_height_pinhole_r01/known_height.py": "f13d227edfa03f1c2a44ed36e46a0993562adfc855fa0f98d09e223ce013cba1",
+    "/home/robo25/theta_ws/RICHO-theta/src/fisheye_floor_geometry.py": "b012f42743d155aa675a43dbb0c1dc86d11f1586da61b38b2938e59d30470419"
+  },
+  "output_sha256": {
+    "plumb_support_occlusion_and_shifts.png": "33914326594fcd835b0e66a5c09def2330d379df1420a5337a691be8708308d9",
+    "all_frame_estimates.csv": "a53f83fc78f0256ae296f64eecb3f7df85b2fd1e885dc993af6e2f2f8e983687",
+    "plumb_support_comparison.png": "3bd548d2209f248eda8a52485bb4eaeb69dcfc3fbfde5db84f153fade712df29",
+    "summary.csv": "caf47537676ec559f829b61c9fdeb6b128c88479ed41ae81eea7884685ebefe3",
+    "screen.json": "9a7774e4f382e791200213943936195ef6bbeab5f42c606d15fb9d4bb28cd0a7"
+  }
+}

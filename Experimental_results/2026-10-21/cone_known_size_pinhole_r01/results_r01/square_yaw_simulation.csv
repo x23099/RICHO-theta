@@ -1,0 +1,5 @@
+yaw_deg,reference_nearest_z_m,estimated_z_m,error_z_m,known_side_m,kind
+0,1.3,1.2999999999999996,-4.440892098500626e-16,0.375,synthetic_square_silhouette_not_real_yaw_estimation
+15,1.3,1.2395626401933342,-0.06043735980666587,0.375,synthetic_square_silhouette_not_real_yaw_estimation
+30,1.3,1.1369503015858222,-0.16304969841417782,0.375,synthetic_square_silhouette_not_real_yaw_estimation
+45,1.3,1.1067388155425115,-0.19326118445748852,0.375,synthetic_square_silhouette_not_real_yaw_estimation

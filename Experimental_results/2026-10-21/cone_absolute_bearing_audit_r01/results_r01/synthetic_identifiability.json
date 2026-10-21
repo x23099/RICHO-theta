@@ -1,0 +1,11 @@
+{
+  "focal_px": 175.19776135555838,
+  "synthetic_meridian_jacobian_rank": 1,
+  "singular_values": [
+    8.511758606063802,
+    1.0916892729694489e-16
+  ],
+  "max_pixel_difference": 5.684341886080802e-14,
+  "real_full_image_rank_not_evaluated": true,
+  "new_calibration_fit": false
+}

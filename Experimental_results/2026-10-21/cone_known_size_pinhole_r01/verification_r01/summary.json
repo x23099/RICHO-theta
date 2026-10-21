@@ -1,0 +1,14 @@
+{
+  "tests": 41,
+  "failures": 0,
+  "errors": 0,
+  "results_unchanged": true,
+  "source_hashes_verified": true,
+  "all_frames": 6876,
+  "known_width_geometry_fitted": false,
+  "live_output": false,
+  "calibration_approved": false,
+  "tests_sha256": "ec2edc9d679a92a9d372c7b846bf2c37c11b7802b4dd2e08e0b8e43b7874b998",
+  "verifier_sha256": "7fdceeb7c84449f0625b298ca44ed8a475538381f466a490e960de8717e7aa19",
+  "test_log_sha256": "2229a7a3d8d09eab36cdfbec03a9c466dee633d8741ac3002d3d785fbc113766"
+}

@@ -1,0 +1,41 @@
+{
+  "decision": "DEFER_VISIBLE_SPAN_AS_KNOWN_WIDTH",
+  "evaluation_conditions": 8,
+  "median_bias_limit_m": 0.1,
+  "p95_limit_m": 0.2,
+  "failures": [
+    {
+      "dataset": "sequence",
+      "condition": "cone_130",
+      "bias": -0.14350898240195176,
+      "p95": 0.14350898240195176
+    },
+    {
+      "dataset": "sequence",
+      "condition": "cone_200",
+      "bias": -0.3672262392824195,
+      "p95": 0.45020457392347457
+    },
+    {
+      "dataset": "static",
+      "condition": "center_200",
+      "bias": -0.16040674231900676,
+      "p95": 0.2121689251117853
+    },
+    {
+      "dataset": "static",
+      "condition": "left_130",
+      "bias": -0.3751398151164199,
+      "p95": 0.39952481587402244
+    },
+    {
+      "dataset": "static",
+      "condition": "right_130",
+      "bias": -0.24592966855661547,
+      "p95": 0.2532966288918952
+    }
+  ],
+  "calibrated_intrinsics": false,
+  "physical_width_correspondence_verified": false,
+  "usable_for_ffb": false
+}

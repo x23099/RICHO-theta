@@ -1,0 +1,28 @@
+{
+  "plumb_vertical": {
+    "evaluation_conditions": 8,
+    "failures": [
+      {
+        "dataset": "static",
+        "condition": "center_200",
+        "bias": 0.138074455084908,
+        "p95": 0.14015511181832263
+      }
+    ],
+    "decision": "DEFER_PHYSICAL_CORRESPONDENCE_AND_CALIBRATION",
+    "distance_screen_passes": 7
+  },
+  "plumb_near_edge_assumption": {
+    "evaluation_conditions": 8,
+    "failures": [
+      {
+        "dataset": "static",
+        "condition": "left_130",
+        "bias": -0.13255903100029465,
+        "p95": 0.14682714992300316
+      }
+    ],
+    "decision": "DEFER_PHYSICAL_CORRESPONDENCE_AND_CALIBRATION",
+    "distance_screen_passes": 7
+  }
+}

@@ -1,0 +1,45 @@
+test_common_pitch_changes_absolute_angles_not_separation (bearing_tests_0.BearingMathTests) ... ok
+test_elevation_scale_invariance (bearing_tests_0.BearingMathTests) ... ok
+test_invalid_or_backward_input_rejected (bearing_tests_0.BearingMathTests) ... ok
+test_known_floor_inverse_with_independent_opencv_projection (bearing_tests_0.BearingMathTests) ... ok
+test_meridian_cy_pitch_ambiguity_is_exact_in_synthetic_model (bearing_tests_0.BearingMathTests) ... ok
+test_no_mutation (bearing_tests_0.BearingMathTests) ... ok
+test_nominal_reference_does_not_modify_observed_bearing (bearing_tests_0.BearingMathTests) ... ok
+test_physical_camera_height_independent_of_model_snapshot_height (bearing_tests_0.BearingMathTests) ... ok
+test_repeatability_lower_bound (bearing_tests_0.BearingMathTests) ... ok
+test_tip_inverse_without_floor_constraint (bearing_tests_0.BearingMathTests) ... ok
+test_all_positions_frames_hypotheses_retained (bearing_tests_0.SavedBearingTests) ... ok
+test_expected_angles_and_observed_gaps_independently (bearing_tests_0.SavedBearingTests) ... ok
+test_frozen_sources_outputs (bearing_tests_0.SavedBearingTests) ... ok
+test_primary_paper_before_after_stable_without_hidden_observations (bearing_tests_0.SavedBearingTests) ... ok
+test_sensitivity_and_summary_recompute_exactly (bearing_tests_0.SavedBearingTests) ... ok
+test_synthetic_rank_not_claimed_as_real_calibration (bearing_tests_0.SavedBearingTests) ... ok
+test_actual_image_size_mismatch_rejected (bearing_tests_1.FisheyeFloorTests) ... ok
+test_bad_plane_and_camera_side_rejected (bearing_tests_1.FisheyeFloorTests) ... ok
+test_bad_transform_and_reflection_rejected (bearing_tests_1.FisheyeFloorTests) ... ok
+test_empty_input (bearing_tests_1.FisheyeFloorTests) ... ok
+test_inputs_not_mutated (bearing_tests_1.FisheyeFloorTests) ... ok
+test_invalid_intrinsics_not_defaulted (bearing_tests_1.FisheyeFloorTests) ... ok
+test_invalid_lens_pixels_keep_order_and_duplicates (bearing_tests_1.FisheyeFloorTests) ... ok
+test_known_floor_point_subpixel_without_rectification (bearing_tests_1.FisheyeFloorTests) ... ok
+test_legacy_equivalence_with_general_angles_and_no_ui_offset (bearing_tests_1.FisheyeFloorTests) ... ok
+test_nonfinite_and_complex_pixels_rejected (bearing_tests_1.FisheyeFloorTests) ... ok
+test_optical_centre_limiting_ray (bearing_tests_1.FisheyeFloorTests) ... ok
+test_target_rotation_does_not_change_physical_intersection (bearing_tests_1.FisheyeFloorTests) ... ok
+test_tilted_floor_plane_and_nonzero_offset (bearing_tests_1.FisheyeFloorTests) ... ok
+test_translation_applies_to_origin_not_direction (bearing_tests_1.FisheyeFloorTests) ... ok
+test_upward_and_grazing_rays_do_not_intersect (bearing_tests_1.FisheyeFloorTests) ... ok
+test_blue_hsv_value_threshold_is_configurable (bearing_tests_2.GroundContactGeometryTest) ... ok
+test_clahe_candidate_preserves_hsv_shape (bearing_tests_2.GroundContactGeometryTest) ... ok
+test_front_pixel_round_trip_recovers_vehicle_ray (bearing_tests_2.GroundContactGeometryTest) ... ok
+test_missing_aspect_filter_preserves_previous_detector_behavior (bearing_tests_2.GroundContactGeometryTest) ... ok
+test_optional_aspect_filter_rejects_horizontal_floor_candidate (bearing_tests_2.GroundContactGeometryTest) ... ok
+test_ray_floor_intersection_recovers_metric_ground_point (bearing_tests_2.GroundContactGeometryTest) ... ok
+test_rejects_unknown_illumination_mode (bearing_tests_2.GroundContactGeometryTest) ... ok
+test_lateral_fit_does_not_modify_geometric_z (bearing_tests_2.HeadlessEvaluationTest) ... ok
+test_parse_expected_position (bearing_tests_2.HeadlessEvaluationTest) ... ok
+
+----------------------------------------------------------------------
+Ran 40 tests in 2.974s
+
+OK

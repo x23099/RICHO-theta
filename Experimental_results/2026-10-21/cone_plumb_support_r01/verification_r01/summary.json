@@ -1,0 +1,25 @@
+{
+  "tests": 85,
+  "failures": 0,
+  "errors": 0,
+  "plumb_tests": 22,
+  "height_tests": 22,
+  "width_tests": 17,
+  "existing_geometry_tests": 24,
+  "initial_result": "results_r01: preliminary, superseded by results_r02",
+  "verified_result": "results_r02",
+  "rows_different_from_initial": 0,
+  "frames": 6876,
+  "source_output_hashes_verified": true,
+  "geometry_or_size_fit": false,
+  "usable_for_ffb": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_plumb_support_r01/test_plumb_support.py": "c276eead95c876c738c33c305610543c3abafdbe3e32398bf99749dfe029db6b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_height_pinhole_r01/test_known_height.py": "e25d04296288ece0809c34f232434c3e99cd2d8372b7ec3de3ed9069472f4ac8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_size_pinhole_r01/test_known_width.py": "ec2edc9d679a92a9d372c7b846bf2c37c11b7802b4dd2e08e0b8e43b7874b998",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_fisheye_floor_geometry.py": "08981d05554fe73091104bb6918cd4734d05c5cb092016b2e06d4c7220ef5d38",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_ground_contact.py": "240613a2032f18f6910c6e8347e7b32bf44474bb2ce4a45a0497a5cfa8acc965",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_plumb_support_r01/verify.py": "2bc0674390215f55e9315ddb1f5d9ddc59bd1bca23452556f7b62bcbe03f4958"
+  },
+  "test_log_sha256": "038056d2cbc353616ed97bc48d3b29827dfa89acb60fe730b7246fb9d970afa3"
+}

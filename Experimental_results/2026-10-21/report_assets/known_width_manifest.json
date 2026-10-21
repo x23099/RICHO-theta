@@ -1,0 +1,27 @@
+{
+  "assets": [
+    {
+      "source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_size_pinhole_r01/results_r01/known_width_vs_floor.png",
+      "file": "known_width_vs_floor.png",
+      "kind": "numeric graph",
+      "source_sha256": "0c4ab118984b4e1576bb0080d6b9a5b91c6c8e68f207513f7eca9927f6a4d387"
+    },
+    {
+      "source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_size_pinhole_r01/results_r01/occlusion_and_square_yaw.png",
+      "file": "known_width_occlusion_and_yaw.png",
+      "kind": "numeric graph, right panel synthetic",
+      "source_sha256": "a86864e101fa68daca48b0293b480ca87d60642a61797188b3a3b0917dfc9599"
+    },
+    {
+      "source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/paper_cone_2m_validation_r01/raw_samples/paper_cone_f001019.png",
+      "file": "raw_paper_cone_2m_f001019.png",
+      "kind": "unedited native1280x720 camera frame",
+      "source_sha256": "908928eb42382d645100b0b1c6d3b634f6283e7b40714122760c99ba1e3e5e9e"
+    }
+  ],
+  "byte_identical_copies": true,
+  "raw_session": "paper_cone_center_z2p00_r01_20261019_180411_245",
+  "raw_frame": 1019,
+  "raw_manifest": "../../2026-10-19/paper_cone_2m_validation_r01/raw_sample_manifest.csv",
+  "result_provenance": "../cone_known_size_pinhole_r01/results_r01/provenance.json"
+}

@@ -1,0 +1,25 @@
+{
+  "parameters_equal": true,
+  "capture_properties_equal": true,
+  "metadata7": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_paper_reference7_intake_r01/itiawase2_20261015_183552_599/metadata.json",
+  "metadata19": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-19_paper_cone_2m_intake_r01/paper_cone_center_z2p00_r01_20261019_180411_245/metadata.json",
+  "geometry7": {
+    "camera_height": 0.58,
+    "pitch_deg": 1,
+    "roll_deg": 2,
+    "yaw_deg": 0,
+    "radius_scale": 0.86,
+    "front_cx_offset": -80,
+    "front_cy_offset": -21
+  },
+  "geometry19": {
+    "camera_height": 0.58,
+    "pitch_deg": 1,
+    "roll_deg": 2,
+    "yaw_deg": 0,
+    "radius_scale": 0.86,
+    "front_cx_offset": -80,
+    "front_cy_offset": -21
+  },
+  "identical_metadata_does_not_prove_identical_physical_geometry": true
+}

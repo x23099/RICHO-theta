@@ -1,0 +1,56 @@
+{
+  "colour_vertical_proxy": {
+    "evaluation_conditions": 8,
+    "failures": [
+      {
+        "condition": "center_200",
+        "dataset": "static",
+        "bias": 0.13528978939746183,
+        "p95": 0.1387730800370548
+      }
+    ],
+    "decision": "DEFER_UNVERIFIED_HEIGHT_CORRESPONDENCE"
+  },
+  "colour_near_edge_offset_assumption": {
+    "evaluation_conditions": 8,
+    "failures": [
+      {
+        "condition": "left_130",
+        "dataset": "static",
+        "bias": -0.1275464617951203,
+        "p95": 0.1436884827835132
+      }
+    ],
+    "decision": "DEFER_UNVERIFIED_HEIGHT_CORRESPONDENCE"
+  },
+  "bbox_vertical_control": {
+    "evaluation_conditions": 8,
+    "failures": [
+      {
+        "condition": "cone_static",
+        "dataset": "paper_cone_20261019",
+        "bias": null,
+        "p95": null
+      },
+      {
+        "condition": "cone_200",
+        "dataset": "sequence",
+        "bias": -0.18929248845468938,
+        "p95": 0.21328479797385858
+      },
+      {
+        "condition": "center_200",
+        "dataset": "static",
+        "bias": -0.12946819975751078,
+        "p95": 0.15951948742757388
+      },
+      {
+        "condition": "left_130",
+        "dataset": "static",
+        "bias": -0.10640860724027579,
+        "p95": 0.11128615413252393
+      }
+    ],
+    "decision": "DEFER_UNVERIFIED_HEIGHT_CORRESPONDENCE"
+  }
+}
