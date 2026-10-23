@@ -1,0 +1,10 @@
+session,images,usable_estimate_frames,usable_heldout_frames,training_accepted,temporal_validation,metric_eligible,up_optical_json,training_spread_max_deg,heldout_spread_max_deg,conditional_transform_json,reason,usable_for_ffb,prior_up_difference_deg
+cone_static_center_z1p30_r01_20261015_135329_732,22,1,1,False,NO_TRAINING_MODEL,False,,,,,fewer_than_two_usable_estimate_images,False,
+cone_static_center_z2p00_r01_20261015_135414_399,22,0,1,False,NO_TRAINING_MODEL,False,,,,,fewer_than_two_usable_estimate_images,False,
+cone_static_left_z1p30_r01_20261015_135541_436,21,0,1,False,NO_TRAINING_MODEL,False,,,,,fewer_than_two_usable_estimate_images,False,
+cone_static_no_cone_r01_20261015_134940_713,12,1,2,False,NO_TRAINING_MODEL,False,,,,,fewer_than_two_usable_estimate_images,False,
+cone_static_right_z1p30_r01_20261015_135630_973,22,0,1,False,NO_TRAINING_MODEL,False,,,,,fewer_than_two_usable_estimate_images,False,
+floor_cone_same_pose_r01_20261015_160621_378,52,9,8,True,PASS,True,"[-0.020276994723663237, -0.9939946749660693, 0.107533388415296]",0.19376078224621868,1.1556141687444663,"[[-0.06822872999673918, 0.10868049353692746, 0.9917325197489503, 0.0], [-0.9974636253458111, 0.012772488546412995, -0.07002270809046986, 0.0], [-0.020276994723663233, -0.9939946749660693, 0.10753338841529603, 0.59], [0.0, 0.0, 0.0, 1.0]]",conditional_scene_up_with_temporal_check,False,5.163077747374171
+itiawase2_20261015_183552_599,257,0,0,False,NO_TRAINING_MODEL,False,,,,,fewer_than_two_usable_estimate_images,False,
+one_static_center_z0p80_r01_20261015_135155_823,25,1,1,False,NO_TRAINING_MODEL,False,,,,,fewer_than_two_usable_estimate_images,False,
+paper_cone_center_z2p00_r01_20261019_180411_245,59,0,0,False,NO_TRAINING_MODEL,False,,,,,fewer_than_two_usable_estimate_images,False,

@@ -1,0 +1,18 @@
+test_available_examples_selected_by_time_not_distance_error (test_visualizations.VisualizationTests) ... ok
+test_exact_saved_metric_row_and_observed_row_not_nearest_frame (test_visualizations.VisualizationTests) ... ok
+test_input_and_output_hashes_are_unchanged (test_visualizations.VisualizationTests) ... ok
+test_marker_uses_same_frame_native_bottom_not_ground_truth (test_visualizations.VisualizationTests) ... ok
+test_no_live_or_physical_approval_in_metadata (test_visualizations.VisualizationTests) ... ok
+test_numeric_labels_come_from_diagnostic_not_reference_distance (test_visualizations.VisualizationTests) ... ok
+test_original_pngs_match_independent_video_frame_read (test_visualizations.VisualizationTests) ... ok
+test_png_dimensions_and_nonannotated_photo_region_unchanged (test_visualizations.VisualizationTests) ... ok
+test_renderer_refuses_inconsistent_availability (test_visualizations.VisualizationTests) ... ok
+test_svg_embeds_original_bytes_without_modification_or_rescale (test_visualizations.VisualizationTests) ... ok
+test_three_originals_have_native_shape_and_decoded_hash (test_visualizations.VisualizationTests) ... ok
+test_warnings_and_units_are_embedded_in_every_figure (test_visualizations.VisualizationTests) ... ok
+test_withheld_has_no_fabricated_number_or_measurement_marker (test_visualizations.VisualizationTests) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.975s
+
+OK

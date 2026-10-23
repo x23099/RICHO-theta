@@ -1,0 +1,21 @@
+{
+  "status": "EXTRACTED_THREE_UNEDITED_NATIVE_ORIGINALS_FOR_SEPARATE_VISUALIZATION",
+  "work_date": "2026-10-23",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/cone_distance_visual_examples_r01/prepare_frames.py": "be13d8ef8cfe5ed9266e96afea60732005f4eb2b906a25cf3eafb8f3c6e7f524",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/pending_control_r01/pending_control_frame_metrics.csv": "a33a1104380289125b55761ca5f8c13d28f7a39057082057594f0b92099f0b50",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/pending_control_r01/summary.json": "1d13c3eadbee03b9f188cedd2af2a6fa8f28bf460b586a98ff88dd7996ca6c15",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/intake_r01/native_sample_manifest.csv": "1e4bcfa5ae1d1d38e56db082fc81c186e593e30a686515242dfbc276eac5be29",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_height_pinhole_r01/results_r01/observed_pixels.csv": "630a5d66820865ff4e1833eb120957bb1ed2d2c30f849e3ed112ff4f2c24b693",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_floor_cone_same_pose_intake_r01/floor_cone_same_pose_r01_20261015_160621_378/raw.avi": "2a7cb1f97177d3bace9be530c0160326e3ec4331249a0ead6f4d75ebadcdcbe1"
+  },
+  "source_images_edited": false,
+  "post_recording_visualization": true,
+  "physical_output": false,
+  "output_sha256": {
+    "frame_manifest.csv": "777ad4ede6c76c439ebc70bb720746fded005074eda53d40030bcfebc453dbdb",
+    "cone_200_raw_f001333.png": "26dcac82a2cf2f7a406e0cf698412dd7bb112e13ae85babd9850611d4a049781",
+    "cone_130_raw_f000719.png": "01eb69888310c6e9a12ae53b151363de480bfa2684a8bf5dd76bd9424702bf1e",
+    "occlusion_hold_raw_f001134.png": "8e4f6062184eacab59f75798c13a54f104c0c9a24d4ea0db1d9a853605477a10"
+  }
+}

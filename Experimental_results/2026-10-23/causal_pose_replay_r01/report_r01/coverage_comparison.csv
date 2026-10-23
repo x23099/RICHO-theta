@@ -1,0 +1,3 @@
+mode,all_unique_cone_frames,pose_available_frames,diagnostic_frames,historical_offline_diagnostic_frames,overlapping_diagnostic_frames,new_only_diagnostic_frames,physical_metric_verified,usable_for_ffb
+sample_only,6876,14,12,1107,12,0,False,False
+bounded_between_samples_1s,6876,408,377,1107,377,0,False,False

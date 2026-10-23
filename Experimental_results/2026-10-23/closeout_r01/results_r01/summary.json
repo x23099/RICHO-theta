@@ -1,0 +1,356 @@
+{
+  "status": "PASS_DAY_CLOSEOUT",
+  "work_date": "2026-10-23",
+  "newly_rerun_tests": 125,
+  "new_test_groups": [
+    {
+      "folder": "Experimental_results/2026-10-23/metric_eligibility_contract_r01",
+      "pattern": "test_eligibility.py",
+      "tests": 28,
+      "passed": true
+    },
+    {
+      "folder": "Experimental_results/2026-10-23/distance_comparison_evidence_r01",
+      "pattern": "test_comparison.py",
+      "tests": 26,
+      "passed": true
+    },
+    {
+      "folder": "Experimental_results/2026-10-23/causal_pose_replay_r01",
+      "pattern": "test_causal_pose.py",
+      "tests": 34,
+      "passed": true
+    },
+    {
+      "folder": "Experimental_results/2026-10-23/causal_availability_latency_r01",
+      "pattern": "test_latency.py",
+      "tests": 24,
+      "passed": true
+    },
+    {
+      "folder": "Experimental_results/2026-10-23/cone_distance_visual_examples_r01",
+      "pattern": "test_visualizations.py",
+      "tests": 13,
+      "passed": true
+    }
+  ],
+  "reused_unchanged_regression_tests": 197,
+  "regressions_rerun": false,
+  "distinct_tests_with_verified_success": 322,
+  "manifests_checked": 42,
+  "archived_failed_attempts": 2,
+  "manifest_checks": [
+    {
+      "manifest": "Experimental_results/2026-10-22/scene_rejection_audit_r01/report_results_r01/summary.json",
+      "status": "COMPLETED_REJECTION_LEDGER_AND_ROI_CONTROL_NOT_PRODUCTION_ADOPTION",
+      "source_check": "verified",
+      "verified_source_files": 14,
+      "verified_output_files": 7
+    },
+    {
+      "manifest": "Experimental_results/2026-10-22/scene_rejection_audit_r01/results_r02/summary.json",
+      "status": "COMPLETED_FROZEN_RULE_REJECTION_AUDIT_NOT_POSE_RECOVERY",
+      "source_check": "verified",
+      "verified_source_files": 34,
+      "verified_output_files": 8
+    },
+    {
+      "manifest": "Experimental_results/2026-10-22/scene_rejection_audit_r01/roi_probe_results_r01/summary.json",
+      "status": "COMPLETED_ONE_ROI_ABLATION_NOT_PHYSICAL_VERTICAL_OR_DISTANCE_VALIDATION",
+      "source_check": "verified",
+      "verified_source_files": 15,
+      "verified_output_files": 5
+    },
+    {
+      "manifest": "Experimental_results/2026-10-22/scene_rejection_audit_r01/verification_r01/summary.json",
+      "status": "PASS_OFFLINE_REJECTION_AUDIT_AND_ROI_CONTROL",
+      "source_check": "verified",
+      "verified_source_files": 7,
+      "verified_output_files": 1
+    },
+    {
+      "manifest": "Experimental_results/2026-10-22/scene_uniform_validation_r01/intake_r01/summary.json",
+      "status": "PASS_UNIFORM_NATIVE_SAMPLING_NOT_CALIBRATION_APPROVAL",
+      "source_check": "verified",
+      "verified_source_files": 32,
+      "verified_output_files": 3
+    },
+    {
+      "manifest": "Experimental_results/2026-10-22/scene_uniform_validation_r01/metric_results_r01/summary.json",
+      "status": "COMPLETED_METRIC_AND_CAUSAL_QUALITY_COMPARISON",
+      "source_check": "verified",
+      "verified_source_files": 18,
+      "verified_output_files": 5
+    },
+    {
+      "manifest": "Experimental_results/2026-10-22/scene_uniform_validation_r01/pooled_results_r01/summary.json",
+      "status": "COMPLETED_CAPTURE_LOCAL_POOLED_PLANE_DIAGNOSTIC",
+      "source_check": "verified",
+      "verified_source_files": 6,
+      "verified_output_files": 2
+    },
+    {
+      "manifest": "Experimental_results/2026-10-22/scene_uniform_validation_r01/quality_results_r01/summary.json",
+      "status": "COMPLETED_UNCHANGED_CAUSAL_QUALITY_REPLAY",
+      "source_check": "verified",
+      "verified_source_files": 10,
+      "verified_output_files": 4
+    },
+    {
+      "manifest": "Experimental_results/2026-10-22/scene_uniform_validation_r01/scene_results_r01/summary.json",
+      "status": "COMPLETED_FIXED_RULE_UNIFORM_SCENE_DIAGNOSIS",
+      "source_check": "verified",
+      "verified_source_files": 12,
+      "verified_output_files": 4
+    },
+    {
+      "manifest": "Experimental_results/2026-10-22/scene_uniform_validation_r01/verification_r01/summary.json",
+      "status": "PASS_OFFLINE_UNIFORM_REPLAY_TESTS_NOT_HARDWARE_APPROVAL",
+      "source_check": "verified",
+      "verified_source_files": 7,
+      "verified_output_files": 1
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/causal_availability_latency_r01/benchmark_r01/summary.json",
+      "status": "COMPLETED_CLOCK_AUDIT_AND_LOCAL_SCENE_STAGE_BENCHMARK_NOT_LIVE_LATENCY",
+      "source_check": "verified",
+      "verified_source_files": 82,
+      "verified_output_files": 3
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/causal_availability_latency_r01/pending_control_r01/summary.json",
+      "status": "COMPLETED_PENDING_INPUT_HOLD_CONTROL_NOT_PRODUCTION_GATE",
+      "source_check": "verified",
+      "verified_source_files": 5,
+      "verified_output_files": 2
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/causal_availability_latency_r01/report_r01/summary.json",
+      "status": "COMPLETED_LOCAL_COST_AND_AVAILABILITY_PLOT",
+      "source_check": "verified",
+      "verified_source_files": 4,
+      "verified_output_files": 2
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/causal_availability_latency_r01/results_r01/summary.json",
+      "status": "COMPLETED_COMPLETION_AWARE_COUNTERFACTUAL_NOT_END_TO_END_MEASUREMENT",
+      "source_check": "verified",
+      "verified_source_files": 13,
+      "verified_output_files": 6
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/causal_availability_latency_r01/verification_r01/summary.json",
+      "status": "PASS_COMPLETION_AND_PENDING_HOLD_DIAGNOSTICS",
+      "source_check": "verified",
+      "verified_source_files": 8,
+      "verified_output_files": 1
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/causal_pose_replay_r01/report_r01/summary.json",
+      "status": "COMPLETED_CAUSAL_COVERAGE_AND_MATCHED_DISTANCE_REPORT",
+      "source_check": "verified",
+      "verified_source_files": 5,
+      "verified_output_files": 4
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/causal_pose_replay_r01/results_r01/summary.json",
+      "status": "COMPLETED_PAST_ONLY_INPUT_REPLAY_NOT_REALTIME_OR_PHYSICAL_APPROVAL",
+      "source_check": "verified",
+      "verified_source_files": 19,
+      "verified_output_files": 4
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/causal_pose_replay_r01/verification_r01/summary.json",
+      "status": "PASS_CAUSAL_RECORDING_REPLAY_NOT_HARDWARE_APPROVAL",
+      "source_check": "verified",
+      "verified_source_files": 7,
+      "verified_output_files": 1
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/cone_distance_visual_examples_r01/originals_r01/summary.json",
+      "status": "EXTRACTED_THREE_UNEDITED_NATIVE_ORIGINALS_FOR_SEPARATE_VISUALIZATION",
+      "source_check": "verified",
+      "verified_source_files": 6,
+      "verified_output_files": 4
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/cone_distance_visual_examples_r01/verification_r01/summary.json",
+      "status": "PASS_DETERMINISTIC_VISUALIZATION_BINDING",
+      "source_check": "verified",
+      "verified_source_files": 4,
+      "verified_output_files": 1
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/cone_distance_visual_examples_r01/visualizations_r01/summary.json",
+      "status": "CREATED_DETERMINISTIC_POST_RECORDING_DISTANCE_FIGURES_NOT_LIVE_SCREENSHOTS",
+      "source_check": "verified",
+      "verified_source_files": 6,
+      "verified_output_files": 8
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/contour_join_control_r01/report_r01/summary.json",
+      "status": "COMPLETED_SINGLE_VOTE_COMPARISON_NO_PRODUCTION_ADOPTION",
+      "source_check": "verified",
+      "verified_source_files": 7,
+      "verified_output_files": 5
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/contour_join_control_r01/results_r01/summary.json",
+      "status": "COMPLETED_SAME_CONTOUR_SINGLE_VOTE_CONTROL_NOT_METRIC_OR_GATE_ADOPTION",
+      "source_check": "verified",
+      "verified_source_files": 199,
+      "verified_output_files": 8
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/contour_join_control_r01/verification_r01/summary.json",
+      "status": "PASS_OFFLINE_CONTOUR_JOIN_TESTS_NOT_HARDWARE_APPROVAL",
+      "source_check": "verified",
+      "verified_source_files": 11,
+      "verified_output_files": 1
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/distance_comparison_evidence_r01/plots_r01/summary.json",
+      "status": "COMPLETED_NUMERIC_SCOPE_COMPARISON_FIGURE",
+      "source_check": "verified",
+      "verified_source_files": 4,
+      "verified_output_files": 2
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/distance_comparison_evidence_r01/results_r01/summary.json",
+      "status": "COMPLETED_FROZEN_EVIDENCE_STRATIFIED_COMPARISON_NOT_GEOMETRY_OR_CONTROL",
+      "source_check": "verified",
+      "verified_source_files": 15,
+      "verified_output_files": 7
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/distance_comparison_evidence_r01/verification_r01/summary.json",
+      "status": "PASS_EVIDENCE_STRATIFIED_COMPARISON",
+      "source_check": "verified",
+      "verified_source_files": 5,
+      "verified_output_files": 1
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/lower_support_audit_r01/report_r01/summary.json",
+      "status": "COMPLETED_SUPPORT_CONTEXT_AND_ABLATION_REPORT_NOT_GATE_ADOPTION",
+      "source_check": "verified",
+      "verified_source_files": 37,
+      "verified_output_files": 6
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/lower_support_audit_r01/results_r01/summary.json",
+      "status": "COMPLETED_PIXEL_SUPPORT_AND_INDEPENDENCE_DIAGNOSTIC_NOT_GATE_ADOPTION",
+      "source_check": "verified",
+      "verified_source_files": 44,
+      "verified_output_files": 8
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/lower_support_audit_r01/verification_r01/summary.json",
+      "status": "FAIL",
+      "source_check": "archived_failed_attempt_source_checks_not_reused",
+      "verified_source_files": 0,
+      "verified_output_files": 1
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/lower_support_audit_r01/verification_r02/summary.json",
+      "status": "FAIL",
+      "source_check": "archived_failed_attempt_source_checks_not_reused",
+      "verified_source_files": 0,
+      "verified_output_files": 1
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/lower_support_audit_r01/verification_r03/summary.json",
+      "status": "PASS_OFFLINE_SUPPORT_INDEPENDENCE_TESTS_NOT_HARDWARE_APPROVAL",
+      "source_check": "verified",
+      "verified_source_files": 9,
+      "verified_output_files": 1
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/metric_eligibility_contract_r01/plots_r01/summary.json",
+      "status": "COMPLETED_LEGEND_LAYOUT_CORRECTION_ONLY",
+      "source_check": "verified",
+      "verified_source_files": 3,
+      "verified_output_files": 1
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/metric_eligibility_contract_r01/report_r01/summary.json",
+      "status": "COMPLETED_EVIDENCE_AVAILABILITY_REPORT_NOT_ACCURACY_APPROVAL",
+      "source_check": "verified",
+      "verified_source_files": 4,
+      "verified_output_files": 2
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/metric_eligibility_contract_r01/results_r01/summary.json",
+      "status": "COMPLETED_FROZEN_DISTANCE_ELIGIBILITY_AUDIT_NOT_RUNTIME_GATE",
+      "source_check": "verified",
+      "verified_source_files": 20,
+      "verified_output_files": 5
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/metric_eligibility_contract_r01/verification_r01/summary.json",
+      "status": "PASS_OFFLINE_EVIDENCE_TESTS_NOT_RUNTIME_APPROVAL",
+      "source_check": "verified",
+      "verified_source_files": 14,
+      "verified_output_files": 1
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/object_excluded_scene_r01/report_r01/summary.json",
+      "status": "COMPLETED_OBJECT_SUPPORT_EXCLUSION_REPORT_NOT_GATE_ADOPTION",
+      "source_check": "verified",
+      "verified_source_files": 16,
+      "verified_output_files": 5
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/object_excluded_scene_r01/results_r01/summary.json",
+      "status": "COMPLETED_SAVED_OBJECT_BBOX_EXCLUSION_CONTROL_NOT_PRODUCTION_GATE",
+      "source_check": "verified",
+      "verified_source_files": 203,
+      "verified_output_files": 5
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/object_excluded_scene_r01/verification_r01/summary.json",
+      "status": "PASS_OFFLINE_OBJECT_SUPPORT_SCREEN_TESTS_NOT_HARDWARE_APPROVAL",
+      "source_check": "verified",
+      "verified_source_files": 10,
+      "verified_output_files": 1
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/scene_separate_bands_r01/report_r01/summary.json",
+      "status": "COMPLETED_BAND_COMPARISON_AND_23_REPORT_ASSETS",
+      "source_check": "verified",
+      "verified_source_files": 11,
+      "verified_output_files": 4
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/scene_separate_bands_r01/results_r01/summary.json",
+      "status": "COMPLETED_SEPARATE_BAND_CONTROL_NOT_METRIC_OR_HARDWARE_VALIDATION",
+      "source_check": "verified",
+      "verified_source_files": 18,
+      "verified_output_files": 6
+    },
+    {
+      "manifest": "Experimental_results/2026-10-23/scene_separate_bands_r01/verification_r01/summary.json",
+      "status": "PASS_OFFLINE_BAND_COMPARISON_NOT_HARDWARE_APPROVAL",
+      "source_check": "verified",
+      "verified_source_files": 8,
+      "verified_output_files": 1
+    }
+  ],
+  "unique_hashed_files": 490,
+  "compiled_scripts": 58,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/closeout_r01/verify_closeout.py": "68d8312faa61e9362741b641df4fb18c94e42a50169be8c17280b557f624e1db",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/contour_join_control_r01/verification_r01/summary.json": "470ac75aa7653ec064a0070ecf6b829db28ea9cc92ee796caf0aec539676b1ee",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/metric_eligibility_contract_r01/test_eligibility.py": "fc8e05de78198f7560766c020323d0625f163722ca38a87e481a0ce4f3f1b27f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/distance_comparison_evidence_r01/test_comparison.py": "8ff8c9b2a0f2dbdf8ab178fce6020b0841ee673eb555e3a6bc5cd4434363f56b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01/test_causal_pose.py": "142bd04f5199128d6bf4f7f50721320975001c00a0d411505d3da02cc886879c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/test_latency.py": "6e10f50fc7c2c67516d787c9c6b7ceef9743dbc01f71d6c18ce3b423345869ba",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/cone_distance_visual_examples_r01/test_visualizations.py": "6fe151bdaf436e9dc156ce2c70a0b8ed6becd8429e4b08952a4996d367cc83d8"
+  },
+  "output_sha256": {
+    "test_log.txt": "9aa17c09879ee65eeb7f061c945dd0404caf08838e4fd0630ff299abd5bcfe05"
+  },
+  "source_images_edited": false,
+  "production_settings_changed": false,
+  "physical_output": false,
+  "usable_for_ffb": false
+}

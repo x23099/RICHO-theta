@@ -1,0 +1,6 @@
+mode,population,reason,frames,mutually_exclusive,total_population
+sample_only,historical_1107_diagnostic_frames,latest_scene_image_rejected,730,True,1107
+sample_only,historical_1107_diagnostic_frames,no_current_frame_scene_sample,365,True,1107
+sample_only,historical_1107_diagnostic_frames,retained,12,True,1107
+bounded_between_samples_1s,historical_1107_diagnostic_frames,latest_scene_image_rejected,730,True,1107
+bounded_between_samples_1s,historical_1107_diagnostic_frames,retained,377,True,1107

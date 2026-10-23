@@ -1,0 +1,60 @@
+{
+  "status": "COMPLETED_SINGLE_VOTE_COMPARISON_NO_PRODUCTION_ADOPTION",
+  "work_date": "2026-10-23",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/contour_join_control_r01/report.py": "486d740a57cba62098e098404f54869ed76fac0f5ee52ce16e582be30f750263",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/contour_join_control_r01/results_r01/summary.json": "41623ad5306e5e50d895aa86cfa587feac91c098c98c899f38a9d1d305135255",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/contour_join_control_r01/results_r01/image_diagnostics.csv": "2391a238774d2f5493b48198d5411732bf7a6932d7c3dee78cb55286a2387cd4",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/contour_join_control_r01/results_r01/session_hypotheses.csv": "9f610b492945a94d9a584dd58a1609490e03f3c9701c305acc9250e54cd6ef53",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/contour_join_control_r01/results_r01/lower_decisions.csv": "bf17154dfad4b056694dab415cff112c5187e832c98457df26beae288c83be3e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/contour_join_control_r01/results_r01/post_refit_duplicate_votes.csv": "0c77573e3f2eef2f05664a9c823ffe62bcb453920318b5ea0c1805948cb5df91",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_separate_bands_r01/results_r01/image_diagnostics.csv": "2dd0edd49d994f9a5cb35f18bc534f5211fdc042ac063cd9e6afa1c1dec17f1c"
+  },
+  "mode_summary": [
+    {
+      "mode": "object_reference",
+      "accepted_images": 28,
+      "old_27_retained": 27,
+      "old_27_lost": 0,
+      "accepted_not_in_old_27": 1,
+      "temporal_sessions": 1,
+      "metric_accuracy_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "mode": "join_count_only",
+      "accepted_images": 28,
+      "old_27_retained": 27,
+      "old_27_lost": 0,
+      "accepted_not_in_old_27": 1,
+      "temporal_sessions": 1,
+      "metric_accuracy_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "mode": "join_refit",
+      "accepted_images": 24,
+      "old_27_retained": 23,
+      "old_27_lost": 4,
+      "accepted_not_in_old_27": 1,
+      "temporal_sessions": 1,
+      "metric_accuracy_verified": false,
+      "usable_for_ffb": false
+    }
+  ],
+  "decision_counts": {
+    "one_observed_group_join": 180,
+    "no_accepted_continuation": 53,
+    "multiple_lower_candidates_for_owner": 2
+  },
+  "source_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "single_contour_vote_comparison.png": "8092862ead5d243dc1eda6e72b1831d355fc2109556394f81adf8df3d5f250cb",
+    "paired_pose_changes.csv": "231faba542b1703d6134d0898e1ec790c42318809018616f14b5e7cf42ccb8a8",
+    "join_decision_counts.csv": "dc90e0a765cc823361ad6a5ab4d3e349d12a3c8a77ebf372f2399ccdb0181584",
+    "mode_comparison.csv": "4de0d1c09bdd39f28299bbf91747f545336007f0053b9687d15447bcc9802423",
+    "lost_original_acceptances.csv": "5439163e01ce7fd6aa7ae9303ea02496220825d1ff03dcf2189d376e596c0e15"
+  }
+}

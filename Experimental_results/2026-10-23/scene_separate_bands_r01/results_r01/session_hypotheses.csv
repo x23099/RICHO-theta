@@ -1,0 +1,37 @@
+session,mode,images,usable_estimate_frames,usable_heldout_frames,training_accepted,temporal_validation,up_optical_json,training_spread_max_deg,heldout_spread_max_deg,reason,usable_for_ffb,temporal_candidate_eligible
+cone_static_center_z1p30_r01_20261015_135329_732,upper,22,1,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_center_z1p30_r01_20261015_135329_732,lower,22,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_center_z1p30_r01_20261015_135329_732,late_fusion,22,5,3,True,PASS,"[-0.024388724289479382, -0.9988904053476826, 0.04028831383756677]",1.1725310540587264,1.2755283096380967,conditional_scene_up_with_temporal_check,False,True
+cone_static_center_z1p30_r01_20261015_135329_732,independent_agreement,22,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_center_z2p00_r01_20261015_135414_399,upper,22,0,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_center_z2p00_r01_20261015_135414_399,lower,22,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_center_z2p00_r01_20261015_135414_399,late_fusion,22,2,3,True,PASS,"[-0.020915152903910567, -0.9991149529938365, 0.03649475418645828]",0.02836517611395626,1.4264220771280478,conditional_scene_up_with_temporal_check,False,True
+cone_static_center_z2p00_r01_20261015_135414_399,independent_agreement,22,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_left_z1p30_r01_20261015_135541_436,upper,21,0,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_left_z1p30_r01_20261015_135541_436,lower,21,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_left_z1p30_r01_20261015_135541_436,late_fusion,21,0,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_left_z1p30_r01_20261015_135541_436,independent_agreement,21,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_no_cone_r01_20261015_134940_713,upper,12,1,2,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_no_cone_r01_20261015_134940_713,lower,12,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_no_cone_r01_20261015_134940_713,late_fusion,12,2,2,True,PASS,"[-0.03752917951025408, -0.997861080993264, 0.05352404809281342]",0.9788002985282931,0.4010800505062728,conditional_scene_up_with_temporal_check,False,True
+cone_static_no_cone_r01_20261015_134940_713,independent_agreement,12,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_right_z1p30_r01_20261015_135630_973,upper,22,0,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_right_z1p30_r01_20261015_135630_973,lower,22,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_right_z1p30_r01_20261015_135630_973,late_fusion,22,0,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_right_z1p30_r01_20261015_135630_973,independent_agreement,22,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+floor_cone_same_pose_r01_20261015_160621_378,upper,52,9,8,True,PASS,"[-0.020276994723663237, -0.9939946749660693, 0.107533388415296]",0.19376078224621868,1.1556141687444663,conditional_scene_up_with_temporal_check,False,True
+floor_cone_same_pose_r01_20261015_160621_378,lower,52,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+floor_cone_same_pose_r01_20261015_160621_378,late_fusion,52,9,8,True,PASS,"[-0.020276994723663237, -0.9939946749660693, 0.107533388415296]",0.19376078224621868,1.1556141687444663,conditional_scene_up_with_temporal_check,False,True
+floor_cone_same_pose_r01_20261015_160621_378,independent_agreement,52,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+itiawase2_20261015_183552_599,upper,257,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+itiawase2_20261015_183552_599,lower,257,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+itiawase2_20261015_183552_599,late_fusion,257,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+itiawase2_20261015_183552_599,independent_agreement,257,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+one_static_center_z0p80_r01_20261015_135155_823,upper,25,1,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+one_static_center_z0p80_r01_20261015_135155_823,lower,25,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+one_static_center_z0p80_r01_20261015_135155_823,late_fusion,25,8,9,True,PASS,"[-0.0336570668398711, -0.9985882335030853, 0.04109430326607193]",1.7174094961052608,1.4301360384878776,conditional_scene_up_with_temporal_check,False,True
+one_static_center_z0p80_r01_20261015_135155_823,independent_agreement,25,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+paper_cone_center_z2p00_r01_20261019_180411_245,upper,59,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+paper_cone_center_z2p00_r01_20261019_180411_245,lower,59,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+paper_cone_center_z2p00_r01_20261019_180411_245,late_fusion,59,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+paper_cone_center_z2p00_r01_20261019_180411_245,independent_agreement,59,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False

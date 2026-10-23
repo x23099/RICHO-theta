@@ -1,0 +1,9 @@
+session,model,total_frames,offline_diagnostic_frames,diagnostic_withheld_frames,physical_checks_satisfied_frames,own_session_pose_candidate,usable_for_ffb
+cone_static_center_z1p30_r01_20261015_135329_732,uniform_images,651,0,651,0,False,False
+cone_static_center_z2p00_r01_20261015_135414_399,uniform_images,632,0,632,0,False,False
+cone_static_left_z1p30_r01_20261015_135541_436,uniform_images,628,0,628,0,False,False
+cone_static_no_cone_r01_20261015_134940_713,uniform_images,332,0,332,0,False,False
+cone_static_right_z1p30_r01_20261015_135630_973,uniform_images,631,0,631,0,False,False
+floor_cone_same_pose_r01_20261015_160621_378,uniform_images,1547,1107,440,0,True,False
+one_static_center_z0p80_r01_20261015_135155_823,uniform_images,722,0,722,0,False,False
+paper_cone_center_z2p00_r01_20261019_180411_245,uniform_images,1733,0,1733,0,False,False

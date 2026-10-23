@@ -1,0 +1,29 @@
+test_actual_prefix_and_future_direction_poison (test_latency.SavedTests) ... ok
+test_additional_outputs_disclose_pending_rejection (test_latency.SavedTests) ... ok
+test_all_manifests_and_frozen_sources_match (test_latency.SavedTests) ... ok
+test_benchmark_has_three_runs_per_fixed_image (test_latency.SavedTests) ... ok
+test_cost_statistics_reproduce_saved_measurements (test_latency.SavedTests) ... ok
+test_loss_partition_does_not_overlap_or_change_population (test_latency.SavedTests) ... ok
+test_only_completed_events_are_used_and_source_age_not_renewed (test_latency.SavedTests) ... ok
+test_pending_control_is_availability_only_no_new_values (test_latency.SavedTests) ... ok
+test_pending_control_removes_unfinished_rejection_outputs (test_latency.SavedTests) ... ok
+test_pending_counter_is_latest_released_only_not_future (test_latency.SavedTests) ... ok
+test_physical_and_hardware_flags_unchanged (test_latency.SavedTests) ... ok
+test_saved_timing_rows_are_complete_not_new_scene_timing (test_latency.SavedTests) ... ok
+test_three_scenarios_retain_every_frame (test_latency.SavedTests) ... ok
+test_zero_cost_reproduces_causal_reference_exactly (test_latency.SavedTests) ... ok
+test_all_four_proofs_must_finish_before_readiness (test_latency.SchedulingTests) ... ok
+test_decision_clock_strict_and_no_future_frame (test_latency.SchedulingTests) ... ok
+test_duplicate_release_and_invalid_costs_rejected (test_latency.SchedulingTests) ... ok
+test_fifo_wait_and_finish (test_latency.SchedulingTests) ... ok
+test_freshness_uses_original_input_time_not_finish_time (test_latency.SchedulingTests) ... ok
+test_future_poisoned_direction_not_read_before_finish (test_latency.SchedulingTests) ... ok
+test_no_application_before_completion (test_latency.SchedulingTests) ... ok
+test_pending_counters_are_strict (test_latency.SchedulingTests) ... ok
+test_pending_hold_has_no_future_acceptance_input (test_latency.SchedulingTests) ... ok
+test_refusal_not_known_before_finish_and_applied_after (test_latency.SchedulingTests) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 2.175s
+
+OK

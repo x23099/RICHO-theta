@@ -1,0 +1,44 @@
+{
+  "status": "COMPLETED_CAUSAL_COVERAGE_AND_MATCHED_DISTANCE_REPORT",
+  "work_date": "2026-10-23",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01/report.py": "bdcc20ee7e068e214bd2f5fd1657d776c699cfa85d7d7540ee92fcccd4b3ecfd",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01/results_r01/summary.json": "2e2f0de3fcafacbb9ea58631d9b499c0f7205968e1de40661ad4314e0ca397ce",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01/results_r01/frame_metrics.csv": "116d71afe3d2f26f3339bcf9b0b69dab9e45435d260db4600b926f503fc9e1cf",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01/results_r01/scene_events.csv": "5ef634176e3cbc718c2d8685d21ec7b4897d89ddef1466d9d1dd8cb441aaf864",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/metric_results_r01/all_frame_metrics.csv": "eb06ef821ddeb4fb3cb0ba160bd6a245b03f9ace90b51259fba5768f6f885c06"
+  },
+  "coverage": [
+    {
+      "mode": "sample_only",
+      "all_unique_cone_frames": 6876,
+      "pose_available_frames": 14,
+      "diagnostic_frames": 12,
+      "historical_offline_diagnostic_frames": 1107,
+      "overlapping_diagnostic_frames": 12,
+      "new_only_diagnostic_frames": 0,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "mode": "bounded_between_samples_1s",
+      "all_unique_cone_frames": 6876,
+      "pose_available_frames": 408,
+      "diagnostic_frames": 377,
+      "historical_offline_diagnostic_frames": 1107,
+      "overlapping_diagnostic_frames": 377,
+      "new_only_diagnostic_frames": 0,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    }
+  ],
+  "source_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "coverage_comparison.csv": "bbe31e42766bac586892fcc6d3aa87ec2f6283cb4efcc8625956079e30ef76d2",
+    "matched_old_causal.csv": "96bf44c54af8d3287c133b3f666b8973f9a1e61bd622f6a7a1e010cf01cee522",
+    "pose_hold_counts.csv": "d324738a60bf2403c2742b6e3bea6b334483c3937aa174114cbc1bdc0773fa5e",
+    "past_only_pose_and_distance_timeline.png": "62f4c8fe588dc541744d82b5bcc753da9669283cc72d6fc7f34daf1887b58adf"
+  }
+}

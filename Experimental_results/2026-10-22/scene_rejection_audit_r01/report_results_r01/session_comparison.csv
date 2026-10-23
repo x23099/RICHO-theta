@@ -1,0 +1,10 @@
+session,baseline_train_images,baseline_heldout_images,baseline_temporal_pass,probe_train_images,probe_heldout_images,probe_temporal_pass,probe_train_spread_deg,probe_heldout_spread_deg,baseline_kept_plane_observations,baseline_directions_missing_pre_dedup,baseline_directions_missing_after_dedup,baseline_accepted_inlier_observations,accepted_inlier_directions_missing_pre_dedup,accepted_inlier_directions_missing_after_dedup,usable_for_ffb
+cone_static_center_z1p30_r01_20261015_135329_732,1,1,False,11,11,True,0.18058880219133022,0.2110716079213571,212,25,48,12,2,5,False
+cone_static_center_z2p00_r01_20261015_135414_399,0,1,False,10,11,True,0.26681581316239605,0.35007583873242903,206,25,47,6,1,2,False
+cone_static_left_z1p30_r01_20261015_135541_436,0,1,False,5,4,True,1.8733658474994057,0.6390861229782847,192,8,43,6,0,3,False
+cone_static_no_cone_r01_20261015_134940_713,1,2,False,6,6,True,0.2528227009241293,0.3074914452921877,117,4,23,18,1,4,False
+cone_static_right_z1p30_r01_20261015_135630_973,0,1,False,2,0,False,0.5615703379892618,,190,9,36,6,1,2,False
+floor_cone_same_pose_r01_20261015_160621_378,9,8,True,1,0,False,,,632,221,246,102,53,53,False
+itiawase2_20261015_183552_599,0,0,False,0,0,False,,,1508,387,503,0,0,0,False
+one_static_center_z0p80_r01_20261015_135155_823,1,1,False,12,12,True,0.24368515968921386,0.238637643544536,237,50,62,12,4,6,False
+paper_cone_center_z2p00_r01_20261019_180411_245,0,0,False,1,0,False,,,281,51,66,0,0,0,False

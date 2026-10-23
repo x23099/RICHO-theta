@@ -1,0 +1,34 @@
+{
+  "status": "COMPLETED_OBJECT_SUPPORT_EXCLUSION_REPORT_NOT_GATE_ADOPTION",
+  "work_date": "2026-10-23",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/object_excluded_scene_r01/report.py": "2f665d5d99aa26e873e72136740272a7a8f2ce2538bb7e4a42c3bd8e42857c63",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/object_excluded_scene_r01/results_r01/summary.json": "729d258a02a3baa22e2abd30806b9315687d1d3ad271aa1b1ed254007021f95c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/object_excluded_scene_r01/results_r01/image_diagnostics.csv": "060a9e5a0da0ce8a92be0274b7cb041358ae8c0570dc36d0db3671f0a0214800",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/object_excluded_scene_r01/results_r01/session_hypotheses.csv": "f9098ac6373f59f4a9b67102c5f1cd775889a5b270843bd05c635b926e8d4e50",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/object_excluded_scene_r01/results_r01/line_object_overlap.csv": "a2e307bd9b6a8a87c57a6088396d8dc4dffd99e29169682a449602aebf13494e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/object_excluded_scene_r01/results_r01/bbox_coverage.csv": "182e10b91885fd94e0c7e832cd02041ee5b206a3e95fa369bfad991a3b21a940",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/lower_support_audit_r01/results_r01/actual_lower_support.csv": "5dced8edff114a898d253cd7a81d22e23a69f622967f3b1b5db5b26f725c986e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/lower_support_audit_r01/results_r01/lower_inlier_support.csv": "1987a6b10a8ced4d629e4bfd1068f58c23024ea64c8b8bdcc1010617e1dff4a2",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/intake_r01/native_sample_manifest.csv": "1e4bcfa5ae1d1d38e56db082fc81c186e593e30a686515242dfbc276eac5be29",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_support_extent_r01/results_r01/provenance.json": "3d0f946ddff3e8ad3a8a2f6905b4c89305bc9cfd0cd0d7dfd05f4da899b7b45b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/provenance.json": "fa27d6486d8be0f136dda6b044797bd6d9e98da0cb51933e52090b920294a07f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/frames.csv": "0751eb49dbb12d6fc73520c5c450b2a97bbede26d0c2e353ed9da2feac40abe3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/predictions.csv": "6c31f798aec4dd3a65c1fbbe0bd986a3bb65d03d48833f0d4f7fb6e275ea8204",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/inference_r01/provenance.json": "e803e07b54e97b53ef9b05881fa4ba83c9f80d34cddc4ad8b3bb73b964005d6a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/inference_r01/frames.csv": "e8fe6e1e571065fec0bffe2b6237367533594d5fb7ffc3980d756ce2af669a95",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/inference_r01/predictions.csv": "660203d9e53a2ef16e306b0d38dc5d64c3bb48ea25840c6b5d8955f33bb6960a"
+  },
+  "reviewed_new_lower_supports": 26,
+  "new_supports_overlapping_saved_boxes": 8,
+  "source_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "object_and_reference_exclusion.png": "049c215cca108d9da0f4f008559410c056f587faf3d1846616a86b03065f06cb",
+    "previous_new_lower_support_screen.csv": "08204ae9c87c4ed4e432427ad7b1d989577e77d6e573b56a33fe5deb506b6fb3",
+    "paired_images.csv": "4f4a867c463582e40c6564ef268a0890c33f74e1df1cb83b7129c0fde65eaf03",
+    "mode_comparison.csv": "30ca5a51b160628c1ac69a8cd8510e2578c6a8f599a5fd42a3a8651e0518a77a",
+    "sampled_native_boxes.csv": "1c7cb6fdc4690b6807d8f964309f4e64c2f3814769cbbf33f06026f25c6659b0"
+  }
+}

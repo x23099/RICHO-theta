@@ -1,0 +1,64 @@
+{
+  "status": "COMPLETED_REJECTION_LEDGER_AND_ROI_CONTROL_NOT_PRODUCTION_ADOPTION",
+  "work_date": "2026-10-22",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01/results_r02/all_frame_consensus.csv": "c37aef5e8173801fb07ed00bb74a14f398d09c276068c954d84737741833dd91",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01/results_r02/all_frame_plane_residuals.csv": "6d65aea4cea5ccde6c120315f47f92013381bca3ff26cb181e6e649eb1da3be7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01/results_r02/representative_all_pieces.csv": "2599e3ee897f560d323fa9e4966a3f825f60a75ce9376f8ec934ab06612d7a8e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01/results_r02/representative_stage_counts.csv": "6953983c78873b9d9dbe554e7135c022fc8e33bdb556170c3f3144063d4d62a6",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01/results_r02/representative_plan.json": "c19f3a652251b02fce313d4a0560412c46307928da3512ffcff3c32fd2622e37",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01/results_r02/summary.json": "0c030231a25df09faccbc5f66a9f49435aeea6e4eef6eda6175c5a9c8feb001e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01/roi_probe_results_r01/summary.json": "c02cf9effb9f68756a60554b79a0e2eb9a5f4f196092bbb08bb3e299b2cdbca5",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01/roi_probe_results_r01/line_candidates.csv": "fa749548b4cb8394864ccfeff272d1945dd573f55e3187cf9fcb99875176801f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01/roi_probe_results_r01/image_diagnostics.csv": "bd3912a2bf2260627ba4ad0a8583d1c18e4509addf61b6204b8dd19a46a1703c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01/roi_probe_results_r01/session_hypotheses.csv": "6a41ca9836dcd81a027b2e72b93d59cca29f5e6ffb0bc837dc7b0843c23c4cd4",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/scene_results_r01/session_hypotheses.csv": "342783ea200190a164ee556a45cf4eb494bf02d29b846d7695028f978b9abf74",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01/report_results.py": "c9b8665dbd5ccc230f981b50d2b4e97ee6bead09c24783a78d0fe86dd40aa4ae",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000152.png": "e2f901f5b7a6bf29fa74d94c0840f288ef9831bc6e453d1ec4ce550a497f847e",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/paper_cone_center_z2p00_r01_20261019_180411_245/raw_f000421.png": "3858b508eef5ad0ae6b808be2a8f800683dab1d06912c0eb354eee6dcfa043d8"
+  },
+  "source_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "plane_direction_matches_are_physical_correspondences": false,
+  "native_assets": [
+    {
+      "file": "native_static_130_f000152.png",
+      "session": "cone_static_center_z1p30_r01_20261015_135329_732",
+      "frame": 152,
+      "source": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000152.png",
+      "sha256": "e2f901f5b7a6bf29fa74d94c0840f288ef9831bc6e453d1ec4ce550a497f847e",
+      "image_edited": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "file": "native_oct19_paper_cone_f000421.png",
+      "session": "paper_cone_center_z2p00_r01_20261019_180411_245",
+      "frame": 421,
+      "source": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/paper_cone_center_z2p00_r01_20261019_180411_245/raw_f000421.png",
+      "sha256": "3858b508eef5ad0ae6b808be2a8f800683dab1d06912c0eb354eee6dcfa043d8",
+      "image_edited": false,
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "representative_piece_reasons": {
+    "accepted_plane": 155,
+    "duplicate_ray_plane": 721,
+    "fewer_than_30_actual_edge_points": 8340,
+    "not_steep_enough_in_native_coordinates": 106,
+    "native_y_span_under_60": 12
+  },
+  "baseline_temporal_passes": 1,
+  "probe_temporal_passes": 5,
+  "output_sha256": {
+    "plane_direction_retention.csv": "583b17ee7a9aae90a73de624a44e2e415ea2f209a1a862ef6fbfa7994e89fc35",
+    "session_comparison.csv": "fe5131f7a05d227a35991a7d800d469ac04726f1161743120f55902c7b2eb831",
+    "native_static_130_f000152.png": "e2f901f5b7a6bf29fa74d94c0840f288ef9831bc6e453d1ec4ce550a497f847e",
+    "representative_piece_reasons.csv": "efb4e32002756a44df7ad21776cd4de5af7673838fc081d4c88f73d2e87911b7",
+    "extraction_and_consensus_stages.png": "49906ea840c8a1508c4aff83c14674cca943c3155cc0f1907f23a9fe2352f51e",
+    "native_oct19_paper_cone_f000421.png": "3858b508eef5ad0ae6b808be2a8f800683dab1d06912c0eb354eee6dcfa043d8",
+    "rejection_and_roi_control.png": "f5722a5299ed94dd086166fe28be6429f199ab1c5fd8f06c695ae6339eda17b3"
+  }
+}

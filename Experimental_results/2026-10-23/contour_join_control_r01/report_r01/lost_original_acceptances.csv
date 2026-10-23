@@ -1,0 +1,5 @@
+session,frame,role,mode,baseline_accepted,joined_accepted,joined_reason,original_upper_accepted,direction_delta_deg,metric_accuracy_verified,usable_for_ffb
+cone_static_left_z1p30_r01_20261015_135541_436,360,heldout,join_refit,True,False,insufficient_consensus,True,,False,False
+cone_static_no_cone_r01_20261015_134940_713,152,estimate,join_refit,True,False,insufficient_consensus,True,,False,False
+cone_static_no_cone_r01_20261015_134940_713,272,heldout,join_refit,True,False,insufficient_consensus,True,,False,False
+cone_static_no_cone_r01_20261015_134940_713,332,heldout,join_refit,True,False,insufficient_consensus,True,,False,False

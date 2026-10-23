@@ -1,0 +1,58 @@
+{
+  "work_date": "2026-10-23",
+  "includes_previous_20261022_work_by_user_request": true,
+  "assets": [
+    {
+      "file": "distance_quality_and_pose_sensitivity.png",
+      "kind": "numeric_plot",
+      "source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/plots_r01/metric_quality_and_pose_sensitivity.png",
+      "sha256": "7672277496fc9b2ed55d27d5eaa77327fd336d70d359461dbc9e545faafc58cb"
+    },
+    {
+      "file": "rejection_and_wide_roi_control.png",
+      "kind": "numeric_plot",
+      "source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01/report_results_r01/rejection_and_roi_control.png",
+      "sha256": "f5722a5299ed94dd086166fe28be6429f199ab1c5fd8f06c695ae6339eda17b3"
+    },
+    {
+      "file": "separate_bands_comparison.png",
+      "kind": "numeric_plot",
+      "source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_separate_bands_r01/report_r01/separate_bands_comparison.png",
+      "sha256": "6e4d6fd08aba957ee0288a9efd172c4979a0a046ece82dd4d1458e0a5464e53c"
+    },
+    {
+      "file": "raw_sequence_f000780.png",
+      "kind": "native_camera",
+      "source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/report_assets/raw_sequence_f000780.png",
+      "sha256": "f2a125ac305af56ff472c896c07bb4dd9c6d0bdad26aefeee1d75c2b1a373da7",
+      "session": "floor_cone_same_pose_r01_20261015_160621_378",
+      "frame": 780,
+      "time_sec": 26.058637,
+      "capture_date": "2026-10-15",
+      "width": 1280,
+      "height": 720,
+      "image_edited": false
+    }
+  ],
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_separate_bands_r01/results_r01/image_diagnostics.csv": "2dd0edd49d994f9a5cb35f18bc534f5211fdc042ac063cd9e6afa1c1dec17f1c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_separate_bands_r01/results_r01/session_hypotheses.csv": "b74be081acd73f2678e6741526c75bbdb2d81b377b71df5db8f27c2d5614340e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_separate_bands_r01/results_r01/summary.json": "a4559ac516b92df41a5e32876bb7bd1de5c31972dc9843b0ce421f89ad12d177",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01/roi_probe_results_r01/image_diagnostics.csv": "bd3912a2bf2260627ba4ad0a8583d1c18e4509addf61b6204b8dd19a46a1703c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01/roi_probe_results_r01/session_hypotheses.csv": "6a41ca9836dcd81a027b2e72b93d59cca29f5e6ffb0bc837dc7b0843c23c4cd4",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_separate_bands_r01/report.py": "d5f68b4af392f61dfca0084fd9d682cd0c900c279ceaa5d5077818323b018b40",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/report_assets/manifest.json": "2f51f63e3fd8980a955c25522eeceb66e54f837db2c378621d3f78de42733697",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/plots_r01/metric_quality_and_pose_sensitivity.png": "7672277496fc9b2ed55d27d5eaa77327fd336d70d359461dbc9e545faafc58cb",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01/report_results_r01/rejection_and_roi_control.png": "f5722a5299ed94dd086166fe28be6429f199ab1c5fd8f06c695ae6339eda17b3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_separate_bands_r01/report_r01/separate_bands_comparison.png": "6e4d6fd08aba957ee0288a9efd172c4979a0a046ece82dd4d1458e0a5464e53c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/report_assets/raw_sequence_f000780.png": "f2a125ac305af56ff472c896c07bb4dd9c6d0bdad26aefeee1d75c2b1a373da7"
+  },
+  "source_images_edited": false,
+  "physical_output": false,
+  "output_sha256": {
+    "distance_quality_and_pose_sensitivity.png": "7672277496fc9b2ed55d27d5eaa77327fd336d70d359461dbc9e545faafc58cb",
+    "rejection_and_wide_roi_control.png": "f5722a5299ed94dd086166fe28be6429f199ab1c5fd8f06c695ae6339eda17b3",
+    "separate_bands_comparison.png": "6e4d6fd08aba957ee0288a9efd172c4979a0a046ece82dd4d1458e0a5464e53c",
+    "raw_sequence_f000780.png": "f2a125ac305af56ff472c896c07bb4dd9c6d0bdad26aefeee1d75c2b1a373da7"
+  }
+}

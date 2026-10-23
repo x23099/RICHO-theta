@@ -1,0 +1,17 @@
+model,session,point_id,estimated,reference_x_m,reference_z_m,z_forward_m,x_right_m,reason,usable_for_ffb
+uniform_images,itiawase2_20261015_183552_599,C080,False,0.0,0.8,,,no_own_session_checked_pose,False
+uniform_images,itiawase2_20261015_183552_599,C130,False,0.0,1.3,,,no_own_session_checked_pose,False
+uniform_images,itiawase2_20261015_183552_599,C200,False,0.0,2.0,,,no_own_session_checked_pose,False
+uniform_images,itiawase2_20261015_183552_599,L130,False,-0.4,1.3,,,no_own_session_checked_pose,False
+uniform_images,itiawase2_20261015_183552_599,R130,False,0.4,1.3,,,no_own_session_checked_pose,False
+uniform_images,itiawase2_20261015_183552_599,H100,False,0.0,1.0,,,no_own_session_checked_pose,False
+uniform_images,itiawase2_20261015_183552_599,H160,False,0.0,1.6,,,no_own_session_checked_pose,False
+uniform_images,paper_cone_center_z2p00_r01_20261019_180411_245,paper_cone_2m,False,0.0,2.0,,,no_own_session_checked_pose,False
+pooled_planes,itiawase2_20261015_183552_599,C080,False,0.0,0.8,,,no_own_session_checked_pose,False
+pooled_planes,itiawase2_20261015_183552_599,C130,False,0.0,1.3,,,no_own_session_checked_pose,False
+pooled_planes,itiawase2_20261015_183552_599,C200,False,0.0,2.0,,,no_own_session_checked_pose,False
+pooled_planes,itiawase2_20261015_183552_599,L130,False,-0.4,1.3,,,no_own_session_checked_pose,False
+pooled_planes,itiawase2_20261015_183552_599,R130,False,0.4,1.3,,,no_own_session_checked_pose,False
+pooled_planes,itiawase2_20261015_183552_599,H100,False,0.0,1.0,,,no_own_session_checked_pose,False
+pooled_planes,itiawase2_20261015_183552_599,H160,False,0.0,1.6,,,no_own_session_checked_pose,False
+pooled_planes,paper_cone_center_z2p00_r01_20261019_180411_245,paper_cone_2m,False,0.0,2.0,,,no_own_session_checked_pose,False

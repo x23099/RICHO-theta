@@ -1,0 +1,53 @@
+{
+  "work_date": "2026-10-22",
+  "assets": [
+    {
+      "file": "metric_quality_and_pose_sensitivity.png",
+      "source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/plots_r01/metric_quality_and_pose_sensitivity.png",
+      "sha256": "7672277496fc9b2ed55d27d5eaa77327fd336d70d359461dbc9e545faafc58cb",
+      "kind": "numerical_plot"
+    },
+    {
+      "file": "occlusion_measurement_withholding.png",
+      "source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/plots_r01/occlusion_measurement_withholding.png",
+      "sha256": "f7630cfc54bbd0b040c403e537aaf454c5b7bca616adfc5a6fcf42ff4585946b",
+      "kind": "numerical_plot"
+    },
+    {
+      "file": "scene_evidence_coverage.png",
+      "source": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/plots_r01/scene_evidence_coverage.png",
+      "sha256": "7d3f5e89c995b53dd6b6cb4a18d49dffa2311f53f31a382093680060d8f9a755",
+      "kind": "numerical_plot"
+    },
+    {
+      "file": "raw_sequence_f000780.png",
+      "source": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000780.png",
+      "sha256": "f2a125ac305af56ff472c896c07bb4dd9c6d0bdad26aefeee1d75c2b1a373da7",
+      "kind": "native_camera",
+      "session": "floor_cone_same_pose_r01_20261015_160621_378",
+      "frame": 780,
+      "time_sec": 26.058637,
+      "width": 1280,
+      "height": 720,
+      "image_edited": false
+    }
+  ],
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/metric_results_r01/condition_summary.csv": "b2eb07920f02357f02785d0ccd12a160c9add16d848fcf78820249e6ae9db3e7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/metric_results_r01/occlusion_comparison.csv": "6ae69b2daac75a5d99b37e91bc743c0434a7ccae5fb9bb02757a3ab2040637be",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/quality_results_r01/occlusion_recovery.csv": "fff55605f37aacb7525a932607dcb3b66a1336026a56430a45f75829ad1595d8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/metric_results_r01/empirical_pose_sensitivity.csv": "0faf23065760b7485cbc263ee0d3563bb6c05e6edb7a02b91d71046b82bf0576",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/intake_r01/native_sample_manifest.csv": "1e4bcfa5ae1d1d38e56db082fc81c186e593e30a686515242dfbc276eac5be29",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/scene_results_r01/session_hypotheses.csv": "342783ea200190a164ee556a45cf4eb494bf02d29b846d7695028f978b9abf74",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/pooled_results_r01/session_hypotheses.csv": "f46a18e51ca1ca5285a9c98d29dca8e468a6cbde5c2c4ed7c5d38cd2d6ddf69f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/plot_results.py": "b106628d16069ee5e198f48af6ec1c2b2d822d669beb7d539073f04382504580",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000780.png": "f2a125ac305af56ff472c896c07bb4dd9c6d0bdad26aefeee1d75c2b1a373da7"
+  },
+  "source_camera_image_edited": false,
+  "physical_output": false,
+  "output_sha256": {
+    "occlusion_measurement_withholding.png": "f7630cfc54bbd0b040c403e537aaf454c5b7bca616adfc5a6fcf42ff4585946b",
+    "scene_evidence_coverage.png": "7d3f5e89c995b53dd6b6cb4a18d49dffa2311f53f31a382093680060d8f9a755",
+    "metric_quality_and_pose_sensitivity.png": "7672277496fc9b2ed55d27d5eaa77327fd336d70d359461dbc9e545faafc58cb"
+  }
+}

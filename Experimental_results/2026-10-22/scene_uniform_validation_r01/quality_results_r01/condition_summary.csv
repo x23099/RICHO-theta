@@ -1,0 +1,16 @@
+dataset,condition,frames,quality_accepted,reasons,usable_for_ffb
+paper_cone_20261019,cone_static,299,299,"{""temporally_consistent_IMAGE_support_NOT_verified_floor_contact"": 299}",False
+paper_cone_20261019,paper_after,240,0,"{""unavailable_support:no_red_component"": 240}",False
+paper_cone_20261019,paper_before,391,0,"{""unavailable_support:no_red_component"": 391}",False
+paper_cone_20261019,transition,803,283,"{""unavailable_support:no_red_component"": 457, ""unavailable_support:red_roi_edge_truncation"": 30, ""support_confirmation_pending"": 4, ""temporally_consistent_IMAGE_support_NOT_verified_floor_contact"": 283, ""abrupt_lower_boundary_y_change"": 29}",False
+sequence,cone_130,218,218,"{""temporally_consistent_IMAGE_support_NOT_verified_floor_contact"": 218}",False
+sequence,cone_200,548,533,"{""temporally_consistent_IMAGE_support_NOT_verified_floor_contact"": 533, ""abrupt_support_width_change"": 3, ""no_candidate"": 7, ""support_confirmation_pending"": 4, ""abrupt_support_endpoint_change"": 1}",False
+sequence,floor_before,300,0,"{""no_candidate"": 300}",False
+sequence,move_transition,219,188,"{""temporally_consistent_IMAGE_support_NOT_verified_floor_contact"": 188, ""abrupt_lower_boundary_y_change"": 5, ""unavailable_support:colour_contour_reaches_roi_edge"": 24, ""support_confirmation_pending"": 2}",False
+sequence,placement_transition,262,168,"{""no_candidate"": 47, ""support_confirmation_pending"": 12, ""temporally_consistent_IMAGE_support_NOT_verified_floor_contact"": 168, ""unavailable_support:colour_contour_reaches_roi_edge"": 27, ""abrupt_support_endpoint_change"": 8}",False
+static,center_080,722,608,"{""support_confirmation_pending"": 74, ""unavailable_support:colour_contour_reaches_roi_edge"": 40, ""temporally_consistent_IMAGE_support_NOT_verified_floor_contact"": 608}",False
+static,center_130,651,649,"{""support_confirmation_pending"": 2, ""temporally_consistent_IMAGE_support_NOT_verified_floor_contact"": 649}",False
+static,center_200,632,630,"{""support_confirmation_pending"": 2, ""temporally_consistent_IMAGE_support_NOT_verified_floor_contact"": 630}",False
+static,left_130,628,605,"{""support_confirmation_pending"": 16, ""temporally_consistent_IMAGE_support_NOT_verified_floor_contact"": 605, ""unavailable_support:colour_contour_reaches_roi_edge"": 7}",False
+static,none,332,0,"{""no_candidate"": 332}",False
+static,right_130,631,617,"{""support_confirmation_pending"": 9, ""temporally_consistent_IMAGE_support_NOT_verified_floor_contact"": 617, ""unavailable_support:colour_contour_reaches_roi_edge"": 2, ""ambiguous_candidates"": 3}",False

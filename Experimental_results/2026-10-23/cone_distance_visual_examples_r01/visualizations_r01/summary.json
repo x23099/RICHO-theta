@@ -1,0 +1,29 @@
+{
+  "status": "CREATED_DETERMINISTIC_POST_RECORDING_DISTANCE_FIGURES_NOT_LIVE_SCREENSHOTS",
+  "work_date": "2026-10-23",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/cone_distance_visual_examples_r01/render_examples.py": "8b5afddd444fc9ae7745884781a122610aff0e89de4bbc226378bdebbdca4b30",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/cone_distance_visual_examples_r01/originals_r01/summary.json": "2c974299a34456ec3efa96c846d0f826f809b06605542d51c281bec696edf3f7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/cone_distance_visual_examples_r01/originals_r01/frame_manifest.csv": "777ad4ede6c76c439ebc70bb720746fded005074eda53d40030bcfebc453dbdb",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/cone_distance_visual_examples_r01/originals_r01/cone_130_raw_f000719.png": "01eb69888310c6e9a12ae53b151363de480bfa2684a8bf5dd76bd9424702bf1e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/cone_distance_visual_examples_r01/originals_r01/occlusion_hold_raw_f001134.png": "8e4f6062184eacab59f75798c13a54f104c0c9a24d4ea0db1d9a853605477a10",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/cone_distance_visual_examples_r01/originals_r01/cone_200_raw_f001333.png": "26dcac82a2cf2f7a406e0cf698412dd7bb112e13ae85babd9850611d4a049781"
+  },
+  "visualizations": 3,
+  "original_images_edited": false,
+  "derived_analysis_figures": true,
+  "ai_image_generation_used": false,
+  "svg_embeds_original_png_bytes": true,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "cone_130_distance_f000719.png": "0d822154f563ae94d78d47b3661c16a85e710a1cc076e52fd3130643fd2e9f95",
+    "index.html": "1a0aeef316779ebd533ba74b6adb7396addc888aabb119c35bf4e3fd17064b2d",
+    "occlusion_hold_distance_f001134.svg": "0070f3a43a5161edf5883ed2c9b252843aaa364ee592bd1e5837f05adae3ccce",
+    "cone_200_distance_f001333.svg": "f24715faf04630a9e0f867687fd7348d19c13e784a6247224edc88a145b97c5b",
+    "occlusion_hold_distance_f001134.png": "02e229986f60e91d2ffae0db21da871297654a2194cf71bb74ce59722f1ea724",
+    "visualization_manifest.csv": "5d96158089bbebc017f6307eb34c554b8a7d43dc66681b423e18b73a360c5612",
+    "cone_200_distance_f001333.png": "d8c928329c9b03431aa78580710adcb98f8728ce267d3cb413929b42fa0cb492",
+    "cone_130_distance_f000719.svg": "69d16c1f027531524da78b7a8444f94e60374a6b3702a0a7b1fbe5808d580420"
+  }
+}

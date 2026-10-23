@@ -1,0 +1,39 @@
+test_all_frames_and_scene_observations_retained (test_causal_pose.RecordedReplayTests) ... ok
+test_current_quality_rejection_cannot_be_bypassed (test_causal_pose.RecordedReplayTests) ... ok
+test_every_used_proof_is_at_or_before_current_frame (test_causal_pose.RecordedReplayTests) ... ok
+test_first_readiness_uses_first_two_plus_next_two_images (test_causal_pose.RecordedReplayTests) ... ok
+test_future_direction_poison_does_not_affect_current_prefix (test_causal_pose.RecordedReplayTests) ... ok
+test_known_occlusion_held_and_current_observation_recovers (test_causal_pose.RecordedReplayTests) ... ok
+test_no_distance_when_scene_not_available_even_with_colour (test_causal_pose.RecordedReplayTests) ... ok
+test_nothing_before_initialization_retroactively_emitted (test_causal_pose.RecordedReplayTests) ... ok
+test_physical_flags_and_no_imputation (test_causal_pose.RecordedReplayTests) ... ok
+test_pose_proof_age_and_same_frame_modes (test_causal_pose.RecordedReplayTests) ... ok
+test_prefix_replay_unchanged_by_truncating_future (test_causal_pose.RecordedReplayTests) ... ok
+test_recordings_without_initialization_remain_withheld (test_causal_pose.RecordedReplayTests) ... ok
+test_single_frame_feature_replay_matches_frozen_result (test_causal_pose.RecordedReplayTests) ... ok
+test_source_and_output_hashes (test_causal_pose.RecordedReplayTests) ... ok
+test_split_roles_and_distance_labels_never_enter_state_machine (test_causal_pose.RecordedReplayTests) ... ok
+test_static_conditional_coverage_not_30fps_claim (test_causal_pose.RecordedReplayTests) ... ok
+test_candidate_not_updated_by_future_reconfirmation (test_causal_pose.StateTests) ... ok
+test_duplicate_or_reversed_features_refused (test_causal_pose.StateTests) ... ok
+test_input_vectors_are_copied (test_causal_pose.StateTests) ... ok
+test_invalid_images_do_not_count_as_validation (test_causal_pose.StateTests) ... ok
+test_no_output_before_four_distinct_images (test_causal_pose.StateTests) ... ok
+test_one_second_exact_boundary_included_beyond_refused (test_causal_pose.StateTests) ... ok
+test_query_cannot_precede_observation (test_causal_pose.StateTests) ... ok
+test_reconfirmation_can_resume_but_does_not_reissue_old_distance (test_causal_pose.StateTests) ... ok
+test_recordings_do_not_share_state (test_causal_pose.StateTests) ... ok
+test_rejected_direction_and_implicit_flags_refused (test_causal_pose.StateTests) ... ok
+test_rejected_frames_keep_past_initialization_evidence_not_live_output (test_causal_pose.StateTests) ... ok
+test_rejected_scene_blocks_even_within_ttl (test_causal_pose.StateTests) ... ok
+test_sample_only_never_uses_pose_from_previous_frame (test_causal_pose.StateTests) ... ok
+test_synthetic_ready_is_not_physical_or_ffb_approval (test_causal_pose.StateTests) ... ok
+test_training_disagreement_restarts_before_validation (test_causal_pose.StateTests) ... ok
+test_two_training_and_two_later_validation_not_reused (test_causal_pose.StateTests) ... ok
+test_unknown_mode_and_nonunit_direction_refused (test_causal_pose.StateTests) ... ok
+test_valid_but_disagreeing_direction_restarts (test_causal_pose.StateTests) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 3.154s
+
+OK

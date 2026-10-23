@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETED_LOCAL_COST_AND_AVAILABILITY_PLOT",
+  "work_date": "2026-10-23",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/report.py": "69745e57223a29e44a355aa6d66013e5b7e7a6ee519b3f8b7564e9551e45ba32",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/benchmark_r01/summary.json": "b9cdf809c8ea3c3268870cecd38bf96af59a38d97553d3407c0e7005c7fef70e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/results_r01/summary.json": "78e486a8e82642d2c34cb3546d97c8746b1d0130f42f3a16e645fd2717a7c9d5",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/pending_control_r01/summary.json": "1d13c3eadbee03b9f188cedd2af2a6fa8f28bf460b586a98ff88dd7996ca6c15"
+  },
+  "source_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "local_scene_cost_and_availability.png": "b11c6bc43409c6ab23136fb87f50c2b2eeb31148c7143e6c03b9d514b645e04f",
+    "availability_chart_values.csv": "e9bfbc312c10c62ab2a39664e6aa24fa8f0965f6138762670d68e9d2dd47ea53"
+  }
+}

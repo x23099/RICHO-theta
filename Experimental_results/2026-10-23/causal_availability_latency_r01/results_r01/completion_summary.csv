@@ -1,0 +1,4 @@
+scenario,frames,diagnostic_frames,retained_from_zero_service,lost_from_zero_service,additional_vs_zero_service,outputs_with_newer_unfinished_rejection,max_queue_wait_sec,initialization_source_time_sec,initialization_completion_time_sec,initialization_first_query_time_sec,cone_query_compute_cost_simulated,physical_metric_verified,usable_for_ffb
+zero_service_reference,1547,377,377,0,0,0,0.0,10.057164,10.057164,10.057164,False,False,False
+local_three_pass_median,1547,271,268,109,3,3,0.0,10.057164,10.344121411,10.373905,False,False,False
+local_three_pass_observed_max,1547,264,261,116,3,3,0.0,10.057164,10.345316813,10.373905,False,False,False

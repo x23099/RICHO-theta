@@ -1,0 +1,5 @@
+requirement,status,evidence_basis,proof_inferred_from_small_fit_error
+operational_intrinsics_acceptance_unverified,UNVERIFIED_IN_CURRENT_ARTIFACTS,"/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json : offline candidate, not an operational acceptance record",False
+recording_specific_extrinsics_unverified,UNVERIFIED_IN_CURRENT_ARTIFACTS,/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json : physical_transform_independently_measured=false; scene up is conditional,False
+physical_floor_contact_unverified,UNVERIFIED_IN_CURRENT_ARTIFACTS,/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/metric_results_r01/all_frame_metrics.csv : floor_contact_verified=false,False
+distance_uncertainty_budget_unverified,UNVERIFIED_IN_CURRENT_ARTIFACTS,"/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/metric_results_r01/empirical_pose_sensitivity.csv : empirical scenarios, not confidence bounds",False

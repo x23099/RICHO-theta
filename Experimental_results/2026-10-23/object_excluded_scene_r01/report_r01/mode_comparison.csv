@@ -1,0 +1,5 @@
+mode,total_images,images_with_saved_bbox_stream,accepted_all_images,accepted_common_176_images,temporal_candidate_sessions,bbox_stream_unsupported_images,usable_for_ffb
+original_fusion,492,176,53,53,5,316,False
+object_screen,492,176,49,49,5,316,False
+reference_screen,492,176,36,36,2,316,False
+object_and_reference,492,176,28,28,1,316,False

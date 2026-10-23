@@ -1,0 +1,34 @@
+{
+  "status": "COMPLETED_FIXED_RULE_UNIFORM_SCENE_DIAGNOSIS",
+  "work_date": "2026-10-22",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/intake_r01/native_sample_manifest.csv": "1e4bcfa5ae1d1d38e56db082fc81c186e593e30a686515242dfbc276eac5be29",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/intake_r01/summary.json": "28525157682c8fffd4c9dc0b59bfa63f7963965eaa02bfbfd70c1552a1694778",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/intake_r01/sampling_plan.json": "0ef0c792f8e2d95d7f86cfcf85f128e7aa04bcbd7f27fbb1583db8b8d3798956",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/method.md": "b536909970057f5108b099ee405df0bb652f0990e622445d3c5928bba376821b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/analyze_scenes.py": "fde48283f750ee665c9f8903db6d90acd19360d01fdad4d8eec9610ca7f5c0cc",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/scene_geometry.py": "b33d73c7cb73fff06e9ad0fa49644b64d7302d86b04fbd4561bfd714a5d74992",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/curve_geometry.py": "9f217a7ff124a6b9df23557b4d3e2f15740a984e55d917382ec5ccf29c3eb293",
+    "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+    "/home/robo25/theta_ws/RICHO-theta/src/fisheye_floor_geometry.py": "b012f42743d155aa675a43dbb0c1dc86d11f1586da61b38b2938e59d30470419",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_dataset.py": "cbe4001c7f79ff910a991f2e456d0fb130c136045f11cf69c030877d92d6ed3f"
+  },
+  "sampled_images": 492,
+  "accepted_image_hypotheses": 27,
+  "sessions": 9,
+  "training_models": 1,
+  "temporally_checked_models": 1,
+  "metric_labels_used_for_pose": false,
+  "original_images_edited": false,
+  "production_settings_changed": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "session_hypotheses.csv": "342783ea200190a164ee556a45cf4eb494bf02d29b846d7695028f978b9abf74",
+    "line_candidates.csv": "12c4ede45a4347b3be4fff32c2db5c1e566b29c39e09c9fec1ccc6224afc4830",
+    "run_spec.json": "c3c866117efd65559d575966d9920e07771c0a84f63be64f7bffad794dbf7b71",
+    "image_diagnostics.csv": "ed304e611bf92e7d2a4ed196e7349d494a60290e2a15c395f7891d698d88ab38"
+  }
+}

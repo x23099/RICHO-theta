@@ -1,0 +1,10 @@
+model,source_location_role,evidence_scope,points,actual_model_fit_points,planar_rmse_m,maximum_abs_z_error_m,physical_metric_verified,usable_for_ffb
+ideal59_nominal,fit,five_reference_locations_no_fit,5,0,0.49585507002060314,0.8636472572367393,False,False
+ideal59_nominal,same_recording_holdout,same_recording_two_unused_locations,2,0,0.397975082342061,0.5161314816697238,False,False
+ideal59_nominal,cross_recording_not_fitted,cross_recording_single_location,1,0,1.5780583854723016,1.5692269929593703,False,False
+angular_nominal,fit,five_reference_locations_no_fit,5,0,0.10380706675018046,0.08917890596300992,False,False
+angular_nominal,same_recording_holdout,same_recording_two_unused_locations,2,0,0.09705708020763577,0.04915476695757359,False,False
+angular_nominal,cross_recording_not_fitted,cross_recording_single_location,1,0,0.2188282588601526,0.1932938692567867,False,False
+angular_paper5_rotation,fit,fit_residual,5,5,0.023625453044429787,0.04147354582621143,False,False
+angular_paper5_rotation,same_recording_holdout,same_recording_two_unused_locations,2,0,0.021663233195895047,0.025901052206931063,False,False
+angular_paper5_rotation,cross_recording_not_fitted,cross_recording_single_location,1,0,0.25216844603325744,0.24750932475615128,False,False

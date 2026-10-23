@@ -1,0 +1,54 @@
+{
+  "status": "COMPLETED_PENDING_INPUT_HOLD_CONTROL_NOT_PRODUCTION_GATE",
+  "work_date": "2026-10-23",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/pending_hold_control.py": "74b27d0582dce604ff9a970f5f72985712a495f96e91568003456f069abaa3b7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/pending_hold_method.md": "adf03dfc8fae21e43d5ed25d98245a6b0bb5cfb1e1949c66f1a0249d99f50dcd",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/results_r01/summary.json": "78e486a8e82642d2c34cb3546d97c8746b1d0130f42f3a16e645fd2717a7c9d5",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/results_r01/completion_frame_metrics.csv": "70cddd88088dc49b59a69d81a46516d8d7e812fe79dcbcea548e41c80c0c5803",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/results_r01/scene_job_schedule.csv": "0d9693acf22a74468c17c111820afd19368959b0fb58c38f2f66cb0c5476b94d"
+  },
+  "summaries": [
+    {
+      "scenario": "local_three_pass_median",
+      "frames": 1547,
+      "before_control_diagnostic_frames": 271,
+      "after_control_diagnostic_frames": 265,
+      "diagnostic_frames_removed": 6,
+      "outputs_with_newer_unfinished_rejection": 0,
+      "new_values_computed": false,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "scenario": "local_three_pass_observed_max",
+      "frames": 1547,
+      "before_control_diagnostic_frames": 264,
+      "after_control_diagnostic_frames": 258,
+      "diagnostic_frames_removed": 6,
+      "outputs_with_newer_unfinished_rejection": 0,
+      "new_values_computed": false,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "scenario": "zero_service_reference",
+      "frames": 1547,
+      "before_control_diagnostic_frames": 377,
+      "after_control_diagnostic_frames": 377,
+      "diagnostic_frames_removed": 0,
+      "outputs_with_newer_unfinished_rejection": 0,
+      "new_values_computed": false,
+      "physical_output": false,
+      "usable_for_ffb": false
+    }
+  ],
+  "source_images_edited": false,
+  "new_geometry_computed": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "pending_control_summary.csv": "5bdda9c56132b7486b305ec3b2e3d45b32fa6c9227e059539a76cf522c68c503",
+    "pending_control_frame_metrics.csv": "a33a1104380289125b55761ca5f8c13d28f7a39057082057594f0b92099f0b50"
+  }
+}

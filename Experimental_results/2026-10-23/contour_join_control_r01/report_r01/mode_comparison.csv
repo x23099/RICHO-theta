@@ -1,0 +1,4 @@
+mode,accepted_images,old_27_retained,old_27_lost,accepted_not_in_old_27,temporal_sessions,metric_accuracy_verified,usable_for_ffb
+object_reference,28,27,0,1,1,False,False
+join_count_only,28,27,0,1,1,False,False
+join_refit,24,23,4,1,1,False,False

@@ -1,0 +1,4 @@
+scenario,completion_aware_frames,pending_hold_frames,unfinished_rejection_output_frames,scope,live_latency_measured,usable_for_ffb
+zero_service_reference,377,377,0,one_static_capture_1547_frames,False,False
+local_three_pass_median,271,265,3,one_static_capture_1547_frames,False,False
+local_three_pass_observed_max,264,258,3,one_static_capture_1547_frames,False,False

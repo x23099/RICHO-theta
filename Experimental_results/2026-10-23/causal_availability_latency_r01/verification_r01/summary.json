@@ -1,0 +1,24 @@
+{
+  "status": "PASS_COMPLETION_AND_PENDING_HOLD_DIAGNOSTICS",
+  "work_date": "2026-10-23",
+  "newly_run_tests": 24,
+  "new_tests_passed": true,
+  "prior_causal_tests_reused": 34,
+  "prior_tests_rerun": false,
+  "prior_source_and_output_hashes_verified": true,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/finish_aware.py": "368061cfeda14e5f89fbb74d5a32854b9495aeb6512bffa5023f512a2243e6cf",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/report.py": "69745e57223a29e44a355aa6d66013e5b7e7a6ee519b3f8b7564e9551e45ba32",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/verify.py": "621c907024da0fc1aeb6942857e2bc4ee093c8d7c5703c96866e8d31c5e23d19",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/replay_completion.py": "1fd655c1dd571e1e2ab7addadcf69286d499dbb98017f0908eaacc89af6a45e1",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/test_latency.py": "6e10f50fc7c2c67516d787c9c6b7ceef9743dbc01f71d6c18ce3b423345869ba",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/audit_and_benchmark.py": "b80d841e4a03670606bf9f7cb64f34eeb4b50ea415319eda8e18af8a42d9b500",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/pending_hold_control.py": "74b27d0582dce604ff9a970f5f72985712a495f96e91568003456f069abaa3b7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01/verification_r01/summary.json": "dc42a7929080b6abe252ad5044cea5429a39904df0a4381c087c7b4fb7715369"
+  },
+  "output_sha256": {
+    "test_log.txt": "bff5157d1109bca21c7b1ff8f997361845d0522188649fedb5d9c3d4a1b732a1"
+  },
+  "physical_output": false,
+  "usable_for_ffb": false
+}

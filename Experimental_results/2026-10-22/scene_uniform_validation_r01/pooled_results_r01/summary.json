@@ -1,0 +1,22 @@
+{
+  "status": "COMPLETED_CAPTURE_LOCAL_POOLED_PLANE_DIAGNOSTIC",
+  "work_date": "2026-10-22",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/scene_results_r01/line_candidates.csv": "12c4ede45a4347b3be4fff32c2db5c1e566b29c39e09c9fec1ccc6224afc4830",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/scene_results_r01/summary.json": "0f4ea7a6d87c62b34a45de4ea38f89f05e5e9ff8f1ee0ec6dbdb95136c7dcf67",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/pooling_method.md": "b4848ab33bb86eacd8a8d76fc4fa22f66b04a8109b089307b90d2984b3fae635",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/pool_planes.py": "803ffbd475442b35f8290980b44a49c732379343db3a436c03774d2829d0dcc3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/scene_geometry.py": "b33d73c7cb73fff06e9ad0fa49644b64d7302d86b04fbd4561bfd714a5d74992"
+  },
+  "training_models": 1,
+  "temporally_checked_models": 1,
+  "metric_labels_used_for_pose": false,
+  "source_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "session_hypotheses.csv": "f46a18e51ca1ca5285a9c98d29dca8e468a6cbde5c2c4ed7c5d38cd2d6ddf69f",
+    "plane_clusters.csv": "028d97847389c105264027710064ea3eb342321696e65107d0aa7e0878253ff3"
+  }
+}

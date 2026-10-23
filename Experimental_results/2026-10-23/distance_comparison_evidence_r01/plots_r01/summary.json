@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETED_NUMERIC_SCOPE_COMPARISON_FIGURE",
+  "work_date": "2026-10-23",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/distance_comparison_evidence_r01/plot_comparison.py": "fc57efe7ee25390acde8e7261e55dda32ac44543a84ec4d08f11cde1f2162356",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/distance_comparison_evidence_r01/results_r01/summary.json": "7136542b65625772b69eb5d9de37e922e349340941bf680a18aa495f10805728",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/distance_comparison_evidence_r01/results_r01/matched_condition_summary.csv": "14cd56457985ce72dc6c0f65f2db75fb70dd0b438afbecd0f4ba937deabb2ad0",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/distance_comparison_evidence_r01/results_r01/floor_scope_summary.csv": "06f4f7c8edb2f90b2fe0077c1f0327fa90da70d5856fa566c52a0e8af9f38760"
+  },
+  "source_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "capture_scope_and_paired_comparison.png": "ac4767a4233a284def059dff205ad02cc0a7584f4a4ccd2eb319ff12a0a7f0f8",
+    "chart_values.csv": "14a2bb43bdc03e206a44f51d6aedeb0344234deaf4b6925eec1e7c0d58b69c62"
+  }
+}

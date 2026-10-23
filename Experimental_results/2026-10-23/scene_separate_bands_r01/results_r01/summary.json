@@ -1,0 +1,55 @@
+{
+  "status": "COMPLETED_SEPARATE_BAND_CONTROL_NOT_METRIC_OR_HARDWARE_VALIDATION",
+  "work_date": "2026-10-23",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/intake_r01/summary.json": "28525157682c8fffd4c9dc0b59bfa63f7963965eaa02bfbfd70c1552a1694778",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/scene_results_r01/summary.json": "0f4ea7a6d87c62b34a45de4ea38f89f05e5e9ff8f1ee0ec6dbdb95136c7dcf67",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01/roi_probe_results_r01/summary.json": "c02cf9effb9f68756a60554b79a0e2eb9a5f4f196092bbb08bb3e299b2cdbca5",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_separate_bands_r01/run.py": "ce0831ffea9b12f7c52c4e5cdb0e2a9c3b078cedfa021d22f97dad82669bfb9b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_separate_bands_r01/band_geometry.py": "0d3f19862669f1090abba2025dc65123206c9fb389d2b02be5b87968b9e723d6",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_separate_bands_r01/method.md": "ca581e86dace7604310dec41978ee35ad29c2d6b637422e86858a8d85dfed95e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/analyze_scenes.py": "fde48283f750ee665c9f8903db6d90acd19360d01fdad4d8eec9610ca7f5c0cc",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/scene_geometry.py": "b33d73c7cb73fff06e9ad0fa49644b64d7302d86b04fbd4561bfd714a5d74992",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/curve_geometry.py": "9f217a7ff124a6b9df23557b4d3e2f15740a984e55d917382ec5ccf29c3eb293",
+    "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+    "/home/robo25/theta_ws/RICHO-theta/src/fisheye_floor_geometry.py": "b012f42743d155aa675a43dbb0c1dc86d11f1586da61b38b2938e59d30470419",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_dataset.py": "cbe4001c7f79ff910a991f2e456d0fb130c136045f11cf69c030877d92d6ed3f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/intake_r01/native_sample_manifest.csv": "1e4bcfa5ae1d1d38e56db082fc81c186e593e30a686515242dfbc276eac5be29",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/scene_results_r01/line_candidates.csv": "12c4ede45a4347b3be4fff32c2db5c1e566b29c39e09c9fec1ccc6224afc4830",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/scene_results_r01/image_diagnostics.csv": "ed304e611bf92e7d2a4ed196e7349d494a60290e2a15c395f7891d698d88ab38",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01/results_r02/representative_plan.json": "c19f3a652251b02fce313d4a0560412c46307928da3512ffcff3c32fd2622e37"
+  },
+  "sampled_images": 492,
+  "retained_image_mode_rows": 1968,
+  "baseline_equivalence_representatives": 18,
+  "baseline_pose_comparisons": 492,
+  "accepted_images_by_mode": {
+    "upper": 27,
+    "lower": 0,
+    "late_fusion": 53,
+    "independent_agreement": 0
+  },
+  "temporally_checked_sessions_by_mode": {
+    "upper": 1,
+    "lower": 0,
+    "late_fusion": 5,
+    "independent_agreement": 0
+  },
+  "cross_band_duplicate_rows": 213,
+  "metric_labels_used": false,
+  "physical_vertical_verified": false,
+  "source_images_edited": false,
+  "production_settings_changed": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "session_hypotheses.csv": "b74be081acd73f2678e6741526c75bbdb2d81b377b71df5db8f27c2d5614340e",
+    "lower_line_candidates.csv": "5458550d5f38db329719c3ffee5b31feb608a8be56b80b5d2206a2c064519958",
+    "fused_plane_ledger.csv": "edfaae45aa9b6a76420bb404429cdc111dea86ce5ce72e5c155db830c748765e",
+    "run_spec.json": "7727ebe5c391852779cdfe3a04b488bc42867a81c3f4f4e7662dc674b2837055",
+    "cross_band_duplicates.csv": "ce07c1160fc4e1986ebf3f8ab2e5e97f3fdb652949273150b9611e0439b8a8fe",
+    "image_diagnostics.csv": "2dd0edd49d994f9a5cb35f18bc534f5211fdc042ac063cd9e6afa1c1dec17f1c"
+  }
+}

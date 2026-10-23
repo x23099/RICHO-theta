@@ -1,0 +1,32 @@
+{
+  "status": "PASS_CAUSAL_RECORDING_REPLAY_NOT_HARDWARE_APPROVAL",
+  "work_date": "2026-10-23",
+  "newly_run_tests": 34,
+  "new_tests_passed": true,
+  "reused_prior_tests": [
+    {
+      "folder": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/metric_eligibility_contract_r01/verification_r01",
+      "tests": 225
+    },
+    {
+      "folder": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/distance_comparison_evidence_r01/verification_r01",
+      "tests": 26
+    }
+  ],
+  "prior_tests_rerun": false,
+  "prior_source_and_output_hashes_verified": true,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01/causal_pose.py": "74d1d6f2f05781da43e51e11f30dcfc0c4c94f82b732c0a159a9d9fef87ed024",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01/replay_saved.py": "67eb119d18734ffa7faa3e56051c4be13f1ee7704c0b80fa5d745bfa496bc37f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01/test_causal_pose.py": "142bd04f5199128d6bf4f7f50721320975001c00a0d411505d3da02cc886879c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01/report.py": "bdcc20ee7e068e214bd2f5fd1657d776c699cfa85d7d7540ee92fcccd4b3ecfd",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01/verify.py": "6ea9985e3f38af2fe0984035463d4a2d788bbf77513ef1bfb174d457f34fe9d0",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/metric_eligibility_contract_r01/verification_r01/summary.json": "b99bdc3d4a244837b189d544e1df7bdf9d3736e2b768203c6447f790090baab5",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/distance_comparison_evidence_r01/verification_r01/summary.json": "dcf67a76fcef3fb3de0fa3358586619fcb52be601703647868b4fc9bd9d19626"
+  },
+  "output_sha256": {
+    "test_log.txt": "7352d251982cdb76d632271d3f37881125b00cc6af68d010a2f9ed70116174dd"
+  },
+  "physical_output": false,
+  "usable_for_ffb": false
+}

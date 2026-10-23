@@ -1,0 +1,16 @@
+{
+  "status": "COMPLETED_LEGEND_LAYOUT_CORRECTION_ONLY",
+  "work_date": "2026-10-23",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/metric_eligibility_contract_r01/plot_readiness.py": "8d2bc9f0b6d117f2503d1fa1d9c17af7705575d0dd5b5da311eb3f9ea0e08c78",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/metric_eligibility_contract_r01/report_r01/summary.json": "c016aa794345ec9cf37b73e0da5978fe26915cdf8314f8a528d465da2a6d618a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/metric_eligibility_contract_r01/report_r01/uniform_frame_availability.csv": "83898eca5896b772787806e0b6cf92219e6d705d11cdedaf7051f64998fc7bb1"
+  },
+  "numeric_data_changed": false,
+  "source_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "distance_evidence_availability.png": "78f11184ba602b608cc8df7ae8dbd601cae6e8d0cc785e7cc800491dbebf9b69"
+  }
+}

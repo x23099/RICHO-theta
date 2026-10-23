@@ -1,0 +1,31 @@
+test_11_variants_per_frame_not_11_independent_trials (test_comparison.FrozenComparisonTests) ... ok
+test_all_75636_source_rows_preserved_once (test_comparison.FrozenComparisonTests) ... ok
+test_all_common_members_derived_without_distance_error_cutoff (test_comparison.FrozenComparisonTests) ... ok
+test_bad_occlusion_is_retained_raw_but_not_in_common_set (test_comparison.FrozenComparisonTests) ... ok
+test_cross_capture_floor_error_not_conflated_with_same_capture (test_comparison.FrozenComparisonTests) ... ok
+test_current_frame_binding_and_time_roles_match_source (test_comparison.FrozenComparisonTests) ... ok
+test_empty_six_reference_conditions_are_not_dropped (test_comparison.FrozenComparisonTests) ... ok
+test_every_original_numeric_value_and_reason_exact (test_comparison.FrozenComparisonTests) ... ok
+test_every_source_and_output_hash_matches (test_comparison.FrozenComparisonTests) ... ok
+test_every_variant_uses_identical_paired_frame_keys (test_comparison.FrozenComparisonTests) ... ok
+test_fixed_models_never_promoted_to_own_session_diagnostic (test_comparison.FrozenComparisonTests) ... ok
+test_floor_point_counts_not_video_frame_trial_counts (test_comparison.FrozenComparisonTests) ... ok
+test_floor_point_lineage_original_values_and_fit_role (test_comparison.FrozenComparisonTests) ... ok
+test_half_recording_time_is_not_confused_with_all_time (test_comparison.FrozenComparisonTests) ... ok
+test_no_physical_or_hardware_approval (test_comparison.FrozenComparisonTests) ... ok
+test_own_scene_is_only_up_not_independent_full_tf (test_comparison.FrozenComparisonTests) ... ok
+test_paired_statistics_recomputed_from_same_members (test_comparison.FrozenComparisonTests) ... ok
+test_paper5_is_cross_capture_for_every_cone_frame (test_comparison.FrozenComparisonTests) ... ok
+test_recovery_not_old_distance_imputation (test_comparison.FrozenComparisonTests) ... ok
+test_scene_diagnostic_flags_and_values_unchanged (test_comparison.FrozenComparisonTests) ... ok
+test_unlabeled_common_frames_not_given_a_distance_reference (test_comparison.FrozenComparisonTests) ... ok
+test_bias_percentile_and_base_height_are_separate (test_comparison.HelperTests) ... ok
+test_empty_statistics_remain_missing_not_zero_distance (test_comparison.HelperTests) ... ok
+test_explicit_bool_contract (test_comparison.HelperTests) ... ok
+test_frame_digest_order_independent_and_identity_sensitive (test_comparison.HelperTests) ... ok
+test_unknown_model_and_floor_role_refused (test_comparison.HelperTests) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 4.270s
+
+OK

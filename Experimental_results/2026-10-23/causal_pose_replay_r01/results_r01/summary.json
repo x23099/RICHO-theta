@@ -1,0 +1,60 @@
+{
+  "status": "COMPLETED_PAST_ONLY_INPUT_REPLAY_NOT_REALTIME_OR_PHYSICAL_APPROVAL",
+  "work_date": "2026-10-23",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01/method.md": "856307bba42332270253da7beb50682f747545d42da3d912a43cdae71eb037ed",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01/replay_saved.py": "67eb119d18734ffa7faa3e56051c4be13f1ee7704c0b80fa5d745bfa496bc37f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01/causal_pose.py": "74d1d6f2f05781da43e51e11f30dcfc0c4c94f82b732c0a159a9d9fef87ed024",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/scene_geometry.py": "b33d73c7cb73fff06e9ad0fa49644b64d7302d86b04fbd4561bfd714a5d74992",
+    "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/metric_eligibility_contract_r01/eligibility.py": "7555b3955634a7a43987878c0b509d7335e24b8745d1fcabd1c37a9ca85a9526",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/scene_results_r01/image_diagnostics.csv": "ed304e611bf92e7d2a4ed196e7349d494a60290e2a15c395f7891d698d88ab38",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/scene_results_r01/line_candidates.csv": "12c4ede45a4347b3be4fff32c2db5c1e566b29c39e09c9fec1ccc6224afc4830",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/intake_r01/native_sample_manifest.csv": "1e4bcfa5ae1d1d38e56db082fc81c186e593e30a686515242dfbc276eac5be29",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/intake_r01/sampling_plan.json": "0ef0c792f8e2d95d7f86cfcf85f128e7aa04bcbd7f27fbb1583db8b8d3798956",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/quality_results_r01/all_frame_quality.csv": "167fd8607d9b0e423b41d4ddca9c866019fa9f38e1fc5684e35dfb78963d09c8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/metric_results_r01/all_frame_metrics.csv": "eb06ef821ddeb4fb3cb0ba160bd6a245b03f9ace90b51259fba5768f6f885c06",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_height_pinhole_r01/results_r01/observed_pixels.csv": "630a5d66820865ff4e1833eb120957bb1ed2d2c30f849e3ed112ff4f2c24b693",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/scene_results_r01/summary.json": "0f4ea7a6d87c62b34a45de4ea38f89f05e5e9ff8f1ee0ec6dbdb95136c7dcf67",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/quality_results_r01/summary.json": "853487b38dd8a9fba1b55c935a8e600553911287d54b13462993217760d9bf69",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/metric_results_r01/summary.json": "e47ba60be2f8b035e6be6f7660484a4286b96d383794c02aa39b0075bdb47bc8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/intake_r01/summary.json": "28525157682c8fffd4c9dc0b59bfa63f7963965eaa02bfbfd70c1552a1694778"
+  },
+  "scene_images": 492,
+  "single_frame_scene_replay_mismatches": 0,
+  "recordings": 9,
+  "initialized_recordings": 1,
+  "unique_cone_frames": 6876,
+  "all_mode_frame_rows": 13752,
+  "diagnostic_frames_by_mode": {
+    "sample_only": 12,
+    "bounded_between_samples_1s": 377
+  },
+  "first_initializations": [
+    {
+      "session": "floor_cone_same_pose_r01_20261015_160621_378",
+      "scene_images": 52,
+      "accepted_scene_images": 17,
+      "initialization_events": 1,
+      "first_initialization_time_sec": 10.057164,
+      "first_initialization_elapsed_sec": 10.026529,
+      "cone_frames": 1547,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    }
+  ],
+  "future_images_used": false,
+  "processing_latency_simulated": false,
+  "source_images_edited": false,
+  "production_settings_changed": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "condition_summary.csv": "4467dd35440a9198b31c34246a8104f26b96cc53858f8aa65fa41ccd388436ff",
+    "session_summary.csv": "8b514fc32cf303a14bb6c3e519ee923e01f98d624d0bd1cc9d43b96f41d352b3",
+    "scene_events.csv": "5ef634176e3cbc718c2d8685d21ec7b4897d89ddef1466d9d1dd8cb441aaf864",
+    "frame_metrics.csv": "116d71afe3d2f26f3339bcf9b0b69dab9e45435d260db4600b926f503fc9e1cf"
+  }
+}

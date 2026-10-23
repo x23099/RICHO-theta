@@ -1,0 +1,23 @@
+{
+  "status": "PASS_OFFLINE_UNIFORM_REPLAY_TESTS_NOT_HARDWARE_APPROVAL",
+  "work_date": "2026-10-22",
+  "tests": 81,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/verify.py": "2d5b9693d7a12fe42e439b6bb108d0f141af4db54a21dea4d883cc7b6f44529e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/test_pipeline.py": "8c9835961bafcf7df7d68d0ca82bba69b9fe08a642b8756c8f43bdd17c7c24e3",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_angular_fisheye_geometry.py": "131fe0cf000c91f4403c789ed9ae094c3f15ac4722eb4907b603e7432348dff9",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_cone_support_quality.py": "d8bedabdcd891815daa5acae525ecec48140f90cbf67c59e2399ee5f16fa74fd",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_cone_support_quality_limits.py": "9a40e7e009c6bcdba8475aa70ce52503981712e2a6b6d259e0e26d5d0061f818",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/test_scene_geometry.py": "71ac311e2f1ec53270957baf4c34b495b3f3f6a193d9f45894d338cb16494d77",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/report_assets/manifest.json": "2f51f63e3fd8980a955c25522eeceb66e54f837db2c378621d3f78de42733697"
+  },
+  "source_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "test_log.txt": "c5266e7dd5e15793d8424464b7557d015f47718a99b14db77edc8a8dc11e6048"
+  }
+}

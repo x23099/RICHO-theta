@@ -1,0 +1,208 @@
+/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/lower_support_audit_r01 / test_support.py
+test_leave_one_out_does_not_modify_original_members (test_support.HelperTests) ... ok
+test_no_upper_reference_is_not_invented (test_support.HelperTests) ... ok
+test_normal_contract (test_support.HelperTests) ... ok
+test_normal_sign_is_not_a_new_direction (test_support.HelperTests) ... ok
+test_seam_continuity_uses_observed_boundaries (test_support.HelperTests) ... ok
+test_report_hashes_and_native_context_images (test_support.ReportTests) ... ok
+test_actual_lower_pixels_match_old_saved_support (test_support.SavedSupportTests) ... ok
+test_all_321_inlier_removals_are_retained (test_support.SavedSupportTests) ... ok
+test_all_492_counterfactual_images_are_retained (test_support.SavedSupportTests) ... ok
+test_counterfactual_has_only_two_temporal_passes (test_support.SavedSupportTests) ... ok
+test_flags_do_not_assert_physical_identity_or_output (test_support.SavedSupportTests) ... ok
+test_native_images_are_unchanged (test_support.SavedSupportTests) ... ok
+test_new_angular_reference_count_is_not_hidden (test_support.SavedSupportTests) ... ok
+test_seam_and_angular_flags_are_independent_columns (test_support.SavedSupportTests) ... ok
+test_source_and_output_hashes (test_support.SavedSupportTests) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.790s
+
+OK
+
+
+/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_separate_bands_r01 / test_bands.py
+test_agreement_retains_upper_direction_exactly (test_bands.AgreementTests) ... ok
+test_disagreeing_directions_are_not_averaged (test_bands.AgreementTests) ... ok
+test_either_missing_side_is_refused (test_bands.AgreementTests) ... ok
+test_caller_inputs_are_not_mutated (test_bands.FusionTests) ... ok
+test_distinct_plane_can_add_one_vote (test_bands.FusionTests) ... ok
+test_invalid_normals_and_source_band_are_refused (test_bands.FusionTests) ... ok
+test_lower_duplicates_are_also_removed (test_bands.FusionTests) ... ok
+test_opposite_normal_sign_is_the_same_direction (test_bands.FusionTests) ... ok
+test_same_line_in_both_bands_is_not_a_second_vote (test_bands.FusionTests) ... ok
+test_upper_order_and_values_are_never_replaced (test_bands.FusionTests) ... ok
+test_all_original_acceptances_are_preserved_but_failures_remain (test_bands.ReportTests) ... ok
+test_new_acceptances_have_only_one_lower_inlier (test_bands.ReportTests) ... ok
+test_report_native_frame_is_not_edited_and_capture_date_is_not_relabelled (test_bands.ReportTests) ... ok
+test_report_source_output_and_assets_integrity (test_bands.ReportTests) ... ok
+test_all_492_frames_are_retained_in_each_of_four_modes (test_bands.SavedBandTests) ... ok
+test_completed_checkpoints_cover_nine_sessions (test_bands.SavedBandTests) ... ok
+test_duplicate_reference_is_a_retained_vote (test_bands.SavedBandTests) ... ok
+test_empty_image_makes_no_candidate_in_either_band (test_bands.SavedBandTests) ... ok
+test_frozen_source_and_output_hashes (test_bands.SavedBandTests) ... ok
+test_kept_normals_are_not_duplicate_votes (test_bands.SavedBandTests) ... ok
+test_lower_endpoints_only_use_lower_native_band (test_bands.SavedBandTests) ... ok
+test_modes_do_not_export_transform_or_claim_metric_eligibility (test_bands.SavedBandTests) ... ok
+test_no_physical_or_production_changes (test_bands.SavedBandTests) ... ok
+test_only_predeclared_bands_and_native_images_are_allowed (test_bands.SavedBandTests) ... ok
+test_upper_plane_prefix_is_exactly_preserved_for_every_frame (test_bands.SavedBandTests) ... ok
+test_upper_reproduces_every_original_decision (test_bands.SavedBandTests) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 0.340s
+
+OK
+
+
+/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_rejection_audit_r01 / test_audit.py
+test_duplicate_planes_do_not_get_a_diverse_pair (test_audit.ConsensusTraceTests) ... ok
+test_empty_input_preserves_original_behavior (test_audit.ConsensusTraceTests) ... ok
+test_five_planes_are_not_relaxed_into_a_pose (test_audit.ConsensusTraceTests) ... ok
+test_invalid_normals_are_rejected_by_original_contract (test_audit.ConsensusTraceTests) ... ok
+test_random_normal_inputs_trace_identically (test_audit.ConsensusTraceTests) ... ok
+test_valid_consensus_matches_original (test_audit.ConsensusTraceTests) ... ok
+test_context_images_are_byte_identical_native_frames (test_audit.ReportingTests) ... ok
+test_nearby_plane_direction_is_not_physical_correspondence (test_audit.ReportingTests) ... ok
+test_report_source_and_output_hashes (test_audit.ReportingTests) ... ok
+test_retention_cannot_count_more_missing_than_observed (test_audit.ReportingTests) ... ok
+test_roi_regression_is_kept_not_selected_away (test_audit.ReportingTests) ... ok
+test_fixed_median_per_session_role (test_audit.RepresentativeTests) ... ok
+test_input_order_cannot_select_another_image (test_audit.RepresentativeTests) ... ok
+test_metric_labels_do_not_select_images (test_audit.RepresentativeTests) ... ok
+test_all_original_frames_and_reasons_preserved (test_audit.SavedAuditTests) ... ok
+test_all_traced_pixels_are_native_integer_roi_and_hash_matches (test_audit.SavedAuditTests) ... ok
+test_duplicate_votes_reference_a_kept_plane (test_audit.SavedAuditTests) ... ok
+test_empty_image_trace_has_no_invented_line (test_audit.SavedAuditTests) ... ok
+test_final_counts_are_exhaustive (test_audit.SavedAuditTests) ... ok
+test_formal_output_is_complete_and_draft_is_not (test_audit.SavedAuditTests) ... ok
+test_images_must_stay_native (test_audit.SavedAuditTests) ... ok
+test_insufficient_consensus_happens_before_svd (test_audit.SavedAuditTests) ... ok
+test_no_threshold_adoption_or_hardware_output (test_audit.SavedAuditTests) ... ok
+test_only_fixed_roi_probe_values_allowed (test_audit.SavedAuditTests) ... ok
+test_piece_counts_and_funnel_reconcile (test_audit.SavedAuditTests) ... ok
+test_prior_alone_did_not_block_these_images (test_audit.SavedAuditTests) ... ok
+test_source_and_output_hashes (test_audit.SavedAuditTests) ... ok
+test_all_492_frames_paired_not_only_successes (test_audit.SavedRoiProbeTests) ... ok
+test_completed_session_checkpoints_match_frozen_spec (test_audit.SavedRoiProbeTests) ... ok
+test_new_pixels_are_only_predeclared_roi (test_audit.SavedRoiProbeTests) ... ok
+test_no_distance_or_transform_export (test_audit.SavedRoiProbeTests) ... ok
+test_source_and_output_hashes (test_audit.SavedRoiProbeTests) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 1.149s
+
+OK
+
+
+/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01 / test_pipeline.py
+test_future_changes_do_not_change_prefix (test_pipeline.CausalReplayTests) ... ok
+test_metric_label_does_not_enter_gate (test_pipeline.CausalReplayTests) ... ok
+test_missing_observation_never_returns_anchor_as_current (test_pipeline.CausalReplayTests) ... ok
+test_nonconsecutive_frames_refused (test_pipeline.CausalReplayTests) ... ok
+test_divergent_heldout_directions_refused (test_pipeline.DirectionValidationTests) ... ok
+test_heldout_never_updates_training_up (test_pipeline.DirectionValidationTests) ... ok
+test_one_heldout_image_is_not_a_temporal_pass (test_pipeline.DirectionValidationTests) ... ok
+test_one_training_image_refused (test_pipeline.DirectionValidationTests) ... ok
+test_training_and_heldout_both_needed (test_pipeline.DirectionValidationTests) ... ok
+test_unstable_training_does_not_get_averaged_into_pass (test_pipeline.DirectionValidationTests) ... ok
+test_duplicate_edges_in_one_frame_are_one_observation (test_pipeline.PoolingTests) ... ok
+test_frame_order_does_not_change_result (test_pipeline.PoolingTests) ... ok
+test_repeated_frames_are_one_plane_not_independent_votes (test_pipeline.PoolingTests) ... ok
+test_three_distinct_frames_required (test_pipeline.PoolingTests) ... ok
+test_estimate_and_holdout_use_time_not_capture_label (test_pipeline.SamplingTests) ... ok
+test_invalid_times_and_frame_sequences_rejected (test_pipeline.SamplingTests) ... ok
+test_irregular_times_choose_first_at_or_after_target (test_pipeline.SamplingTests) ... ok
+test_large_gap_not_counted_as_multiple_images (test_pipeline.SamplingTests) ... ok
+test_sampling_does_not_read_metric_labels (test_pipeline.SamplingTests) ... ok
+test_empirical_pose_range_not_called_confidence_interval (test_pipeline.SavedPipelineTests) ... ok
+test_every_selected_native_image_has_original_dimensions_and_hash (test_pipeline.SavedPipelineTests) ... ok
+test_frozen_sources_and_all_outputs (test_pipeline.SavedPipelineTests) ... ok
+test_historical_quality_and_real_prefix_consistency (test_pipeline.SavedPipelineTests) ... ok
+test_known_occlusion_is_withheld_and_original_bad_distances_retained (test_pipeline.SavedPipelineTests) ... ok
+test_metrics_keep_every_frame_per_model (test_pipeline.SavedPipelineTests) ... ok
+test_no_pose_no_quality_no_emitted_distance (test_pipeline.SavedPipelineTests) ... ok
+test_paper_no_fallback_from_another_recording (test_pipeline.SavedPipelineTests) ... ok
+test_sampler_plan_is_exactly_followed (test_pipeline.SavedPipelineTests) ... ok
+test_session_checkpoints_match_run_spec (test_pipeline.SavedPipelineTests) ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 10.532s
+
+OK
+
+
+/home/robo25/theta_ws/RICHO-theta/tests / test_angular_fisheye_geometry.py
+test_candidate_schema_must_be_explicit (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_empty_and_duplicate_pixels (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_grazing_or_upward_rays_not_forced_to_floor (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_input_calibration_copied_and_readonly (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_invalid_roi_domain_and_image_size (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_known_offset_is_not_implicitly_subtracted_from_reference (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_known_segment_recovers_positive_depth_and_base_height (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_nonmonotonic_and_invalid_camera_refused (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_optical_centre_limit (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_roundtrip_across_90_degrees_preserves_order (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_synthetic_floor_coordinates_restore_with_subpixel_precision (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.038s
+
+OK
+
+
+/home/robo25/theta_ws/RICHO-theta/tests / test_cone_support_quality*.py
+test_abrupt_shrink_rejected_anchor_is_not_poisoned (test_cone_support_quality.SupportQualityTests) ... ok
+test_bad_time_resets_state (test_cone_support_quality.SupportQualityTests) ... ok
+test_bent_boundary_does_not_need_a_single_line (test_cone_support_quality.SupportQualityTests) ... ok
+test_causal_prefix_replay_and_caller_mutation_cannot_change_anchor (test_cone_support_quality.SupportQualityTests) ... ok
+test_common_columns_only_not_matching_different_x (test_cone_support_quality.SupportQualityTests) ... ok
+test_disconnected_columns_not_interpolated (test_cone_support_quality.SupportQualityTests) ... ok
+test_endpoint_jump_and_no_shared_columns (test_cone_support_quality.SupportQualityTests) ... ok
+test_first_three_frames_required_no_metric_or_ffb_permission (test_cone_support_quality.SupportQualityTests) ... ok
+test_frame_gap_requires_reconfirmation (test_cone_support_quality.SupportQualityTests) ... ok
+test_interrupted_pending_restarts (test_cone_support_quality.SupportQualityTests) ... ok
+test_local_y_damage_p90_can_reject_even_if_median_is_small (test_cone_support_quality.SupportQualityTests) ... ok
+test_long_absence_expires_anchor_but_stable_wrong_boundary_can_reinitialize (test_cone_support_quality.SupportQualityTests) ... ok
+test_missing_color_and_ambiguity_interrupt_confirmation (test_cone_support_quality.SupportQualityTests) ... ok
+test_missing_never_returns_held_or_predicted_observation (test_cone_support_quality.SupportQualityTests) ... ok
+test_missing_recovery_requires_three_consecutive_frames (test_cone_support_quality.SupportQualityTests) ... ok
+test_pending_restart_has_separate_diagnostics_from_accepted_anchor_comparison (test_cone_support_quality.SupportQualityTests) ... ok
+test_persistent_wrong_candidate_cannot_replace_live_anchor_but_can_after_expiry (test_cone_support_quality.SupportQualityTests) ... ok
+test_reference_labels_and_line_fit_flags_are_ignored (test_cone_support_quality.SupportQualityTests) ... ok
+test_resolution_and_native_columns_validation (test_cone_support_quality.SupportQualityTests) ... ok
+test_settings_validation (test_cone_support_quality.SupportQualityTests) ... ok
+test_slow_image_motion_and_width_change_synthetic_only (test_cone_support_quality.SupportQualityTests) ... ok
+test_y_jump_alone_rejected (test_cone_support_quality.SupportQualityTests) ... ok
+test_slowly_shrinking_and_rising_edge_can_be_followed_not_claimed_as_detected_occlusion (test_cone_support_quality_limits.ImageContinuityLimitTests) ... ok
+test_stable_initial_upper_fragment_is_accepted_but_remains_unverified (test_cone_support_quality_limits.ImageContinuityLimitTests) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.176s
+
+OK
+
+
+/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01 / test_scene_geometry.py
+test_same_frozen_frame_split_and_metric_row_retention (test_scene_geometry.SavedSceneTests) ... ok
+test_scene_support_is_actual_native_canny_pixels_without_cones (test_scene_geometry.SavedSceneTests) ... ok
+test_sources_outputs_images_and_hardware_flags (test_scene_geometry.SavedSceneTests) ... ok
+test_detector_does_not_modify_native_image_and_blank_is_empty (test_scene_geometry.SceneGeometryTests) ... ok
+test_inference_apis_accept_no_object_labels (test_scene_geometry.SceneGeometryTests) ... ok
+test_insufficient_diversity_return_no_direction (test_scene_geometry.SceneGeometryTests) ... ok
+test_insufficient_planes_return_no_direction (test_scene_geometry.SceneGeometryTests) ... ok
+test_integer_observed_projection_restores_line_plane (test_scene_geometry.SceneGeometryTests) ... ok
+test_outlier_planes_do_not_define_consensus (test_scene_geometry.SceneGeometryTests) ... ok
+test_shortest_rotation_aligns_up_preserving_translation (test_scene_geometry.SceneGeometryTests) ... ok
+test_sign_is_fixed_without_yaw_or_height (test_scene_geometry.SceneGeometryTests) ... ok
+test_subpixel_or_short_pixel_support_rejected (test_scene_geometry.SceneGeometryTests) ... ok
+test_synthetic_up_recovered_without_metric_data (test_scene_geometry.SceneGeometryTests) ... ok
+test_unit_refuses_nonfinite_and_zero (test_scene_geometry.SceneGeometryTests) ... ok
+test_up_identity_and_antiparallel_guard (test_scene_geometry.SceneGeometryTests) ... ok
+test_wrong_dimensions_are_rejected (test_scene_geometry.SceneGeometryTests) ... ok
+test_wrong_direction_outside_prior_is_not_adopted (test_scene_geometry.SceneGeometryTests) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 2.175s
+
+OK

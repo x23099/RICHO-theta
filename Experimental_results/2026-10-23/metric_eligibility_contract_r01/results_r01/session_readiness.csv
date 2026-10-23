@@ -1,0 +1,10 @@
+session,raw_frames,sampled_scene_images,cone_metric_frames,input_role,sampled_saved_bbox_frames,uniform_own_pose_candidate,pooled_own_pose_candidate,object_screen_sample_temporal_candidate,joined_sample_temporal_candidate,uniform_diagnostic_frames,pooled_diagnostic_frames,physical_metric_frames,usable_for_ffb
+cone_static_center_z1p30_r01_20261015_135329_732,651,22,651,cone_metric_audit,22,False,False,False,False,0,0,0,False
+cone_static_center_z2p00_r01_20261015_135414_399,632,22,632,cone_metric_audit,22,False,False,False,False,0,0,0,False
+cone_static_left_z1p30_r01_20261015_135541_436,628,21,628,cone_metric_audit,21,False,False,False,False,0,0,0,False
+cone_static_no_cone_r01_20261015_134940_713,332,12,332,cone_metric_audit,12,False,False,False,False,0,0,0,False
+cone_static_right_z1p30_r01_20261015_135630_973,631,22,631,cone_metric_audit,22,False,False,False,False,0,0,0,False
+floor_cone_same_pose_r01_20261015_160621_378,1547,52,1547,cone_metric_audit,52,True,True,True,True,1107,1107,0,False
+itiawase2_20261015_183552_599,7650,257,0,floor_reference_only_no_cone_metric_ledger,0,False,False,False,False,0,0,0,False
+one_static_center_z0p80_r01_20261015_135155_823,722,25,722,cone_metric_audit,25,False,False,False,False,0,0,0,False
+paper_cone_center_z2p00_r01_20261019_180411_245,1733,59,1733,cone_metric_audit,0,False,False,False,False,0,0,0,False

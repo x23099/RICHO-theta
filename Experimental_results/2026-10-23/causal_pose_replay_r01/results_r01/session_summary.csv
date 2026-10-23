@@ -1,0 +1,10 @@
+session,scene_images,accepted_scene_images,initialization_events,first_initialization_time_sec,first_initialization_elapsed_sec,cone_frames,physical_metric_verified,usable_for_ffb
+cone_static_center_z1p30_r01_20261015_135329_732,22,2,0,,,651,False,False
+cone_static_center_z2p00_r01_20261015_135414_399,22,1,0,,,632,False,False
+cone_static_left_z1p30_r01_20261015_135541_436,21,1,0,,,628,False,False
+cone_static_no_cone_r01_20261015_134940_713,12,3,0,,,332,False,False
+cone_static_right_z1p30_r01_20261015_135630_973,22,1,0,,,631,False,False
+floor_cone_same_pose_r01_20261015_160621_378,52,17,1,10.057164,10.026529,1547,False,False
+itiawase2_20261015_183552_599,257,0,0,,,0,False,False
+one_static_center_z0p80_r01_20261015_135155_823,25,2,0,,,722,False,False
+paper_cone_center_z2p00_r01_20261019_180411_245,59,0,0,,,1733,False,False

@@ -1,0 +1,22 @@
+{
+  "status": "COMPLETED_EVIDENCE_AVAILABILITY_REPORT_NOT_ACCURACY_APPROVAL",
+  "work_date": "2026-10-23",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/metric_eligibility_contract_r01/report.py": "ea332acd9fc738566fe1214e0906379507ac2371d4db6b4bb1e625f1192bcc26",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/metric_eligibility_contract_r01/results_r01/summary.json": "a831da5267ec7d5f8b5c9691184be1d2e62137e55a4a24ad41712a0564607788",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/metric_eligibility_contract_r01/results_r01/session_readiness.csv": "30d8954ec55df81fa98ab1c8c7e5e9886b98b40834d795d01b99ef91e4e3e70a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/metric_eligibility_contract_r01/results_r01/blocking_reasons.csv": "f25d6402e7946f9971a65b2ccef064516db169915dc782f097ecb35b79cc2d75"
+  },
+  "diagnostic_frames": 1107,
+  "withheld_frames": 5769,
+  "unique_frames": 6876,
+  "physical_checks_satisfied_frames": 0,
+  "models_plotted": 1,
+  "source_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "uniform_frame_availability.csv": "83898eca5896b772787806e0b6cf92219e6d705d11cdedaf7051f64998fc7bb1",
+    "distance_evidence_availability.png": "324b968fdc74b144d410bec0dee8b113dc6654c03cc713599ad6eba349dd993c"
+  }
+}

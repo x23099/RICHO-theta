@@ -1,0 +1,17 @@
+session,condition,observed_frame,actual_bottom_native_json,hypothesis_frame,estimated,z_forward_m,uncertainty_confidence_interval,usable_for_ffb
+floor_cone_same_pose_r01_20261015_160621_378,cone_130,563,"[307.0, 417.0]",958,True,1.3726863008694878,False,False
+floor_cone_same_pose_r01_20261015_160621_378,cone_130,563,"[307.0, 417.0]",1138,True,1.4023114591529566,False,False
+floor_cone_same_pose_r01_20261015_160621_378,cone_130,563,"[307.0, 417.0]",1168,True,1.3247947294638533,False,False
+floor_cone_same_pose_r01_20261015_160621_378,cone_130,563,"[307.0, 417.0]",1258,True,1.3329698437331916,False,False
+floor_cone_same_pose_r01_20261015_160621_378,cone_130,563,"[307.0, 417.0]",1318,True,1.3354614998322822,False,False
+floor_cone_same_pose_r01_20261015_160621_378,cone_130,563,"[307.0, 417.0]",1348,True,1.3375047468570593,False,False
+floor_cone_same_pose_r01_20261015_160621_378,cone_130,563,"[307.0, 417.0]",1378,True,1.331302525587587,False,False
+floor_cone_same_pose_r01_20261015_160621_378,cone_130,563,"[307.0, 417.0]",1528,True,1.3353296920675943,False,False
+floor_cone_same_pose_r01_20261015_160621_378,cone_200,1002,"[308.0, 393.0]",958,True,2.0696585640682654,False,False
+floor_cone_same_pose_r01_20261015_160621_378,cone_200,1002,"[308.0, 393.0]",1138,True,2.131679952976961,False,False
+floor_cone_same_pose_r01_20261015_160621_378,cone_200,1002,"[308.0, 393.0]",1168,True,1.9718709246990311,False,False
+floor_cone_same_pose_r01_20261015_160621_378,cone_200,1002,"[308.0, 393.0]",1258,True,1.9886825367177672,False,False
+floor_cone_same_pose_r01_20261015_160621_378,cone_200,1002,"[308.0, 393.0]",1318,True,1.9936688579218038,False,False
+floor_cone_same_pose_r01_20261015_160621_378,cone_200,1002,"[308.0, 393.0]",1348,True,1.997774535019014,False,False
+floor_cone_same_pose_r01_20261015_160621_378,cone_200,1002,"[308.0, 393.0]",1378,True,1.9852489461502971,False,False
+floor_cone_same_pose_r01_20261015_160621_378,cone_200,1002,"[308.0, 393.0]",1528,True,1.993376924443564,False,False

@@ -1,0 +1,10 @@
+session,upper_train_images,upper_heldout_images,upper_temporal_pass,lower_train_images,lower_heldout_images,lower_temporal_pass,late_fusion_train_images,late_fusion_heldout_images,late_fusion_temporal_pass,independent_agreement_train_images,independent_agreement_heldout_images,independent_agreement_temporal_pass,wide_train_images,wide_heldout_images,wide_temporal_pass
+cone_static_center_z1p30_r01_20261015_135329_732,1,1,False,0,0,False,5,3,True,0,0,False,11,11,True
+cone_static_center_z2p00_r01_20261015_135414_399,0,1,False,0,0,False,2,3,True,0,0,False,10,11,True
+cone_static_left_z1p30_r01_20261015_135541_436,0,1,False,0,0,False,0,1,False,0,0,False,5,4,True
+cone_static_no_cone_r01_20261015_134940_713,1,2,False,0,0,False,2,2,True,0,0,False,6,6,True
+cone_static_right_z1p30_r01_20261015_135630_973,0,1,False,0,0,False,0,1,False,0,0,False,2,0,False
+floor_cone_same_pose_r01_20261015_160621_378,9,8,True,0,0,False,9,8,True,0,0,False,1,0,False
+itiawase2_20261015_183552_599,0,0,False,0,0,False,0,0,False,0,0,False,0,0,False
+one_static_center_z0p80_r01_20261015_135155_823,1,1,False,0,0,False,8,9,True,0,0,False,12,12,True
+paper_cone_center_z2p00_r01_20261019_180411_245,0,0,False,0,0,False,0,0,False,0,0,False,1,0,False

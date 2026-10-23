@@ -1,0 +1,21 @@
+{
+  "status": "PASS_EVIDENCE_STRATIFIED_COMPARISON",
+  "work_date": "2026-10-23",
+  "newly_run_tests": 26,
+  "new_tests_passed": true,
+  "reused_unchanged_regression_tests": 225,
+  "prior_tests_rerun": false,
+  "prior_source_and_result_hashes_verified": true,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/distance_comparison_evidence_r01/compare_saved.py": "9a367b0ec3bce7d6fc8298fe8385f88d2375803d2417ebe0588ca75141162073",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/distance_comparison_evidence_r01/test_comparison.py": "8ff8c9b2a0f2dbdf8ab178fce6020b0841ee673eb555e3a6bc5cd4434363f56b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/distance_comparison_evidence_r01/plot_comparison.py": "fc57efe7ee25390acde8e7261e55dda32ac44543a84ec4d08f11cde1f2162356",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/distance_comparison_evidence_r01/verify_comparison.py": "ef8fcdf51fdd57529a740777584bf99ea3366348952e576d7bbd58642b92e396",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/metric_eligibility_contract_r01/verification_r01/summary.json": "b99bdc3d4a244837b189d544e1df7bdf9d3736e2b768203c6447f790090baab5"
+  },
+  "output_sha256": {
+    "test_log.txt": "6cb73ae2e0a3827c990f64cb464c9604b6994b1612af088416725f059460927d"
+  },
+  "physical_output": false,
+  "usable_for_ffb": false
+}

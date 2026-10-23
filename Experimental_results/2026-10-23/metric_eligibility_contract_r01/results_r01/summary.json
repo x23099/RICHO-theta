@@ -1,0 +1,48 @@
+{
+  "status": "COMPLETED_FROZEN_DISTANCE_ELIGIBILITY_AUDIT_NOT_RUNTIME_GATE",
+  "work_date": "2026-10-23",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/metric_eligibility_contract_r01/audit_metrics.py": "c3dc0d3b1468d967dd41a52cad80d43f6dd346bfc0a0d9adb2dfbc1340797df0",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/metric_eligibility_contract_r01/eligibility.py": "7555b3955634a7a43987878c0b509d7335e24b8745d1fcabd1c37a9ca85a9526",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/metric_eligibility_contract_r01/method.md": "b0dad9d4d76d2b68c5ec14c576343a13c3ebd6de44690efb356baf983fee168c",
+    "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/metric_results_r01/summary.json": "e47ba60be2f8b035e6be6f7660484a4286b96d383794c02aa39b0075bdb47bc8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/quality_results_r01/summary.json": "853487b38dd8a9fba1b55c935a8e600553911287d54b13462993217760d9bf69",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/intake_r01/summary.json": "28525157682c8fffd4c9dc0b59bfa63f7963965eaa02bfbfd70c1552a1694778",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/object_excluded_scene_r01/results_r01/summary.json": "729d258a02a3baa22e2abd30806b9315687d1d3ad271aa1b1ed254007021f95c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/contour_join_control_r01/results_r01/summary.json": "41623ad5306e5e50d895aa86cfa587feac91c098c98c899f38a9d1d305135255",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/metric_results_r01/all_frame_metrics.csv": "eb06ef821ddeb4fb3cb0ba160bd6a245b03f9ace90b51259fba5768f6f885c06",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/quality_results_r01/all_frame_quality.csv": "167fd8607d9b0e423b41d4ddca9c866019fa9f38e1fc5684e35dfb78963d09c8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_height_pinhole_r01/results_r01/observed_pixels.csv": "630a5d66820865ff4e1833eb120957bb1ed2d2c30f849e3ed112ff4f2c24b693",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/intake_r01/sampling_plan.json": "0ef0c792f8e2d95d7f86cfcf85f128e7aa04bcbd7f27fbb1583db8b8d3798956",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/scene_results_r01/session_hypotheses.csv": "342783ea200190a164ee556a45cf4eb494bf02d29b846d7695028f978b9abf74",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/pooled_results_r01/session_hypotheses.csv": "f46a18e51ca1ca5285a9c98d29dca8e468a6cbde5c2c4ed7c5d38cd2d6ddf69f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/object_excluded_scene_r01/results_r01/bbox_coverage.csv": "182e10b91885fd94e0c7e832cd02041ee5b206a3e95fa369bfad991a3b21a940",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/object_excluded_scene_r01/results_r01/session_hypotheses.csv": "f9098ac6373f59f4a9b67102c5f1cd775889a5b270843bd05c635b926e8d4e50",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/contour_join_control_r01/results_r01/session_hypotheses.csv": "9f610b492945a94d9a584dd58a1609490e03f3c9701c305acc9250e54cd6ef53"
+  },
+  "models": 2,
+  "metric_frames_per_model": 6876,
+  "total_model_frame_rows": 13752,
+  "recordings_in_readiness_matrix": 9,
+  "diagnostic_available_by_model": {
+    "uniform_images": 1107,
+    "pooled_planes": 1107
+  },
+  "physical_metric_rows": 0,
+  "historical_diagnostic_value_or_decision_mismatches": 0,
+  "physical_output": false,
+  "source_images_edited": false,
+  "new_geometry_computed": false,
+  "production_settings_changed": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "session_readiness.csv": "30d8954ec55df81fa98ab1c8c7e5e9886b98b40834d795d01b99ef91e4e3e70a",
+    "blocking_reasons.csv": "f25d6402e7946f9971a65b2ccef064516db169915dc782f097ecb35b79cc2d75",
+    "frame_evidence.csv": "014731c9def0dd8df2150d126f3d1c80e00afea6d7b8f7ba348fa0f25d213db2",
+    "frame_decisions.csv": "6f0b9a87f884684d8888f5c47cd4f348a8919fffa727904361cf077ddeead6a1",
+    "physical_requirements.csv": "175b966db04b255ccc5595f1b4b79426a0ae08b37a121ab35177fd1d7bcb0d13"
+  }
+}

@@ -1,0 +1,28 @@
+session,mode,images,usable_estimate_frames,usable_heldout_frames,training_accepted,temporal_validation,up_optical_json,training_spread_max_deg,heldout_spread_max_deg,reason,usable_for_ffb,temporal_candidate_eligible
+cone_static_center_z1p30_r01_20261015_135329_732,object_reference,22,2,1,True,INSUFFICIENT,"[-0.029645611465578096, -0.9985287193097351, 0.04540412354062322]",0.7519184951927506,0.8549375569924369,fewer_than_two_usable_heldout_images,False,False
+cone_static_center_z1p30_r01_20261015_135329_732,join_count_only,22,2,1,True,INSUFFICIENT,"[-0.029645611465578096, -0.9985287193097351, 0.04540412354062322]",0.7519184951927506,0.8549375569924369,fewer_than_two_usable_heldout_images,False,False
+cone_static_center_z1p30_r01_20261015_135329_732,join_refit,22,2,1,True,INSUFFICIENT,"[-0.026276040174424014, -0.998751822886452, 0.042477829437734406]",0.5249053281345026,0.6878097318898144,fewer_than_two_usable_heldout_images,False,False
+cone_static_center_z2p00_r01_20261015_135414_399,object_reference,22,0,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_center_z2p00_r01_20261015_135414_399,join_count_only,22,0,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_center_z2p00_r01_20261015_135414_399,join_refit,22,0,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_left_z1p30_r01_20261015_135541_436,object_reference,21,0,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_left_z1p30_r01_20261015_135541_436,join_count_only,21,0,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_left_z1p30_r01_20261015_135541_436,join_refit,21,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_no_cone_r01_20261015_134940_713,object_reference,12,1,2,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_no_cone_r01_20261015_134940_713,join_count_only,12,1,2,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_no_cone_r01_20261015_134940_713,join_refit,12,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_right_z1p30_r01_20261015_135630_973,object_reference,22,0,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_right_z1p30_r01_20261015_135630_973,join_count_only,22,0,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+cone_static_right_z1p30_r01_20261015_135630_973,join_refit,22,0,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+floor_cone_same_pose_r01_20261015_160621_378,object_reference,52,9,8,True,PASS,"[-0.020276994723663237, -0.9939946749660693, 0.107533388415296]",0.19376078224621868,1.1556141687444663,conditional_scene_up_with_temporal_check,False,True
+floor_cone_same_pose_r01_20261015_160621_378,join_count_only,52,9,8,True,PASS,"[-0.020276994723663237, -0.9939946749660693, 0.107533388415296]",0.19376078224621868,1.1556141687444663,conditional_scene_up_with_temporal_check,False,True
+floor_cone_same_pose_r01_20261015_160621_378,join_refit,52,9,8,True,PASS,"[-0.020276994723663237, -0.9939946749660693, 0.107533388415296]",0.19376078224621868,1.1556141687444663,conditional_scene_up_with_temporal_check,False,True
+itiawase2_20261015_183552_599,object_reference,257,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+itiawase2_20261015_183552_599,join_count_only,257,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+itiawase2_20261015_183552_599,join_refit,257,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+one_static_center_z0p80_r01_20261015_135155_823,object_reference,25,1,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+one_static_center_z0p80_r01_20261015_135155_823,join_count_only,25,1,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+one_static_center_z0p80_r01_20261015_135155_823,join_refit,25,1,1,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+paper_cone_center_z2p00_r01_20261019_180411_245,object_reference,59,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+paper_cone_center_z2p00_r01_20261019_180411_245,join_count_only,59,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False
+paper_cone_center_z2p00_r01_20261019_180411_245,join_refit,59,0,0,False,NO_TRAINING_MODEL,null,,,fewer_than_two_usable_estimate_images,False,False

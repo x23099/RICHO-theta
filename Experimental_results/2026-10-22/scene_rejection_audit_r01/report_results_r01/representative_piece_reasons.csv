@@ -1,0 +1,6 @@
+reason,pieces,total
+accepted_plane,155,9334
+duplicate_ray_plane,721,9334
+fewer_than_30_actual_edge_points,8340,9334
+native_y_span_under_60,12,9334
+not_steep_enough_in_native_coordinates,106,9334

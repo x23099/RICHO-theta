@@ -1,0 +1,4 @@
+scenario,frames,before_control_diagnostic_frames,after_control_diagnostic_frames,diagnostic_frames_removed,outputs_with_newer_unfinished_rejection,new_values_computed,physical_output,usable_for_ffb
+local_three_pass_median,1547,271,265,6,0,False,False,False
+local_three_pass_observed_max,1547,264,258,6,0,False,False,False
+zero_service_reference,1547,377,377,0,0,False,False,False

@@ -1,0 +1,163 @@
+/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/metric_eligibility_contract_r01
+test_all_blockers_retained_not_only_first (test_eligibility.ContractTests) ... ok
+test_all_physical_proofs_do_not_bypass_diagnostic_hold (test_eligibility.ContractTests) ... ok
+test_boolean_evidence_is_never_implicitly_coerced (test_eligibility.ContractTests) ... ok
+test_diagnostic_is_not_physical_acceptance (test_eligibility.ContractTests) ... ok
+test_each_diagnostic_prerequisite_is_required (test_eligibility.ContractTests) ... ok
+test_each_physical_check_is_required_independently (test_eligibility.ContractTests) ... ok
+test_evidence_is_immutable_and_does_not_take_ground_truth (test_eligibility.ContractTests) ... ok
+test_frozen_bool_reader_rejects_other_encodings (test_eligibility.ContractTests) ... ok
+test_interleaving_and_future_evidence_do_not_change_pure_decision (test_eligibility.ContractTests) ... ok
+test_no_previous_frame_distance_on_missing_or_bad_observation (test_eligibility.ContractTests) ... ok
+test_nonfinite_missing_and_nonpositive_forward_withheld (test_eligibility.ContractTests) ... ok
+test_raw_finite_rejected_value_is_audit_only (test_eligibility.ContractTests) ... ok
+test_raw_type_is_not_implicitly_coerced (test_eligibility.ContractTests) ... ok
+test_synthetic_all_checks_is_still_not_runtime_or_ffb (test_eligibility.ContractTests) ... ok
+test_untyped_evidence_refused (test_eligibility.ContractTests) ... ok
+test_zero_and_negative_raw_are_not_hidden_as_valid (test_eligibility.ContractTests) ... ok
+test_all_current_physical_proof_fields_unverified (test_eligibility.LedgerTests) ... ok
+test_bad_raw_occlusion_candidates_preserved_but_not_emitted (test_eligibility.LedgerTests) ... ok
+test_complete_two_model_frame_ledger_no_row_dropping (test_eligibility.LedgerTests) ... ok
+test_every_serialized_result_replays_from_explicit_evidence (test_eligibility.LedgerTests) ... ok
+test_historical_diagnostic_decisions_and_values_exactly_preserved (test_eligibility.LedgerTests) ... ok
+test_multiple_blocker_counts_are_explicitly_overlapping (test_eligibility.LedgerTests) ... ok
+test_nine_raw_recordings_not_claimed_as_all_cone_metric (test_eligibility.LedgerTests) ... ok
+test_no_clear_safe_imputation_or_hardware_output (test_eligibility.LedgerTests) ... ok
+test_other_recordings_do_not_borrow_own_pose (test_eligibility.LedgerTests) ... ok
+test_recovery_is_current_frame_value_not_pre_occlusion_copy (test_eligibility.LedgerTests) ... ok
+test_sampled_bbox_coverage_not_confused_with_full_frame_coverage (test_eligibility.LedgerTests) ... ok
+test_sources_and_outputs_still_match_frozen_hashes (test_eligibility.LedgerTests) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 1.014s
+
+OK
+
+
+/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/distance_comparison_evidence_r01
+test_11_variants_per_frame_not_11_independent_trials (test_comparison.FrozenComparisonTests) ... ok
+test_all_75636_source_rows_preserved_once (test_comparison.FrozenComparisonTests) ... ok
+test_all_common_members_derived_without_distance_error_cutoff (test_comparison.FrozenComparisonTests) ... ok
+test_bad_occlusion_is_retained_raw_but_not_in_common_set (test_comparison.FrozenComparisonTests) ... ok
+test_cross_capture_floor_error_not_conflated_with_same_capture (test_comparison.FrozenComparisonTests) ... ok
+test_current_frame_binding_and_time_roles_match_source (test_comparison.FrozenComparisonTests) ... ok
+test_empty_six_reference_conditions_are_not_dropped (test_comparison.FrozenComparisonTests) ... ok
+test_every_original_numeric_value_and_reason_exact (test_comparison.FrozenComparisonTests) ... ok
+test_every_source_and_output_hash_matches (test_comparison.FrozenComparisonTests) ... ok
+test_every_variant_uses_identical_paired_frame_keys (test_comparison.FrozenComparisonTests) ... ok
+test_fixed_models_never_promoted_to_own_session_diagnostic (test_comparison.FrozenComparisonTests) ... ok
+test_floor_point_counts_not_video_frame_trial_counts (test_comparison.FrozenComparisonTests) ... ok
+test_floor_point_lineage_original_values_and_fit_role (test_comparison.FrozenComparisonTests) ... ok
+test_half_recording_time_is_not_confused_with_all_time (test_comparison.FrozenComparisonTests) ... ok
+test_no_physical_or_hardware_approval (test_comparison.FrozenComparisonTests) ... ok
+test_own_scene_is_only_up_not_independent_full_tf (test_comparison.FrozenComparisonTests) ... ok
+test_paired_statistics_recomputed_from_same_members (test_comparison.FrozenComparisonTests) ... ok
+test_paper5_is_cross_capture_for_every_cone_frame (test_comparison.FrozenComparisonTests) ... ok
+test_recovery_not_old_distance_imputation (test_comparison.FrozenComparisonTests) ... ok
+test_scene_diagnostic_flags_and_values_unchanged (test_comparison.FrozenComparisonTests) ... ok
+test_unlabeled_common_frames_not_given_a_distance_reference (test_comparison.FrozenComparisonTests) ... ok
+test_bias_percentile_and_base_height_are_separate (test_comparison.HelperTests) ... ok
+test_empty_statistics_remain_missing_not_zero_distance (test_comparison.HelperTests) ... ok
+test_explicit_bool_contract (test_comparison.HelperTests) ... ok
+test_frame_digest_order_independent_and_identity_sensitive (test_comparison.HelperTests) ... ok
+test_unknown_model_and_floor_role_refused (test_comparison.HelperTests) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 4.350s
+
+OK
+
+
+/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01
+test_all_frames_and_scene_observations_retained (test_causal_pose.RecordedReplayTests) ... ok
+test_current_quality_rejection_cannot_be_bypassed (test_causal_pose.RecordedReplayTests) ... ok
+test_every_used_proof_is_at_or_before_current_frame (test_causal_pose.RecordedReplayTests) ... ok
+test_first_readiness_uses_first_two_plus_next_two_images (test_causal_pose.RecordedReplayTests) ... ok
+test_future_direction_poison_does_not_affect_current_prefix (test_causal_pose.RecordedReplayTests) ... ok
+test_known_occlusion_held_and_current_observation_recovers (test_causal_pose.RecordedReplayTests) ... ok
+test_no_distance_when_scene_not_available_even_with_colour (test_causal_pose.RecordedReplayTests) ... ok
+test_nothing_before_initialization_retroactively_emitted (test_causal_pose.RecordedReplayTests) ... ok
+test_physical_flags_and_no_imputation (test_causal_pose.RecordedReplayTests) ... ok
+test_pose_proof_age_and_same_frame_modes (test_causal_pose.RecordedReplayTests) ... ok
+test_prefix_replay_unchanged_by_truncating_future (test_causal_pose.RecordedReplayTests) ... ok
+test_recordings_without_initialization_remain_withheld (test_causal_pose.RecordedReplayTests) ... ok
+test_single_frame_feature_replay_matches_frozen_result (test_causal_pose.RecordedReplayTests) ... ok
+test_source_and_output_hashes (test_causal_pose.RecordedReplayTests) ... ok
+test_split_roles_and_distance_labels_never_enter_state_machine (test_causal_pose.RecordedReplayTests) ... ok
+test_static_conditional_coverage_not_30fps_claim (test_causal_pose.RecordedReplayTests) ... ok
+test_candidate_not_updated_by_future_reconfirmation (test_causal_pose.StateTests) ... ok
+test_duplicate_or_reversed_features_refused (test_causal_pose.StateTests) ... ok
+test_input_vectors_are_copied (test_causal_pose.StateTests) ... ok
+test_invalid_images_do_not_count_as_validation (test_causal_pose.StateTests) ... ok
+test_no_output_before_four_distinct_images (test_causal_pose.StateTests) ... ok
+test_one_second_exact_boundary_included_beyond_refused (test_causal_pose.StateTests) ... ok
+test_query_cannot_precede_observation (test_causal_pose.StateTests) ... ok
+test_reconfirmation_can_resume_but_does_not_reissue_old_distance (test_causal_pose.StateTests) ... ok
+test_recordings_do_not_share_state (test_causal_pose.StateTests) ... ok
+test_rejected_direction_and_implicit_flags_refused (test_causal_pose.StateTests) ... ok
+test_rejected_frames_keep_past_initialization_evidence_not_live_output (test_causal_pose.StateTests) ... ok
+test_rejected_scene_blocks_even_within_ttl (test_causal_pose.StateTests) ... ok
+test_sample_only_never_uses_pose_from_previous_frame (test_causal_pose.StateTests) ... ok
+test_synthetic_ready_is_not_physical_or_ffb_approval (test_causal_pose.StateTests) ... ok
+test_training_disagreement_restarts_before_validation (test_causal_pose.StateTests) ... ok
+test_two_training_and_two_later_validation_not_reused (test_causal_pose.StateTests) ... ok
+test_unknown_mode_and_nonunit_direction_refused (test_causal_pose.StateTests) ... ok
+test_valid_but_disagreeing_direction_restarts (test_causal_pose.StateTests) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 3.216s
+
+OK
+
+
+/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01
+test_actual_prefix_and_future_direction_poison (test_latency.SavedTests) ... ok
+test_additional_outputs_disclose_pending_rejection (test_latency.SavedTests) ... ok
+test_all_manifests_and_frozen_sources_match (test_latency.SavedTests) ... ok
+test_benchmark_has_three_runs_per_fixed_image (test_latency.SavedTests) ... ok
+test_cost_statistics_reproduce_saved_measurements (test_latency.SavedTests) ... ok
+test_loss_partition_does_not_overlap_or_change_population (test_latency.SavedTests) ... ok
+test_only_completed_events_are_used_and_source_age_not_renewed (test_latency.SavedTests) ... ok
+test_pending_control_is_availability_only_no_new_values (test_latency.SavedTests) ... ok
+test_pending_control_removes_unfinished_rejection_outputs (test_latency.SavedTests) ... ok
+test_pending_counter_is_latest_released_only_not_future (test_latency.SavedTests) ... ok
+test_physical_and_hardware_flags_unchanged (test_latency.SavedTests) ... ok
+test_saved_timing_rows_are_complete_not_new_scene_timing (test_latency.SavedTests) ... ok
+test_three_scenarios_retain_every_frame (test_latency.SavedTests) ... ok
+test_zero_cost_reproduces_causal_reference_exactly (test_latency.SavedTests) ... ok
+test_all_four_proofs_must_finish_before_readiness (test_latency.SchedulingTests) ... ok
+test_decision_clock_strict_and_no_future_frame (test_latency.SchedulingTests) ... ok
+test_duplicate_release_and_invalid_costs_rejected (test_latency.SchedulingTests) ... ok
+test_fifo_wait_and_finish (test_latency.SchedulingTests) ... ok
+test_freshness_uses_original_input_time_not_finish_time (test_latency.SchedulingTests) ... ok
+test_future_poisoned_direction_not_read_before_finish (test_latency.SchedulingTests) ... ok
+test_no_application_before_completion (test_latency.SchedulingTests) ... ok
+test_pending_counters_are_strict (test_latency.SchedulingTests) ... ok
+test_pending_hold_has_no_future_acceptance_input (test_latency.SchedulingTests) ... ok
+test_refusal_not_known_before_finish_and_applied_after (test_latency.SchedulingTests) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 2.088s
+
+OK
+
+
+/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/cone_distance_visual_examples_r01
+test_available_examples_selected_by_time_not_distance_error (test_visualizations.VisualizationTests) ... ok
+test_exact_saved_metric_row_and_observed_row_not_nearest_frame (test_visualizations.VisualizationTests) ... ok
+test_input_and_output_hashes_are_unchanged (test_visualizations.VisualizationTests) ... ok
+test_marker_uses_same_frame_native_bottom_not_ground_truth (test_visualizations.VisualizationTests) ... ok
+test_no_live_or_physical_approval_in_metadata (test_visualizations.VisualizationTests) ... ok
+test_numeric_labels_come_from_diagnostic_not_reference_distance (test_visualizations.VisualizationTests) ... ok
+test_original_pngs_match_independent_video_frame_read (test_visualizations.VisualizationTests) ... ok
+test_png_dimensions_and_nonannotated_photo_region_unchanged (test_visualizations.VisualizationTests) ... ok
+test_renderer_refuses_inconsistent_availability (test_visualizations.VisualizationTests) ... ok
+test_svg_embeds_original_bytes_without_modification_or_rescale (test_visualizations.VisualizationTests) ... ok
+test_three_originals_have_native_shape_and_decoded_hash (test_visualizations.VisualizationTests) ... ok
+test_warnings_and_units_are_embedded_in_every_figure (test_visualizations.VisualizationTests) ... ok
+test_withheld_has_no_fabricated_number_or_measurement_marker (test_visualizations.VisualizationTests) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.940s
+
+OK
