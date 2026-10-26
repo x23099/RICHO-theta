@@ -1,0 +1,39 @@
+test_all_one_bin (test_bin_reduction.BinSelectionTests) ... ok
+test_boolean_ids_rejected (test_bin_reduction.BinSelectionTests) ... ok
+test_complex_distances_rejected (test_bin_reduction.BinSelectionTests) ... ok
+test_duplicate_ids_rejected (test_bin_reduction.BinSelectionTests) ... ok
+test_each_element_own_bin (test_bin_reduction.BinSelectionTests) ... ok
+test_empty (test_bin_reduction.BinSelectionTests) ... ok
+test_extreme_finite_distances (test_bin_reduction.BinSelectionTests) ... ok
+test_extreme_signed_bins_do_not_overflow_order_check (test_bin_reduction.BinSelectionTests) ... ok
+test_first_of_equal_minima (test_bin_reduction.BinSelectionTests) ... ok
+test_float_bins_rejected (test_bin_reduction.BinSelectionTests) ... ok
+test_float_ids_rejected (test_bin_reduction.BinSelectionTests) ... ok
+test_inputs_not_mutated (test_bin_reduction.BinSelectionTests) ... ok
+test_mismatched_lengths_rejected (test_bin_reduction.BinSelectionTests) ... ok
+test_negative_ids_rejected (test_bin_reduction.BinSelectionTests) ... ok
+test_nonfinite_selected_distance_rejected (test_bin_reduction.BinSelectionTests) ... ok
+test_one_element (test_bin_reduction.BinSelectionTests) ... ok
+test_out_of_range_ids_rejected (test_bin_reduction.BinSelectionTests) ... ok
+test_r01_unsigned_guard_gap_reproduced_without_editing_it (test_bin_reduction.BinSelectionTests) ... ok
+test_seeded_random_and_ties_against_legacy (test_bin_reduction.BinSelectionTests) ... ok
+test_signed_zero_keeps_first_index (test_bin_reduction.BinSelectionTests) ... ok
+test_sparse_indices_and_bin_gaps (test_bin_reduction.BinSelectionTests) ... ok
+test_unsigned_reverse_bins_rejected_without_overflow (test_bin_reduction.BinSelectionTests) ... ok
+test_unsigned_reverse_ids_rejected_without_overflow (test_bin_reduction.BinSelectionTests) ... ok
+test_unsorted_bins_rejected (test_bin_reduction.BinSelectionTests) ... ok
+test_unsorted_ids_rejected (test_bin_reduction.BinSelectionTests) ... ok
+test_unused_nan_not_selected (test_bin_reduction.BinSelectionTests) ... ok
+test_wrong_shape_rejected (test_bin_reduction.BinSelectionTests) ... ok
+test_all_978_results_exact (test_bin_reduction.SavedBinTests) ... ok
+test_all_frozen_sources_and_outputs_match (test_bin_reduction.SavedBinTests) ... ok
+test_balanced_paired_52_images_three_runs (test_bin_reduction.SavedBinTests) ... ok
+test_checkpoint_batches_have_exact_spec_and_unique_image_keys (test_bin_reduction.SavedBinTests) ... ok
+test_no_production_or_tie_rule_change (test_bin_reduction.SavedBinTests) ... ok
+test_pending_ttl_and_no_physical_output (test_bin_reduction.SavedBinTests) ... ok
+test_zero_cost_377_reference (test_bin_reduction.SavedBinTests) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 2.278s
+
+OK

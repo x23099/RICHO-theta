@@ -1,0 +1,906 @@
+{
+  "run_spec_sha256": "86d2f642051aaf560fce4ce7e499c3c7e4a4312536e2d035052f956309d717b0",
+  "checks": [
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4492,
+      "accepted": false,
+      "png_sha256": "e424f642a63144f0b0663b39aada41dc1c63d390863c666edcb6d9d4d4006a99",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4507,
+      "accepted": false,
+      "png_sha256": "9e2ded6c046694f0b6abd984c12b26864ee731b737e4b6f3ab665a40b036250d",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4522,
+      "accepted": false,
+      "png_sha256": "c2d47b79aded2ac546abf9f729b8b4f0ed2e88b77f20c60ad9544413756e54d2",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4537,
+      "accepted": false,
+      "png_sha256": "c9edf0f796b265cbea85a918bb72d3c98306b734460f2464b05f172dad57954d",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4552,
+      "accepted": false,
+      "png_sha256": "81968b1501b584b758f6254eb6576029aeb35fd0ba22c7bce5e8df68e5401ce9",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4567,
+      "accepted": false,
+      "png_sha256": "b89dfd0439d9f3425831a744618ac8a50212c0b9fe667369dfb4e5b51fa510af",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4582,
+      "accepted": false,
+      "png_sha256": "6928fd5529b1f1dda3e6ac27b847c238b44cfa267590188e15f72ff62397733e",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4597,
+      "accepted": false,
+      "png_sha256": "3b98bf505793be815944dd770e380880d5d86678dca8db38d307c3bc9a78614a",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4612,
+      "accepted": false,
+      "png_sha256": "556530074c1572a33dc2206b1387292a8ccdaeabcb23ff9120bd766dfc542165",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4627,
+      "accepted": false,
+      "png_sha256": "9217556b58a251b45b2b61b4ad137f0d8cc76d9a46ee838330305b91edadfdde",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4642,
+      "accepted": false,
+      "png_sha256": "90bac667886be8796bc992760405b640d688ea53f90ce2e94e671fb03dc8ff76",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4657,
+      "accepted": false,
+      "png_sha256": "0bbca8a969489b11ee42bdbaa5a08ad7f63d80048ce538c3ae876fb6ef70d69c",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4672,
+      "accepted": false,
+      "png_sha256": "cae1674ddbb623b254d1a12178e37b00cb9fcff25097054482f218acffef0771",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4687,
+      "accepted": false,
+      "png_sha256": "e9b4ebc0f9a8a74b98db9b556c2ef788575efbf3ce26566a575daadcb65e2ab1",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4702,
+      "accepted": false,
+      "png_sha256": "5d2c54f502b0c767d2dd59619a8d75da91c0d41567734682edb03711d4f5f506",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4717,
+      "accepted": false,
+      "png_sha256": "5d27c3a1941e92946b9c5c334ebeee3d5fd02cb096119d67e025702a2ea181e3",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4732,
+      "accepted": false,
+      "png_sha256": "2050bfcf0847df005b9a81e3a7ea31a6bb49dd710b0c1eb60987bd136a65b1c4",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4747,
+      "accepted": false,
+      "png_sha256": "ae5a697e2acc3002e89597005f672d0d08bac0f10f152df36c95bae29338c76d",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4762,
+      "accepted": false,
+      "png_sha256": "4e579826366a9a8fb7cc878420b2c2d744e34ae565278fd217ecdcf55bcb3bc3",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4777,
+      "accepted": false,
+      "png_sha256": "e2d660d7f3db6b5b0e45530dee03e705dbc376ca4c64c5ad907d6088ae8219b7",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4792,
+      "accepted": false,
+      "png_sha256": "42fa2bec423f33b0b65bb4619205996867ed6a91f4b351830ba79566cb8c3c7d",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4807,
+      "accepted": false,
+      "png_sha256": "251b0ec30a8916d9aa1e33fc834e97949693bcd8d40388a08f46e093a06625f8",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4822,
+      "accepted": false,
+      "png_sha256": "26aa8697ee6608ce6e92d09f2336a640121425c2304977d966a19bfb1cedce29",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4835,
+      "accepted": false,
+      "png_sha256": "f9287d57f86c40be86a4fa68bc66560377ac1943f5c8041e1944bd149d51bc50",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4850,
+      "accepted": false,
+      "png_sha256": "83fe41655daae36a09c179d4536e5e5504574246dbd3ccab15de375b24333141",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4865,
+      "accepted": false,
+      "png_sha256": "3e4460a0f6c9a89e97a5fb34744055ddb5fafed404daba5c69e7fabc5e2edaeb",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4880,
+      "accepted": false,
+      "png_sha256": "95bee1699d4100df8c8a011fb80e8dd0c463d06a9088593139e61caf73077f86",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4895,
+      "accepted": false,
+      "png_sha256": "e8de8e481dbb35b50acdaafaa76d18317ba7dbc6cac06dba4e5208c407027c20",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4910,
+      "accepted": false,
+      "png_sha256": "9eb47032227fd65688949b7b1704fec0794ec1dee02a38fc3a613f4691d2af50",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4924,
+      "accepted": false,
+      "png_sha256": "11f9c80cb50b671370b7838d9af8d77bfd4b0d4bcbe256eb52c2d95f5da091f2",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4939,
+      "accepted": false,
+      "png_sha256": "170feac1dab028c5adf69ec3d1ad47d2ca56d71ea59b68b73788d3cff8917960",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4955,
+      "accepted": false,
+      "png_sha256": "bcab5077296c24614276270f43ee3f72efbe1d09c053418288eddc7310afebc2",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4969,
+      "accepted": false,
+      "png_sha256": "9bd21e435422f626e016c3720eb71dabcd2480fbd2ab9eaed03525a3ad406990",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4984,
+      "accepted": false,
+      "png_sha256": "a994067a981f5ba616e3fea944a1bdc7b8cecc6e571e0637f481d88708d20915",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 4999,
+      "accepted": false,
+      "png_sha256": "b19c37b6f81598a3f71141621477565800501d30176f6a481dbc982e6fca47c0",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5014,
+      "accepted": false,
+      "png_sha256": "5009e9803073a6dce2f3c6026c2e75cc21bd4b2a3ca77e4489e27f1507d157b2",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5030,
+      "accepted": false,
+      "png_sha256": "78d89429ae31be11d8a25228075d1f48301a45fc645fc6bf1a37316b8e2b2d64",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5045,
+      "accepted": false,
+      "png_sha256": "2c21930216c202f33af6002c39d3a8132479f5ad067b4b73a7fbb3a7a2c6cd06",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5059,
+      "accepted": false,
+      "png_sha256": "319dbef64c418686b37dfd5a7ec270101bc51cc1adf65d2e519183daccdaab9b",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5074,
+      "accepted": false,
+      "png_sha256": "6bfa1aa0fe98d688ebfcb246d5283aa99617035f71ae2b5563ea674795c50028",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5090,
+      "accepted": false,
+      "png_sha256": "96c146de2e6a0de972cbff1719f5d8521680d702323bd381ed815c73d8643e23",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5105,
+      "accepted": false,
+      "png_sha256": "62d82c75142cbbbc80136656d23adbebbb5e22863e7c0a7131acc94ef91c39ef",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5120,
+      "accepted": false,
+      "png_sha256": "feb8c11356c3a9ebb70c17c38a8210ef67a15969a505fecc5fe78ce786062ad7",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5135,
+      "accepted": false,
+      "png_sha256": "d288584f1920781866202c2bde841fa7945e15eba4a208e45bfb528df94c8a4f",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5150,
+      "accepted": false,
+      "png_sha256": "29959847b95039c43bc841d682442261853aa0ed1934c0ab37185d5e9c7b5e11",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5163,
+      "accepted": false,
+      "png_sha256": "41ad600c1216630e1c2e2af784a6646cb87ad3925562bc54ee414f9ba789f39a",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5178,
+      "accepted": false,
+      "png_sha256": "ad017d95918bba41e31e9ee2dbe1bbfecd388b4c5edae778f6cb36808b2d50a7",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5194,
+      "accepted": false,
+      "png_sha256": "34bf7e3e8bf0c9be28953a94f02a3e0d95a5ede6463007dbdb185090613dc903",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5209,
+      "accepted": false,
+      "png_sha256": "e8badc3e4fc63611fdd1d0934d590bfc09bee9f828eff0e3f378dbd4e21852c8",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5224,
+      "accepted": false,
+      "png_sha256": "989906cedecdcb220202121f9f705b3831d55e99a84a0f21a0d60c02b35693b4",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5240,
+      "accepted": false,
+      "png_sha256": "1381178581308d3a367e184eac467d16e5f94fef06c92e2d270163d59f6b8a3d",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5255,
+      "accepted": false,
+      "png_sha256": "139f688f220d50a8bdb73f5c8218a40f3ee6446301f3b58e4b2aa7f0afbe7c11",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5270,
+      "accepted": false,
+      "png_sha256": "19fd328dd988d639fc45129a8cc24c9920341697a867bf9b85c65ecb5a24b8fa",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5284,
+      "accepted": false,
+      "png_sha256": "028c43ba889acfecdfc3ba118480e31efe95de90a5747b01ad49daf4e743268c",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5299,
+      "accepted": false,
+      "png_sha256": "d1bbe1d46992d363c7a0060ecaa4559581c18cd8b634d564d7ad60a4806e8269",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5314,
+      "accepted": false,
+      "png_sha256": "70fe27b8e82c883e435f79c9260f50a6139cda5f6660b82047a00266ff040fca",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5329,
+      "accepted": false,
+      "png_sha256": "034f7d817008b8497cb64d9deade6d1a218b602b2c331b3023c1c2c0e93579c5",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5343,
+      "accepted": false,
+      "png_sha256": "80441a2fad384e71a4818fda9842a7e33b5c0313137775d5cae72c2986224879",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5359,
+      "accepted": false,
+      "png_sha256": "4cddf386833bfaed99aae62a25b698ac53b04a64869a49f1555b4674ce9e1f5d",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5375,
+      "accepted": false,
+      "png_sha256": "2ac45c2d1ca8699de825c7528d937d5ec1282a6f29c069fcedc183410ac0dc1c",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5390,
+      "accepted": false,
+      "png_sha256": "0805e38e1d34f70fc7a71ce3843dea8e40363366d25be1d7bc7e41bdd60ad1b1",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5405,
+      "accepted": false,
+      "png_sha256": "e72a1e53ca96df98e9cfaa05b6e00d39e710eee159761b467a0b2f41d32c5f9b",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5420,
+      "accepted": false,
+      "png_sha256": "9b6c21ec1d4a2350a14c76a3e8d2b9953f801fa956526dce3ad71eb3414a8bad",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5435,
+      "accepted": false,
+      "png_sha256": "2f544f814e4e140ad99ea880d26460cf84510003651325f7ebda1bd510d49dbb",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5450,
+      "accepted": false,
+      "png_sha256": "397f385b5fb6313de0b04adccf7a0aed31a74fda30403f09433d45ba10792ceb",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5465,
+      "accepted": false,
+      "png_sha256": "fe4c45acc1abbd6fa37ecf047a83e00788418f301ea465ea6605a68727a8dc93",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5480,
+      "accepted": false,
+      "png_sha256": "e6f281a50c6f05e3f4b2d5caeba47e68c39fd8b051e2c103a50031a3285c90af",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5495,
+      "accepted": false,
+      "png_sha256": "709904011a5ae75a1e92b22be0d3509ec071de731ce7814cfe8616b21a7a339b",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5510,
+      "accepted": false,
+      "png_sha256": "00f30872c6a7fefe104a20157ec74a236cbfcc773e7ffbcb88b9d08bfecbddb9",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5525,
+      "accepted": false,
+      "png_sha256": "1f5eb35d3b05e2d6b717ab5fd0c3db9ebee8aa12748335873729660449d6a34f",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5540,
+      "accepted": false,
+      "png_sha256": "4156a231c96cd92479ab08a01136ec540e1c6d35f81fc9183e9d923838ab32ba",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5555,
+      "accepted": false,
+      "png_sha256": "08ddfcd3b58a32feeba00765aaf54cabaaf1c4d3d522d0613a9eee525dac00b2",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5570,
+      "accepted": false,
+      "png_sha256": "8b9c023e886d32d3ed08303e6310804ec37c8836dda0b99128025e2620db146f",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5584,
+      "accepted": false,
+      "png_sha256": "a76b34a626b11534502b920b4d9164157016b8ee88696af47ae06ef3d38c5163",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5599,
+      "accepted": false,
+      "png_sha256": "8d21f668cdc73cafb5a13a8adf4746fac7a8bcf2c6211def76a1ca1221b8a967",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5615,
+      "accepted": false,
+      "png_sha256": "2adc1f8d3a538eb255123a78c4bc9d71a0d5abdcbc529cddbb6992babc1c1072",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5629,
+      "accepted": false,
+      "png_sha256": "3db85cd9b43b2f89f3790bc130575074950dd40f4abf474e22b645e5f8725c46",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5642,
+      "accepted": false,
+      "png_sha256": "910e1923231d3bd482efaf5cada736b28b7cc0f1a612574bff5c4b4d52d42cd4",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5657,
+      "accepted": false,
+      "png_sha256": "dbd07df50f078c4c25d6fafe0b32984d8ce0eba5a6b3e46140fcbc727a5fe799",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5673,
+      "accepted": false,
+      "png_sha256": "06c7640b25062b6cf6b3bf6ba13d2ba81aa08bfb41fc062e84f0b89c98db5224",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5687,
+      "accepted": false,
+      "png_sha256": "ce4fcdb3bf395289eec499bacd8286a105b814732c506ad2a8a207f5e543ce05",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5698,
+      "accepted": false,
+      "png_sha256": "840e00caf2825876ec15573f4fa2cd96c2e03da1d2602b2ffef96fc2b8a5bab4",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5713,
+      "accepted": false,
+      "png_sha256": "692950c988cc7803eb681dcce4b0e2f483fc03b7bd8a74a8213c466ef09d5911",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5729,
+      "accepted": false,
+      "png_sha256": "be01decabe34c2fb14cf81ee2c7c52cb3e91cc3bcda837b0e11d9d20b161360d",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5743,
+      "accepted": false,
+      "png_sha256": "15b35796461750c8ca7ebb582064767d3a4ad0786ed1d41f8c539338e53aba06",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5757,
+      "accepted": false,
+      "png_sha256": "1b2b75992ef76ac7db945f4d207912475401a21157e8a6e017f44e13a7dc22f7",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5772,
+      "accepted": false,
+      "png_sha256": "1d5ea0e009d022cca00df655d15d85defdc029da36ff188301255570cd193940",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5788,
+      "accepted": false,
+      "png_sha256": "410be77c6094fd187db730db65dae94219587af86138bad6c71ff725ba4a2426",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5802,
+      "accepted": false,
+      "png_sha256": "9ce91c323af00cb29375ef58fd659fb124ad365f4b3fcfea32b8061b7c3254de",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5818,
+      "accepted": false,
+      "png_sha256": "2efe32fa72daf3b1ce0d12bd4579524fce3519d3c14ffcb741316b60fdf99d19",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5834,
+      "accepted": false,
+      "png_sha256": "68d19856e7a1c000004f03dc238a90331ac2ac027bd4e20ef3eeb8d37a59620e",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5849,
+      "accepted": false,
+      "png_sha256": "9192d6698dcdb309ec06afaa07dc740230f19345c068d08f48ea25291da64a83",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5864,
+      "accepted": false,
+      "png_sha256": "b64b9de99ddddf37ea67988a641e5b5e0f89a09aaad4a90b087eedf05ba7c882",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5879,
+      "accepted": false,
+      "png_sha256": "38e2ecd70d33776e9380809ed81ca96d6243e3e6ac80275d26e2b6ba7cf67b78",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5894,
+      "accepted": false,
+      "png_sha256": "1cf6c70377ed4c0dd2a7698122a29a14ae2c21f3e053c32d85118fe5a8d1cc54",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5909,
+      "accepted": false,
+      "png_sha256": "c2b645b9edceb4baab0d29878ce9f0979aced801cd43bd6de28c401e1de66120",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5924,
+      "accepted": false,
+      "png_sha256": "e18003537b8333760423fba5cd7662b71e4374f6bffd27f6b8563d97768fc5e4",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5937,
+      "accepted": false,
+      "png_sha256": "6266a923e797a0afa15f9d1120108eb4159e3b65de36fa8e9236954d2a638164",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5952,
+      "accepted": false,
+      "png_sha256": "c2da30b1fd929560f99ea11b4aa83d0fd825f8c3cf64d0c3be9039e0d1041495",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "itiawase2_20261015_183552_599",
+      "frame": 5967,
+      "accepted": false,
+      "png_sha256": "4c8bee05afe64806c4a330ebd4e84d270c85551dc0b2fdf6995084fa7654be2a",
+      "all_candidate_and_up_fields_exact": true,
+      "physical_output": false,
+      "usable_for_ffb": false
+    }
+  ],
+  "checks_sha256": "6ee96c96392fbbdb2a701cc267423903b7a282034e016364faf02955982ba0ec"
+}

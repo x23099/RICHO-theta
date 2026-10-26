@@ -1,0 +1,17 @@
+cost_mode,session,cone_query_frames,sparse_available,dense_available,common_available,dense_only,sparse_only,matched_z_difference_median_m,matched_z_difference_max_abs_m,physical_metric_verified,usable_for_ffb
+zero_service,cone_static_center_z1p30_r01_20261015_135329_732,651,0,0,0,0,0,,,False,False
+zero_service,cone_static_center_z2p00_r01_20261015_135414_399,632,0,0,0,0,0,,,False,False
+zero_service,cone_static_left_z1p30_r01_20261015_135541_436,628,0,0,0,0,0,,,False,False
+zero_service,cone_static_no_cone_r01_20261015_134940_713,332,0,0,0,0,0,,,False,False
+zero_service,cone_static_right_z1p30_r01_20261015_135630_973,631,0,0,0,0,0,,,False,False
+zero_service,floor_cone_same_pose_r01_20261015_160621_378,1547,377,389,299,90,78,-0.0026337107051275233,0.0026456073570140237,False,False
+zero_service,one_static_center_z0p80_r01_20261015_135155_823,722,0,24,0,24,0,,,False,False
+zero_service,paper_cone_center_z2p00_r01_20261019_180411_245,1733,0,0,0,0,0,,,False,False
+three_pass_median,cone_static_center_z1p30_r01_20261015_135329_732,651,0,0,0,0,0,,,False,False
+three_pass_median,cone_static_center_z2p00_r01_20261015_135414_399,632,0,0,0,0,0,,,False,False
+three_pass_median,cone_static_left_z1p30_r01_20261015_135541_436,628,0,0,0,0,0,,,False,False
+three_pass_median,cone_static_no_cone_r01_20261015_134940_713,332,0,0,0,0,0,,,False,False
+three_pass_median,cone_static_right_z1p30_r01_20261015_135630_973,631,0,0,0,0,0,,,False,False
+three_pass_median,floor_cone_same_pose_r01_20261015_160621_378,1547,304,242,186,56,118,-0.0026337107051275233,0.0026456073570140237,False,False
+three_pass_median,one_static_center_z0p80_r01_20261015_135155_823,722,0,18,0,18,0,,,False,False
+three_pass_median,paper_cone_center_z2p00_r01_20261019_180411_245,1733,0,0,0,0,0,,,False,False

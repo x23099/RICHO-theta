@@ -1,0 +1,16 @@
+{
+  "status": "COMPLETED_NUMERICAL_PLOT",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/plot_comparison.py": "8f40ed221eb00928d3e5684746431189e0c1097a602501a3eab458c9aeff826f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/results_r01/summary.json": "d586829f025d1ff68235b6e74434812e8b5ce6ba50be6982c4108263b44d23d6",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/results_r01/paired_measurements.csv": "335a11d338772286c4c7018a2c94fc006fb815690a4f7b9fd758f2b62d129a55",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/replay_r01/summary.json": "6c6a4784380b3ca4c89b0698930b09120096905f511a1c8630e2e7a6638e323c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/replay_r01/replay_summary.csv": "7670a539e312932c0cf32dea93004aaba4d8f14373ccbe0a334ffc0d2dea779c"
+  },
+  "source_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "paired_cost_and_availability.png": "c20c01d4c19988b610d16bdf707e4b5658b22920cf2e059d483f9cc54a0483d0"
+  }
+}

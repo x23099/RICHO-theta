@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/analyze_dense.py": "8d8f69462175c962e75da3ae4e0f2455a4897466bd62b668a2eefcbd6cc5708c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/dense_common.py": "5b4e1af7d4a9d4e5e42217a2beb95b66de61e070e58096c137c65a356e951d53",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/plot_dense.py": "78968e2365bedce8c2efc817e168a08a1ed0279590a96711cc071949aeacb6a0",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/prepare_dense.py": "16713d253ea144b3bfc4e7ae19b39a46ecd819e3d25c8138dffe51c4c1a06988",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/replay_dense.py": "c228c7c4c251db9c5a9d7814bb7a821b435123b6d79c1f27f9c4cf852e464df7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/test_dense_replay.py": "6b60449e8aadf91f774d2fe0bad5feb3b220e1d61d98810fee1d9c3d487f0fff",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/verify_dense.py": "d2db9801c874fbd791246ba7b6191cdfc6aec31cac8fd50bcf3f642c88ef3da6",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/method.md": "6004ecf1e6b1e55ac611fe45a45f445ee5ea487a71b8dfe766bd2164441c4d6a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/README.md": "e518759233930c3d8ef6d71a2b9798ae3c065e88c3cb13bfbc974d8a48e10c71",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/intake_r01/summary.json": "b83347fad9c4c5fc8681d35b7ff6ada7729fb3bea21e27355d0a1591aa6d5d13",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/scene_results_r01/summary.json": "6e479faec06e54884fef86cb69bd46115933dc72f206f96b86a33dfd73d1de8a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/replay_r01/summary.json": "a1f10cc35b19271546596336c21ab6f5c07a4d565f58453e3a06605be11bd974",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/report_r01/summary.json": "1036559956dd15b0d1eacc52b3c5b37d25bd4b6747939eafbc63387098b04978",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/verification_r01/summary.json": "6010b433e43a5093f857ccafa08dce0eed3334fba0fad917316b050397e9a8ad"
+  },
+  "fresh_tests": 27,
+  "reused_ray_optimization_tests_not_rerun": 37,
+  "evidence_file_hash_checks": 101,
+  "source_images_edited": false,
+  "production_changed": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "test_log.txt": "1bc9e8d8f7a018322a3cfc8db88675b16cf2d9990269356dc70ab61632c9d5a2"
+  }
+}

@@ -1,0 +1,10 @@
+session,decoded_frames,sampled_frames,reused_1s_images,additional_images
+cone_static_center_z1p30_r01_20261015_135329_732,651,44,22,22
+cone_static_center_z2p00_r01_20261015_135414_399,632,43,22,21
+cone_static_left_z1p30_r01_20261015_135541_436,628,42,21,21
+cone_static_no_cone_r01_20261015_134940_713,332,23,12,11
+cone_static_right_z1p30_r01_20261015_135630_973,631,43,22,21
+floor_cone_same_pose_r01_20261015_160621_378,1547,104,52,52
+itiawase2_20261015_183552_599,7650,513,257,256
+one_static_center_z0p80_r01_20261015_135155_823,722,49,25,24
+paper_cone_center_z2p00_r01_20261019_180411_245,1733,117,59,58

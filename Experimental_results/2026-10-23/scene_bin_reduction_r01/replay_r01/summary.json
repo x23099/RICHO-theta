@@ -1,0 +1,68 @@
+{
+  "status": "COMPLETED_ONE_SECOND_BIN_REDUCTION_COST_COUNTERFACTUAL",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_bin_reduction_r01/replay_fast.py": "00e624453671f548dc7ffd902b5dce88e066a90037fc1bde60025f240576c73c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_bin_reduction_r01/method.md": "c4f81a90043033ad68fdc38f0226adad8820dce1e7e6fc6061cb106cf1978f1d",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_bin_reduction_r01/run_fast_guarded.py": "1c7190a5228035882cb7ef13a7641bcf95517419844f4711bdc7d92558566ed9",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_bin_reduction_r01/results_guard_r02/summary.json": "7dd2133d94529cc765feeac484262e81bf85f9097551c1da72999694c32b1c29",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_bin_reduction_r01/results_guard_r02/scene_stage_measurements.csv": "6d3eb242861452e8909b838544a7840b82a8cebf3f879da63bbd32e3937e47e9",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/scene_results_r01/image_diagnostics.csv": "aaf0b9d058d2706d28f33ab3b9b4ef3fe4084bb09a714092eff067fc738d474a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/quality_results_r01/all_frame_quality.csv": "167fd8607d9b0e423b41d4ddca9c866019fa9f38e1fc5684e35dfb78963d09c8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/cone_known_height_pinhole_r01/results_r01/observed_pixels.csv": "630a5d66820865ff4e1833eb120957bb1ed2d2c30f849e3ed112ff4f2c24b693",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01/results_r01/frame_metrics.csv": "116d71afe3d2f26f3339bcf9b0b69dab9e45435d260db4600b926f503fc9e1cf",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/replay_completion.py": "1fd655c1dd571e1e2ab7addadcf69286d499dbb98017f0908eaacc89af6a45e1",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/finish_aware.py": "368061cfeda14e5f89fbb74d5a32854b9495aeb6512bffa5023f512a2243e6cf",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_availability_latency_r01/pending_hold_control.py": "74b27d0582dce604ff9a970f5f72985712a495f96e91568003456f069abaa3b7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/replay_paired_costs.py": "8a51625019faee8e99d21a24e944a33b3e5f9db8011c59d319751e0222e634ed",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01/causal_pose.py": "74d1d6f2f05781da43e51e11f30dcfc0c4c94f82b732c0a159a9d9fef87ed024",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/causal_pose_replay_r01/replay_saved.py": "67eb119d18734ffa7faa3e56051c4be13f1ee7704c0b80fa5d745bfa496bc37f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/scene_geometry.py": "b33d73c7cb73fff06e9ad0fa49644b64d7302d86b04fbd4561bfd714a5d74992",
+    "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+  },
+  "zero_cost_mismatches": 0,
+  "summaries": [
+    {
+      "variant": "zero_service_reference",
+      "frames": 1547,
+      "before_pending_hold_frames": 377,
+      "diagnostic_frames": 377,
+      "max_queue_wait_sec": 0.0,
+      "outputs_during_pending": 0,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "variant": "ray_reuse_control",
+      "frames": 1547,
+      "before_pending_hold_frames": 319,
+      "diagnostic_frames": 313,
+      "max_queue_wait_sec": 0.0,
+      "outputs_during_pending": 0,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "variant": "bin_reduction",
+      "frames": 1547,
+      "before_pending_hold_frames": 331,
+      "diagnostic_frames": 325,
+      "max_queue_wait_sec": 0.0,
+      "outputs_during_pending": 0,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    }
+  ],
+  "source_ttl_sec": 1.0,
+  "source_images_edited": false,
+  "current_cone_compute_cost_included": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "replay_summary.csv": "b9076d25804d81a6e9a9f3535884f1120d04b615574dad0b4f54fe933fc717bd",
+    "scene_job_schedule.csv": "c9ae773ab465f985aeb85b585317727cd031c2e37014f9b80133a3b11cfa1d8d",
+    "scene_events.csv": "c7872916e8b8c12fce3a09e6938748977ac5180f6db879de858fafd6d6ca7d84",
+    "frame_metrics.csv": "3c6af057180d3b7c2c644d885f69024b3dae966b21da61c820aeacfb73c42c8a"
+  }
+}

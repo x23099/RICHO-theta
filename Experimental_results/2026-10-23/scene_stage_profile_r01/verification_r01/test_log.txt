@@ -1,0 +1,25 @@
+test_actual_image_all_fields_and_order_exact (test_stage_profile.InstrumentationTests) ... ok
+test_blank_image_has_same_rejection (test_stage_profile.InstrumentationTests) ... ok
+test_exclusive_times_sum_to_wall (test_stage_profile.InstrumentationTests) ... ok
+test_invalid_dtype_rejected (test_stage_profile.InstrumentationTests) ... ok
+test_invalid_resolution_rejected (test_stage_profile.InstrumentationTests) ... ok
+test_no_cross_frame_state (test_stage_profile.InstrumentationTests) ... ok
+test_no_image_or_calibration_mutation (test_stage_profile.InstrumentationTests) ... ok
+test_stage_names_unique (test_stage_profile.InstrumentationTests) ... ok
+test_synthetic_budget_uses_mean_not_sum_of_medians (test_stage_profile.InstrumentationTests) ... ok
+test_aggregate_shares_sum_to_one_hundred (test_stage_profile.SavedProfileTests) ... ok
+test_all_978_and_nine_sessions_retained (test_stage_profile.SavedProfileTests) ... ok
+test_all_output_hashes_match (test_stage_profile.SavedProfileTests) ... ok
+test_all_saved_candidate_hash_checks_passed (test_stage_profile.SavedProfileTests) ... ok
+test_all_source_hashes_unchanged (test_stage_profile.SavedProfileTests) ... ok
+test_counter_bounds (test_stage_profile.SavedProfileTests) ... ok
+test_every_row_has_nonoverlapping_budget (test_stage_profile.SavedProfileTests) ... ok
+test_native_image_dimensions_and_not_edited (test_stage_profile.SavedProfileTests) ... ok
+test_no_physical_or_optimization_claim (test_stage_profile.SavedProfileTests) ... ok
+test_outer_timer_contains_internal_wall (test_stage_profile.SavedProfileTests) ... ok
+test_paired_order_balanced (test_stage_profile.SavedProfileTests) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 1.945s
+
+OK

@@ -1,0 +1,15 @@
+{
+  "status": "COMPLETED_GUARDED_BIN_NUMERICAL_CHART",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_bin_reduction_r01/plot_fast.py": "2757561211b3709b51ce4476c31dde8da596f32fc70a3f4db8443aed594dbdbd",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_bin_reduction_r01/results_guard_r02/summary.json": "7dd2133d94529cc765feeac484262e81bf85f9097551c1da72999694c32b1c29",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_bin_reduction_r01/results_guard_r02/paired_measurements.csv": "87f3b66255589336258957889c410fdc304bb61e0d23bb536c9127fe8887e0d1",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_bin_reduction_r01/replay_r01/replay_summary.csv": "b9076d25804d81a6e9a9f3535884f1120d04b615574dad0b4f54fe933fc717bd"
+  },
+  "source_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "guarded_bin_cost_and_availability.png": "fe65b3f35b8ced5c2330137b5893fd574aa573da7aff98bc9a7cf981b1b0f6fc"
+  }
+}

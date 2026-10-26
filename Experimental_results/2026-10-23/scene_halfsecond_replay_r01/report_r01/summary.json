@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETED_NUMERICAL_CADENCE_PLOTS",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/method.md": "6004ecf1e6b1e55ac611fe45a45f445ee5ea487a71b8dfe766bd2164441c4d6a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/plot_dense.py": "78968e2365bedce8c2efc817e168a08a1ed0279590a96711cc071949aeacb6a0",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/scene_results_r01/session_summary.csv": "6d15d439b8be76e8670d29e1ba21b5d0f24ae9a3c86bcff9b3d08a15bb87f503",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/replay_r01/session_summary.csv": "744caf51291b94243ce1f91da840551abf10338e023956d48482619d673f19ed",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/replay_r01/frame_metrics.csv": "af36a5ccbf8d795cee16cc307bf4f685560ccad959ffad0501479450609d9118"
+  },
+  "original_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "all_recordings_cadence_comparison.png": "6ebb3cc46f530a55b2e55b039640a3e8b21cf26ccc959ec224976d2aa254a417",
+    "same_capture_cadence_timeline.png": "33db8c46174719cf98669bfb1414935e0672f1663b95f984cc05c6c4be75153b"
+  }
+}

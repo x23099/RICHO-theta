@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-26",
+  "status": "PASS_CAMERA_FREE_INTAKE_TESTS_ONLY",
+  "python": "/home/robo25/theta-env/bin/python3",
+  "tests": [
+    {
+      "command": "env OPENBLAS_NUM_THREADS=1 /home/robo25/theta-env/bin/python3 -m unittest discover -s tests -p test_theta_rtc_diagnostic.py -v",
+      "count": 26,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "command": "env OPENBLAS_NUM_THREADS=1 /home/robo25/theta-env/bin/python3 -m unittest discover -s tests -p test_camera_capture_properties.py -v",
+      "count": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "syntax_checks": {
+    "python_py_compile": "PASS",
+    "bash_n_both_rtc_launchers": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "manual_review": {
+    "legacy_launcher_branches": "Only an explicit --diagnostic dispatch was prepended; normal branch content unchanged",
+    "vp8_codec": "Synthetic full-size BGR encoded and decoded in memory using installed aiortc VP8 implementation; no socket; dimensions retained, media PTS within one 90 kHz tick, pixels are not lossless",
+    "first_codec_test_failure": "Initial exact-PTS expectation exposed aiortc timebase rounding (3000 -> 2999); corrected presentation-time tolerance to one tick, not used as capture-clock identity"
+  },
+  "source_sha256": {
+    "src/theta_rtc_diagnostic.py": "f7a7a782ea1a5f22f676850c7c6a0f1d3fd8b54d395c74d31571b5ff04bb8488",
+    "src/theta_rtc_frames.py": "a87197c27d5e45235aee3486bc4286c41eb0cfd481e87167c2d8272148f89076",
+    "src/start_theta_receive_rtc.sh": "7bdd757eafe57813f48d4d3f72f6e8aa507bd8859c2508bf967f624f0aa868f0",
+    "src/start_theta_stream_rtc.sh": "8ad1363aadb8b828a5ec8a1d45a05c08c3d5f03404186623abed9ad36c80fe7e",
+    "tests/test_theta_rtc_diagnostic.py": "bb097f5c43ee698bbb02aebc7e8d7ab1f2f015d867f82a7a50907bb6c592c198",
+    "tests/test_camera_capture_properties.py": "6f7d1640d5e1665c0f6e3a9f8b5cb93a3131e75a457e6f4259bd03f5b95eab5b",
+    "src/camera_capture_properties.py": "46896cfa33dfd08da06dbf2eab9030880b9061ee7b8699b76c0762d7a0204c0a"
+  },
+  "not_performed": [
+    "camera activation",
+    "HTTP listener or real WebRTC connection",
+    "cross-PC network or end-to-end latency measurement",
+    "GPU inference",
+    "live cone/support/scene geometry or distance output",
+    "ROS nodes, robot movement, FFB",
+    "Git commit or push"
+  ],
+  "production_calibration_changed": false,
+  "physical_output": false,
+  "distance_connected": false
+}

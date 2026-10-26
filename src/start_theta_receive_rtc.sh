@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Opt-in native intake; does not import the driver UI / ROS control bridge.
+if [ "${1:-}" = "--diagnostic" ]; then
+    shift
+    DIAG_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    DIAG_PYTHON="${THETA_RTC_PYTHON:-python3}"
+    exec "$DIAG_PYTHON" "$DIAG_DIR/theta_rtc_diagnostic.py" receive "$@"
+fi
+
 DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$DIR" || exit 1
 

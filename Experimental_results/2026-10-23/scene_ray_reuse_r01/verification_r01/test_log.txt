@@ -1,0 +1,42 @@
+test_actual_curves_all_fields_and_order_exact (test_ray_reuse.RayReuseTests) ... ok
+test_angular_exclusion_kept (test_ray_reuse.RayReuseTests) ... ok
+test_blank_native_image_exact (test_ray_reuse.RayReuseTests) ... ok
+test_camera_change_has_no_stale_reuse (test_ray_reuse.RayReuseTests) ... ok
+test_float_indices_rejected (test_ray_reuse.RayReuseTests) ... ok
+test_fractional_pixels_rejected (test_ray_reuse.RayReuseTests) ... ok
+test_full_subset_matches_original_plane_exactly (test_ray_reuse.RayReuseTests) ... ok
+test_image_and_calibration_unmodified (test_ray_reuse.RayReuseTests) ... ok
+test_insufficient_span_kept (test_ray_reuse.RayReuseTests) ... ok
+test_negative_indices_rejected (test_ray_reuse.RayReuseTests) ... ok
+test_no_cross_frame_cache (test_ray_reuse.RayReuseTests) ... ok
+test_noncontiguous_subset_matches (test_ray_reuse.RayReuseTests) ... ok
+test_nonfinite_pixels_rejected (test_ray_reuse.RayReuseTests) ... ok
+test_nonfinite_rays_rejected (test_ray_reuse.RayReuseTests) ... ok
+test_original_repeated_calls_confirmed (test_ray_reuse.RayReuseTests) ... ok
+test_out_of_range_indices_rejected (test_ray_reuse.RayReuseTests) ... ok
+test_reversed_subset_preserves_order (test_ray_reuse.RayReuseTests) ... ok
+test_right_lens_pixels_not_newly_used (test_ray_reuse.RayReuseTests) ... ok
+test_short_input_rejected (test_ray_reuse.RayReuseTests) ... ok
+test_single_unproject_per_frame (test_ray_reuse.RayReuseTests) ... ok
+test_unpaired_pool_lengths_rejected (test_ray_reuse.RayReuseTests) ... ok
+test_wrong_dtype_rejected (test_ray_reuse.RayReuseTests) ... ok
+test_wrong_resolution_rejected (test_ray_reuse.RayReuseTests) ... ok
+test_all_492_not_only_successful_frames_exact (test_saved_evidence.SavedEvidenceTests) ... ok
+test_all_comparison_outputs_hashed (test_saved_evidence.SavedEvidenceTests) ... ok
+test_all_replay_outputs_hashed (test_saved_evidence.SavedEvidenceTests) ... ok
+test_each_query_present_for_each_variant (test_saved_evidence.SavedEvidenceTests) ... ok
+test_frozen_replay_sources_unchanged (test_saved_evidence.SavedEvidenceTests) ... ok
+test_native_images_and_frozen_sources_unchanged (test_saved_evidence.SavedEvidenceTests) ... ok
+test_no_physical_or_production_promotion (test_saved_evidence.SavedEvidenceTests) ... ok
+test_no_zero_cost_or_end_to_end_claim (test_saved_evidence.SavedEvidenceTests) ... ok
+test_one_second_source_age_unchanged (test_saved_evidence.SavedEvidenceTests) ... ok
+test_paired_runs_balanced_and_three_per_image (test_saved_evidence.SavedEvidenceTests) ... ok
+test_pending_hold_never_outputs (test_saved_evidence.SavedEvidenceTests) ... ok
+test_unfinished_future_rejection_is_not_emitted (test_saved_evidence.SavedEvidenceTests) ... ok
+test_withheld_distance_is_blank (test_saved_evidence.SavedEvidenceTests) ... ok
+test_zero_cost_matches_frozen_reference (test_saved_evidence.SavedEvidenceTests) ... ok
+
+----------------------------------------------------------------------
+Ran 37 tests in 2.516s
+
+OK

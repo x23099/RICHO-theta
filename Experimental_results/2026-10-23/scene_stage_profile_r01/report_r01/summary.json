@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETED_NUMERICAL_STAGE_PROFILE_CHARTS",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_stage_profile_r01/plot_profile.py": "ba163f8ed17745b7568bab2d1859ad3a3cd27de051792bff609ef0ccb0bd3d0f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_stage_profile_r01/method.md": "471749ed4e7818301d5ef53b11ba18885d587035123f64f71b0bc0101890a27a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_stage_profile_r01/results_r01/summary.json": "bc91572882441ee66fa074eb2347d59bb5d36bd262bb63d9268beea20adfcdb7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_stage_profile_r01/results_r01/stage_summary.csv": "85df5eb9640992c78411fc37ed7b7a981e8fdff707d7f7c7ac51a9c61c8954af",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_stage_profile_r01/results_r01/paired_measurements.csv": "95f68ddfee6ccaa71c8af947417ffcc353414944a3667043486bc552343c2650"
+  },
+  "source_images_edited": false,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "all_recordings_stage_budget.png": "3b3febfeb5259fbd8bad073c0403db7f32e93ebb7e9c72a2b2d33a06883a958f",
+    "scene_stage_budget_and_instrumentation.png": "ec0f823b937084579de7af75223a41caa85ced9c56b9ecf58ce31a8dab8aa94f"
+  }
+}

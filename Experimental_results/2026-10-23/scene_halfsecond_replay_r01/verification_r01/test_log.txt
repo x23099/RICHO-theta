@@ -1,0 +1,32 @@
+test_bad_clock_rejected (test_dense_replay.GridTests) ... ok
+test_bad_frame_sequence_rejected (test_dense_replay.GridTests) ... ok
+test_duplicate_target_frames_are_not_duplicate_evidence (test_dense_replay.GridTests) ... ok
+test_grid_uses_first_at_or_after_target (test_dense_replay.GridTests) ... ok
+test_nested_time_grid (test_dense_replay.GridTests) ... ok
+test_nonpositive_interval_rejected (test_dense_replay.GridTests) ... ok
+test_audit_excludes_completion_after_recording_ends (test_dense_replay.PrivateBoundaryTests) ... ok
+test_initialization_needs_four_accepted_images (test_dense_replay.PrivateBoundaryTests) ... ok
+test_missing_current_observation_not_filled (test_dense_replay.PrivateBoundaryTests) ... ok
+test_no_mutation_of_supplied_samples (test_dense_replay.PrivateBoundaryTests) ... ok
+test_observations_strip_ground_truth (test_dense_replay.PrivateBoundaryTests) ... ok
+test_samples_strip_role_distance_and_identity (test_dense_replay.PrivateBoundaryTests) ... ok
+test_all_978_images_and_nine_recordings (test_dense_replay.SavedDenseTests) ... ok
+test_all_four_scenarios_keep_all_sessions (test_dense_replay.SavedDenseTests) ... ok
+test_all_original_pixels_unchanged (test_dense_replay.SavedDenseTests) ... ok
+test_initialization_evidence_is_not_called_independent (test_dense_replay.SavedDenseTests) ... ok
+test_no_frame_omissions_in_cone_scenarios (test_dense_replay.SavedDenseTests) ... ok
+test_no_stale_or_future_source_for_output (test_dense_replay.SavedDenseTests) ... ok
+test_original_492_still_match (test_dense_replay.SavedDenseTests) ... ok
+test_paper_recording_has_no_fabricated_cone (test_dense_replay.SavedDenseTests) ... ok
+test_pending_inputs_block_outputs (test_dense_replay.SavedDenseTests) ... ok
+test_physical_and_ffb_not_promoted (test_dense_replay.SavedDenseTests) ... ok
+test_real_prefix_and_unused_future_poison (test_dense_replay.SavedDenseTests) ... ok
+test_saved_sources_and_outputs_frozen (test_dense_replay.SavedDenseTests) ... ok
+test_three_passes_per_image (test_dense_replay.SavedDenseTests) ... ok
+test_withheld_values_are_blank (test_dense_replay.SavedDenseTests) ... ok
+test_zero_cost_reference_unchanged (test_dense_replay.SavedDenseTests) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 3.771s
+
+OK

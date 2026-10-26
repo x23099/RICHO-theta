@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "fresh_tests": 37,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/cached_curve_geometry.py": "2ce9430bf792f147b36b2f74ef2b5f7d09cf53a808fb89c2c4754ca2a07585b2",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/plot_comparison.py": "8f40ed221eb00928d3e5684746431189e0c1097a602501a3eab458c9aeff826f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/replay_paired_costs.py": "8a51625019faee8e99d21a24e944a33b3e5f9db8011c59d319751e0222e634ed",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/run_comparison.py": "2304c00c0f57b926326b95eefe4104c65aed08470f2305c343d668eddfbb3272",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/test_ray_reuse.py": "9b94032baebb3acfbd50b2a450ea6de9fd821628586d9dc8aefbf3af66fb7a32",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/test_saved_evidence.py": "aefb26a67ec3b3dff8c58a8c1007caa92c426a88f56bf9c5a3495cf4ffb68353",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/verify_study.py": "3f7696ce3a1b60289e5f2da3389a98fbf1d5c8fca85f53b4e28118a3107a9304",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/method.md": "6a17316445b22a06e5aa37a33f7e1cdfe38bdf390efa615933e59ebe7c83c9bd",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/README.md": "25d96a1336964617f0568a21e35f5ca063bc29f4848512712ea2719e317f5312",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/closeout_r01/results_r01/summary.json": "d097286b10a3838ee31b3fe26ae75718ae352944858ddbba452d232c6559dfe3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/results_r01/summary.json": "d586829f025d1ff68235b6e74434812e8b5ce6ba50be6982c4108263b44d23d6",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/replay_r01/summary.json": "6c6a4784380b3ca4c89b0698930b09120096905f511a1c8630e2e7a6638e323c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/report_r01/summary.json": "9e289dcf206e87cbc24a0a7d891d4e5afdbc60864cd77d9bd26f3331336ed501"
+  },
+  "evidence_file_hash_checks": 1640,
+  "prior_tests_reused_not_rerun": 125,
+  "previous_closeout_not_modified": true,
+  "reused_manifest_count": 43,
+  "physical_output": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "test_log.txt": "c1efc4b642d062f654beb514979c8ac13f3852765ad3ba564b4661eee26814c9"
+  }
+}

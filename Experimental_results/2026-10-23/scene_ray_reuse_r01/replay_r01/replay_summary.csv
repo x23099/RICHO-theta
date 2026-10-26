@@ -1,0 +1,4 @@
+variant,frames,before_pending_hold_frames,after_pending_hold_frames,pending_hold_removed_frames,zero_service_frames,lost_vs_zero_service,additional_vs_zero_service,max_queue_wait_sec,initialization_source_time_sec,initialization_completion_time_sec,physical_metric_verified,usable_for_ffb
+zero_service_reference,1547,377,377,0,377,0,0,0.0,10.057164,10.057164,False,False
+baseline,1547,270,264,6,377,113,0,0.0,10.057164,10.340910244,False,False
+same_frame_reuse,1547,319,313,6,377,64,0,0.0,10.057164,10.214184714,False,False

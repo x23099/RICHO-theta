@@ -1,0 +1,23 @@
+{
+  "work_date": "2026-10-23",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/analyze_dense.py": "8d8f69462175c962e75da3ae4e0f2455a4897466bd62b668a2eefcbd6cc5708c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/dense_common.py": "5b4e1af7d4a9d4e5e42217a2beb95b66de61e070e58096c137c65a356e951d53",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/method.md": "6004ecf1e6b1e55ac611fe45a45f445ee5ea487a71b8dfe766bd2164441c4d6a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/intake_r01/summary.json": "b83347fad9c4c5fc8681d35b7ff6ada7729fb3bea21e27355d0a1591aa6d5d13",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/intake_r01/sampling_plan.json": "6eb86c42380486375a7f85b5dc1065ce1f6f11a9ff9ebd4d4d85a6170ff20c43",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_halfsecond_replay_r01/intake_r01/native_sample_manifest.csv": "2d9a606a714a51557c4badfa7329b94574c5b3787618906dbb38d78ceb9dd516",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/cached_curve_geometry.py": "2ce9430bf792f147b36b2f74ef2b5f7d09cf53a808fb89c2c4754ca2a07585b2",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/run_comparison.py": "2304c00c0f57b926326b95eefe4104c65aed08470f2305c343d668eddfbb3272",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-23/scene_ray_reuse_r01/results_r01/summary.json": "d586829f025d1ff68235b6e74434812e8b5ce6ba50be6982c4108263b44d23d6",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/scene_vertical_gravity_r01/scene_geometry.py": "b33d73c7cb73fff06e9ad0fa49644b64d7302d86b04fbd4561bfd714a5d74992",
+    "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+    "/home/robo25/theta_ws/RICHO-theta/src/fisheye_floor_geometry.py": "b012f42743d155aa675a43dbb0c1dc86d11f1586da61b38b2938e59d30470419",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/scene_results_r01/image_diagnostics.csv": "ed304e611bf92e7d2a4ed196e7349d494a60290e2a15c395f7891d698d88ab38"
+  },
+  "passes": 3,
+  "warmup_each_session": 1,
+  "image_decode_in_timing": false
+}

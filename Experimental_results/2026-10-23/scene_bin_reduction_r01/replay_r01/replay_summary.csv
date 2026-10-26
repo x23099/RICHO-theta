@@ -1,0 +1,4 @@
+variant,frames,before_pending_hold_frames,diagnostic_frames,max_queue_wait_sec,outputs_during_pending,physical_metric_verified,usable_for_ffb
+zero_service_reference,1547,377,377,0.0,0,False,False
+ray_reuse_control,1547,319,313,0.0,0,False,False
+bin_reduction,1547,331,325,0.0,0,False,False
