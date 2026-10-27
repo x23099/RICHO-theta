@@ -1,0 +1,72 @@
+{
+  "status": "COMPLETED_ORDERED_FUNCTIONAL_REPLAY_NOT_LIVE_VALIDATION",
+  "session": "cone_static_no_cone_r01_20261015_134940_713",
+  "frames": 332,
+  "diagnostic_frames": 0,
+  "target_roi_native_xyxy": [
+    270,
+    0,
+    350,
+    720
+  ],
+  "scope_is_operator_choice_not_detection_validation": true,
+  "scene_cadence": "source-origin anchored 1s grid; no queued catch-up images",
+  "first_diagnostic_source_time_sec": null,
+  "reason_counts": {
+    "no_candidate": 332
+  },
+  "source_duration_sec": 11.031032,
+  "replay_wall_sec": 2.373334461823106,
+  "scene_jobs": 12,
+  "scene_accepted": 3,
+  "scene_service_ms_median": 90.08982835803181,
+  "core_ms_median": 0.043253879994153976,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_no_cone_r01_20261015_134940_713/raw.avi": "aa357a67442ddf742d695ac1fa03836992b5b5c369fb2dcfa0358aee5366be96",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_no_cone_r01_20261015_134940_713/detections.csv": "28613237eeab790906622a78c09fe0b404cce0289b2b70e1f3f1e8bcb50ff6f2",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_no_cone_r01_20261015_134940_713/metadata.json": "705dcb3158f441dc537fb175a2f2636a0e34d5af34bf4bc754af83dcba8c704c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/frames.csv": "0751eb49dbb12d6fc73520c5c450b2a97bbede26d0c2e353ed9da2feac40abe3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/predictions.csv": "6c31f798aec4dd3a65c1fbbe0bd986a3bb65d03d48833f0d4f7fb6e275ea8204",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/provenance.json": "fa27d6486d8be0f136dda6b044797bd6d9e98da0cb51933e52090b920294a07f",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_diagnostic_config.json": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "/home/robo25/theta_ws/RICHO-theta/src/run_cone_distance_replay.py": "c9f8da509dbdd37cac361c9caaf9bd018b2e1048d48b45564a89fba9b1aabb6a",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py": "36416c6c73fb2661768d685ce9ce65a1fe0eb0f70b93010140d7f1a92ef576ba",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_scene_diagnostic.py": "e4e6de762d2b6f585abb65ac73b7c620911431fbf1e4528a976c07658082e092",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_support_quality.py": "ccc734d5c4e551ec82fceb3ca1c6fa638acad10a791da87578588fab1b742d82",
+    "/home/robo25/theta_ws/RICHO-theta/src/scene_sampling_clock.py": "28e6f33f58dcce7a8b903401978d1a815fb5e87548f799d364b1079c4fba2f15",
+    "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+    "/home/robo25/theta_ws/RICHO-theta/src/fisheye_floor_geometry.py": "b012f42743d155aa675a43dbb0c1dc86d11f1586da61b38b2938e59d30470419",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+  },
+  "examples": [
+    {
+      "frame": 1,
+      "source_time_sec": 0.021748,
+      "reason": "no_candidate",
+      "distance_available": false,
+      "distance_forward_m": null,
+      "original": "originals/f000001.png",
+      "original_sha256": "5897ade75de528e085d3cc6de65eddc4f0d5e26a4c74ded041e93aac54d71d06",
+      "visualization": "visualizations/f000001_recomputed.png",
+      "visualization_sha256": "5477ab9ec974232a97e495c504090a86c83f7e6dffe04a1bad29ee4a1e1e5d6e",
+      "visualization_is_posthoc_recomputation": true,
+      "source_image_edited": false
+    }
+  ],
+  "saved_detector_predictions_reused": true,
+  "fresh_yolo_inference": false,
+  "scene_completion_clock": "source timestamp plus measured local CPU scene cost; functional counterfactual only",
+  "end_to_end_latency_reproduced": false,
+  "realtime_throughput_verified": false,
+  "future_scene_images_used": false,
+  "reference_distances_used_by_engine": false,
+  "source_images_edited": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "physical_output": false,
+  "output_sha256": {
+    "scene_jobs.csv": "44c854040d4fab107c91fc40295f6e9055a401248d015a5ed5cf84615b290824",
+    "frame_results.csv": "def22ba1a60757bc66edb723f1e7935019e9002f96ff1dfd835850519501bfdd"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "work_date": "2026-10-26",
+  "status": "PASS_CADENCE_CORRECTION_AND_OFFLINE_REGRESSION_ONLY",
+  "tests": [
+    {
+      "pattern": "test_scene_sampling_clock.py",
+      "count": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "pattern": "test_cone_distance_diagnostic.py",
+      "count": 30,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "pattern": "test_theta_rtc_diagnostic.py",
+      "count": 26,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "pattern": "test_cone_support_quality*.py",
+      "count": 24,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "total_tests": 95,
+  "source_sha256": {
+    "src/scene_sampling_clock.py": "28e6f33f58dcce7a8b903401978d1a815fb5e87548f799d364b1079c4fba2f15",
+    "src/audit_scene_cadence.py": "d8a1045c2e9b4d667d9c682bc4ac09be7c39d1e9378671010982c9a0f99e524f",
+    "src/cone_distance_core.py": "36416c6c73fb2661768d685ce9ce65a1fe0eb0f70b93010140d7f1a92ef576ba",
+    "src/cone_scene_diagnostic.py": "e4e6de762d2b6f585abb65ac73b7c620911431fbf1e4528a976c07658082e092",
+    "src/run_cone_distance_replay.py": "c9f8da509dbdd37cac361c9caaf9bd018b2e1048d48b45564a89fba9b1aabb6a",
+    "src/cone_distance_worker.py": "5d7ff59725794abd5237ea7f94dad672b7f9c7d5b4abee4b6efbd13db58581cd",
+    "src/run_cone_distance_live.py": "1730e0ab9662979c19d1e35e88e7521088418e1d02d9a056dfb42b2408225c52",
+    "tests/test_scene_sampling_clock.py": "eab9e9925c89f557c468accb345822bbbc50229a4bb3293c8927957b45da852d",
+    "tests/test_cone_distance_diagnostic.py": "91a16b05bb72dfa3967d35bb005dd0c71b4e43c04b1f037cf990c0756668e6c2",
+    "src/theta_rtc_diagnostic.py": "f7a7a782ea1a5f22f676850c7c6a0f1d3fd8b54d395c74d31571b5ff04bb8488",
+    "src/theta_rtc_frames.py": "a87197c27d5e45235aee3486bc4286c41eb0cfd481e87167c2d8272148f89076",
+    "src/cone_support_quality.py": "ccc734d5c4e551ec82fceb3ca1c6fa638acad10a791da87578588fab1b742d82"
+  },
+  "checks": {
+    "py_compile": "PASS",
+    "bash_n_launcher": "PASS",
+    "git_diff_check": "PASS",
+    "native_recording_csv_hashes_matching_original_plan": 9,
+    "full_source_frames": 14526,
+    "fixed_grid_samples": 492,
+    "historical_fixed_grid_frame_time_target_mismatches": 0,
+    "rolling_reference_matches_previous_actual_job_cases": 4,
+    "final_replay_r05_consumed_source_mismatches": 0,
+    "final_report_consumed_source_mismatches": 0,
+    "plots_and_examples_visually_reviewed": true
+  },
+  "final_replay": {
+    "root": "Experimental_results/2026-10-26/cone_distance_replay_r05",
+    "unique_recordings": 3,
+    "frames": 2530,
+    "cases": [
+      {
+        "name": "declared_central_scope",
+        "frames": 1547,
+        "diagnostic_frames": 326,
+        "scene_accepted": 17,
+        "scene_jobs": 52
+      },
+      {
+        "name": "static_center130",
+        "frames": 651,
+        "diagnostic_frames": 0,
+        "scene_accepted": 2,
+        "scene_jobs": 22
+      },
+      {
+        "name": "static_no_central_cone",
+        "frames": 332,
+        "diagnostic_frames": 0,
+        "scene_accepted": 3,
+        "scene_jobs": 12
+      }
+    ]
+  },
+  "comparison_caveat": "Output counts also depend on measured local CPU service time. 279 -> 326 is a functional replay observation, not an isolated causal effect estimate or live performance improvement.",
+  "old_source_snapshots": {
+    "cone_distance_report_r01/source_snapshot/cone_distance_core.py": "b050519eea0104eddb218c35140edf653af9d00f99b327a707dcaae3d85c2b00",
+    "cone_distance_report_r01/source_snapshot/run_cone_distance_replay.py": "64ec8008966d044ed5d1923f2771e9721ebb07d1b3c8a32b7b44a54e2bef7fa7",
+    "cone_distance_report_r02/source_snapshot/scene_sampling_clock.py": "cf9ab0707cebf658c55e6a33764f15751bc6c6cfcbea395c96700d62bd84afa3"
+  },
+  "scene_thresholds_changed": false,
+  "source_images_changed": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "physical_output": false,
+  "not_performed": [
+    "Camera / school-PC activation",
+    "Network listener / cross-PC real WebRTC",
+    "New CUDA inference",
+    "Robot motion / ROS / FFB",
+    "Git commit / push"
+  ]
+}

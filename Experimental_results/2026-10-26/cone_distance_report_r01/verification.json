@@ -1,0 +1,101 @@
+{
+  "work_date": "2026-10-26",
+  "status": "PASS_SOFTWARE_AND_ORDERED_RECORDING_REPLAY_ONLY",
+  "python": "3.10.12",
+  "opencv": "4.5.5",
+  "numpy": "1.24.4",
+  "tests": [
+    {
+      "pattern": "test_cone_distance_diagnostic.py",
+      "count": 30,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "pattern": "test_theta_rtc_diagnostic.py",
+      "count": 26,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "pattern": "test_cone_support_quality*.py",
+      "count": 24,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "test_command_template": "env OPENBLAS_NUM_THREADS=1 /home/robo25/theta-env/bin/python3 -m unittest discover -s tests -p '<pattern>' -v",
+  "checks": {
+    "py_compile": "PASS",
+    "bash_n_launcher": "PASS",
+    "launcher_receive_help": "PASS",
+    "launcher_replay_help": "PASS",
+    "git_diff_check": "PASS",
+    "promoted_algorithm_AST_equivalence_functions": 10,
+    "native_single_frame_scene_decision_checks": 2,
+    "final_r03_changed_consumed_source_hashes": 0,
+    "report_examples_visually_inspected": true
+  },
+  "final_replay_cases": [
+    {
+      "case": "declared_central_scope",
+      "frames": 1547,
+      "diagnostic_frames": 279
+    },
+    {
+      "case": "full_front_control",
+      "frames": 1547,
+      "diagnostic_frames": 36,
+      "comment": "Background cone outputs, not successful controlled-central-cone distance validation"
+    },
+    {
+      "case": "static_center130",
+      "frames": 651,
+      "diagnostic_frames": 0,
+      "comment": "Own-session scene initialization unavailable"
+    },
+    {
+      "case": "static_no_central_cone",
+      "frames": 332,
+      "diagnostic_frames": 0
+    }
+  ],
+  "unique_recordings": 3,
+  "replay_case_frame_rows": 4077,
+  "native_source_images_changed": false,
+  "source_sha256": {
+    "src/cone_distance_core.py": "b050519eea0104eddb218c35140edf653af9d00f99b327a707dcaae3d85c2b00",
+    "src/cone_scene_diagnostic.py": "e4e6de762d2b6f585abb65ac73b7c620911431fbf1e4528a976c07658082e092",
+    "src/cone_distance_worker.py": "5d7ff59725794abd5237ea7f94dad672b7f9c7d5b4abee4b6efbd13db58581cd",
+    "src/cone_distance_diagnostic_config.json": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "src/run_cone_distance_replay.py": "64ec8008966d044ed5d1923f2771e9721ebb07d1b3c8a32b7b44a54e2bef7fa7",
+    "src/run_cone_distance_live.py": "1730e0ab9662979c19d1e35e88e7521088418e1d02d9a056dfb42b2408225c52",
+    "src/summarize_cone_distance_replay.py": "abcc125f9a9e54c8b9bd018fa462325cc6bdedbe57cfd169a6ea2abc7d14595e",
+    "start_cone_distance.sh": "77dceea65ebdfba7198352ca12a418a5b3adcad678767eca47547cedc4dc29b2",
+    "tests/test_cone_distance_diagnostic.py": "91a16b05bb72dfa3967d35bb005dd0c71b4e43c04b1f037cf990c0756668e6c2",
+    "src/theta_rtc_frames.py": "a87197c27d5e45235aee3486bc4286c41eb0cfd481e87167c2d8272148f89076",
+    "src/theta_rtc_diagnostic.py": "f7a7a782ea1a5f22f676850c7c6a0f1d3fd8b54d395c74d31571b5ff04bb8488",
+    "src/cone_support_quality.py": "ccc734d5c4e551ec82fceb3ca1c6fa638acad10a791da87578588fab1b742d82"
+  },
+  "not_performed": [
+    "Fresh CUDA YOLO inference",
+    "Network listener / actual WebRTC connection",
+    "Camera activation",
+    "Moving-camera / moving-robot ranging",
+    "ROS / physical FFB",
+    "Git commit / push"
+  ],
+  "remaining_limitations": [
+    "Single-frame architectural vertical hypothesis is conditional; initialization can fail",
+    "Explicit target ROI is a diagnostic scope, not general multi-object obstacle selection",
+    "Reference paper frame is not independently measured base_link",
+    "Colour support does not prove physical floor contact",
+    "Measured CPU scene-service virtual timing is not end-to-end real-time throughput"
+  ],
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "physical_output": false
+}

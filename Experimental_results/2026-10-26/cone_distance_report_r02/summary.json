@@ -1,0 +1,50 @@
+{
+  "status": "COMPLETED_POSTHOC_REPLAY_REPORT_NOT_PHYSICAL_OR_REALTIME_APPROVAL",
+  "phase_labels_used_by_engine": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/scope.json": "ab25cc0172190b77fd931e1e38f8556a6c9c36f5f06951e90576691bbd06679a",
+    "/home/robo25/theta_ws/RICHO-theta/src/summarize_cone_distance_replay.py": "abcc125f9a9e54c8b9bd018fa462325cc6bdedbe57cfd169a6ea2abc7d14595e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r04/declared_central_scope/summary.json": "474f1875337fd0dc7034e0340a86eb9d29c1e5d826b1cc03bf6c363235e0582c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r04/declared_central_scope/frame_results.csv": "a2917cd0286d230002fd3dadb9c87c45355206e77b26ce17ff714e629fea2d40",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r04/static_center130/summary.json": "73466970f1150eb2ef608faac5b112c597f943f09fdd6d4df5a921487f4bcaed",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r04/static_center130/frame_results.csv": "0963e73831f5e8bb9fbf576126b09ee40cc2afe945653c02a74b319fa6bc8da2",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r04/static_no_central_cone/summary.json": "1c204805ae85cfdfe538a33386af4cdb5bbab60b2d53dff9f628283da21d01c7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r04/static_no_central_cone/frame_results.csv": "0bf55739c4bd0de9c382fc4bed45fc188717fbaef599a6412cfd9852cb373e34"
+  },
+  "examples": [
+    {
+      "phase": "cone_130",
+      "frame": 605,
+      "source_time_sec": 20.22354,
+      "distance_forward_m": 1.3258994138651221,
+      "selection": "FIRST available frame in posthoc evaluation interval",
+      "original": "originals/cone_130_raw_f000605.png",
+      "original_sha256": "888c5c5aaefa18564ba1219bfc426fb1b55321f64aba434193c0a883cad196eb",
+      "visualization": "visualizations/cone_130_recomputed_f000605.png",
+      "visualization_sha256": "d054617078d14f657d3f08b5a030168611d82d1dad690333d1b5b08ce4742e59",
+      "source_image_edited": false,
+      "label_is_posthoc_recomputation": true
+    },
+    {
+      "phase": "cone_200",
+      "frame": 1143,
+      "source_time_sec": 38.222214,
+      "distance_forward_m": 1.9743123451906057,
+      "selection": "FIRST available frame in posthoc evaluation interval",
+      "original": "originals/cone_200_raw_f001143.png",
+      "original_sha256": "c6caa136c57ba58f4d1e84a98b20b52e1f12212e38fe4bc72d1eb4f7598aea60",
+      "visualization": "visualizations/cone_200_recomputed_f001143.png",
+      "visualization_sha256": "f48619330c586de498e1a561cde2b68162d1946f1cf69bab0f5f5a4ec40c5984",
+      "source_image_edited": false,
+      "label_is_posthoc_recomputation": true
+    }
+  ],
+  "unique_recordings": 3,
+  "replay_case_frame_rows": 2530,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "output_sha256": {
+    "phase_summary.csv": "2b3ac4715a8aa2510f3e16816190463d09c739c4c648f575443af942a82bc6bf",
+    "distance_and_withholding_timeline.png": "595d1de5d5f8ebb24bd1f590876c4b571bd9a5da3871aa3415a295921773fee7"
+  }
+}

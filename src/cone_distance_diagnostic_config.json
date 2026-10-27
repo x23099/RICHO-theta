@@ -1,0 +1,17 @@
+{
+  "schema": "cone_static_distance_diagnostic_v1",
+  "camera_candidate": "Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json",
+  "camera_sha256": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+  "floor_candidate": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+  "floor_sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+  "weights_sha256": "3a6e124adb15c16efd7d22c853406066371f48873c82f1d3cfc445b22ae5997b",
+  "confidence": 0.5,
+  "imgsz": 960,
+  "nms_iou": 0.7,
+  "max_det": 300,
+  "scene_interval_sec": 1.0,
+  "frame_max_age_sec": 0.5,
+  "diagnostic_range_m": [0.2, 4.0],
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}
