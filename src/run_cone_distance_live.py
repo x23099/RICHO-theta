@@ -59,6 +59,7 @@ async def run(args):
                    physical_metric_verified=False, usable_for_ffb=False, physical_output=False,
                    cross_pc_capture_latency_measured=False)
     started = time.monotonic()
+    run_error = None
     try:
         await runner.setup()
         await web.TCPSite(runner, args.host, args.port).start()
@@ -96,16 +97,40 @@ async def run(args):
                     except ValueError as exc:
                         logging.info("%s", exc)
             await asyncio.sleep(.02)
+    except BaseException as exc:
+        run_error = f"{type(exc).__name__}: {exc}"
+        raise
     finally:
-        await server.close()
-        await runner.cleanup()
-        if worker.thread.ident is not None:
-            await asyncio.to_thread(worker.close)
+        # One cleanup failure must not skip the remaining resource cleanup or
+        # the diagnostic summary. Never label a timed-out native call stopped.
+        cleanup_errors = []
+        for name, cleanup in (("receiver", server.close), ("http_runner", runner.cleanup)):
+            try:
+                await cleanup()
+            except Exception as exc:
+                cleanup_errors.append(f"{name}: {type(exc).__name__}: {exc}")
+        shutdown = dict(worker_stopped=False, scene_job_running=None, shutdown_complete=False)
+        try:
+            shutdown = await asyncio.to_thread(worker.close)
+        except Exception as exc:
+            cleanup_errors.append(f"worker: {type(exc).__name__}: {exc}")
         if not args.headless:
-            cv2.destroyAllWindows()
+            try:
+                cv2.destroyAllWindows()
+            except Exception as exc:
+                cleanup_errors.append(f"display: {type(exc).__name__}: {exc}")
+        incomplete = bool(cleanup_errors) or not shutdown["shutdown_complete"]
         summary.update(elapsed_sec=time.monotonic()-started, worker_error=worker.error,
-                       worker_stopped=not worker.thread.is_alive())
+                       worker_stopped=shutdown["worker_stopped"], shutdown=shutdown,
+                       run_error=run_error, cleanup_errors=cleanup_errors,
+                       runtime_status=("CLEANUP_INCOMPLETE" if incomplete else
+                                       "RUN_FAILED" if run_error is not None else "STOPPED"))
         (args.output_dir / "live_summary.json").write_text(json.dumps(summary, indent=2) + "\n")
+        if incomplete:
+            message = "distance receiver cleanup incomplete; see live_summary.json; a native call may still be running"
+            if run_error is None:
+                raise RuntimeError(message)
+            logging.error("%s", message)
 
 
 def main(argv=None):

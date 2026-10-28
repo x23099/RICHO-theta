@@ -1,0 +1,43 @@
+{
+  "work_date": "2026-10-27",
+  "status": "PASS_SOFTWARE_ONLY",
+  "git_base": "2a453b8ac05af46f9f4bda39b63090beecf664bd",
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "tests": 135,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "offline_evidence_hash_checks": 94,
+  "unique_evidence_files": 68,
+  "offline_evidence_mismatches": [],
+  "source_sha256": {
+    "Experimental_results/2026-10-27/cone_distance_runtime_r01/verify_runtime.py": "86018c99d1b9075c75fc04d2ef73ca8c8cc11b13430801e5350ba8b300d03197",
+    "src/cone_distance_worker.py": "d747219addcbbfc88aae23aeda0db61cbf47580b3d081657036796dc0a49562d",
+    "src/run_cone_distance_live.py": "c6a33b2b07fa08744eeae82dcbbd87ef478aab8e041d85f2cd82904865e33091",
+    "tests/test_cone_distance_diagnostic.py": "91a16b05bb72dfa3967d35bb005dd0c71b4e43c04b1f037cf990c0756668e6c2",
+    "tests/test_cone_distance_live_cleanup.py": "ce3078c6396c7f6529770d931d4a80b48e845009f0f6cc7514a29eaac0d721e8",
+    "tests/test_cone_distance_worker_lifecycle.py": "0d6d7777f09729e9ef8edc715204e32df428dd7b8351266466edcb83d69a03ec",
+    "tests/test_cone_support_quality.py": "d8bedabdcd891815daa5acae525ecec48140f90cbf67c59e2399ee5f16fa74fd",
+    "tests/test_cone_support_quality_limits.py": "9a40e7e009c6bcdba8475aa70ce52503981712e2a6b6d259e0e26d5d0061f818",
+    "tests/test_scene_sampling_clock.py": "eab9e9925c89f557c468accb345822bbbc50229a4bb3293c8927957b45da852d",
+    "tests/test_summarize_cone_distance_live.py": "ba59252388db1bcd958be050ace77fdd973c60654f1739e35b7ad7c0c79eb077",
+    "tests/test_theta_rtc_diagnostic.py": "bb097f5c43ee698bbb02aebc7e8d7ab1f2f015d867f82a7a50907bb6c592c198",
+    "Experimental_results/2026-10-27/cone_distance_live_report_r01/verify_report.py": "7bd3dd1f41305e609649b6c175b6e8d5b2f8f142e4281dac6b52bd977ad5fa8e",
+    "src/summarize_cone_distance_live.py": "0e8406171a3a3bc7c72e6c528ff2803dd63ee881f18ab35b3a72137a10d06516",
+    "start_cone_distance.sh": "b222e6bc050654e65d3c9bef6f528fb13320cc6dbf02368dfe255cb1d92fdf6d"
+  },
+  "scene_thresholds_changed": false,
+  "new_distance_accuracy_measurement": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "physical_output": false,
+  "not_performed": [
+    "Camera / school-PC activation",
+    "Network listeners / cross-PC WebRTC",
+    "CUDA inference / package installation",
+    "ROS / robot / FFB",
+    "Git commit / push"
+  ],
+  "test_scope": "Controlled Futures and injected predictor; real scene executor lifecycle only in its dedicated test. HTTP/server/model/async-to-thread cleanup are stubbed in entrypoint tests.",
+  "scope_extension": "Offline JSONL report parsing, consistency checks, plots and shell dispatch; no CUDA/socket activation."
+}

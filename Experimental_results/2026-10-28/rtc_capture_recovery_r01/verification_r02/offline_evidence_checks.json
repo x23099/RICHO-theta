@@ -1,0 +1,660 @@
+[
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_floor_cone_same_pose_intake_r01/floor_cone_same_pose_r01_20261015_160621_378/raw.avi",
+    "expected": "2a7cb1f97177d3bace9be530c0160326e3ec4331249a0ead6f4d75ebadcdcbe1",
+    "actual": "2a7cb1f97177d3bace9be530c0160326e3ec4331249a0ead6f4d75ebadcdcbe1",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_floor_cone_same_pose_intake_r01/floor_cone_same_pose_r01_20261015_160621_378/detections.csv",
+    "expected": "c73dd9bb16036d66169be3ed8291589e73760acf953aef883a99ebe305eed49a",
+    "actual": "c73dd9bb16036d66169be3ed8291589e73760acf953aef883a99ebe305eed49a",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_floor_cone_same_pose_intake_r01/floor_cone_same_pose_r01_20261015_160621_378/metadata.json",
+    "expected": "fd1d06f6329e740e3636f86b5d929b5ae32db0181cd9deb93753f9eaaeb5175c",
+    "actual": "fd1d06f6329e740e3636f86b5d929b5ae32db0181cd9deb93753f9eaaeb5175c",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/inference_r01/frames.csv",
+    "expected": "e8fe6e1e571065fec0bffe2b6237367533594d5fb7ffc3980d756ce2af669a95",
+    "actual": "e8fe6e1e571065fec0bffe2b6237367533594d5fb7ffc3980d756ce2af669a95",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/inference_r01/predictions.csv",
+    "expected": "660203d9e53a2ef16e306b0d38dc5d64c3bb48ea25840c6b5d8955f33bb6960a",
+    "actual": "660203d9e53a2ef16e306b0d38dc5d64c3bb48ea25840c6b5d8955f33bb6960a",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/inference_r01/provenance.json",
+    "expected": "e803e07b54e97b53ef9b05881fa4ba83c9f80d34cddc4ad8b3bb73b964005d6a",
+    "actual": "e803e07b54e97b53ef9b05881fa4ba83c9f80d34cddc4ad8b3bb73b964005d6a",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_diagnostic_config.json",
+    "expected": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "actual": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/run_cone_distance_replay.py",
+    "expected": "c9f8da509dbdd37cac361c9caaf9bd018b2e1048d48b45564a89fba9b1aabb6a",
+    "actual": "c9f8da509dbdd37cac361c9caaf9bd018b2e1048d48b45564a89fba9b1aabb6a",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+    "expected": "36416c6c73fb2661768d685ce9ce65a1fe0eb0f70b93010140d7f1a92ef576ba",
+    "actual": "36416c6c73fb2661768d685ce9ce65a1fe0eb0f70b93010140d7f1a92ef576ba",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/cone_scene_diagnostic.py",
+    "expected": "e4e6de762d2b6f585abb65ac73b7c620911431fbf1e4528a976c07658082e092",
+    "actual": "e4e6de762d2b6f585abb65ac73b7c620911431fbf1e4528a976c07658082e092",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/cone_support_quality.py",
+    "expected": "ccc734d5c4e551ec82fceb3ca1c6fa638acad10a791da87578588fab1b742d82",
+    "actual": "ccc734d5c4e551ec82fceb3ca1c6fa638acad10a791da87578588fab1b742d82",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/scene_sampling_clock.py",
+    "expected": "28e6f33f58dcce7a8b903401978d1a815fb5e87548f799d364b1079c4fba2f15",
+    "actual": "28e6f33f58dcce7a8b903401978d1a815fb5e87548f799d364b1079c4fba2f15",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py",
+    "expected": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+    "actual": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/fisheye_floor_geometry.py",
+    "expected": "b012f42743d155aa675a43dbb0c1dc86d11f1586da61b38b2938e59d30470419",
+    "actual": "b012f42743d155aa675a43dbb0c1dc86d11f1586da61b38b2938e59d30470419",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json",
+    "expected": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "actual": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+    "expected": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+    "actual": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/scene_jobs.csv",
+    "expected": "0c32a0b5447baf2fea6d7138b43e2d8a02057203fcce563f5dbc09ba8cd65826",
+    "actual": "0c32a0b5447baf2fea6d7138b43e2d8a02057203fcce563f5dbc09ba8cd65826",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/frame_results.csv",
+    "expected": "13ff2cbc320d8eb2b8c590436a8244b7765b73e6cf3a626d153207ac66d65270",
+    "actual": "13ff2cbc320d8eb2b8c590436a8244b7765b73e6cf3a626d153207ac66d65270",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/originals/f000001.png",
+    "expected": "21234aa4737bd346b99765c9a61f1359e5aec2e62dfaa55dda7d8f89e3826c8f",
+    "actual": "21234aa4737bd346b99765c9a61f1359e5aec2e62dfaa55dda7d8f89e3826c8f",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/visualizations/f000001_recomputed.png",
+    "expected": "6799dd43526b0e1eaef0bccdf24f1fe72ecdeadf55d3c35f551d8881803448c1",
+    "actual": "6799dd43526b0e1eaef0bccdf24f1fe72ecdeadf55d3c35f551d8881803448c1",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/originals/f000348.png",
+    "expected": "f96e021e750f941c2da64bfca5fccd9735047afb7aa5ae38367c8360c5a7c714",
+    "actual": "f96e021e750f941c2da64bfca5fccd9735047afb7aa5ae38367c8360c5a7c714",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/visualizations/f000348_recomputed.png",
+    "expected": "6df8124fecbdf0b2cb3f27f649c9221894f9e6e5424e3325a51b07e750dd015d",
+    "actual": "6df8124fecbdf0b2cb3f27f649c9221894f9e6e5424e3325a51b07e750dd015d",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/originals/f000350.png",
+    "expected": "d7715fe5d53f5bd7df9f298c31b8daac316d13cf98ce50c4eafc8c2af1f9022a",
+    "actual": "d7715fe5d53f5bd7df9f298c31b8daac316d13cf98ce50c4eafc8c2af1f9022a",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/visualizations/f000350_recomputed.png",
+    "expected": "cc8d03a91ef84b43563ac9876a02ca9b8361a34db0ae502854d5c5f948247cbf",
+    "actual": "cc8d03a91ef84b43563ac9876a02ca9b8361a34db0ae502854d5c5f948247cbf",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/originals/f000352.png",
+    "expected": "eea58befa38425bd593e4761f610bab443e750d6f1a505e8e277d4bc0c83b56f",
+    "actual": "eea58befa38425bd593e4761f610bab443e750d6f1a505e8e277d4bc0c83b56f",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/visualizations/f000352_recomputed.png",
+    "expected": "0a9726fdb0843584ca273e1ad63dbfed7d0acc0317c461787ce35dee5be4223f",
+    "actual": "0a9726fdb0843584ca273e1ad63dbfed7d0acc0317c461787ce35dee5be4223f",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/originals/f000356.png",
+    "expected": "0e73945ad82ac9ae0b6e2d8be6d040e6778b5d55ed0ec17fe3db21162400a626",
+    "actual": "0e73945ad82ac9ae0b6e2d8be6d040e6778b5d55ed0ec17fe3db21162400a626",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/visualizations/f000356_recomputed.png",
+    "expected": "28439f5450396da9fd66932bb1653a3f69f7cef1bf4564d55f8678407f23a16e",
+    "actual": "28439f5450396da9fd66932bb1653a3f69f7cef1bf4564d55f8678407f23a16e",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/originals/f000421.png",
+    "expected": "08971b673845c107b99a053776347aaf69368dcf06b8c422f0c7641c655456ef",
+    "actual": "08971b673845c107b99a053776347aaf69368dcf06b8c422f0c7641c655456ef",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/visualizations/f000421_recomputed.png",
+    "expected": "a85672a09346bcadb5e818ec354f5e33184b505582a05c806b655485d5d0e8b1",
+    "actual": "a85672a09346bcadb5e818ec354f5e33184b505582a05c806b655485d5d0e8b1",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/originals/f000425.png",
+    "expected": "fa3b5f68e96c6b7cb2e10faface85cf5f3c80817ea4c497ff1c09551f511ab42",
+    "actual": "fa3b5f68e96c6b7cb2e10faface85cf5f3c80817ea4c497ff1c09551f511ab42",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/visualizations/f000425_recomputed.png",
+    "expected": "473aa750cfc5a7d9c2abb59f9837de5abc94e8c778f7562307a2ab7a5a1e50bf",
+    "actual": "473aa750cfc5a7d9c2abb59f9837de5abc94e8c778f7562307a2ab7a5a1e50bf",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw.avi",
+    "expected": "905084fe5f21b7db84e552da0e91ff40959f3c0023927223b337ab79d90015d0",
+    "actual": "905084fe5f21b7db84e552da0e91ff40959f3c0023927223b337ab79d90015d0",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_center_z1p30_r01_20261015_135329_732/detections.csv",
+    "expected": "d48a4cc02297eab2f6e4ede4d5985630b253c0e27413c22573952cb1783f191f",
+    "actual": "d48a4cc02297eab2f6e4ede4d5985630b253c0e27413c22573952cb1783f191f",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_center_z1p30_r01_20261015_135329_732/metadata.json",
+    "expected": "807887296f22a94a4e77de89f9903f36b697a17892bb32c451fcb2cf7dc8aabd",
+    "actual": "807887296f22a94a4e77de89f9903f36b697a17892bb32c451fcb2cf7dc8aabd",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/frames.csv",
+    "expected": "0751eb49dbb12d6fc73520c5c450b2a97bbede26d0c2e353ed9da2feac40abe3",
+    "actual": "0751eb49dbb12d6fc73520c5c450b2a97bbede26d0c2e353ed9da2feac40abe3",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/predictions.csv",
+    "expected": "6c31f798aec4dd3a65c1fbbe0bd986a3bb65d03d48833f0d4f7fb6e275ea8204",
+    "actual": "6c31f798aec4dd3a65c1fbbe0bd986a3bb65d03d48833f0d4f7fb6e275ea8204",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/provenance.json",
+    "expected": "fa27d6486d8be0f136dda6b044797bd6d9e98da0cb51933e52090b920294a07f",
+    "actual": "fa27d6486d8be0f136dda6b044797bd6d9e98da0cb51933e52090b920294a07f",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_diagnostic_config.json",
+    "expected": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "actual": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/run_cone_distance_replay.py",
+    "expected": "c9f8da509dbdd37cac361c9caaf9bd018b2e1048d48b45564a89fba9b1aabb6a",
+    "actual": "c9f8da509dbdd37cac361c9caaf9bd018b2e1048d48b45564a89fba9b1aabb6a",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+    "expected": "36416c6c73fb2661768d685ce9ce65a1fe0eb0f70b93010140d7f1a92ef576ba",
+    "actual": "36416c6c73fb2661768d685ce9ce65a1fe0eb0f70b93010140d7f1a92ef576ba",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/cone_scene_diagnostic.py",
+    "expected": "e4e6de762d2b6f585abb65ac73b7c620911431fbf1e4528a976c07658082e092",
+    "actual": "e4e6de762d2b6f585abb65ac73b7c620911431fbf1e4528a976c07658082e092",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/cone_support_quality.py",
+    "expected": "ccc734d5c4e551ec82fceb3ca1c6fa638acad10a791da87578588fab1b742d82",
+    "actual": "ccc734d5c4e551ec82fceb3ca1c6fa638acad10a791da87578588fab1b742d82",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/scene_sampling_clock.py",
+    "expected": "28e6f33f58dcce7a8b903401978d1a815fb5e87548f799d364b1079c4fba2f15",
+    "actual": "28e6f33f58dcce7a8b903401978d1a815fb5e87548f799d364b1079c4fba2f15",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py",
+    "expected": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+    "actual": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/fisheye_floor_geometry.py",
+    "expected": "b012f42743d155aa675a43dbb0c1dc86d11f1586da61b38b2938e59d30470419",
+    "actual": "b012f42743d155aa675a43dbb0c1dc86d11f1586da61b38b2938e59d30470419",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json",
+    "expected": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "actual": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+    "expected": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+    "actual": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/scene_jobs.csv",
+    "expected": "b44a8e26219aa2a61159082e694c4405bf33fcac3929d0bc4407ce84d2bfad5b",
+    "actual": "b44a8e26219aa2a61159082e694c4405bf33fcac3929d0bc4407ce84d2bfad5b",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/frame_results.csv",
+    "expected": "606323f6bd0cb10dcfd6278359198ff9cea4172f61902283180783426cc90d95",
+    "actual": "606323f6bd0cb10dcfd6278359198ff9cea4172f61902283180783426cc90d95",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/originals/f000001.png",
+    "expected": "e22925f7880fdac4cb84e50c6941392dca3f7456594293a43ca83f1a7a002355",
+    "actual": "e22925f7880fdac4cb84e50c6941392dca3f7456594293a43ca83f1a7a002355",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/visualizations/f000001_recomputed.png",
+    "expected": "8157d7466134d3479eb23210a8853ed05ee2207aef28ebdc2899251a9d56dcff",
+    "actual": "8157d7466134d3479eb23210a8853ed05ee2207aef28ebdc2899251a9d56dcff",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/originals/f000003.png",
+    "expected": "9f288871d9d87e0907453197e80a0fd28a06442f3e56e69816a85c83b05da52d",
+    "actual": "9f288871d9d87e0907453197e80a0fd28a06442f3e56e69816a85c83b05da52d",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/visualizations/f000003_recomputed.png",
+    "expected": "88845c87c88fbe966a834d8f065e35af5f300aed7e87b14c0e8dccf19474fbc7",
+    "actual": "88845c87c88fbe966a834d8f065e35af5f300aed7e87b14c0e8dccf19474fbc7",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/originals/f000004.png",
+    "expected": "d56f3852c575242926f2a9dff07a17dc529f24866b30eb744b03119882e14deb",
+    "actual": "d56f3852c575242926f2a9dff07a17dc529f24866b30eb744b03119882e14deb",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/visualizations/f000004_recomputed.png",
+    "expected": "b344354571f04540c6c3d4be88fe9209212e0fff5a37248c9cdd0273b16b34e9",
+    "actual": "b344354571f04540c6c3d4be88fe9209212e0fff5a37248c9cdd0273b16b34e9",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/originals/f000125.png",
+    "expected": "367054538ebffe4f913bb325abcf3ca66c8e6a68b45f7352f87ceddf3e0ce51e",
+    "actual": "367054538ebffe4f913bb325abcf3ca66c8e6a68b45f7352f87ceddf3e0ce51e",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/visualizations/f000125_recomputed.png",
+    "expected": "d209f7a5faadbc20cc3d6777703e0be85a2e1a37369c44985f110e675f105828",
+    "actual": "d209f7a5faadbc20cc3d6777703e0be85a2e1a37369c44985f110e675f105828",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/originals/f000484.png",
+    "expected": "041db9700556fd603c269903c8bfc8fe8e82b31b14c325d9afe4741c6023f56a",
+    "actual": "041db9700556fd603c269903c8bfc8fe8e82b31b14c325d9afe4741c6023f56a",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/visualizations/f000484_recomputed.png",
+    "expected": "4e8aa54238325288e5ac28e6cfc1c2520e9a6ef762afa9fd8b19070fdfa33f1a",
+    "actual": "4e8aa54238325288e5ac28e6cfc1c2520e9a6ef762afa9fd8b19070fdfa33f1a",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_no_cone_r01_20261015_134940_713/raw.avi",
+    "expected": "aa357a67442ddf742d695ac1fa03836992b5b5c369fb2dcfa0358aee5366be96",
+    "actual": "aa357a67442ddf742d695ac1fa03836992b5b5c369fb2dcfa0358aee5366be96",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_no_cone_r01_20261015_134940_713/detections.csv",
+    "expected": "28613237eeab790906622a78c09fe0b404cce0289b2b70e1f3f1e8bcb50ff6f2",
+    "actual": "28613237eeab790906622a78c09fe0b404cce0289b2b70e1f3f1e8bcb50ff6f2",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_no_cone_r01_20261015_134940_713/metadata.json",
+    "expected": "705dcb3158f441dc537fb175a2f2636a0e34d5af34bf4bc754af83dcba8c704c",
+    "actual": "705dcb3158f441dc537fb175a2f2636a0e34d5af34bf4bc754af83dcba8c704c",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/frames.csv",
+    "expected": "0751eb49dbb12d6fc73520c5c450b2a97bbede26d0c2e353ed9da2feac40abe3",
+    "actual": "0751eb49dbb12d6fc73520c5c450b2a97bbede26d0c2e353ed9da2feac40abe3",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/predictions.csv",
+    "expected": "6c31f798aec4dd3a65c1fbbe0bd986a3bb65d03d48833f0d4f7fb6e275ea8204",
+    "actual": "6c31f798aec4dd3a65c1fbbe0bd986a3bb65d03d48833f0d4f7fb6e275ea8204",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/provenance.json",
+    "expected": "fa27d6486d8be0f136dda6b044797bd6d9e98da0cb51933e52090b920294a07f",
+    "actual": "fa27d6486d8be0f136dda6b044797bd6d9e98da0cb51933e52090b920294a07f",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_diagnostic_config.json",
+    "expected": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "actual": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/run_cone_distance_replay.py",
+    "expected": "c9f8da509dbdd37cac361c9caaf9bd018b2e1048d48b45564a89fba9b1aabb6a",
+    "actual": "c9f8da509dbdd37cac361c9caaf9bd018b2e1048d48b45564a89fba9b1aabb6a",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+    "expected": "36416c6c73fb2661768d685ce9ce65a1fe0eb0f70b93010140d7f1a92ef576ba",
+    "actual": "36416c6c73fb2661768d685ce9ce65a1fe0eb0f70b93010140d7f1a92ef576ba",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/cone_scene_diagnostic.py",
+    "expected": "e4e6de762d2b6f585abb65ac73b7c620911431fbf1e4528a976c07658082e092",
+    "actual": "e4e6de762d2b6f585abb65ac73b7c620911431fbf1e4528a976c07658082e092",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/cone_support_quality.py",
+    "expected": "ccc734d5c4e551ec82fceb3ca1c6fa638acad10a791da87578588fab1b742d82",
+    "actual": "ccc734d5c4e551ec82fceb3ca1c6fa638acad10a791da87578588fab1b742d82",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/scene_sampling_clock.py",
+    "expected": "28e6f33f58dcce7a8b903401978d1a815fb5e87548f799d364b1079c4fba2f15",
+    "actual": "28e6f33f58dcce7a8b903401978d1a815fb5e87548f799d364b1079c4fba2f15",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py",
+    "expected": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+    "actual": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/fisheye_floor_geometry.py",
+    "expected": "b012f42743d155aa675a43dbb0c1dc86d11f1586da61b38b2938e59d30470419",
+    "actual": "b012f42743d155aa675a43dbb0c1dc86d11f1586da61b38b2938e59d30470419",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json",
+    "expected": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "actual": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+    "expected": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+    "actual": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/scene_jobs.csv",
+    "expected": "44c854040d4fab107c91fc40295f6e9055a401248d015a5ed5cf84615b290824",
+    "actual": "44c854040d4fab107c91fc40295f6e9055a401248d015a5ed5cf84615b290824",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/frame_results.csv",
+    "expected": "def22ba1a60757bc66edb723f1e7935019e9002f96ff1dfd835850519501bfdd",
+    "actual": "def22ba1a60757bc66edb723f1e7935019e9002f96ff1dfd835850519501bfdd",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/originals/f000001.png",
+    "expected": "5897ade75de528e085d3cc6de65eddc4f0d5e26a4c74ded041e93aac54d71d06",
+    "actual": "5897ade75de528e085d3cc6de65eddc4f0d5e26a4c74ded041e93aac54d71d06",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/visualizations/f000001_recomputed.png",
+    "expected": "5477ab9ec974232a97e495c504090a86c83f7e6dffe04a1bad29ee4a1e1e5d6e",
+    "actual": "5477ab9ec974232a97e495c504090a86c83f7e6dffe04a1bad29ee4a1e1e5d6e",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_report_r03/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/scope.json",
+    "expected": "ab25cc0172190b77fd931e1e38f8556a6c9c36f5f06951e90576691bbd06679a",
+    "actual": "ab25cc0172190b77fd931e1e38f8556a6c9c36f5f06951e90576691bbd06679a",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_report_r03/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/src/summarize_cone_distance_replay.py",
+    "expected": "abcc125f9a9e54c8b9bd018fa462325cc6bdedbe57cfd169a6ea2abc7d14595e",
+    "actual": "abcc125f9a9e54c8b9bd018fa462325cc6bdedbe57cfd169a6ea2abc7d14595e",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_report_r03/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/summary.json",
+    "expected": "d7b34d2f47d1c3eefad95de91cafe7409aa3cf2d83cb9d23b5eb18652fbc31fd",
+    "actual": "d7b34d2f47d1c3eefad95de91cafe7409aa3cf2d83cb9d23b5eb18652fbc31fd",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_report_r03/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/declared_central_scope/frame_results.csv",
+    "expected": "13ff2cbc320d8eb2b8c590436a8244b7765b73e6cf3a626d153207ac66d65270",
+    "actual": "13ff2cbc320d8eb2b8c590436a8244b7765b73e6cf3a626d153207ac66d65270",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_report_r03/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/summary.json",
+    "expected": "221aee2c6f522647261baf5fd231f03debb90bc05e0fd34977846bd682cf5573",
+    "actual": "221aee2c6f522647261baf5fd231f03debb90bc05e0fd34977846bd682cf5573",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_report_r03/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_center130/frame_results.csv",
+    "expected": "606323f6bd0cb10dcfd6278359198ff9cea4172f61902283180783426cc90d95",
+    "actual": "606323f6bd0cb10dcfd6278359198ff9cea4172f61902283180783426cc90d95",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_report_r03/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/summary.json",
+    "expected": "9823122a06508220787810a715fe8429ab2b507b0ec2c120ea071ec36208a22c",
+    "actual": "9823122a06508220787810a715fe8429ab2b507b0ec2c120ea071ec36208a22c",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_report_r03/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_replay_r05/static_no_central_cone/frame_results.csv",
+    "expected": "def22ba1a60757bc66edb723f1e7935019e9002f96ff1dfd835850519501bfdd",
+    "actual": "def22ba1a60757bc66edb723f1e7935019e9002f96ff1dfd835850519501bfdd",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_report_r03/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_report_r03/phase_summary.csv",
+    "expected": "33113bff5ad6a138eceba5e1807c08da0b2acb12bf7544e16b7b9fd1bc82d34e",
+    "actual": "33113bff5ad6a138eceba5e1807c08da0b2acb12bf7544e16b7b9fd1bc82d34e",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_report_r03/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_report_r03/distance_and_withholding_timeline.png",
+    "expected": "a245253e8f033421b84753107b0adcdfef1422aa0a10c1acc13072c9560dd38d",
+    "actual": "a245253e8f033421b84753107b0adcdfef1422aa0a10c1acc13072c9560dd38d",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_report_r03/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_report_r03/originals/cone_130_raw_f000604.png",
+    "expected": "2455f0a7d2d51ec81b088389d600a5db64dab4c4ad26098591bafa3de3ee7242",
+    "actual": "2455f0a7d2d51ec81b088389d600a5db64dab4c4ad26098591bafa3de3ee7242",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_report_r03/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_report_r03/visualizations/cone_130_recomputed_f000604.png",
+    "expected": "6ddbb8638ec7b4c69f97bd3430164d00138684211c3e3e86d32d76d929bb65cb",
+    "actual": "6ddbb8638ec7b4c69f97bd3430164d00138684211c3e3e86d32d76d929bb65cb",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_report_r03/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_report_r03/originals/cone_200_raw_f001142.png",
+    "expected": "6c3f90016859299cac6c0f61cf37b76622b2377dd384088e03ba19abb59effe2",
+    "actual": "6c3f90016859299cac6c0f61cf37b76622b2377dd384088e03ba19abb59effe2",
+    "matches": true
+  },
+  {
+    "manifest": "Experimental_results/2026-10-26/cone_distance_report_r03/summary.json",
+    "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_report_r03/visualizations/cone_200_recomputed_f001142.png",
+    "expected": "f9b2520ae157b32785e17d19615e31b6aecbbe762f7a8ca89e288cc052829e1f",
+    "actual": "f9b2520ae157b32785e17d19615e31b6aecbbe762f7a8ca89e288cc052829e1f",
+    "matches": true
+  }
+]

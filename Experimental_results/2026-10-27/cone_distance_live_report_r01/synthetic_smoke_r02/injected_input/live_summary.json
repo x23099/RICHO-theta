@@ -1,0 +1,25 @@
+{
+  "runtime_status": "STOPPED",
+  "run_error": null,
+  "worker_error": null,
+  "cleanup_errors": [],
+  "shutdown": {
+    "worker_stopped": true,
+    "scene_job_running": false,
+    "shutdown_complete": true,
+    "retired_scene_jobs": 0
+  },
+  "worker_stopped": true,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "physical_output": false,
+  "synthetic_fixture": true,
+  "description": "Injected native-size image, detector boxes, accepted scene poses and clock; NO real FPS or accuracy evidence.",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-27/cone_distance_live_report_r01/make_synthetic_example.py": "9ecc3285276c99061c4344d13179a71d4be754f9387ae132984430c64fd581b7",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_worker.py": "d747219addcbbfc88aae23aeda0db61cbf47580b3d081657036796dc0a49562d",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py": "36416c6c73fb2661768d685ce9ce65a1fe0eb0f70b93010140d7f1a92ef576ba",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_scene_diagnostic.py": "e4e6de762d2b6f585abb65ac73b7c620911431fbf1e4528a976c07658082e092",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_diagnostic_config.json": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0"
+  }
+}

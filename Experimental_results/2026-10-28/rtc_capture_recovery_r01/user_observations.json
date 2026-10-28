@@ -1,0 +1,29 @@
+{
+  "work_date": "2026-10-28",
+  "evidence_kind": "User-pasted terminal output and screenshot, not a measurement made by this verification script",
+  "capture_host": "matunuc-NUC13ANHi5",
+  "python": "/home/matunuc/theta_ws/theta-env/bin/python3",
+  "opencv": "4.13.0",
+  "requested_capture": {"width": 1280, "height": 720, "fourcc": "MJPG", "fps": 30},
+  "isolated_read_probe": {
+    "successful_reads": 120,
+    "attempted_reads": 120,
+    "first_read_ms": 17.5,
+    "maximum_subsequent_read_ms": 957.4,
+    "reads_over_500_ms": 1
+  },
+  "observations": [
+    "fuser reported no process holding /dev/video0 before the standalone V4L2 probe",
+    "Standalone bird_eye.py displayed the real scene according to the user",
+    "RTC established an ICE path and the distance receiver displayed a No Signal image",
+    "Both the conventional and diagnostic RTC routes displayed No Signal according to the user",
+    "The diagnostic sender also exited with camera stopped returning fresh frames"
+  ],
+  "inferences": [
+    "A read-return interval above the previous 500 ms exit threshold can occur without network/YOLO processing",
+    "No Signal content and a temporary capture-read stall are distinct observations",
+    "The physical/driver/content-selection cause of No Signal and the origin of the long read are not established"
+  ],
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}

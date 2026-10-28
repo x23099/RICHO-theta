@@ -173,9 +173,12 @@ class CameraReaderTest(unittest.TestCase):
                 return False, None
             def release(self):
                 self.released = True
-        times = iter((0, 1))
+        current_time = [0.]
+        def clock():
+            current_time[0] += 4.
+            return current_time[0]
         device = Camera()
-        camera = CaptureFrames(device, clock=lambda: next(times))
+        camera = CaptureFrames(device, clock=clock)
         camera.start()
         camera.thread.join(1)
         self.assertTrue(device.released)

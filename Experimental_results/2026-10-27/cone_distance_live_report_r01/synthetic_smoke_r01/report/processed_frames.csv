@@ -1,0 +1,9 @@
+session,frame,source_time_sec,completed_time_sec,distance_available,distance_forward_m,lateral_right_m,reason,frame_age_ms,predict_ms,support_geometry_ms,cone_service_ms,inference_source
+injected_first,1,10.0,10.0,False,,,support_confirmation_pending,0.0,0.0,0.0,0.0,injected_predictor_not_verified_cuda
+injected_first,2,11.0,11.0,False,,,support_confirmation_pending,0.0,0.0,0.0,0.0,injected_predictor_not_verified_cuda
+injected_first,3,12.0,12.0,False,,,support_confirmation_pending,0.0,0.0,0.0,0.0,injected_predictor_not_verified_cuda
+injected_first,4,13.0,13.0,False,,,support_confirmation_pending,0.0,0.0,0.0,0.0,injected_predictor_not_verified_cuda
+injected_first,5,13.04,13.04,False,,,support_confirmation_pending,0.0,0.0,0.0,0.0,injected_predictor_not_verified_cuda
+injected_first,6,13.08,13.08,True,1.3255432305678863,0.07555263299960385,CONDITIONAL_DIAGNOSTIC_NOT_VERIFIED_CONTACT,0.0,0.0,0.0,0.0,injected_predictor_not_verified_cuda
+injected_reconnected,1,15.0,15.0,False,,,support_confirmation_pending,0.0,0.0,0.0,0.0,injected_predictor_not_verified_cuda
+injected_reconnected,2,15.04,15.04,False,,,support_confirmation_pending,0.0,0.0,0.0,0.0,injected_predictor_not_verified_cuda
