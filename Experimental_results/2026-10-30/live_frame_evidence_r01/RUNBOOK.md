@@ -13,16 +13,21 @@
 
 ## 1. 変更の反映（GPU PC）
 
-この解析PCの変更は未commit。Git pushはせず、patchを運ぶ。
+この解析PCのr02差分は未commit。Git pushはせず、patchを運ぶ。
 
 - patch: `Experimental_results/2026-10-30/live_frame_evidence_r01/transfer/frame_evidence.patch`
-- SHA-256: `c296d0f34ad49cba8e9c41b5375f25f1b67adfc1d770a6b87f98fcc66cd5e61f`
+- SHA-256: `b884b2234a2fb2ae91c0bfe7f9f3070edc66269ede3aa24a2a4c19cf2f6b1bea`
+- 基準: `5791a80`。初回実機ログ後の鮮度再同期修正と、接触辺を記録するr02拡張を含む。
 
-GPU PCのrepoが`5791a80`相当であることを確認してから:
+GPU PCのrepoが`5791a80`相当であることを確認する。**初回patchを既に適用している場合は、下の5ファイルだけ元に戻してからr02 patchを当てる。** 他の変更が見えたら中止する。
 
 ```bash
 cd ~/yopi_ws/RICHO-theta
-git status --short          # 先にcleanであること
+git status --short
+git checkout -- src/cone_distance_core.py src/cone_distance_worker.py \
+  src/run_cone_distance_live.py src/summarize_cone_distance_live.py
+rm -f tests/test_frame_evidence_logging.py
+git status --short          # 対象5ファイルの変更が消えたこと
 git apply --check /path/to/frame_evidence.patch
 git apply /path/to/frame_evidence.patch
 git status --short          # src 4ファイルと新規testのみ
@@ -44,7 +49,7 @@ patchは次を変更する。
 "$PWD/yolo-env/bin/python3" -m unittest discover -s tests -p 'test_summarize_cone_distance_live.py'
 ```
 
-11件＋30件＋25件がPASSすることを確認する。
+16件＋30件＋25件がPASSすることを確認する。
 
 ## 2. checkpointの確認（GPU PC）
 
@@ -69,10 +74,10 @@ echo "$HANDOFF_RUN_ID"
   --target-roi 270 0 350 720 \
   --colour-support-shadow --support-completion-shadow --frame-evidence \
   --duration-sec 60 \
-  --output-dir "Experimental_results/2026-10-30/live_frame_evidence_${HANDOFF_RUN_ID}"
+  --output-dir "Experimental_results/2026-10-30/live_frame_evidence_r02_${HANDOFF_RUN_ID}"
 ```
 
-表示環境がないSSH実行なら`--headless`を追加する（Sキー画像は保存されないが、証拠フィールドは記録される）。表示がある場合は、対象コーンが写ったところで一度Sキーを押し、無加工PNGを残す。
+表示環境がないSSH実行なら`--headless`を追加する（Sキー画像は保存されない）。今回の目的は接触辺の特定なので、可能なら表示ありで実行し、開始後に対象コーンが写ったところで**必ずSキーを一度押して無加工PNGを残す**。
 
 ## 4. 送信（カメラPC）
 
@@ -90,7 +95,7 @@ bash src/start_theta_stream_rtc.sh --diagnostic --receiver-ip 150.89.169.78 --de
 
 ```bash
 cd ~/yopi_ws/RICHO-theta
-IN="Experimental_results/2026-10-30/live_frame_evidence_${HANDOFF_RUN_ID}"
+IN="Experimental_results/2026-10-30/live_frame_evidence_r02_${HANDOFF_RUN_ID}"
 wc -l "$IN/distance_frames.jsonl"
 python3 - "$IN/distance_frames.jsonl" <<'PY'
 import json, sys
@@ -122,7 +127,7 @@ PY
 ```bash
 ./start_cone_distance.sh report \
   --input-dir "$IN" \
-  --output-dir "Experimental_results/2026-10-30/live_frame_evidence_report_${HANDOFF_RUN_ID}"
+  --output-dir "Experimental_results/2026-10-30/live_frame_evidence_r02_report_${HANDOFF_RUN_ID}"
 ```
 
 `summary.json`の`frame_evidence`と`processed_frames.csv`を確認する。
@@ -131,10 +136,10 @@ PY
 
 ```bash
 cd ~/yopi_ws/RICHO-theta
-tar -cJf "/tmp/live_frame_evidence_${HANDOFF_RUN_ID}.tar.xz" \
-  -C Experimental_results/2026-10-30 "live_frame_evidence_${HANDOFF_RUN_ID}" \
-  "live_frame_evidence_report_${HANDOFF_RUN_ID}"
-sha256sum "/tmp/live_frame_evidence_${HANDOFF_RUN_ID}.tar.xz"
+tar -cJf "/tmp/live_frame_evidence_r02_${HANDOFF_RUN_ID}.tar.xz" \
+  -C Experimental_results/2026-10-30 "live_frame_evidence_r02_${HANDOFF_RUN_ID}" \
+  "live_frame_evidence_r02_report_${HANDOFF_RUN_ID}"
+sha256sum "/tmp/live_frame_evidence_r02_${HANDOFF_RUN_ID}.tar.xz"
 ```
 
 解析PCへは、許可された経路（USBまたは既存のscp設定）で`~/theta_ws/`へ置く。返送後、解析PC側で集計・検証・HANDOFF更新を行う。解析PCでは`flatten_evidence.py`で1フレーム1行へ展開する（`README.md`参照）。

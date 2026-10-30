@@ -5,8 +5,11 @@ HANDOFF 7.3 の1番「静止・実GPUで入力画像／選択bbox／支持点／
 ## 現状
 
 - 実装・合成テスト済み（カメラ／GPU／ソケット不要）。
-- **実機の静止キャプチャは未実施。** 2026-10-30 時点の解析PC（`robo25-NUC11PAHi5`、`150.89.169.76`）には `/dev/video*` がなく、設定が要求するcheckpoint `3a6e124a...` も存在しない（`~/Downloads/cone.pt` は `39c94a4b...` で不一致）。GPU（RTX 3070）と `theta-yolo-env` は利用可能。
-- 実機を行う場合は、カメラを接続したPCでcheckpointのSHA-256が設定値と一致していることを先に確認する。不一致なら`YoloConePredictor`が起動前に拒否する。
+- **実機の静止キャプチャを2026-10-30に実施済み。** GPU PC（RTX 4070 Laptop）で60.02秒、1,656フレーム。全行に証拠ブロックが入り、`live_cuda_yolo`、checkpoint `3a6e124a...`一致、clean shutdownを確認した。
+- 結果は[analysis_r01](analysis_r01/README.md)。基準支持点0/1,656、姿勢0/1,656、距離0/1,656。bboxは1個/全frame、中央値47.25×88.08 pxで静止。色輪郭のcrop端接触と背景平面不足をbbox付きで再現した。
+- 返送archiveにSキーPNGとreportは含まれなかった。reportは解析PCで再生成した。
+- **r02拡張を実装済み（再取得待ち）。** `mask_diagnostics`としてcrop境界、マスク寸法、輪郭数・面積、選択輪郭bounds、接触辺を追加した。距離制御は変更していない。次回は同じ60秒条件で再取得し、SキーPNGも1枚残す。
+- 解析中に`frame_evidence.freshness.age_ms`と行の`frame_age_ms`の0.02 ms不整合を見つけ、workerで再同期するよう修正した。取得済みログは1 ms許容で解析しており、再取得は不要。
 
 ## 追加した記録
 
@@ -17,6 +20,7 @@ HANDOFF 7.3 の1番「静止・実GPUで入力画像／選択bbox／支持点／
 | 入力 | `session`、`frame`、`media_time_sec`、`received_time_sec`、1280×720。画素そのものはJSONへ埋め込まない |
 | 選択bbox | 対象ROI・信頼度フィルタ後のbbox座標、confidence、class_id（最大`max_det`件） |
 | 支持点 | 制御に使ったV30 union HSVの下包絡`point`と`support`全列、`colour_reason`、時間品質ゲートの採否 |
+| マスク診断 | `crop_bounds`（右下は排他）、`mask_shape`、輪郭数・面積、選択輪郭bounds（右下は包含）、`touches`、`touching_edges`。棄却理由の接触辺を特定する |
 | 姿勢 | `initialized`、`pose_available`、`pose_reason`、`up_optical`、`scene_reason`、`scene_source_frame`、`scene_age_sec`、scene保留 |
 | 床モデル | `paper7_ground_reference`、config／camera候補／floor候補のSHA-256。どの設定で投影したかをフレーム単位で固定 |
 | 鮮度 | `frame_age_ms`、500 ms上限、`within_limit`、blockers、主理由 |
@@ -27,11 +31,11 @@ HANDOFF 7.3 の1番「静止・実GPUで入力画像／選択bbox／支持点／
 
 ## 変更ファイル
 
-- `src/cone_distance_core.py`: `frame_evidence`引数と`frame_evidence`ブロック。`config_sha256`をengine初期化時に固定。
+- `src/cone_distance_core.py`: `frame_evidence`引数と`frame_evidence`ブロック。`config_sha256`をengine初期化時に固定。`observe_support`／`support_from_colour_mask`の`evidence`引数でマスク診断を追加（既定は従来と同一）。
 - `src/cone_distance_worker.py`: 引数の受け渡しのみ。
 - `src/run_cone_distance_live.py`: `--frame-evidence`（既定OFF）と`live_summary.json`への有効化記録。
 - `src/summarize_cone_distance_live.py`: 任意ブロックの検証と集計（`frame_evidence`）。
-- `tests/test_frame_evidence_logging.py`: 11テスト。
+- `tests/test_frame_evidence_logging.py`: 16テスト。
 
 ## テスト
 
@@ -45,9 +49,9 @@ for t in test_cone_distance_diagnostic test_cone_distance_worker_lifecycle \
 done
 ```
 
-結果: 新規11件、関連111件がPASS。既定engineの結果が証拠ブロック以外で一致すること、証拠追加が距離を変えないこと、不正なbbox・支持点・承認flagを要約が拒否することを確認した。
+結果: 新規16件、関連111件がPASS。既定engineの結果が証拠ブロック以外で一致すること、証拠追加が距離を変えないこと、不正なbbox・支持点・承認flagを要約が拒否することを確認した。
 
-## 実機での実行（未実施）
+## 実機での実行（r02）
 
 GPU PC（HANDOFF記載の`hsr`）で、checkpointとカメラを確認してから実行する。解析PCから遠隔操作する前提は置かない。
 

@@ -1,8 +1,78 @@
 diff --git a/src/cone_distance_core.py b/src/cone_distance_core.py
-index 6445003..3fd5087 100644
+index 6445003..02fdda9 100644
 --- a/src/cone_distance_core.py
 +++ b/src/cone_distance_core.py
-@@ -181,12 +181,16 @@ class ConeDistanceEngine:
+@@ -103,12 +103,15 @@ def select_front_boxes(boxes, camera, confidence, target_roi=None):
+     return selected
+ 
+ 
+-def observe_support(image, box, camera):
++def observe_support(image, box, camera, *, evidence=False):
+     """Frozen V30 segmentation guards and trimmed actual lower envelope.
+ 
+     The point is an ACTUAL envelope column nearest the observed top-row median
+     x. It must belong to the trimmed support; no fitted/extrapolated base point.
++    ``evidence`` only adds crop/contour facts; it never changes acceptance.
+     """
++    if type(evidence) is not bool:
++        raise ValueError("explicit bool evidence flag required")
+     native_frame(image)
+     x1, y1, x2, y2 = checked_bbox(box, 1280, 720)
+     result = dict(support=None, point=None, reason="", floor_contact_verified=False)
+@@ -123,26 +126,50 @@ def observe_support(image, box, camera):
+     mask = (cv2.inRange(hsv, (0, 80, 30), (10, 255, 255))
+             | cv2.inRange(hsv, (170, 80, 30), (179, 255, 255))
+             | cv2.inRange(hsv, (15, 80, 30), (40, 255, 255)))
+-    return support_from_colour_mask(mask, left, top)
++    return support_from_colour_mask(mask, left, top, evidence=evidence)
+ 
+ 
+-def support_from_colour_mask(mask, left, top):
++def support_from_colour_mask(mask, left, top, *, evidence=False):
+     """Shared unchanged observed-envelope guards; never a verified contact.
+ 
+     The baseline passes its union mask. Experimental colour-separated masks
+     may use this routine only as non-controlling shadow observations.
++    ``evidence`` adds crop/contour bounds and edge contacts without altering
++    the existing acceptance order or distance inputs.
+     """
+     if (not isinstance(mask, np.ndarray) or mask.ndim != 2 or mask.dtype != np.uint8
+             or not mask.size or type(left) is not int or type(top) is not int
+             or left < 0 or top < 0 or left+mask.shape[1] > 1280 or top+mask.shape[0] > 720):
+         raise ValueError("native bounded uint8 colour mask required")
++    if type(evidence) is not bool:
++        raise ValueError("explicit bool evidence flag required")
+     bottom, right = top+mask.shape[0], left+mask.shape[1]
+     result = dict(support=None, point=None, reason="", floor_contact_verified=False)
++
++    def diagnostics(contours, contour=None):
++        if not evidence:
++            return {}
++        touches = dict(left=False, top=False, right=False, bottom=False)
++        bounds = None
++        if contour is not None:
++            bx, by, bw, bh = cv2.boundingRect(contour)
++            bounds = [left+bx, top+by, left+bx+bw-1, top+by+bh-1]
++            touches = dict(left=bx == 0, top=by == 0,
++                           right=bx+bw >= mask.shape[1], bottom=by+bh >= mask.shape[0])
++        return dict(crop_bounds=[left, top, right, bottom],
++                    mask_shape=[int(mask.shape[1]), int(mask.shape[0])],
++                    qualifying_contour_count=len(contours),
++                    contour_areas=[round(float(cv2.contourArea(c)), 3) for c in contours[:5]],
++                    selected_contour_bounds=bounds, touches=touches,
++                    touching_edges=[name for name, value in touches.items() if value])
++
+     contours = sorted((c for c in cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[0]
+                        if cv2.contourArea(c) >= 20), key=cv2.contourArea, reverse=True)
+     if not contours:
++        result.update(diagnostics(contours))
+         return dict(result, reason="no_supported_colour_contour")
+     contour = contours[0]
++    result.update(diagnostics(contours, contour))
+     if len(contours) > 1 and cv2.contourArea(contours[1]) >= .25 * cv2.contourArea(contour):
+         return dict(result, reason="ambiguous_competing_colour_contours")
+     bx, by, bw, bh = cv2.boundingRect(contour)
+@@ -181,12 +208,16 @@ class ConeDistanceEngine:
      blocks output until it completes, including potentially rejected images.
      """
      def __init__(self, config=DEFAULT_CONFIG, *, target_roi=None, colour_support_shadow=False,
@@ -20,7 +90,17 @@ index 6445003..3fd5087 100644
          self.target_roi = checked_target_roi(target_roi)
          self.session = None
          self.reset(None)
-@@ -312,6 +316,36 @@ class ConeDistanceEngine:
+@@ -243,7 +274,8 @@ class ConeDistanceEngine:
+         try:
+             selected = select_front_boxes(boxes, self.camera, self.settings["confidence"], self.target_roi)
+             if len(selected) == 1:
+-                colour = observe_support(frame.image, selected[0], self.camera)
++                colour = observe_support(frame.image, selected[0], self.camera,
++                                         evidence=self.frame_evidence)
+                 candidates = [dict(support=colour["support"], unavailable_reason=colour["reason"])]
+             else:
+                 colour["reason"] = "no_candidate" if not selected else "ambiguous_front_cones"
+@@ -312,6 +344,40 @@ class ConeDistanceEngine:
              base_pixel=colour["point"], target_frame="paper7_ground_reference",
              target_roi_native_xyxy=self.target_roi, target_association_physically_verified=False,
              physical_metric_verified=False, floor_contact_verified=False, usable_for_ffb=False)
@@ -39,7 +119,11 @@ index 6445003..3fd5087 100644
 +                support_observation=dict(method="V30_union_hsv_observed_lower_envelope",
 +                    point=colour["point"], support=colour["support"], reason=colour["reason"],
 +                    quality_accepted=quality["quality_accepted"], quality_reason=quality["reason"],
-+                    floor_contact_verified=False),
++                    floor_contact_verified=False,
++                    mask_diagnostics=({key: colour.get(key) for key in (
++                        "crop_bounds", "mask_shape", "qualifying_contour_count", "contour_areas",
++                        "selected_contour_bounds", "touches", "touching_edges")}
++                        if "crop_bounds" in colour else None)),
 +                pose=dict(initialized=pose["initialized"], pose_available=pose["pose_available"],
 +                    pose_reason=pose["pose_reason"], up_optical=pose["up_optical"],
 +                    scene_reason=self.scene_reason, scene_source_frame=pose["latest_scene_frame"],
@@ -58,7 +142,7 @@ index 6445003..3fd5087 100644
              result["colour_support_shadow"] = dict(
                  candidate=shadow, controlling_distance=False, usable_for_ffb=False,
 diff --git a/src/cone_distance_worker.py b/src/cone_distance_worker.py
-index e01859a..9d27799 100644
+index e01859a..ca9f46f 100644
 --- a/src/cone_distance_worker.py
 +++ b/src/cone_distance_worker.py
 @@ -60,10 +60,11 @@ class DistanceWorker:
@@ -75,6 +159,22 @@ index e01859a..9d27799 100644
          self.scene_function = scene_function
          self.log_path = Path(log_path)
          self.stop_event = threading.Event()
+@@ -161,6 +162,15 @@ class DistanceWorker:
+                                       reason="frame_processing_too_old")
+                         if result["reason"] not in result["blockers"]:
+                             result["blockers"].insert(0, result["reason"])
++                    # Engine evidence is stamped before the worker's final timing
++                    # update; resync it so the same row cannot disagree with itself.
++                    evidence = result.get("frame_evidence")
++                    if evidence is not None:
++                        fresh = evidence["freshness"]
++                        fresh["age_ms"] = result["frame_age_ms"]
++                        fresh["within_limit"] = result["frame_age_ms"] <= fresh["limit_ms"]
++                        fresh["blockers"] = list(result["blockers"])
++                        fresh["primary_reason"] = result["reason"]
+                     stream.write(json.dumps(result) + "\n")
+                     stream.flush()
+                     current, _ = self.slot.current(self.clock())
 diff --git a/src/run_cone_distance_live.py b/src/run_cone_distance_live.py
 index 71569bd..2f282a9 100644
 --- a/src/run_cone_distance_live.py
@@ -107,10 +207,10 @@ index 71569bd..2f282a9 100644
      run_error = None
      try:
 diff --git a/src/summarize_cone_distance_live.py b/src/summarize_cone_distance_live.py
-index 4cf0cbe..4fc1e10 100644
+index 4cf0cbe..7636702 100644
 --- a/src/summarize_cone_distance_live.py
 +++ b/src/summarize_cone_distance_live.py
-@@ -41,6 +41,101 @@ def text(value, name):
+@@ -41,6 +41,150 @@ def text(value, name):
      return value
  
  
@@ -173,6 +273,53 @@ index 4cf0cbe..4fc1e10 100644
 +    point = _pixel_point(support.get("point"), "support point")
 +    if point is not None and (support_rows is None or point not in support_rows):
 +        raise ValueError("support point must be an actual observed column")
++    mask = support.get("mask_diagnostics")
++    if mask is not None:
++        if not isinstance(mask, dict):
++            raise ValueError("mask diagnostics object required")
++        crop, shape = mask.get("crop_bounds"), mask.get("mask_shape")
++        if (not isinstance(crop, list) or len(crop) != 4
++                or any(type(value) is not int for value in crop)
++                or not (0 <= crop[0] < crop[2] <= 1280 and 0 <= crop[1] < crop[3] <= 720)):
++            raise ValueError("bounded crop required in mask diagnostics")
++        if (not isinstance(shape, list) or len(shape) != 2
++                or any(type(value) is not int or value <= 0 for value in shape)
++                or shape != [crop[2]-crop[0], crop[3]-crop[1]]):
++            raise ValueError("mask shape must match crop bounds")
++        count = mask.get("qualifying_contour_count")
++        if type(count) is not int or count < 0:
++            raise ValueError("nonnegative qualifying contour count required")
++        areas = mask.get("contour_areas")
++        if (not isinstance(areas, list)
++                or any(type(value) not in (int, float) or not math.isfinite(value) or value < 0
++                       for value in areas)):
++            raise ValueError("finite contour areas required")
++        bounds = mask.get("selected_contour_bounds")
++        if bounds is not None:
++            if (not isinstance(bounds, list) or len(bounds) != 4
++                    or any(type(value) is not int for value in bounds)
++                    or not (0 <= bounds[0] <= bounds[2] < 1280
++                            and 0 <= bounds[1] <= bounds[3] < 720)):
++                raise ValueError("selected contour bounds required")
++        touches = mask.get("touches")
++        if (not isinstance(touches, dict) or set(touches) != {"left", "top", "right", "bottom"}
++                or any(type(value) is not bool for value in touches.values())):
++            raise ValueError("four boolean touch edges required")
++        edges = mask.get("touching_edges")
++        if (not isinstance(edges, list)
++                or edges != [name for name in ("left", "top", "right", "bottom") if touches[name]]):
++            raise ValueError("touching edge list must match touch flags")
++        if bounds is not None:
++            expected = dict(left=bounds[0] == crop[0], top=bounds[1] == crop[1],
++                            right=bounds[2] == crop[2]-1, bottom=bounds[3] == crop[3]-1)
++            if touches != expected:
++                raise ValueError("touch flags must follow contour and crop bounds")
++        if count == 0 and (bounds is not None or any(touches.values()) or areas):
++            raise ValueError("no-contour diagnostics must be empty")
++        if support["reason"] == "colour_contour_reaches_roi_edge" and not any(touches.values()):
++            raise ValueError("edge rejection requires a touching contour")
++        if support["reason"] == "unverified_visible_colour_support" and any(touches.values()):
++            raise ValueError("accepted support cannot touch the crop edge")
 +    pose = evidence.get("pose")
 +    if not isinstance(pose, dict):
 +        raise ValueError("pose evidence object required")
@@ -196,7 +343,9 @@ index 4cf0cbe..4fc1e10 100644
 +    fresh = evidence.get("freshness")
 +    if not isinstance(fresh, dict):
 +        raise ValueError("freshness evidence object required")
-+    if abs(number(fresh.get("age_ms"), "evidence age", 0)-row["frame_age_ms"]) > .001:
++    # 1 ms tolerates the pre-resync engine/worker stamp offset (observed ~0.02 ms);
++    # new logs are resynced to the final row age in the worker.
++    if abs(number(fresh.get("age_ms"), "evidence age", 0)-row["frame_age_ms"]) > 1.:
 +        raise ValueError("evidence age must match the row")
 +    if fresh.get("limit_ms") != AGE_LIMIT_MS:
 +        raise ValueError("screened 500 ms freshness limit required")
@@ -212,7 +361,7 @@ index 4cf0cbe..4fc1e10 100644
  def validate_row(row):
      if not isinstance(row, dict):
          raise ValueError("frame row must be an object")
-@@ -119,6 +214,7 @@ def validate_row(row):
+@@ -119,6 +263,7 @@ def validate_row(row):
                  raise ValueError("completion point must be an actual native support column")
              if candidate["completion_granted"] and (point is None or not candidate["completion_attempted"]):
                  raise ValueError("completion grant requires an attempted observation and support point")
@@ -220,7 +369,7 @@ index 4cf0cbe..4fc1e10 100644
  
  
  def load_frames(path, allow_truncated_last_line=False):
-@@ -293,6 +389,25 @@ def summarize(input_dir, output_dir, *, allow_truncated_last_line=False, plots=T
+@@ -293,6 +438,25 @@ def summarize(input_dir, output_dir, *, allow_truncated_last_line=False, plots=T
              controlling_distance=False, physical_metric_verified=False, usable_for_ffb=False)
          shadow_note += (f"\n左右枠接触の比較ログ：{len(completion_rows)}処理frame、画像上の候補点あり{points}件、"
                          f"追加の候補点取得{grants}件。物理接地・距離精度の合格判定ではなく、距離・FFBへ使用していません。\n")
@@ -248,10 +397,10 @@ index 4cf0cbe..4fc1e10 100644
                "distance_forward_m", "lateral_right_m", "reason", *TIMINGS, "inference_source")
 diff --git a/tests/test_frame_evidence_logging.py b/tests/test_frame_evidence_logging.py
 new file mode 100644
-index 0000000..3c53241
+index 0000000..7607add
 --- /dev/null
 +++ b/tests/test_frame_evidence_logging.py
-@@ -0,0 +1,187 @@
+@@ -0,0 +1,247 @@
 +"""Log-only same-frame evidence fields; no camera, GPU, or socket."""
 +import copy
 +import json
@@ -265,7 +414,7 @@ index 0000000..3c53241
 +
 +ROOT = Path(__file__).resolve().parents[1]
 +sys.path.insert(0, str(ROOT / "src"))
-+from cone_distance_core import DEFAULT_CONFIG, ConeDistanceEngine
++from cone_distance_core import DEFAULT_CONFIG, ConeDistanceEngine, observe_support
 +from cone_distance_worker import DistanceWorker
 +from summarize_cone_distance_live import summarize, validate_row
 +from theta_rtc_frames import LatestNativeFrame, NativeFrame
@@ -350,6 +499,31 @@ index 0000000..3c53241
 +        self.assertEqual(evidence["selected_detector_boxes"], [])
 +        self.assertIsNone(evidence["support_observation"]["point"])
 +
++    def test_mask_diagnostics_identify_the_touching_edge(self):
++        image = np.zeros((720, 1280, 3), np.uint8)
++        cv2.rectangle(image, (280, 320), (345, 400), (0, 0, 255), -1)
++        result = observe_support(image, BOX, ConeDistanceEngine().camera, evidence=True)
++        self.assertEqual(result["reason"], "colour_contour_reaches_roi_edge")
++        self.assertEqual(result["crop_bounds"], [286, 301, 354, 409])
++        self.assertEqual(result["mask_shape"], [68, 108])
++        self.assertEqual(result["selected_contour_bounds"][0], 286)
++        self.assertEqual(result["touches"], dict(left=True, top=False, right=False, bottom=False))
++        self.assertEqual(result["touching_edges"], ["left"])
++
++    def test_mask_diagnostics_are_absent_without_the_flag(self):
++        result = observe_support(cone_image(), BOX, ConeDistanceEngine().camera)
++        self.assertNotIn("crop_bounds", result)
++        self.assertNotIn("touches", result)
++
++    def test_engine_evidence_carries_mask_diagnostics(self):
++        engine = ConeDistanceEngine(frame_evidence=True)
++        engine.reset("synthetic")
++        diagnostics = measure(engine)["frame_evidence"]["support_observation"]["mask_diagnostics"]
++        self.assertEqual(diagnostics["mask_shape"],
++                         [diagnostics["crop_bounds"][2]-diagnostics["crop_bounds"][0],
++                          diagnostics["crop_bounds"][3]-diagnostics["crop_bounds"][1]])
++        self.assertIn("left", diagnostics["touches"])
++
 +
 +class WorkerAndSummaryTests(unittest.TestCase):
 +    def test_worker_writes_evidence_and_summary_counts_it(self):
@@ -380,6 +554,33 @@ index 0000000..3c53241
 +            self.assertIs(result["frame_evidence"]["controlling_distance"], False)
 +            self.assertEqual(result["frame_evidence"]["frames_with_pose_available"], 0)
 +
++    def test_worker_resyncs_freshness_to_the_logged_age(self):
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            slot = LatestNativeFrame()
++            slot.begin("synthetic")
++            slot.publish("synthetic", cone_image(), 0., 10.)
++            clock = [10.0]
++            def predictor(_frame):
++                clock[0] += 0.02
++                return [BOX]
++            log = root/"input"/"distance_frames.jsonl"
++            log.parent.mkdir()
++            worker = DistanceWorker(slot, DEFAULT_CONFIG, predictor, log,
++                clock=lambda: clock[0], frame_evidence=True,
++                scene_function=lambda *args: dict(accepted=False, reason="synthetic_only"))
++            worker.start()
++            try:
++                self.assertTrue(worker.updated.wait(1))
++            finally:
++                worker.close()
++            row = json.loads(log.read_text().splitlines()[0])
++            fresh = row["frame_evidence"]["freshness"]
++            self.assertEqual(fresh["age_ms"], row["frame_age_ms"])
++            self.assertEqual(fresh["within_limit"], row["frame_age_ms"] <= 500.)
++            self.assertEqual(fresh["blockers"], row["blockers"])
++            self.assertEqual(fresh["primary_reason"], row["reason"])
++
 +    def test_validator_rejects_mismatched_frame_identity(self):
 +        with tempfile.TemporaryDirectory() as directory:
 +            row = self.capture_row(Path(directory))
@@ -394,6 +595,14 @@ index 0000000..3c53241
 +        bad = copy.deepcopy(row)
 +        bad["frame_evidence"]["support_observation"]["point"] = [999, 699]
 +        with self.assertRaisesRegex(ValueError, "actual observed column"):
++            validate_row(bad)
++
++    def test_validator_rejects_inconsistent_mask_touch(self):
++        with tempfile.TemporaryDirectory() as directory:
++            row = self.capture_row(Path(directory))
++        bad = copy.deepcopy(row)
++        bad["frame_evidence"]["support_observation"]["mask_diagnostics"]["touches"]["left"] = True
++        with self.assertRaisesRegex(ValueError, "touching edge list"):
 +            validate_row(bad)
 +
 +    def test_validator_rejects_approval_flags_in_evidence(self):

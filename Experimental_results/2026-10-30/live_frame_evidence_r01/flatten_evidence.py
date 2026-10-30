@@ -24,7 +24,9 @@ FIELDS = (
     "quality_reason", "pose_initialized", "pose_available", "pose_reason", "up_x", "up_y",
     "up_z", "scene_reason", "scene_source_frame", "scene_age_sec", "scene_pending",
     "frame_age_ms", "freshness_limit_ms", "within_limit", "blockers",
-    "floor_config_sha256",
+    "floor_config_sha256", "crop_x1", "crop_y1", "crop_x2", "crop_y2", "mask_w", "mask_h",
+    "contour_count", "contour_x1", "contour_y1", "contour_x2", "contour_y2", "touching_edges",
+    "contour_areas",
 )
 
 
@@ -39,6 +41,10 @@ def flatten(row):
     pose = evidence["pose"]
     up = pose["up_optical"] or [None, None, None]
     fresh = evidence["freshness"]
+    mask = support.get("mask_diagnostics") or {}
+    crop = mask.get("crop_bounds") or [None]*4
+    shape = mask.get("mask_shape") or [None, None]
+    bounds = mask.get("selected_contour_bounds") or [None]*4
     return dict(
         session=row["session"], frame=row["frame"], source_time_sec=row["source_time_sec"],
         media_time_sec=evidence["input"]["media_time_sec"],
@@ -54,7 +60,12 @@ def flatten(row):
         scene_source_frame=pose["scene_source_frame"], scene_age_sec=pose["scene_age_sec"],
         scene_pending=pose["scene_pending"], frame_age_ms=fresh["age_ms"],
         freshness_limit_ms=fresh["limit_ms"], within_limit=fresh["within_limit"],
-        blockers=";".join(fresh["blockers"]), floor_config_sha256=evidence["floor_model"]["config_sha256"])
+        blockers=";".join(fresh["blockers"]), floor_config_sha256=evidence["floor_model"]["config_sha256"],
+        crop_x1=crop[0], crop_y1=crop[1], crop_x2=crop[2], crop_y2=crop[3],
+        mask_w=shape[0], mask_h=shape[1], contour_count=mask.get("qualifying_contour_count"),
+        contour_x1=bounds[0], contour_y1=bounds[1], contour_x2=bounds[2], contour_y2=bounds[3],
+        touching_edges=";".join(mask.get("touching_edges") or []),
+        contour_areas=";".join(str(value) for value in (mask.get("contour_areas") or [])))
 
 
 def main() -> int:
@@ -83,6 +94,10 @@ def main() -> int:
         distance_available_frames=sum(row["distance_available"] for row in rows),
         bbox_count_frames=dict(Counter(str(item["bbox_count"]) for item in flat)),
         support_point_frames=sum(item["support_x"] is not None for item in flat),
+        mask_diagnostic_frames=sum(item["contour_count"] is not None for item in flat),
+        touching_edge_frames=dict(Counter(
+            edge for item in flat for edge in (item["touching_edges"].split(";")
+                                               if item["touching_edges"] else []))),
         pose_available_frames=sum(bool(item["pose_available"]) for item in flat),
         within_freshness_limit_frames=sum(bool(item["within_limit"]) for item in flat),
         reasons=dict(Counter(row["reason"] for row in rows)),

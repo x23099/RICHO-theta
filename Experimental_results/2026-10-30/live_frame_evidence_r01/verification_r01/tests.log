@@ -1,42 +1,42 @@
 ### test_frame_evidence_logging
 
 ----------------------------------------------------------------------
-Ran 11 tests in 0.170s
+Ran 16 tests in 0.208s
 
 OK
 ### test_cone_distance_diagnostic
 
 ----------------------------------------------------------------------
-Ran 30 tests in 1.159s
+Ran 30 tests in 1.217s
 
 OK
 ### test_cone_distance_worker_lifecycle
 
 ----------------------------------------------------------------------
-Ran 13 tests in 0.194s
+Ran 13 tests in 0.189s
 
 OK
 ### test_cone_distance_live_cleanup
 
 ----------------------------------------------------------------------
-Ran 6 tests in 0.255s
+Ran 6 tests in 0.244s
 
 OK
 ### test_summarize_cone_distance_live
 ----------------------------------------------------------------------
-Ran 25 tests in 2.087s
+Ran 25 tests in 2.113s
 
 OK
-[ERROR] [Errno 2] No such file or directory: '/tmp/tmpywl5ndr2/missing/distance_frames.jsonl'
+[ERROR] [Errno 2] No such file or directory: '/tmp/tmpjt8hj2ct/missing/distance_frames.jsonl'
 ### test_cone_completion_shadow_logging
 
 ----------------------------------------------------------------------
-Ran 20 tests in 0.951s
+Ran 20 tests in 0.971s
 
 OK
 ### test_cone_colour_support_candidate
 
 ----------------------------------------------------------------------
-Ran 17 tests in 0.223s
+Ran 17 tests in 0.233s
 
 OK

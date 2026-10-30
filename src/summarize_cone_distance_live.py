@@ -100,6 +100,53 @@ def validate_frame_evidence(row):
     point = _pixel_point(support.get("point"), "support point")
     if point is not None and (support_rows is None or point not in support_rows):
         raise ValueError("support point must be an actual observed column")
+    mask = support.get("mask_diagnostics")
+    if mask is not None:
+        if not isinstance(mask, dict):
+            raise ValueError("mask diagnostics object required")
+        crop, shape = mask.get("crop_bounds"), mask.get("mask_shape")
+        if (not isinstance(crop, list) or len(crop) != 4
+                or any(type(value) is not int for value in crop)
+                or not (0 <= crop[0] < crop[2] <= 1280 and 0 <= crop[1] < crop[3] <= 720)):
+            raise ValueError("bounded crop required in mask diagnostics")
+        if (not isinstance(shape, list) or len(shape) != 2
+                or any(type(value) is not int or value <= 0 for value in shape)
+                or shape != [crop[2]-crop[0], crop[3]-crop[1]]):
+            raise ValueError("mask shape must match crop bounds")
+        count = mask.get("qualifying_contour_count")
+        if type(count) is not int or count < 0:
+            raise ValueError("nonnegative qualifying contour count required")
+        areas = mask.get("contour_areas")
+        if (not isinstance(areas, list)
+                or any(type(value) not in (int, float) or not math.isfinite(value) or value < 0
+                       for value in areas)):
+            raise ValueError("finite contour areas required")
+        bounds = mask.get("selected_contour_bounds")
+        if bounds is not None:
+            if (not isinstance(bounds, list) or len(bounds) != 4
+                    or any(type(value) is not int for value in bounds)
+                    or not (0 <= bounds[0] <= bounds[2] < 1280
+                            and 0 <= bounds[1] <= bounds[3] < 720)):
+                raise ValueError("selected contour bounds required")
+        touches = mask.get("touches")
+        if (not isinstance(touches, dict) or set(touches) != {"left", "top", "right", "bottom"}
+                or any(type(value) is not bool for value in touches.values())):
+            raise ValueError("four boolean touch edges required")
+        edges = mask.get("touching_edges")
+        if (not isinstance(edges, list)
+                or edges != [name for name in ("left", "top", "right", "bottom") if touches[name]]):
+            raise ValueError("touching edge list must match touch flags")
+        if bounds is not None:
+            expected = dict(left=bounds[0] == crop[0], top=bounds[1] == crop[1],
+                            right=bounds[2] == crop[2]-1, bottom=bounds[3] == crop[3]-1)
+            if touches != expected:
+                raise ValueError("touch flags must follow contour and crop bounds")
+        if count == 0 and (bounds is not None or any(touches.values()) or areas):
+            raise ValueError("no-contour diagnostics must be empty")
+        if support["reason"] == "colour_contour_reaches_roi_edge" and not any(touches.values()):
+            raise ValueError("edge rejection requires a touching contour")
+        if support["reason"] == "unverified_visible_colour_support" and any(touches.values()):
+            raise ValueError("accepted support cannot touch the crop edge")
     pose = evidence.get("pose")
     if not isinstance(pose, dict):
         raise ValueError("pose evidence object required")
@@ -123,7 +170,9 @@ def validate_frame_evidence(row):
     fresh = evidence.get("freshness")
     if not isinstance(fresh, dict):
         raise ValueError("freshness evidence object required")
-    if abs(number(fresh.get("age_ms"), "evidence age", 0)-row["frame_age_ms"]) > .001:
+    # 1 ms tolerates the pre-resync engine/worker stamp offset (observed ~0.02 ms);
+    # new logs are resynced to the final row age in the worker.
+    if abs(number(fresh.get("age_ms"), "evidence age", 0)-row["frame_age_ms"]) > 1.:
         raise ValueError("evidence age must match the row")
     if fresh.get("limit_ms") != AGE_LIMIT_MS:
         raise ValueError("screened 500 ms freshness limit required")

@@ -162,6 +162,15 @@ class DistanceWorker:
                                       reason="frame_processing_too_old")
                         if result["reason"] not in result["blockers"]:
                             result["blockers"].insert(0, result["reason"])
+                    # Engine evidence is stamped before the worker's final timing
+                    # update; resync it so the same row cannot disagree with itself.
+                    evidence = result.get("frame_evidence")
+                    if evidence is not None:
+                        fresh = evidence["freshness"]
+                        fresh["age_ms"] = result["frame_age_ms"]
+                        fresh["within_limit"] = result["frame_age_ms"] <= fresh["limit_ms"]
+                        fresh["blockers"] = list(result["blockers"])
+                        fresh["primary_reason"] = result["reason"]
                     stream.write(json.dumps(result) + "\n")
                     stream.flush()
                     current, _ = self.slot.current(self.clock())

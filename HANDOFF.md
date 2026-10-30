@@ -268,11 +268,17 @@ YOLOは対象の枠を出す。OpenCVは色支持列、線・姿勢・幾何等�
 4. TTC・危険状態・UNKNOWN・遮蔽復帰をdry-runで評価。
 5. 実機条件・停止・安全ゲートを別途確認した後に、低強度のhardware FFBへ接続。
 
-#### 7.3.1 同一フレーム証拠ログ（2026-10-30 実装、実機未実施）
+#### 7.3.1 同一フレーム証拠ログ（2026-10-30 実機60秒まで実施）
 
-[同一フレーム証拠ログ r01](Experimental_results/2026-10-30/live_frame_evidence_r01/README.md)として、7.3 step 1の記録項目を既定OFFの`--frame-evidence`へ実装した。選択bbox、支持点と下包絡、姿勢理由・up、床モデル識別子（config/camera/floor候補のSHA-256）、鮮度理由を`distance_frames.jsonl`の同一行へ記録する。距離・姿勢・接地判定は変更せず、要約は不正なbbox・支持点・承認flagを拒否する。新規11件、関連111件のテストがPASS。
+[同一フレーム証拠ログ r01](Experimental_results/2026-10-30/live_frame_evidence_r01/README.md)として、7.3 step 1の記録項目を既定OFFの`--frame-evidence`へ実装した。選択bbox、支持点と下包絡、姿勢理由・up、床モデル識別子（config/camera/floor候補のSHA-256）、鮮度理由を`distance_frames.jsonl`の同一行へ記録する。距離・姿勢・接地判定は変更せず、要約は不正なbbox・支持点・承認flagを拒否する。新規12件、関連111件のテストがPASS。
 
-**実機の静止キャプチャは未実施。** 解析PCには`/dev/video*`がなく、設定要求checkpoint `3a6e124a...`も不一致（`~/Downloads/cone.pt`は`39c94a4b...`）。GPUと`theta-yolo-env`は利用可能。実行はcheckpoint・カメラが揃うGPU PCで行い、解析PCからの遠隔操作を前提にしない。手順は[RUNBOOK.md](Experimental_results/2026-10-30/live_frame_evidence_r01/RUNBOOK.md)、変更の運搬は`transfer/frame_evidence.patch`（SHA-256 `c296d0f3...`）を使う。返送後は`flatten_evidence.py`でフレーム単位に展開する。
+**実機ログを2026-10-30 18:18に取得した**（[解析](Experimental_results/2026-10-30/live_frame_evidence_r01/analysis_r01/README.md)）。GPU PCのRTX 4070 Laptop、60.02秒、1,656フレーム、`live_cuda_yolo`、checkpoint `3a6e124a...`一致、clean shutdown。全行に証拠ブロックが入り、選択bboxは1個/全frame（中央値47.25×88.08 px、中心`(292.2,343.9)`、jitter 1～2.7 px）。
+
+結果は**基準支持点0/1,656、姿勢0/1,656、距離0/1,656**。主理由は`colour_contour_reaches_roi_edge` 1,655、背景は`fewer_than_six_distinct_planes` 1,656、初回のみ976 msで`frame_processing_too_old`。色分離shadowは1,430点、左右補完shadowは1,645点（追加215）を持つが、制御支持点ではないため採用していない。接触辺は輪郭boundsを記録していないため未確定（bboxと4 px拡張から左・下を含む複数辺が候補）。
+
+取得後に、engine内の鮮度記録とworkerの最終`frame_age_ms`が約0.02 msずれる不整合を見つけた。workerで再同期するよう修正し、検証側は取得済みログを再録画せず解析できるよう1 ms差を許容した。再取得は不要。
+
+次に接触辺を特定するため、crop境界・マスク寸法・輪郭bounds・接触辺を`mask_diagnostics`として記録するr02拡張を実装した（距離制御は不変、新規16テスト、関連111件PASS、全866件では既知の`oit_interfaces` ImportErrorのみ）。同じ60秒条件で再取得し、SキーPNGを1枚残す。手順とpatchは[RUNBOOK.md](Experimental_results/2026-10-30/live_frame_evidence_r01/RUNBOOK.md)。姿勢側は6平面条件のまま別設計が必要。再取得は実機操作として実施する。
 
 **現時点でユーザーに直ちに再録画を依頼する必要はない。** 保存経路・設定・座標系・同一録画の対応を調べ、既存映像から得られない物理情報が残ったときだけ、その不足に限定して相談する。録画依頼を繰り返すことをユーザーは避けたいと希望している。
 

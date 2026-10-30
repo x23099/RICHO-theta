@@ -103,12 +103,15 @@ def select_front_boxes(boxes, camera, confidence, target_roi=None):
     return selected
 
 
-def observe_support(image, box, camera):
+def observe_support(image, box, camera, *, evidence=False):
     """Frozen V30 segmentation guards and trimmed actual lower envelope.
 
     The point is an ACTUAL envelope column nearest the observed top-row median
     x. It must belong to the trimmed support; no fitted/extrapolated base point.
+    ``evidence`` only adds crop/contour facts; it never changes acceptance.
     """
+    if type(evidence) is not bool:
+        raise ValueError("explicit bool evidence flag required")
     native_frame(image)
     x1, y1, x2, y2 = checked_bbox(box, 1280, 720)
     result = dict(support=None, point=None, reason="", floor_contact_verified=False)
@@ -123,26 +126,50 @@ def observe_support(image, box, camera):
     mask = (cv2.inRange(hsv, (0, 80, 30), (10, 255, 255))
             | cv2.inRange(hsv, (170, 80, 30), (179, 255, 255))
             | cv2.inRange(hsv, (15, 80, 30), (40, 255, 255)))
-    return support_from_colour_mask(mask, left, top)
+    return support_from_colour_mask(mask, left, top, evidence=evidence)
 
 
-def support_from_colour_mask(mask, left, top):
+def support_from_colour_mask(mask, left, top, *, evidence=False):
     """Shared unchanged observed-envelope guards; never a verified contact.
 
     The baseline passes its union mask. Experimental colour-separated masks
     may use this routine only as non-controlling shadow observations.
+    ``evidence`` adds crop/contour bounds and edge contacts without altering
+    the existing acceptance order or distance inputs.
     """
     if (not isinstance(mask, np.ndarray) or mask.ndim != 2 or mask.dtype != np.uint8
             or not mask.size or type(left) is not int or type(top) is not int
             or left < 0 or top < 0 or left+mask.shape[1] > 1280 or top+mask.shape[0] > 720):
         raise ValueError("native bounded uint8 colour mask required")
+    if type(evidence) is not bool:
+        raise ValueError("explicit bool evidence flag required")
     bottom, right = top+mask.shape[0], left+mask.shape[1]
     result = dict(support=None, point=None, reason="", floor_contact_verified=False)
+
+    def diagnostics(contours, contour=None):
+        if not evidence:
+            return {}
+        touches = dict(left=False, top=False, right=False, bottom=False)
+        bounds = None
+        if contour is not None:
+            bx, by, bw, bh = cv2.boundingRect(contour)
+            bounds = [left+bx, top+by, left+bx+bw-1, top+by+bh-1]
+            touches = dict(left=bx == 0, top=by == 0,
+                           right=bx+bw >= mask.shape[1], bottom=by+bh >= mask.shape[0])
+        return dict(crop_bounds=[left, top, right, bottom],
+                    mask_shape=[int(mask.shape[1]), int(mask.shape[0])],
+                    qualifying_contour_count=len(contours),
+                    contour_areas=[round(float(cv2.contourArea(c)), 3) for c in contours[:5]],
+                    selected_contour_bounds=bounds, touches=touches,
+                    touching_edges=[name for name, value in touches.items() if value])
+
     contours = sorted((c for c in cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[0]
                        if cv2.contourArea(c) >= 20), key=cv2.contourArea, reverse=True)
     if not contours:
+        result.update(diagnostics(contours))
         return dict(result, reason="no_supported_colour_contour")
     contour = contours[0]
+    result.update(diagnostics(contours, contour))
     if len(contours) > 1 and cv2.contourArea(contours[1]) >= .25 * cv2.contourArea(contour):
         return dict(result, reason="ambiguous_competing_colour_contours")
     bx, by, bw, bh = cv2.boundingRect(contour)
@@ -247,7 +274,8 @@ class ConeDistanceEngine:
         try:
             selected = select_front_boxes(boxes, self.camera, self.settings["confidence"], self.target_roi)
             if len(selected) == 1:
-                colour = observe_support(frame.image, selected[0], self.camera)
+                colour = observe_support(frame.image, selected[0], self.camera,
+                                         evidence=self.frame_evidence)
                 candidates = [dict(support=colour["support"], unavailable_reason=colour["reason"])]
             else:
                 colour["reason"] = "no_candidate" if not selected else "ambiguous_front_cones"
@@ -331,7 +359,11 @@ class ConeDistanceEngine:
                 support_observation=dict(method="V30_union_hsv_observed_lower_envelope",
                     point=colour["point"], support=colour["support"], reason=colour["reason"],
                     quality_accepted=quality["quality_accepted"], quality_reason=quality["reason"],
-                    floor_contact_verified=False),
+                    floor_contact_verified=False,
+                    mask_diagnostics=({key: colour.get(key) for key in (
+                        "crop_bounds", "mask_shape", "qualifying_contour_count", "contour_areas",
+                        "selected_contour_bounds", "touches", "touching_edges")}
+                        if "crop_bounds" in colour else None)),
                 pose=dict(initialized=pose["initialized"], pose_available=pose["pose_available"],
                     pose_reason=pose["pose_reason"], up_optical=pose["up_optical"],
                     scene_reason=self.scene_reason, scene_source_frame=pose["latest_scene_frame"],
