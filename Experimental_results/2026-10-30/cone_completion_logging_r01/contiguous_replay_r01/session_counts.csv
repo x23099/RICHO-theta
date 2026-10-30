@@ -1,0 +1,7 @@
+session,baseline_distances,baseline_mismatches,changed_prior_points,completion_attempted,completion_granted,frames,lost_points,new_points,new_quality_accepted,old_points,old_quality_accepted
+cone_static_center_z1p30_r01_20261015_135329_732,0,0,0,0,0,651,0,651,649,651,649
+cone_static_center_z2p00_r01_20261015_135414_399,0,0,0,0,0,632,0,632,630,632,630
+cone_static_left_z1p30_r01_20261015_135541_436,0,0,0,0,0,628,0,628,626,628,626
+cone_static_no_cone_r01_20261015_134940_713,0,0,0,0,0,332,0,0,0,0,0
+cone_static_right_z1p30_r01_20261015_135630_973,0,0,0,0,0,631,0,628,623,628,623
+one_static_center_z0p80_r01_20261015_135155_823,0,0,0,0,0,722,0,722,720,722,720

@@ -1,0 +1,3 @@
+frame,printed_plane_height_m,floor_height_if_supplied_thickness_m,residual_from_reported_0p590m_mm,thickness_needed_to_match_0p590m_mm,expected_printed_plane_height_if_0p590m_and_thickness_m
+1259,0.5468344255818524,0.5618344255818524,-28.1655744181476,43.165574418147614,0.575
+1655,0.5404311383745733,0.5554311383745734,-34.56886162542661,49.56886162542662,0.575

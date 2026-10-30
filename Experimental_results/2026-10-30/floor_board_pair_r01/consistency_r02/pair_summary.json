@@ -1,0 +1,392 @@
+{
+  "status": "FLOOR_ORIENTATION_CANDIDATE_METRIC_WITHHELD",
+  "paper_size_mm": [
+    296.0,
+    210.0
+  ],
+  "measured_camera_height_m": 0.59,
+  "printed_plane_thickness_m": null,
+  "primary_threshold": 170,
+  "hypotheses": [
+    {
+      "orientation_hypothesis": "image_far_edge_long",
+      "solution_index": 0,
+      "plane_normal_difference_deg": 0.612388110495433,
+      "height_difference_mm": 16.988819364285312,
+      "frames": [
+        {
+          "frame": 1259,
+          "height_to_printed_plane_m": 0.5376163621477624,
+          "normal_optical": [
+            -0.019942841304092285,
+            -0.999800787385497,
+            0.000817694355760995
+          ],
+          "fit_native_rmse_px": 0.10208939991497286,
+          "required_floor_to_printed_plane_mm_if_camera_height_590mm": 52.3836378522376
+        },
+        {
+          "frame": 1655,
+          "height_to_printed_plane_m": 0.5546051815120477,
+          "normal_optical": [
+            -0.029780564215858035,
+            -0.9995508374890044,
+            -0.003352800324355261
+          ],
+          "fit_native_rmse_px": 0.5066415949057399,
+          "required_floor_to_printed_plane_mm_if_camera_height_590mm": 35.39481848795231
+        }
+      ]
+    },
+    {
+      "orientation_hypothesis": "image_far_edge_long",
+      "solution_index": 1,
+      "plane_normal_difference_deg": 23.08957451544868,
+      "height_difference_mm": 23.9525023583248,
+      "frames": [
+        {
+          "frame": 1259,
+          "height_to_printed_plane_m": 0.5105501967900129,
+          "normal_optical": [
+            0.012406312241352278,
+            0.36581213028783044,
+            -0.9306060223052768
+          ],
+          "fit_native_rmse_px": 5.732851711911632,
+          "required_floor_to_printed_plane_mm_if_camera_height_590mm": 79.44980320998712
+        },
+        {
+          "frame": 1655,
+          "height_to_printed_plane_m": 0.5345026991483377,
+          "normal_optical": [
+            -0.354933760853095,
+            0.46835557707410735,
+            -0.8091137613650244
+          ],
+          "fit_native_rmse_px": 3.1971069753284165,
+          "required_floor_to_printed_plane_mm_if_camera_height_590mm": 55.49730085166232
+        }
+      ]
+    },
+    {
+      "orientation_hypothesis": "image_far_edge_short",
+      "solution_index": 0,
+      "plane_normal_difference_deg": 4.172503719617657,
+      "height_difference_mm": 47.58666192773098,
+      "frames": [
+        {
+          "frame": 1259,
+          "height_to_printed_plane_m": 0.19174238633952898,
+          "normal_optical": [
+            -0.03668074048040423,
+            -0.9513481818254276,
+            0.30592672360430123
+          ],
+          "fit_native_rmse_px": 3.679438641890547,
+          "required_floor_to_printed_plane_mm_if_camera_height_590mm": 398.25761366047107
+        },
+        {
+          "frame": 1655,
+          "height_to_printed_plane_m": 0.23932904826725995,
+          "normal_optical": [
+            -0.10731042702918128,
+            -0.9515226182225174,
+            0.2882519371344803
+          ],
+          "fit_native_rmse_px": 3.1631986135792767,
+          "required_floor_to_printed_plane_mm_if_camera_height_590mm": 350.67095173274004
+        }
+      ]
+    },
+    {
+      "orientation_hypothesis": "image_far_edge_short",
+      "solution_index": 1,
+      "plane_normal_difference_deg": 8.503936475911468,
+      "height_difference_mm": 53.57307824586805,
+      "frames": [
+        {
+          "frame": 1259,
+          "height_to_printed_plane_m": 0.16948486376639402,
+          "normal_optical": [
+            0.03288454219559888,
+            0.6320040072559535,
+            -0.7742670997123683
+          ],
+          "fit_native_rmse_px": 10.558529917215955,
+          "required_floor_to_printed_plane_mm_if_camera_height_590mm": 420.515136233606
+        },
+        {
+          "frame": 1655,
+          "height_to_printed_plane_m": 0.22305794201226206,
+          "normal_optical": [
+            -0.11325028360912803,
+            0.6469828688804242,
+            -0.7540474392488231
+          ],
+          "fit_native_rmse_px": 6.047135318178278,
+          "required_floor_to_printed_plane_mm_if_camera_height_590mm": 366.94205798773794
+        }
+      ]
+    }
+  ],
+  "threshold_controls": [
+    {
+      "frame": 1259,
+      "threshold": 150,
+      "quad_count": 1,
+      "quad_xy": [
+        [
+          292,
+          420
+        ],
+        [
+          348,
+          418
+        ],
+        [
+          356,
+          440
+        ],
+        [
+          288,
+          443
+        ]
+      ],
+      "height_m": 0.5376163621477624,
+      "normal_optical": [
+        -0.019942841304092285,
+        -0.999800787385497,
+        0.000817694355760995
+      ],
+      "fit_native_rmse_px": 0.10208939991497286
+    },
+    {
+      "frame": 1259,
+      "threshold": 170,
+      "quad_count": 1,
+      "quad_xy": [
+        [
+          292,
+          420
+        ],
+        [
+          348,
+          418
+        ],
+        [
+          356,
+          440
+        ],
+        [
+          288,
+          443
+        ]
+      ],
+      "height_m": 0.5376163621477624,
+      "normal_optical": [
+        -0.019942841304092285,
+        -0.999800787385497,
+        0.000817694355760995
+      ],
+      "fit_native_rmse_px": 0.10208939991497286
+    },
+    {
+      "frame": 1259,
+      "threshold": 190,
+      "quad_count": 0
+    },
+    {
+      "frame": 1259,
+      "threshold": 210,
+      "quad_count": 0
+    },
+    {
+      "frame": 1655,
+      "threshold": 150,
+      "quad_count": 1,
+      "quad_xy": [
+        [
+          362,
+          416
+        ],
+        [
+          410,
+          408
+        ],
+        [
+          427,
+          424
+        ],
+        [
+          374,
+          437
+        ]
+      ],
+      "height_m": 0.5546051815120477,
+      "normal_optical": [
+        -0.029780564215858035,
+        -0.9995508374890044,
+        -0.003352800324355261
+      ],
+      "fit_native_rmse_px": 0.5066415949057399
+    },
+    {
+      "frame": 1655,
+      "threshold": 170,
+      "quad_count": 1,
+      "quad_xy": [
+        [
+          362,
+          416
+        ],
+        [
+          410,
+          408
+        ],
+        [
+          427,
+          424
+        ],
+        [
+          374,
+          437
+        ]
+      ],
+      "height_m": 0.5546051815120477,
+      "normal_optical": [
+        -0.029780564215858035,
+        -0.9995508374890044,
+        -0.003352800324355261
+      ],
+      "fit_native_rmse_px": 0.5066415949057399
+    },
+    {
+      "frame": 1655,
+      "threshold": 190,
+      "quad_count": 1,
+      "quad_xy": [
+        [
+          362,
+          416
+        ],
+        [
+          409,
+          408
+        ],
+        [
+          427,
+          424
+        ],
+        [
+          374,
+          437
+        ]
+      ],
+      "height_m": 0.5556069130642469,
+      "normal_optical": [
+        -0.01959595996506887,
+        -0.9997712237817004,
+        -0.00857312376494045
+      ],
+      "fit_native_rmse_px": 0.1934562171530144
+    },
+    {
+      "frame": 1655,
+      "threshold": 210,
+      "quad_count": 1,
+      "quad_xy": [
+        [
+          362,
+          416
+        ],
+        [
+          409,
+          408
+        ],
+        [
+          427,
+          424
+        ],
+        [
+          374,
+          437
+        ]
+      ],
+      "height_m": 0.5556069130642469,
+      "normal_optical": [
+        -0.01959595996506887,
+        -0.9997712237817004,
+        -0.00857312376494045
+      ],
+      "fit_native_rmse_px": 0.1934562171530144
+    }
+  ],
+  "pixel_sensitivity": [
+    {
+      "frame": 1259,
+      "amplitude_px": 0.5,
+      "count": 256,
+      "baseline_height_m": 0.5376163621477624,
+      "min_height_m": 0.4981404246352879,
+      "max_height_m": 0.5793911766388568,
+      "camera_590mm_with_zero_thickness_within_sampled_range": false,
+      "max_normal_shift_deg": 2.4208049626656427,
+      "all_positive_depth": true,
+      "all_projected": true
+    },
+    {
+      "frame": 1259,
+      "amplitude_px": 1.0,
+      "count": 256,
+      "baseline_height_m": 0.5376163621477624,
+      "min_height_m": 0.46081886939357247,
+      "max_height_m": 0.6236195962510392,
+      "camera_590mm_with_zero_thickness_within_sampled_range": true,
+      "max_normal_shift_deg": 5.002942200803909,
+      "all_positive_depth": true,
+      "all_projected": true
+    },
+    {
+      "frame": 1655,
+      "amplitude_px": 0.5,
+      "count": 256,
+      "baseline_height_m": 0.5546051815120477,
+      "min_height_m": 0.5143785697008519,
+      "max_height_m": 0.5956545043807051,
+      "camera_590mm_with_zero_thickness_within_sampled_range": true,
+      "max_normal_shift_deg": 2.49241514180683,
+      "all_positive_depth": true,
+      "all_projected": true
+    },
+    {
+      "frame": 1655,
+      "amplitude_px": 1.0,
+      "count": 256,
+      "baseline_height_m": 0.5546051815120477,
+      "min_height_m": 0.4753088172563091,
+      "max_height_m": 0.6373300029561834,
+      "camera_590mm_with_zero_thickness_within_sampled_range": true,
+      "max_normal_shift_deg": 5.11837830487565,
+      "all_positive_depth": true,
+      "all_projected": true
+    }
+  ],
+  "sensitivity_definition": "all 256 independent corner-coordinate signs at each amplitude; nearest canonical normal branch; NOT confidence intervals or measured pixel errors",
+  "input_source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-30_floor_board_intake_r01/decoded_15ae673c24484d119952ae391df611aa_f001259.png": "b87dd75deade099ab68daa13699bf1210482ae52efe83ae06a0bdb156aee0f34",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-30_floor_board_intake_r01/decoded_15ae673c24484d119952ae391df611aa_f001655.png": "2243e7c9873c0ccdd2950502209b9e4db5b5e04a56b356a94e30a3d21f3f45d7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/probe_paper_quad.py": "61c819ddb45280a710c9d7c1e87f28b80199eb976c4c69627e7e53b3dc4ed08f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/white_paper_quad_measured_r01.json": "bae9a52f44d1d907874a859e24580e43d8c7a57f3aeb2e672ebe8d4f0eff138c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/analyse_pair.py": "b21d40238f3a025b1b07f029f48ea8d488b508c000713d6b19bd8232c3d055f6",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_diagnostic_config.json": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+    "/home/robo25/theta_ws/RICHO-theta/src/floor_reference_pose.py": "a3a8b26174c52bf7e77b106028896c940298ae04b16bff0cd8dca74d77cab389",
+    "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8"
+  },
+  "physical_metric_verified": false,
+  "base_link_transform_verified": false,
+  "distance_accuracy_evaluated": false,
+  "live_integrated": false,
+  "usable_for_ffb": false
+}

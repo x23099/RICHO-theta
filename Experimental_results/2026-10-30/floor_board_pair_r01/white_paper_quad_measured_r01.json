@@ -1,0 +1,1570 @@
+{
+  "status": "NATIVE_WHITE_PAPER_QUADS_NOT_APPROVED",
+  "primary_threshold": 170,
+  "paper_size_mm": [
+    296.0,
+    210.0
+  ],
+  "metric_pose_computed": true,
+  "rows": [
+    {
+      "frame": 1259,
+      "threshold": 150,
+      "roi_native_xywh": [
+        260,
+        395,
+        130,
+        65
+      ],
+      "quads": [
+        {
+          "quad_xy": [
+            [
+              292,
+              420
+            ],
+            [
+              348,
+              418
+            ],
+            [
+              356,
+              440
+            ],
+            [
+              288,
+              443
+            ]
+          ],
+          "contour_area_px": 1460.0,
+          "all_corners_observed_hypothesis": true,
+          "physical_paper_edge_identity_verified": false,
+          "poses": {
+            "image_far_edge_long": {
+              "schema": "offline_planar_floor_ippe_diagnostic_v1",
+              "method": "native_KB4_rays_then_IPPE",
+              "point_count": 4,
+              "candidates": [
+                {
+                  "solution_index": 0,
+                  "transform_floor_from_optical": [
+                    [
+                      0.998917196926723,
+                      -0.019890819887123955,
+                      0.04205697288531493,
+                      0.11954282356870084
+                    ],
+                    [
+                      0.042032329994635215,
+                      -0.0016555444897819241,
+                      -0.9991148794846687,
+                      0.8946183383931279
+                    ],
+                    [
+                      0.019942841304092285,
+                      0.999800787385497,
+                      -0.000817694355760995,
+                      -0.5376163621477624
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    0.11954282356870084,
+                    0.8946183383931279,
+                    -0.5376163621477624
+                  ],
+                  "up_optical": [
+                    0.019942841304092285,
+                    0.999800787385497,
+                    -0.000817694355760995
+                  ],
+                  "camera_height_above_floor_m": -0.5376163621477624,
+                  "fit_native_rmse_px": 0.10208939991497286,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                },
+                {
+                  "solution_index": 1,
+                  "transform_floor_from_optical": [
+                    [
+                      0.9985122919886535,
+                      -0.053952273880327986,
+                      -0.00789651129980017,
+                      0.17727380361858838
+                    ],
+                    [
+                      0.05309695061051874,
+                      0.9291235856856833,
+                      0.3659372574068438,
+                      -0.6630475898420709
+                    ],
+                    [
+                      -0.012406312241352278,
+                      -0.36581213028783044,
+                      0.9306060223052768,
+                      -0.5105501967900129
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    0.17727380361858838,
+                    -0.6630475898420709,
+                    -0.5105501967900129
+                  ],
+                  "up_optical": [
+                    -0.012406312241352278,
+                    -0.36581213028783044,
+                    0.9306060223052768
+                  ],
+                  "camera_height_above_floor_m": -0.5105501967900129,
+                  "fit_native_rmse_px": 5.732851711911632,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                }
+              ],
+              "solution_count": 2,
+              "selected_solution": null,
+              "intrinsics_refitted": false,
+              "background_lines_used": false,
+              "caller_supplied_floor_correspondence_required": true,
+              "physical_metric_verified": false,
+              "published_to_ros": false,
+              "usable_for_ffb": false
+            },
+            "image_far_edge_short": {
+              "schema": "offline_planar_floor_ippe_diagnostic_v1",
+              "method": "native_KB4_rays_then_IPPE",
+              "point_count": 4,
+              "candidates": [
+                {
+                  "solution_index": 0,
+                  "transform_floor_from_optical": [
+                    [
+                      0.9991733020669774,
+                      -0.02954473229613891,
+                      0.027925279409936662,
+                      0.09670769518917852
+                    ],
+                    [
+                      0.01752814064248632,
+                      -0.3066981345411197,
+                      -0.951645426907845,
+                      0.8144660061814158
+                    ],
+                    [
+                      0.03668074048040423,
+                      0.9513481818254276,
+                      -0.30592672360430123,
+                      -0.19174238633952898
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    0.09670769518917852,
+                    0.8144660061814158,
+                    -0.19174238633952898
+                  ],
+                  "up_optical": [
+                    0.03668074048040423,
+                    0.9513481818254276,
+                    -0.30592672360430123
+                  ],
+                  "camera_height_above_floor_m": -0.19174238633952898,
+                  "fit_native_rmse_px": 3.679438641890547,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                },
+                {
+                  "solution_index": 1,
+                  "transform_floor_from_optical": [
+                    [
+                      0.9989975927334754,
+                      -0.04432577055113227,
+                      0.006247861855836591,
+                      0.11387312441614676
+                    ],
+                    [
+                      0.03037131207747074,
+                      0.7736964268222162,
+                      0.6328281145186486,
+                      -0.4687704498077552
+                    ],
+                    [
+                      -0.03288454219559888,
+                      -0.6320040072559535,
+                      0.7742670997123683,
+                      -0.16948486376639402
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    0.11387312441614676,
+                    -0.4687704498077552,
+                    -0.16948486376639402
+                  ],
+                  "up_optical": [
+                    -0.03288454219559888,
+                    -0.6320040072559535,
+                    0.7742670997123683
+                  ],
+                  "camera_height_above_floor_m": -0.16948486376639402,
+                  "fit_native_rmse_px": 10.558529917215955,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                }
+              ],
+              "solution_count": 2,
+              "selected_solution": null,
+              "intrinsics_refitted": false,
+              "background_lines_used": false,
+              "caller_supplied_floor_correspondence_required": true,
+              "physical_metric_verified": false,
+              "published_to_ros": false,
+              "usable_for_ffb": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "frame": 1259,
+      "threshold": 170,
+      "roi_native_xywh": [
+        260,
+        395,
+        130,
+        65
+      ],
+      "quads": [
+        {
+          "quad_xy": [
+            [
+              292,
+              420
+            ],
+            [
+              348,
+              418
+            ],
+            [
+              356,
+              440
+            ],
+            [
+              288,
+              443
+            ]
+          ],
+          "contour_area_px": 1443.5,
+          "all_corners_observed_hypothesis": true,
+          "physical_paper_edge_identity_verified": false,
+          "poses": {
+            "image_far_edge_long": {
+              "schema": "offline_planar_floor_ippe_diagnostic_v1",
+              "method": "native_KB4_rays_then_IPPE",
+              "point_count": 4,
+              "candidates": [
+                {
+                  "solution_index": 0,
+                  "transform_floor_from_optical": [
+                    [
+                      0.998917196926723,
+                      -0.019890819887123955,
+                      0.04205697288531493,
+                      0.11954282356870084
+                    ],
+                    [
+                      0.042032329994635215,
+                      -0.0016555444897819241,
+                      -0.9991148794846687,
+                      0.8946183383931279
+                    ],
+                    [
+                      0.019942841304092285,
+                      0.999800787385497,
+                      -0.000817694355760995,
+                      -0.5376163621477624
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    0.11954282356870084,
+                    0.8946183383931279,
+                    -0.5376163621477624
+                  ],
+                  "up_optical": [
+                    0.019942841304092285,
+                    0.999800787385497,
+                    -0.000817694355760995
+                  ],
+                  "camera_height_above_floor_m": -0.5376163621477624,
+                  "fit_native_rmse_px": 0.10208939991497286,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                },
+                {
+                  "solution_index": 1,
+                  "transform_floor_from_optical": [
+                    [
+                      0.9985122919886535,
+                      -0.053952273880327986,
+                      -0.00789651129980017,
+                      0.17727380361858838
+                    ],
+                    [
+                      0.05309695061051874,
+                      0.9291235856856833,
+                      0.3659372574068438,
+                      -0.6630475898420709
+                    ],
+                    [
+                      -0.012406312241352278,
+                      -0.36581213028783044,
+                      0.9306060223052768,
+                      -0.5105501967900129
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    0.17727380361858838,
+                    -0.6630475898420709,
+                    -0.5105501967900129
+                  ],
+                  "up_optical": [
+                    -0.012406312241352278,
+                    -0.36581213028783044,
+                    0.9306060223052768
+                  ],
+                  "camera_height_above_floor_m": -0.5105501967900129,
+                  "fit_native_rmse_px": 5.732851711911632,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                }
+              ],
+              "solution_count": 2,
+              "selected_solution": null,
+              "intrinsics_refitted": false,
+              "background_lines_used": false,
+              "caller_supplied_floor_correspondence_required": true,
+              "physical_metric_verified": false,
+              "published_to_ros": false,
+              "usable_for_ffb": false
+            },
+            "image_far_edge_short": {
+              "schema": "offline_planar_floor_ippe_diagnostic_v1",
+              "method": "native_KB4_rays_then_IPPE",
+              "point_count": 4,
+              "candidates": [
+                {
+                  "solution_index": 0,
+                  "transform_floor_from_optical": [
+                    [
+                      0.9991733020669774,
+                      -0.02954473229613891,
+                      0.027925279409936662,
+                      0.09670769518917852
+                    ],
+                    [
+                      0.01752814064248632,
+                      -0.3066981345411197,
+                      -0.951645426907845,
+                      0.8144660061814158
+                    ],
+                    [
+                      0.03668074048040423,
+                      0.9513481818254276,
+                      -0.30592672360430123,
+                      -0.19174238633952898
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    0.09670769518917852,
+                    0.8144660061814158,
+                    -0.19174238633952898
+                  ],
+                  "up_optical": [
+                    0.03668074048040423,
+                    0.9513481818254276,
+                    -0.30592672360430123
+                  ],
+                  "camera_height_above_floor_m": -0.19174238633952898,
+                  "fit_native_rmse_px": 3.679438641890547,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                },
+                {
+                  "solution_index": 1,
+                  "transform_floor_from_optical": [
+                    [
+                      0.9989975927334754,
+                      -0.04432577055113227,
+                      0.006247861855836591,
+                      0.11387312441614676
+                    ],
+                    [
+                      0.03037131207747074,
+                      0.7736964268222162,
+                      0.6328281145186486,
+                      -0.4687704498077552
+                    ],
+                    [
+                      -0.03288454219559888,
+                      -0.6320040072559535,
+                      0.7742670997123683,
+                      -0.16948486376639402
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    0.11387312441614676,
+                    -0.4687704498077552,
+                    -0.16948486376639402
+                  ],
+                  "up_optical": [
+                    -0.03288454219559888,
+                    -0.6320040072559535,
+                    0.7742670997123683
+                  ],
+                  "camera_height_above_floor_m": -0.16948486376639402,
+                  "fit_native_rmse_px": 10.558529917215955,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                }
+              ],
+              "solution_count": 2,
+              "selected_solution": null,
+              "intrinsics_refitted": false,
+              "background_lines_used": false,
+              "caller_supplied_floor_correspondence_required": true,
+              "physical_metric_verified": false,
+              "published_to_ros": false,
+              "usable_for_ffb": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "frame": 1259,
+      "threshold": 190,
+      "roi_native_xywh": [
+        260,
+        395,
+        130,
+        65
+      ],
+      "quads": []
+    },
+    {
+      "frame": 1259,
+      "threshold": 210,
+      "roi_native_xywh": [
+        260,
+        395,
+        130,
+        65
+      ],
+      "quads": []
+    },
+    {
+      "frame": 1655,
+      "threshold": 150,
+      "roi_native_xywh": [
+        335,
+        390,
+        130,
+        70
+      ],
+      "quads": [
+        {
+          "quad_xy": [
+            [
+              362,
+              416
+            ],
+            [
+              410,
+              408
+            ],
+            [
+              427,
+              424
+            ],
+            [
+              374,
+              437
+            ]
+          ],
+          "contour_area_px": 1144.0,
+          "all_corners_observed_hypothesis": true,
+          "physical_paper_edge_identity_verified": false,
+          "poses": {
+            "image_far_edge_long": {
+              "schema": "offline_planar_floor_ippe_diagnostic_v1",
+              "method": "native_KB4_rays_then_IPPE",
+              "point_count": 4,
+              "candidates": [
+                {
+                  "solution_index": 0,
+                  "transform_floor_from_optical": [
+                    [
+                      0.9985163972753965,
+                      -0.02990238729970453,
+                      0.04550661057407729,
+                      -0.2609191798008284
+                    ],
+                    [
+                      0.045586427444442384,
+                      0.001992613562211644,
+                      -0.9989584111083124,
+                      0.9131092279045296
+                    ],
+                    [
+                      0.029780564215858035,
+                      0.9995508374890044,
+                      0.003352800324355261,
+                      -0.5546051815120477
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    -0.2609191798008284,
+                    0.9131092279045296,
+                    -0.5546051815120477
+                  ],
+                  "up_optical": [
+                    0.029780564215858035,
+                    0.9995508374890044,
+                    0.003352800324355261
+                  ],
+                  "camera_height_above_floor_m": -0.5546051815120477,
+                  "fit_native_rmse_px": 0.5066415949057399,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                },
+                {
+                  "solution_index": 1,
+                  "transform_floor_from_optical": [
+                    [
+                      0.7125361566871412,
+                      -0.4247703151980635,
+                      -0.5584464206529175,
+                      0.5649998599362585
+                    ],
+                    [
+                      0.6052390030559791,
+                      0.7747342981630009,
+                      0.18295495737936932,
+                      -0.6870824497365404
+                    ],
+                    [
+                      0.354933760853095,
+                      -0.46835557707410735,
+                      0.8091137613650244,
+                      -0.5345026991483377
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    0.5649998599362585,
+                    -0.6870824497365404,
+                    -0.5345026991483377
+                  ],
+                  "up_optical": [
+                    0.354933760853095,
+                    -0.46835557707410735,
+                    0.8091137613650244
+                  ],
+                  "camera_height_above_floor_m": -0.5345026991483377,
+                  "fit_native_rmse_px": 3.1971069753284165,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                }
+              ],
+              "solution_count": 2,
+              "selected_solution": null,
+              "intrinsics_refitted": false,
+              "background_lines_used": false,
+              "caller_supplied_floor_correspondence_required": true,
+              "physical_metric_verified": false,
+              "published_to_ros": false,
+              "usable_for_ffb": false
+            },
+            "image_far_edge_short": {
+              "schema": "offline_planar_floor_ippe_diagnostic_v1",
+              "method": "native_KB4_rays_then_IPPE",
+              "point_count": 4,
+              "candidates": [
+                {
+                  "solution_index": 0,
+                  "transform_floor_from_optical": [
+                    [
+                      0.9795129482165412,
+                      -0.15087420739596671,
+                      -0.13338424876565685,
+                      -0.03358728270988049
+                    ],
+                    [
+                      -0.17040791216065812,
+                      -0.26803298407771464,
+                      -0.9482191006932106,
+                      0.9133187708859554
+                    ],
+                    [
+                      0.10731042702918128,
+                      0.9515226182225174,
+                      -0.2882519371344803,
+                      -0.23932904826725995
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    -0.03358728270988049,
+                    0.9133187708859554,
+                    -0.23932904826725995
+                  ],
+                  "up_optical": [
+                    0.10731042702918128,
+                    0.9515226182225174,
+                    -0.2882519371344803
+                  ],
+                  "camera_height_above_floor_m": -0.23932904826725995,
+                  "fit_native_rmse_px": 3.1631986135792767,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                },
+                {
+                  "solution_index": 1,
+                  "transform_floor_from_optical": [
+                    [
+                      0.8466127260603848,
+                      -0.3343765194161493,
+                      -0.41405221329651787,
+                      0.25011762796531534
+                    ],
+                    [
+                      0.5200204470355523,
+                      0.6852776887061165,
+                      0.5098756946811125,
+                      -0.5850141287900209
+                    ],
+                    [
+                      0.11325028360912803,
+                      -0.6469828688804242,
+                      0.7540474392488231,
+                      -0.22305794201226206
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    0.25011762796531534,
+                    -0.5850141287900209,
+                    -0.22305794201226206
+                  ],
+                  "up_optical": [
+                    0.11325028360912803,
+                    -0.6469828688804242,
+                    0.7540474392488231
+                  ],
+                  "camera_height_above_floor_m": -0.22305794201226206,
+                  "fit_native_rmse_px": 6.047135318178278,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                }
+              ],
+              "solution_count": 2,
+              "selected_solution": null,
+              "intrinsics_refitted": false,
+              "background_lines_used": false,
+              "caller_supplied_floor_correspondence_required": true,
+              "physical_metric_verified": false,
+              "published_to_ros": false,
+              "usable_for_ffb": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "frame": 1655,
+      "threshold": 170,
+      "roi_native_xywh": [
+        335,
+        390,
+        130,
+        70
+      ],
+      "quads": [
+        {
+          "quad_xy": [
+            [
+              362,
+              416
+            ],
+            [
+              410,
+              408
+            ],
+            [
+              427,
+              424
+            ],
+            [
+              374,
+              437
+            ]
+          ],
+          "contour_area_px": 1130.0,
+          "all_corners_observed_hypothesis": true,
+          "physical_paper_edge_identity_verified": false,
+          "poses": {
+            "image_far_edge_long": {
+              "schema": "offline_planar_floor_ippe_diagnostic_v1",
+              "method": "native_KB4_rays_then_IPPE",
+              "point_count": 4,
+              "candidates": [
+                {
+                  "solution_index": 0,
+                  "transform_floor_from_optical": [
+                    [
+                      0.9985163972753965,
+                      -0.02990238729970453,
+                      0.04550661057407729,
+                      -0.2609191798008284
+                    ],
+                    [
+                      0.045586427444442384,
+                      0.001992613562211644,
+                      -0.9989584111083124,
+                      0.9131092279045296
+                    ],
+                    [
+                      0.029780564215858035,
+                      0.9995508374890044,
+                      0.003352800324355261,
+                      -0.5546051815120477
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    -0.2609191798008284,
+                    0.9131092279045296,
+                    -0.5546051815120477
+                  ],
+                  "up_optical": [
+                    0.029780564215858035,
+                    0.9995508374890044,
+                    0.003352800324355261
+                  ],
+                  "camera_height_above_floor_m": -0.5546051815120477,
+                  "fit_native_rmse_px": 0.5066415949057399,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                },
+                {
+                  "solution_index": 1,
+                  "transform_floor_from_optical": [
+                    [
+                      0.7125361566871412,
+                      -0.4247703151980635,
+                      -0.5584464206529175,
+                      0.5649998599362585
+                    ],
+                    [
+                      0.6052390030559791,
+                      0.7747342981630009,
+                      0.18295495737936932,
+                      -0.6870824497365404
+                    ],
+                    [
+                      0.354933760853095,
+                      -0.46835557707410735,
+                      0.8091137613650244,
+                      -0.5345026991483377
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    0.5649998599362585,
+                    -0.6870824497365404,
+                    -0.5345026991483377
+                  ],
+                  "up_optical": [
+                    0.354933760853095,
+                    -0.46835557707410735,
+                    0.8091137613650244
+                  ],
+                  "camera_height_above_floor_m": -0.5345026991483377,
+                  "fit_native_rmse_px": 3.1971069753284165,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                }
+              ],
+              "solution_count": 2,
+              "selected_solution": null,
+              "intrinsics_refitted": false,
+              "background_lines_used": false,
+              "caller_supplied_floor_correspondence_required": true,
+              "physical_metric_verified": false,
+              "published_to_ros": false,
+              "usable_for_ffb": false
+            },
+            "image_far_edge_short": {
+              "schema": "offline_planar_floor_ippe_diagnostic_v1",
+              "method": "native_KB4_rays_then_IPPE",
+              "point_count": 4,
+              "candidates": [
+                {
+                  "solution_index": 0,
+                  "transform_floor_from_optical": [
+                    [
+                      0.9795129482165412,
+                      -0.15087420739596671,
+                      -0.13338424876565685,
+                      -0.03358728270988049
+                    ],
+                    [
+                      -0.17040791216065812,
+                      -0.26803298407771464,
+                      -0.9482191006932106,
+                      0.9133187708859554
+                    ],
+                    [
+                      0.10731042702918128,
+                      0.9515226182225174,
+                      -0.2882519371344803,
+                      -0.23932904826725995
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    -0.03358728270988049,
+                    0.9133187708859554,
+                    -0.23932904826725995
+                  ],
+                  "up_optical": [
+                    0.10731042702918128,
+                    0.9515226182225174,
+                    -0.2882519371344803
+                  ],
+                  "camera_height_above_floor_m": -0.23932904826725995,
+                  "fit_native_rmse_px": 3.1631986135792767,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                },
+                {
+                  "solution_index": 1,
+                  "transform_floor_from_optical": [
+                    [
+                      0.8466127260603848,
+                      -0.3343765194161493,
+                      -0.41405221329651787,
+                      0.25011762796531534
+                    ],
+                    [
+                      0.5200204470355523,
+                      0.6852776887061165,
+                      0.5098756946811125,
+                      -0.5850141287900209
+                    ],
+                    [
+                      0.11325028360912803,
+                      -0.6469828688804242,
+                      0.7540474392488231,
+                      -0.22305794201226206
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    0.25011762796531534,
+                    -0.5850141287900209,
+                    -0.22305794201226206
+                  ],
+                  "up_optical": [
+                    0.11325028360912803,
+                    -0.6469828688804242,
+                    0.7540474392488231
+                  ],
+                  "camera_height_above_floor_m": -0.22305794201226206,
+                  "fit_native_rmse_px": 6.047135318178278,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                }
+              ],
+              "solution_count": 2,
+              "selected_solution": null,
+              "intrinsics_refitted": false,
+              "background_lines_used": false,
+              "caller_supplied_floor_correspondence_required": true,
+              "physical_metric_verified": false,
+              "published_to_ros": false,
+              "usable_for_ffb": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "frame": 1655,
+      "threshold": 190,
+      "roi_native_xywh": [
+        335,
+        390,
+        130,
+        70
+      ],
+      "quads": [
+        {
+          "quad_xy": [
+            [
+              362,
+              416
+            ],
+            [
+              409,
+              408
+            ],
+            [
+              427,
+              424
+            ],
+            [
+              374,
+              437
+            ]
+          ],
+          "contour_area_px": 1109.5,
+          "all_corners_observed_hypothesis": true,
+          "physical_paper_edge_identity_verified": false,
+          "poses": {
+            "image_far_edge_long": {
+              "schema": "offline_planar_floor_ippe_diagnostic_v1",
+              "method": "native_KB4_rays_then_IPPE",
+              "point_count": 4,
+              "candidates": [
+                {
+                  "solution_index": 0,
+                  "transform_floor_from_optical": [
+                    [
+                      0.9977479665919118,
+                      -0.02010502716686459,
+                      0.06399049182750112,
+                      -0.2805972883037118
+                    ],
+                    [
+                      0.06414821521097269,
+                      0.007299861687813348,
+                      -0.997913682892757,
+                      0.9034780577838523
+                    ],
+                    [
+                      0.01959595996506887,
+                      0.9997712237817004,
+                      0.00857312376494045,
+                      -0.5556069130642469
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    -0.2805972883037118,
+                    0.9034780577838523,
+                    -0.5556069130642469
+                  ],
+                  "up_optical": [
+                    0.01959595996506887,
+                    0.9997712237817004,
+                    0.00857312376494045
+                  ],
+                  "camera_height_above_floor_m": -0.5556069130642469,
+                  "fit_native_rmse_px": 0.1934562171530144,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                },
+                {
+                  "solution_index": 1,
+                  "transform_floor_from_optical": [
+                    [
+                      0.7014002360349123,
+                      -0.43191559666570745,
+                      -0.5669979067395886,
+                      0.5813685680062046
+                    ],
+                    [
+                      0.6135361732807815,
+                      0.7707400522480682,
+                      0.17185207574137712,
+                      -0.678548730971287
+                    ],
+                    [
+                      0.3627824044329385,
+                      -0.46841081244731214,
+                      0.8055930969269193,
+                      -0.5346253256837947
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    0.5813685680062046,
+                    -0.678548730971287,
+                    -0.5346253256837947
+                  ],
+                  "up_optical": [
+                    0.3627824044329385,
+                    -0.46841081244731214,
+                    0.8055930969269193
+                  ],
+                  "camera_height_above_floor_m": -0.5346253256837947,
+                  "fit_native_rmse_px": 3.352097149015489,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                }
+              ],
+              "solution_count": 2,
+              "selected_solution": null,
+              "intrinsics_refitted": false,
+              "background_lines_used": false,
+              "caller_supplied_floor_correspondence_required": true,
+              "physical_metric_verified": false,
+              "published_to_ros": false,
+              "usable_for_ffb": false
+            },
+            "image_far_edge_short": {
+              "schema": "offline_planar_floor_ippe_diagnostic_v1",
+              "method": "native_KB4_rays_then_IPPE",
+              "point_count": 4,
+              "candidates": [
+                {
+                  "solution_index": 0,
+                  "transform_floor_from_optical": [
+                    [
+                      0.9815158848782597,
+                      -0.1466754113918907,
+                      -0.12293450054669956,
+                      -0.042940120679194164
+                    ],
+                    [
+                      -0.15869964780710819,
+                      -0.26477190521570093,
+                      -0.9511625833654033,
+                      0.9179490257737475
+                    ],
+                    [
+                      0.10696256128920377,
+                      0.9530908466150892,
+                      -0.28315516696854715,
+                      -0.245300711118285
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    -0.042940120679194164,
+                    0.9179490257737475,
+                    -0.245300711118285
+                  ],
+                  "up_optical": [
+                    0.10696256128920377,
+                    0.9530908466150892,
+                    -0.28315516696854715
+                  ],
+                  "camera_height_above_floor_m": -0.245300711118285,
+                  "fit_native_rmse_px": 2.7825535949155533,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                },
+                {
+                  "solution_index": 1,
+                  "transform_floor_from_optical": [
+                    [
+                      0.8432798181553742,
+                      -0.33877093800663616,
+                      -0.41726897782358874,
+                      0.25627440335814516
+                    ],
+                    [
+                      0.5250238712485947,
+                      0.6853435933334812,
+                      0.5046326324128185,
+                      -0.5860855405534644
+                    ],
+                    [
+                      0.11501775041695841,
+                      -0.644622688585234,
+                      0.7557992500989708,
+                      -0.226693833695963
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    0.25627440335814516,
+                    -0.5860855405534644,
+                    -0.226693833695963
+                  ],
+                  "up_optical": [
+                    0.11501775041695841,
+                    -0.644622688585234,
+                    0.7557992500989708
+                  ],
+                  "camera_height_above_floor_m": -0.226693833695963,
+                  "fit_native_rmse_px": 6.224783806789548,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                }
+              ],
+              "solution_count": 2,
+              "selected_solution": null,
+              "intrinsics_refitted": false,
+              "background_lines_used": false,
+              "caller_supplied_floor_correspondence_required": true,
+              "physical_metric_verified": false,
+              "published_to_ros": false,
+              "usable_for_ffb": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "frame": 1655,
+      "threshold": 210,
+      "roi_native_xywh": [
+        335,
+        390,
+        130,
+        70
+      ],
+      "quads": [
+        {
+          "quad_xy": [
+            [
+              362,
+              416
+            ],
+            [
+              409,
+              408
+            ],
+            [
+              427,
+              424
+            ],
+            [
+              374,
+              437
+            ]
+          ],
+          "contour_area_px": 1093.5,
+          "all_corners_observed_hypothesis": true,
+          "physical_paper_edge_identity_verified": false,
+          "poses": {
+            "image_far_edge_long": {
+              "schema": "offline_planar_floor_ippe_diagnostic_v1",
+              "method": "native_KB4_rays_then_IPPE",
+              "point_count": 4,
+              "candidates": [
+                {
+                  "solution_index": 0,
+                  "transform_floor_from_optical": [
+                    [
+                      0.9977479665919118,
+                      -0.02010502716686459,
+                      0.06399049182750112,
+                      -0.2805972883037118
+                    ],
+                    [
+                      0.06414821521097269,
+                      0.007299861687813348,
+                      -0.997913682892757,
+                      0.9034780577838523
+                    ],
+                    [
+                      0.01959595996506887,
+                      0.9997712237817004,
+                      0.00857312376494045,
+                      -0.5556069130642469
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    -0.2805972883037118,
+                    0.9034780577838523,
+                    -0.5556069130642469
+                  ],
+                  "up_optical": [
+                    0.01959595996506887,
+                    0.9997712237817004,
+                    0.00857312376494045
+                  ],
+                  "camera_height_above_floor_m": -0.5556069130642469,
+                  "fit_native_rmse_px": 0.1934562171530144,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                },
+                {
+                  "solution_index": 1,
+                  "transform_floor_from_optical": [
+                    [
+                      0.7014002360349123,
+                      -0.43191559666570745,
+                      -0.5669979067395886,
+                      0.5813685680062046
+                    ],
+                    [
+                      0.6135361732807815,
+                      0.7707400522480682,
+                      0.17185207574137712,
+                      -0.678548730971287
+                    ],
+                    [
+                      0.3627824044329385,
+                      -0.46841081244731214,
+                      0.8055930969269193,
+                      -0.5346253256837947
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    0.5813685680062046,
+                    -0.678548730971287,
+                    -0.5346253256837947
+                  ],
+                  "up_optical": [
+                    0.3627824044329385,
+                    -0.46841081244731214,
+                    0.8055930969269193
+                  ],
+                  "camera_height_above_floor_m": -0.5346253256837947,
+                  "fit_native_rmse_px": 3.352097149015489,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                }
+              ],
+              "solution_count": 2,
+              "selected_solution": null,
+              "intrinsics_refitted": false,
+              "background_lines_used": false,
+              "caller_supplied_floor_correspondence_required": true,
+              "physical_metric_verified": false,
+              "published_to_ros": false,
+              "usable_for_ffb": false
+            },
+            "image_far_edge_short": {
+              "schema": "offline_planar_floor_ippe_diagnostic_v1",
+              "method": "native_KB4_rays_then_IPPE",
+              "point_count": 4,
+              "candidates": [
+                {
+                  "solution_index": 0,
+                  "transform_floor_from_optical": [
+                    [
+                      0.9815158848782597,
+                      -0.1466754113918907,
+                      -0.12293450054669956,
+                      -0.042940120679194164
+                    ],
+                    [
+                      -0.15869964780710819,
+                      -0.26477190521570093,
+                      -0.9511625833654033,
+                      0.9179490257737475
+                    ],
+                    [
+                      0.10696256128920377,
+                      0.9530908466150892,
+                      -0.28315516696854715,
+                      -0.245300711118285
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    -0.042940120679194164,
+                    0.9179490257737475,
+                    -0.245300711118285
+                  ],
+                  "up_optical": [
+                    0.10696256128920377,
+                    0.9530908466150892,
+                    -0.28315516696854715
+                  ],
+                  "camera_height_above_floor_m": -0.245300711118285,
+                  "fit_native_rmse_px": 2.7825535949155533,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                },
+                {
+                  "solution_index": 1,
+                  "transform_floor_from_optical": [
+                    [
+                      0.8432798181553742,
+                      -0.33877093800663616,
+                      -0.41726897782358874,
+                      0.25627440335814516
+                    ],
+                    [
+                      0.5250238712485947,
+                      0.6853435933334812,
+                      0.5046326324128185,
+                      -0.5860855405534644
+                    ],
+                    [
+                      0.11501775041695841,
+                      -0.644622688585234,
+                      0.7557992500989708,
+                      -0.226693833695963
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "camera_position_floor_m": [
+                    0.25627440335814516,
+                    -0.5860855405534644,
+                    -0.226693833695963
+                  ],
+                  "up_optical": [
+                    0.11501775041695841,
+                    -0.644622688585234,
+                    0.7557992500989708
+                  ],
+                  "camera_height_above_floor_m": -0.226693833695963,
+                  "fit_native_rmse_px": 6.224783806789548,
+                  "all_projected_in_calibrated_domain": true,
+                  "all_reference_points_positive_depth": true,
+                  "camera_above_floor": false,
+                  "geometry_consistent": false,
+                  "physical_transform_independently_measured": false,
+                  "usable_for_ffb": false
+                }
+              ],
+              "solution_count": 2,
+              "selected_solution": null,
+              "intrinsics_refitted": false,
+              "background_lines_used": false,
+              "caller_supplied_floor_correspondence_required": true,
+              "physical_metric_verified": false,
+              "published_to_ros": false,
+              "usable_for_ffb": false
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-30_floor_board_intake_r01/decoded_15ae673c24484d119952ae391df611aa_f001259.png": "b87dd75deade099ab68daa13699bf1210482ae52efe83ae06a0bdb156aee0f34",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-30_floor_board_intake_r01/decoded_15ae673c24484d119952ae391df611aa_f001655.png": "2243e7c9873c0ccdd2950502209b9e4db5b5e04a56b356a94e30a3d21f3f45d7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/probe_paper_quad.py": "61c819ddb45280a710c9d7c1e87f28b80199eb976c4c69627e7e53b3dc4ed08f"
+  },
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}

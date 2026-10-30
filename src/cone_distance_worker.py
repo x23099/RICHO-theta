@@ -60,9 +60,10 @@ class DistanceWorker:
     0.5 s from SOURCE reception, not 0.5 s from inference completion.
     """
     def __init__(self, slot, config, predictor, log_path, *, scene_function=estimate_scene, clock=time.monotonic, target_roi=None,
-                 colour_support_shadow=False):
+                 colour_support_shadow=False, support_completion_shadow=False):
         self.slot, self.predictor, self.clock = slot, predictor, clock
-        self.engine = ConeDistanceEngine(config, target_roi=target_roi, colour_support_shadow=colour_support_shadow)
+        self.engine = ConeDistanceEngine(config, target_roi=target_roi, colour_support_shadow=colour_support_shadow,
+                                         support_completion_shadow=support_completion_shadow)
         self.scene_function = scene_function
         self.log_path = Path(log_path)
         self.stop_event = threading.Event()

@@ -100,6 +100,25 @@ def validate_row(row):
                     or not (0 <= point[0] < 1280 and 0 <= point[1] < 720)
                     or not isinstance(candidate.get("support"), list) or point not in candidate["support"]):
                 raise ValueError("shadow point must be an actual native support column")
+    if "support_completion_shadow" in row:
+        shadow = row["support_completion_shadow"]
+        if (not isinstance(shadow, dict) or any(shadow.get(key) is not False for key in
+                ("controlling_distance", "physical_metric_verified", "usable_for_ffb"))):
+            raise ValueError("completion shadow must remain physically unverified and non-controlling")
+        candidate = shadow.get("candidate")
+        if candidate is not None:
+            if (not isinstance(candidate, dict) or any(candidate.get(key) is not False for key in
+                    ("controlling_distance", "physical_metric_verified", "floor_contact_verified", "usable_for_ffb"))
+                    or any(type(candidate.get(key)) is not bool for key in ("completion_attempted", "completion_granted"))):
+                raise ValueError("unverified completion candidate and explicit bool state required")
+            point = candidate.get("point")
+            if point is not None and (not isinstance(point, list) or len(point) != 2
+                    or any(type(v) is not int for v in point)
+                    or not (0 <= point[0] < 1280 and 0 <= point[1] < 720)
+                    or not isinstance(candidate.get("support"), list) or point not in candidate["support"]):
+                raise ValueError("completion point must be an actual native support column")
+            if candidate["completion_granted"] and (point is None or not candidate["completion_attempted"]):
+                raise ValueError("completion grant requires an attempted observation and support point")
 
 
 def load_frames(path, allow_truncated_last_line=False):
@@ -259,6 +278,21 @@ def summarize(input_dir, output_dir, *, allow_truncated_last_line=False, plots=T
             usable_for_ffb=False)
         shadow_note = (f"\n色分離の比較ログ：{len(shadow_rows)}処理frame、画像上の候補点あり{points}件。"
                        "この候補は距離出力・姿勢初期化・FFBの判定に使用していません。\n")
+    completion_rows = [r["support_completion_shadow"] for r in rows if "support_completion_shadow" in r]
+    if completion_rows:
+        candidates = [r["candidate"] for r in completion_rows if r.get("candidate") is not None]
+        points = sum(c.get("point") is not None for c in candidates)
+        grants = sum(c["completion_granted"] for c in candidates)
+        summary["support_completion_shadow"] = dict(recorded_frames=len(completion_rows),
+            selected_candidate_frames=len(candidates), unverified_image_point_frames=points,
+            completion_attempted_frames=sum(c["completion_attempted"] for c in candidates),
+            completion_granted_frames=grants,
+            previous_shadow_point_frames=sum(c.get("original_shadow_point") is not None for c in candidates),
+            reasons=dict(Counter(c["reason"] for c in candidates)),
+            completion_reasons=dict(Counter(c["completion_reason"] for c in candidates)),
+            controlling_distance=False, physical_metric_verified=False, usable_for_ffb=False)
+        shadow_note += (f"\n左右枠接触の比較ログ：{len(completion_rows)}処理frame、画像上の候補点あり{points}件、"
+                        f"追加の候補点取得{grants}件。物理接地・距離精度の合格判定ではなく、距離・FFBへ使用していません。\n")
     output.mkdir(parents=True, exist_ok=False)
     fields = ("session", "frame", "source_time_sec", "completed_time_sec", "distance_available",
               "distance_forward_m", "lateral_right_m", "reason", *TIMINGS, "inference_source")

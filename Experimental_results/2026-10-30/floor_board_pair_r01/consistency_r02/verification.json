@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "checks": {
+    "reported_input_hashes_unchanged": true,
+    "measured_paper_size_used": true,
+    "originals_preserved": true,
+    "1024_unique_controls": true,
+    "all_perturbed_depth_and_projection_valid": true,
+    "not_approved_or_integrated": true,
+    "two_planar_solutions_retained": true,
+    "object_scale_doubles_height_not_normal_or_reprojection": true,
+    "focused_unit_tests_passed": true
+  },
+  "meaning": "Numerical consistency, input preservation and software tests only; NOT physical accuracy approval",
+  "image_checks": [
+    {
+      "frame": 1259,
+      "byte_hashes_identical": true,
+      "native_shape": true
+    },
+    {
+      "frame": 1655,
+      "byte_hashes_identical": true,
+      "native_shape": true
+    }
+  ],
+  "test_runs": [
+    {
+      "command": [
+        "/home/robo25/theta-env/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_floor_reference_pose.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.062s\n\nOK\n"
+    },
+    {
+      "command": [
+        "/home/robo25/theta-env/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_diagnose_floor_board_pose.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.092s\n\nOK\n"
+    }
+  ],
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/verify_results.py": "27da21d3ac46916fa8b955749a652aca1676dce748e4f6ae24601b3631ac419e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/plot_sensitivity.py": "238edc76fffad3080b2c3e0a55e1eb0f1606f568d187bb478116646391744f10",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/consistency_r02/pixel_sensitivity.png": "b18b088e40dab2857b72f2b51b7615c1c4444642d8d4414c44fc3d884b1fbbd1"
+  }
+}

@@ -1,0 +1,413 @@
+{
+  "status": "INTRINSIC_TRANSFER_CAUSE_UNRESOLVED_NO_RECALIBRATION",
+  "comparisons": [
+    {
+      "threshold": 150,
+      "free_printed_plane_height_m": 0.5475507133252093,
+      "free_rmse_px": 0.3541044836836096,
+      "anchored_0p575_rmse_px": 0.5931739313923604,
+      "anchored_max_error_px": 0.8684419593857743,
+      "free_vs_anchored_prediction_rms_shift_px": 0.4757617765182667,
+      "free_vs_anchored_prediction_max_shift_px": 0.6119652180124394
+    },
+    {
+      "threshold": 170,
+      "free_printed_plane_height_m": 0.5458812051808865,
+      "free_rmse_px": 0.3309134327547552,
+      "anchored_0p575_rmse_px": 0.6003243427288236,
+      "anchored_max_error_px": 0.8242163523773905,
+      "free_vs_anchored_prediction_rms_shift_px": 0.5008879661541957,
+      "free_vs_anchored_prediction_max_shift_px": 0.642133760088503
+    },
+    {
+      "threshold": 190,
+      "free_printed_plane_height_m": 0.5433139907414424,
+      "free_rmse_px": 0.27734076935923585,
+      "anchored_0p575_rmse_px": 0.6076913170858766,
+      "anchored_max_error_px": 0.7369796598517234,
+      "free_vs_anchored_prediction_rms_shift_px": 0.5408403656476861,
+      "free_vs_anchored_prediction_max_shift_px": 0.6905895928281679
+    },
+    {
+      "threshold": 210,
+      "free_printed_plane_height_m": 0.536565236928972,
+      "free_rmse_px": 0.32280588064221954,
+      "anchored_0p575_rmse_px": 0.7253260304860876,
+      "anchored_max_error_px": 0.9256045538956643,
+      "free_vs_anchored_prediction_rms_shift_px": 0.6502849260997327,
+      "free_vs_anchored_prediction_max_shift_px": 0.8278219173039703
+    }
+  ],
+  "local_intrinsic_observability": [
+    {
+      "mode": "free_height",
+      "derivative_relative_step": 1e-05,
+      "intrinsic_coordinates": [
+        "log_fx",
+        "log_fy",
+        "cx",
+        "cy",
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ],
+      "ray_angle_min_deg": 31.980254477306108,
+      "ray_angle_max_deg": 46.68190876790816,
+      "pose_rank": 9,
+      "residual_coordinate_count": 16,
+      "intrinsic_parameter_count": 8,
+      "rank_ceiling_after_pose_elimination": 7,
+      "pose_jacobian_singular_values": [
+        618.0019616534782,
+        517.7835105100564,
+        398.1095979745915,
+        236.17162934647124,
+        66.19622348279809,
+        62.83173189758883,
+        52.45270657808437,
+        39.256924590394945,
+        22.70755795179632
+      ],
+      "residualized_column_norms": [
+        11.37544875270143,
+        2.593180240797528,
+        0.022132043783104446,
+        0.03631680897900243,
+        27.895536037982776,
+        28.084766627472316,
+        22.835790710389468,
+        17.13545248088889
+      ],
+      "normalized_profile_singular_values": [
+        2.159757457480199,
+        1.363221384671769,
+        1.0855738069257268,
+        0.5426675481019729,
+        0.06369495828538886,
+        0.007669306511109165,
+        0.0008701796887471278,
+        5.194602243292178e-16
+      ],
+      "normalized_profile_condition": 4157695539189949.0,
+      "smallest_largest_ratio": 2.4051785191438808e-16,
+      "note": "Column-normalized local sensitivity; no pixel noise model, covariance, or accuracy certificate"
+    },
+    {
+      "mode": "free_height",
+      "derivative_relative_step": 1e-06,
+      "intrinsic_coordinates": [
+        "log_fx",
+        "log_fy",
+        "cx",
+        "cy",
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ],
+      "ray_angle_min_deg": 31.980254477306108,
+      "ray_angle_max_deg": 46.68190876790816,
+      "pose_rank": 9,
+      "residual_coordinate_count": 16,
+      "intrinsic_parameter_count": 8,
+      "rank_ceiling_after_pose_elimination": 7,
+      "pose_jacobian_singular_values": [
+        618.0019616673221,
+        517.7835105092945,
+        398.10959797628556,
+        236.1716293453425,
+        66.19622348107157,
+        62.83173190430339,
+        52.45270657009102,
+        39.25692460914223,
+        22.707557977659548
+      ],
+      "residualized_column_norms": [
+        11.375448728267159,
+        2.593180237412827,
+        0.022132043668620364,
+        0.03631680905982474,
+        27.895536026000297,
+        28.0847666199497,
+        22.835790705710313,
+        17.13545247792962
+      ],
+      "normalized_profile_singular_values": [
+        2.159757457765193,
+        1.3632213847425787,
+        1.085573806581729,
+        0.5426675475931547,
+        0.06369495714206122,
+        0.0076693080230198505,
+        0.0008701782371712194,
+        2.591894544376913e-16
+      ],
+      "normalized_profile_condition": 8332736617123421.0,
+      "smallest_largest_ratio": 1.2000859332875617e-16,
+      "note": "Column-normalized local sensitivity; no pixel noise model, covariance, or accuracy certificate"
+    },
+    {
+      "mode": "free_height",
+      "derivative_relative_step": 1e-07,
+      "intrinsic_coordinates": [
+        "log_fx",
+        "log_fy",
+        "cx",
+        "cy",
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ],
+      "ray_angle_min_deg": 31.980254477306108,
+      "ray_angle_max_deg": 46.68190876790816,
+      "pose_rank": 9,
+      "residual_coordinate_count": 16,
+      "intrinsic_parameter_count": 8,
+      "rank_ceiling_after_pose_elimination": 7,
+      "pose_jacobian_singular_values": [
+        618.0019612048559,
+        517.7835104907338,
+        398.1095978841681,
+        236.1716291936464,
+        66.19622342029265,
+        62.83173179763564,
+        52.452706391021934,
+        39.25692446147699,
+        22.7075581339935
+      ],
+      "residualized_column_norms": [
+        11.375449159449902,
+        2.593180124121542,
+        0.022132043652652197,
+        0.036316807960343235,
+        27.895536168755385,
+        28.084766660461757,
+        22.835790721599007,
+        17.135452488475348
+      ],
+      "normalized_profile_singular_values": [
+        2.159757462285106,
+        1.3632213715649348,
+        1.0855737946055783,
+        0.542667586886789,
+        0.0636949518225631,
+        0.0076693370672108,
+        0.000870173429196085,
+        4.2466653375734744e-16
+      ],
+      "normalized_profile_condition": 5085772695992997.0,
+      "smallest_largest_ratio": 1.9662695518969707e-16,
+      "note": "Column-normalized local sensitivity; no pixel noise model, covariance, or accuracy certificate"
+    },
+    {
+      "mode": "anchored_0p575m",
+      "derivative_relative_step": 1e-05,
+      "intrinsic_coordinates": [
+        "log_fx",
+        "log_fy",
+        "cx",
+        "cy",
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ],
+      "ray_angle_min_deg": 31.85240927678293,
+      "ray_angle_max_deg": 46.66405344243435,
+      "pose_rank": 8,
+      "residual_coordinate_count": 16,
+      "intrinsic_parameter_count": 8,
+      "rank_ceiling_after_pose_elimination": 8,
+      "pose_jacobian_singular_values": [
+        575.3430324144723,
+        517.0537854336734,
+        392.962912825939,
+        241.40180160664474,
+        65.14052365195698,
+        57.48197423732083,
+        51.72234391251877,
+        37.6993881290092
+      ],
+      "residualized_column_norms": [
+        53.40499569338548,
+        32.693762933126486,
+        0.026967734884112037,
+        0.07437961989784153,
+        28.198333742434382,
+        28.667868011546364,
+        23.147169931606996,
+        17.23868340373926
+      ],
+      "normalized_profile_singular_values": [
+        2.080183510138453,
+        1.7567436790953936,
+        0.6748323322942041,
+        0.3326500978873721,
+        0.14201034815860794,
+        0.021352628269014816,
+        0.0032514620761040247,
+        6.9696101889403635e-06
+      ],
+      "normalized_profile_condition": 298464.8285551702,
+      "smallest_largest_ratio": 3.3504785298853174e-06,
+      "note": "Column-normalized local sensitivity; no pixel noise model, covariance, or accuracy certificate"
+    },
+    {
+      "mode": "anchored_0p575m",
+      "derivative_relative_step": 1e-06,
+      "intrinsic_coordinates": [
+        "log_fx",
+        "log_fy",
+        "cx",
+        "cy",
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ],
+      "ray_angle_min_deg": 31.85240927678293,
+      "ray_angle_max_deg": 46.66405344243435,
+      "pose_rank": 8,
+      "residual_coordinate_count": 16,
+      "intrinsic_parameter_count": 8,
+      "rank_ceiling_after_pose_elimination": 8,
+      "pose_jacobian_singular_values": [
+        575.3430323855509,
+        517.0537854639744,
+        392.96291283949336,
+        241.40180159375296,
+        65.14052365873381,
+        57.48197424920434,
+        51.72234391085613,
+        37.699388134988425
+      ],
+      "residualized_column_norms": [
+        53.40499568147701,
+        32.69376292821496,
+        0.026967734923364465,
+        0.07437961987247313,
+        28.198333756451202,
+        28.667868022184987,
+        23.147169938473933,
+        17.238683407947402
+      ],
+      "normalized_profile_singular_values": [
+        2.0801835098813193,
+        1.7567436791537572,
+        0.6748323327164562,
+        0.33265009859616224,
+        0.14201034747568134,
+        0.021352628672014397,
+        0.0032514620772741303,
+        6.969609907740168e-06
+      ],
+      "normalized_profile_condition": 298464.8405603234,
+      "smallest_largest_ratio": 3.3504783951189984e-06,
+      "note": "Column-normalized local sensitivity; no pixel noise model, covariance, or accuracy certificate"
+    },
+    {
+      "mode": "anchored_0p575m",
+      "derivative_relative_step": 1e-07,
+      "intrinsic_coordinates": [
+        "log_fx",
+        "log_fy",
+        "cx",
+        "cy",
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ],
+      "ray_angle_min_deg": 31.85240927678293,
+      "ray_angle_max_deg": 46.66405344243435,
+      "pose_rank": 8,
+      "residual_coordinate_count": 16,
+      "intrinsic_parameter_count": 8,
+      "rank_ceiling_after_pose_elimination": 8,
+      "pose_jacobian_singular_values": [
+        575.3430324094996,
+        517.0537856536737,
+        392.96291286593595,
+        241.40180129034465,
+        65.14052346021546,
+        57.48197421890466,
+        51.72234405786158,
+        37.699388021517564
+      ],
+      "residualized_column_norms": [
+        53.40499592771775,
+        32.69376287566925,
+        0.02696773715872377,
+        0.07437961963195523,
+        28.198333852514235,
+        28.667868078968187,
+        23.147169977863847,
+        17.23868343486751
+      ],
+      "normalized_profile_singular_values": [
+        2.0801835095490944,
+        1.7567436795194116,
+        0.674832331948298,
+        0.33265009977698873,
+        0.1420103492144872,
+        0.021352625217623444,
+        0.0032514624268167825,
+        6.969613051655268e-06
+      ],
+      "normalized_profile_condition": 298464.7058784785,
+      "smallest_largest_ratio": 3.3504799070184048e-06,
+      "note": "Column-normalized local sensitivity; no pixel noise model, covariance, or accuracy certificate"
+    }
+  ],
+  "observed_threshold_sensitivity": [
+    {
+      "frame": 1259,
+      "threshold": 150,
+      "max_shift_px": 0.21025175372412483,
+      "rms_shift_px": 0.19214132631729444
+    },
+    {
+      "frame": 1259,
+      "threshold": 190,
+      "max_shift_px": 0.2462525714852555,
+      "rms_shift_px": 0.21937526648449018
+    },
+    {
+      "frame": 1259,
+      "threshold": 210,
+      "max_shift_px": 1.0334871770443796,
+      "rms_shift_px": 0.6780992242658187
+    },
+    {
+      "frame": 1655,
+      "threshold": 150,
+      "max_shift_px": 0.22744696382487456,
+      "rms_shift_px": 0.19264758335081356
+    },
+    {
+      "frame": 1655,
+      "threshold": 190,
+      "max_shift_px": 0.29368678857653474,
+      "rms_shift_px": 0.22696032456577137
+    },
+    {
+      "frame": 1655,
+      "threshold": 210,
+      "max_shift_px": 0.6636048051322003,
+      "rms_shift_px": 0.4945518129498489
+    }
+  ],
+  "independent_accuracy_holdout": false,
+  "intrinsics_refitted": false,
+  "intrinsics_transfer_verified": false,
+  "physical_metric_verified": false,
+  "live_integrated": false,
+  "usable_for_ffb": false,
+  "source_sha256": {
+    "Experimental_results/2026-10-30/floor_board_pair_r01/intrinsic_consistency_r02/intrinsic_consistency.json": "26e6c058753e705ff94baf31038190d9ce6571f87a9a76144a7171530b4a1642",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/edge_refinement_r02/edge_refinement.json": "559beba5e871aec27958e4a7a596895bfd768a65e76dffb5204df58d606eec66",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/summarize_intrinsic_consistency.py": "f314c526ab1e3e6c6857a10fce8cb973382e8c7d112f4ec3fde902d1d4b6a18c"
+  }
+}

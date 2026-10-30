@@ -35,6 +35,8 @@ def build_parser():
                         help="explicit diagnostic target scope; outside is NOT monitored")
     parser.add_argument("--colour-support-shadow", action="store_true",
                         help="log experimental colour-separated support; NEVER controls distance")
+    parser.add_argument("--support-completion-shadow", action="store_true",
+                        help="log bounded lateral completion candidate separately; NEVER controls distance")
     return parser
 
 
@@ -51,8 +53,9 @@ async def run(args):
     slot = LatestNativeFrame()
     server = Receiver(slot)
     colour_shadow = getattr(args, "colour_support_shadow", False)
+    completion_shadow = getattr(args, "support_completion_shadow", False)
     worker = DistanceWorker(slot, args.config, predictor, args.output_dir / "distance_frames.jsonl", target_roi=args.target_roi,
-                            colour_support_shadow=colour_shadow)
+                            colour_support_shadow=colour_shadow, support_completion_shadow=completion_shadow)
     app = web.Application(client_max_size=256 * 1024)
     app.router.add_post("/offer", server.offer)
     runner = web.AppRunner(app, access_log=None)
@@ -63,6 +66,7 @@ async def run(args):
                    physical_metric_verified=False, usable_for_ffb=False, physical_output=False,
                    cross_pc_capture_latency_measured=False)
     summary["colour_support_shadow_enabled"] = colour_shadow
+    summary["support_completion_shadow_enabled"] = completion_shadow
     started = time.monotonic()
     run_error = None
     try:

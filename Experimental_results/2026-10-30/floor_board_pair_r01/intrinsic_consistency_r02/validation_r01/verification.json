@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "checks": {
+    "all_input_hashes_unchanged": true,
+    "all_profiles_preserved": true,
+    "all_local_plane_fits_converged": true,
+    "all_local_plane_fits_in_domain": true,
+    "no_local_bound_saturation": true,
+    "frozen_intrinsics": true,
+    "no_intrinsic_refit_or_physical_approval": true,
+    "unknown_height_rank_ceiling_seven": true,
+    "focused_tests_passed": true
+  },
+  "test_runs": [
+    {
+      "command": [
+        "/home/robo25/theta-env/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01",
+        "-p",
+        "test_intrinsic_consistency.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "............\n----------------------------------------------------------------------\nRan 12 tests in 0.269s\n\nOK\n"
+    },
+    {
+      "command": [
+        "/home/robo25/theta-env/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01",
+        "-p",
+        "test_intrinsic_audit_summary.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.003s\n\nOK\n"
+    }
+  ],
+  "meaning": "Numerical/software audit checks only, not calibration approval",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/summarize_intrinsic_consistency.py": "f314c526ab1e3e6c6857a10fce8cb973382e8c7d112f4ec3fde902d1d4b6a18c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/test_intrinsic_consistency.py": "24e70115c525144214b4002ce0fb5f22a6362bd3cdcb9ed29edb8e1bcda01013",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/test_intrinsic_audit_summary.py": "874eddc26940df2f3e72d1fb875c78d7ae121e198679fc4a831d17944bfc0fbc"
+  }
+}

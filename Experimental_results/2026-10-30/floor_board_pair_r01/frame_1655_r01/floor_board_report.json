@@ -1,0 +1,29 @@
+{
+  "status": "BOARD_NOT_FOUND",
+  "board": {
+    "inner_columns": 9,
+    "inner_rows": 6,
+    "square_mm": 20.0
+  },
+  "roi_native_xywh": [
+    0,
+    300,
+    640,
+    340
+  ],
+  "floor_placement_user_confirmed": true,
+  "board_thickness_mm": null,
+  "pose_candidates": [],
+  "vehicle_heading_verified": false,
+  "base_link_transform_available": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-30_floor_board_intake_r01/decoded_15ae673c24484d119952ae391df611aa_f001655.png": "2243e7c9873c0ccdd2950502209b9e4db5b5e04a56b356a94e30a3d21f3f45d7",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_diagnostic_config.json": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "/home/robo25/theta_ws/RICHO-theta/src/diagnose_floor_board_pose.py": "079dd7652f9dbb23746bee8f24b42607afc081e7589d9b3c741553d4d0a41266",
+    "/home/robo25/theta_ws/RICHO-theta/src/floor_reference_pose.py": "a3a8b26174c52bf7e77b106028896c940298ae04b16bff0cd8dca74d77cab389",
+    "/home/robo25/theta_ws/RICHO-theta/src/fisheye_intrinsic_calibration.py": "24902214663e2c6553bec75e65bd3d52c3494d091dbb947d6a336a4a957fa416"
+  }
+}

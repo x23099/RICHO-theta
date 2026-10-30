@@ -1,0 +1,122 @@
+{
+  "status": "DETECTOR_CONTROLS_NOT_CALIBRATION_APPROVAL",
+  "rows": [
+    {
+      "frame": 1259,
+      "roi_xywh": [
+        260,
+        395,
+        130,
+        65
+      ],
+      "detector": "classic",
+      "scale": 1,
+      "found": false,
+      "native_accuracy_approved": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1259,
+      "roi_xywh": [
+        260,
+        395,
+        130,
+        65
+      ],
+      "detector": "SB",
+      "scale": 1,
+      "found": false,
+      "native_accuracy_approved": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1259,
+      "roi_xywh": [
+        260,
+        395,
+        130,
+        65
+      ],
+      "detector": "SB",
+      "scale": 2,
+      "found": false,
+      "native_accuracy_approved": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1259,
+      "roi_xywh": [
+        260,
+        395,
+        130,
+        65
+      ],
+      "detector": "SB",
+      "scale": 4,
+      "found": false,
+      "native_accuracy_approved": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1655,
+      "roi_xywh": [
+        335,
+        390,
+        130,
+        70
+      ],
+      "detector": "classic",
+      "scale": 1,
+      "found": false,
+      "native_accuracy_approved": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1655,
+      "roi_xywh": [
+        335,
+        390,
+        130,
+        70
+      ],
+      "detector": "SB",
+      "scale": 1,
+      "found": false,
+      "native_accuracy_approved": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1655,
+      "roi_xywh": [
+        335,
+        390,
+        130,
+        70
+      ],
+      "detector": "SB",
+      "scale": 2,
+      "found": false,
+      "native_accuracy_approved": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1655,
+      "roi_xywh": [
+        335,
+        390,
+        130,
+        70
+      ],
+      "detector": "SB",
+      "scale": 4,
+      "found": false,
+      "native_accuracy_approved": false,
+      "usable_for_ffb": false
+    }
+  ],
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-30_floor_board_intake_r01/decoded_15ae673c24484d119952ae391df611aa_f001259.png": "b87dd75deade099ab68daa13699bf1210482ae52efe83ae06a0bdb156aee0f34",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-30_floor_board_intake_r01/decoded_15ae673c24484d119952ae391df611aa_f001655.png": "2243e7c9873c0ccdd2950502209b9e4db5b5e04a56b356a94e30a3d21f3f45d7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/probe_detection.py": "fab5f381a446135fd199459a1d68907aa68811d453cf61f498a094e38ab8d868"
+  }
+}

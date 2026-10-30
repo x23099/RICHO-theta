@@ -1,0 +1,250 @@
+{
+  "status": "NATIVE_WHITE_PAPER_QUADS_NOT_APPROVED",
+  "primary_threshold": 170,
+  "paper_size_mm": [
+    null,
+    null
+  ],
+  "metric_pose_computed": false,
+  "rows": [
+    {
+      "frame": 1259,
+      "threshold": 150,
+      "roi_native_xywh": [
+        260,
+        395,
+        130,
+        65
+      ],
+      "quads": [
+        {
+          "quad_xy": [
+            [
+              292,
+              420
+            ],
+            [
+              348,
+              418
+            ],
+            [
+              356,
+              440
+            ],
+            [
+              288,
+              443
+            ]
+          ],
+          "contour_area_px": 1460.0,
+          "all_corners_observed_hypothesis": true,
+          "physical_paper_edge_identity_verified": false
+        }
+      ]
+    },
+    {
+      "frame": 1259,
+      "threshold": 170,
+      "roi_native_xywh": [
+        260,
+        395,
+        130,
+        65
+      ],
+      "quads": [
+        {
+          "quad_xy": [
+            [
+              292,
+              420
+            ],
+            [
+              348,
+              418
+            ],
+            [
+              356,
+              440
+            ],
+            [
+              288,
+              443
+            ]
+          ],
+          "contour_area_px": 1443.5,
+          "all_corners_observed_hypothesis": true,
+          "physical_paper_edge_identity_verified": false
+        }
+      ]
+    },
+    {
+      "frame": 1259,
+      "threshold": 190,
+      "roi_native_xywh": [
+        260,
+        395,
+        130,
+        65
+      ],
+      "quads": []
+    },
+    {
+      "frame": 1259,
+      "threshold": 210,
+      "roi_native_xywh": [
+        260,
+        395,
+        130,
+        65
+      ],
+      "quads": []
+    },
+    {
+      "frame": 1655,
+      "threshold": 150,
+      "roi_native_xywh": [
+        335,
+        390,
+        130,
+        70
+      ],
+      "quads": [
+        {
+          "quad_xy": [
+            [
+              362,
+              416
+            ],
+            [
+              410,
+              408
+            ],
+            [
+              427,
+              424
+            ],
+            [
+              374,
+              437
+            ]
+          ],
+          "contour_area_px": 1144.0,
+          "all_corners_observed_hypothesis": true,
+          "physical_paper_edge_identity_verified": false
+        }
+      ]
+    },
+    {
+      "frame": 1655,
+      "threshold": 170,
+      "roi_native_xywh": [
+        335,
+        390,
+        130,
+        70
+      ],
+      "quads": [
+        {
+          "quad_xy": [
+            [
+              362,
+              416
+            ],
+            [
+              410,
+              408
+            ],
+            [
+              427,
+              424
+            ],
+            [
+              374,
+              437
+            ]
+          ],
+          "contour_area_px": 1130.0,
+          "all_corners_observed_hypothesis": true,
+          "physical_paper_edge_identity_verified": false
+        }
+      ]
+    },
+    {
+      "frame": 1655,
+      "threshold": 190,
+      "roi_native_xywh": [
+        335,
+        390,
+        130,
+        70
+      ],
+      "quads": [
+        {
+          "quad_xy": [
+            [
+              362,
+              416
+            ],
+            [
+              409,
+              408
+            ],
+            [
+              427,
+              424
+            ],
+            [
+              374,
+              437
+            ]
+          ],
+          "contour_area_px": 1109.5,
+          "all_corners_observed_hypothesis": true,
+          "physical_paper_edge_identity_verified": false
+        }
+      ]
+    },
+    {
+      "frame": 1655,
+      "threshold": 210,
+      "roi_native_xywh": [
+        335,
+        390,
+        130,
+        70
+      ],
+      "quads": [
+        {
+          "quad_xy": [
+            [
+              362,
+              416
+            ],
+            [
+              409,
+              408
+            ],
+            [
+              427,
+              424
+            ],
+            [
+              374,
+              437
+            ]
+          ],
+          "contour_area_px": 1093.5,
+          "all_corners_observed_hypothesis": true,
+          "physical_paper_edge_identity_verified": false
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-30_floor_board_intake_r01/decoded_15ae673c24484d119952ae391df611aa_f001259.png": "b87dd75deade099ab68daa13699bf1210482ae52efe83ae06a0bdb156aee0f34",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-30_floor_board_intake_r01/decoded_15ae673c24484d119952ae391df611aa_f001655.png": "2243e7c9873c0ccdd2950502209b9e4db5b5e04a56b356a94e30a3d21f3f45d7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/probe_paper_quad.py": "61c819ddb45280a710c9d7c1e87f28b80199eb976c4c69627e7e53b3dc4ed08f"
+  },
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}

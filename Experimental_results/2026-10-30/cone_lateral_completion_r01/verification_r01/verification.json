@@ -1,0 +1,54 @@
+{
+  "status": "PASS_OFFLINE_CANDIDATE_ONLY",
+  "checks": {
+    "tests_successful": true,
+    "protected_runtime_calibration_and_existing_shadow_unchanged": true,
+    "no_input_hash_mismatches": true,
+    "frozen_original_observations_match": true,
+    "prior_points_never_removed_or_moved": true,
+    "translated_prior_points_never_changed": true,
+    "runtime_not_integrated": true,
+    "no_physical_approval": true
+  },
+  "tests": 191,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "protected_sources_unchanged": {
+    "cone_colour_support_candidate.py": true,
+    "cone_distance_core.py": true,
+    "cone_distance_worker.py": true,
+    "run_cone_distance_live.py": true,
+    "summarize_cone_distance_live.py": true,
+    "cone_scene_diagnostic.py": true,
+    "cone_support_quality.py": true,
+    "cone_distance_diagnostic_config.json": true,
+    "angular_fisheye_geometry.py": true,
+    "fisheye_floor_geometry.py": true,
+    "theta_rtc_frames.py": true,
+    "theta_rtc_diagnostic.py": true,
+    "webrtc_stream.py": true,
+    "webrtc_receive_ui.py": true,
+    "start_theta_stream_rtc.sh": true,
+    "start_theta_receive_rtc.sh": true
+  },
+  "source_hash_checks": 346,
+  "source_hash_mismatches": [],
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_lateral_completion_r01/verify.py": "3075c0e12bd795cea23277b16637ad235d7b35ed3a169dbde58f5f7bb94ac65d",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-27/cone_distance_runtime_r01/verify_runtime.py": "86018c99d1b9075c75fc04d2ef73ca8c8cc11b13430801e5350ba8b300d03197",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_lateral_completion_r01/evaluation_r01/summary.json": "3e0d07772d7284f879bbbbf0503bad98a10a3197d3919a6b5885334a4dbec2aa",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_support_completion_candidate.py": "57b4403dca6066b19e8446f8cbc97f94a0a9541c8e6f384066b25487f634c348",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_cone_support_completion_candidate.py": "fa3c9dbbef21bf4adcc623a630dcae4e7f70482ee3d16df808460d790b1cd167"
+  },
+  "physical_metric_verified": false,
+  "physical_output": false,
+  "live_integrated": false,
+  "usable_for_ffb": false,
+  "not_performed": [
+    "GPU or detector inference",
+    "camera/network/ROS/FFB activation",
+    "live integration",
+    "Git commit/push"
+  ]
+}

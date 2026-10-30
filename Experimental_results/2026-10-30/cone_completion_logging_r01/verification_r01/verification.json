@@ -1,0 +1,67 @@
+{
+  "status": "PASS_LOGGING_SOFTWARE_ONLY",
+  "checks": {
+    "tests_successful": true,
+    "old_evidence_matches_originals_or_explicit_source_snapshots": true,
+    "protected_sources_unchanged": true
+  },
+  "tests": 207,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "patterns": [
+    "test_scene_sampling_clock.py",
+    "test_cone_distance_diagnostic.py",
+    "test_theta_rtc_diagnostic.py",
+    "test_cone_support_quality*.py",
+    "test_cone_distance_worker_lifecycle.py",
+    "test_cone_distance_live_cleanup.py",
+    "test_summarize_cone_distance_live.py",
+    "test_theta_rtc_capture_recovery.py",
+    "test_cone_colour_support_candidate.py",
+    "test_cone_support_completion_candidate.py",
+    "test_cone_completion_shadow_logging.py"
+  ],
+  "protected_sources": {
+    "cone_colour_support_candidate.py": true,
+    "cone_scene_diagnostic.py": true,
+    "cone_support_quality.py": true,
+    "cone_distance_diagnostic_config.json": true,
+    "angular_fisheye_geometry.py": true,
+    "fisheye_floor_geometry.py": true,
+    "theta_rtc_frames.py": true,
+    "theta_rtc_diagnostic.py": true,
+    "webrtc_stream.py": true,
+    "webrtc_receive_ui.py": true,
+    "start_theta_stream_rtc.sh": true,
+    "start_theta_receive_rtc.sh": true
+  },
+  "source_hash_checks": 346,
+  "intentional_source_changes": {
+    "cone_distance_core.py": {
+      "before_sha256": "c9e3beac6eb6a4249238b4d06873da8598d0d67bbdfd2378f3e0746e6cbc07c2",
+      "after_sha256": "0e3cd9a674c620aeb24688a8a5724d52a534da60f3e326a6514613a0e0c7b600"
+    },
+    "cone_distance_worker.py": {
+      "before_sha256": "c34754fa46a57c6a9d9641f70c8aa5c85a9bc234016f55349a9827ccaf0fe306",
+      "after_sha256": "cdf82674ea37d264af118d64b5f74da73618456325ef15ad28c3dcc88e898927"
+    },
+    "run_cone_distance_live.py": {
+      "before_sha256": "2d0782e77a0334fedc2ed798d3e190911501cdb91f0328e8da12edc92caa10d3",
+      "after_sha256": "d8c1f19410a8a12be2a39259e42b28e2327a535af3154ab8ad3ed299f13bc1ed"
+    },
+    "summarize_cone_distance_live.py": {
+      "before_sha256": "47bdc410c4288c23923db6e6f1ec08dccc60d8930c2a48ef872aa446fe4f8f6d",
+      "after_sha256": "9fd47b0dc757a9dcc54c64d650252c88ad29dd06ef04bdcaf544af875707704d"
+    }
+  },
+  "physical_output": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "not_performed": [
+    "camera/network/ROS/FFB activation",
+    "GPU inference",
+    "physical accuracy test",
+    "Git commit/push"
+  ]
+}

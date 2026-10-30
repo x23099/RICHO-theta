@@ -1,0 +1,34 @@
+{
+  "schema": "approximate_board_thickness_comparison_v1",
+  "status": "METRIC_AGREEMENT_NOT_CONFIRMED",
+  "user_reported_approximate_thickness_mm": 15.0,
+  "thickness_uncertainty_mm": null,
+  "reported_camera_floor_height_m": 0.59,
+  "meaning": "conditional comparison assuming a flat parallel board; user thickness is approximate, not a precision measurement",
+  "frames": [
+    {
+      "frame": 1259,
+      "printed_plane_height_m": 0.5468344255818524,
+      "floor_height_if_supplied_thickness_m": 0.5618344255818524,
+      "residual_from_reported_0p590m_mm": -28.1655744181476,
+      "thickness_needed_to_match_0p590m_mm": 43.165574418147614,
+      "expected_printed_plane_height_if_0p590m_and_thickness_m": 0.575
+    },
+    {
+      "frame": 1655,
+      "printed_plane_height_m": 0.5404311383745733,
+      "floor_height_if_supplied_thickness_m": 0.5554311383745734,
+      "residual_from_reported_0p590m_mm": -34.56886162542661,
+      "thickness_needed_to_match_0p590m_mm": 49.56886162542662,
+      "expected_printed_plane_height_if_0p590m_and_thickness_m": 0.575
+    }
+  ],
+  "no_height_or_corner_refit": true,
+  "physical_metric_verified": false,
+  "live_integrated": false,
+  "usable_for_ffb": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/edge_refinement_r02/edge_refinement.json": "559beba5e871aec27958e4a7a596895bfd768a65e76dffb5204df58d606eec66",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/evaluate_board_thickness.py": "e27b7469352e73341458e90241496499230898831420beba11842a88fc9d4a2c"
+  }
+}

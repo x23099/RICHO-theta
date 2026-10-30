@@ -1,0 +1,310 @@
+{
+  "schema": "offline_contiguous_support_logging_v1",
+  "sessions": [
+    {
+      "session": "cone_static_center_z1p30_r01_20261015_135329_732",
+      "baseline_mismatches": 0,
+      "old_points": 651,
+      "old_quality_accepted": 649,
+      "new_points": 651,
+      "new_quality_accepted": 649,
+      "completion_attempted": 0,
+      "completion_granted": 0,
+      "lost_points": 0,
+      "changed_prior_points": 0,
+      "baseline_distances": 0,
+      "frames": 651,
+      "old_missing_point_spans": [
+        [
+          652,
+          651
+        ]
+      ],
+      "old_reason_counts": {
+        "unverified_visible_colour_support": 651
+      },
+      "old_adjacent_point_pairs": 650,
+      "old_point_step_p95_px": 4.0,
+      "old_point_step_max_px": 4.47213595499958,
+      "new_missing_point_spans": [
+        [
+          652,
+          651
+        ]
+      ],
+      "new_reason_counts": {
+        "unverified_visible_colour_support": 651
+      },
+      "new_adjacent_point_pairs": 650,
+      "new_point_step_p95_px": 4.0,
+      "new_point_step_max_px": 4.47213595499958
+    },
+    {
+      "session": "cone_static_center_z2p00_r01_20261015_135414_399",
+      "baseline_mismatches": 0,
+      "old_points": 632,
+      "old_quality_accepted": 630,
+      "new_points": 632,
+      "new_quality_accepted": 630,
+      "completion_attempted": 0,
+      "completion_granted": 0,
+      "lost_points": 0,
+      "changed_prior_points": 0,
+      "baseline_distances": 0,
+      "frames": 632,
+      "old_missing_point_spans": [
+        [
+          633,
+          632
+        ]
+      ],
+      "old_reason_counts": {
+        "unverified_visible_colour_support": 632
+      },
+      "old_adjacent_point_pairs": 631,
+      "old_point_step_p95_px": 3.605551275463989,
+      "old_point_step_max_px": 4.47213595499958,
+      "new_missing_point_spans": [
+        [
+          633,
+          632
+        ]
+      ],
+      "new_reason_counts": {
+        "unverified_visible_colour_support": 632
+      },
+      "new_adjacent_point_pairs": 631,
+      "new_point_step_p95_px": 3.605551275463989,
+      "new_point_step_max_px": 4.47213595499958
+    },
+    {
+      "session": "cone_static_left_z1p30_r01_20261015_135541_436",
+      "baseline_mismatches": 0,
+      "old_points": 628,
+      "old_quality_accepted": 626,
+      "new_points": 628,
+      "new_quality_accepted": 626,
+      "completion_attempted": 0,
+      "completion_granted": 0,
+      "lost_points": 0,
+      "changed_prior_points": 0,
+      "baseline_distances": 0,
+      "frames": 628,
+      "old_missing_point_spans": [
+        [
+          629,
+          628
+        ]
+      ],
+      "old_reason_counts": {
+        "unverified_visible_colour_support": 628
+      },
+      "old_adjacent_point_pairs": 627,
+      "old_point_step_p95_px": 2.0,
+      "old_point_step_max_px": 2.23606797749979,
+      "new_missing_point_spans": [
+        [
+          629,
+          628
+        ]
+      ],
+      "new_reason_counts": {
+        "unverified_visible_colour_support": 628
+      },
+      "new_adjacent_point_pairs": 627,
+      "new_point_step_p95_px": 2.0,
+      "new_point_step_max_px": 2.23606797749979
+    },
+    {
+      "session": "cone_static_no_cone_r01_20261015_134940_713",
+      "baseline_mismatches": 0,
+      "old_points": 0,
+      "old_quality_accepted": 0,
+      "new_points": 0,
+      "new_quality_accepted": 0,
+      "completion_attempted": 0,
+      "completion_granted": 0,
+      "lost_points": 0,
+      "changed_prior_points": 0,
+      "baseline_distances": 0,
+      "frames": 332,
+      "old_missing_point_spans": [
+        [
+          1,
+          332
+        ]
+      ],
+      "old_reason_counts": {
+        "no_candidate": 332
+      },
+      "old_adjacent_point_pairs": 0,
+      "old_point_step_p95_px": null,
+      "old_point_step_max_px": null,
+      "new_missing_point_spans": [
+        [
+          1,
+          332
+        ]
+      ],
+      "new_reason_counts": {
+        "no_candidate": 332
+      },
+      "new_adjacent_point_pairs": 0,
+      "new_point_step_p95_px": null,
+      "new_point_step_max_px": null
+    },
+    {
+      "session": "cone_static_right_z1p30_r01_20261015_135630_973",
+      "baseline_mismatches": 0,
+      "old_points": 628,
+      "old_quality_accepted": 623,
+      "new_points": 628,
+      "new_quality_accepted": 623,
+      "completion_attempted": 0,
+      "completion_granted": 0,
+      "lost_points": 0,
+      "changed_prior_points": 0,
+      "baseline_distances": 0,
+      "frames": 631,
+      "old_missing_point_spans": [
+        [
+          54,
+          54
+        ],
+        [
+          56,
+          57
+        ],
+        [
+          632,
+          631
+        ]
+      ],
+      "old_reason_counts": {
+        "unverified_visible_colour_support": 628,
+        "ambiguous_front_cones": 3
+      },
+      "old_adjacent_point_pairs": 625,
+      "old_point_step_p95_px": 1.0,
+      "old_point_step_max_px": 2.0,
+      "new_missing_point_spans": [
+        [
+          54,
+          54
+        ],
+        [
+          56,
+          57
+        ],
+        [
+          632,
+          631
+        ]
+      ],
+      "new_reason_counts": {
+        "unverified_visible_colour_support": 628,
+        "ambiguous_front_cones": 3
+      },
+      "new_adjacent_point_pairs": 625,
+      "new_point_step_p95_px": 1.0,
+      "new_point_step_max_px": 2.0
+    },
+    {
+      "session": "one_static_center_z0p80_r01_20261015_135155_823",
+      "baseline_mismatches": 0,
+      "old_points": 722,
+      "old_quality_accepted": 720,
+      "new_points": 722,
+      "new_quality_accepted": 720,
+      "completion_attempted": 0,
+      "completion_granted": 0,
+      "lost_points": 0,
+      "changed_prior_points": 0,
+      "baseline_distances": 0,
+      "frames": 722,
+      "old_missing_point_spans": [
+        [
+          723,
+          722
+        ]
+      ],
+      "old_reason_counts": {
+        "unverified_visible_colour_support": 722
+      },
+      "old_adjacent_point_pairs": 721,
+      "old_point_step_p95_px": 2.0,
+      "old_point_step_max_px": 2.0,
+      "new_missing_point_spans": [
+        [
+          723,
+          722
+        ]
+      ],
+      "new_reason_counts": {
+        "unverified_visible_colour_support": 722
+      },
+      "new_adjacent_point_pairs": 721,
+      "new_point_step_p95_px": 2.0,
+      "new_point_step_max_px": 2.0
+    }
+  ],
+  "totals": {
+    "baseline_mismatches": 0,
+    "old_points": 3261,
+    "old_quality_accepted": 3248,
+    "new_points": 3261,
+    "new_quality_accepted": 3248,
+    "completion_attempted": 0,
+    "completion_granted": 0,
+    "lost_points": 0,
+    "changed_prior_points": 0,
+    "baseline_distances": 0,
+    "frames": 3596
+  },
+  "replay_timing": "logical original time + 10 ms for BOTH engines; NOT measured live latency",
+  "scene_estimator_exercised": false,
+  "scene_initialized": false,
+  "detector_source": "saved predictions; exact raw bytes/ledger/settings checked; no fresh inference",
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "physical_output": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/frames.csv": "0751eb49dbb12d6fc73520c5c450b2a97bbede26d0c2e353ed9da2feac40abe3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/predictions.csv": "6c31f798aec4dd3a65c1fbbe0bd986a3bb65d03d48833f0d4f7fb6e275ea8204",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/provenance.json": "fa27d6486d8be0f136dda6b044797bd6d9e98da0cb51933e52090b920294a07f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_completion_logging_r01/replay_contiguous.py": "665eb0ece4a199f52a634d13cdd8456157d613b0e611e7ff69dc8b3eab7fe257",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_completion_logging_r01/source_snapshot/cone_distance_core.py": "c9e3beac6eb6a4249238b4d06873da8598d0d67bbdfd2378f3e0746e6cbc07c2",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_completion_logging_r01/source_snapshot/cone_distance_worker.py": "c34754fa46a57c6a9d9641f70c8aa5c85a9bc234016f55349a9827ccaf0fe306",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_completion_logging_r01/source_snapshot/run_cone_distance_live.py": "2d0782e77a0334fedc2ed798d3e190911501cdb91f0328e8da12edc92caa10d3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_completion_logging_r01/source_snapshot/summarize_cone_distance_live.py": "47bdc410c4288c23923db6e6f1ec08dccc60d8930c2a48ef872aa446fe4f8f6d",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_center_z1p30_r01_20261015_135329_732/detections.csv": "d48a4cc02297eab2f6e4ede4d5985630b253c0e27413c22573952cb1783f191f",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_center_z1p30_r01_20261015_135329_732/metadata.json": "807887296f22a94a4e77de89f9903f36b697a17892bb32c451fcb2cf7dc8aabd",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw.avi": "905084fe5f21b7db84e552da0e91ff40959f3c0023927223b337ab79d90015d0",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_center_z2p00_r01_20261015_135414_399/detections.csv": "36a747eb2d2a512b0cd19a85980f68b7631763115d9754f3517829baea5b9e72",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_center_z2p00_r01_20261015_135414_399/metadata.json": "bbdb52017eefbc41957ed8c6bdc9d270fc0f2479bb0db4062399a3907a338936",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw.avi": "ea44b13f621ce45a8c13c234106871f5ff88be76e7487cd289136c5f9aa53eba",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_left_z1p30_r01_20261015_135541_436/detections.csv": "a4d3fdfe4fb2ae8a6bfbe874855dfbfe894206ea158b7167c0b6be46de74f507",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_left_z1p30_r01_20261015_135541_436/metadata.json": "8382bb5a38d4e1570fad17ba56789939087b38a27afd896800cb39f2d05bb625",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw.avi": "905238fca7e9d266d2cdd71f6282b89889eafd43d68c3b19a4ba572a3ba8479e",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_no_cone_r01_20261015_134940_713/detections.csv": "28613237eeab790906622a78c09fe0b404cce0289b2b70e1f3f1e8bcb50ff6f2",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_no_cone_r01_20261015_134940_713/metadata.json": "705dcb3158f441dc537fb175a2f2636a0e34d5af34bf4bc754af83dcba8c704c",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_no_cone_r01_20261015_134940_713/raw.avi": "aa357a67442ddf742d695ac1fa03836992b5b5c369fb2dcfa0358aee5366be96",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_right_z1p30_r01_20261015_135630_973/detections.csv": "4953f009c2616f28759599623448c1d92c433cace7f24fb948240b836b85e95f",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_right_z1p30_r01_20261015_135630_973/metadata.json": "51578de1eb6085c49c5cf93c33b11fd2500d1095c15fb030643780ee9d7a4e00",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw.avi": "c12cd69ee5db4b0e94517bf424b96418dfe3bd3c2f54bdd92f72b5a38dcbaba0",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/one_static_center_z0p80_r01_20261015_135155_823/detections.csv": "345642e0c148f672d86e94847822602b4b10e816a1f43afcbd66788c8495f4d9",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/one_static_center_z0p80_r01_20261015_135155_823/metadata.json": "952ea891dbc6b7a112ae224f6e8c13029ab3a1c1b89d5473717542ed8aecb119",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-15_cone_static_distance_intake_r01/one_static_center_z0p80_r01_20261015_135155_823/raw.avi": "37c5910e183105091e878447ccdb29bfbf6f71e15d20b183c0fd83f10b829c5f",
+    "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_colour_support_candidate.py": "54d15953eaa8aee858c3626182f5ecaf4f8c3e3c0d8507d7161b4eb770e51246",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py": "0e3cd9a674c620aeb24688a8a5724d52a534da60f3e326a6514613a0e0c7b600",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_diagnostic_config.json": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_scene_diagnostic.py": "e4e6de762d2b6f585abb65ac73b7c620911431fbf1e4528a976c07658082e092",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_support_completion_candidate.py": "57b4403dca6066b19e8446f8cbc97f94a0a9541c8e6f384066b25487f634c348",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_support_quality.py": "ccc734d5c4e551ec82fceb3ca1c6fa638acad10a791da87578588fab1b742d82",
+    "/home/robo25/theta_ws/RICHO-theta/src/fisheye_floor_geometry.py": "b012f42743d155aa675a43dbb0c1dc86d11f1586da61b38b2938e59d30470419",
+    "/home/robo25/theta_ws/RICHO-theta/src/run_cone_distance_replay.py": "c9f8da509dbdd37cac361c9caaf9bd018b2e1048d48b45564a89fba9b1aabb6a"
+  }
+}

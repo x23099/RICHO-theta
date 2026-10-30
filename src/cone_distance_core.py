@@ -180,10 +180,12 @@ class ConeDistanceEngine:
     late scene result cannot modify another session. A pending newer scene
     blocks output until it completes, including potentially rejected images.
     """
-    def __init__(self, config=DEFAULT_CONFIG, *, target_roi=None, colour_support_shadow=False):
-        if type(colour_support_shadow) is not bool:
-            raise ValueError("explicit bool colour support shadow required")
+    def __init__(self, config=DEFAULT_CONFIG, *, target_roi=None, colour_support_shadow=False,
+                 support_completion_shadow=False):
+        if type(colour_support_shadow) is not bool or type(support_completion_shadow) is not bool:
+            raise ValueError("explicit bool support shadow flags required")
         self.colour_support_shadow = colour_support_shadow
+        self.support_completion_shadow = support_completion_shadow
         self.settings, self.camera, self.transform, self.prior_up = load_config(config)
         self.target_roi = checked_target_roi(target_roi)
         self.session = None
@@ -237,6 +239,7 @@ class ConeDistanceEngine:
         colour = dict(support=None, point=None, reason="no_candidate")
         detection_error = None
         shadow = None
+        completion_shadow = None
         try:
             selected = select_front_boxes(boxes, self.camera, self.settings["confidence"], self.target_roi)
             if len(selected) == 1:
@@ -257,6 +260,16 @@ class ConeDistanceEngine:
                 shadow = dict(reason="shadow_observation_error", error=f"{type(exc).__name__}: {exc}",
                               point=None, support=None, controlling_distance=False,
                               floor_contact_verified=False, usable_for_ffb=False)
+        if self.support_completion_shadow and len(selected) == 1 and detection_error is None:
+            try:
+                from cone_support_completion_candidate import observe_lateral_completion
+                completion_shadow = observe_lateral_completion(frame.image, selected[0], self.camera)
+            except Exception as exc:
+                completion_shadow = dict(reason="completion_shadow_observation_error",
+                    error=f"{type(exc).__name__}: {exc}", point=None, support=None,
+                    completion_attempted=False, completion_granted=False, completion_reason="observation_error",
+                    controlling_distance=False, physical_metric_verified=False,
+                    floor_contact_verified=False, usable_for_ffb=False)
         quality = self.quality.update(source, candidates)
         if callable(completed_at):
             now = finite_time(completed_at())
@@ -303,6 +316,12 @@ class ConeDistanceEngine:
             result["colour_support_shadow"] = dict(
                 candidate=shadow, controlling_distance=False, usable_for_ffb=False,
                 status=("one_selected_candidate" if shadow is not None else "not_one_valid_selected_candidate"))
+        if self.support_completion_shadow:
+            result["support_completion_shadow"] = dict(
+                candidate=completion_shadow, controlling_distance=False,
+                physical_metric_verified=False, usable_for_ffb=False,
+                status=("one_selected_candidate" if completion_shadow is not None else "not_one_valid_selected_candidate"))
+        if self.colour_support_shadow or self.support_completion_shadow:
             result["selected_detector_boxes"] = [
                 {key: float(box[key]) for key in ("x1", "y1", "x2", "y2", "confidence", "class_id")}
                 for box in selected]

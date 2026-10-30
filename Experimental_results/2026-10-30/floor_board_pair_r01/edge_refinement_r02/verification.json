@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "checks": {
+    "source_hashes_unchanged": true,
+    "all_96_controls_preserved": true,
+    "physical_metric_unapproved": true,
+    "no_height_fit": true,
+    "no_live_integration": true,
+    "all_primary_controls_present": true,
+    "full_observed_edge_recovered_at_4px": true,
+    "4px_6px_primary_observations_identical": true,
+    "all_focused_tests_passed": true
+  },
+  "test_runs": [
+    {
+      "command": [
+        "/home/robo25/theta-env/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "Experimental_results/2026-10-30/floor_board_pair_r01",
+        "-p",
+        "test_refine_paper_edges.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "...............\n----------------------------------------------------------------------\nRan 15 tests in 0.179s\n\nOK\n"
+    },
+    {
+      "command": [
+        "/home/robo25/theta-env/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_floor_reference_pose.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.060s\n\nOK\n"
+    },
+    {
+      "command": [
+        "/home/robo25/theta-env/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_diagnose_floor_board_pose.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.086s\n\nOK\n"
+    }
+  ],
+  "meaning": "Input/numerical/software verification only; physical distance accuracy remains unverified",
+  "accepted_controls": 89,
+  "total_controls": 96,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/edge_refinement_r02/edge_refinement.json": "559beba5e871aec27958e4a7a596895bfd768a65e76dffb5204df58d606eec66",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/summarize_edge_refinement.py": "f52e9823b96bb062620101c1cdd976fcb93d9bf3c571a4e056bc71717cd26d58",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/test_refine_paper_edges.py": "1ab50c1ea877c3a2677d6d84f91fd3f53ca5f3eb5c06dcfc015783af30b10155"
+  }
+}

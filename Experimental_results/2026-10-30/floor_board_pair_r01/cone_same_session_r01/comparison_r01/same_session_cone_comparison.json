@@ -1,0 +1,397 @@
+{
+  "status": "CONDITIONAL_SAME_SESSION_RANGES_NOT_ACCURACY_VALIDATION",
+  "session": "15ae673c24484d119952ae391df611aa",
+  "rows": [
+    {
+      "frame": 1259,
+      "detector_box": {
+        "image": "decoded_15ae673c24484d119952ae391df611aa_f001259.png",
+        "prediction_index": 0,
+        "class_id": 0,
+        "confidence": 0.9573034644126892,
+        "x1": 280.66455078125,
+        "y1": 299.222900390625,
+        "x2": 325.957763671875,
+        "y2": 385.8875427246094
+      },
+      "cpu_inference_software": {
+        "torch": "2.14.1",
+        "ultralytics": "8.4.175",
+        "opencv-python": "5.0.0.93"
+      },
+      "frozen_baseline": {
+        "support": null,
+        "point": null,
+        "reason": "colour_contour_reaches_roi_edge",
+        "floor_contact_verified": false
+      },
+      "separated_shadow": {
+        "support": null,
+        "point": null,
+        "reason": "colour_contour_reaches_roi_edge",
+        "selected_colour": "red",
+        "method": "upper_body_colour_seed_shadow_v1",
+        "seed_xyxy": [
+          301,
+          316,
+          306,
+          334
+        ],
+        "seed_red_pixels": 90,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false
+      },
+      "state": "SUPPORT_WITHHELD",
+      "range_hypotheses": [],
+      "controlling_distance": false
+    },
+    {
+      "frame": 1655,
+      "detector_box": {
+        "image": "decoded_15ae673c24484d119952ae391df611aa_f001655.png",
+        "prediction_index": 0,
+        "class_id": 0,
+        "confidence": 0.9615399241447449,
+        "x1": 280.6037292480469,
+        "y1": 299.2230224609375,
+        "x2": 325.9890441894531,
+        "y2": 386.2531433105469
+      },
+      "cpu_inference_software": {
+        "torch": "2.14.1",
+        "ultralytics": "8.4.175",
+        "opencv-python": "5.0.0.93"
+      },
+      "frozen_baseline": {
+        "support": null,
+        "point": null,
+        "reason": "colour_contour_reaches_roi_edge",
+        "floor_contact_verified": false
+      },
+      "separated_shadow": {
+        "support": [
+          [
+            283,
+            385
+          ],
+          [
+            284,
+            385
+          ],
+          [
+            285,
+            385
+          ],
+          [
+            286,
+            385
+          ],
+          [
+            287,
+            385
+          ],
+          [
+            288,
+            385
+          ],
+          [
+            289,
+            385
+          ],
+          [
+            290,
+            385
+          ],
+          [
+            291,
+            385
+          ],
+          [
+            292,
+            385
+          ],
+          [
+            293,
+            385
+          ],
+          [
+            294,
+            385
+          ],
+          [
+            295,
+            385
+          ],
+          [
+            296,
+            385
+          ],
+          [
+            297,
+            385
+          ],
+          [
+            298,
+            385
+          ],
+          [
+            299,
+            385
+          ],
+          [
+            300,
+            385
+          ],
+          [
+            301,
+            385
+          ],
+          [
+            302,
+            383
+          ],
+          [
+            303,
+            383
+          ],
+          [
+            304,
+            383
+          ],
+          [
+            305,
+            383
+          ],
+          [
+            306,
+            383
+          ],
+          [
+            307,
+            383
+          ],
+          [
+            308,
+            383
+          ],
+          [
+            309,
+            383
+          ],
+          [
+            310,
+            383
+          ],
+          [
+            311,
+            383
+          ],
+          [
+            312,
+            383
+          ],
+          [
+            313,
+            383
+          ],
+          [
+            314,
+            383
+          ],
+          [
+            315,
+            383
+          ],
+          [
+            316,
+            383
+          ],
+          [
+            317,
+            383
+          ],
+          [
+            318,
+            383
+          ],
+          [
+            319,
+            383
+          ],
+          [
+            320,
+            383
+          ]
+        ],
+        "point": [
+          300,
+          385
+        ],
+        "reason": "unverified_visible_colour_support",
+        "selected_colour": "red",
+        "method": "upper_body_colour_seed_shadow_v1",
+        "seed_xyxy": [
+          301,
+          316,
+          306,
+          335
+        ],
+        "seed_red_pixels": 95,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false
+      },
+      "state": "OFFLINE_CONDITIONAL_RANGE_ONLY",
+      "range_hypotheses": [
+        {
+          "horizontal_camera_foot_range_m": 1.4510066660956924,
+          "lens_slant_range_m": 1.5556375128478035,
+          "incidence_cos": 0.3605474929401246,
+          "point_optical_m": [
+            -0.1588770512779041,
+            0.5411211124619267,
+            1.449811744884316
+          ],
+          "camera_foot_optical_m": [
+            0.00778868318447074,
+            0.5607620608396646,
+            0.008542474013297767
+          ],
+          "physical_metric_verified": false,
+          "floor_contact_verified": false,
+          "usable_for_ffb": false,
+          "model": "shared_plane_height_free_plus_approx_board",
+          "plane_normal_optical": [
+            -0.013886511283541509,
+            -0.9997875765133128,
+            -0.015230451536600846
+          ],
+          "camera_floor_height_m": 0.5608812051808865,
+          "numerical_1px_support_control_range_m": [
+            1.4278085516036518,
+            1.4748659202198333
+          ],
+          "sensitivity_is_confidence_interval": false
+        },
+        {
+          "horizontal_camera_foot_range_m": 1.4030413364392946,
+          "lens_slant_range_m": 1.5220463172181595,
+          "incidence_cos": 0.3876360353332358,
+          "point_optical_m": [
+            -0.1554463869576749,
+            0.5294365747737324,
+            1.4185056664782925
+          ],
+          "camera_foot_optical_m": [
+            0.010042447774545963,
+            0.5893169600581439,
+            0.026545617915646375
+          ],
+          "physical_metric_verified": false,
+          "floor_contact_verified": false,
+          "usable_for_ffb": false,
+          "model": "externally_anchored_height_and_normal",
+          "plane_normal_optical": [
+            -0.01702109792295926,
+            -0.9988423051832949,
+            -0.04499257273838369
+          ],
+          "camera_floor_height_m": 0.59,
+          "numerical_1px_support_control_range_m": [
+            1.3817747285671427,
+            1.4248707455582843
+          ],
+          "sensitivity_is_confidence_interval": false
+        },
+        {
+          "horizontal_camera_foot_range_m": 1.5263373510980185,
+          "lens_slant_range_m": 1.6364002289650648,
+          "incidence_cos": 0.3605474929401246,
+          "point_optical_m": [
+            -0.16712533668111185,
+            0.5692140392716024,
+            1.5250803941734508
+          ],
+          "camera_foot_optical_m": [
+            0.00819304165728949,
+            0.5898746701428546,
+            0.0089859664065945
+          ],
+          "physical_metric_verified": false,
+          "floor_contact_verified": false,
+          "usable_for_ffb": false,
+          "model": "external_height_only_free_fit_normal_counterfactual",
+          "plane_normal_optical": [
+            -0.013886511283541509,
+            -0.9997875765133128,
+            -0.015230451536600846
+          ],
+          "camera_floor_height_m": 0.59,
+          "numerical_1px_support_control_range_m": [
+            1.5019348797299688,
+            1.5514352859248828
+          ],
+          "sensitivity_is_confidence_interval": false
+        }
+      ],
+      "controlling_distance": false
+    }
+  ],
+  "plane_models": [
+    {
+      "name": "shared_plane_height_free_plus_approx_board",
+      "normal": [
+        -0.013886511283541509,
+        -0.9997875765133128,
+        -0.015230451536600846
+      ],
+      "height_m": 0.5608812051808865
+    },
+    {
+      "name": "externally_anchored_height_and_normal",
+      "normal": [
+        -0.01702109792295926,
+        -0.9988423051832949,
+        -0.04499257273838369
+      ],
+      "height_m": 0.59
+    },
+    {
+      "name": "external_height_only_free_fit_normal_counterfactual",
+      "normal": [
+        -0.013886511283541509,
+        -0.9997875765133128,
+        -0.015230451536600846
+      ],
+      "height_m": 0.59
+    }
+  ],
+  "user_distance_reference": {
+    "approximate_range_m": 1.5,
+    "basis": "user: floor tile 0.50m, roughly three tiles",
+    "uncertainty_m": null,
+    "precise_measurement": false,
+    "used_to_fit_or_select_model": false
+  },
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/intrinsic_consistency_r02/intrinsic_consistency.json": "26e6c058753e705ff94baf31038190d9ce6571f87a9a76144a7171530b4a1642",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/compare_same_session_cone.py": "c858711ed910c9f51c64b115d1ca90f76e74752cc78d6ca8ae95b208e4dc493d",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_colour_support_candidate.py": "54d15953eaa8aee858c3626182f5ecaf4f8c3e3c0d8507d7161b4eb770e51246",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py": "c9e3beac6eb6a4249238b4d06873da8598d0d67bbdfd2378f3e0746e6cbc07c2",
+    "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/originals/decoded_15ae673c24484d119952ae391df611aa_f001259.png": "b87dd75deade099ab68daa13699bf1210482ae52efe83ae06a0bdb156aee0f34",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/inference_f001259/audit.json": "e818ca83b9d1d9ea9463a75998bb9e7b23675cd2b3cfe249bfe8fa8e8085ef8c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/originals/decoded_15ae673c24484d119952ae391df611aa_f001655.png": "2243e7c9873c0ccdd2950502209b9e4db5b5e04a56b356a94e30a3d21f3f45d7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/inference_f001655/audit.json": "4460ff41db029e19c8020fba87886ab5f9d1d7a197359d0a6fbae69515245fc5"
+  },
+  "physical_metric_verified": false,
+  "independent_accuracy_validated": false,
+  "live_integrated": false,
+  "usable_for_ffb": false
+}

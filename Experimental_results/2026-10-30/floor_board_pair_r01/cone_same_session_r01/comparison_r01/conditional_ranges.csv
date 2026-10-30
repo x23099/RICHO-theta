@@ -1,0 +1,4 @@
+frame,model,support_x,support_y,horizontal_range_m,slant_range_m,support_1px_control_min_m,support_1px_control_max_m
+1655,shared_plane_height_free_plus_approx_board,300,385,1.4510066660956924,1.5556375128478035,1.4278085516036518,1.4748659202198333
+1655,externally_anchored_height_and_normal,300,385,1.4030413364392946,1.5220463172181595,1.3817747285671427,1.4248707455582843
+1655,external_height_only_free_fit_normal_counterfactual,300,385,1.5263373510980185,1.6364002289650648,1.5019348797299688,1.5514352859248828

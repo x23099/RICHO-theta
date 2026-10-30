@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "checks": {
+    "input_hashes_unchanged": true,
+    "rejected_frame_has_no_distance": true,
+    "accepted_support_has_all_three_hypotheses": true,
+    "rough_range_not_fitted_or_used_as_precise_truth": true,
+    "no_physical_accuracy_or_live_approval": true,
+    "eight_geometry_tests_passed": true
+  },
+  "meaning": "software and evidence consistency only; not distance accuracy validation",
+  "test_run": {
+    "command": [
+      "/home/robo25/theta-env/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01",
+      "-p",
+      "test_same_session_range.py"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.002s\n\nOK\n"
+  },
+  "source_sha256": {
+    "Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/comparison_r01/same_session_cone_comparison.json": "3278df0ef32fd5cf0d81d11ecf900c758214d8bae050fe8a2c37fc61c3d2d641",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/summarize_same_session_cone.py": "6e2cf052563e2f4158cfb5cabad8c98e3418a9deefe56bdd08d80e232de6dd02",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/test_same_session_range.py": "cb323f5c7ad27b145d9307b46353838380fcab6c409f20880d4ba1f82309e54e"
+  }
+}
