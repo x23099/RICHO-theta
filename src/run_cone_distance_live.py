@@ -37,6 +37,8 @@ def build_parser():
                         help="log experimental colour-separated support; NEVER controls distance")
     parser.add_argument("--support-completion-shadow", action="store_true",
                         help="log bounded lateral completion candidate separately; NEVER controls distance")
+    parser.add_argument("--frame-evidence", action="store_true",
+                        help="log selected bbox/support/pose/floor/freshness per frame; NEVER controls distance")
     return parser
 
 
@@ -55,7 +57,8 @@ async def run(args):
     colour_shadow = getattr(args, "colour_support_shadow", False)
     completion_shadow = getattr(args, "support_completion_shadow", False)
     worker = DistanceWorker(slot, args.config, predictor, args.output_dir / "distance_frames.jsonl", target_roi=args.target_roi,
-                            colour_support_shadow=colour_shadow, support_completion_shadow=completion_shadow)
+                            colour_support_shadow=colour_shadow, support_completion_shadow=completion_shadow,
+                            frame_evidence=getattr(args, "frame_evidence", False))
     app = web.Application(client_max_size=256 * 1024)
     app.router.add_post("/offer", server.offer)
     runner = web.AppRunner(app, access_log=None)
@@ -67,6 +70,7 @@ async def run(args):
                    cross_pc_capture_latency_measured=False)
     summary["colour_support_shadow_enabled"] = colour_shadow
     summary["support_completion_shadow_enabled"] = completion_shadow
+    summary["frame_evidence_enabled"] = getattr(args, "frame_evidence", False)
     started = time.monotonic()
     run_error = None
     try:

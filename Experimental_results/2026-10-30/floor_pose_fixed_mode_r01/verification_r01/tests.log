@@ -1,0 +1,17 @@
+test_heading_reference_translation_is_not_carried_into_origin (test_cone_fixed_floor_candidate.ExplicitFloorCandidateTests) ... ok
+test_height_scales_the_same_ray_linearly (test_cone_fixed_floor_candidate.ExplicitFloorCandidateTests) ... ok
+test_inputs_are_not_mutated (test_cone_fixed_floor_candidate.ExplicitFloorCandidateTests) ... ok
+test_known_point_recovered_without_selecting_a_solution (test_cone_fixed_floor_candidate.ExplicitFloorCandidateTests) ... ok
+test_missing_explicit_evidence_refused (test_cone_fixed_floor_candidate.ExplicitFloorCandidateTests) ... ok
+test_model_normal_matches_transform_up (test_cone_fixed_floor_candidate.ExplicitFloorCandidateTests) ... ok
+test_non_unit_normal_and_nonpositive_height_refused (test_cone_fixed_floor_candidate.ExplicitFloorCandidateTests) ... ok
+test_not_imported_by_controlling_distance_paths (test_cone_fixed_floor_candidate.ExplicitFloorCandidateTests) ... ok
+test_physically_approved_model_is_refused (test_cone_fixed_floor_candidate.ExplicitFloorCandidateTests) ... ok
+test_radial_range_is_invariant_to_heading_reference_yaw (test_cone_fixed_floor_candidate.ExplicitFloorCandidateTests) ... ok
+test_session_scope_is_enforced (test_cone_fixed_floor_candidate.ExplicitFloorCandidateTests) ... ok
+test_support_outside_front_domain_withheld_not_raised (test_cone_fixed_floor_candidate.ExplicitFloorCandidateTests) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.109s
+
+OK

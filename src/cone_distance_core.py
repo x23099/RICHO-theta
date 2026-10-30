@@ -181,12 +181,16 @@ class ConeDistanceEngine:
     blocks output until it completes, including potentially rejected images.
     """
     def __init__(self, config=DEFAULT_CONFIG, *, target_roi=None, colour_support_shadow=False,
-                 support_completion_shadow=False):
+                 support_completion_shadow=False, frame_evidence=False):
         if type(colour_support_shadow) is not bool or type(support_completion_shadow) is not bool:
             raise ValueError("explicit bool support shadow flags required")
+        if type(frame_evidence) is not bool:
+            raise ValueError("explicit bool frame-evidence flag required")
         self.colour_support_shadow = colour_support_shadow
         self.support_completion_shadow = support_completion_shadow
+        self.frame_evidence = frame_evidence
         self.settings, self.camera, self.transform, self.prior_up = load_config(config)
+        self.config_sha256 = digest(config)
         self.target_roi = checked_target_roi(target_roi)
         self.session = None
         self.reset(None)
@@ -312,6 +316,36 @@ class ConeDistanceEngine:
             base_pixel=colour["point"], target_frame="paper7_ground_reference",
             target_roi_native_xyxy=self.target_roi, target_association_physically_verified=False,
             physical_metric_verified=False, floor_contact_verified=False, usable_for_ffb=False)
+        if self.frame_evidence:
+            selected_boxes = [
+                {key: float(box[key]) for key in ("x1", "y1", "x2", "y2", "confidence", "class_id")}
+                for box in selected]
+            age_limit_ms = 1000.0*self.settings["frame_max_age_sec"]
+            result["frame_evidence"] = dict(
+                schema="cone_frame_evidence_v1",
+                input=dict(session=frame.session, frame=frame.sequence,
+                    media_time_sec=frame.media_time, received_time_sec=source,
+                    width=1280, height=720, image_stored_in_log=False,
+                    lookup="match by session and frame; S-key PNG filename records the session digest and frame"),
+                selected_detector_boxes=selected_boxes,
+                support_observation=dict(method="V30_union_hsv_observed_lower_envelope",
+                    point=colour["point"], support=colour["support"], reason=colour["reason"],
+                    quality_accepted=quality["quality_accepted"], quality_reason=quality["reason"],
+                    floor_contact_verified=False),
+                pose=dict(initialized=pose["initialized"], pose_available=pose["pose_available"],
+                    pose_reason=pose["pose_reason"], up_optical=pose["up_optical"],
+                    scene_reason=self.scene_reason, scene_source_frame=pose["latest_scene_frame"],
+                    scene_age_sec=pose["latest_scene_age_sec"],
+                    scene_pending=self.pending is not None,
+                    physical_transform_verified=False, usable_for_ffb=False),
+                floor_model=dict(target_frame="paper7_ground_reference",
+                    config_sha256=self.config_sha256,
+                    camera_candidate_sha256=self.settings["camera_sha256"],
+                    floor_candidate_sha256=self.settings["floor_sha256"],
+                    physical_metric_verified=False),
+                freshness=dict(age_ms=result["frame_age_ms"], limit_ms=age_limit_ms,
+                    within_limit=result["frame_age_ms"] <= age_limit_ms,
+                    blockers=list(result["blockers"]), primary_reason=result["reason"]))
         if self.colour_support_shadow:
             result["colour_support_shadow"] = dict(
                 candidate=shadow, controlling_distance=False, usable_for_ffb=False,

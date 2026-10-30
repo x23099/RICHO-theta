@@ -1,0 +1,5 @@
+frame,source,support_x,support_y,reason,support_pixels,completion_granted,controlling_distance
+1259,baseline_colour_shadow,,,colour_contour_reaches_roi_edge,0,False,False
+1259,lateral_completion_shadow,299,385,unverified_lateral_completed_colour_support,40,True,False
+1655,baseline_colour_shadow,300,385,unverified_visible_colour_support,38,False,False
+1655,lateral_completion_shadow,300,385,unverified_visible_colour_support,38,False,False

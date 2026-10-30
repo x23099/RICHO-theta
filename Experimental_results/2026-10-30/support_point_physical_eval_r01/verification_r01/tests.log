@@ -1,0 +1,32 @@
+test_completion_is_accepted_only_as_conditional (test_support_point_eval.CategoryAuditTests) ... ok
+test_required_categories_present (test_support_point_eval.CategoryAuditTests) ... ok
+test_unusable_cases_are_withheld (test_support_point_eval.CategoryAuditTests) ... ok
+test_all_csv_rows_deny_ffb (test_support_point_eval.FlagAndProvenanceTests) ... ok
+test_input_hashes_match_current_files (test_support_point_eval.FlagAndProvenanceTests) ... ok
+test_method_and_analysis_hashes_match (test_support_point_eval.FlagAndProvenanceTests) ... ok
+test_output_hashes_match_frozen_files (test_support_point_eval.FlagAndProvenanceTests) ... ok
+test_summary_flags_remain_false (test_support_point_eval.FlagAndProvenanceTests) ... ok
+test_identity_at_reference_distance (test_support_point_eval.ImpliedHeightAlgebraTests) ... ok
+test_rejects_invalid_projection (test_support_point_eval.ImpliedHeightAlgebraTests) ... ok
+test_scales_inversely_with_projected_range (test_support_point_eval.ImpliedHeightAlgebraTests) ... ok
+test_medians_match_frozen_results (test_support_point_eval.KnownMedianTests) ... ok
+test_only_height_only_model_is_used (test_support_point_eval.KnownMedianTests) ... ok
+test_static_2m_offset_exceeds_base_side (test_support_point_eval.KnownMedianTests) ... ok
+test_analysis_does_not_decode_images_or_run_inference (test_support_point_eval.SavedDataIsolationTests) ... ok
+test_approximate_tile_is_not_used_for_selection (test_support_point_eval.SavedDataIsolationTests) ... ok
+test_completion_shadow_is_not_controlling (test_support_point_eval.SavedDataIsolationTests) ... ok
+test_summary_declares_no_new_inference (test_support_point_eval.SavedDataIsolationTests) ... ok
+test_conclusion_states_smoothness_is_not_correctness (test_support_point_eval.SmoothnessVersusBiasTests) ... ok
+test_static_2m_is_smooth_but_biased (test_support_point_eval.SmoothnessVersusBiasTests) ... ok
+test_absolute_heights_differ_across_sessions (test_support_point_eval.WithinSessionFloorTests) ... ok
+test_c130_reference_is_the_floor_candidate (test_support_point_eval.WithinSessionFloorTests) ... ok
+test_c200_reference_is_the_floor_candidate (test_support_point_eval.WithinSessionFloorTests) ... ok
+test_no_row_is_physical_ground_truth (test_support_point_eval.WithinSessionFloorTests) ... ok
+test_paper_corner_is_exact_same_column_identity (test_support_point_eval.WithinSessionFloorTests) ... ok
+test_red_subblob_is_not_a_support_point (test_support_point_eval.YellowWithholdingTests) ... ok
+test_summary_does_not_rescue_yellow (test_support_point_eval.YellowWithholdingTests) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 32.157s
+
+OK

@@ -1,0 +1,133 @@
+{
+  "status": "COMPLETED_SAVED_DATA_SUPPORT_POINT_PHYSICAL_MEANING_AUDIT",
+  "measured_lens_height_mm": 590.0,
+  "base_side_m": 0.375,
+  "approximate_tile_reference_m": 1.5,
+  "inputs_are_saved_data_only": true,
+  "new_yolo_inference": false,
+  "new_image_decoding": false,
+  "hsv_reextraction": false,
+  "calibration_or_pose_fit": false,
+  "support_point_moved_to_reference": false,
+  "reference_distance_used_for_model_or_point_selection": false,
+  "approximate_tile_used_for_model_selection": false,
+  "completion_shadow_promoted_to_controlling_distance": false,
+  "yellow_rescued_by_red_subblob": false,
+  "implied_height_by_condition": {
+    "sequence/cone_130": {
+      "implied_height_median_mm": 589.91,
+      "implied_height_p05_mm": 589.801,
+      "implied_height_p95_mm": 590.079,
+      "adjacent_abs_delta_median_mm": 0.0808,
+      "offset_required_from_label_m": 0.000197,
+      "required_offset_exceeds_base_side": false
+    },
+    "sequence/cone_200": {
+      "implied_height_median_mm": 592.7,
+      "implied_height_p05_mm": 592.509,
+      "implied_height_p95_mm": 593.169,
+      "adjacent_abs_delta_median_mm": 0.6041,
+      "offset_required_from_label_m": -0.009109,
+      "required_offset_exceeds_base_side": false
+    },
+    "static/center_080": {
+      "implied_height_median_mm": 531.675,
+      "implied_height_p05_mm": 531.389,
+      "implied_height_p95_mm": 532.513,
+      "adjacent_abs_delta_median_mm": 0.4384,
+      "offset_required_from_label_m": 0.08776,
+      "required_offset_exceeds_base_side": false
+    },
+    "static/center_130": {
+      "implied_height_median_mm": 501.988,
+      "implied_height_p05_mm": 495.583,
+      "implied_height_p95_mm": 504.919,
+      "adjacent_abs_delta_median_mm": 0.8331,
+      "offset_required_from_label_m": 0.227926,
+      "required_offset_exceeds_base_side": false
+    },
+    "static/center_200": {
+      "implied_height_median_mm": 446.102,
+      "implied_height_p05_mm": 445.712,
+      "implied_height_p95_mm": 447.527,
+      "adjacent_abs_delta_median_mm": 2.5623,
+      "offset_required_from_label_m": 0.645136,
+      "required_offset_exceeds_base_side": true
+    },
+    "static/left_130": {
+      "implied_height_median_mm": 538.316,
+      "implied_height_p05_mm": 529.027,
+      "implied_height_p95_mm": 549.424,
+      "adjacent_abs_delta_median_mm": 14.9885,
+      "offset_required_from_label_m": 0.124815,
+      "required_offset_exceeds_base_side": false
+    },
+    "static/right_130": {
+      "implied_height_median_mm": 490.433,
+      "implied_height_p05_mm": 481.373,
+      "implied_height_p95_mm": 499.997,
+      "adjacent_abs_delta_median_mm": 23.1182,
+      "offset_required_from_label_m": 0.263925,
+      "required_offset_exceeds_base_side": false
+    }
+  },
+  "within_session_floor_check": {
+    "C130": {
+      "reference_kind": "same_recording_floor_V_tip",
+      "reference_pixel": "(310,416)",
+      "pixel_row_delta_cone_minus_floor": 1.0,
+      "cone_minus_floor_equivalent_distance_m": -0.01911,
+      "floor_implied_height_mm": 581.366,
+      "cone_implied_height_mm": 589.91,
+      "delta_implied_height_mm": 8.545
+    },
+    "C200": {
+      "reference_kind": "same_recording_floor_V_tip",
+      "reference_pixel": "(311,393)",
+      "pixel_row_delta_cone_minus_floor": 0.0,
+      "cone_minus_floor_equivalent_distance_m": 0.007803,
+      "floor_implied_height_mm": 595.032,
+      "cone_implied_height_mm": 592.7,
+      "delta_implied_height_mm": -2.332
+    },
+    "paper_corner_same_column": {
+      "reference_kind": "same_recording_floor_level_paper_corner",
+      "reference_pixel": "(313,371)",
+      "pixel_row_delta_cone_minus_floor": 0,
+      "cone_minus_floor_equivalent_distance_m": 0.0,
+      "floor_implied_height_mm": 330.604,
+      "cone_implied_height_mm": 330.604,
+      "delta_implied_height_mm": 0.0
+    }
+  },
+  "fixed_floor_1030_compatibility": {
+    "1259/lateral_completion_shadow": {
+      "closest_input_height_mm": 580.0,
+      "range_at_closest_height_m": 1.501108,
+      "measured_height_range_m": 1.526989,
+      "used_for_model_selection": false
+    },
+    "1655/baseline_colour_shadow": {
+      "closest_input_height_mm": 580.0,
+      "range_at_closest_height_m": 1.500467,
+      "measured_height_range_m": 1.526337,
+      "used_for_model_selection": false
+    }
+  },
+  "counts": {
+    "implied_height_rows": 7,
+    "within_session_rows": 3,
+    "category_rows": 12,
+    "fixed_floor_rows": 12
+  },
+  "conclusion": {
+    "relative_floor_correspondence": "supported within two sessions with a same-session floor marker (0 px at the 10/19 paper column; +1/0 px vs the 10/15 floor V at 1.30/2.00 m)",
+    "absolute_metric": "not verified: implied height is 589.9/592.7 mm in the 10/15 continuous session but 446.1 mm for the 10/15 static 2.00 m and 330.6 mm for the 10/19 paper+cone 2.00 m",
+    "temporal_smoothness": "adjacent-frame change is sub-mm for the continuous 1.30 m and 0.6 mm for 2.00 m, yet the static 2.00 m session is also smooth (2.6 mm) while implying 446.1 mm; smoothness is not correctness",
+    "completion_and_yellow": "lateral completion is an image-coverage fix, not a contact proof; the approximate 1.5 m lies only in the union of conditional ranges, not in any single model's 1 px control; the yellow cone connected to the same-colour floor remains withheld",
+    "fundamental_limit": "a single support pixel cannot separate height above the floor from depth along the ray; a same-ray floor marker is necessary but not sufficient evidence"
+  },
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "usable_for_ffb": false
+}

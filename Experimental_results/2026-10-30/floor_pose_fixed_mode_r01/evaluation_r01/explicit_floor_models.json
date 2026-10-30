@@ -1,0 +1,219 @@
+{
+  "schema": "explicit_floor_models_v1",
+  "session": "15ae673c24484d119952ae391df611aa",
+  "heading_reference": {
+    "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+    "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+  },
+  "models": [
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "shared_free_plane_plus_approx_board_thickness",
+      "session": "15ae673c24484d119952ae391df611aa",
+      "normal_optical": [
+        -0.013886511283541509,
+        -0.9997875765133128,
+        -0.015230451536600846
+      ],
+      "camera_to_floor_m": 0.5608812051808865,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "shared free-height printed-plane fit on two board frames",
+        "estimated printed-plane height 0.545881205 m",
+        "user supplied approximate board-plus-paper thickness 15 mm"
+      ],
+      "assumptions": [
+        "the board was flat on the floor and its printed surface is parallel to the floor",
+        "the camera and capture geometry did not move within this session",
+        "the heading reference supplies orientation only; the origin is the camera vertical floor projection",
+        "radial range is independent of yaw; forward/lateral are NOT measured base_link axes",
+        "adding the approximate 15 mm thickness gives the floor height"
+      ],
+      "invalidation_conditions": [
+        "camera mount, lens, USB capture or image geometry changes",
+        "the board is not flat, is handheld, or is not on the same floor plane",
+        "a frame from another session is evaluated with this model",
+        "the model is used as a physical base_link transform or an FFB input"
+      ],
+      "role": "conditional_primary",
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "controlling_distance": false,
+      "live_integrated": false,
+      "published_to_ros": false
+    },
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "externally_anchored_height_and_normal",
+      "session": "15ae673c24484d119952ae391df611aa",
+      "normal_optical": [
+        -0.01702109792295926,
+        -0.9988423051832949,
+        -0.04499257273838369
+      ],
+      "camera_to_floor_m": 0.59,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "printed-plane normal fitted with printed-plane height fixed to 575 mm",
+        "user reported lens-centre floor height 590 mm",
+        "575 mm = 590 mm minus approximate 15 mm board thickness"
+      ],
+      "assumptions": [
+        "the board was flat on the floor and its printed surface is parallel to the floor",
+        "the camera and capture geometry did not move within this session",
+        "the heading reference supplies orientation only; the origin is the camera vertical floor projection",
+        "radial range is independent of yaw; forward/lateral are NOT measured base_link axes",
+        "the external 590 mm height is treated as a fixed input, not an image result"
+      ],
+      "invalidation_conditions": [
+        "camera mount, lens, USB capture or image geometry changes",
+        "the board is not flat, is handheld, or is not on the same floor plane",
+        "a frame from another session is evaluated with this model",
+        "the model is used as a physical base_link transform or an FFB input"
+      ],
+      "role": "conditional_primary",
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "controlling_distance": false,
+      "live_integrated": false,
+      "published_to_ros": false
+    },
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "external_height_only_free_fit_normal",
+      "session": "15ae673c24484d119952ae391df611aa",
+      "normal_optical": [
+        -0.013886511283541509,
+        -0.9997875765133128,
+        -0.015230451536600846
+      ],
+      "camera_to_floor_m": 0.59,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "shared free-height printed-plane normal",
+        "user reported lens-centre floor height 590 mm"
+      ],
+      "assumptions": [
+        "the board was flat on the floor and its printed surface is parallel to the floor",
+        "the camera and capture geometry did not move within this session",
+        "the heading reference supplies orientation only; the origin is the camera vertical floor projection",
+        "radial range is independent of yaw; forward/lateral are NOT measured base_link axes",
+        "mixing a free-fit normal with the external height is a counterfactual control"
+      ],
+      "invalidation_conditions": [
+        "camera mount, lens, USB capture or image geometry changes",
+        "the board is not flat, is handheld, or is not on the same floor plane",
+        "a frame from another session is evaluated with this model",
+        "the model is used as a physical base_link transform or an FFB input"
+      ],
+      "role": "counterfactual_control",
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "controlling_distance": false,
+      "live_integrated": false,
+      "published_to_ros": false
+    }
+  ],
+  "per_frame_models": [
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "per_frame_printed_plane_normal_external_height",
+      "session": "15ae673c24484d119952ae391df611aa",
+      "frame": 1259,
+      "normal_optical": [
+        -0.007518482981978266,
+        -0.9998715138601924,
+        -0.014157266140626174
+      ],
+      "camera_to_floor_m": 0.59,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "same-frame printed-plane edge refinement normal",
+        "external 590 mm height input"
+      ],
+      "assumptions": [
+        "normal is parallel to the floor; same-frame board is not an independent holdout"
+      ],
+      "invalidation_conditions": [
+        "use only as a sensitivity control, never as a selected model"
+      ],
+      "role": "sensitivity_only",
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "controlling_distance": false,
+      "live_integrated": false,
+      "published_to_ros": false
+    },
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "per_frame_printed_plane_normal_external_height",
+      "session": "15ae673c24484d119952ae391df611aa",
+      "frame": 1655,
+      "normal_optical": [
+        -0.009936308520827296,
+        -0.9998137688940071,
+        -0.016543799531551395
+      ],
+      "camera_to_floor_m": 0.59,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "same-frame printed-plane edge refinement normal",
+        "external 590 mm height input"
+      ],
+      "assumptions": [
+        "normal is parallel to the floor; same-frame board is not an independent holdout"
+      ],
+      "invalidation_conditions": [
+        "use only as a sensitivity control, never as a selected model"
+      ],
+      "role": "sensitivity_only",
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "controlling_distance": false,
+      "live_integrated": false,
+      "published_to_ros": false
+    }
+  ],
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/intrinsic_consistency_r02/intrinsic_consistency.json": "26e6c058753e705ff94baf31038190d9ce6571f87a9a76144a7171530b4a1642",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/edge_refinement_r02/edge_refinement.json": "559beba5e871aec27958e4a7a596895bfd768a65e76dffb5204df58d606eec66",
+    "Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+  },
+  "user_reference": {
+    "approximate_range_m": 1.5,
+    "basis": "floor tile 0.50 m, roughly three tiles",
+    "uncertainty_m": null,
+    "precise_measurement": false,
+    "used_to_fit_or_select_model": false
+  },
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "live_integrated": false,
+  "usable_for_ffb": false
+}

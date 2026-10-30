@@ -1,0 +1,35 @@
+{
+  "status": "SAVED_DATA_ONLY_NO_INFERENCE_NO_LIVE_INTEGRATION",
+  "method": "Experimental_results/2026-10-30/support_point_physical_eval_r01/method.md",
+  "method_sha256": "905aa3e63eaf6cf59fe361a5b3e251d431c7694da9fc29ed8be2ef5a88cb8798",
+  "analysis": "Experimental_results/2026-10-30/support_point_physical_eval_r01/analyze.py",
+  "analysis_sha256": "08de84f563033126ecef7ded565e6e2f7c29d0f265fbac4f235fc9ea2e890dc5",
+  "input_sha256": {
+    "Experimental_results/2026-10-19/cone_contact_reuse_r01/full_replay_r01/positions.csv": "a049ea797bf6e8ed3383a87e393d14ca135ba3436c4afef58345ef10731a5e9e",
+    "Experimental_results/2026-10-19/cone_contact_reuse_r01/full_replay_r01/pixels.csv": "1dec00192015a37b4246a3fcaba34b0c0ef08ac4913174c86301e03f2fd7303a",
+    "Experimental_results/2026-10-19/cone_contact_reuse_r01/results_r01/paired_anchors.csv": "982437c4e01371c3a1ccd12e05139f0fd792cc1d3c5d934e2f0b01e8eeb9b0d3",
+    "Experimental_results/2026-10-19/cone_support_extent_r01/results_r01/lower_envelopes.csv": "112ef9d522fe0d04b7183a3fbaed7c1b73fc7e5bde6db99af143f7c8e8a6c6b5",
+    "Experimental_results/2026-10-19/cone_support_extent_r01/results_r01/observations.csv": "0c87cb222de8fd3fbbdbc009fc87faa2b8b46d4265a178b62b3c466e58efdeea",
+    "Experimental_results/2026-10-19/cone_support_quality_r01/results_r02/observations.csv": "73fa6cb7e5cabaa1f61705a7f5cc45072a681e49ac150d6839959e8cafd3f3f6",
+    "Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/contact_candidates.csv": "63cb54cde2d6c1ce3b3a1d91c16ea715a2f530cf3e5fe521586a35eed200a0b3",
+    "Experimental_results/2026-10-19/paper_cone_2m_validation_r01/analysis_r01/paper_projection.csv": "04f9f7d0ebbcd84adb27fd012dc488aecc6f87a31adc476f91d39a8589bfc135",
+    "Experimental_results/2026-10-19/paper_cone_2m_validation_r01/analysis_r01/cone_same_column_projection.csv": "ad690d2486f6b48e7dc99d74843c5bc43d4afbac36882a5cac590f86717d4a8e",
+    "Experimental_results/2026-10-30/floor_pose_fixed_mode_r01/evaluation_r01/ranges.csv": "efe742561188d67e01ff671761357dbd7b33c34afe446961ed26382c7084df8d",
+    "Experimental_results/2026-10-30/floor_pose_fixed_mode_r01/evaluation_r01/support_sources.csv": "880470f9413733e5394649995195bfbf6d2b2df8c15ebfbf34b61def2fb10d6f",
+    "Experimental_results/2026-10-30/floor_pose_fixed_mode_r01/evaluation_r01/height_sensitivity.csv": "724d728b8013e1d4dc0eeed2ec7414def8afe2f95990b7eb03ead19847c18335",
+    "Experimental_results/2026-10-30/cone_completion_logging_r01/current_pair_r01/results.json": "088f0ad947289450d9d94f1d8169711dc3c3ef7d96229ee30469b3985e0a52e5",
+    "Experimental_results/2026-10-30/cone_saved_frame_audit_r01/findings_r01/colour_controls.json": "e66febc96faf1c7f791740b76d7a0522edd5272438ad307cceb0b5efc1dd1d73",
+    "Experimental_results/2026-10-30/floor_pose_fixed_mode_r01/evaluation_r01/summary.json": "51807835cf1107a18c1f924ba0c920224e7e548e24b211c2f6420c1eef97d0db"
+  },
+  "output_sha256": {
+    "category_audit.csv": "b917bdafdf6d74e0d9f597aaa8d202d244faf951737aff599c55c22a285dcef1",
+    "fixed_floor_1030.csv": "4a436ec0a47d918af412df101ed5c9c0b2053e9ad474fc3f40769fa998874e2d",
+    "implied_height_by_condition.csv": "050f8e755f8e7006c28ade96f23214459e380868769ead7aa813fd93e04f5fc2",
+    "summary.json": "ad6a1c2f86d558626e056292ba8639c59d5ac56e71925d37de46214cbe638b23",
+    "support_point_physical_meaning.png": "13f59fdb460cae33b7c686ac1c28250c018a2f7109f33a54806bff6f59675f3b",
+    "within_session_floor_check.csv": "e161514ed659fe66b1cc26141266c756bf43740de0e4758a88572842b598e6a0"
+  },
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "usable_for_ffb": false
+}

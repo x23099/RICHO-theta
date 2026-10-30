@@ -1,0 +1,53 @@
+{
+  "status": "PASS_ISOLATED_SOFTWARE_ONLY",
+  "checks": {
+    "reported_input_hashes_unchanged": true,
+    "three_primary_models_and_one_frame_control": true,
+    "all_models_deny_physical_approval": true,
+    "no_ffb_or_contact_claim_in_ranges": true,
+    "all_ranges_are_conditional_only": true,
+    "both_frames_and_both_1655_support_sources": true,
+    "user_approximate_range_not_used_for_selection": true,
+    "frame1655_three_models_reproduce_saved_ranges": true,
+    "one_pixel_control_brackets_primary_range": true,
+    "height_sensitivity_is_strictly_increasing": true,
+    "existing_controlling_sources_unchanged_from_HEAD": true,
+    "focused_tests_passed": true
+  },
+  "tests": 12,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "reproduced_frame1655_abs_error_m": {
+    "shared_plane_height_free_plus_approx_board": 4.440892098500626e-16,
+    "externally_anchored_height_and_normal": 2.220446049250313e-16,
+    "external_height_only_free_fit_normal_counterfactual": 2.220446049250313e-16
+  },
+  "height_sensitivity_groups": {
+    "1655/lateral_completion_shadow": true,
+    "1259/lateral_completion_shadow": true,
+    "1655/baseline_colour_shadow": true
+  },
+  "protected_sources": {
+    "src/cone_distance_core.py": true,
+    "src/cone_distance_worker.py": true,
+    "src/run_cone_distance_live.py": true,
+    "src/summarize_cone_distance_live.py": true,
+    "src/cone_distance_diagnostic_config.json": true,
+    "src/cone_scene_diagnostic.py": true,
+    "src/angular_fisheye_geometry.py": true,
+    "src/fisheye_floor_geometry.py": true
+  },
+  "meaning": "Numerical consistency, provenance and software isolation only; NOT physical accuracy or contact approval",
+  "not_performed": [
+    "camera/network/ROS/FFB activation",
+    "GPU inference",
+    "new recording",
+    "physical distance truth measurement",
+    "Git commit/push"
+  ],
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "live_integrated": false,
+  "usable_for_ffb": false
+}

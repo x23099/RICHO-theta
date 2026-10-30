@@ -1,0 +1,13 @@
+frame,support_source,support_point,model,model_role,horizontal_camera_foot_range_m,one_pixel_control_min_m,one_pixel_control_max_m,approximate_tile_reference_m,approximate_reference_used_for_selection,approximate_reference_agreement,status,physical_metric_verified,floor_contact_verified,usable_for_ffb
+1259,lateral_completion_shadow,"(299,385)",shared_free_plane_plus_approx_board_thickness,conditional_primary,1.451627,1.428402,1.475513,1.5,False,False,CONDITIONAL_FIXED_FLOOR_RANGE_ONLY,False,False,False
+1259,lateral_completion_shadow,"(299,385)",externally_anchored_height_and_normal,conditional_primary,1.403751,1.382455,1.425611,1.5,False,False,CONDITIONAL_FIXED_FLOOR_RANGE_ONLY,False,False,False
+1259,lateral_completion_shadow,"(299,385)",external_height_only_free_fit_normal,counterfactual_control,1.526989,1.50256,1.552116,1.5,False,False,CONDITIONAL_FIXED_FLOOR_RANGE_ONLY,False,False,False
+1259,lateral_completion_shadow,"(299,385)",per_frame_printed_plane_normal_external_height,sensitivity_only,1.52839,,,1.5,False,,CONDITIONAL_FIXED_FLOOR_RANGE_ONLY,False,False,False
+1655,baseline_colour_shadow,"(300,385)",shared_free_plane_plus_approx_board_thickness,conditional_primary,1.451007,1.427809,1.474866,1.5,False,False,CONDITIONAL_FIXED_FLOOR_RANGE_ONLY,False,False,False
+1655,baseline_colour_shadow,"(300,385)",externally_anchored_height_and_normal,conditional_primary,1.403041,1.381775,1.424871,1.5,False,False,CONDITIONAL_FIXED_FLOOR_RANGE_ONLY,False,False,False
+1655,baseline_colour_shadow,"(300,385)",external_height_only_free_fit_normal,counterfactual_control,1.526337,1.501935,1.551435,1.5,False,False,CONDITIONAL_FIXED_FLOOR_RANGE_ONLY,False,False,False
+1655,baseline_colour_shadow,"(300,385)",per_frame_printed_plane_normal_external_height,sensitivity_only,1.518407,,,1.5,False,,CONDITIONAL_FIXED_FLOOR_RANGE_ONLY,False,False,False
+1655,lateral_completion_shadow,"(300,385)",shared_free_plane_plus_approx_board_thickness,conditional_primary,1.451007,1.427809,1.474866,1.5,False,False,CONDITIONAL_FIXED_FLOOR_RANGE_ONLY,False,False,False
+1655,lateral_completion_shadow,"(300,385)",externally_anchored_height_and_normal,conditional_primary,1.403041,1.381775,1.424871,1.5,False,False,CONDITIONAL_FIXED_FLOOR_RANGE_ONLY,False,False,False
+1655,lateral_completion_shadow,"(300,385)",external_height_only_free_fit_normal,counterfactual_control,1.526337,1.501935,1.551435,1.5,False,False,CONDITIONAL_FIXED_FLOOR_RANGE_ONLY,False,False,False
+1655,lateral_completion_shadow,"(300,385)",per_frame_printed_plane_normal_external_height,sensitivity_only,1.518407,,,1.5,False,,CONDITIONAL_FIXED_FLOOR_RANGE_ONLY,False,False,False

@@ -1,0 +1,441 @@
+diff --git a/src/cone_distance_core.py b/src/cone_distance_core.py
+index 6445003..3fd5087 100644
+--- a/src/cone_distance_core.py
++++ b/src/cone_distance_core.py
+@@ -181,12 +181,16 @@ class ConeDistanceEngine:
+     blocks output until it completes, including potentially rejected images.
+     """
+     def __init__(self, config=DEFAULT_CONFIG, *, target_roi=None, colour_support_shadow=False,
+-                 support_completion_shadow=False):
++                 support_completion_shadow=False, frame_evidence=False):
+         if type(colour_support_shadow) is not bool or type(support_completion_shadow) is not bool:
+             raise ValueError("explicit bool support shadow flags required")
++        if type(frame_evidence) is not bool:
++            raise ValueError("explicit bool frame-evidence flag required")
+         self.colour_support_shadow = colour_support_shadow
+         self.support_completion_shadow = support_completion_shadow
++        self.frame_evidence = frame_evidence
+         self.settings, self.camera, self.transform, self.prior_up = load_config(config)
++        self.config_sha256 = digest(config)
+         self.target_roi = checked_target_roi(target_roi)
+         self.session = None
+         self.reset(None)
+@@ -312,6 +316,36 @@ class ConeDistanceEngine:
+             base_pixel=colour["point"], target_frame="paper7_ground_reference",
+             target_roi_native_xyxy=self.target_roi, target_association_physically_verified=False,
+             physical_metric_verified=False, floor_contact_verified=False, usable_for_ffb=False)
++        if self.frame_evidence:
++            selected_boxes = [
++                {key: float(box[key]) for key in ("x1", "y1", "x2", "y2", "confidence", "class_id")}
++                for box in selected]
++            age_limit_ms = 1000.0*self.settings["frame_max_age_sec"]
++            result["frame_evidence"] = dict(
++                schema="cone_frame_evidence_v1",
++                input=dict(session=frame.session, frame=frame.sequence,
++                    media_time_sec=frame.media_time, received_time_sec=source,
++                    width=1280, height=720, image_stored_in_log=False,
++                    lookup="match by session and frame; S-key PNG filename records the session digest and frame"),
++                selected_detector_boxes=selected_boxes,
++                support_observation=dict(method="V30_union_hsv_observed_lower_envelope",
++                    point=colour["point"], support=colour["support"], reason=colour["reason"],
++                    quality_accepted=quality["quality_accepted"], quality_reason=quality["reason"],
++                    floor_contact_verified=False),
++                pose=dict(initialized=pose["initialized"], pose_available=pose["pose_available"],
++                    pose_reason=pose["pose_reason"], up_optical=pose["up_optical"],
++                    scene_reason=self.scene_reason, scene_source_frame=pose["latest_scene_frame"],
++                    scene_age_sec=pose["latest_scene_age_sec"],
++                    scene_pending=self.pending is not None,
++                    physical_transform_verified=False, usable_for_ffb=False),
++                floor_model=dict(target_frame="paper7_ground_reference",
++                    config_sha256=self.config_sha256,
++                    camera_candidate_sha256=self.settings["camera_sha256"],
++                    floor_candidate_sha256=self.settings["floor_sha256"],
++                    physical_metric_verified=False),
++                freshness=dict(age_ms=result["frame_age_ms"], limit_ms=age_limit_ms,
++                    within_limit=result["frame_age_ms"] <= age_limit_ms,
++                    blockers=list(result["blockers"]), primary_reason=result["reason"]))
+         if self.colour_support_shadow:
+             result["colour_support_shadow"] = dict(
+                 candidate=shadow, controlling_distance=False, usable_for_ffb=False,
+diff --git a/src/cone_distance_worker.py b/src/cone_distance_worker.py
+index e01859a..9d27799 100644
+--- a/src/cone_distance_worker.py
++++ b/src/cone_distance_worker.py
+@@ -60,10 +60,11 @@ class DistanceWorker:
+     0.5 s from SOURCE reception, not 0.5 s from inference completion.
+     """
+     def __init__(self, slot, config, predictor, log_path, *, scene_function=estimate_scene, clock=time.monotonic, target_roi=None,
+-                 colour_support_shadow=False, support_completion_shadow=False):
++                 colour_support_shadow=False, support_completion_shadow=False, frame_evidence=False):
+         self.slot, self.predictor, self.clock = slot, predictor, clock
+         self.engine = ConeDistanceEngine(config, target_roi=target_roi, colour_support_shadow=colour_support_shadow,
+-                                         support_completion_shadow=support_completion_shadow)
++                                         support_completion_shadow=support_completion_shadow,
++                                         frame_evidence=frame_evidence)
+         self.scene_function = scene_function
+         self.log_path = Path(log_path)
+         self.stop_event = threading.Event()
+diff --git a/src/run_cone_distance_live.py b/src/run_cone_distance_live.py
+index 71569bd..2f282a9 100644
+--- a/src/run_cone_distance_live.py
++++ b/src/run_cone_distance_live.py
+@@ -37,6 +37,8 @@ def build_parser():
+                         help="log experimental colour-separated support; NEVER controls distance")
+     parser.add_argument("--support-completion-shadow", action="store_true",
+                         help="log bounded lateral completion candidate separately; NEVER controls distance")
++    parser.add_argument("--frame-evidence", action="store_true",
++                        help="log selected bbox/support/pose/floor/freshness per frame; NEVER controls distance")
+     return parser
+ 
+ 
+@@ -55,7 +57,8 @@ async def run(args):
+     colour_shadow = getattr(args, "colour_support_shadow", False)
+     completion_shadow = getattr(args, "support_completion_shadow", False)
+     worker = DistanceWorker(slot, args.config, predictor, args.output_dir / "distance_frames.jsonl", target_roi=args.target_roi,
+-                            colour_support_shadow=colour_shadow, support_completion_shadow=completion_shadow)
++                            colour_support_shadow=colour_shadow, support_completion_shadow=completion_shadow,
++                            frame_evidence=getattr(args, "frame_evidence", False))
+     app = web.Application(client_max_size=256 * 1024)
+     app.router.add_post("/offer", server.offer)
+     runner = web.AppRunner(app, access_log=None)
+@@ -67,6 +70,7 @@ async def run(args):
+                    cross_pc_capture_latency_measured=False)
+     summary["colour_support_shadow_enabled"] = colour_shadow
+     summary["support_completion_shadow_enabled"] = completion_shadow
++    summary["frame_evidence_enabled"] = getattr(args, "frame_evidence", False)
+     started = time.monotonic()
+     run_error = None
+     try:
+diff --git a/src/summarize_cone_distance_live.py b/src/summarize_cone_distance_live.py
+index 4cf0cbe..4fc1e10 100644
+--- a/src/summarize_cone_distance_live.py
++++ b/src/summarize_cone_distance_live.py
+@@ -41,6 +41,101 @@ def text(value, name):
+     return value
+ 
+ 
++def _pixel_point(value, name):
++    if value is None:
++        return None
++    if (not isinstance(value, list) or len(value) != 2
++            or any(type(item) is not int for item in value)
++            or not (0 <= value[0] < 1280 and 0 <= value[1] < 720)):
++        raise ValueError("native image pixel point required: " + name)
++    return value
++
++
++def _sha256_text(value, name):
++    if not isinstance(value, str) or len(value) != 64:
++        raise ValueError("sha256 text required: " + name)
++    try:
++        int(value, 16)
++    except ValueError as exc:
++        raise ValueError("sha256 text required: " + name) from exc
++
++
++def validate_frame_evidence(row):
++    evidence = row.get("frame_evidence")
++    if evidence is None:
++        return
++    if not isinstance(evidence, dict) or evidence.get("schema") != "cone_frame_evidence_v1":
++        raise ValueError("frame evidence schema required")
++    source = evidence.get("input")
++    if (not isinstance(source, dict) or source.get("session") != row["session"]
++            or source.get("frame") != row["frame"]):
++        raise ValueError("frame evidence must describe the same input frame")
++    if source.get("width") != 1280 or source.get("height") != 720:
++        raise ValueError("native frame size required in evidence")
++    number(source.get("media_time_sec"), "evidence media time")
++    number(source.get("received_time_sec"), "evidence received time", 0)
++    if abs(source["received_time_sec"]-row["source_time_sec"]) > 1e-9:
++        raise ValueError("evidence reception time must match the row")
++    boxes = evidence.get("selected_detector_boxes")
++    if not isinstance(boxes, list):
++        raise ValueError("selected detector box list required")
++    for box in boxes:
++        if not isinstance(box, dict):
++            raise ValueError("selected detector box object required")
++        x1, y1, x2, y2 = (number(box.get(key), "selected box " + key)
++                          for key in ("x1", "y1", "x2", "y2"))
++        confidence = number(box.get("confidence"), "selected box confidence")
++        if (not 0 <= x1 < x2 <= 1280 or not 0 <= y1 < y2 <= 720
++                or not 0 <= confidence <= 1 or box.get("class_id") != 0):
++            raise ValueError("bounded single-class selected box required")
++    support = evidence.get("support_observation")
++    if not isinstance(support, dict) or support.get("floor_contact_verified") is not False:
++        raise ValueError("unverified baseline support observation required")
++    support_rows = support.get("support")
++    if support_rows is not None:
++        if not isinstance(support_rows, list):
++            raise ValueError("support column list required")
++        for point in support_rows:
++            _pixel_point(point, "support column")
++    point = _pixel_point(support.get("point"), "support point")
++    if point is not None and (support_rows is None or point not in support_rows):
++        raise ValueError("support point must be an actual observed column")
++    pose = evidence.get("pose")
++    if not isinstance(pose, dict):
++        raise ValueError("pose evidence object required")
++    for key in ("initialized", "pose_available", "scene_pending"):
++        if type(pose.get(key)) is not bool:
++            raise ValueError("explicit bool pose evidence required: " + key)
++    for key in ("physical_transform_verified", "usable_for_ffb"):
++        if pose.get(key) is not False:
++            raise ValueError("unverified pose evidence required: " + key)
++    up = pose.get("up_optical")
++    if up is not None and (not isinstance(up, list) or len(up) != 3
++                           or any(type(value) not in (int, float) or not math.isfinite(value)
++                                  for value in up)):
++        raise ValueError("finite optical up vector or null required")
++    floor = evidence.get("floor_model")
++    if (not isinstance(floor, dict) or floor.get("target_frame") != "paper7_ground_reference"
++            or floor.get("physical_metric_verified") is not False):
++        raise ValueError("conditional paper-reference floor model required")
++    for key in ("config_sha256", "camera_candidate_sha256", "floor_candidate_sha256"):
++        _sha256_text(floor.get(key), "evidence " + key)
++    fresh = evidence.get("freshness")
++    if not isinstance(fresh, dict):
++        raise ValueError("freshness evidence object required")
++    if abs(number(fresh.get("age_ms"), "evidence age", 0)-row["frame_age_ms"]) > .001:
++        raise ValueError("evidence age must match the row")
++    if fresh.get("limit_ms") != AGE_LIMIT_MS:
++        raise ValueError("screened 500 ms freshness limit required")
++    if (type(fresh.get("within_limit")) is not bool
++            or fresh["within_limit"] != (row["frame_age_ms"] <= AGE_LIMIT_MS)):
++        raise ValueError("freshness verdict must follow the age limit")
++    if (not isinstance(fresh.get("blockers"), list)
++            or any(not isinstance(item, str) or not item for item in fresh["blockers"])):
++        raise ValueError("string freshness blockers required")
++    text(fresh.get("primary_reason"), "freshness primary reason")
++
++
+ def validate_row(row):
+     if not isinstance(row, dict):
+         raise ValueError("frame row must be an object")
+@@ -119,6 +214,7 @@ def validate_row(row):
+                 raise ValueError("completion point must be an actual native support column")
+             if candidate["completion_granted"] and (point is None or not candidate["completion_attempted"]):
+                 raise ValueError("completion grant requires an attempted observation and support point")
++    validate_frame_evidence(row)
+ 
+ 
+ def load_frames(path, allow_truncated_last_line=False):
+@@ -293,6 +389,25 @@ def summarize(input_dir, output_dir, *, allow_truncated_last_line=False, plots=T
+             controlling_distance=False, physical_metric_verified=False, usable_for_ffb=False)
+         shadow_note += (f"\n左右枠接触の比較ログ：{len(completion_rows)}処理frame、画像上の候補点あり{points}件、"
+                         f"追加の候補点取得{grants}件。物理接地・距離精度の合格判定ではなく、距離・FFBへ使用していません。\n")
++    evidence_rows = [r["frame_evidence"] for r in rows if "frame_evidence" in r]
++    if evidence_rows:
++        summary["frame_evidence"] = dict(
++            recorded_frames=len(evidence_rows),
++            frames_with_one_selected_box=sum(len(e["selected_detector_boxes"]) == 1
++                                             for e in evidence_rows),
++            frames_with_no_selected_box=sum(not e["selected_detector_boxes"]
++                                            for e in evidence_rows),
++            frames_with_support_point=sum(e["support_observation"]["point"] is not None
++                                          for e in evidence_rows),
++            frames_with_pose_available=sum(e["pose"]["pose_available"] for e in evidence_rows),
++            frames_within_freshness_limit=sum(e["freshness"]["within_limit"]
++                                              for e in evidence_rows),
++            floor_model_config_sha256=sorted({e["floor_model"]["config_sha256"]
++                                              for e in evidence_rows}),
++            controlling_distance=False, physical_metric_verified=False,
++            floor_contact_verified=False, usable_for_ffb=False)
++        shadow_note += (f"\n同一フレーム証拠ログ：{len(evidence_rows)}処理frameに選択bbox・支持点・"
++                        "姿勢・床モデル識別子・鮮度理由を記録。距離制御・接地判定には使用していません。\n")
+     output.mkdir(parents=True, exist_ok=False)
+     fields = ("session", "frame", "source_time_sec", "completed_time_sec", "distance_available",
+               "distance_forward_m", "lateral_right_m", "reason", *TIMINGS, "inference_source")
+diff --git a/tests/test_frame_evidence_logging.py b/tests/test_frame_evidence_logging.py
+new file mode 100644
+index 0000000..3c53241
+--- /dev/null
++++ b/tests/test_frame_evidence_logging.py
+@@ -0,0 +1,187 @@
++"""Log-only same-frame evidence fields; no camera, GPU, or socket."""
++import copy
++import json
++from pathlib import Path
++import sys
++import tempfile
++import unittest
++
++import cv2
++import numpy as np
++
++ROOT = Path(__file__).resolve().parents[1]
++sys.path.insert(0, str(ROOT / "src"))
++from cone_distance_core import DEFAULT_CONFIG, ConeDistanceEngine
++from cone_distance_worker import DistanceWorker
++from summarize_cone_distance_live import summarize, validate_row
++from theta_rtc_frames import LatestNativeFrame, NativeFrame
++import run_cone_distance_live as live
++
++
++BOX = dict(x1=290., y1=305., x2=350., y2=405., confidence=.9, class_id=0)
++
++
++def cone_image():
++    image = np.zeros((720, 1280, 3), np.uint8)
++    cv2.fillPoly(image, [np.array([[320, 310], [295, 400], [345, 400]], np.int32)], (0, 0, 255))
++    return image
++
++
++def frame(sequence=1, source=10.):
++    return NativeFrame("synthetic", sequence, source, source, cone_image())
++
++
++def measure(engine, sequence=1, source=10., boxes=None):
++    return engine.measure(frame(sequence, source), [BOX] if boxes is None else boxes, source+.01)
++
++
++class EngineEvidenceTests(unittest.TestCase):
++    def test_default_engine_has_no_evidence_block(self):
++        engine = ConeDistanceEngine()
++        engine.reset("synthetic")
++        self.assertNotIn("frame_evidence", measure(engine))
++
++    def test_evidence_block_contains_same_frame_facts(self):
++        engine = ConeDistanceEngine(frame_evidence=True)
++        engine.reset("synthetic")
++        row = measure(engine)
++        evidence = row["frame_evidence"]
++        self.assertEqual(evidence["schema"], "cone_frame_evidence_v1")
++        self.assertEqual(evidence["input"]["session"], "synthetic")
++        self.assertEqual(evidence["input"]["frame"], 1)
++        self.assertEqual(evidence["input"]["received_time_sec"], 10.)
++        self.assertEqual((evidence["input"]["width"], evidence["input"]["height"]), (1280, 720))
++        self.assertEqual(evidence["selected_detector_boxes"][0]["x1"], BOX["x1"])
++        support = evidence["support_observation"]
++        self.assertEqual(support["point"], [320, 400])
++        self.assertIn(support["point"], support["support"])
++        self.assertIs(support["floor_contact_verified"], False)
++
++    def test_evidence_pose_floor_and_freshness_are_explicit(self):
++        engine = ConeDistanceEngine(frame_evidence=True)
++        engine.reset("synthetic")
++        evidence = measure(engine)["frame_evidence"]
++        pose = evidence["pose"]
++        self.assertIs(pose["initialized"], False)
++        self.assertIs(pose["physical_transform_verified"], False)
++        self.assertIs(pose["usable_for_ffb"], False)
++        floor = evidence["floor_model"]
++        self.assertEqual(floor["target_frame"], "paper7_ground_reference")
++        self.assertEqual(floor["config_sha256"], engine.config_sha256)
++        self.assertEqual(floor["camera_candidate_sha256"], engine.settings["camera_sha256"])
++        self.assertEqual(floor["floor_candidate_sha256"], engine.settings["floor_sha256"])
++        fresh = evidence["freshness"]
++        self.assertEqual(fresh["limit_ms"], 500.)
++        self.assertAlmostEqual(fresh["age_ms"], 10.)
++        self.assertIs(fresh["within_limit"], True)
++
++    def test_evidence_does_not_change_controlling_result(self):
++        plain = ConeDistanceEngine()
++        evidence = ConeDistanceEngine(frame_evidence=True)
++        for engine in (plain, evidence):
++            engine.reset("synthetic")
++        base = measure(plain)
++        extended = measure(evidence)
++        extended.pop("frame_evidence")
++        self.assertEqual(base, extended)
++
++    def test_evidence_requires_explicit_bool(self):
++        with self.assertRaisesRegex(ValueError, "frame-evidence"):
++            ConeDistanceEngine(frame_evidence="yes")
++
++    def test_no_selected_box_is_recorded_without_bbox_substitution(self):
++        engine = ConeDistanceEngine(frame_evidence=True)
++        engine.reset("synthetic")
++        evidence = measure(engine, boxes=[])["frame_evidence"]
++        self.assertEqual(evidence["selected_detector_boxes"], [])
++        self.assertIsNone(evidence["support_observation"]["point"])
++
++
++class WorkerAndSummaryTests(unittest.TestCase):
++    def test_worker_writes_evidence_and_summary_counts_it(self):
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            slot = LatestNativeFrame()
++            slot.begin("synthetic")
++            slot.publish("synthetic", cone_image(), 0., 10.)
++            log = root/"input"/"distance_frames.jsonl"
++            log.parent.mkdir()
++            worker = DistanceWorker(slot, DEFAULT_CONFIG,
++                lambda frame: [BOX], log, clock=lambda: 10., frame_evidence=True,
++                scene_function=lambda *args: dict(accepted=False, reason="synthetic_only"))
++            worker.start()
++            try:
++                self.assertTrue(worker.updated.wait(1))
++            finally:
++                worker.close()
++            row = json.loads(log.read_text().splitlines()[0])
++            self.assertEqual(row["frame_evidence"]["input"]["frame"], row["frame"])
++            self.assertEqual(row["frame_evidence"]["selected_detector_boxes"][0]["x2"], BOX["x2"])
++            self.assertIs(row["usable_for_ffb"], False)
++
++            result = summarize(log.parent, root/"report", plots=False)
++            self.assertEqual(result["frame_evidence"]["recorded_frames"], 1)
++            self.assertEqual(result["frame_evidence"]["frames_with_one_selected_box"], 1)
++            self.assertEqual(result["frame_evidence"]["frames_with_support_point"], 1)
++            self.assertIs(result["frame_evidence"]["controlling_distance"], False)
++            self.assertEqual(result["frame_evidence"]["frames_with_pose_available"], 0)
++
++    def test_validator_rejects_mismatched_frame_identity(self):
++        with tempfile.TemporaryDirectory() as directory:
++            row = self.capture_row(Path(directory))
++        bad = copy.deepcopy(row)
++        bad["frame_evidence"]["input"]["frame"] += 1
++        with self.assertRaisesRegex(ValueError, "same input frame"):
++            validate_row(bad)
++
++    def test_validator_rejects_unobserved_support_point(self):
++        with tempfile.TemporaryDirectory() as directory:
++            row = self.capture_row(Path(directory))
++        bad = copy.deepcopy(row)
++        bad["frame_evidence"]["support_observation"]["point"] = [999, 699]
++        with self.assertRaisesRegex(ValueError, "actual observed column"):
++            validate_row(bad)
++
++    def test_validator_rejects_approval_flags_in_evidence(self):
++        with tempfile.TemporaryDirectory() as directory:
++            row = self.capture_row(Path(directory))
++        for key in ("floor_contact_verified",):
++            bad = copy.deepcopy(row)
++            bad["frame_evidence"]["support_observation"][key] = True
++            with self.assertRaisesRegex(ValueError, "unverified baseline support"):
++                validate_row(bad)
++        bad = copy.deepcopy(row)
++        bad["frame_evidence"]["floor_model"]["physical_metric_verified"] = True
++        with self.assertRaisesRegex(ValueError, "paper-reference floor model"):
++            validate_row(bad)
++        bad = copy.deepcopy(row)
++        bad["frame_evidence"]["pose"]["usable_for_ffb"] = True
++        with self.assertRaisesRegex(ValueError, "unverified pose"):
++            validate_row(bad)
++
++    def capture_row(self, root):
++        slot = LatestNativeFrame()
++        slot.begin("synthetic")
++        slot.publish("synthetic", cone_image(), 0., 10.)
++        log = root/"input"/"distance_frames.jsonl"
++        log.parent.mkdir()
++        worker = DistanceWorker(slot, DEFAULT_CONFIG,
++            lambda frame: [BOX], log, clock=lambda: 10., frame_evidence=True,
++            scene_function=lambda *args: dict(accepted=False, reason="synthetic_only"))
++        worker.start()
++        try:
++            self.assertTrue(worker.updated.wait(1))
++        finally:
++            worker.close()
++        return json.loads(log.read_text().splitlines()[0])
++
++
++class CliTests(unittest.TestCase):
++    def test_frame_evidence_flag_is_opt_in(self):
++        base = ["--weights", "unused.pt", "--output-dir", "unused"]
++        self.assertFalse(live.build_parser().parse_args(base).frame_evidence)
++        self.assertTrue(live.build_parser().parse_args(base+["--frame-evidence"]).frame_evidence)
++
++
++if __name__ == "__main__":
++    unittest.main()

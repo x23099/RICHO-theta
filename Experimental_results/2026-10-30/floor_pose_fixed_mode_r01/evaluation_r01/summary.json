@@ -1,0 +1,547 @@
+{
+  "status": "CONDITIONAL_EXPLICIT_FLOOR_RANGES_ONLY",
+  "session": "15ae673c24484d119952ae391df611aa",
+  "frames": [
+    1259,
+    1655
+  ],
+  "heading_reference": {
+    "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+    "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+  },
+  "support_sources": [
+    {
+      "frame": 1259,
+      "detector_box": {
+        "image": "decoded_15ae673c24484d119952ae391df611aa_f001259.png",
+        "prediction_index": 0,
+        "class_id": 0,
+        "confidence": 0.9573034644126892,
+        "x1": 280.66455078125,
+        "y1": 299.222900390625,
+        "x2": 325.957763671875,
+        "y2": 385.8875427246094
+      },
+      "image_sha256": "b87dd75deade099ab68daa13699bf1210482ae52efe83ae06a0bdb156aee0f34",
+      "sources": [
+        {
+          "source": "baseline_colour_shadow",
+          "point": null,
+          "reason": "colour_contour_reaches_roi_edge",
+          "support_pixels": 0,
+          "completion_granted": false,
+          "controlling_distance": false
+        },
+        {
+          "source": "lateral_completion_shadow",
+          "point": [
+            299,
+            385
+          ],
+          "reason": "unverified_lateral_completed_colour_support",
+          "support_pixels": 40,
+          "completion_granted": true,
+          "original_shadow_point": null,
+          "controlling_distance": false
+        }
+      ]
+    },
+    {
+      "frame": 1655,
+      "detector_box": {
+        "image": "decoded_15ae673c24484d119952ae391df611aa_f001655.png",
+        "prediction_index": 0,
+        "class_id": 0,
+        "confidence": 0.9615399241447449,
+        "x1": 280.6037292480469,
+        "y1": 299.2230224609375,
+        "x2": 325.9890441894531,
+        "y2": 386.2531433105469
+      },
+      "image_sha256": "2243e7c9873c0ccdd2950502209b9e4db5b5e04a56b356a94e30a3d21f3f45d7",
+      "sources": [
+        {
+          "source": "baseline_colour_shadow",
+          "point": [
+            300,
+            385
+          ],
+          "reason": "unverified_visible_colour_support",
+          "support_pixels": 38,
+          "completion_granted": false,
+          "controlling_distance": false
+        },
+        {
+          "source": "lateral_completion_shadow",
+          "point": [
+            300,
+            385
+          ],
+          "reason": "unverified_visible_colour_support",
+          "support_pixels": 38,
+          "completion_granted": false,
+          "original_shadow_point": [
+            300,
+            385
+          ],
+          "controlling_distance": false
+        }
+      ]
+    }
+  ],
+  "models": [
+    {
+      "name": "shared_free_plane_plus_approx_board_thickness",
+      "role": "conditional_primary",
+      "camera_to_floor_m": 0.5608812051808865,
+      "normal_optical": [
+        -0.013886511283541509,
+        -0.9997875765133128,
+        -0.015230451536600846
+      ],
+      "evidence": [
+        "shared free-height printed-plane fit on two board frames",
+        "estimated printed-plane height 0.545881205 m",
+        "user supplied approximate board-plus-paper thickness 15 mm"
+      ]
+    },
+    {
+      "name": "externally_anchored_height_and_normal",
+      "role": "conditional_primary",
+      "camera_to_floor_m": 0.59,
+      "normal_optical": [
+        -0.01702109792295926,
+        -0.9988423051832949,
+        -0.04499257273838369
+      ],
+      "evidence": [
+        "printed-plane normal fitted with printed-plane height fixed to 575 mm",
+        "user reported lens-centre floor height 590 mm",
+        "575 mm = 590 mm minus approximate 15 mm board thickness"
+      ]
+    },
+    {
+      "name": "external_height_only_free_fit_normal",
+      "role": "counterfactual_control",
+      "camera_to_floor_m": 0.59,
+      "normal_optical": [
+        -0.013886511283541509,
+        -0.9997875765133128,
+        -0.015230451536600846
+      ],
+      "evidence": [
+        "shared free-height printed-plane normal",
+        "user reported lens-centre floor height 590 mm"
+      ]
+    }
+  ],
+  "per_frame_models": [
+    {
+      "frame": 1259,
+      "name": "per_frame_printed_plane_normal_external_height",
+      "role": "sensitivity_only",
+      "camera_to_floor_m": 0.59,
+      "normal_optical": [
+        -0.007518482981978266,
+        -0.9998715138601924,
+        -0.014157266140626174
+      ]
+    },
+    {
+      "frame": 1655,
+      "name": "per_frame_printed_plane_normal_external_height",
+      "role": "sensitivity_only",
+      "camera_to_floor_m": 0.59,
+      "normal_optical": [
+        -0.009936308520827296,
+        -0.9998137688940071,
+        -0.016543799531551395
+      ]
+    }
+  ],
+  "ranges": [
+    {
+      "frame": 1259,
+      "support_source": "lateral_completion_shadow",
+      "support_x": 299,
+      "support_y": 385,
+      "model": "shared_free_plane_plus_approx_board_thickness",
+      "model_role": "conditional_primary",
+      "horizontal_camera_foot_range_m": 1.4516265004678763,
+      "forward_heading_reference_m": 1.4499427161857363,
+      "lateral_right_heading_reference_m": -0.06989718621334157,
+      "lens_slant_range_m": 1.5562156737373445,
+      "incidence_cos": 0.360413543345118,
+      "support_1px_control_min_m": 1.4284023884126043,
+      "support_1px_control_max_m": 1.4755126267860414,
+      "status": "CONDITIONAL_FIXED_FLOOR_RANGE_ONLY",
+      "reason": "EXPLICIT_FLOOR_MODEL_NOT_PHYSICALLY_VERIFIED",
+      "yaw_measured": false,
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1259,
+      "support_source": "lateral_completion_shadow",
+      "support_x": 299,
+      "support_y": 385,
+      "model": "externally_anchored_height_and_normal",
+      "model_role": "conditional_primary",
+      "horizontal_camera_foot_range_m": 1.4037510632159107,
+      "forward_heading_reference_m": 1.4019761421617984,
+      "lateral_right_heading_reference_m": -0.07056872032934028,
+      "lens_slant_range_m": 1.5227005770931459,
+      "incidence_cos": 0.38746947947331645,
+      "support_1px_control_min_m": 1.382455128322386,
+      "support_1px_control_max_m": 1.4256107694873932,
+      "status": "CONDITIONAL_FIXED_FLOOR_RANGE_ONLY",
+      "reason": "EXPLICIT_FLOOR_MODEL_NOT_PHYSICALLY_VERIFIED",
+      "yaw_measured": false,
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1259,
+      "support_source": "lateral_completion_shadow",
+      "support_x": 299,
+      "support_y": 385,
+      "model": "external_height_only_free_fit_normal",
+      "model_role": "counterfactual_control",
+      "horizontal_camera_foot_range_m": 1.526989364886697,
+      "forward_heading_reference_m": 1.5252181650010774,
+      "lateral_right_heading_reference_m": -0.07352597927144246,
+      "lens_slant_range_m": 1.6370084057441727,
+      "incidence_cos": 0.360413543345118,
+      "support_1px_control_min_m": 1.5025595462619286,
+      "support_1px_control_max_m": 1.5521155670085391,
+      "status": "CONDITIONAL_FIXED_FLOOR_RANGE_ONLY",
+      "reason": "EXPLICIT_FLOOR_MODEL_NOT_PHYSICALLY_VERIFIED",
+      "yaw_measured": false,
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1259,
+      "support_source": "lateral_completion_shadow",
+      "support_x": 299,
+      "support_y": 385,
+      "model": "per_frame_printed_plane_normal_external_height",
+      "model_role": "sensitivity_only",
+      "horizontal_camera_foot_range_m": 1.5283895061582506,
+      "forward_heading_reference_m": 1.526785530068461,
+      "lateral_right_heading_reference_m": -0.07000305499212241,
+      "lens_slant_range_m": 1.6383145249110935,
+      "incidence_cos": 0.3601262096068015,
+      "support_1px_control_min_m": null,
+      "support_1px_control_max_m": null,
+      "status": "CONDITIONAL_FIXED_FLOOR_RANGE_ONLY",
+      "reason": "EXPLICIT_FLOOR_MODEL_NOT_PHYSICALLY_VERIFIED",
+      "yaw_measured": false,
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1655,
+      "support_source": "baseline_colour_shadow",
+      "support_x": 300,
+      "support_y": 385,
+      "model": "shared_free_plane_plus_approx_board_thickness",
+      "model_role": "conditional_primary",
+      "horizontal_camera_foot_range_m": 1.451006666095692,
+      "forward_heading_reference_m": 1.449688044689636,
+      "lateral_right_heading_reference_m": -0.0618459225662823,
+      "lens_slant_range_m": 1.555637512847803,
+      "incidence_cos": 0.3605474929401246,
+      "support_1px_control_min_m": 1.427808551603652,
+      "support_1px_control_max_m": 1.4748659202198329,
+      "status": "CONDITIONAL_FIXED_FLOOR_RANGE_ONLY",
+      "reason": "EXPLICIT_FLOOR_MODEL_NOT_PHYSICALLY_VERIFIED",
+      "yaw_measured": false,
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1655,
+      "support_source": "baseline_colour_shadow",
+      "support_x": 300,
+      "support_y": 385,
+      "model": "externally_anchored_height_and_normal",
+      "model_role": "conditional_primary",
+      "horizontal_camera_foot_range_m": 1.4030413364392949,
+      "forward_heading_reference_m": 1.4016402091869777,
+      "lateral_right_heading_reference_m": -0.06268744489646727,
+      "lens_slant_range_m": 1.5220463172181595,
+      "incidence_cos": 0.3876360353332358,
+      "support_1px_control_min_m": 1.3817747285671425,
+      "support_1px_control_max_m": 1.4248707455582839,
+      "status": "CONDITIONAL_FIXED_FLOOR_RANGE_ONLY",
+      "reason": "EXPLICIT_FLOOR_MODEL_NOT_PHYSICALLY_VERIFIED",
+      "yaw_measured": false,
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1655,
+      "support_source": "baseline_colour_shadow",
+      "support_x": 300,
+      "support_y": 385,
+      "model": "external_height_only_free_fit_normal",
+      "model_role": "counterfactual_control",
+      "horizontal_camera_foot_range_m": 1.5263373510980183,
+      "forward_heading_reference_m": 1.5249502719404593,
+      "lateral_right_heading_reference_m": -0.06505672498392717,
+      "lens_slant_range_m": 1.6364002289650643,
+      "incidence_cos": 0.3605474929401246,
+      "support_1px_control_min_m": 1.5019348797299688,
+      "support_1px_control_max_m": 1.5514352859248826,
+      "status": "CONDITIONAL_FIXED_FLOOR_RANGE_ONLY",
+      "reason": "EXPLICIT_FLOOR_MODEL_NOT_PHYSICALLY_VERIFIED",
+      "yaw_measured": false,
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1655,
+      "support_source": "baseline_colour_shadow",
+      "support_x": 300,
+      "support_y": 385,
+      "model": "per_frame_printed_plane_normal_external_height",
+      "model_role": "sensitivity_only",
+      "horizontal_camera_foot_range_m": 1.5184073069190411,
+      "forward_heading_reference_m": 1.5171173002100713,
+      "lateral_right_heading_reference_m": -0.06257672976785933,
+      "lens_slant_range_m": 1.629006061899444,
+      "incidence_cos": 0.3621840420360693,
+      "support_1px_control_min_m": null,
+      "support_1px_control_max_m": null,
+      "status": "CONDITIONAL_FIXED_FLOOR_RANGE_ONLY",
+      "reason": "EXPLICIT_FLOOR_MODEL_NOT_PHYSICALLY_VERIFIED",
+      "yaw_measured": false,
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1655,
+      "support_source": "lateral_completion_shadow",
+      "support_x": 300,
+      "support_y": 385,
+      "model": "shared_free_plane_plus_approx_board_thickness",
+      "model_role": "conditional_primary",
+      "horizontal_camera_foot_range_m": 1.451006666095692,
+      "forward_heading_reference_m": 1.449688044689636,
+      "lateral_right_heading_reference_m": -0.0618459225662823,
+      "lens_slant_range_m": 1.555637512847803,
+      "incidence_cos": 0.3605474929401246,
+      "support_1px_control_min_m": 1.427808551603652,
+      "support_1px_control_max_m": 1.4748659202198329,
+      "status": "CONDITIONAL_FIXED_FLOOR_RANGE_ONLY",
+      "reason": "EXPLICIT_FLOOR_MODEL_NOT_PHYSICALLY_VERIFIED",
+      "yaw_measured": false,
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1655,
+      "support_source": "lateral_completion_shadow",
+      "support_x": 300,
+      "support_y": 385,
+      "model": "externally_anchored_height_and_normal",
+      "model_role": "conditional_primary",
+      "horizontal_camera_foot_range_m": 1.4030413364392949,
+      "forward_heading_reference_m": 1.4016402091869777,
+      "lateral_right_heading_reference_m": -0.06268744489646727,
+      "lens_slant_range_m": 1.5220463172181595,
+      "incidence_cos": 0.3876360353332358,
+      "support_1px_control_min_m": 1.3817747285671425,
+      "support_1px_control_max_m": 1.4248707455582839,
+      "status": "CONDITIONAL_FIXED_FLOOR_RANGE_ONLY",
+      "reason": "EXPLICIT_FLOOR_MODEL_NOT_PHYSICALLY_VERIFIED",
+      "yaw_measured": false,
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1655,
+      "support_source": "lateral_completion_shadow",
+      "support_x": 300,
+      "support_y": 385,
+      "model": "external_height_only_free_fit_normal",
+      "model_role": "counterfactual_control",
+      "horizontal_camera_foot_range_m": 1.5263373510980183,
+      "forward_heading_reference_m": 1.5249502719404593,
+      "lateral_right_heading_reference_m": -0.06505672498392717,
+      "lens_slant_range_m": 1.6364002289650643,
+      "incidence_cos": 0.3605474929401246,
+      "support_1px_control_min_m": 1.5019348797299688,
+      "support_1px_control_max_m": 1.5514352859248826,
+      "status": "CONDITIONAL_FIXED_FLOOR_RANGE_ONLY",
+      "reason": "EXPLICIT_FLOOR_MODEL_NOT_PHYSICALLY_VERIFIED",
+      "yaw_measured": false,
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1655,
+      "support_source": "lateral_completion_shadow",
+      "support_x": 300,
+      "support_y": 385,
+      "model": "per_frame_printed_plane_normal_external_height",
+      "model_role": "sensitivity_only",
+      "horizontal_camera_foot_range_m": 1.5184073069190411,
+      "forward_heading_reference_m": 1.5171173002100713,
+      "lateral_right_heading_reference_m": -0.06257672976785933,
+      "lens_slant_range_m": 1.629006061899444,
+      "incidence_cos": 0.3621840420360693,
+      "support_1px_control_min_m": null,
+      "support_1px_control_max_m": null,
+      "status": "CONDITIONAL_FIXED_FLOOR_RANGE_ONLY",
+      "reason": "EXPLICIT_FLOOR_MODEL_NOT_PHYSICALLY_VERIFIED",
+      "yaw_measured": false,
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    }
+  ],
+  "height_sensitivity_rows": 51,
+  "pose_solution_controls": [
+    {
+      "frame": 1259,
+      "initial_ippe_solution_index": 0,
+      "initial_height_m": 0.5468344255818524,
+      "initial_native_rmse_px": 0.2436420035653224,
+      "refined_height_m": 0.5492140552126893,
+      "refined_normal_optical": [
+        -0.005452355230441956,
+        -0.999848954242752,
+        -0.016502742866462056
+      ],
+      "native_point_rmse_px": 0.23618137568559197,
+      "success": true,
+      "all_positive_depth": true,
+      "all_in_angular_domain": true,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1259,
+      "initial_ippe_solution_index": 1,
+      "initial_height_m": 0.5201625284223086,
+      "initial_native_rmse_px": 5.720606620659645,
+      "refined_height_m": 0.6058495682964287,
+      "refined_normal_optical": [
+        -0.007830551310847554,
+        0.28002938720524423,
+        -0.9599594912118029
+      ],
+      "native_point_rmse_px": 5.293050512077779,
+      "success": true,
+      "all_positive_depth": true,
+      "all_in_angular_domain": true,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1655,
+      "initial_ippe_solution_index": 0,
+      "initial_height_m": 0.5404311383745733,
+      "initial_native_rmse_px": 0.3016908995972982,
+      "refined_height_m": 0.5375261670070984,
+      "refined_normal_optical": [
+        -0.008725497546798106,
+        -0.9998818189381682,
+        -0.012657560960201068
+      ],
+      "native_point_rmse_px": 0.286035302540298,
+      "success": true,
+      "all_positive_depth": true,
+      "all_in_angular_domain": true,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "frame": 1655,
+      "initial_ippe_solution_index": 1,
+      "initial_height_m": 0.5223042130068175,
+      "initial_native_rmse_px": 3.6005952692994563,
+      "refined_height_m": 0.5476809592991935,
+      "refined_normal_optical": [
+        -0.38944035046890996,
+        0.443653587811782,
+        -0.8071602737055299
+      ],
+      "native_point_rmse_px": 3.4661233726328518,
+      "success": true,
+      "all_positive_depth": true,
+      "all_in_angular_domain": true,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    }
+  ],
+  "user_reference": {
+    "approximate_range_m": 1.5,
+    "basis": "floor tile 0.50 m, roughly three tiles",
+    "uncertainty_m": null,
+    "precise_measurement": false,
+    "used_to_fit_or_select_model": false
+  },
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/intrinsic_consistency_r02/intrinsic_consistency.json": "26e6c058753e705ff94baf31038190d9ce6571f87a9a76144a7171530b4a1642",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/edge_refinement_r02/edge_refinement.json": "559beba5e871aec27958e4a7a596895bfd768a65e76dffb5204df58d606eec66",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/README.md": "cc39401fb7554cfbf73f3de1dffa6cd04faaa52a472590162eefeb1bbff1a73e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/comparison_r01/conditional_ranges.csv": "821bae3a0b5d4eeab88c1a72432394bc0e0ee0d1ac5f525015023ad14f9af125",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/comparison_r01/same_session_cone_comparison.json": "3278df0ef32fd5cf0d81d11ecf900c758214d8bae050fe8a2c37fc61c3d2d641",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/comparison_r01/validation_r01/conditional_cone_ranges.png": "1062c53943883143224c8dde1a56c0d5c2387964b1ec90c0275eb21418640773",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/comparison_r01/validation_r01/verification.json": "92909684e32c75ce2217556f3ffc8c539fd9c33aa544477ee06d9ea78794501c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/inference_f001259/audit.json": "e818ca83b9d1d9ea9463a75998bb9e7b23675cd2b3cfe249bfe8fa8e8085ef8c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/inference_f001259/ultralytics_config/Ultralytics/Arial.ttf": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/inference_f001259/ultralytics_config/Ultralytics/settings.json": "eb041cf5807fa09c552e05ec8d44c0609f2e761a03352c0c309514f87fbabb62",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/inference_f001259/ultralytics_config/matplotlib/fontlist-v390.json": "07d17d01323ec11b1246408c80368d43ae16efbfb35dac583e28456d4017968c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/inference_f001655/audit.json": "4460ff41db029e19c8020fba87886ab5f9d1d7a197359d0a6fbae69515245fc5",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/inference_f001655/ultralytics_config/Ultralytics/Arial.ttf": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/inference_f001655/ultralytics_config/Ultralytics/settings.json": "3e9a136562249480ce5b2c1a408389c27d3dad130dbbd2fcf38ac8d511680b36",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/inference_f001655/ultralytics_config/matplotlib/fontlist-v390.json": "809ff5fd4177c6b2a8199c136b2361039ac3924208b30745b20d7445db86857c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/originals/decoded_15ae673c24484d119952ae391df611aa_f001259.png": "b87dd75deade099ab68daa13699bf1210482ae52efe83ae06a0bdb156aee0f34",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/originals/decoded_15ae673c24484d119952ae391df611aa_f001655.png": "2243e7c9873c0ccdd2950502209b9e4db5b5e04a56b356a94e30a3d21f3f45d7",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-30_floor_board_intake_r01/decoded_15ae673c24484d119952ae391df611aa_f001259.png": "b87dd75deade099ab68daa13699bf1210482ae52efe83ae06a0bdb156aee0f34",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-30_floor_board_intake_r01/decoded_15ae673c24484d119952ae391df611aa_f001655.png": "2243e7c9873c0ccdd2950502209b9e4db5b5e04a56b356a94e30a3d21f3f45d7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_completion_logging_r01/current_pair_r01/results.json": "088f0ad947289450d9d94f1d8169711dc3c3ef7d96229ee30469b3985e0a52e5",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_fixed_floor_candidate.py": "d54b56fe8b08ee91085c20cae2228efa9a020b84e05898ffb1af8c0f0df54398",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_cone_fixed_floor_candidate.py": "7a543f15f17da9bb279c73a1e400fc0318a9f3b8f45e9cc0d0079a070262d85b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+  },
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "independent_accuracy_validated": false,
+  "live_integrated": false,
+  "usable_for_ffb": false,
+  "interpretations": [
+    "radial range is yaw-invariant under this model",
+    "forward/lateral use the paper7 heading reference and are not base_link",
+    "support points are unverified colour observations, not physical contact points",
+    "model spread and one-pixel controls are numerical sensitivity, not confidence intervals"
+  ]
+}

@@ -41,6 +41,101 @@ def text(value, name):
     return value
 
 
+def _pixel_point(value, name):
+    if value is None:
+        return None
+    if (not isinstance(value, list) or len(value) != 2
+            or any(type(item) is not int for item in value)
+            or not (0 <= value[0] < 1280 and 0 <= value[1] < 720)):
+        raise ValueError("native image pixel point required: " + name)
+    return value
+
+
+def _sha256_text(value, name):
+    if not isinstance(value, str) or len(value) != 64:
+        raise ValueError("sha256 text required: " + name)
+    try:
+        int(value, 16)
+    except ValueError as exc:
+        raise ValueError("sha256 text required: " + name) from exc
+
+
+def validate_frame_evidence(row):
+    evidence = row.get("frame_evidence")
+    if evidence is None:
+        return
+    if not isinstance(evidence, dict) or evidence.get("schema") != "cone_frame_evidence_v1":
+        raise ValueError("frame evidence schema required")
+    source = evidence.get("input")
+    if (not isinstance(source, dict) or source.get("session") != row["session"]
+            or source.get("frame") != row["frame"]):
+        raise ValueError("frame evidence must describe the same input frame")
+    if source.get("width") != 1280 or source.get("height") != 720:
+        raise ValueError("native frame size required in evidence")
+    number(source.get("media_time_sec"), "evidence media time")
+    number(source.get("received_time_sec"), "evidence received time", 0)
+    if abs(source["received_time_sec"]-row["source_time_sec"]) > 1e-9:
+        raise ValueError("evidence reception time must match the row")
+    boxes = evidence.get("selected_detector_boxes")
+    if not isinstance(boxes, list):
+        raise ValueError("selected detector box list required")
+    for box in boxes:
+        if not isinstance(box, dict):
+            raise ValueError("selected detector box object required")
+        x1, y1, x2, y2 = (number(box.get(key), "selected box " + key)
+                          for key in ("x1", "y1", "x2", "y2"))
+        confidence = number(box.get("confidence"), "selected box confidence")
+        if (not 0 <= x1 < x2 <= 1280 or not 0 <= y1 < y2 <= 720
+                or not 0 <= confidence <= 1 or box.get("class_id") != 0):
+            raise ValueError("bounded single-class selected box required")
+    support = evidence.get("support_observation")
+    if not isinstance(support, dict) or support.get("floor_contact_verified") is not False:
+        raise ValueError("unverified baseline support observation required")
+    support_rows = support.get("support")
+    if support_rows is not None:
+        if not isinstance(support_rows, list):
+            raise ValueError("support column list required")
+        for point in support_rows:
+            _pixel_point(point, "support column")
+    point = _pixel_point(support.get("point"), "support point")
+    if point is not None and (support_rows is None or point not in support_rows):
+        raise ValueError("support point must be an actual observed column")
+    pose = evidence.get("pose")
+    if not isinstance(pose, dict):
+        raise ValueError("pose evidence object required")
+    for key in ("initialized", "pose_available", "scene_pending"):
+        if type(pose.get(key)) is not bool:
+            raise ValueError("explicit bool pose evidence required: " + key)
+    for key in ("physical_transform_verified", "usable_for_ffb"):
+        if pose.get(key) is not False:
+            raise ValueError("unverified pose evidence required: " + key)
+    up = pose.get("up_optical")
+    if up is not None and (not isinstance(up, list) or len(up) != 3
+                           or any(type(value) not in (int, float) or not math.isfinite(value)
+                                  for value in up)):
+        raise ValueError("finite optical up vector or null required")
+    floor = evidence.get("floor_model")
+    if (not isinstance(floor, dict) or floor.get("target_frame") != "paper7_ground_reference"
+            or floor.get("physical_metric_verified") is not False):
+        raise ValueError("conditional paper-reference floor model required")
+    for key in ("config_sha256", "camera_candidate_sha256", "floor_candidate_sha256"):
+        _sha256_text(floor.get(key), "evidence " + key)
+    fresh = evidence.get("freshness")
+    if not isinstance(fresh, dict):
+        raise ValueError("freshness evidence object required")
+    if abs(number(fresh.get("age_ms"), "evidence age", 0)-row["frame_age_ms"]) > .001:
+        raise ValueError("evidence age must match the row")
+    if fresh.get("limit_ms") != AGE_LIMIT_MS:
+        raise ValueError("screened 500 ms freshness limit required")
+    if (type(fresh.get("within_limit")) is not bool
+            or fresh["within_limit"] != (row["frame_age_ms"] <= AGE_LIMIT_MS)):
+        raise ValueError("freshness verdict must follow the age limit")
+    if (not isinstance(fresh.get("blockers"), list)
+            or any(not isinstance(item, str) or not item for item in fresh["blockers"])):
+        raise ValueError("string freshness blockers required")
+    text(fresh.get("primary_reason"), "freshness primary reason")
+
+
 def validate_row(row):
     if not isinstance(row, dict):
         raise ValueError("frame row must be an object")
@@ -119,6 +214,7 @@ def validate_row(row):
                 raise ValueError("completion point must be an actual native support column")
             if candidate["completion_granted"] and (point is None or not candidate["completion_attempted"]):
                 raise ValueError("completion grant requires an attempted observation and support point")
+    validate_frame_evidence(row)
 
 
 def load_frames(path, allow_truncated_last_line=False):
@@ -293,6 +389,25 @@ def summarize(input_dir, output_dir, *, allow_truncated_last_line=False, plots=T
             controlling_distance=False, physical_metric_verified=False, usable_for_ffb=False)
         shadow_note += (f"\n左右枠接触の比較ログ：{len(completion_rows)}処理frame、画像上の候補点あり{points}件、"
                         f"追加の候補点取得{grants}件。物理接地・距離精度の合格判定ではなく、距離・FFBへ使用していません。\n")
+    evidence_rows = [r["frame_evidence"] for r in rows if "frame_evidence" in r]
+    if evidence_rows:
+        summary["frame_evidence"] = dict(
+            recorded_frames=len(evidence_rows),
+            frames_with_one_selected_box=sum(len(e["selected_detector_boxes"]) == 1
+                                             for e in evidence_rows),
+            frames_with_no_selected_box=sum(not e["selected_detector_boxes"]
+                                            for e in evidence_rows),
+            frames_with_support_point=sum(e["support_observation"]["point"] is not None
+                                          for e in evidence_rows),
+            frames_with_pose_available=sum(e["pose"]["pose_available"] for e in evidence_rows),
+            frames_within_freshness_limit=sum(e["freshness"]["within_limit"]
+                                              for e in evidence_rows),
+            floor_model_config_sha256=sorted({e["floor_model"]["config_sha256"]
+                                              for e in evidence_rows}),
+            controlling_distance=False, physical_metric_verified=False,
+            floor_contact_verified=False, usable_for_ffb=False)
+        shadow_note += (f"\n同一フレーム証拠ログ：{len(evidence_rows)}処理frameに選択bbox・支持点・"
+                        "姿勢・床モデル識別子・鮮度理由を記録。距離制御・接地判定には使用していません。\n")
     output.mkdir(parents=True, exist_ok=False)
     fields = ("session", "frame", "source_time_sec", "completed_time_sec", "distance_available",
               "distance_forward_m", "lateral_right_m", "reason", *TIMINGS, "inference_source")

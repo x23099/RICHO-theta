@@ -1,0 +1,60 @@
+{
+  "status": "PASS_SAVED_DATA_ONLY",
+  "checks": {
+    "declared_saved_data_only": true,
+    "all_flags_false": true,
+    "counts_match_files": true,
+    "known_medians_reproduced_within_0p1mm": true,
+    "c130_uses_floor_candidate": true,
+    "c200_uses_floor_candidate": true,
+    "paper_same_column_identity": true,
+    "smoothness_is_not_treated_as_correctness": true,
+    "static_2m_offset_exceeds_base_side": true,
+    "yellow_occluded_multi_roi_withheld": true,
+    "no_yellow_rescue": true,
+    "completion_not_promoted": true,
+    "approximate_tile_not_used_for_selection": true,
+    "input_hashes_current": true,
+    "output_hashes_current": true,
+    "method_and_analysis_hashes_current": true,
+    "analysis_has_no_inference_or_image_decoding": true,
+    "live_and_protected_sources_unchanged_from_HEAD": true,
+    "focused_tests_passed": true
+  },
+  "tests": 27,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "implied_height_abs_deviation_mm": {
+    "sequence/cone_130": 0.009999999999990905,
+    "sequence/cone_200": 0.0,
+    "static/center_080": 0.02500000000009095,
+    "static/center_130": 0.012000000000000455,
+    "static/center_200": 0.0019999999999527063,
+    "static/left_130": 0.016000000000076398,
+    "static/right_130": 0.03300000000001546
+  },
+  "protected_sources": {
+    "src/cone_distance_core.py": true,
+    "src/cone_distance_worker.py": true,
+    "src/run_cone_distance_live.py": true,
+    "src/summarize_cone_distance_live.py": true,
+    "src/cone_distance_diagnostic_config.json": true,
+    "src/cone_scene_diagnostic.py": true,
+    "src/angular_fisheye_geometry.py": true,
+    "src/fisheye_floor_geometry.py": true
+  },
+  "meaning": "Numerical, provenance and isolation checks only; NOT physical accuracy, floor-contact proof, or FFB approval",
+  "not_performed": [
+    "camera/network/ROS/FFB activation",
+    "GPU inference",
+    "new recording",
+    "new image decoding",
+    "physical distance truth measurement",
+    "Git commit/push"
+  ],
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "live_integrated": false,
+  "usable_for_ffb": false
+}
