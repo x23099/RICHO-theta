@@ -1,0 +1,1003 @@
+[
+  {
+    "session": "15ae673c24484d119952ae391df611aa",
+    "frame": 1259,
+    "source_time_sec": 0.0,
+    "completed_time_sec": 0.01,
+    "frame_age_ms": 10.0,
+    "front_candidates": 1,
+    "colour_reason": "colour_contour_reaches_roi_edge",
+    "quality_accepted": false,
+    "quality_reason": "unavailable_support:colour_contour_reaches_roi_edge",
+    "scene_initialized": false,
+    "scene_pending": false,
+    "scene_reason": "no_scene_observation",
+    "pose_reason": "no_scene_observation",
+    "scene_source_frame": 0,
+    "scene_age_sec": null,
+    "distance_available": false,
+    "reason": "colour_contour_reaches_roi_edge",
+    "blockers": [
+      "colour_contour_reaches_roi_edge",
+      "unavailable_support:colour_contour_reaches_roi_edge",
+      "no_scene_observation"
+    ],
+    "distance_forward_m": null,
+    "lateral_right_m": null,
+    "base_pixel": null,
+    "target_frame": "paper7_ground_reference",
+    "target_roi_native_xyxy": [
+      270,
+      0,
+      350,
+      720
+    ],
+    "target_association_physically_verified": false,
+    "physical_metric_verified": false,
+    "floor_contact_verified": false,
+    "usable_for_ffb": false,
+    "fixed_floor_shadow": {
+      "schema": "fixed_floor_shadow_v1",
+      "session": "15ae673c24484d119952ae391df611aa",
+      "frame": 1259,
+      "model_session": "15ae673c24484d119952ae391df611aa",
+      "model_bundle_sha256": "acd0aedcd226c581dcb776b8c9055c3f5fa65133c613e45ccfd7f3d3f410888f",
+      "camera_candidate_sha256": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+      "heading_reference_sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "support_source": "support_completion_shadow",
+      "support_pixel": [
+        299,
+        385
+      ],
+      "image_quality_accepted": false,
+      "image_quality_reason": "support_confirmation_pending",
+      "frame_age_limit_ms": 500.0,
+      "models": [
+        {
+          "model_name": "shared_free_plane_plus_approx_board_thickness",
+          "range_available": false,
+          "horizontal_camera_foot_range_m": null,
+          "reason": "image_support_quality_not_confirmed"
+        },
+        {
+          "model_name": "externally_anchored_height_and_normal",
+          "range_available": false,
+          "horizontal_camera_foot_range_m": null,
+          "reason": "image_support_quality_not_confirmed"
+        },
+        {
+          "model_name": "external_height_only_free_fit_normal",
+          "range_available": false,
+          "horizontal_camera_foot_range_m": null,
+          "reason": "image_support_quality_not_confirmed"
+        }
+      ],
+      "status": "WITHHELD",
+      "reason": "image_support_quality_not_confirmed",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "yaw_measured": false
+    },
+    "support_completion_shadow": {
+      "candidate": {
+        "support": [
+          [
+            281,
+            385
+          ],
+          [
+            282,
+            385
+          ],
+          [
+            283,
+            385
+          ],
+          [
+            284,
+            385
+          ],
+          [
+            285,
+            385
+          ],
+          [
+            286,
+            385
+          ],
+          [
+            287,
+            385
+          ],
+          [
+            288,
+            385
+          ],
+          [
+            289,
+            385
+          ],
+          [
+            290,
+            385
+          ],
+          [
+            291,
+            385
+          ],
+          [
+            292,
+            385
+          ],
+          [
+            293,
+            385
+          ],
+          [
+            294,
+            383
+          ],
+          [
+            295,
+            383
+          ],
+          [
+            296,
+            383
+          ],
+          [
+            297,
+            383
+          ],
+          [
+            298,
+            385
+          ],
+          [
+            299,
+            385
+          ],
+          [
+            300,
+            385
+          ],
+          [
+            301,
+            385
+          ],
+          [
+            302,
+            383
+          ],
+          [
+            303,
+            383
+          ],
+          [
+            304,
+            383
+          ],
+          [
+            305,
+            383
+          ],
+          [
+            306,
+            383
+          ],
+          [
+            307,
+            383
+          ],
+          [
+            308,
+            383
+          ],
+          [
+            309,
+            383
+          ],
+          [
+            310,
+            385
+          ],
+          [
+            311,
+            385
+          ],
+          [
+            312,
+            385
+          ],
+          [
+            313,
+            385
+          ],
+          [
+            314,
+            383
+          ],
+          [
+            315,
+            383
+          ],
+          [
+            316,
+            383
+          ],
+          [
+            317,
+            383
+          ],
+          [
+            318,
+            383
+          ],
+          [
+            319,
+            383
+          ],
+          [
+            320,
+            383
+          ]
+        ],
+        "point": [
+          299,
+          385
+        ],
+        "reason": "unverified_lateral_completed_colour_support",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          301,
+          316,
+          306,
+          334
+        ],
+        "seed_red_pixels": 90,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "colour_contour_reaches_roi_edge",
+        "original_shadow_point": null,
+        "completion_attempted": true,
+        "completion_granted": true,
+        "completion_reason": "same_closed_seeded_component_and_support_in_two_contexts",
+        "contexts": [
+          {
+            "crop_xyxy": [
+              276,
+              295,
+              330,
+              390
+            ],
+            "lateral_padding_px": 4,
+            "vertical_padding_px": 4,
+            "reason": "colour_contour_reaches_roi_edge",
+            "component": {
+              "pixel_count": 2121,
+              "pixel_sha256": "25209c69b116d548ab9d89bf66af3f189ea0448c692c3590d22ae977c7cd65f8",
+              "bounds_xyxy": [
+                276,
+                302,
+                325,
+                385
+              ],
+              "touches": {
+                "left": true,
+                "right": false,
+                "top": false,
+                "bottom": false
+              }
+            },
+            "observation": {
+              "support": null,
+              "point": null,
+              "reason": "colour_contour_reaches_roi_edge",
+              "floor_contact_verified": false
+            }
+          },
+          {
+            "crop_xyxy": [
+              270,
+              295,
+              336,
+              390
+            ],
+            "lateral_padding_px": 10,
+            "vertical_padding_px": 4,
+            "reason": "unverified_visible_colour_support",
+            "component": {
+              "pixel_count": 2121,
+              "pixel_sha256": "25209c69b116d548ab9d89bf66af3f189ea0448c692c3590d22ae977c7cd65f8",
+              "bounds_xyxy": [
+                276,
+                302,
+                325,
+                385
+              ],
+              "touches": {
+                "left": false,
+                "right": false,
+                "top": false,
+                "bottom": false
+              }
+            },
+            "observation": {
+              "support": [
+                [
+                  281,
+                  385
+                ],
+                [
+                  282,
+                  385
+                ],
+                [
+                  283,
+                  385
+                ],
+                [
+                  284,
+                  385
+                ],
+                [
+                  285,
+                  385
+                ],
+                [
+                  286,
+                  385
+                ],
+                [
+                  287,
+                  385
+                ],
+                [
+                  288,
+                  385
+                ],
+                [
+                  289,
+                  385
+                ],
+                [
+                  290,
+                  385
+                ],
+                [
+                  291,
+                  385
+                ],
+                [
+                  292,
+                  385
+                ],
+                [
+                  293,
+                  385
+                ],
+                [
+                  294,
+                  383
+                ],
+                [
+                  295,
+                  383
+                ],
+                [
+                  296,
+                  383
+                ],
+                [
+                  297,
+                  383
+                ],
+                [
+                  298,
+                  385
+                ],
+                [
+                  299,
+                  385
+                ],
+                [
+                  300,
+                  385
+                ],
+                [
+                  301,
+                  385
+                ],
+                [
+                  302,
+                  383
+                ],
+                [
+                  303,
+                  383
+                ],
+                [
+                  304,
+                  383
+                ],
+                [
+                  305,
+                  383
+                ],
+                [
+                  306,
+                  383
+                ],
+                [
+                  307,
+                  383
+                ],
+                [
+                  308,
+                  383
+                ],
+                [
+                  309,
+                  383
+                ],
+                [
+                  310,
+                  385
+                ],
+                [
+                  311,
+                  385
+                ],
+                [
+                  312,
+                  385
+                ],
+                [
+                  313,
+                  385
+                ],
+                [
+                  314,
+                  383
+                ],
+                [
+                  315,
+                  383
+                ],
+                [
+                  316,
+                  383
+                ],
+                [
+                  317,
+                  383
+                ],
+                [
+                  318,
+                  383
+                ],
+                [
+                  319,
+                  383
+                ],
+                [
+                  320,
+                  383
+                ]
+              ],
+              "point": [
+                299,
+                385
+              ],
+              "reason": "unverified_visible_colour_support",
+              "floor_contact_verified": false
+            }
+          },
+          {
+            "crop_xyxy": [
+              260,
+              295,
+              346,
+              390
+            ],
+            "lateral_padding_px": 20,
+            "vertical_padding_px": 4,
+            "reason": "unverified_visible_colour_support",
+            "component": {
+              "pixel_count": 2121,
+              "pixel_sha256": "25209c69b116d548ab9d89bf66af3f189ea0448c692c3590d22ae977c7cd65f8",
+              "bounds_xyxy": [
+                276,
+                302,
+                325,
+                385
+              ],
+              "touches": {
+                "left": false,
+                "right": false,
+                "top": false,
+                "bottom": false
+              }
+            },
+            "observation": {
+              "support": [
+                [
+                  281,
+                  385
+                ],
+                [
+                  282,
+                  385
+                ],
+                [
+                  283,
+                  385
+                ],
+                [
+                  284,
+                  385
+                ],
+                [
+                  285,
+                  385
+                ],
+                [
+                  286,
+                  385
+                ],
+                [
+                  287,
+                  385
+                ],
+                [
+                  288,
+                  385
+                ],
+                [
+                  289,
+                  385
+                ],
+                [
+                  290,
+                  385
+                ],
+                [
+                  291,
+                  385
+                ],
+                [
+                  292,
+                  385
+                ],
+                [
+                  293,
+                  385
+                ],
+                [
+                  294,
+                  383
+                ],
+                [
+                  295,
+                  383
+                ],
+                [
+                  296,
+                  383
+                ],
+                [
+                  297,
+                  383
+                ],
+                [
+                  298,
+                  385
+                ],
+                [
+                  299,
+                  385
+                ],
+                [
+                  300,
+                  385
+                ],
+                [
+                  301,
+                  385
+                ],
+                [
+                  302,
+                  383
+                ],
+                [
+                  303,
+                  383
+                ],
+                [
+                  304,
+                  383
+                ],
+                [
+                  305,
+                  383
+                ],
+                [
+                  306,
+                  383
+                ],
+                [
+                  307,
+                  383
+                ],
+                [
+                  308,
+                  383
+                ],
+                [
+                  309,
+                  383
+                ],
+                [
+                  310,
+                  385
+                ],
+                [
+                  311,
+                  385
+                ],
+                [
+                  312,
+                  385
+                ],
+                [
+                  313,
+                  385
+                ],
+                [
+                  314,
+                  383
+                ],
+                [
+                  315,
+                  383
+                ],
+                [
+                  316,
+                  383
+                ],
+                [
+                  317,
+                  383
+                ],
+                [
+                  318,
+                  383
+                ],
+                [
+                  319,
+                  383
+                ],
+                [
+                  320,
+                  383
+                ]
+              ],
+              "point": [
+                299,
+                385
+              ],
+              "reason": "unverified_visible_colour_support",
+              "floor_contact_verified": false
+            }
+          }
+        ],
+        "physical_metric_verified": false
+      },
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false,
+      "status": "one_selected_candidate"
+    },
+    "selected_detector_boxes": [
+      {
+        "x1": 280.66455078125,
+        "y1": 299.222900390625,
+        "x2": 325.957763671875,
+        "y2": 385.8875427246094,
+        "confidence": 0.9573034644126892,
+        "class_id": 0.0
+      }
+    ]
+  },
+  {
+    "session": "15ae673c24484d119952ae391df611aa",
+    "frame": 1655,
+    "source_time_sec": 0.0,
+    "completed_time_sec": 0.01,
+    "frame_age_ms": 10.0,
+    "front_candidates": 1,
+    "colour_reason": "colour_contour_reaches_roi_edge",
+    "quality_accepted": false,
+    "quality_reason": "unavailable_support:colour_contour_reaches_roi_edge",
+    "scene_initialized": false,
+    "scene_pending": false,
+    "scene_reason": "no_scene_observation",
+    "pose_reason": "no_scene_observation",
+    "scene_source_frame": 0,
+    "scene_age_sec": null,
+    "distance_available": false,
+    "reason": "colour_contour_reaches_roi_edge",
+    "blockers": [
+      "colour_contour_reaches_roi_edge",
+      "unavailable_support:colour_contour_reaches_roi_edge",
+      "no_scene_observation"
+    ],
+    "distance_forward_m": null,
+    "lateral_right_m": null,
+    "base_pixel": null,
+    "target_frame": "paper7_ground_reference",
+    "target_roi_native_xyxy": [
+      270,
+      0,
+      350,
+      720
+    ],
+    "target_association_physically_verified": false,
+    "physical_metric_verified": false,
+    "floor_contact_verified": false,
+    "usable_for_ffb": false,
+    "fixed_floor_shadow": {
+      "schema": "fixed_floor_shadow_v1",
+      "session": "15ae673c24484d119952ae391df611aa",
+      "frame": 1655,
+      "model_session": "15ae673c24484d119952ae391df611aa",
+      "model_bundle_sha256": "acd0aedcd226c581dcb776b8c9055c3f5fa65133c613e45ccfd7f3d3f410888f",
+      "camera_candidate_sha256": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+      "heading_reference_sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "support_source": "support_completion_shadow",
+      "support_pixel": [
+        300,
+        385
+      ],
+      "image_quality_accepted": false,
+      "image_quality_reason": "support_confirmation_pending",
+      "frame_age_limit_ms": 500.0,
+      "models": [
+        {
+          "model_name": "shared_free_plane_plus_approx_board_thickness",
+          "range_available": false,
+          "horizontal_camera_foot_range_m": null,
+          "reason": "image_support_quality_not_confirmed"
+        },
+        {
+          "model_name": "externally_anchored_height_and_normal",
+          "range_available": false,
+          "horizontal_camera_foot_range_m": null,
+          "reason": "image_support_quality_not_confirmed"
+        },
+        {
+          "model_name": "external_height_only_free_fit_normal",
+          "range_available": false,
+          "horizontal_camera_foot_range_m": null,
+          "reason": "image_support_quality_not_confirmed"
+        }
+      ],
+      "status": "WITHHELD",
+      "reason": "image_support_quality_not_confirmed",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "yaw_measured": false
+    },
+    "support_completion_shadow": {
+      "candidate": {
+        "support": [
+          [
+            283,
+            385
+          ],
+          [
+            284,
+            385
+          ],
+          [
+            285,
+            385
+          ],
+          [
+            286,
+            385
+          ],
+          [
+            287,
+            385
+          ],
+          [
+            288,
+            385
+          ],
+          [
+            289,
+            385
+          ],
+          [
+            290,
+            385
+          ],
+          [
+            291,
+            385
+          ],
+          [
+            292,
+            385
+          ],
+          [
+            293,
+            385
+          ],
+          [
+            294,
+            385
+          ],
+          [
+            295,
+            385
+          ],
+          [
+            296,
+            385
+          ],
+          [
+            297,
+            385
+          ],
+          [
+            298,
+            385
+          ],
+          [
+            299,
+            385
+          ],
+          [
+            300,
+            385
+          ],
+          [
+            301,
+            385
+          ],
+          [
+            302,
+            383
+          ],
+          [
+            303,
+            383
+          ],
+          [
+            304,
+            383
+          ],
+          [
+            305,
+            383
+          ],
+          [
+            306,
+            383
+          ],
+          [
+            307,
+            383
+          ],
+          [
+            308,
+            383
+          ],
+          [
+            309,
+            383
+          ],
+          [
+            310,
+            383
+          ],
+          [
+            311,
+            383
+          ],
+          [
+            312,
+            383
+          ],
+          [
+            313,
+            383
+          ],
+          [
+            314,
+            383
+          ],
+          [
+            315,
+            383
+          ],
+          [
+            316,
+            383
+          ],
+          [
+            317,
+            383
+          ],
+          [
+            318,
+            383
+          ],
+          [
+            319,
+            383
+          ],
+          [
+            320,
+            383
+          ]
+        ],
+        "point": [
+          300,
+          385
+        ],
+        "reason": "unverified_visible_colour_support",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          301,
+          316,
+          306,
+          335
+        ],
+        "seed_red_pixels": 95,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "unverified_visible_colour_support",
+        "original_shadow_point": [
+          300,
+          385
+        ],
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "existing_shadow_point_preserved",
+        "contexts": [],
+        "physical_metric_verified": false
+      },
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false,
+      "status": "one_selected_candidate"
+    },
+    "selected_detector_boxes": [
+      {
+        "x1": 280.6037292480469,
+        "y1": 299.2230224609375,
+        "x2": 325.9890441894531,
+        "y2": 386.2531433105469,
+        "confidence": 0.9615399241447449,
+        "class_id": 0.0
+      }
+    ]
+  }
+]

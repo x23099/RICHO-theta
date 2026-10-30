@@ -47,3 +47,6 @@ Experimental_results/*/regression_runs/
 # Regenerable framework settings/font caches; numerical provenance is retained separately.
 Experimental_results/**/ultralytics_config/
 Experimental_results/**/matplotlib_config/
+
+# Regenerable large fixed-floor comparison JSONL; keep reports and source hashes.
+Experimental_results/2026-10-30/fixed_floor_shadow_logging_r01/evaluation_*/derived_recording/

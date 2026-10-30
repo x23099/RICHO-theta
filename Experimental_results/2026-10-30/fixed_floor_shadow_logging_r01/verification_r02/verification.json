@@ -1,0 +1,64 @@
+{
+  "status": "PASS_LOG_ONLY_SOFTWARE",
+  "checks": {
+    "tests_pass": true,
+    "source_hashes_match": true,
+    "protected_algorithms_and_calibration_unchanged": true,
+    "prechange_snapshots_match_head": true,
+    "recorded_session_rejected": true,
+    "no_fabricated_live_success": true
+  },
+  "tests": 271,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "baseline_commit": "9392487",
+  "protected_sources": {
+    "cone_scene_diagnostic.py": true,
+    "cone_support_quality.py": true,
+    "cone_fixed_floor_candidate.py": true,
+    "cone_colour_support_candidate.py": true,
+    "cone_support_completion_candidate.py": true,
+    "cone_distance_diagnostic_config.json": true,
+    "angular_fisheye_geometry.py": true,
+    "fisheye_floor_geometry.py": true,
+    "theta_rtc_frames.py": true,
+    "theta_rtc_diagnostic.py": true,
+    "webrtc_stream.py": true,
+    "webrtc_receive_ui.py": true,
+    "start_theta_stream_rtc.sh": true,
+    "start_theta_receive_rtc.sh": true
+  },
+  "prechange_snapshots": {
+    "cone_distance_worker.py": true,
+    "summarize_cone_distance_live.py": true,
+    "cone_distance_core.py": true,
+    "run_cone_distance_live.py": true
+  },
+  "source_hash_mismatches": [],
+  "patterns": [
+    "test_scene_sampling_clock.py",
+    "test_cone_distance_diagnostic.py",
+    "test_theta_rtc_diagnostic.py",
+    "test_cone_support_quality*.py",
+    "test_cone_distance_worker_lifecycle.py",
+    "test_cone_distance_live_cleanup.py",
+    "test_summarize_cone_distance_live.py",
+    "test_theta_rtc_capture_recovery.py",
+    "test_cone_colour_support_candidate.py",
+    "test_cone_support_completion_candidate.py",
+    "test_cone_completion_shadow_logging.py",
+    "test_frame_evidence_logging.py",
+    "test_cone_fixed_floor_candidate.py",
+    "test_cone_fixed_floor_shadow.py",
+    "test_cone_support_live_review.py"
+  ],
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/fixed_floor_shadow_logging_r01/verify.py": "51a468e95abc6eca8fe9f2e2d0036be6f5f684907f97c14309f5926c73ec40ce",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/fixed_floor_shadow_logging_r01/evaluation_r02/summary.json": "6071f5890398a5311d27c25fd07d87e2745aeef0dc10c436ce05ead70e22c1be",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_fixed_floor_shadow.py": "d9ab28031e0423128250e7fd1aacd30c2f863e9f8cbb0e665a462d577ffdb075",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_cone_fixed_floor_shadow.py": "dcc4b2e0125a07e26f7c2cee3602eed54b3c9ad7a4c292e2c5a5d0521c015f64"
+  }
+}

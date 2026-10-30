@@ -1,0 +1,184 @@
+{
+  "schema": "cone_distance_live_log_report_v1",
+  "status": "INCOMPLETE_CAPTURE",
+  "processed_frames": 1689,
+  "conditional_output_frames": 0,
+  "session_count": 1,
+  "sessions": [
+    {
+      "session": "f860e50d1c4e485a98cbc1a2f6138cdf",
+      "processed_frames": 1689,
+      "conditional_output_frames": 0,
+      "target_roi_native_xyxy": [
+        270,
+        0,
+        350,
+        720
+      ],
+      "conditional_fraction_of_processed_frames": 0.0,
+      "logged_completion_span_sec": 56.435679213002004,
+      "processed_completion_hz": 29.91015654527833,
+      "unlogged_sequence_numbers_between_logged_frames": 35,
+      "first_conditional_source_offset_sec": null,
+      "reasons": {
+        "frame_processing_too_old": 1,
+        "colour_contour_reaches_roi_edge": 1688
+      },
+      "blockers": {
+        "colour_contour_reaches_roi_edge": 1689,
+        "frame_processing_too_old": 1,
+        "latest_scene_image_rejected": 1689,
+        "unavailable_support:colour_contour_reaches_roi_edge": 1689,
+        "newer_scene_processing_pending": 125
+      },
+      "distance_forward_m": {
+        "count": 0,
+        "median": null,
+        "p95": null,
+        "maximum": null
+      },
+      "timings_ms": {
+        "frame_age_ms": {
+          "count": 1689,
+          "median": 13.633173002745025,
+          "p95": 17.201199002010977,
+          "maximum": 1000.5158639978617
+        },
+        "predict_ms": {
+          "count": 1689,
+          "median": 6.752803998097079,
+          "p95": 8.285842998157023,
+          "maximum": 992.7511009991576
+        },
+        "support_geometry_ms": {
+          "count": 1689,
+          "median": 3.522437000356149,
+          "p95": 4.68372580144205,
+          "maximum": 12.671792999753961
+        },
+        "cone_service_ms": {
+          "count": 1689,
+          "median": 10.384953999164281,
+          "p95": 13.24919339967891,
+          "maximum": 997.1858939970843
+        }
+      }
+    }
+  ],
+  "inference_sources": {
+    "recorded_fixed_floor_comparison_not_live_inference": 1689
+  },
+  "contains_injected_or_unverified_predictor": true,
+  "missing_live_summary": true,
+  "truncated_final_line_ignored": false,
+  "recorded_runtime_status": null,
+  "recorded_run_error": null,
+  "recorded_shutdown": null,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/fixed_floor_shadow_logging_r01/evaluation_r01/derived_recording/distance_frames.jsonl": "7835dee17addcd7b7776755b107a87931afa4031ddcd5e32e4c1b17531448c02",
+    "/home/robo25/theta_ws/RICHO-theta/src/summarize_cone_distance_live.py": "2d995fdef03d2e2120f47e07e81a846c80d2b914e5b9acde761cab9396afa137"
+  },
+  "plots_generated": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "physical_output": false,
+  "display_availability_measured": false,
+  "camera_to_receiver_latency_measured": false,
+  "notes": [
+    "Counts include only processed/logged frames, not all received frames or actual GUI display.",
+    "Sequence gaps are unlogged decoded frame numbers, not network packet loss.",
+    "Completion frequency is not camera FPS. Frame age uses receiver-local reception time.",
+    "No ground truth input: distance statistics are NOT accuracy measurements.",
+    "Finalization does not mean distance estimation or hardware is approved."
+  ],
+  "colour_support_shadow": {
+    "recorded_frames": 1689,
+    "selected_candidate_frames": 1689,
+    "unverified_image_point_frames": 1636,
+    "selected_colours": {
+      "withheld": 18,
+      "red": 1671
+    },
+    "reasons": {
+      "ambiguous_upper_body_colour": 18,
+      "unverified_visible_colour_support": 1636,
+      "colour_contour_reaches_roi_edge": 35
+    },
+    "controlling_distance": false,
+    "usable_for_ffb": false
+  },
+  "support_completion_shadow": {
+    "recorded_frames": 1689,
+    "selected_candidate_frames": 1689,
+    "unverified_image_point_frames": 1671,
+    "completion_attempted_frames": 35,
+    "completion_granted_frames": 35,
+    "previous_shadow_point_frames": 1636,
+    "reasons": {
+      "ambiguous_upper_body_colour": 18,
+      "unverified_visible_colour_support": 1636,
+      "unverified_lateral_completed_colour_support": 35
+    },
+    "completion_reasons": {
+      "not_eligible": 18,
+      "existing_shadow_point_preserved": 1636,
+      "same_closed_seeded_component_and_support_in_two_contexts": 35
+    },
+    "controlling_distance": false,
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  "frame_evidence": {
+    "recorded_frames": 1689,
+    "frames_with_one_selected_box": 1689,
+    "frames_with_no_selected_box": 0,
+    "frames_with_support_point": 0,
+    "frames_with_pose_available": 0,
+    "frames_within_freshness_limit": 1688,
+    "floor_model_config_sha256": [
+      "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0"
+    ],
+    "controlling_distance": false,
+    "physical_metric_verified": false,
+    "floor_contact_verified": false,
+    "usable_for_ffb": false
+  },
+  "fixed_floor_shadow": {
+    "recorded_frames": 1689,
+    "frames_with_comparison_range": 0,
+    "reasons": {
+      "frame_processing_too_old": 1,
+      "model_session_mismatch": 1688
+    },
+    "model_bundle_sha256": [
+      "acd0aedcd226c581dcb776b8c9055c3f5fa65133c613e45ccfd7f3d3f410888f"
+    ],
+    "per_model": {
+      "external_height_only_free_fit_normal": {
+        "count": 0,
+        "median": null,
+        "p95": null,
+        "maximum": null
+      },
+      "externally_anchored_height_and_normal": {
+        "count": 0,
+        "median": null,
+        "p95": null,
+        "maximum": null
+      },
+      "shared_free_plane_plus_approx_board_thickness": {
+        "count": 0,
+        "median": null,
+        "p95": null,
+        "maximum": null
+      }
+    },
+    "controlling_distance": false,
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  "output_sha256": {
+    "processed_frames.csv": "cb4da7dcef47cd62ee63b3499e569d3fe66c800e9eb68b1d4f9174e8050ce680",
+    "report.md": "5231c2e205088fe9806dc35e233af4e3408cbb0738840d70f749804bdefb5f03"
+  }
+}

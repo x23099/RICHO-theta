@@ -208,7 +208,8 @@ class ConeDistanceEngine:
     blocks output until it completes, including potentially rejected images.
     """
     def __init__(self, config=DEFAULT_CONFIG, *, target_roi=None, colour_support_shadow=False,
-                 support_completion_shadow=False, frame_evidence=False):
+                 support_completion_shadow=False, frame_evidence=False,
+                 fixed_floor_models=None, fixed_floor_support_source="support_completion_shadow"):
         if type(colour_support_shadow) is not bool or type(support_completion_shadow) is not bool:
             raise ValueError("explicit bool support shadow flags required")
         if type(frame_evidence) is not bool:
@@ -217,6 +218,13 @@ class ConeDistanceEngine:
         self.support_completion_shadow = support_completion_shadow
         self.frame_evidence = frame_evidence
         self.settings, self.camera, self.transform, self.prior_up = load_config(config)
+        self.fixed_floor_shadow = None
+        if fixed_floor_models is not None:
+            if ((fixed_floor_support_source == "colour_support_shadow" and not colour_support_shadow)
+                    or (fixed_floor_support_source == "support_completion_shadow" and not support_completion_shadow)):
+                raise ValueError("selected fixed-floor support shadow must be explicitly enabled")
+            from cone_fixed_floor_shadow import FixedFloorShadow
+            self.fixed_floor_shadow = FixedFloorShadow(fixed_floor_models, self.settings, fixed_floor_support_source)
         self.config_sha256 = digest(config)
         self.target_roi = checked_target_roi(target_roi)
         self.session = None
@@ -224,6 +232,8 @@ class ConeDistanceEngine:
 
     def reset(self, session):
         self.session = session
+        if self.fixed_floor_shadow is not None:
+            self.fixed_floor_shadow.reset()
         self.quality = ConeSupportQualityGate()
         self.pose = PastOnlyPose()
         self.pending = None
@@ -302,6 +312,14 @@ class ConeDistanceEngine:
                     completion_attempted=False, completion_granted=False, completion_reason="observation_error",
                     controlling_distance=False, physical_metric_verified=False,
                     floor_contact_verified=False, usable_for_ffb=False)
+        fixed_shadow = None
+        if self.fixed_floor_shadow is not None:
+            observation = {"baseline": colour, "colour_support_shadow": shadow,
+                           "support_completion_shadow": completion_shadow}[self.fixed_floor_shadow.support_source]
+            try:
+                fixed_shadow = self.fixed_floor_shadow.observe(frame, observation, self.camera, self.transform)
+            except Exception as exc:
+                fixed_shadow = self.fixed_floor_shadow.failed(frame, observation, exc)
         quality = self.quality.update(source, candidates)
         if callable(completed_at):
             now = finite_time(completed_at())
@@ -344,6 +362,10 @@ class ConeDistanceEngine:
             base_pixel=colour["point"], target_frame="paper7_ground_reference",
             target_roi_native_xyxy=self.target_roi, target_association_physically_verified=False,
             physical_metric_verified=False, floor_contact_verified=False, usable_for_ffb=False)
+        if fixed_shadow is not None:
+            from cone_fixed_floor_shadow import enforce_freshness
+            enforce_freshness(fixed_shadow, result["frame_age_ms"])
+            result["fixed_floor_shadow"] = fixed_shadow
         if self.frame_evidence:
             selected_boxes = [
                 {key: float(box[key]) for key in ("x1", "y1", "x2", "y2", "confidence", "class_id")}

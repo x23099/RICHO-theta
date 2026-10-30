@@ -1,0 +1,31 @@
+{
+  "status": "PASS_SESSION_GUARD_AND_LOG_ONLY",
+  "recorded_frames": 1689,
+  "baseline_fields_unchanged": 1689,
+  "comparison_range_frames": 0,
+  "reasons": {
+    "frame_processing_too_old": 1,
+    "model_session_mismatch": 1688
+  },
+  "report_status": "INCOMPLETE_CAPTURE",
+  "independent_stills": 2,
+  "stills_have_no_temporal_confirmation": true,
+  "timings": "recorded local timestamps/ages reused, not fresh live or CPU latency measurements",
+  "no_live_summary_fabricated": true,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/recordings/2026-10-30/live_frame_evidence_r02_20261030_185348/distance_frames.jsonl": "5f0396a6f40e2fbef1c29613b8850523075324e0574b8ee44ec31748abc009e7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_pose_fixed_mode_r01/evaluation_r01/explicit_floor_models.json": "acd0aedcd226c581dcb776b8c9055c3f5fa65133c613e45ccfd7f3d3f410888f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/fixed_floor_shadow_logging_r01/evaluate_logging.py": "ab05c3d102ebd94a17a894ecaa0ae9b528563c025099835342af5203dbbc7bd7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/originals/decoded_15ae673c24484d119952ae391df611aa_f001259.png": "b87dd75deade099ab68daa13699bf1210482ae52efe83ae06a0bdb156aee0f34",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/inference_f001259/audit.json": "e818ca83b9d1d9ea9463a75998bb9e7b23675cd2b3cfe249bfe8fa8e8085ef8c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/originals/decoded_15ae673c24484d119952ae391df611aa_f001655.png": "2243e7c9873c0ccdd2950502209b9e4db5b5e04a56b356a94e30a3d21f3f45d7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/cone_same_session_r01/inference_f001655/audit.json": "4460ff41db029e19c8020fba87886ab5f9d1d7a197359d0a6fbae69515245fc5",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py": "2719a21fc3bb31edc2e13c9425d77b99494b4d9e1d20d88613457dd04fde282f",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_worker.py": "43dbb5676783593410529d2de0dd4a32de4204c11f2930b3734425ba3ae32f2e",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_fixed_floor_shadow.py": "d9ab28031e0423128250e7fd1aacd30c2f863e9f8cbb0e665a462d577ffdb075",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_fixed_floor_candidate.py": "d54b56fe8b08ee91085c20cae2228efa9a020b84e05898ffb1af8c0f0df54398",
+    "/home/robo25/theta_ws/RICHO-theta/src/summarize_cone_distance_live.py": "f3ad6d0f6cb2e7267bf6b78c76488a9761c154e39d80c6c898fc51b485bf83eb"
+  }
+}

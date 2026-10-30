@@ -1,0 +1,222 @@
+{
+  "png": "Experimental_results/2026-10-30/live_frame_evidence_r01/analysis_r02/evidence/decoded_f860e50d1c4e485a98cbc1a2f6138cdf_f000635.png",
+  "crop": [
+    265,
+    296,
+    320,
+    393
+  ],
+  "mask_pixels": 2682,
+  "left": {
+    "count": 44,
+    "first": 8,
+    "last": 95,
+    "red_count": 4,
+    "yellow_count": 40,
+    "red_examples": [
+      [
+        265,
+        316
+      ],
+      [
+        265,
+        317
+      ],
+      [
+        265,
+        320
+      ]
+    ],
+    "yellow_examples": [
+      [
+        265,
+        304
+      ],
+      [
+        265,
+        306
+      ],
+      [
+        265,
+        307
+      ]
+    ]
+  },
+  "right": {
+    "count": 10,
+    "first": 61,
+    "last": 91,
+    "red_count": 4,
+    "yellow_count": 6,
+    "red_examples": [
+      [
+        319,
+        357
+      ],
+      [
+        319,
+        360
+      ],
+      [
+        319,
+        361
+      ]
+    ],
+    "yellow_examples": [
+      [
+        319,
+        373
+      ],
+      [
+        319,
+        376
+      ],
+      [
+        319,
+        377
+      ]
+    ]
+  },
+  "bottom": {
+    "count": 19,
+    "first": 1,
+    "last": 53,
+    "red_count": 0,
+    "yellow_count": 19,
+    "red_examples": [],
+    "yellow_examples": [
+      [
+        266,
+        392
+      ],
+      [
+        267,
+        392
+      ],
+      [
+        268,
+        392
+      ]
+    ]
+  },
+  "top": {
+    "count": 0,
+    "first": null,
+    "last": null,
+    "red_count": 0,
+    "yellow_count": 0,
+    "red_examples": [],
+    "yellow_examples": []
+  },
+  "hsv_samples": {
+    "left": [
+      [
+        265,
+        316,
+        [
+          10,
+          216,
+          130
+        ]
+      ],
+      [
+        265,
+        317,
+        [
+          10,
+          200,
+          140
+        ]
+      ],
+      [
+        265,
+        320,
+        [
+          10,
+          219,
+          106
+        ]
+      ],
+      [
+        265,
+        304,
+        [
+          24,
+          98,
+          130
+        ]
+      ]
+    ],
+    "right": [
+      [
+        319,
+        357,
+        [
+          8,
+          80,
+          204
+        ]
+      ],
+      [
+        319,
+        360,
+        [
+          10,
+          120,
+          130
+        ]
+      ],
+      [
+        319,
+        361,
+        [
+          10,
+          126,
+          123
+        ]
+      ],
+      [
+        319,
+        373,
+        [
+          21,
+          84,
+          127
+        ]
+      ]
+    ],
+    "bottom": [
+      [
+        266,
+        392,
+        [
+          18,
+          82,
+          161
+        ]
+      ],
+      [
+        267,
+        392,
+        [
+          18,
+          83,
+          160
+        ]
+      ],
+      [
+        268,
+        392,
+        [
+          18,
+          81,
+          157
+        ]
+      ]
+    ],
+    "top": []
+  },
+  "method": "V30 union HSV re-applied to saved native PNG; no inference or threshold change",
+  "physical_metric_verified": false,
+  "floor_contact_verified": false
+}

@@ -185,6 +185,60 @@ def validate_frame_evidence(row):
     text(fresh.get("primary_reason"), "freshness primary reason")
 
 
+def validate_fixed_floor_shadow(row):
+    shadow = row.get("fixed_floor_shadow")
+    if shadow is None:
+        return
+    if (not isinstance(shadow, dict) or shadow.get("schema") != "fixed_floor_shadow_v1"
+            or shadow.get("session") != row["session"] or shadow.get("frame") != row["frame"]):
+        raise ValueError("same-frame fixed-floor shadow required")
+    for key in ("controlling_distance", "physical_metric_verified", "floor_contact_verified", "usable_for_ffb", "yaw_measured"):
+        if shadow.get(key) is not False:
+            raise ValueError("fixed-floor shadow must deny physical/control authority")
+    if shadow.get("coordinate_frame") != "paper7_heading_carryover_camera_foot" or shadow.get("frame_age_limit_ms") != 500.:
+        raise ValueError("explicit conditional coordinate frame and 500 ms bound required")
+    for key in ("model_bundle_sha256", "camera_candidate_sha256", "heading_reference_sha256"):
+        _sha256_text(shadow.get(key), key)
+    text(shadow.get("model_session"), "fixed-floor model session")
+    text(shadow.get("reason"), "fixed-floor reason")
+    if type(shadow.get("image_quality_accepted")) is not bool:
+        raise ValueError("explicit image quality verdict required")
+    point = _pixel_point(shadow.get("support_pixel"), "fixed-floor support")
+    source = shadow.get("support_source")
+    if source == "baseline":
+        expected = row.get("base_pixel")
+    elif source in ("colour_support_shadow", "support_completion_shadow") and source in row:
+        expected = (row[source].get("candidate") or {}).get("point")
+    else:
+        raise ValueError("explicit logged fixed-floor support source required")
+    if point != expected:
+        raise ValueError("fixed-floor point must match its same-frame source")
+    models = shadow.get("models")
+    if not isinstance(models, list) or not models:
+        raise ValueError("explicit fixed-floor model result list required")
+    names = []
+    for model in models:
+        if not isinstance(model, dict):
+            raise ValueError("comparison model result object required")
+        names.append(text(model.get("model_name"), "model name"))
+        text(model.get("reason"), "model result reason")
+        available = model.get("range_available")
+        if type(available) is not bool:
+            raise ValueError("explicit comparison range verdict required")
+        if available:
+            value = number(model.get("horizontal_camera_foot_range_m"), "comparison horizontal range", 0)
+            if (not .2 <= value <= 4. or shadow["model_session"] != row["session"]
+                    or point is None or not shadow["image_quality_accepted"] or row["frame_age_ms"] > 500.):
+                raise ValueError("comparison range violates session/support/quality/freshness")
+        elif model.get("horizontal_camera_foot_range_m") is not None:
+            raise ValueError("withheld fixed-floor range must not contain a numeric result")
+    if len(set(names)) != len(names):
+        raise ValueError("unique comparison model names required")
+    available = any(model["range_available"] for model in models)
+    if shadow.get("status") != ("CONDITIONAL_FIXED_FLOOR_SHADOW" if available else "WITHHELD"):
+        raise ValueError("fixed-floor status disagrees with comparison ranges")
+
+
 def validate_row(row):
     if not isinstance(row, dict):
         raise ValueError("frame row must be an object")
@@ -264,6 +318,7 @@ def validate_row(row):
             if candidate["completion_granted"] and (point is None or not candidate["completion_attempted"]):
                 raise ValueError("completion grant requires an attempted observation and support point")
     validate_frame_evidence(row)
+    validate_fixed_floor_shadow(row)
 
 
 def load_frames(path, allow_truncated_last_line=False):
@@ -457,6 +512,21 @@ def summarize(input_dir, output_dir, *, allow_truncated_last_line=False, plots=T
             floor_contact_verified=False, usable_for_ffb=False)
         shadow_note += (f"\n同一フレーム証拠ログ：{len(evidence_rows)}処理frameに選択bbox・支持点・"
                         "姿勢・床モデル識別子・鮮度理由を記録。距離制御・接地判定には使用していません。\n")
+    fixed_rows = [r["fixed_floor_shadow"] for r in rows if "fixed_floor_shadow" in r]
+    if fixed_rows:
+        summary["fixed_floor_shadow"] = dict(recorded_frames=len(fixed_rows),
+            frames_with_comparison_range=sum(any(m["range_available"] for m in r["models"]) for r in fixed_rows),
+            reasons=dict(Counter(r["reason"] for r in fixed_rows)),
+            model_bundle_sha256=sorted({r["model_bundle_sha256"] for r in fixed_rows}),
+            per_model=[dict(model_bundle_sha256=bundle, model_name=name,
+                horizontal_range_m=statistics([m["horizontal_camera_foot_range_m"] for r in fixed_rows
+                    if r["model_bundle_sha256"] == bundle for m in r["models"]
+                    if m["model_name"] == name and m["range_available"]]))
+                for bundle, name in sorted({(r["model_bundle_sha256"], m["model_name"])
+                                            for r in fixed_rows for m in r["models"]})],
+            controlling_distance=False, physical_metric_verified=False, usable_for_ffb=False)
+        shadow_note += (f"\n固定床モデルの比較ログ：{len(fixed_rows)}処理frame。"
+            "元の条件付き距離とは別集計。水平距離であり、接地・実測精度・車体座標・FFBの合格ではありません。\n")
     output.mkdir(parents=True, exist_ok=False)
     fields = ("session", "frame", "source_time_sec", "completed_time_sec", "distance_available",
               "distance_forward_m", "lateral_right_m", "reason", *TIMINGS, "inference_source")

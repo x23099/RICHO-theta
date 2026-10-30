@@ -1,0 +1,37 @@
+{
+  "status": "PASS_SAVED_LIVE_CANDIDATE_REVIEW",
+  "checks": {
+    "tests_successful": true,
+    "unchanged_runtime_calibration_and_launchers": true,
+    "all_recorded_input_and_code_hashes_match": true,
+    "exact_partition": true,
+    "all_frames_retained": true,
+    "all_completions_checked": true,
+    "saved_image_and_log_exact": true,
+    "no_physical_approval": true
+  },
+  "tests": 112,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "tracked_runtime_files_compared": 124,
+  "changed_runtime_files": [],
+  "source_hash_mismatches": [],
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_support_live_review_r01/verify.py": "6dd9725b95de472c2420b8d9b48f596b4856766511d5965e1d8ee24ec7ec1302",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_support_live_review_r01/analyze.py": "98ee5fc0eb2501c2ab3991760eed88afe97562bd4b053e13ac2c26baa84a7592",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_cone_support_live_review.py": "caf4e5cb204f2cedd9f03ddc4e557d65698e797929b179fc4547ee1f08605e34",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_support_live_review_r01/results_r02/summary.json": "ead00d2518a151ee5c9d54786bf3623825616c40dddfe272719bd6b2260f75e7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_support_live_review_r01/results_r02/frame_review.csv": "6c8f3b33ad9abe068255c7f7e5207d65673d08bb8c51e97d56a82feb9b8c9f26",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_support_live_review_r01/results_r02/candidate_timeline.png": "332a17d0cc0feef7a087b97e9d6af831e270bac47255eeb091402146970fdf55"
+  },
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "usable_for_ffb": false,
+  "not_performed": [
+    "fresh YOLO inference",
+    "distance recalculation",
+    "camera/network/ROS/FFB",
+    "Git commit/push"
+  ]
+}

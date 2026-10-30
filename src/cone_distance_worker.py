@@ -60,11 +60,13 @@ class DistanceWorker:
     0.5 s from SOURCE reception, not 0.5 s from inference completion.
     """
     def __init__(self, slot, config, predictor, log_path, *, scene_function=estimate_scene, clock=time.monotonic, target_roi=None,
-                 colour_support_shadow=False, support_completion_shadow=False, frame_evidence=False):
+                 colour_support_shadow=False, support_completion_shadow=False, frame_evidence=False,
+                 fixed_floor_models=None, fixed_floor_support_source="support_completion_shadow"):
         self.slot, self.predictor, self.clock = slot, predictor, clock
         self.engine = ConeDistanceEngine(config, target_roi=target_roi, colour_support_shadow=colour_support_shadow,
                                          support_completion_shadow=support_completion_shadow,
-                                         frame_evidence=frame_evidence)
+                                         frame_evidence=frame_evidence, fixed_floor_models=fixed_floor_models,
+                                         fixed_floor_support_source=fixed_floor_support_source)
         self.scene_function = scene_function
         self.log_path = Path(log_path)
         self.stop_event = threading.Event()
@@ -162,6 +164,9 @@ class DistanceWorker:
                                       reason="frame_processing_too_old")
                         if result["reason"] not in result["blockers"]:
                             result["blockers"].insert(0, result["reason"])
+                    if "fixed_floor_shadow" in result:
+                        from cone_fixed_floor_shadow import enforce_freshness
+                        enforce_freshness(result["fixed_floor_shadow"], result["frame_age_ms"])
                     # Engine evidence is stamped before the worker's final timing
                     # update; resync it so the same row cannot disagree with itself.
                     evidence = result.get("frame_evidence")

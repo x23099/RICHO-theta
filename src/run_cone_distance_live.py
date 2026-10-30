@@ -39,6 +39,10 @@ def build_parser():
                         help="log bounded lateral completion candidate separately; NEVER controls distance")
     parser.add_argument("--frame-evidence", action="store_true",
                         help="log selected bbox/support/pose/floor/freshness per frame; NEVER controls distance")
+    parser.add_argument("--fixed-floor-models", type=Path,
+                        help="explicit session-bound model bundle for comparison log ONLY; default disabled")
+    parser.add_argument("--fixed-floor-support-source", choices=("baseline", "colour_support_shadow", "support_completion_shadow"),
+                        default="support_completion_shadow", help="explicit comparison support; no automatic fallback")
     return parser
 
 
@@ -50,6 +54,14 @@ async def run(args):
         raise ValueError("positive finite duration required")
     settings, _, _, _ = load_config(args.config)
     checked_target_roi(args.target_roi)
+    fixed_models = getattr(args, "fixed_floor_models", None)
+    fixed_source = getattr(args, "fixed_floor_support_source", "support_completion_shadow")
+    if fixed_models is not None:
+        if ((fixed_source == "colour_support_shadow" and not getattr(args, "colour_support_shadow", False))
+                or (fixed_source == "support_completion_shadow" and not getattr(args, "support_completion_shadow", False))):
+            raise ValueError("explicitly enable the selected fixed-floor support shadow")
+        from cone_fixed_floor_shadow import load_bundle
+        load_bundle(fixed_models, settings)  # Validate before GPU or network startup.
     # Complete model / CUDA validation BEFORE opening a network listener.
     predictor = YoloConePredictor(args.weights, settings, args.output_dir, args.device)
     slot = LatestNativeFrame()
@@ -58,7 +70,8 @@ async def run(args):
     completion_shadow = getattr(args, "support_completion_shadow", False)
     worker = DistanceWorker(slot, args.config, predictor, args.output_dir / "distance_frames.jsonl", target_roi=args.target_roi,
                             colour_support_shadow=colour_shadow, support_completion_shadow=completion_shadow,
-                            frame_evidence=getattr(args, "frame_evidence", False))
+                            frame_evidence=getattr(args, "frame_evidence", False),
+                            fixed_floor_models=fixed_models, fixed_floor_support_source=fixed_source)
     app = web.Application(client_max_size=256 * 1024)
     app.router.add_post("/offer", server.offer)
     runner = web.AppRunner(app, access_log=None)
@@ -71,6 +84,9 @@ async def run(args):
     summary["colour_support_shadow_enabled"] = colour_shadow
     summary["support_completion_shadow_enabled"] = completion_shadow
     summary["frame_evidence_enabled"] = getattr(args, "frame_evidence", False)
+    summary["fixed_floor_shadow_enabled"] = fixed_models is not None
+    if fixed_models is not None:
+        summary["fixed_floor_model_bundle_sha256"] = digest(fixed_models)
     started = time.monotonic()
     run_error = None
     try:

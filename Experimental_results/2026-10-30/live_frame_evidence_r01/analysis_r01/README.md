@@ -113,7 +113,7 @@ python3 src/summarize_cone_distance_live.py --input-dir "$IN" \
 
 ## 次に必要な判断
 
-1. **接触辺を特定するログ拡張（r02として実装済み・再取得待ち）**: `mask_diagnostics`へcrop境界、マスク寸法、輪郭数・面積、選択輪郭bounds、接触辺を追加した。同じ静止条件で60秒再取得し、今回はSキーPNGも1枚残す。
+1. **接触辺を特定するログ拡張（r02で実施済み）**: `mask_diagnostics`へcrop境界、マスク寸法、輪郭数・面積、選択輪郭bounds、接触辺を追加し、60秒再取得した。結果は[analysis_r02](../analysis_r02/README.md)。
 2. **画像を残す**: 次回はSキーで無加工PNGを1枚以上保存する。今回のarchiveにはPNGがない。
 3. **姿勢側の設計**: 背景は`fewer_than_six_distinct_planes`のまま。支持点が取れても姿勢が無ければ距離は出ない。6平面条件の緩和や別録画姿勢の流用はしない。
 

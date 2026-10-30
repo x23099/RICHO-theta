@@ -1,0 +1,57 @@
+{
+  "status": "COMPLETE_EVIDENCE_LOG",
+  "processed_frames": 1689,
+  "evidence_frames": 1689,
+  "truncated_final_line_ignored": false,
+  "sessions": 1,
+  "inference_sources": [
+    "live_cuda_yolo"
+  ],
+  "contains_injected_or_unverified_predictor": false,
+  "distance_available_frames": 0,
+  "bbox_count_frames": {
+    "1": 1689
+  },
+  "support_point_frames": 0,
+  "mask_diagnostic_frames": 1689,
+  "touching_edge_frames": {
+    "left": 1689,
+    "right": 1503,
+    "bottom": 1570
+  },
+  "pose_available_frames": 0,
+  "within_freshness_limit_frames": 1688,
+  "reasons": {
+    "frame_processing_too_old": 1,
+    "colour_contour_reaches_roi_edge": 1688
+  },
+  "blockers": {
+    "unavailable_support:colour_contour_reaches_roi_edge": 1689,
+    "frame_processing_too_old": 1,
+    "colour_contour_reaches_roi_edge": 1689,
+    "latest_scene_image_rejected": 1689,
+    "newer_scene_processing_pending": 125
+  },
+  "support_reasons": {
+    "colour_contour_reaches_roi_edge": 1689
+  },
+  "quality_reasons": {
+    "unavailable_support:colour_contour_reaches_roi_edge": 1689
+  },
+  "pose_reasons": {
+    "latest_scene_image_rejected": 1689
+  },
+  "scene_reasons": {
+    "fewer_than_six_distinct_planes": 1689
+  },
+  "floor_config_sha256": [
+    "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0"
+  ],
+  "source_sha256": {
+    "/home/robo25/theta_ws/recordings/2026-10-30/live_frame_evidence_r02_20261030_185348/distance_frames.jsonl": "5f0396a6f40e2fbef1c29613b8850523075324e0574b8ee44ec31748abc009e7"
+  },
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "usable_for_ffb": false,
+  "meaning": "same-frame evidence transcription only; NOT floor-contact proof or distance accuracy"
+}
