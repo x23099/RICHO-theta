@@ -1,0 +1,1692 @@
+[
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-19/cone_support_extent_r01/results_r01/provenance.json",
+    "expected": "3d0f946ddff3e8ad3a8a2f6905b4c89305bc9cfd0cd0d7dfd05f4da899b7b45b",
+    "actual": "3d0f946ddff3e8ad3a8a2f6905b4c89305bc9cfd0cd0d7dfd05f4da899b7b45b"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/provenance.json",
+    "expected": "fa27d6486d8be0f136dda6b044797bd6d9e98da0cb51933e52090b920294a07f",
+    "actual": "fa27d6486d8be0f136dda6b044797bd6d9e98da0cb51933e52090b920294a07f"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/frames.csv",
+    "expected": "0751eb49dbb12d6fc73520c5c450b2a97bbede26d0c2e353ed9da2feac40abe3",
+    "actual": "0751eb49dbb12d6fc73520c5c450b2a97bbede26d0c2e353ed9da2feac40abe3"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/cone_static_distance_r01/inference_r01/predictions.csv",
+    "expected": "6c31f798aec4dd3a65c1fbbe0bd986a3bb65d03d48833f0d4f7fb6e275ea8204",
+    "actual": "6c31f798aec4dd3a65c1fbbe0bd986a3bb65d03d48833f0d4f7fb6e275ea8204"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/inference_r01/provenance.json",
+    "expected": "e803e07b54e97b53ef9b05881fa4ba83c9f80d34cddc4ad8b3bb73b964005d6a",
+    "actual": "e803e07b54e97b53ef9b05881fa4ba83c9f80d34cddc4ad8b3bb73b964005d6a"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/inference_r01/frames.csv",
+    "expected": "e8fe6e1e571065fec0bffe2b6237367533594d5fb7ffc3980d756ce2af669a95",
+    "actual": "e8fe6e1e571065fec0bffe2b6237367533594d5fb7ffc3980d756ce2af669a95"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-15/floor_cone_same_pose_analysis_r01/inference_r01/predictions.csv",
+    "expected": "660203d9e53a2ef16e306b0d38dc5d64c3bb48ea25840c6b5d8955f33bb6960a",
+    "actual": "660203d9e53a2ef16e306b0d38dc5d64c3bb48ea25840c6b5d8955f33bb6960a"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000001.png",
+    "expected": "e22925f7880fdac4cb84e50c6941392dca3f7456594293a43ca83f1a7a002355",
+    "actual": "e22925f7880fdac4cb84e50c6941392dca3f7456594293a43ca83f1a7a002355"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000031.png",
+    "expected": "e96718d624b6adce916b59a7ca2c219b1f493a70b737d088e11cefd5a14dab7a",
+    "actual": "e96718d624b6adce916b59a7ca2c219b1f493a70b737d088e11cefd5a14dab7a"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000062.png",
+    "expected": "02e00c1811394544d9010ffe0b2d73ec25f5c2a5345c4ac42e7f826f383648ce",
+    "actual": "02e00c1811394544d9010ffe0b2d73ec25f5c2a5345c4ac42e7f826f383648ce"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000092.png",
+    "expected": "07b6864dde7b767ff70ad46080d43ec9f27c3221717ea474c641024cf8f1b6c6",
+    "actual": "07b6864dde7b767ff70ad46080d43ec9f27c3221717ea474c641024cf8f1b6c6"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000122.png",
+    "expected": "6796d4e56a7dfe6eb85bc60d397781ee0e6859d97594d733db28f6d7e861efc3",
+    "actual": "6796d4e56a7dfe6eb85bc60d397781ee0e6859d97594d733db28f6d7e861efc3"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000152.png",
+    "expected": "e2f901f5b7a6bf29fa74d94c0840f288ef9831bc6e453d1ec4ce550a497f847e",
+    "actual": "e2f901f5b7a6bf29fa74d94c0840f288ef9831bc6e453d1ec4ce550a497f847e"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000182.png",
+    "expected": "6b95407204f81410d003eafe9cc3a3193c539ad7e858a0244bf5008f2108f0fc",
+    "actual": "6b95407204f81410d003eafe9cc3a3193c539ad7e858a0244bf5008f2108f0fc"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000212.png",
+    "expected": "7fca4e4d5fee54a450b00bcf8fa35b69abfcb040663d22f81f363e66557be9d1",
+    "actual": "7fca4e4d5fee54a450b00bcf8fa35b69abfcb040663d22f81f363e66557be9d1"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000241.png",
+    "expected": "176367f8257752af88b438b1e9b60c9df123c8bbc2344a377849a2508caf969c",
+    "actual": "176367f8257752af88b438b1e9b60c9df123c8bbc2344a377849a2508caf969c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000272.png",
+    "expected": "5d124b1def88de631ed840b4ad1bd273f6d4ac7c6563c06afcdd2a9dcc9285f4",
+    "actual": "5d124b1def88de631ed840b4ad1bd273f6d4ac7c6563c06afcdd2a9dcc9285f4"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000301.png",
+    "expected": "57b958cf04faab56dd0ce2b8936102f479a74c33cd02df74f47729be6d65ce37",
+    "actual": "57b958cf04faab56dd0ce2b8936102f479a74c33cd02df74f47729be6d65ce37"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000332.png",
+    "expected": "5a402410e03cb2182ecb3151cb1d34ee5b5e5d2c65684d0632d910257d7d90ee",
+    "actual": "5a402410e03cb2182ecb3151cb1d34ee5b5e5d2c65684d0632d910257d7d90ee"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000361.png",
+    "expected": "066703aa377a9e1268257eb4a6a0d7b258da42d33bb0463af2be5799c151c235",
+    "actual": "066703aa377a9e1268257eb4a6a0d7b258da42d33bb0463af2be5799c151c235"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000392.png",
+    "expected": "bdbcf7c9077652801409f40a5084adbbffb0dc62ce89c19f3f6d3027d69fbcd9",
+    "actual": "bdbcf7c9077652801409f40a5084adbbffb0dc62ce89c19f3f6d3027d69fbcd9"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000422.png",
+    "expected": "2545fc65dba1ade3f47bdd72f2a1abccd0a3395afa8abcf2466a05c7c7ebb4e8",
+    "actual": "2545fc65dba1ade3f47bdd72f2a1abccd0a3395afa8abcf2466a05c7c7ebb4e8"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000452.png",
+    "expected": "a53a5bde3f7fc86b4e5df0db86bfa5d5a1ac731386b8bc49735ad63a4280c8bc",
+    "actual": "a53a5bde3f7fc86b4e5df0db86bfa5d5a1ac731386b8bc49735ad63a4280c8bc"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000481.png",
+    "expected": "0905eb91d2fc9c2c030efb60e4537bd472957c43510e3bf45482a68faceb6b4f",
+    "actual": "0905eb91d2fc9c2c030efb60e4537bd472957c43510e3bf45482a68faceb6b4f"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000510.png",
+    "expected": "33e1235c2c7b53e8d7ef443efec758a54689185e2558aeb2631970888bb89a27",
+    "actual": "33e1235c2c7b53e8d7ef443efec758a54689185e2558aeb2631970888bb89a27"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000538.png",
+    "expected": "bcec0dae0f2cfe0c2da8d4b0758c86bd0e37239dad3a043a1596d1665cd373d3",
+    "actual": "bcec0dae0f2cfe0c2da8d4b0758c86bd0e37239dad3a043a1596d1665cd373d3"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000570.png",
+    "expected": "7486230c06a9d69bc92cbfd7ff825323517f33763d095169eec74bd8778ce1b1",
+    "actual": "7486230c06a9d69bc92cbfd7ff825323517f33763d095169eec74bd8778ce1b1"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000600.png",
+    "expected": "77ab47d59d90cf63fbabddc53e44127171b7bb2bc8bfb9b31343de35e8c12d25",
+    "actual": "77ab47d59d90cf63fbabddc53e44127171b7bb2bc8bfb9b31343de35e8c12d25"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z1p30_r01_20261015_135329_732/raw_f000629.png",
+    "expected": "2d68c7f175a401bfd1607ddf7bced55292042d61023300e5a8f713ea14fcba22",
+    "actual": "2d68c7f175a401bfd1607ddf7bced55292042d61023300e5a8f713ea14fcba22"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000001.png",
+    "expected": "7751528c40d3adc0e17a149cc8727a44a7e75bdbadf31194bc66f313efeb2922",
+    "actual": "7751528c40d3adc0e17a149cc8727a44a7e75bdbadf31194bc66f313efeb2922"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000031.png",
+    "expected": "61b73c2d8c7577b496637978905f61d7ba243be7126dfa9a4acd36c086791763",
+    "actual": "61b73c2d8c7577b496637978905f61d7ba243be7126dfa9a4acd36c086791763"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000061.png",
+    "expected": "6fddb893d3e572ca1fdde95ae4de33f2b11c955b976e93652fc29a69d796e455",
+    "actual": "6fddb893d3e572ca1fdde95ae4de33f2b11c955b976e93652fc29a69d796e455"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000092.png",
+    "expected": "4f881d407ae79180441bcb9aec07c93b7a5bd049dfab60004fd1e998da9d020b",
+    "actual": "4f881d407ae79180441bcb9aec07c93b7a5bd049dfab60004fd1e998da9d020b"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000121.png",
+    "expected": "f45725657b73d67bd392451658a40970d6cdaec992808245c7cedf76ac81408d",
+    "actual": "f45725657b73d67bd392451658a40970d6cdaec992808245c7cedf76ac81408d"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000151.png",
+    "expected": "f44d25e55a20d7ab84f568c00f4dff473fe0fb46515dca88fee487c37bd2c900",
+    "actual": "f44d25e55a20d7ab84f568c00f4dff473fe0fb46515dca88fee487c37bd2c900"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000181.png",
+    "expected": "c8238463d73a26019c828784e3dc5b7e356ab8b97b57d7da46bf7ef7a5ef8d37",
+    "actual": "c8238463d73a26019c828784e3dc5b7e356ab8b97b57d7da46bf7ef7a5ef8d37"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000211.png",
+    "expected": "8626c83c69cc27485caff49acc6c33717a0dd9ea07fdb2f5cd404a73edd259b8",
+    "actual": "8626c83c69cc27485caff49acc6c33717a0dd9ea07fdb2f5cd404a73edd259b8"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000242.png",
+    "expected": "1c6ca69da428643492694bcb17ea342af7bcbce1e3a30485b23e701e19fa966e",
+    "actual": "1c6ca69da428643492694bcb17ea342af7bcbce1e3a30485b23e701e19fa966e"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000271.png",
+    "expected": "05a37da0fe443864ca60ca5a5b6454b2506f212b76c6ca4ca745387c13f653db",
+    "actual": "05a37da0fe443864ca60ca5a5b6454b2506f212b76c6ca4ca745387c13f653db"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000301.png",
+    "expected": "d71d16c675f2815e8fee91612a6891ccc18fbc0f62e9b08e15ae9aaa0b6eed99",
+    "actual": "d71d16c675f2815e8fee91612a6891ccc18fbc0f62e9b08e15ae9aaa0b6eed99"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000329.png",
+    "expected": "0ab9b37a37aedf4ff4a65a0fbeee6fb83869286981743ded58407361467058a4",
+    "actual": "0ab9b37a37aedf4ff4a65a0fbeee6fb83869286981743ded58407361467058a4"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000359.png",
+    "expected": "02a5f447bb64f0c9cc26abdaa71ae6c3e2e35b65b49eb4e94a325bec5c714bb8",
+    "actual": "02a5f447bb64f0c9cc26abdaa71ae6c3e2e35b65b49eb4e94a325bec5c714bb8"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000391.png",
+    "expected": "5be8b89cb0ae26a7a8bb3ddade70a4c832e45623ad42acdc98e6cfd6f2d4c4b4",
+    "actual": "5be8b89cb0ae26a7a8bb3ddade70a4c832e45623ad42acdc98e6cfd6f2d4c4b4"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000422.png",
+    "expected": "70a0827751bf7fa1172b3b8b837e8380d9c41673179a7a9cbc1156b5d801c5cb",
+    "actual": "70a0827751bf7fa1172b3b8b837e8380d9c41673179a7a9cbc1156b5d801c5cb"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000451.png",
+    "expected": "86c366f9a4b111a6e5c7447ad0dcb15f2049f3ce22951f39a941e37c64301be2",
+    "actual": "86c366f9a4b111a6e5c7447ad0dcb15f2049f3ce22951f39a941e37c64301be2"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000481.png",
+    "expected": "a7e72f3ac34880a2412d9f58f14ca98ee2f47d699fda44c2e12af6d58e825858",
+    "actual": "a7e72f3ac34880a2412d9f58f14ca98ee2f47d699fda44c2e12af6d58e825858"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000511.png",
+    "expected": "442178902624c8611c73d12265fc7d20726cbeb3bba1f3a63311fd9dc904c454",
+    "actual": "442178902624c8611c73d12265fc7d20726cbeb3bba1f3a63311fd9dc904c454"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000541.png",
+    "expected": "86eaa298cd827d13ca776ecf1159a45b2bfc3dd5e06ae6c8e89fb2ca7451a382",
+    "actual": "86eaa298cd827d13ca776ecf1159a45b2bfc3dd5e06ae6c8e89fb2ca7451a382"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000571.png",
+    "expected": "c21947b88b08f0ea0f352307f794fc15d43bfb502416e93ea7eba33c184f881a",
+    "actual": "c21947b88b08f0ea0f352307f794fc15d43bfb502416e93ea7eba33c184f881a"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000601.png",
+    "expected": "9e71f172c55e8719f45234ef30f296d8b0003a004a0682f1e489605ad0694975",
+    "actual": "9e71f172c55e8719f45234ef30f296d8b0003a004a0682f1e489605ad0694975"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_center_z2p00_r01_20261015_135414_399/raw_f000630.png",
+    "expected": "5c3651103f00a0861c89561bbd865fbe7085c70eef77cd5d8566165d9da87dab",
+    "actual": "5c3651103f00a0861c89561bbd865fbe7085c70eef77cd5d8566165d9da87dab"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000001.png",
+    "expected": "0a5046db0d0f31986f85c1c4e7f7725086ab96948a4c4fc173f5a907e3690d00",
+    "actual": "0a5046db0d0f31986f85c1c4e7f7725086ab96948a4c4fc173f5a907e3690d00"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000032.png",
+    "expected": "c940a698494b0050988527c91fbe239acd71ce89f748458040a653cd535f4ae6",
+    "actual": "c940a698494b0050988527c91fbe239acd71ce89f748458040a653cd535f4ae6"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000062.png",
+    "expected": "697d7752cbbbd7f440d72584e6edd9a6920710b51991c5b8d197df9b630c1c0a",
+    "actual": "697d7752cbbbd7f440d72584e6edd9a6920710b51991c5b8d197df9b630c1c0a"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000092.png",
+    "expected": "44be79787253e3d221fa735ac07cdfdfa62c2745198320a1d4ebd977641a398e",
+    "actual": "44be79787253e3d221fa735ac07cdfdfa62c2745198320a1d4ebd977641a398e"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000122.png",
+    "expected": "30e27515f502f4511616bbb2df5c23efb5f442f1ee6eb98e3a7df74230cc07f6",
+    "actual": "30e27515f502f4511616bbb2df5c23efb5f442f1ee6eb98e3a7df74230cc07f6"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000151.png",
+    "expected": "4d65f763b448b5377a09d6c25cfd2cf880e69566482fdb8bf1cb7c40ce34adb3",
+    "actual": "4d65f763b448b5377a09d6c25cfd2cf880e69566482fdb8bf1cb7c40ce34adb3"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000181.png",
+    "expected": "e5f12828660173c3eb432e253927cc19248dfbc8417a04db698ef609096266fa",
+    "actual": "e5f12828660173c3eb432e253927cc19248dfbc8417a04db698ef609096266fa"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000212.png",
+    "expected": "457ea5ef794069bc00e717f752e46704124244befce658cb62e87056bdffc727",
+    "actual": "457ea5ef794069bc00e717f752e46704124244befce658cb62e87056bdffc727"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000242.png",
+    "expected": "1c5c6649b67960ab768e0ed2ac4af38c649978b01f036bb2a78f7f5769a86f88",
+    "actual": "1c5c6649b67960ab768e0ed2ac4af38c649978b01f036bb2a78f7f5769a86f88"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000272.png",
+    "expected": "d07456f2eac23658397da44a081eb7ccfc9ef308842d4187c9bfa56da199b324",
+    "actual": "d07456f2eac23658397da44a081eb7ccfc9ef308842d4187c9bfa56da199b324"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000302.png",
+    "expected": "3dc699f3a18a30d32f0436e6034e30b3aa76a6c18da4e00899ca58d790ebc924",
+    "actual": "3dc699f3a18a30d32f0436e6034e30b3aa76a6c18da4e00899ca58d790ebc924"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000332.png",
+    "expected": "78954f40cb89985b9c61f9b40254e478b27fdb9b16754c1c2e2344357a675916",
+    "actual": "78954f40cb89985b9c61f9b40254e478b27fdb9b16754c1c2e2344357a675916"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000360.png",
+    "expected": "c090ed8953d56fe7f41ffc9c48f98c925e0698fe6a9b0a5ec2e0f4444a5f62fb",
+    "actual": "c090ed8953d56fe7f41ffc9c48f98c925e0698fe6a9b0a5ec2e0f4444a5f62fb"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000390.png",
+    "expected": "575e0af0e5909849b0c334d56e8f6d53ae7c3f99178ea3e575bd1c72ad6e8234",
+    "actual": "575e0af0e5909849b0c334d56e8f6d53ae7c3f99178ea3e575bd1c72ad6e8234"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000420.png",
+    "expected": "dfca3b322754a7b7b588e9f753ee758d0f3728c7a9355102715d219630ed019f",
+    "actual": "dfca3b322754a7b7b588e9f753ee758d0f3728c7a9355102715d219630ed019f"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000450.png",
+    "expected": "8eeb1d386a8330d9b9887a3671353841248bc6054ddac398bc2b89cf8f2943e8",
+    "actual": "8eeb1d386a8330d9b9887a3671353841248bc6054ddac398bc2b89cf8f2943e8"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000480.png",
+    "expected": "d920c6773c5d6d55175d361e7a3c2e340c05a459d7f67b785e5f91b27773acf0",
+    "actual": "d920c6773c5d6d55175d361e7a3c2e340c05a459d7f67b785e5f91b27773acf0"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000510.png",
+    "expected": "a4bc952d7c61dc7edf98938d1ad058eec7f31e56aa35f5b44e9a039c2707eb22",
+    "actual": "a4bc952d7c61dc7edf98938d1ad058eec7f31e56aa35f5b44e9a039c2707eb22"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000540.png",
+    "expected": "d7b5728a5e63a8c16c5ffa70570b56db9c722ee25fea950821a91cf91bfe8fb8",
+    "actual": "d7b5728a5e63a8c16c5ffa70570b56db9c722ee25fea950821a91cf91bfe8fb8"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000570.png",
+    "expected": "e02cd89264fd448e5121653d0dbe7f9331cb6f50aa02ccc1ce672399b67a488f",
+    "actual": "e02cd89264fd448e5121653d0dbe7f9331cb6f50aa02ccc1ce672399b67a488f"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_left_z1p30_r01_20261015_135541_436/raw_f000600.png",
+    "expected": "3889a75df3a8e46d2df20251b69f8f7dc926d3f1e2bb68125ebcc9670007be03",
+    "actual": "3889a75df3a8e46d2df20251b69f8f7dc926d3f1e2bb68125ebcc9670007be03"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_no_cone_r01_20261015_134940_713/raw_f000001.png",
+    "expected": "5897ade75de528e085d3cc6de65eddc4f0d5e26a4c74ded041e93aac54d71d06",
+    "actual": "5897ade75de528e085d3cc6de65eddc4f0d5e26a4c74ded041e93aac54d71d06"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_no_cone_r01_20261015_134940_713/raw_f000032.png",
+    "expected": "81aacfcbab82cd85cbe02677e9a161b53c42789e1bf9bf3a62e9b84df601f2cc",
+    "actual": "81aacfcbab82cd85cbe02677e9a161b53c42789e1bf9bf3a62e9b84df601f2cc"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_no_cone_r01_20261015_134940_713/raw_f000062.png",
+    "expected": "535cdacc02f8b16039d640fec8fcad3f2119247c0ce4c117e178a2481d8f4c07",
+    "actual": "535cdacc02f8b16039d640fec8fcad3f2119247c0ce4c117e178a2481d8f4c07"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_no_cone_r01_20261015_134940_713/raw_f000092.png",
+    "expected": "086b672543bd006ad5c4ffaba39b368907f940e7b0d069aeabfdaecac555c378",
+    "actual": "086b672543bd006ad5c4ffaba39b368907f940e7b0d069aeabfdaecac555c378"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_no_cone_r01_20261015_134940_713/raw_f000122.png",
+    "expected": "e72fd319cd0e6ca697c98b1073cd96b767c48f3eec3f693b4594b5638acc073f",
+    "actual": "e72fd319cd0e6ca697c98b1073cd96b767c48f3eec3f693b4594b5638acc073f"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_no_cone_r01_20261015_134940_713/raw_f000152.png",
+    "expected": "8d59b2e8a211b9f8948302a622b0921242679d0a02e9f78d880259aa3b5f8859",
+    "actual": "8d59b2e8a211b9f8948302a622b0921242679d0a02e9f78d880259aa3b5f8859"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_no_cone_r01_20261015_134940_713/raw_f000182.png",
+    "expected": "b5de7fbae4c4725b18fde2b4ee6aa68f42da3f4d072771f0ffcbf98de8049b7b",
+    "actual": "b5de7fbae4c4725b18fde2b4ee6aa68f42da3f4d072771f0ffcbf98de8049b7b"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_no_cone_r01_20261015_134940_713/raw_f000212.png",
+    "expected": "e121346fb2148c2992e913172d2b28f44a851f5399c1c247955b33db6fc81af1",
+    "actual": "e121346fb2148c2992e913172d2b28f44a851f5399c1c247955b33db6fc81af1"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_no_cone_r01_20261015_134940_713/raw_f000242.png",
+    "expected": "e8b8c6bcbce20810da86bad6575412c7f9e3fa9cc9b093fdb5707e7e5371bc41",
+    "actual": "e8b8c6bcbce20810da86bad6575412c7f9e3fa9cc9b093fdb5707e7e5371bc41"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_no_cone_r01_20261015_134940_713/raw_f000272.png",
+    "expected": "1a6e6ce87797792afe03d780a60f1cc8995f6b0034fde719686a7979d6f41a16",
+    "actual": "1a6e6ce87797792afe03d780a60f1cc8995f6b0034fde719686a7979d6f41a16"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_no_cone_r01_20261015_134940_713/raw_f000302.png",
+    "expected": "36655da17dabc11838a633085f6f99d84e53133205981c5d6a092935bce11cb2",
+    "actual": "36655da17dabc11838a633085f6f99d84e53133205981c5d6a092935bce11cb2"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_no_cone_r01_20261015_134940_713/raw_f000332.png",
+    "expected": "81188051c790a9c70559fb709bb5f9c6543d27b67b0c58348fc99d9b5eb9de4b",
+    "actual": "81188051c790a9c70559fb709bb5f9c6543d27b67b0c58348fc99d9b5eb9de4b"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000001.png",
+    "expected": "e179b87f286e40216dd3b5eb2408e9d71af8e06b2870495248b90281d06a2ad7",
+    "actual": "e179b87f286e40216dd3b5eb2408e9d71af8e06b2870495248b90281d06a2ad7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000032.png",
+    "expected": "72c36d0b4d478e07e4757047135bc9e0094e8caba551f5fbd9f04463b5e17e91",
+    "actual": "72c36d0b4d478e07e4757047135bc9e0094e8caba551f5fbd9f04463b5e17e91"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000061.png",
+    "expected": "15dcb68eee289773fa5ef65956848e6c5748958d50ebfbc60d7c2c33de7e0666",
+    "actual": "15dcb68eee289773fa5ef65956848e6c5748958d50ebfbc60d7c2c33de7e0666"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000092.png",
+    "expected": "ccf30947edc8d3207d153ae27fb963cacbafcbb3ead3928fb1b596dbd02d59ab",
+    "actual": "ccf30947edc8d3207d153ae27fb963cacbafcbb3ead3928fb1b596dbd02d59ab"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000122.png",
+    "expected": "4523cb501e7bb30a59ed2c7990f87b4ffd634cbfa80fe5db50009b7b337c51c9",
+    "actual": "4523cb501e7bb30a59ed2c7990f87b4ffd634cbfa80fe5db50009b7b337c51c9"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000151.png",
+    "expected": "83620995a23d913c9757cf889ce988f1d87fc5a9c7499ca9fd5f89c47da88340",
+    "actual": "83620995a23d913c9757cf889ce988f1d87fc5a9c7499ca9fd5f89c47da88340"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000182.png",
+    "expected": "961143582a1d9ae498b524a8e18bdc31520cc86c83c457bb25dd6635b5aca48b",
+    "actual": "961143582a1d9ae498b524a8e18bdc31520cc86c83c457bb25dd6635b5aca48b"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000211.png",
+    "expected": "a2c164de33de44f54de0eb440c7cd25e43aca05fbcb6e2a8a858ab5e6d291efc",
+    "actual": "a2c164de33de44f54de0eb440c7cd25e43aca05fbcb6e2a8a858ab5e6d291efc"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000242.png",
+    "expected": "c0b0153addf90ec62db4b57231d782cecff4f00926594aaec1fb27a27c5ccec2",
+    "actual": "c0b0153addf90ec62db4b57231d782cecff4f00926594aaec1fb27a27c5ccec2"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000272.png",
+    "expected": "bf51302554ad36fa959b2aecc0c2e19772f9e16bb6f96fc353b1d2d677edc846",
+    "actual": "bf51302554ad36fa959b2aecc0c2e19772f9e16bb6f96fc353b1d2d677edc846"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000302.png",
+    "expected": "a166fa3d8fb7117c90cfcd16fdbcba5a2c79f4bf894f865a232bb19e6c34d19c",
+    "actual": "a166fa3d8fb7117c90cfcd16fdbcba5a2c79f4bf894f865a232bb19e6c34d19c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000331.png",
+    "expected": "e4588773573aa94e346176d1d380a82f410a3001d1c15795006e1ab97b0bb5f9",
+    "actual": "e4588773573aa94e346176d1d380a82f410a3001d1c15795006e1ab97b0bb5f9"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000361.png",
+    "expected": "f15eaa4fb7b866a28729ee9c871de37d8729660a2b8c8ed573a2dd9822d8e69f",
+    "actual": "f15eaa4fb7b866a28729ee9c871de37d8729660a2b8c8ed573a2dd9822d8e69f"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000388.png",
+    "expected": "4e3c1e7cc0e272a52b8ac978d9a56555f1d3f01ec54d2c1fcf0a1b6f0d06701a",
+    "actual": "4e3c1e7cc0e272a52b8ac978d9a56555f1d3f01ec54d2c1fcf0a1b6f0d06701a"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000415.png",
+    "expected": "2b68d2faa45639626cbd5588c5b0658c543767d1502fa47fe59c93ff67944657",
+    "actual": "2b68d2faa45639626cbd5588c5b0658c543767d1502fa47fe59c93ff67944657"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000445.png",
+    "expected": "0adf90eb84369b3cb149958baf3746c07d489964abce766c71c60bd9d3a09d6e",
+    "actual": "0adf90eb84369b3cb149958baf3746c07d489964abce766c71c60bd9d3a09d6e"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000472.png",
+    "expected": "daa6194e75b32c8579f27fd8083d1e410bb186ac63f8a45d8e57406d6a1bc762",
+    "actual": "daa6194e75b32c8579f27fd8083d1e410bb186ac63f8a45d8e57406d6a1bc762"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000500.png",
+    "expected": "3da5d28d2530421f3f4c6f06f03d63dd14ef9a62c212de5fc7adf3e03db9f132",
+    "actual": "3da5d28d2530421f3f4c6f06f03d63dd14ef9a62c212de5fc7adf3e03db9f132"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000530.png",
+    "expected": "6fb23c19c648dd17a681196c11507202de238fb2467acad2e4a2ba476bce778b",
+    "actual": "6fb23c19c648dd17a681196c11507202de238fb2467acad2e4a2ba476bce778b"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000560.png",
+    "expected": "29c746849ab50ad7a6533bf64e12206eab6d7f3f82ec70b70b096bf8956a7ac0",
+    "actual": "29c746849ab50ad7a6533bf64e12206eab6d7f3f82ec70b70b096bf8956a7ac0"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000591.png",
+    "expected": "5dc4b161ba0f45b0610791cf7dc0170bbde810f4d7e28cb91d717e7b45d97515",
+    "actual": "5dc4b161ba0f45b0610791cf7dc0170bbde810f4d7e28cb91d717e7b45d97515"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/cone_static_right_z1p30_r01_20261015_135630_973/raw_f000620.png",
+    "expected": "473fef583bc0774a0819b2da89d991e1258dea95d323147e906e14e10e1e6c6f",
+    "actual": "473fef583bc0774a0819b2da89d991e1258dea95d323147e906e14e10e1e6c6f"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000001.png",
+    "expected": "21234aa4737bd346b99765c9a61f1359e5aec2e62dfaa55dda7d8f89e3826c8f",
+    "actual": "21234aa4737bd346b99765c9a61f1359e5aec2e62dfaa55dda7d8f89e3826c8f"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000032.png",
+    "expected": "7e40b66d0fd466ec47a09afc394cba39c997f70f0cafc0e1c0121deed304cef5",
+    "actual": "7e40b66d0fd466ec47a09afc394cba39c997f70f0cafc0e1c0121deed304cef5"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000062.png",
+    "expected": "6d47a10011ce13f5eed85e600ffcc76792279d4f0941551e71d6bbe42bf71c60",
+    "actual": "6d47a10011ce13f5eed85e600ffcc76792279d4f0941551e71d6bbe42bf71c60"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000092.png",
+    "expected": "c40f85d8a584f7fa7bfc5421a4139686c502859d9c008b2d88dc214308da61dc",
+    "actual": "c40f85d8a584f7fa7bfc5421a4139686c502859d9c008b2d88dc214308da61dc"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000122.png",
+    "expected": "1b0a33d677195103eb8bf868a40ae97c0fa549ab82a8f720a13eb5b41485f62e",
+    "actual": "1b0a33d677195103eb8bf868a40ae97c0fa549ab82a8f720a13eb5b41485f62e"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000152.png",
+    "expected": "afc28e7f55248ac63957384c506ffabec9c84549853ee538f59b19d43436d753",
+    "actual": "afc28e7f55248ac63957384c506ffabec9c84549853ee538f59b19d43436d753"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000182.png",
+    "expected": "a51428c2cbd0af7d047d3f70dec52f229b8a2d9d82dd1315a37823ee1ab57747",
+    "actual": "a51428c2cbd0af7d047d3f70dec52f229b8a2d9d82dd1315a37823ee1ab57747"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000212.png",
+    "expected": "a40be68f34ff9f4e9106f5feb819dbe1f5925ebaba18aebe3f1ac7d8936d1dfa",
+    "actual": "a40be68f34ff9f4e9106f5feb819dbe1f5925ebaba18aebe3f1ac7d8936d1dfa"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000242.png",
+    "expected": "daa4e268d4cc220466b76af4ee2bbe2921711608b127db88fa1e739c07351cb2",
+    "actual": "daa4e268d4cc220466b76af4ee2bbe2921711608b127db88fa1e739c07351cb2"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000272.png",
+    "expected": "58ff0973d75b95e61e85778d4482f79d43043c6d7be4db7e2b918945d5a0cf56",
+    "actual": "58ff0973d75b95e61e85778d4482f79d43043c6d7be4db7e2b918945d5a0cf56"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000302.png",
+    "expected": "c87f82daf05640e69ec356e8f819b10e6b350e597eb98c5499fd89ef2223abb5",
+    "actual": "c87f82daf05640e69ec356e8f819b10e6b350e597eb98c5499fd89ef2223abb5"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000332.png",
+    "expected": "ea8d8a2671f8ed5090749ded6f84940addd2a4ea8f76a1bca01cd82a5d2696e6",
+    "actual": "ea8d8a2671f8ed5090749ded6f84940addd2a4ea8f76a1bca01cd82a5d2696e6"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000362.png",
+    "expected": "15186bfb5c312172ccae615ec40c86df932d580a1f995c161fef8da9f6be6782",
+    "actual": "15186bfb5c312172ccae615ec40c86df932d580a1f995c161fef8da9f6be6782"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000392.png",
+    "expected": "ecad7c99d23a8fd09d63f4ea0ccdd22b7b4e921dadef2a9bb1a208a7066a97ed",
+    "actual": "ecad7c99d23a8fd09d63f4ea0ccdd22b7b4e921dadef2a9bb1a208a7066a97ed"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000421.png",
+    "expected": "08971b673845c107b99a053776347aaf69368dcf06b8c422f0c7641c655456ef",
+    "actual": "08971b673845c107b99a053776347aaf69368dcf06b8c422f0c7641c655456ef"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000450.png",
+    "expected": "066dbb65a08089da5c3cf5165040b79d5276cf4d36ed0323fba865a33c1bffb8",
+    "actual": "066dbb65a08089da5c3cf5165040b79d5276cf4d36ed0323fba865a33c1bffb8"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000480.png",
+    "expected": "68a2d76c2ced8529d29edb3b6e3ec763639e4ce265e7509fe3e8e442fff1b017",
+    "actual": "68a2d76c2ced8529d29edb3b6e3ec763639e4ce265e7509fe3e8e442fff1b017"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000510.png",
+    "expected": "a88b76e0756492ce5f11910908bb884d1757f7cdc96744e13a7f6945e092bef9",
+    "actual": "a88b76e0756492ce5f11910908bb884d1757f7cdc96744e13a7f6945e092bef9"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000540.png",
+    "expected": "72db8c4ec8782db4252bc76cc20bca242e14075cd866e82a5b4418e4dbf25350",
+    "actual": "72db8c4ec8782db4252bc76cc20bca242e14075cd866e82a5b4418e4dbf25350"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000569.png",
+    "expected": "9ba87c6df2d64e950237c9e5234a9e397a66682bb601d4fc62e8a34a0620f68b",
+    "actual": "9ba87c6df2d64e950237c9e5234a9e397a66682bb601d4fc62e8a34a0620f68b"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000600.png",
+    "expected": "6807351bfcb980445ef01fb1efed0c984f293b7b3270d415d0d8edd8dfafdcff",
+    "actual": "6807351bfcb980445ef01fb1efed0c984f293b7b3270d415d0d8edd8dfafdcff"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000630.png",
+    "expected": "7d418c330abd2d1dcde8b29dcf127af0c68363ae8655353fa69272b579751c07",
+    "actual": "7d418c330abd2d1dcde8b29dcf127af0c68363ae8655353fa69272b579751c07"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000660.png",
+    "expected": "dcb75d81ce8a97e8a7ab3045b8f10ed0b0ac1646aafefd48e43463e3f6823654",
+    "actual": "dcb75d81ce8a97e8a7ab3045b8f10ed0b0ac1646aafefd48e43463e3f6823654"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000690.png",
+    "expected": "ff08e74848db8c75a63d8f12621baf77d3b2d3ec89db3513401df4127a44c3f1",
+    "actual": "ff08e74848db8c75a63d8f12621baf77d3b2d3ec89db3513401df4127a44c3f1"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000720.png",
+    "expected": "f223a8870ddae21548475f8070b8e5f9571fd2c15b7807a48bc667482eb6f533",
+    "actual": "f223a8870ddae21548475f8070b8e5f9571fd2c15b7807a48bc667482eb6f533"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000750.png",
+    "expected": "a40f8343318f56f9071ea8f29fe751b6f67af99bbd7b111efc25b90ae155cab9",
+    "actual": "a40f8343318f56f9071ea8f29fe751b6f67af99bbd7b111efc25b90ae155cab9"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000780.png",
+    "expected": "f2a125ac305af56ff472c896c07bb4dd9c6d0bdad26aefeee1d75c2b1a373da7",
+    "actual": "f2a125ac305af56ff472c896c07bb4dd9c6d0bdad26aefeee1d75c2b1a373da7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000809.png",
+    "expected": "68c6418c635d1ad654b6df3876eb6cdb85decbb2bbf5a5233c8c75742037cdd3",
+    "actual": "68c6418c635d1ad654b6df3876eb6cdb85decbb2bbf5a5233c8c75742037cdd3"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000840.png",
+    "expected": "3086ce677437e410ffc67cb8b116e31c1acd767179b01472fb38335aa87f6f4f",
+    "actual": "3086ce677437e410ffc67cb8b116e31c1acd767179b01472fb38335aa87f6f4f"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000870.png",
+    "expected": "e76d9ff0a0c6ea030b3d155954e75967d00f0af55780c523f0cec759ea8a6c42",
+    "actual": "e76d9ff0a0c6ea030b3d155954e75967d00f0af55780c523f0cec759ea8a6c42"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000900.png",
+    "expected": "06348c45323de289c7859f16057660a212122809c191b9ba8fee777cd1218c26",
+    "actual": "06348c45323de289c7859f16057660a212122809c191b9ba8fee777cd1218c26"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000930.png",
+    "expected": "7a33e99bebc04808058e2e3f10713e7dd0d73e390cfdbcf147d98012c72a6119",
+    "actual": "7a33e99bebc04808058e2e3f10713e7dd0d73e390cfdbcf147d98012c72a6119"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000958.png",
+    "expected": "d27e136d9f84507b93ef68d3234ded529b6df29e4abafd8880611b43d5d5d7e0",
+    "actual": "d27e136d9f84507b93ef68d3234ded529b6df29e4abafd8880611b43d5d5d7e0"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f000987.png",
+    "expected": "c2c3805e213d3fb4dcd0101eaf2f6ea693fa1870e3004f07dbf6b202f2aecfe2",
+    "actual": "c2c3805e213d3fb4dcd0101eaf2f6ea693fa1870e3004f07dbf6b202f2aecfe2"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001018.png",
+    "expected": "709bdfa02d081ce2f340c89be4b18c162a8201106eeb6d198e43566631c0464e",
+    "actual": "709bdfa02d081ce2f340c89be4b18c162a8201106eeb6d198e43566631c0464e"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001048.png",
+    "expected": "85a54e125ba382cdf76b375899c75a304b6a9079a5366049f6046269aa339194",
+    "actual": "85a54e125ba382cdf76b375899c75a304b6a9079a5366049f6046269aa339194"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001078.png",
+    "expected": "310c0af56c5bafaee1ffdad4b608f5fe1d55b890d15788c5b96263863b414458",
+    "actual": "310c0af56c5bafaee1ffdad4b608f5fe1d55b890d15788c5b96263863b414458"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001108.png",
+    "expected": "d3792f318954324355e896dff14a012d4cad812f301333f7e864bd75ebb311a1",
+    "actual": "d3792f318954324355e896dff14a012d4cad812f301333f7e864bd75ebb311a1"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001138.png",
+    "expected": "afedbc38e573f71ff05a52f92ebd86da4223ab1c608a2dd1256fd4625a5daa02",
+    "actual": "afedbc38e573f71ff05a52f92ebd86da4223ab1c608a2dd1256fd4625a5daa02"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001168.png",
+    "expected": "1359562b27e3fddc285ce2fcd8fa26a0222a44ec277075c844797d33d626281d",
+    "actual": "1359562b27e3fddc285ce2fcd8fa26a0222a44ec277075c844797d33d626281d"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001198.png",
+    "expected": "5cc82076d549c762ab471caeece20652449609c84bf533a62c3e5d1a74173c36",
+    "actual": "5cc82076d549c762ab471caeece20652449609c84bf533a62c3e5d1a74173c36"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001228.png",
+    "expected": "8029cf43c92b23aabf046b20b143f3a6b81d36ae9122cc21ddade6ff967d2393",
+    "actual": "8029cf43c92b23aabf046b20b143f3a6b81d36ae9122cc21ddade6ff967d2393"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001258.png",
+    "expected": "204dd12336c02000f177e0705e2085527df627bf2f9d41e9ae448c6bb6982b99",
+    "actual": "204dd12336c02000f177e0705e2085527df627bf2f9d41e9ae448c6bb6982b99"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001288.png",
+    "expected": "37ea57f5739e71328682b3a40d5d720925c2dd422a791adcbe85823a5ccf0cdd",
+    "actual": "37ea57f5739e71328682b3a40d5d720925c2dd422a791adcbe85823a5ccf0cdd"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001318.png",
+    "expected": "59e5a21aa369f260650b4b21bd676b45b55ffcf67348fc7117e58b5c29b60232",
+    "actual": "59e5a21aa369f260650b4b21bd676b45b55ffcf67348fc7117e58b5c29b60232"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001348.png",
+    "expected": "2ecbaa779ec094b5782172095f4b9f7396f278bb6e1cc5028d10a1850de59074",
+    "actual": "2ecbaa779ec094b5782172095f4b9f7396f278bb6e1cc5028d10a1850de59074"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001378.png",
+    "expected": "2a3cf90d3511aa77edbb7b419746e7d50e8f4fcb37daa0696756d3faa5b5b764",
+    "actual": "2a3cf90d3511aa77edbb7b419746e7d50e8f4fcb37daa0696756d3faa5b5b764"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001408.png",
+    "expected": "e89f307826ca82c72a020f2326abec65750a18af99008d77abb26de67dcff54a",
+    "actual": "e89f307826ca82c72a020f2326abec65750a18af99008d77abb26de67dcff54a"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001438.png",
+    "expected": "b9092296823363bf2ffedfee331f9aa640eecee0337d7636c00bee743d379b97",
+    "actual": "b9092296823363bf2ffedfee331f9aa640eecee0337d7636c00bee743d379b97"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001468.png",
+    "expected": "e08fe915e5afe3813ec7803c77e2fde4767ec1b6794cc63611fa0cf7cc13646b",
+    "actual": "e08fe915e5afe3813ec7803c77e2fde4767ec1b6794cc63611fa0cf7cc13646b"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001498.png",
+    "expected": "eafe58c2b57e00e317db44ba2134b8c189f32a42db30ba0119f9c77ccb0eb1f7",
+    "actual": "eafe58c2b57e00e317db44ba2134b8c189f32a42db30ba0119f9c77ccb0eb1f7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/floor_cone_same_pose_r01_20261015_160621_378/raw_f001528.png",
+    "expected": "a0a036190f952e2dbb6bccbc522b194febc6d6013cec3672e8900872bf25e905",
+    "actual": "a0a036190f952e2dbb6bccbc522b194febc6d6013cec3672e8900872bf25e905"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000001.png",
+    "expected": "15fddf2e7ff9b0921f5625e43678d6381df92639a475d5ab9536726814c3275d",
+    "actual": "15fddf2e7ff9b0921f5625e43678d6381df92639a475d5ab9536726814c3275d"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000032.png",
+    "expected": "fbfe289a8f22d7a60097294522573422fe736c350c6575214556bf4c6f8558a2",
+    "actual": "fbfe289a8f22d7a60097294522573422fe736c350c6575214556bf4c6f8558a2"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000062.png",
+    "expected": "e6a38e2d2a3a8b065f104bad4aa4015de90623ee01869dfc1f462c890b134c89",
+    "actual": "e6a38e2d2a3a8b065f104bad4aa4015de90623ee01869dfc1f462c890b134c89"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000092.png",
+    "expected": "3ded14add62c4c4f9cab7bc1b06cf3e8380d09aa092b9c15056b49b9618ed5a6",
+    "actual": "3ded14add62c4c4f9cab7bc1b06cf3e8380d09aa092b9c15056b49b9618ed5a6"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000122.png",
+    "expected": "05615e361a796f9be113337c5b1cde93e62f25a687ec1d99c2b6e393bc4bb334",
+    "actual": "05615e361a796f9be113337c5b1cde93e62f25a687ec1d99c2b6e393bc4bb334"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000149.png",
+    "expected": "234d6086696c8cb420985426d0e5c4dd5d8081b252803759faa71a7e317409a2",
+    "actual": "234d6086696c8cb420985426d0e5c4dd5d8081b252803759faa71a7e317409a2"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000179.png",
+    "expected": "468498bc6f78bfb42aabf37e675c34dca1727236fa43bff60f514c62d3885bf7",
+    "actual": "468498bc6f78bfb42aabf37e675c34dca1727236fa43bff60f514c62d3885bf7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000210.png",
+    "expected": "3ab3e02d04acc067802bbd8ccba1a85484ada4b18801ea51a00708ddac55f103",
+    "actual": "3ab3e02d04acc067802bbd8ccba1a85484ada4b18801ea51a00708ddac55f103"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000239.png",
+    "expected": "8bf3684b5ad888963025fc876eddc8378a3fb2634d62dfdaa1da0e37a9895bd6",
+    "actual": "8bf3684b5ad888963025fc876eddc8378a3fb2634d62dfdaa1da0e37a9895bd6"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000270.png",
+    "expected": "e7aee2013539e901342b39b32c2d73ca2eea7c844091fd9721d448ee468deb92",
+    "actual": "e7aee2013539e901342b39b32c2d73ca2eea7c844091fd9721d448ee468deb92"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000299.png",
+    "expected": "ff974824b02be0e1ab8997e66b70cc2c12c0674c7678902fdf830207e352c3ce",
+    "actual": "ff974824b02be0e1ab8997e66b70cc2c12c0674c7678902fdf830207e352c3ce"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000330.png",
+    "expected": "9205e26519e04e92f0ef320410c57d56965c61acd2d2ad8999663fa8dbda09e1",
+    "actual": "9205e26519e04e92f0ef320410c57d56965c61acd2d2ad8999663fa8dbda09e1"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000359.png",
+    "expected": "00512ad2eee6d8575d2435feedb26500425e92590de976b9da8721f30bfb7582",
+    "actual": "00512ad2eee6d8575d2435feedb26500425e92590de976b9da8721f30bfb7582"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000389.png",
+    "expected": "49ac831c6473e2e17045a0dae4aa76b75a7c07306f9fb8f04a7276db5b3538c1",
+    "actual": "49ac831c6473e2e17045a0dae4aa76b75a7c07306f9fb8f04a7276db5b3538c1"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000419.png",
+    "expected": "20ab6561bc27e7a6f3f9628088e30164653ac49bf061876893d5cb11c1204710",
+    "actual": "20ab6561bc27e7a6f3f9628088e30164653ac49bf061876893d5cb11c1204710"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000449.png",
+    "expected": "876dfe09a54d58ab271ab2e678c607eb37b3bbedd44020ad226ca67f811b15f0",
+    "actual": "876dfe09a54d58ab271ab2e678c607eb37b3bbedd44020ad226ca67f811b15f0"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000479.png",
+    "expected": "18d97126d6ede12fa27e8bf486509128fb9ba8243c0a3cf7fe063d1f4dd293a7",
+    "actual": "18d97126d6ede12fa27e8bf486509128fb9ba8243c0a3cf7fe063d1f4dd293a7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000509.png",
+    "expected": "4e42eff26b631607ee13bf8937762ebade9ee8e755c33c1cab4f8dee45b3074f",
+    "actual": "4e42eff26b631607ee13bf8937762ebade9ee8e755c33c1cab4f8dee45b3074f"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000539.png",
+    "expected": "c65f8b175cee717e3b273ec760e2ce1ec2f2eb43e2d672dd629f2210ca163a10",
+    "actual": "c65f8b175cee717e3b273ec760e2ce1ec2f2eb43e2d672dd629f2210ca163a10"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000569.png",
+    "expected": "40b085cb8d8bd3629ca096366f052d99517bca27cb08ec110916357c77ab17a1",
+    "actual": "40b085cb8d8bd3629ca096366f052d99517bca27cb08ec110916357c77ab17a1"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000599.png",
+    "expected": "7e64bb04a17ff62dd12de99d1b5595e7f6f31d95157f5abaddfbc603cbdc7f3d",
+    "actual": "7e64bb04a17ff62dd12de99d1b5595e7f6f31d95157f5abaddfbc603cbdc7f3d"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000629.png",
+    "expected": "e81372cffe7d92bd5bc5a44f400439fbfc6aaf1a05b4a4c7687cf3b458c0cf28",
+    "actual": "e81372cffe7d92bd5bc5a44f400439fbfc6aaf1a05b4a4c7687cf3b458c0cf28"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000659.png",
+    "expected": "24dd72cc335400854965afb46d98f7b01097b3e54ac868e5deb70b98aa9903c1",
+    "actual": "24dd72cc335400854965afb46d98f7b01097b3e54ac868e5deb70b98aa9903c1"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000689.png",
+    "expected": "771c2264ea9e2ded5f1963a555ec6883324ebe06f897dbbb9e7986de684307a1",
+    "actual": "771c2264ea9e2ded5f1963a555ec6883324ebe06f897dbbb9e7986de684307a1"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-22_scene_uniform_sampling_r01/one_static_center_z0p80_r01_20261015_135155_823/raw_f000719.png",
+    "expected": "05e22e19eaac02f20bfe492dcccd3b58020c100212e95bc2d4b8f87602105c40",
+    "actual": "05e22e19eaac02f20bfe492dcccd3b58020c100212e95bc2d4b8f87602105c40"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f000001.png",
+    "expected": "d88c82af351cfe946ceccc48fd14507f883245c6f00d5d7e381bb35f1feda420",
+    "actual": "d88c82af351cfe946ceccc48fd14507f883245c6f00d5d7e381bb35f1feda420"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f000001.txt",
+    "expected": "10347295383624a43a7da82bd29e757118f70fbf01aea8150ce8091cf2a47263",
+    "actual": "10347295383624a43a7da82bd29e757118f70fbf01aea8150ce8091cf2a47263"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f000301.png",
+    "expected": "6185a3fb4e1e3a432417f7e231f8018176bfb98e167b746921cbed8238b052a8",
+    "actual": "6185a3fb4e1e3a432417f7e231f8018176bfb98e167b746921cbed8238b052a8"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f000301.txt",
+    "expected": "8bafe32aeb4026951134597d3d6ccc0c7db99b789ca1a36518ee7b033f4f05c1",
+    "actual": "8bafe32aeb4026951134597d3d6ccc0c7db99b789ca1a36518ee7b033f4f05c1"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f000601.png",
+    "expected": "7194a0078db3175ed648481f3940de3dd44d431eac7e67662354b69361cb4907",
+    "actual": "7194a0078db3175ed648481f3940de3dd44d431eac7e67662354b69361cb4907"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f000601.txt",
+    "expected": "e86ad3e1c88bac6c9b84a40dfe7fff9e9e6503416e1c44147eb537838ee88e21",
+    "actual": "e86ad3e1c88bac6c9b84a40dfe7fff9e9e6503416e1c44147eb537838ee88e21"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f000901.png",
+    "expected": "2396241a6d1592a9726ccd5fcee7961446db677685e506e836cafa4419997669",
+    "actual": "2396241a6d1592a9726ccd5fcee7961446db677685e506e836cafa4419997669"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f000901.txt",
+    "expected": "86ca439baff8028e5c1078d0ec4b8059b39ff86168be07d5d1c4c002920774e1",
+    "actual": "86ca439baff8028e5c1078d0ec4b8059b39ff86168be07d5d1c4c002920774e1"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f001201.png",
+    "expected": "8ce764731ba503667555a3c329753532cc7118f3a12ba48229501794e4ff504b",
+    "actual": "8ce764731ba503667555a3c329753532cc7118f3a12ba48229501794e4ff504b"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f001201.txt",
+    "expected": "515a6b05d85429c1b2187d372b14902ddb559f5b6e2f832b70ed0ccb97c3651c",
+    "actual": "515a6b05d85429c1b2187d372b14902ddb559f5b6e2f832b70ed0ccb97c3651c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f001501.png",
+    "expected": "84718bb843e71cbab3a6aaf042e138921bfcceeedf3a5376fdaf3b9b1d9c3634",
+    "actual": "84718bb843e71cbab3a6aaf042e138921bfcceeedf3a5376fdaf3b9b1d9c3634"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f001501.txt",
+    "expected": "52fa9d07fd1de876702d20177126b4346dcb7831af3e3c3ef7057fa7c05b88a4",
+    "actual": "52fa9d07fd1de876702d20177126b4346dcb7831af3e3c3ef7057fa7c05b88a4"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f001801.png",
+    "expected": "9add5052d3d123d33561a4f65493fc96abee8c49d36d743206f28afb3c04fbf1",
+    "actual": "9add5052d3d123d33561a4f65493fc96abee8c49d36d743206f28afb3c04fbf1"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f001801.txt",
+    "expected": "4568e44aeca679ffa8742a1b4bb6aaa32de99666161c671333cc692b5622e77f",
+    "actual": "4568e44aeca679ffa8742a1b4bb6aaa32de99666161c671333cc692b5622e77f"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f002101.png",
+    "expected": "4bb84183b0beba74362fcedca82b064d2aed3e6044f73cfd6539b46c2192036a",
+    "actual": "4bb84183b0beba74362fcedca82b064d2aed3e6044f73cfd6539b46c2192036a"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f002101.txt",
+    "expected": "8c42c27c51c1a78fa14e524f29f53c267c73b60f5be013e74b205fc51cd2650f",
+    "actual": "8c42c27c51c1a78fa14e524f29f53c267c73b60f5be013e74b205fc51cd2650f"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f002401.png",
+    "expected": "ccfbf8516fe8692c6497ca0345201f6d9f89fd47b156fd476ee32b4c74b03e39",
+    "actual": "ccfbf8516fe8692c6497ca0345201f6d9f89fd47b156fd476ee32b4c74b03e39"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f002401.txt",
+    "expected": "3753a20507e4d01c195c363e99fc05b9b401df745f3d01b0af972cf2562957c3",
+    "actual": "3753a20507e4d01c195c363e99fc05b9b401df745f3d01b0af972cf2562957c3"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f002701.png",
+    "expected": "f257cfb079f63a7355d1d1b54153ab5f6d827af3aa7c2f9acbd3bbaa757e1482",
+    "actual": "f257cfb079f63a7355d1d1b54153ab5f6d827af3aa7c2f9acbd3bbaa757e1482"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f002701.txt",
+    "expected": "b0fc25c070711a69414102a432ecd097f680bca69e365eec182655bf3ba94f5c",
+    "actual": "b0fc25c070711a69414102a432ecd097f680bca69e365eec182655bf3ba94f5c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f003001.png",
+    "expected": "8fea0234e19bc580bb85e9f69d14aed16f84ce9845540084524e1ec9bf6b638a",
+    "actual": "8fea0234e19bc580bb85e9f69d14aed16f84ce9845540084524e1ec9bf6b638a"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f003001.txt",
+    "expected": "aafdd49f443583bba3a8fdf29ce56fc8b51c24fd9563fd989e9c82a617d6e33d",
+    "actual": "aafdd49f443583bba3a8fdf29ce56fc8b51c24fd9563fd989e9c82a617d6e33d"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f003301.png",
+    "expected": "23deb66286d298a2793fc82671a25d09a10500cd7b0f79b7b5d8eabc9e31dfb3",
+    "actual": "23deb66286d298a2793fc82671a25d09a10500cd7b0f79b7b5d8eabc9e31dfb3"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f003301.txt",
+    "expected": "ac04daad7f01b70f0cec22439282278775180e3b6b928b776bb641bd6e85f090",
+    "actual": "ac04daad7f01b70f0cec22439282278775180e3b6b928b776bb641bd6e85f090"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f003601.png",
+    "expected": "d02635bd3f3791615f3fdc48132ff9f8738437b209dfc3d3cde06e94645d5572",
+    "actual": "d02635bd3f3791615f3fdc48132ff9f8738437b209dfc3d3cde06e94645d5572"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f003601.txt",
+    "expected": "92f241479f2887d53dbee1762344a72d6d13fecfc98a5e8c3b93a5292582a943",
+    "actual": "92f241479f2887d53dbee1762344a72d6d13fecfc98a5e8c3b93a5292582a943"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f003901.png",
+    "expected": "28c8d7e5e052b14841d02b176eef8802c804262ac4c052d347f419a67d1c716c",
+    "actual": "28c8d7e5e052b14841d02b176eef8802c804262ac4c052d347f419a67d1c716c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f003901.txt",
+    "expected": "babe718a4ea8dc9d22e6eda99155978f27f0df2d837658d16d1873b67975b065",
+    "actual": "babe718a4ea8dc9d22e6eda99155978f27f0df2d837658d16d1873b67975b065"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f004201.png",
+    "expected": "52926700945587a9517aab8b2d4a54d28c8e7cf1ee30dd9636a2d2633c3178dd",
+    "actual": "52926700945587a9517aab8b2d4a54d28c8e7cf1ee30dd9636a2d2633c3178dd"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f004201.txt",
+    "expected": "5bce3564c45bf2d47039af60e0c23dbb2d654ead92121951e7863c8decadbc6e",
+    "actual": "5bce3564c45bf2d47039af60e0c23dbb2d654ead92121951e7863c8decadbc6e"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f004501.png",
+    "expected": "63907929b969e344ccaed184460209bf86ab1e0674894b98509aefdfffad43f2",
+    "actual": "63907929b969e344ccaed184460209bf86ab1e0674894b98509aefdfffad43f2"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f004501.txt",
+    "expected": "575494bcaea3e6d809e486a8eeb836d7178a6b47d7432ab7a53759257ac10ecb",
+    "actual": "575494bcaea3e6d809e486a8eeb836d7178a6b47d7432ab7a53759257ac10ecb"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f004801.png",
+    "expected": "9dbcf4473d262aaaa377c564388d08da3b7e3e687575e6f74a025ead662924e1",
+    "actual": "9dbcf4473d262aaaa377c564388d08da3b7e3e687575e6f74a025ead662924e1"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f004801.txt",
+    "expected": "b5a02f5d9a254f62060cb6a84e9d96ca3737b85d59fef06a9af3bcf9b614a6c3",
+    "actual": "b5a02f5d9a254f62060cb6a84e9d96ca3737b85d59fef06a9af3bcf9b614a6c3"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f005101.png",
+    "expected": "5b0b4b8298ec83a8299136c1fe4179e03444cbd757254771c6202a9053f30e6b",
+    "actual": "5b0b4b8298ec83a8299136c1fe4179e03444cbd757254771c6202a9053f30e6b"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f005101.txt",
+    "expected": "b5c31831fb0ab92cf1b429f55cbdbbdea45268fa013acee2a37765430c354f24",
+    "actual": "b5c31831fb0ab92cf1b429f55cbdbbdea45268fa013acee2a37765430c354f24"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_e68ece502c09e03a_f005401.png",
+    "expected": "d55d6520d8711da40784567f8964b425bf7dbf953ba1563ad10b7eea56913084",
+    "actual": "d55d6520d8711da40784567f8964b425bf7dbf953ba1563ad10b7eea56913084"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_e68ece502c09e03a_f005401.txt",
+    "expected": "ae2d1882dab8730ddd5926dc0cec66d7c6a8d51aa3a2bda56205518b1f5a6016",
+    "actual": "ae2d1882dab8730ddd5926dc0cec66d7c6a8d51aa3a2bda56205518b1f5a6016"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_8edaf751254e955c_f000001.png",
+    "expected": "d02a7f4d746d559adedb950a282031a440f9075c06aa2b174e82ff981d454b7e",
+    "actual": "d02a7f4d746d559adedb950a282031a440f9075c06aa2b174e82ff981d454b7e"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_8edaf751254e955c_f000001.txt",
+    "expected": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7",
+    "actual": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_8edaf751254e955c_f000031.png",
+    "expected": "e974ede421dd8ea2b40a255480eb58b4e2085217b41546ca562686096ceff912",
+    "actual": "e974ede421dd8ea2b40a255480eb58b4e2085217b41546ca562686096ceff912"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_8edaf751254e955c_f000031.txt",
+    "expected": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7",
+    "actual": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_8edaf751254e955c_f000061.png",
+    "expected": "dcef3ae7f9917238158ff9b285a2f2049047f65aa8815f0c64061ebef5e8e630",
+    "actual": "dcef3ae7f9917238158ff9b285a2f2049047f65aa8815f0c64061ebef5e8e630"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_8edaf751254e955c_f000061.txt",
+    "expected": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7",
+    "actual": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_8edaf751254e955c_f000091.png",
+    "expected": "029e3bdb4e491dae5fdcc2e432665e91ab53cf12746ff297b25bea4ea92eb8b2",
+    "actual": "029e3bdb4e491dae5fdcc2e432665e91ab53cf12746ff297b25bea4ea92eb8b2"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_8edaf751254e955c_f000091.txt",
+    "expected": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7",
+    "actual": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_8edaf751254e955c_f000121.png",
+    "expected": "84395fd6e71762471cc43d1f5c4b46233410252066f53806eeae73a7c2337fff",
+    "actual": "84395fd6e71762471cc43d1f5c4b46233410252066f53806eeae73a7c2337fff"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_8edaf751254e955c_f000121.txt",
+    "expected": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7",
+    "actual": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_8edaf751254e955c_f000151.png",
+    "expected": "dcc885421f62f93c9f69ad9cfdd3b1bade90ef1fb3c6806b538a028cc7ef8a8f",
+    "actual": "dcc885421f62f93c9f69ad9cfdd3b1bade90ef1fb3c6806b538a028cc7ef8a8f"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_8edaf751254e955c_f000151.txt",
+    "expected": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7",
+    "actual": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_8edaf751254e955c_f000181.png",
+    "expected": "b5db198aee6cf689f6f26d1268e1731d494729b606f8ccc294cb300d5561e6ad",
+    "actual": "b5db198aee6cf689f6f26d1268e1731d494729b606f8ccc294cb300d5561e6ad"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_8edaf751254e955c_f000181.txt",
+    "expected": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7",
+    "actual": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_8edaf751254e955c_f000211.png",
+    "expected": "16bbc64e0bdc66348449483b33439e53d2c2ba22bf82266e934019774cee069b",
+    "actual": "16bbc64e0bdc66348449483b33439e53d2c2ba22bf82266e934019774cee069b"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_8edaf751254e955c_f000211.txt",
+    "expected": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7",
+    "actual": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_8edaf751254e955c_f000241.png",
+    "expected": "ae0f3c0d990b54c2b324cece4abb419b2c851e5f577a31c4b767f6563b3098e0",
+    "actual": "ae0f3c0d990b54c2b324cece4abb419b2c851e5f577a31c4b767f6563b3098e0"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_8edaf751254e955c_f000241.txt",
+    "expected": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7",
+    "actual": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_8edaf751254e955c_f000271.png",
+    "expected": "2c7f342360343812a3506b7ce333bb535276cff0288a58f23b6f99a3d58583fe",
+    "actual": "2c7f342360343812a3506b7ce333bb535276cff0288a58f23b6f99a3d58583fe"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_8edaf751254e955c_f000271.txt",
+    "expected": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7",
+    "actual": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_8edaf751254e955c_f000301.png",
+    "expected": "fa25493eb21ebc7482337a53612805142b3f8c910c3376d6e24e77f5f0392a60",
+    "actual": "fa25493eb21ebc7482337a53612805142b3f8c910c3376d6e24e77f5f0392a60"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_8edaf751254e955c_f000301.txt",
+    "expected": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7",
+    "actual": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_8edaf751254e955c_f000331.png",
+    "expected": "4cc2ffa4c8db425f7b737a9b067230257a79149732c251fa876a7f62362f4508",
+    "actual": "4cc2ffa4c8db425f7b737a9b067230257a79149732c251fa876a7f62362f4508"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_8edaf751254e955c_f000331.txt",
+    "expected": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7",
+    "actual": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_8edaf751254e955c_f000361.png",
+    "expected": "acb0b050e207f09206fd2c7f4347be2295ebb148728b7376c25c8144e5954342",
+    "actual": "acb0b050e207f09206fd2c7f4347be2295ebb148728b7376c25c8144e5954342"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_8edaf751254e955c_f000361.txt",
+    "expected": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7",
+    "actual": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_8edaf751254e955c_f000391.png",
+    "expected": "e31dbd63e9cf1d9be46864bc01ca096a404da6313b16378085d67d5bbd9ac94d",
+    "actual": "e31dbd63e9cf1d9be46864bc01ca096a404da6313b16378085d67d5bbd9ac94d"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_8edaf751254e955c_f000391.txt",
+    "expected": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7",
+    "actual": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_8edaf751254e955c_f000421.png",
+    "expected": "ea257a4574e099c5082a2df9fd16b5aa8478a446fb8aa1e12401bb82aba59ecf",
+    "actual": "ea257a4574e099c5082a2df9fd16b5aa8478a446fb8aa1e12401bb82aba59ecf"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_8edaf751254e955c_f000421.txt",
+    "expected": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7",
+    "actual": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/train/block_a_8edaf751254e955c_f000451.png",
+    "expected": "39149ba9c38af2a3255cd7830dc50e43b761b8aa0164932b272a2ffb3e91d591",
+    "actual": "39149ba9c38af2a3255cd7830dc50e43b761b8aa0164932b272a2ffb3e91d591"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/train/block_a_8edaf751254e955c_f000451.txt",
+    "expected": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7",
+    "actual": "39c7f57679630e868ae74f5c9e1c09dfb65b3a6afbef5d4d337b7501b9729be7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f000001.png",
+    "expected": "d67ecf06ab49d05f88e5c91da1b94970c009b4b70f89b7e4840b8b55bb7ca38c",
+    "actual": "d67ecf06ab49d05f88e5c91da1b94970c009b4b70f89b7e4840b8b55bb7ca38c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f000001.txt",
+    "expected": "b07e487b5534c5907dc310358e74fc05422a407e4d4e055707101bb3a9dfa925",
+    "actual": "b07e487b5534c5907dc310358e74fc05422a407e4d4e055707101bb3a9dfa925"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f000301.png",
+    "expected": "605acf6bf81e9ac652a6a5721fffaf2202620cbceb4e57d50807cd3e5d7bb251",
+    "actual": "605acf6bf81e9ac652a6a5721fffaf2202620cbceb4e57d50807cd3e5d7bb251"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f000301.txt",
+    "expected": "05f573e7809766fda8f2720ab0222172d12fcf0141aa531b2b7642116fbef1fc",
+    "actual": "05f573e7809766fda8f2720ab0222172d12fcf0141aa531b2b7642116fbef1fc"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f000601.png",
+    "expected": "82e887931e43aff5d951deb09b3d4456e3eee91964a8aef2976a023944e77acc",
+    "actual": "82e887931e43aff5d951deb09b3d4456e3eee91964a8aef2976a023944e77acc"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f000601.txt",
+    "expected": "33063addb9d8a50c3baf066ca9ad946940aeb7c6e3d3532007f8824b1c5f3532",
+    "actual": "33063addb9d8a50c3baf066ca9ad946940aeb7c6e3d3532007f8824b1c5f3532"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f000901.png",
+    "expected": "d4ac837ca8754dba0075f244f08c3a543e170b7c181520d40a3e80cdf6e49f85",
+    "actual": "d4ac837ca8754dba0075f244f08c3a543e170b7c181520d40a3e80cdf6e49f85"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f000901.txt",
+    "expected": "1938541749dbd80282f11e542287a69a81f81ddb8f0bf145c400173ea87392ca",
+    "actual": "1938541749dbd80282f11e542287a69a81f81ddb8f0bf145c400173ea87392ca"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f001201.png",
+    "expected": "e6f9d04665ad39379e3caa22fab19c5f13888161e42f9316d3cc830d38ede227",
+    "actual": "e6f9d04665ad39379e3caa22fab19c5f13888161e42f9316d3cc830d38ede227"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f001201.txt",
+    "expected": "4401715db437b767e0a1cd284e5e4fcc51f45229b6b7a6057df362bb108e2efe",
+    "actual": "4401715db437b767e0a1cd284e5e4fcc51f45229b6b7a6057df362bb108e2efe"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f001501.png",
+    "expected": "d095979b3a9174e53c87020e9856ac62587126d026fe676249b892ce30153586",
+    "actual": "d095979b3a9174e53c87020e9856ac62587126d026fe676249b892ce30153586"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f001501.txt",
+    "expected": "ac109f2e66dcee27896c078238461c9013ec279aa2b601f2c01ffab67cda1390",
+    "actual": "ac109f2e66dcee27896c078238461c9013ec279aa2b601f2c01ffab67cda1390"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f001801.png",
+    "expected": "88644ec87ed83839e056a37bd6e75897e573e219b8bb880598dd42f7d04a1555",
+    "actual": "88644ec87ed83839e056a37bd6e75897e573e219b8bb880598dd42f7d04a1555"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f001801.txt",
+    "expected": "91f84c68174502e9c29c5791ef662ed6b9de577696e6b3cd54c83b5a91875d8a",
+    "actual": "91f84c68174502e9c29c5791ef662ed6b9de577696e6b3cd54c83b5a91875d8a"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f002101.png",
+    "expected": "14d6bfe533fd9fdee2d0dcacb14f19af561c3e00ae47dad2ce4b1c075330e0f1",
+    "actual": "14d6bfe533fd9fdee2d0dcacb14f19af561c3e00ae47dad2ce4b1c075330e0f1"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f002101.txt",
+    "expected": "79b73428b8a983cb4429439bfbfe09998c67e5bafbff58679dbea266c60fd3df",
+    "actual": "79b73428b8a983cb4429439bfbfe09998c67e5bafbff58679dbea266c60fd3df"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f002401.png",
+    "expected": "07d20838096e93748f156684f6cb848fec4c49df30876e35e51a2d5b34f1e860",
+    "actual": "07d20838096e93748f156684f6cb848fec4c49df30876e35e51a2d5b34f1e860"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f002401.txt",
+    "expected": "0655e2b307ca047ea0f6104539d088c580fae5ec6e2abc7e2c385c157976c360",
+    "actual": "0655e2b307ca047ea0f6104539d088c580fae5ec6e2abc7e2c385c157976c360"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f002701.png",
+    "expected": "5b59a8752075d6091a06cd30101b266d90fa402c7b4b36a0159424333f04366f",
+    "actual": "5b59a8752075d6091a06cd30101b266d90fa402c7b4b36a0159424333f04366f"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f002701.txt",
+    "expected": "ab2824506337e5a880adb0dc61e48999dcc462a442e66e5e4241cf988b2ae46b",
+    "actual": "ab2824506337e5a880adb0dc61e48999dcc462a442e66e5e4241cf988b2ae46b"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f003001.png",
+    "expected": "3bd477aa69b0b6aa2b34d7c48ca77f49d0230291ee52477755d1fefd4e3c9d3a",
+    "actual": "3bd477aa69b0b6aa2b34d7c48ca77f49d0230291ee52477755d1fefd4e3c9d3a"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f003001.txt",
+    "expected": "ac6a292b32dfc537232c9723065f27e0550d9b3d89d702e6328e506ccc5fbd4a",
+    "actual": "ac6a292b32dfc537232c9723065f27e0550d9b3d89d702e6328e506ccc5fbd4a"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f003301.png",
+    "expected": "9de5e4faf5ab09f9846f9d3c3acec0c534538a0451f965010f5e173741fc4aa2",
+    "actual": "9de5e4faf5ab09f9846f9d3c3acec0c534538a0451f965010f5e173741fc4aa2"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f003301.txt",
+    "expected": "a5515545023b24b36dffe91fe8ec0133e86c6bdd85e3c3857a9b020a0dcd3264",
+    "actual": "a5515545023b24b36dffe91fe8ec0133e86c6bdd85e3c3857a9b020a0dcd3264"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f003601.png",
+    "expected": "5fa2073198d02ad873d5fe1e4c1fc31afa202c0c068f7b11b7fdf91748fd6127",
+    "actual": "5fa2073198d02ad873d5fe1e4c1fc31afa202c0c068f7b11b7fdf91748fd6127"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f003601.txt",
+    "expected": "b6a6b4a55bb80d9108b65c132d62b4ab95d5d73b49cdf7726353dcf6d51cc251",
+    "actual": "b6a6b4a55bb80d9108b65c132d62b4ab95d5d73b49cdf7726353dcf6d51cc251"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f003901.png",
+    "expected": "a662e411369278a62fbff7f1476fbd55c51c057bb3e62d5b47e8fce9af16a35d",
+    "actual": "a662e411369278a62fbff7f1476fbd55c51c057bb3e62d5b47e8fce9af16a35d"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f003901.txt",
+    "expected": "4718c6fe807a4d6ae26ad2753806df3b22dd32af421e1bcff512e1db31ecbaf5",
+    "actual": "4718c6fe807a4d6ae26ad2753806df3b22dd32af421e1bcff512e1db31ecbaf5"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f004201.png",
+    "expected": "d87fdbb2c0a4a71bbd5b96220e80aecd7ecc3c37af613ffc17e709b31f8c78d3",
+    "actual": "d87fdbb2c0a4a71bbd5b96220e80aecd7ecc3c37af613ffc17e709b31f8c78d3"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f004201.txt",
+    "expected": "4718c6fe807a4d6ae26ad2753806df3b22dd32af421e1bcff512e1db31ecbaf5",
+    "actual": "4718c6fe807a4d6ae26ad2753806df3b22dd32af421e1bcff512e1db31ecbaf5"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f004501.png",
+    "expected": "293facc247179ff25b7e9369b8f155915706ef1e7101bf7074317339a11435aa",
+    "actual": "293facc247179ff25b7e9369b8f155915706ef1e7101bf7074317339a11435aa"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f004501.txt",
+    "expected": "205389e6e08483eeac3aa041d939a0dfe9049047aae420c655a3990c409d9932",
+    "actual": "205389e6e08483eeac3aa041d939a0dfe9049047aae420c655a3990c409d9932"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f004801.png",
+    "expected": "9ee4ac25f3bb199a6f11cd2e9ae9fa9de27cec97fa263e3094b3e931acd22f91",
+    "actual": "9ee4ac25f3bb199a6f11cd2e9ae9fa9de27cec97fa263e3094b3e931acd22f91"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f004801.txt",
+    "expected": "1455f01535ea41ca6374aa65c69a0a28e2ad5ce74d9e48e4fddd7a497321cee1",
+    "actual": "1455f01535ea41ca6374aa65c69a0a28e2ad5ce74d9e48e4fddd7a497321cee1"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_d2f1899d1f1cec88_f005101.png",
+    "expected": "03e391bb7fef160491b9a585668e2f99e0c11afeff103c5d523fb37d1088b328",
+    "actual": "03e391bb7fef160491b9a585668e2f99e0c11afeff103c5d523fb37d1088b328"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_d2f1899d1f1cec88_f005101.txt",
+    "expected": "d844b28e43781ae08d3cc6bc5209f852200dea07d350d0f25842931e52887d70",
+    "actual": "d844b28e43781ae08d3cc6bc5209f852200dea07d350d0f25842931e52887d70"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000001.png",
+    "expected": "152d501711204cdf910d8cf9a331e5cd9af558c7236d50bed913d32515f9957c",
+    "actual": "152d501711204cdf910d8cf9a331e5cd9af558c7236d50bed913d32515f9957c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000001.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000031.png",
+    "expected": "0813cc67595211499b216e38f00c013af38ba91b226fb70a5c0d7a9a322e36c0",
+    "actual": "0813cc67595211499b216e38f00c013af38ba91b226fb70a5c0d7a9a322e36c0"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000031.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000061.png",
+    "expected": "b1102670e4b6695d39536a0b1ce6c564ad993da5e6fe1efb9ecac99c0281e6a2",
+    "actual": "b1102670e4b6695d39536a0b1ce6c564ad993da5e6fe1efb9ecac99c0281e6a2"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000061.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000091.png",
+    "expected": "c21979d13442198021c5c23b2ef9477a5f2d141b4a68feb3301eec32377992b6",
+    "actual": "c21979d13442198021c5c23b2ef9477a5f2d141b4a68feb3301eec32377992b6"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000091.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000121.png",
+    "expected": "60d87124811a0acac7dce139df62aa93d3040276ac2dbdc2d7514a42a61df90a",
+    "actual": "60d87124811a0acac7dce139df62aa93d3040276ac2dbdc2d7514a42a61df90a"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000121.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000151.png",
+    "expected": "18a2fedb017d665aebda53fc6485b3bc8e031fcf8cadfe8c8afa94e3aab7c536",
+    "actual": "18a2fedb017d665aebda53fc6485b3bc8e031fcf8cadfe8c8afa94e3aab7c536"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000151.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000181.png",
+    "expected": "a8b3f07a8f169434aa482b2da8331c08a5d72fb99076227405b656a5271057ee",
+    "actual": "a8b3f07a8f169434aa482b2da8331c08a5d72fb99076227405b656a5271057ee"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000181.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000211.png",
+    "expected": "4c8c4cc6331fe1b1640209a6ba12538407805da5f64eefc87126e043cc40ace8",
+    "actual": "4c8c4cc6331fe1b1640209a6ba12538407805da5f64eefc87126e043cc40ace8"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000211.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000241.png",
+    "expected": "c297da16253388844bff94b41be686a016f9bd76134a0e4182a79f3d2484509c",
+    "actual": "c297da16253388844bff94b41be686a016f9bd76134a0e4182a79f3d2484509c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000241.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000271.png",
+    "expected": "f0ddbb9a4a867b97632196a2c49be9c034b17af9558779ebdc03c9f117d26f9c",
+    "actual": "f0ddbb9a4a867b97632196a2c49be9c034b17af9558779ebdc03c9f117d26f9c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000271.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000301.png",
+    "expected": "1554f51f3a02fe1fb2229153f06306fbb6b7e0b01da22653fff7022200b36057",
+    "actual": "1554f51f3a02fe1fb2229153f06306fbb6b7e0b01da22653fff7022200b36057"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000301.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000331.png",
+    "expected": "e025d44b3b9982c6c408e44987fe11331821e6f28b293a0de25f1826566a4f8a",
+    "actual": "e025d44b3b9982c6c408e44987fe11331821e6f28b293a0de25f1826566a4f8a"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000331.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000361.png",
+    "expected": "6f684507d227918640ed471d2b07b5f1545134f865def3d531ac39321e929e64",
+    "actual": "6f684507d227918640ed471d2b07b5f1545134f865def3d531ac39321e929e64"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000361.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000391.png",
+    "expected": "cde57f84f0d6eb72d494081c5d4406e91a7ec9b7da76977eff0ec0b147fba485",
+    "actual": "cde57f84f0d6eb72d494081c5d4406e91a7ec9b7da76977eff0ec0b147fba485"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000391.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000421.png",
+    "expected": "ff54fa836836ff313741d2356178b2f54e5710b94fce22ac21d4b46c1c4a2a14",
+    "actual": "ff54fa836836ff313741d2356178b2f54e5710b94fce22ac21d4b46c1c4a2a14"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000421.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000451.png",
+    "expected": "09f7a0d86cc4ed1fe2eb21a5f4213b7dc58d2cbb974d4b8b48183d49eb229de7",
+    "actual": "09f7a0d86cc4ed1fe2eb21a5f4213b7dc58d2cbb974d4b8b48183d49eb229de7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000451.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000481.png",
+    "expected": "5ac66521780175baed5d800e18fa263c511ace3a0b0e0bcc6eed091560b61c8c",
+    "actual": "5ac66521780175baed5d800e18fa263c511ace3a0b0e0bcc6eed091560b61c8c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000481.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000511.png",
+    "expected": "8ec47908e9797e1b94d523762db149001dd1b425bd5e1a808f3a3f4414663ab7",
+    "actual": "8ec47908e9797e1b94d523762db149001dd1b425bd5e1a808f3a3f4414663ab7"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000511.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000541.png",
+    "expected": "c62a609de545b5fb1ac73fa00a0874c05d136f25febf95694d0ea2a09c827f65",
+    "actual": "c62a609de545b5fb1ac73fa00a0874c05d136f25febf95694d0ea2a09c827f65"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000541.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/images/val/block_b_e4aaba18ded89e95_f000571.png",
+    "expected": "5c4bc1378ad5b66573d0570aae72c658a3665d950055a75a8cfd5b1b143f548d",
+    "actual": "5c4bc1378ad5b66573d0570aae72c658a3665d950055a75a8cfd5b1b143f548d"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/labels/val/block_b_e4aaba18ded89e95_f000571.txt",
+    "expected": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c",
+    "actual": "e3c406fad02c19b0a7ed0c3ffb59555e2cd2ec70b577ea5316604cb105c8218c"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-22/scene_uniform_validation_r01/intake_r01/native_sample_manifest.csv",
+    "expected": "1e4bcfa5ae1d1d38e56db082fc81c186e593e30a686515242dfbc276eac5be29",
+    "actual": "1e4bcfa5ae1d1d38e56db082fc81c186e593e30a686515242dfbc276eac5be29"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-26/cone_distance_report_r01/source_snapshot/cone_distance_core.py",
+    "expected": "b050519eea0104eddb218c35140edf653af9d00f99b327a707dcaae3d85c2b00",
+    "actual": "b050519eea0104eddb218c35140edf653af9d00f99b327a707dcaae3d85c2b00"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-30/cone_distance_live_r01/decoded_f1f1b17f34a6447a9789291af128f991_f004903.png",
+    "expected": "c715ecd8bf3ef94dc793acee5170936914c5382d4bac89174227417847374dea",
+    "actual": "c715ecd8bf3ef94dc793acee5170936914c5382d4bac89174227417847374dea"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_saved_frame_audit_r01/cpu_results_r02/audit.json",
+    "expected": "326ca72fa25d44b17000ddf55b2f82f12ff54c7f03ba7d6d30e34e7f2dca7f89",
+    "actual": "326ca72fa25d44b17000ddf55b2f82f12ff54c7f03ba7d6d30e34e7f2dca7f89"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/manifest.csv",
+    "expected": "f5f5870af1a34701bfc31c7b97bc2d0d083b88081234599b1c8be8713309ca7e",
+    "actual": "f5f5870af1a34701bfc31c7b97bc2d0d083b88081234599b1c8be8713309ca7e"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/datasets/cone/ab_bootstrap_v01/reviews.csv",
+    "expected": "dc13b6fda3fb060fbca24d76433051764593ab7225601f2fb979e11b971f8b3e",
+    "actual": "dc13b6fda3fb060fbca24d76433051764593ab7225601f2fb979e11b971f8b3e"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_colour_shadow_r01/evaluate.py",
+    "expected": "6ad7e1f236cf99e43f981f68c1ee5afc0106dc460fd3a7c46f454651063d8ebc",
+    "actual": "6ad7e1f236cf99e43f981f68c1ee5afc0106dc460fd3a7c46f454651063d8ebc"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+    "expected": "c9e3beac6eb6a4249238b4d06873da8598d0d67bbdfd2378f3e0746e6cbc07c2",
+    "actual": "c9e3beac6eb6a4249238b4d06873da8598d0d67bbdfd2378f3e0746e6cbc07c2"
+  },
+  {
+    "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_colour_support_candidate.py",
+    "expected": "54d15953eaa8aee858c3626182f5ecaf4f8c3e3c0d8507d7161b4eb770e51246",
+    "actual": "54d15953eaa8aee858c3626182f5ecaf4f8c3e3c0d8507d7161b4eb770e51246"
+  }
+]

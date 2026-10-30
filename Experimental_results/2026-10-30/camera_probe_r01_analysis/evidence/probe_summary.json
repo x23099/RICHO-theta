@@ -1,0 +1,73 @@
+{
+  "status": "LOCAL_CAPTURE_PROBE_FAILED",
+  "device": "0",
+  "requested_fps": 30,
+  "image_size": [
+    1280,
+    720
+  ],
+  "physical_output": false,
+  "network_started": false,
+  "ros_started": false,
+  "cuda_inference_started": false,
+  "scene_content_verified": false,
+  "no_signal_detected": null,
+  "observed_frames": 27,
+  "capture_timeout_sec": 3.0,
+  "permitted_frame_age_sec": 0.2,
+  "source_sha256": "83813ed1c22188cc30f1afca6ab3ee75e2329f0c46d4adb020235e3a569d391e",
+  "reported_capture_properties": {
+    "backend": "V4L2",
+    "frame_width": 1280.0,
+    "frame_height": 720.0,
+    "fps": 30.0,
+    "fourcc": 1196444237.0,
+    "fourcc_text": "MJPG",
+    "auto_exposure": 0.0,
+    "exposure": -1.0,
+    "gain": -1.0,
+    "brightness": -1.0,
+    "contrast": -1.0,
+    "saturation": -1.0,
+    "hue": -1.0,
+    "auto_white_balance": -1.0,
+    "white_balance_blue_u": -1.0,
+    "white_balance_temperature": -1.0
+  },
+  "capture_state_before_close": {
+    "state": "capture_wait",
+    "age_sec": 1.0570140490000028,
+    "captured_frames": 659,
+    "failed_reads": 0,
+    "recovered_gaps": 1,
+    "last_read_ms": 0.2832299999937504,
+    "max_read_ms": 918.3980319999989
+  },
+  "reader_stopped": false,
+  "capture_counters": {
+    "captured_frames": 659,
+    "failed_reads": 0,
+    "recovered_gaps": 1,
+    "max_completed_read_ms": 918.3980319999989,
+    "reader_error": null
+  },
+  "elapsed_sec": 6.028193352000002,
+  "snapshots": [
+    {
+      "file": "first_frame.png",
+      "sequence": 271,
+      "read_return_monotonic_sec": 102.138153065,
+      "sha256": "d18b6ed038c377e1b60de4ae5065fe2f67e0bbedccb9b74d25385d7aabd6930e",
+      "source_pixels_edited": false
+    },
+    {
+      "file": "last_frame.png",
+      "sequence": 659,
+      "read_return_monotonic_sec": 105.173158957,
+      "sha256": "d18b6ed038c377e1b60de4ae5065fe2f67e0bbedccb9b74d25385d7aabd6930e",
+      "source_pixels_edited": false
+    }
+  ],
+  "snapshot_kind": "native OpenCV decoded capture, not annotated, NOT guaranteed sensor-original",
+  "shutdown_error": "camera reader still blocked"
+}

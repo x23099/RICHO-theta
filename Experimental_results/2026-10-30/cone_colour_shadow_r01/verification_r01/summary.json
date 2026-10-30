@@ -1,0 +1,40 @@
+{
+  "status": "PASS_SOFTWARE_SHADOW_ONLY",
+  "work_date": "2026-10-30",
+  "tests": 177,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "protected_sources_unchanged": {
+    "cone_scene_diagnostic.py": true,
+    "angular_fisheye_geometry.py": true,
+    "fisheye_floor_geometry.py": true,
+    "cone_support_quality.py": true,
+    "cone_distance_diagnostic_config.json": true,
+    "scene_sampling_clock.py": true,
+    "theta_rtc_frames.py": true,
+    "theta_rtc_diagnostic.py": true,
+    "webrtc_stream.py": true,
+    "webrtc_receive_ui.py": true,
+    "start_theta_stream_rtc.sh": true,
+    "start_theta_receive_rtc.sh": true
+  },
+  "evaluation_source_checks": 338,
+  "evaluation_source_mismatches": [],
+  "default_support_comparisons": 233,
+  "default_support_mismatches": 0,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py": "c9e3beac6eb6a4249238b4d06873da8598d0d67bbdfd2378f3e0746e6cbc07c2",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_colour_support_candidate.py": "54d15953eaa8aee858c3626182f5ecaf4f8c3e3c0d8507d7161b4eb770e51246",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_worker.py": "c34754fa46a57c6a9d9641f70c8aa5c85a9bc234016f55349a9827ccaf0fe306",
+    "/home/robo25/theta_ws/RICHO-theta/src/run_cone_distance_live.py": "2d0782e77a0334fedc2ed798d3e190911501cdb91f0328e8da12edc92caa10d3",
+    "/home/robo25/theta_ws/RICHO-theta/src/summarize_cone_distance_live.py": "47bdc410c4288c23923db6e6f1ec08dccc60d8930c2a48ef872aa446fe4f8f6d",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_cone_colour_support_candidate.py": "c56b128d5decf47f9cf1b6c3dbfc6e2bdf60efc8bc365650eed475289fbee3dd",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_summarize_cone_distance_live.py": "bf7df20a581593e72d2d6aaca9568ce10783c44ed38bc40015feeea5c20ccd70",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_colour_shadow_r01/verify.py": "1cd350ab0a1df42caefae4ea3f2d889d4d1d7cbfe2101cfc4dff11cadbb228b6",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_colour_shadow_r01/evaluation_r02/summary.json": "69bb34d8dae7572a6e9bc082e04d5da58f793d71ad8a401331d2d35aaa928e0f"
+  },
+  "new_distance_accuracy_measured": false,
+  "physical_output": false,
+  "usable_for_ffb": false
+}

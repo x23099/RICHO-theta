@@ -1,0 +1,30 @@
+{
+  "status": "PASS_OFFLINE_FLOOR_POSE_SOFTWARE_ONLY",
+  "new_tests": 15,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "unchanged_prior_tests_reused": 177,
+  "reused_source_mismatches": [],
+  "verified_tests_total": 192,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_pose_reference_r01/verify.py": "4cd2ba48f0bf6cbe3a2eed930f94d62e97d3344b0e43252723a5f207b0e40121",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_colour_shadow_r01/verification_r01/summary.json": "226297ab0925d67534519305a011507dd1f41849728646161928c7030c72eaeb",
+    "/home/robo25/theta_ws/RICHO-theta/src/floor_reference_pose.py": "a3a8b26174c52bf7e77b106028896c940298ae04b16bff0cd8dca74d77cab389",
+    "/home/robo25/theta_ws/RICHO-theta/src/diagnose_floor_board_pose.py": "079dd7652f9dbb23746bee8f24b42607afc081e7589d9b3c741553d4d0a41266",
+    "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+    "/home/robo25/theta_ws/RICHO-theta/src/fisheye_intrinsic_calibration.py": "24902214663e2c6553bec75e65bd3d52c3494d091dbb947d6a336a4a957fa416",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_floor_reference_pose.py": "cc129277e7faf805cbb57c5eea9be75875bc774c77979e96270a323824ee9628",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_diagnose_floor_board_pose.py": "b5837ded69014495b141475d2de8a6547b94ac09e5c0fb6a83d6db56b0522322",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_pose_reference_r01/evaluation_r01/summary.json": "df1dc9d67e6df4de8b6fa3425d5032ef7b819591815129c8f3f3cccde56417cf",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_pose_reference_r01/evaluation_r01/point_evaluation.csv": "f856ed756dd7e3f0864dc5cf2d997d2aeca226fdee119e50336c93363afddf69",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_pose_reference_r01/no_board_control_r01/floor_board_report.json": "08bb17fc6390f3f0078c22ea03cacb04bbe232dfbbde4efd47112eaa62e6eea7",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_pose_reference_r01/handheld_board_control_r01/floor_board_report.json": "28b7503401856fd84ed8243831b21c903622cc3148c579bd8c711ab5c511a552"
+  },
+  "physical_metric_verified": false,
+  "current_live_application_allowed": false,
+  "camera_opened": false,
+  "network_started": false,
+  "ros_started": false,
+  "physical_output": false
+}

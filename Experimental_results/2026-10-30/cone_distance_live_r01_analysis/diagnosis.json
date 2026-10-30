@@ -1,0 +1,120 @@
+{
+  "diagnostic": "OFFLINE_SAVED_FRAME_NO_YOLO_RERUN_NOT_PHYSICAL_APPROVAL",
+  "processed_frames": 5427,
+  "distance_available": 0,
+  "quality_accepted": 3,
+  "scene_initialized": 0,
+  "counts": {
+    "front_candidates": {
+      "0": 1425,
+      "1": 3992,
+      "2": 10
+    },
+    "reason": {
+      "frame_processing_too_old": 1,
+      "no_candidate": 1424,
+      "colour_contour_reaches_roi_edge": 3985,
+      "ambiguous_front_cones": 10,
+      "support_confirmation_pending": 4,
+      "latest_scene_image_rejected": 3
+    },
+    "colour_reason": {
+      "no_candidate": 1425,
+      "colour_contour_reaches_roi_edge": 3985,
+      "ambiguous_front_cones": 10,
+      "unverified_visible_colour_support": 7
+    },
+    "scene_reason": {
+      "fewer_than_six_distinct_planes": 5128,
+      "insufficient_consensus": 269,
+      "no_diverse_plane_pair_within_prior": 30
+    },
+    "pose_reason": {
+      "latest_scene_image_rejected": 5427
+    },
+    "inference_source": {
+      "live_cuda_yolo": 5427
+    }
+  },
+  "blockers": {
+    "latest_scene_image_rejected": 5427,
+    "frame_processing_too_old": 1,
+    "no_candidate": 1425,
+    "newer_scene_processing_pending": 377,
+    "unavailable_support:colour_contour_reaches_roi_edge": 3985,
+    "colour_contour_reaches_roi_edge": 3985,
+    "ambiguous_front_cones": 10,
+    "ambiguous_candidates": 10,
+    "support_confirmation_pending": 4
+  },
+  "saved_frame_log": [
+    {
+      "session": "f1f1b17f34a6447a9789291af128f991",
+      "frame": 4903,
+      "source_time_sec": 2062.4518094,
+      "completed_time_sec": 2062.460614674,
+      "frame_age_ms": 8.805274000224017,
+      "front_candidates": 1,
+      "colour_reason": "colour_contour_reaches_roi_edge",
+      "quality_accepted": false,
+      "quality_reason": "unavailable_support:colour_contour_reaches_roi_edge",
+      "scene_initialized": false,
+      "scene_pending": false,
+      "scene_reason": "fewer_than_six_distinct_planes",
+      "pose_reason": "latest_scene_image_rejected",
+      "scene_source_frame": 4893,
+      "scene_age_sec": 0.3437257660002615,
+      "distance_available": false,
+      "reason": "colour_contour_reaches_roi_edge",
+      "blockers": [
+        "colour_contour_reaches_roi_edge",
+        "unavailable_support:colour_contour_reaches_roi_edge",
+        "latest_scene_image_rejected"
+      ],
+      "distance_forward_m": null,
+      "lateral_right_m": null,
+      "base_pixel": null,
+      "target_frame": "paper7_ground_reference",
+      "target_roi_native_xyxy": [
+        270,
+        0,
+        350,
+        720
+      ],
+      "target_association_physically_verified": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "predict_ms": 6.446652999784419,
+      "support_geometry_ms": 1.358214000447333,
+      "cone_service_ms": 7.814264000444382,
+      "inference_source": "live_cuda_yolo"
+    }
+  ],
+  "saved_frame_scene_recalculation": {
+    "accepted": false,
+    "reason": "fewer_than_six_distinct_planes",
+    "up": null,
+    "planes": 3,
+    "inliers": 0,
+    "inlier_indices": [],
+    "median_residual_deg": null,
+    "normal_span_deg": null,
+    "rank_gap_ratio": null,
+    "architectural_vertical_independently_verified": false,
+    "usable_for_ffb": false,
+    "curve_rows": 5
+  },
+  "cv2_version": "4.5.5",
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/cone_distance_live_r01_analysis/diagnose_saved_frame.py": "384c5c03b299575484907624985fa6614f0115e9912f34fe116786855e4647b0",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-30/cone_distance_live_r01/distance_frames.jsonl": "dffcb7495386f1c11433b7f4d577dc7968e195a306fc25c5a63f0fe78bbf7dbc",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-30/cone_distance_live_r01/decoded_f1f1b17f34a6447a9789291af128f991_f004903.png": "c715ecd8bf3ef94dc793acee5170936914c5382d4bac89174227417847374dea",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py": "36416c6c73fb2661768d685ce9ce65a1fe0eb0f70b93010140d7f1a92ef576ba",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_scene_diagnostic.py": "e4e6de762d2b6f585abb65ac73b7c620911431fbf1e4528a976c07658082e092",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_diagnostic_config.json": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0"
+  },
+  "raw_bboxes_recorded": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}

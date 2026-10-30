@@ -123,6 +123,21 @@ def observe_support(image, box, camera):
     mask = (cv2.inRange(hsv, (0, 80, 30), (10, 255, 255))
             | cv2.inRange(hsv, (170, 80, 30), (179, 255, 255))
             | cv2.inRange(hsv, (15, 80, 30), (40, 255, 255)))
+    return support_from_colour_mask(mask, left, top)
+
+
+def support_from_colour_mask(mask, left, top):
+    """Shared unchanged observed-envelope guards; never a verified contact.
+
+    The baseline passes its union mask. Experimental colour-separated masks
+    may use this routine only as non-controlling shadow observations.
+    """
+    if (not isinstance(mask, np.ndarray) or mask.ndim != 2 or mask.dtype != np.uint8
+            or not mask.size or type(left) is not int or type(top) is not int
+            or left < 0 or top < 0 or left+mask.shape[1] > 1280 or top+mask.shape[0] > 720):
+        raise ValueError("native bounded uint8 colour mask required")
+    bottom, right = top+mask.shape[0], left+mask.shape[1]
+    result = dict(support=None, point=None, reason="", floor_contact_verified=False)
     contours = sorted((c for c in cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[0]
                        if cv2.contourArea(c) >= 20), key=cv2.contourArea, reverse=True)
     if not contours:
@@ -165,7 +180,10 @@ class ConeDistanceEngine:
     late scene result cannot modify another session. A pending newer scene
     blocks output until it completes, including potentially rejected images.
     """
-    def __init__(self, config=DEFAULT_CONFIG, *, target_roi=None):
+    def __init__(self, config=DEFAULT_CONFIG, *, target_roi=None, colour_support_shadow=False):
+        if type(colour_support_shadow) is not bool:
+            raise ValueError("explicit bool colour support shadow required")
+        self.colour_support_shadow = colour_support_shadow
         self.settings, self.camera, self.transform, self.prior_up = load_config(config)
         self.target_roi = checked_target_roi(target_roi)
         self.session = None
@@ -218,6 +236,7 @@ class ConeDistanceEngine:
         self.last_frame, self.last_time = frame.sequence, source
         colour = dict(support=None, point=None, reason="no_candidate")
         detection_error = None
+        shadow = None
         try:
             selected = select_front_boxes(boxes, self.camera, self.settings["confidence"], self.target_roi)
             if len(selected) == 1:
@@ -230,6 +249,14 @@ class ConeDistanceEngine:
             selected, candidates = [], []
             detection_error = "invalid_detector_output"
             colour["reason"] = detection_error
+        if self.colour_support_shadow and len(selected) == 1 and detection_error is None:
+            try:
+                from cone_colour_support_candidate import observe_separated_support
+                shadow = observe_separated_support(frame.image, selected[0], self.camera)
+            except Exception as exc:
+                shadow = dict(reason="shadow_observation_error", error=f"{type(exc).__name__}: {exc}",
+                              point=None, support=None, controlling_distance=False,
+                              floor_contact_verified=False, usable_for_ffb=False)
         quality = self.quality.update(source, candidates)
         if callable(completed_at):
             now = finite_time(completed_at())
@@ -261,7 +288,7 @@ class ConeDistanceEngine:
                     blockers.append("outside_diagnostic_range")
             else:
                 blockers.append("floor_intersection_unavailable")
-        return dict(session=frame.session, frame=frame.sequence, source_time_sec=source,
+        result = dict(session=frame.session, frame=frame.sequence, source_time_sec=source,
             completed_time_sec=now, frame_age_ms=1000*(now-source), front_candidates=len(selected),
             colour_reason=colour["reason"], quality_accepted=quality["quality_accepted"], quality_reason=quality["reason"],
             scene_initialized=pose["initialized"], scene_pending=self.pending is not None,
@@ -272,6 +299,14 @@ class ConeDistanceEngine:
             base_pixel=colour["point"], target_frame="paper7_ground_reference",
             target_roi_native_xyxy=self.target_roi, target_association_physically_verified=False,
             physical_metric_verified=False, floor_contact_verified=False, usable_for_ffb=False)
+        if self.colour_support_shadow:
+            result["colour_support_shadow"] = dict(
+                candidate=shadow, controlling_distance=False, usable_for_ffb=False,
+                status=("one_selected_candidate" if shadow is not None else "not_one_valid_selected_candidate"))
+            result["selected_detector_boxes"] = [
+                {key: float(box[key]) for key in ("x1", "y1", "x2", "y2", "confidence", "class_id")}
+                for box in selected]
+        return result
 
 
 def render_distance(image, result, *, replay=False):

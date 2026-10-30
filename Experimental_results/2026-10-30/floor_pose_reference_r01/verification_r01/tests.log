@@ -1,0 +1,20 @@
+test_collinear_floor_points_refused (test_floor_reference_pose.FloorPoseTests) ... ok
+test_duplicate_correspondences_refused (test_floor_reference_pose.FloorPoseTests) ... ok
+test_holdout_ray_intersection_uses_same_transform (test_floor_reference_pose.FloorPoseTests) ... ok
+test_known_pose_recovered_without_height_constraint (test_floor_reference_pose.FloorPoseTests) ... ok
+test_less_than_four_references_refused (test_floor_reference_pose.FloorPoseTests) ... ok
+test_nonfinite_inputs_refused (test_floor_reference_pose.FloorPoseTests) ... ok
+test_nonfloor_point_refused_not_projected_to_floor_silently (test_floor_reference_pose.FloorPoseTests) ... ok
+test_rear_pixel_not_remapped_to_front (test_floor_reference_pose.FloorPoseTests) ... ok
+test_floor_plane_has_no_vehicle_transform_and_keeps_solutions (test_diagnose_floor_board_pose.FloorBoardTests) ... ok
+test_measured_board_thickness_is_added_not_hidden (test_diagnose_floor_board_pose.FloorBoardTests) ... ok
+test_missing_board_produces_no_pose (test_diagnose_floor_board_pose.FloorBoardTests) ... ok
+test_no_floor_declaration_no_plane (test_diagnose_floor_board_pose.FloorBoardTests) ... ok
+test_partial_grid_never_filled_in (test_diagnose_floor_board_pose.FloorBoardTests) ... ok
+test_rear_roi_not_used_for_front_model (test_diagnose_floor_board_pose.FloorBoardTests) ... ok
+test_square_size_and_thickness_must_be_finite (test_diagnose_floor_board_pose.FloorBoardTests) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.156s
+
+OK

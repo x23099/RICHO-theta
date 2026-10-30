@@ -31,6 +31,35 @@ def finalized():
 
 
 class LiveReportTest(unittest.TestCase):
+    def test_shadow_point_is_not_counted_as_distance(self):
+        sample = row()
+        sample["colour_support_shadow"] = dict(controlling_distance=False, usable_for_ffb=False,
+            candidate=dict(controlling_distance=False, floor_contact_verified=False, usable_for_ffb=False,
+                           selected_colour="red", reason="unverified_visible_colour_support",
+                           point=[320, 400], support=[[320, 400]]))
+        self.write([sample])
+        result = summarize(self.input, self.root/"shadow_report", plots=False)
+        self.assertEqual(result["conditional_output_frames"], 0)
+        self.assertEqual(result["colour_support_shadow"]["unverified_image_point_frames"], 1)
+
+    def test_shadow_cannot_claim_physical_or_distance_control(self):
+        from summarize_cone_distance_live import validate_row
+        for field in ("controlling_distance", "usable_for_ffb"):
+            sample = row()
+            sample["colour_support_shadow"] = dict(controlling_distance=False, usable_for_ffb=False, candidate=None)
+            sample["colour_support_shadow"][field] = True
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                validate_row(sample)
+
+    def test_shadow_point_outside_observed_support_is_rejected(self):
+        from summarize_cone_distance_live import validate_row
+        sample = row()
+        sample["colour_support_shadow"] = dict(controlling_distance=False, usable_for_ffb=False,
+            candidate=dict(controlling_distance=False, floor_contact_verified=False, usable_for_ffb=False,
+                           point=[320, 400], support=[[321, 400]]))
+        with self.assertRaises(ValueError):
+            validate_row(sample)
+
     def setUp(self):
         self.directory = tempfile.TemporaryDirectory()
         self.addCleanup(self.directory.cleanup)

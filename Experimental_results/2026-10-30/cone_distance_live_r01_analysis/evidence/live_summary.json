@@ -1,0 +1,26 @@
+{
+  "status": "LIVE_CONDITIONAL_DIAGNOSTIC_NOT_PHYSICAL_APPROVAL",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+    "index": 0,
+    "torch_version": "2.7.1+cu118",
+    "torch_cuda_version": "11.8"
+  },
+  "weights_sha256": "3a6e124adb15c16efd7d22c853406066371f48873c82f1d3cfc445b22ae5997b",
+  "config_sha256": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+  "static_camera_only": true,
+  "target_frame": "paper7_ground_reference",
+  "target_roi_native_xyxy": [
+    270,
+    0,
+    350,
+    720
+  ],
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "physical_output": false,
+  "cross_pc_capture_latency_measured": false,
+  "elapsed_sec": 243.0688048259999,
+  "worker_error": null,
+  "worker_stopped": true
+}

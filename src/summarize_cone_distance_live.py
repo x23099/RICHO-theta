@@ -83,6 +83,23 @@ def validate_row(row):
     elif (not blockers or blockers[0] != row["reason"]
           or row.get("distance_forward_m") is not None or row.get("lateral_right_m") is not None):
         raise ValueError("withheld distance must have blockers and no numeric distance")
+    if "colour_support_shadow" in row:
+        shadow = row["colour_support_shadow"]
+        if (not isinstance(shadow, dict) or shadow.get("controlling_distance") is not False
+                or shadow.get("usable_for_ffb") is not False):
+            raise ValueError("colour shadow must never control distance or FFB")
+        candidate = shadow.get("candidate")
+        if candidate is not None:
+            if (not isinstance(candidate, dict)
+                    or any(candidate.get(key) is not False for key in
+                           ("controlling_distance", "floor_contact_verified", "usable_for_ffb"))):
+                raise ValueError("unverified colour shadow candidate required")
+            point = candidate.get("point")
+            if point is not None and (not isinstance(point, list) or len(point) != 2
+                    or any(type(v) is not int for v in point)
+                    or not (0 <= point[0] < 1280 and 0 <= point[1] < 720)
+                    or not isinstance(candidate.get("support"), list) or point not in candidate["support"]):
+                raise ValueError("shadow point must be an actual native support column")
 
 
 def load_frames(path, allow_truncated_last_line=False):
@@ -229,6 +246,19 @@ def summarize(input_dir, output_dir, *, allow_truncated_last_line=False, plots=T
                "Completion frequency is not camera FPS. Frame age uses receiver-local reception time.",
                "No ground truth input: distance statistics are NOT accuracy measurements.",
                "Finalization does not mean distance estimation or hardware is approved."])
+    shadow_rows = [r["colour_support_shadow"] for r in rows if "colour_support_shadow" in r]
+    shadow_note = ""
+    if shadow_rows:
+        candidates = [r["candidate"] for r in shadow_rows if r.get("candidate") is not None]
+        points = sum(c.get("point") is not None for c in candidates)
+        summary["colour_support_shadow"] = dict(
+            recorded_frames=len(shadow_rows), selected_candidate_frames=len(candidates),
+            unverified_image_point_frames=points,
+            selected_colours=dict(Counter(c.get("selected_colour") or "withheld" for c in candidates)),
+            reasons=dict(Counter(c["reason"] for c in candidates)), controlling_distance=False,
+            usable_for_ffb=False)
+        shadow_note = (f"\n色分離の比較ログ：{len(shadow_rows)}処理frame、画像上の候補点あり{points}件。"
+                       "この候補は距離出力・姿勢初期化・FFBの判定に使用していません。\n")
     output.mkdir(parents=True, exist_ok=False)
     fields = ("session", "frame", "source_time_sec", "completed_time_sec", "distance_available",
               "distance_forward_m", "lateral_right_m", "reason", *TIMINGS, "inference_source")
@@ -257,7 +287,7 @@ def summarize(input_dir, output_dir, *, allow_truncated_last_line=False, plots=T
         + "\n".join(metric_table)+"\n\n処理・記録されたフレームだけの集計です。表示時間率、ネットワーク損失率、カメラFPSではありません。\n\n"
         + "距離はpaper7基準の条件付き推定値です。実測基準がないため精度・誤差は評価していません。\n\n"
         + "`summary.json`にsession別の保留理由、各blocker、受信後の処理時間の中央値・p95・最大値と入力SHA256を保存しています。\n"
-        + "\n".join(details)+"\n")
+        + shadow_note + "\n".join(details)+"\n")
     summary["output_sha256"] = {str(p.relative_to(output)): digest_bytes(p.read_bytes())
         for p in (output/"processed_frames.csv", output/"report.md", output/"processing_diagnostics.png") if p.is_file()}
     (output/"summary.json").write_text(json.dumps(summary, indent=2, allow_nan=False)+"\n")

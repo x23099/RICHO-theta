@@ -33,6 +33,8 @@ def build_parser():
     parser.add_argument("--duration-sec", type=float)
     parser.add_argument("--target-roi", type=int, nargs=4, metavar=("X1", "Y1", "X2", "Y2"),
                         help="explicit diagnostic target scope; outside is NOT monitored")
+    parser.add_argument("--colour-support-shadow", action="store_true",
+                        help="log experimental colour-separated support; NEVER controls distance")
     return parser
 
 
@@ -48,7 +50,9 @@ async def run(args):
     predictor = YoloConePredictor(args.weights, settings, args.output_dir, args.device)
     slot = LatestNativeFrame()
     server = Receiver(slot)
-    worker = DistanceWorker(slot, args.config, predictor, args.output_dir / "distance_frames.jsonl", target_roi=args.target_roi)
+    colour_shadow = getattr(args, "colour_support_shadow", False)
+    worker = DistanceWorker(slot, args.config, predictor, args.output_dir / "distance_frames.jsonl", target_roi=args.target_roi,
+                            colour_support_shadow=colour_shadow)
     app = web.Application(client_max_size=256 * 1024)
     app.router.add_post("/offer", server.offer)
     runner = web.AppRunner(app, access_log=None)
@@ -58,6 +62,7 @@ async def run(args):
                    target_roi_native_xyxy=worker.engine.target_roi,
                    physical_metric_verified=False, usable_for_ffb=False, physical_output=False,
                    cross_pc_capture_latency_measured=False)
+    summary["colour_support_shadow_enabled"] = colour_shadow
     started = time.monotonic()
     run_error = None
     try:

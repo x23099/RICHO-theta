@@ -1,0 +1,139 @@
+{
+  "schema": "offline_planar_floor_ippe_diagnostic_v1",
+  "method": "native_KB4_rays_then_IPPE",
+  "point_count": 5,
+  "candidates": [
+    {
+      "solution_index": 0,
+      "transform_floor_from_optical": [
+        [
+          -0.07886660419401487,
+          0.03852986491683391,
+          0.9961403055054018,
+          -0.028726994382461884
+        ],
+        [
+          -0.9962125078494053,
+          0.03365634764646508,
+          -0.08017411968646149,
+          0.019485099255855644
+        ],
+        [
+          -0.036615542428091064,
+          -0.9986904924813248,
+          0.035729571507448044,
+          0.5847756060958311
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_position_floor_m": [
+        -0.028726994382461884,
+        0.019485099255855644,
+        0.5847756060958311
+      ],
+      "up_optical": [
+        -0.036615542428091064,
+        -0.9986904924813248,
+        0.035729571507448044
+      ],
+      "camera_height_above_floor_m": 0.5847756060958311,
+      "fit_native_rmse_px": 0.6563291646141752,
+      "all_projected_in_calibrated_domain": true,
+      "all_reference_points_positive_depth": true,
+      "camera_above_floor": true,
+      "geometry_consistent": true,
+      "physical_transform_independently_measured": false,
+      "usable_for_ffb": false,
+      "height_minus_independent_0p59m_measurement": -0.005224393904168845,
+      "same_recording_holdout_planar_rmse_m": 0.025634580971261235,
+      "cross_recording_2m_forward_m": 2.3172198087364984
+    },
+    {
+      "solution_index": 1,
+      "transform_floor_from_optical": [
+        [
+          0.0012736021454702318,
+          -0.7475704624798358,
+          -0.6641812866719897,
+          2.5908908544432876
+        ],
+        [
+          -0.9974839677269913,
+          0.046128177601667875,
+          -0.053832382064774253,
+          -0.020250436603781185
+        ],
+        [
+          0.07088097110786418,
+          0.6625787461568879,
+          -0.7456308021239281,
+          0.45902416764491355
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_position_floor_m": [
+        2.5908908544432876,
+        -0.020250436603781185,
+        0.45902416764491355
+      ],
+      "up_optical": [
+        0.07088097110786418,
+        0.6625787461568879,
+        -0.7456308021239281
+      ],
+      "camera_height_above_floor_m": 0.45902416764491355,
+      "fit_native_rmse_px": 14.322024265591141,
+      "all_projected_in_calibrated_domain": true,
+      "all_reference_points_positive_depth": true,
+      "camera_above_floor": true,
+      "geometry_consistent": true,
+      "physical_transform_independently_measured": false,
+      "usable_for_ffb": false,
+      "height_minus_independent_0p59m_measurement": -0.13097583235508642,
+      "same_recording_holdout_planar_rmse_m": 0.05628381514362739,
+      "cross_recording_2m_forward_m": 1.8647411560158291
+    }
+  ],
+  "solution_count": 2,
+  "selected_solution": null,
+  "intrinsics_refitted": false,
+  "background_lines_used": false,
+  "caller_supplied_floor_correspondence_required": true,
+  "physical_metric_verified": false,
+  "published_to_ros": false,
+  "usable_for_ffb": false,
+  "fit_ids": [
+    "C080",
+    "C130",
+    "C200",
+    "L130",
+    "R130"
+  ],
+  "evaluation_ids": [
+    "H100",
+    "H160",
+    "paper_cone_2m"
+  ],
+  "camera_height_constrained": false,
+  "camera_xy_constrained": false,
+  "physical_floor_points_independently_surveyed": false,
+  "current_live_application_allowed": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_reference_results.csv": "9f63a48858bca5caae31308a326e17e7a8f73f4c0146919e1f68f6cd998edeaf",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_pose_reference_r01/evaluate.py": "4a76df035f41049a103f11ac9cf2bb023e2a41fd4d86ed04e4d8e1e83176c7c2",
+    "/home/robo25/theta_ws/RICHO-theta/src/floor_reference_pose.py": "a3a8b26174c52bf7e77b106028896c940298ae04b16bff0cd8dca74d77cab389",
+    "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_diagnostic_config.json": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py": "c9e3beac6eb6a4249238b4d06873da8598d0d67bbdfd2378f3e0746e6cbc07c2"
+  }
+}
