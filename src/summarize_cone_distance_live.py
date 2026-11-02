@@ -185,6 +185,37 @@ def validate_frame_evidence(row):
     text(fresh.get("primary_reason"), "freshness primary reason")
 
 
+def validate_fixed_floor_load(row):
+    load = row.get("fixed_floor_load")
+    if load is None:
+        return
+    if (not isinstance(load, dict) or load.get("schema") != "fixed_floor_load_v1"
+            or load.get("state") not in ("waiting", "loading", "ready", "active", "rejected", "closed")
+            or type(load.get("generation")) is not int or load["generation"] < 0):
+        raise ValueError("explicit local floor load state/generation required")
+    for key in ("controlling_distance", "physical_metric_verified", "floor_contact_verified", "usable_for_ffb"):
+        if load.get(key) is not False:
+            raise ValueError("local load cannot grant physical or control authority")
+    text(load.get("reason"), "local load reason")
+    fixed = row.get("fixed_floor_shadow")
+    if load["state"] == "active":
+        if (load.get("requested_session") != row["session"] or not isinstance(fixed, dict)
+                or load.get("bundle_sha256") != fixed.get("model_bundle_sha256")):
+            raise ValueError("active floor load must match current session and model bytes")
+        _sha256_text(load.get("bundle_sha256"), "active model bundle")
+        frame = load.get("activated_frame")
+        evidence = load.get("evidence_frames")
+        if (type(frame) is not int or not 1 <= frame <= row["frame"] or not isinstance(evidence, list) or not evidence
+                or any(type(f) is not int or not 1 <= f < frame for f in evidence)):
+            raise ValueError("model/evidence activation must precede logged evaluation")
+        ready = number(load.get("load_completed_at_sec"), "model load completion", 0)
+        activated = number(load.get("activated_at_sec"), "model activation", ready)
+        if ready > row["source_time_sec"] or activated > row["completed_time_sec"]:
+            raise ValueError("model must finish before source reception and evaluation completion")
+    elif fixed is not None:
+        raise ValueError("inactive local load must not retain an old comparison model")
+
+
 def validate_fixed_floor_shadow(row):
     shadow = row.get("fixed_floor_shadow")
     if shadow is None:
@@ -319,6 +350,7 @@ def validate_row(row):
                 raise ValueError("completion grant requires an attempted observation and support point")
     validate_frame_evidence(row)
     validate_fixed_floor_shadow(row)
+    validate_fixed_floor_load(row)
 
 
 def load_frames(path, allow_truncated_last_line=False):
@@ -513,6 +545,14 @@ def summarize(input_dir, output_dir, *, allow_truncated_last_line=False, plots=T
         shadow_note += (f"\n同一フレーム証拠ログ：{len(evidence_rows)}処理frameに選択bbox・支持点・"
                         "姿勢・床モデル識別子・鮮度理由を記録。距離制御・接地判定には使用していません。\n")
     fixed_rows = [r["fixed_floor_shadow"] for r in rows if "fixed_floor_shadow" in r]
+    load_rows = [r["fixed_floor_load"] for r in rows if "fixed_floor_load" in r]
+    if load_rows:
+        summary["fixed_floor_load"] = dict(recorded_frames=len(load_rows),
+            frame_states=dict(Counter(r["state"] for r in load_rows)),
+            active_generations=sorted({r["generation"] for r in load_rows if r["state"] == "active"}),
+            counting_unit="processed frame states, NOT number of L-key requests",
+            controlling_distance=False, usable_for_ffb=False)
+        shadow_note += "\n同接続内のローカル床モデル受入れ状態を記録。受理要求・受入れ・失効は別のevents JSONLを参照。\n"
     if fixed_rows:
         summary["fixed_floor_shadow"] = dict(recorded_frames=len(fixed_rows),
             frames_with_comparison_range=sum(any(m["range_available"] for m in r["models"]) for r in fixed_rows),

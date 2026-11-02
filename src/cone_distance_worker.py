@@ -61,7 +61,14 @@ class DistanceWorker:
     """
     def __init__(self, slot, config, predictor, log_path, *, scene_function=estimate_scene, clock=time.monotonic, target_roi=None,
                  colour_support_shadow=False, support_completion_shadow=False, frame_evidence=False,
-                 fixed_floor_models=None, fixed_floor_support_source="support_completion_shadow"):
+                 fixed_floor_models=None, fixed_floor_support_source="support_completion_shadow",
+                 fixed_floor_reload_file=None):
+        if fixed_floor_reload_file is not None and fixed_floor_models is not None:
+            raise ValueError("startup and local-reload fixed-floor modes are exclusive")
+        if fixed_floor_reload_file is not None and (
+                fixed_floor_support_source == "colour_support_shadow" and not colour_support_shadow
+                or fixed_floor_support_source == "support_completion_shadow" and not support_completion_shadow):
+            raise ValueError("explicitly enable the selected comparison support")
         self.slot, self.predictor, self.clock = slot, predictor, clock
         self.engine = ConeDistanceEngine(config, target_roi=target_roi, colour_support_shadow=colour_support_shadow,
                                          support_completion_shadow=support_completion_shadow,
@@ -69,6 +76,12 @@ class DistanceWorker:
                                          fixed_floor_support_source=fixed_floor_support_source)
         self.scene_function = scene_function
         self.log_path = Path(log_path)
+        self.model_loader = None
+        if fixed_floor_reload_file is not None:
+            from cone_fixed_floor_live_load import LocalFloorModelLoader
+            self.model_loader = LocalFloorModelLoader(fixed_floor_reload_file, self.engine.settings,
+                self.engine.config_sha256, self.log_path.parent,
+                self.log_path.parent / "fixed_floor_model_events.jsonl", fixed_floor_support_source, clock=clock)
         self.stop_event = threading.Event()
         self.lock = threading.Lock()
         self.latest = None
@@ -83,6 +96,12 @@ class DistanceWorker:
             raise RuntimeError("closed distance worker cannot be restarted")
         self.thread.start()
 
+    def request_fixed_floor_reload(self):
+        if self.model_loader is None or self.stop_event.is_set() or not self.thread.is_alive():
+            return False, "local_model_reload_not_running"
+        frame, _ = self.slot.current(self.clock())
+        return self.model_loader.request(frame)
+
     def poll(self, now, current):
         with self.lock:
             if self.stop_event.is_set():
@@ -96,7 +115,12 @@ class DistanceWorker:
                 return None, "distance_session_changed"
             if not 0 <= now-frame.received_at <= self.engine.settings["frame_max_age_sec"]:
                 return None, "distance_result_stale"
-            return (frame, dict(result)), result["reason"]
+            visible = dict(result)
+            if self.model_loader is not None:
+                state = self.model_loader.snapshot()
+                if state["state"] != "active" or state["generation"] != result.get("fixed_floor_load", {}).get("generation"):
+                    visible.pop("fixed_floor_shadow", None)
+            return (frame, visible), result["reason"]
 
     def _consume_scene(self, future, ticket):
         # Check ownership BEFORE result(): even an exception belonging to a
@@ -115,6 +139,9 @@ class DistanceWorker:
                 while not self.stop_event.is_set():
                     frame, _ = self.slot.current(self.clock())
                     if frame is None:
+                        if self.model_loader is not None:
+                            self.model_loader.step(None)
+                            self.engine.fixed_floor_shadow = None
                         with self.lock:
                             self.latest = None
                         self.stop_event.wait(.01)
@@ -149,7 +176,16 @@ class DistanceWorker:
                             and current.session == frame.session):
                         self._consume_scene(future, ticket)
                         future = None
-                    result = self.engine.measure(frame, boxes, self.clock)
+                    if self.model_loader is None:
+                        result = self.engine.measure(frame, boxes, self.clock)
+                    else:
+                        # Only the cone worker changes engine state. Serialize the
+                        # small comparison/measure boundary, NEVER GPU inference.
+                        with self.model_loader.lock:
+                            self.engine.fixed_floor_shadow = self.model_loader.step(
+                                frame if current is not None and current.session == frame.session else None)
+                            result = self.engine.measure(frame, boxes, self.clock)
+                            result["fixed_floor_load"] = self.model_loader.snapshot()
                     finished = self.clock()
                     result.update(completed_time_sec=finished, frame_age_ms=1000*(finished-frame.received_at),
                                   predict_ms=1000*(predict_end-predict_start), support_geometry_ms=1000*(finished-predict_end),
@@ -200,14 +236,17 @@ class DistanceWorker:
         if type(timeout) not in (int, float) or not math.isfinite(timeout) or timeout < 0:
             raise ValueError("finite nonnegative close timeout required")
         self.stop_event.set()
+        model_shutdown = self.model_loader.close() if self.model_loader is not None else {}
         with self.lock:
             self.latest = None
         if self.thread.ident is not None:
             self.thread.join(timeout=timeout)
+        if self.model_loader is not None:
+            model_shutdown = self.model_loader.close()  # Recheck completion after the join.
         with self.lock:
             scene_running = self.scene_future is not None and not self.scene_future.done()
             stopped = not self.thread.is_alive()
             return dict(worker_stopped=stopped, scene_job_running=scene_running,
-                        shutdown_complete=stopped and not scene_running,
-                        retired_scene_jobs=self.retired_scene_jobs)
+                        shutdown_complete=stopped and not scene_running and not model_shutdown.get("model_load_running", False),
+                        retired_scene_jobs=self.retired_scene_jobs, **model_shutdown)
 

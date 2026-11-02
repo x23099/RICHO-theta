@@ -16,7 +16,11 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def load_bundle(path, settings):
-    payload = Path(path).read_bytes()
+    return parse_bundle(Path(path).read_bytes(), settings)
+
+
+def parse_bundle(payload, settings):
+    """Validate immutable bytes so runtime loading cannot reread a changed file."""
     def invalid(value):
         raise ValueError("nonfinite JSON constant: " + value)
     data = json.loads(payload, parse_constant=invalid)
@@ -47,10 +51,11 @@ def enforce_freshness(shadow, age_ms):
 
 
 class FixedFloorShadow:
-    def __init__(self, path, settings, support_source):
+    def __init__(self, path, settings, support_source, *, payload=None):
         if support_source not in SOURCES:
             raise ValueError("explicit baseline/colour/completion support source required")
-        self.bundle, self.bundle_sha256 = load_bundle(path, settings)
+        self.bundle, self.bundle_sha256 = (load_bundle(path, settings) if payload is None
+                                           else parse_bundle(payload, settings))
         self.support_source = support_source
         self.camera_sha256 = settings["camera_sha256"]
         self.range_bounds = settings["diagnostic_range_m"]

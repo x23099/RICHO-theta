@@ -39,8 +39,11 @@ def build_parser():
                         help="log bounded lateral completion candidate separately; NEVER controls distance")
     parser.add_argument("--frame-evidence", action="store_true",
                         help="log selected bbox/support/pose/floor/freshness per frame; NEVER controls distance")
-    parser.add_argument("--fixed-floor-models", type=Path,
+    fixed_group = parser.add_mutually_exclusive_group()
+    fixed_group.add_argument("--fixed-floor-models", type=Path,
                         help="explicit session-bound model bundle for comparison log ONLY; default disabled")
+    fixed_group.add_argument("--fixed-floor-reload-file", type=Path,
+                        help="local prepared model file; L key requests same-session comparison loading, default OFF")
     parser.add_argument("--fixed-floor-support-source", choices=("baseline", "colour_support_shadow", "support_completion_shadow"),
                         default="support_completion_shadow", help="explicit comparison support; no automatic fallback")
     return parser
@@ -55,13 +58,17 @@ async def run(args):
     settings, _, _, _ = load_config(args.config)
     checked_target_roi(args.target_roi)
     fixed_models = getattr(args, "fixed_floor_models", None)
+    reload_file = getattr(args, "fixed_floor_reload_file", None)
     fixed_source = getattr(args, "fixed_floor_support_source", "support_completion_shadow")
-    if fixed_models is not None:
+    if fixed_models is not None or reload_file is not None:
         if ((fixed_source == "colour_support_shadow" and not getattr(args, "colour_support_shadow", False))
                 or (fixed_source == "support_completion_shadow" and not getattr(args, "support_completion_shadow", False))):
             raise ValueError("explicitly enable the selected fixed-floor support shadow")
-        from cone_fixed_floor_shadow import load_bundle
-        load_bundle(fixed_models, settings)  # Validate before GPU or network startup.
+        if reload_file is not None and args.headless:
+            raise ValueError("local L-key reload requires the GUI")
+        if fixed_models is not None:
+            from cone_fixed_floor_shadow import load_bundle
+            load_bundle(fixed_models, settings)  # Validate before GPU or network startup.
     # Complete model / CUDA validation BEFORE opening a network listener.
     predictor = YoloConePredictor(args.weights, settings, args.output_dir, args.device)
     slot = LatestNativeFrame()
@@ -71,7 +78,8 @@ async def run(args):
     worker = DistanceWorker(slot, args.config, predictor, args.output_dir / "distance_frames.jsonl", target_roi=args.target_roi,
                             colour_support_shadow=colour_shadow, support_completion_shadow=completion_shadow,
                             frame_evidence=getattr(args, "frame_evidence", False),
-                            fixed_floor_models=fixed_models, fixed_floor_support_source=fixed_source)
+                            fixed_floor_models=fixed_models, fixed_floor_support_source=fixed_source,
+                            fixed_floor_reload_file=reload_file)
     app = web.Application(client_max_size=256 * 1024)
     app.router.add_post("/offer", server.offer)
     runner = web.AppRunner(app, access_log=None)
@@ -84,7 +92,8 @@ async def run(args):
     summary["colour_support_shadow_enabled"] = colour_shadow
     summary["support_completion_shadow_enabled"] = completion_shadow
     summary["frame_evidence_enabled"] = getattr(args, "frame_evidence", False)
-    summary["fixed_floor_shadow_enabled"] = fixed_models is not None
+    summary["fixed_floor_shadow_enabled"] = fixed_models is not None or reload_file is not None
+    summary["fixed_floor_local_reload_enabled"] = reload_file is not None
     if fixed_models is not None:
         summary["fixed_floor_model_bundle_sha256"] = digest(fixed_models)
     started = time.monotonic()
@@ -95,6 +104,7 @@ async def run(args):
         worker.start()
         logging.info("Read-only GPU distance receiver on %s:%s; no ROS/FFB. Q/Ctrl+C stops.", args.host, args.port)
         last_state = None
+        last_model_state = None
         while args.duration_sec is None or time.monotonic()-started < args.duration_sec:
             now = time.monotonic()
             current, input_state = slot.current(now)
@@ -105,6 +115,13 @@ async def run(args):
                 last_state = state
             if worker.error is not None:
                 raise RuntimeError("distance worker failed: " + worker.error)
+            if reload_file is not None:
+                model = worker.model_loader.snapshot()
+                model_state = (model["generation"], model["state"], model["reason"])
+                if model_state != last_model_state:
+                    logging.info("Local floor comparison: generation=%s state=%s reason=%s detail=%s",
+                                 *model_state, model.get("detail"))
+                    last_model_state = model_state
             if not args.headless:
                 if paired is not None:
                     frame, result = paired
@@ -116,10 +133,22 @@ async def run(args):
                     cv2.putText(display, "LIVE DIAGNOSTIC | WITHHELD | NO ROS / FFB", (12, 27),
                                 cv2.FONT_HERSHEY_SIMPLEX, .65, (0, 255, 255), 1)
                     cv2.putText(display, state[:115], (12, 53), cv2.FONT_HERSHEY_SIMPLEX, .55, (255, 255, 255), 1)
+                if fixed_models is not None or reload_file is not None:
+                    from cone_fixed_floor_display import append_comparison_panel
+                    current_model = worker.model_loader.snapshot() if reload_file is not None else None
+                    display = append_comparison_panel(display, paired[1] if paired is not None else None,
+                        model_state=current_model, now=time.monotonic(),
+                        expected_session=current.session if current is not None else None,
+                        expected_frame=frame.sequence if frame is not None else None,
+                        expected_source_time=frame.received_at if frame is not None else None,
+                        unavailable_reason=state)
                 cv2.imshow("THETA static cone diagnostic", display)
                 key = cv2.waitKey(1) & 0xff
                 if key in (ord("q"), ord("Q")):
                     break
+                if key in (ord("l"), ord("L")) and reload_file is not None:
+                    accepted, reason = worker.request_fixed_floor_reload()
+                    logging.info("Local comparison model request: accepted=%s reason=%s", accepted, reason)
                 if key in (ord("s"), ord("S")) and frame is not None:
                     try:
                         await asyncio.to_thread(save_decoded_frame, args.output_dir, frame)

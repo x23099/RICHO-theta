@@ -50,3 +50,21 @@ Experimental_results/**/matplotlib_config/
 
 # Regenerable large fixed-floor comparison JSONL; keep reports and source hashes.
 Experimental_results/2026-10-30/fixed_floor_shadow_logging_r01/evaluation_*/derived_recording/
+
+# 2026-11-02: reproducible per-frame derived logs stay local; keep CSV/plots/hash manifests.
+Experimental_results/2026-11-02/fixed_floor_contiguous_replay_r01/results_*/**/distance_frames.jsonl
+Experimental_results/2026-11-02/fixed_floor_lifecycle_replay_r01/results_*/**/distance_frames.jsonl
+
+# Local exploratory/interrupted revisions; formal revisions are indexed in the day's README.
+Experimental_results/2026-11-02/fixed_floor_contiguous_replay_r01/results_r01/
+Experimental_results/2026-11-02/fixed_floor_live_load_r01/verification_r01/
+Experimental_results/2026-11-02/fixed_floor_live_load_r01/verification_r02/
+Experimental_results/2026-11-02/fixed_floor_live_load_r01/verification_r03/
+Experimental_results/2026-11-02/fixed_floor_derivation_r01/results_r01/
+Experimental_results/2026-11-02/fixed_floor_derivation_r01/verification_r01/
+Experimental_results/2026-11-02/fixed_floor_derivation_r01/verification_r02/
+Experimental_results/2026-11-02/fixed_floor_lifecycle_replay_r01/results_r01/
+Experimental_results/2026-11-02/fixed_floor_lifecycle_replay_r01/results_r02/
+Experimental_results/2026-11-02/fixed_floor_lifecycle_replay_r01/results_r03/
+Experimental_results/2026-11-02/fixed_floor_lifecycle_replay_r01/verification_r01/
+Experimental_results/2026-11-02/fixed_floor_display_r01/verification_r01/

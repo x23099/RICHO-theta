@@ -1,0 +1,70 @@
+{
+  "status": "PASS_GUI_COMPARISON_NOT_REAL_CAMERA_APPROVAL",
+  "checks": {
+    "tests_pass": true,
+    "prior_sources_preserved_except_explicit_gui_change": true,
+    "synthetic_numeric_rows_preserved": true,
+    "real_wrong_session_numeric_rows_zero": true,
+    "synthetic_input_not_mutated": true,
+    "synthetic_only_examples": true,
+    "stale_preview_withheld": true,
+    "reload_preview_withheld": true
+  },
+  "tests": 393,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "patterns": [
+    "test_scene_sampling_clock.py",
+    "test_cone_distance_diagnostic.py",
+    "test_theta_rtc_diagnostic.py",
+    "test_cone_support_quality*.py",
+    "test_cone_distance_worker_lifecycle.py",
+    "test_cone_distance_live_cleanup.py",
+    "test_summarize_cone_distance_live.py",
+    "test_theta_rtc_capture_recovery.py",
+    "test_cone_colour_support_candidate.py",
+    "test_cone_support_completion_candidate.py",
+    "test_cone_completion_shadow_logging.py",
+    "test_frame_evidence_logging.py",
+    "test_cone_fixed_floor_candidate.py",
+    "test_cone_fixed_floor_shadow.py",
+    "test_cone_support_live_review.py",
+    "test_fixed_floor_causal_bootstrap.py",
+    "test_cone_fixed_floor_live_load.py",
+    "test_floor_reference_pose.py",
+    "test_diagnose_floor_board_pose.py",
+    "test_fisheye_intrinsic_calibration.py",
+    "test_derive_fixed_floor_live_bundle.py",
+    "test_fixed_floor_lifecycle_replay.py",
+    "test_cone_fixed_floor_display.py"
+  ],
+  "prior_hash_mismatches": [],
+  "synthetic_cpu_render_cost": {
+    "samples": 60,
+    "panel_extra_median_ms": 1.9030560506507754,
+    "panel_extra_p95_ms": 2.571751771029085,
+    "local_cpu_synthetic_only": true,
+    "school_gpu_or_display_latency_measured": false
+  },
+  "source_sha256": {
+    "Experimental_results/2026-11-02/fixed_floor_display_r01/verify.py": "99608dfbb7690a02ab05167334b35aa9c339a07d785ad0023e6fc56c444a3707",
+    "src/cone_fixed_floor_display.py": "e7f717ce0a9c36508711e815cc75b37ae898c912a928752f3c861f9d9673c714",
+    "src/run_cone_distance_live.py": "c4c3f95b66db648c7e19a5bf239a26a2e9916b98aafd7022a6e1010490785b97",
+    "tests/test_cone_fixed_floor_display.py": "4c6da881de4522bc04f05e6c14ce8f0b96e99ba9b6dc029d13a162e1717c575f",
+    "Experimental_results/2026-11-02/fixed_floor_display_r01/source_snapshot/run_cone_distance_live.py": "0bb591859303aeac6718c8dcded3f2975474016ffe0a3bce07b8ba4a83a06828",
+    "Experimental_results/2026-11-02/fixed_floor_derivation_r01/verification_r03/verification.json": "1c2a81eed845c5a7b7790f95c3f4d3ac5f6babcf7416c8d49f929555d8bc1ee9",
+    "Experimental_results/2026-11-02/fixed_floor_live_load_r01/verification_r04/verification.json": "2fdb168f79066686bf9334e420e4c1636dc67f13f10c5040b8f4c0f194dfddbb",
+    "Experimental_results/2026-11-02/fixed_floor_lifecycle_replay_r01/results_r04/synthetic_lifecycle/distance_frames.jsonl": "093b5cd34ce6aa298a60e3b78943995ea2965c8b27afb166888aa4c9cb709062",
+    "Experimental_results/2026-11-02/fixed_floor_lifecycle_replay_r01/results_r04/real_wrong_session/distance_frames.jsonl": "df0cd234504f3720174c568cb4e1aacf12b8b9ba9c8177030e0ed221f335ce04"
+  },
+  "changed_runtime_scope": [
+    "src/run_cone_distance_live.py (GUI composition only)",
+    "src/cone_fixed_floor_display.py (new renderer)"
+  ],
+  "physical_metric_verified": false,
+  "real_model_positive_continuous_output_verified": false,
+  "usable_for_ffb": false,
+  "camera_gpu_ros_started": false,
+  "git_commit_or_push_performed": false
+}

@@ -1,0 +1,52 @@
+{
+  "model_session": "15ae673c24484d119952ae391df611aa",
+  "evidence_frames": [
+    1259,
+    1655
+  ],
+  "last_model_evidence_frame": 1655,
+  "unique_saved_image_frames": [
+    1259,
+    1655
+  ],
+  "images": [
+    {
+      "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/originals/decoded_15ae673c24484d119952ae391df611aa_f001259.png",
+      "frame": 1259,
+      "sha256": "b87dd75deade099ab68daa13699bf1210482ae52efe83ae06a0bdb156aee0f34"
+    },
+    {
+      "path": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-30/floor_board_pair_r01/originals/decoded_15ae673c24484d119952ae391df611aa_f001655.png",
+      "frame": 1655,
+      "sha256": "2243e7c9873c0ccdd2950502209b9e4db5b5e04a56b356a94e30a3d21f3f45d7"
+    }
+  ],
+  "inspected_logs": [
+    {
+      "path": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-10-30/cone_distance_live_r01/distance_frames.jsonl",
+      "sha256": "dffcb7495386f1c11433b7f4d577dc7968e195a306fc25c5a63f0fe78bbf7dbc",
+      "sessions": {
+        "f1f1b17f34a6447a9789291af128f991": 5427
+      }
+    },
+    {
+      "path": "/home/robo25/theta_ws/recordings/2026-10-30/live_frame_evidence_20261030_181804/distance_frames.jsonl",
+      "sha256": "1651b1fe4eda2bf92cc76c388e24dac78da8e572a2fd554937402ec6881687e6",
+      "sessions": {
+        "b041fd4f2da148eeb2c7afcb442305bf": 1656
+      }
+    },
+    {
+      "path": "/home/robo25/theta_ws/recordings/2026-10-30/live_frame_evidence_r02_20261030_185348/distance_frames.jsonl",
+      "sha256": "5f0396a6f40e2fbef1c29613b8850523075324e0574b8ee44ec31748abc009e7",
+      "sessions": {
+        "f860e50d1c4e485a98cbc1a2f6138cdf": 1689
+      }
+    }
+  ],
+  "matching_session_log_rows": 0,
+  "real_post_model_image_frames": [],
+  "real_post_model_log_frames": [],
+  "existing_model_positive_time_series_available": false,
+  "no_other_session_model_transfer": true
+}

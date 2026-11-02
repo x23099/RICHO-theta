@@ -1,0 +1,48 @@
+{
+  "schema": "explicit_floor_models_v1",
+  "session": "floor_cone_same_pose_r01_20261015_160621_378",
+  "heading_reference": {
+    "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+    "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+  },
+  "models": [
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "first_past_only_up_external_height59",
+      "session": "floor_cone_same_pose_r01_20261015_160621_378",
+      "normal_optical": [
+        -0.020389861162132303,
+        -0.9941040204524836,
+        0.10649624445020081
+      ],
+      "camera_to_floor_m": 0.59,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "first existing PastOnlyPose readiness in this recording",
+        "training frames: [62, 152]",
+        "later validation frames: [272, 302]",
+        "external user-reported height 0.59 m; not estimated from this recording"
+      ],
+      "assumptions": [
+        "static camera and same floor throughout the recording, not independently proved by this replay",
+        "architectural up direction is assumed normal to the floor",
+        "heading convention inherited only; camera foot range is not measured base_link distance"
+      ],
+      "invalidation_conditions": [
+        "different session or changed camera/capture/mount/floor geometry",
+        "use before bootstrap completion",
+        "use as an FFB or physical approval"
+      ],
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "controlling_distance": false,
+      "live_integrated": false,
+      "published_to_ros": false
+    }
+  ]
+}

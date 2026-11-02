@@ -1,0 +1,22 @@
+{
+  "schema": "native_floor_rectangles_v1",
+  "note": "Historical observed integer white-paper perimeter hypotheses, not verified physical corner locations. Both side assignments and IPPE solutions must be retained. Not the later shared refined-edge fit.",
+  "frames": [
+    {
+      "file": "decoded_15ae673c24484d119952ae391df611aa_f001259.png",
+      "sha256": "b87dd75deade099ab68daa13699bf1210482ae52efe83ae06a0bdb156aee0f34",
+      "corners_native_xy": [[292, 420], [348, 418], [356, 440], [288, 443]],
+      "side_lengths_mm": [296, 210],
+      "side_assignment": "both",
+      "coordinates_source": "Experimental_results/2026-10-30/floor_board_pair_r01/README.md; observed native perimeter extracted with fixed threshold 170; user-measured paper dimensions; identity remains a hypothesis"
+    },
+    {
+      "file": "decoded_15ae673c24484d119952ae391df611aa_f001655.png",
+      "sha256": "2243e7c9873c0ccdd2950502209b9e4db5b5e04a56b356a94e30a3d21f3f45d7",
+      "corners_native_xy": [[362, 416], [410, 408], [427, 424], [374, 437]],
+      "side_lengths_mm": [296, 210],
+      "side_assignment": "both",
+      "coordinates_source": "Experimental_results/2026-10-30/floor_board_pair_r01/README.md; observed native perimeter extracted with fixed threshold 170; user-measured paper dimensions; identity remains a hypothesis"
+    }
+  ]
+}

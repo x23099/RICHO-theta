@@ -1,0 +1,82 @@
+{
+  "data_kind": "SYNTHETIC_ONLY_positive_lifecycle_NOT_real_camera",
+  "session": "synthetic_lifecycle_only",
+  "processed_rows": 180,
+  "original_fields_unchanged": 180,
+  "actions": [
+    {
+      "after_frame": 10,
+      "action": "request",
+      "logical_time_sec": 100.34333333333333,
+      "accepted": true,
+      "reason": "load_requested"
+    },
+    {
+      "after_frame": 70,
+      "action": "disconnect",
+      "logical_time_sec": 102.94333333333333,
+      "accepted": true,
+      "reason": "simulated_input_disconnect"
+    },
+    {
+      "after_frame": 85,
+      "action": "request",
+      "logical_time_sec": 103.44333333333333,
+      "accepted": true,
+      "reason": "load_requested"
+    },
+    {
+      "after_frame": 110,
+      "action": "request",
+      "models": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-02/fixed_floor_lifecycle_replay_r01/results_r04/synthetic_inputs/deliberately_invalid_model.json",
+      "logical_time_sec": 104.27666666666667,
+      "accepted": true,
+      "reason": "load_requested"
+    },
+    {
+      "after_frame": 130,
+      "action": "request",
+      "logical_time_sec": 104.94333333333333,
+      "accepted": true,
+      "reason": "load_requested"
+    },
+    {
+      "after_frame": 160,
+      "action": "disconnect",
+      "logical_time_sec": 105.94333333333333,
+      "accepted": true,
+      "reason": "simulated_input_disconnect"
+    }
+  ],
+  "load_states": {
+    "waiting": 10,
+    "loading": 8,
+    "active": 109,
+    "rejected": 53
+  },
+  "load_event_counts": {
+    "requested": 4,
+    "accepted": 3,
+    "invalidated": 2,
+    "rejected": 1,
+    "closed": 1
+  },
+  "comparison_available_rows": 88,
+  "comparison_reason_counts": {
+    "no_active_model": 71,
+    "image_support_quality_not_confirmed": 10,
+    "unverified_comparison_only": 88,
+    "support_point_unavailable": 10,
+    "frame_processing_too_old": 1
+  },
+  "logical_file_read_delay_sec": 0.06,
+  "logical_schedule_is_not_measured_latency": true,
+  "saved_observations_not_fresh_inference": true,
+  "no_fake_live_summary_created": true,
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "usable_for_ffb": false,
+  "shutdown": {
+    "model_load_running": false
+  }
+}

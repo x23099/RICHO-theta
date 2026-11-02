@@ -1,0 +1,34 @@
+{
+  "status": "PASS_PAST_ONLY_REPLAY_NOT_PHYSICAL_APPROVAL",
+  "checks": {
+    "tests_pass": true,
+    "runtime_sources_unchanged": true,
+    "source_hashes_match": true,
+    "complete_native_ledger": true,
+    "baseline_fields_unchanged": true,
+    "both_support_paths_preserve_baseline": true,
+    "scene_accepted_and_rejected_reconstructed": true,
+    "original_source_files_unchanged": true,
+    "no_physical_or_live_approval": true,
+    "positive_real_frame_comparison": true
+  },
+  "tests": 283,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "baseline_commit": "ccf5665",
+  "changed_runtime_sources": [],
+  "source_hash_mismatches": [],
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-02/fixed_floor_contiguous_replay_r01/verify.py": "99c38453e1c6e05c48eb949de66b9995018e9f3b31aae0373b0d37eb4fcde07d",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-02/fixed_floor_contiguous_replay_r01/run.py": "fc6924a77d3ac0be11b81a70b8fec8fbc6ccfcb27ee05a2b9810f8a261742b1f",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_fixed_floor_causal_bootstrap.py": "7e50a63e1a93193377be6d937e0ae449c5a6678ccce2a36513cef5b480806123",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-02/fixed_floor_contiguous_replay_r01/results_r02/summary.json": "f2a3a482310853b4b87ba6224f28f20fcaa5393cee5f277c5a15c9f2c304982d",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-02/fixed_floor_contiguous_replay_r01/results_r02/frame_comparison.csv": "88d1b5d2682457ce40a87d1a86dac30ab1a32e45aa267737c3c3e99d64ddf6ac",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-02/fixed_floor_contiguous_replay_r01/results_r02/bootstrap_models.json": "15cd58cb62fe1bbcb23009ce83cce86942074b4f92cdaf69f436a5c85d64688d",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-02/fixed_floor_contiguous_replay_r01/results_r02/conditional_range_timeline.png": "102c2594345163883bf3475a750f6c45d34b6b52f653d24c124fda041a9f6d1c"
+  },
+  "git_commit_or_push_performed": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}

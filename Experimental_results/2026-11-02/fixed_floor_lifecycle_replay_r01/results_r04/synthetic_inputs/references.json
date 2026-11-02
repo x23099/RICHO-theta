@@ -1,0 +1,33 @@
+{
+  "schema": "native_floor_rectangles_v1",
+  "frames": [
+    {
+      "file": "decoded_synthetic_lifecycle_only_f000001.png",
+      "sha256": "44bb0dd4e8e122af6bf159ef8dc0bba3ff32597566301e9e7bba6df3e30c29f6",
+      "corners_native_xy": [
+        [
+          299.4699285780809,
+          434.41908503449406
+        ],
+        [
+          303.968416939404,
+          408.6118643667968
+        ],
+        [
+          271.6314688920157,
+          406.8106590550999
+        ],
+        [
+          258.6401871699163,
+          430.8523461823552
+        ]
+      ],
+      "side_lengths_mm": [
+        296,
+        210
+      ],
+      "side_assignment": "both",
+      "coordinates_source": "synthetic projected rectangle; NOT real board evidence"
+    }
+  ]
+}

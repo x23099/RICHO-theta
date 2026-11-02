@@ -1,0 +1,10 @@
+{
+  "processed_rows": 1689,
+  "numeric_rows": 0,
+  "reason_counts": {
+    "loader_waiting:not_requested": 11,
+    "loader_loading:explicit_local_request": 5,
+    "loader_rejected:load_failed:ValueError": 1673
+  },
+  "real_camera_images_rendered_or_saved": false
+}
