@@ -55,6 +55,34 @@ FLOOR_RUN="Experimental_results/2026-11-02/floor_load_live_$(date +%Y%m%d_%H%M%S
 
 日付は実施日に変更する。matunuc側の映像送信コマンドは変更なし。両側を停止/再接続するとsessionが変わるので、その場合は新しい根拠が必要。
 
+### カメラ/Kobuki PC（matunuc）：映像を送信する（11/4追記）
+
+**受信を起動しただけではカメラ映像は届かない。** 受信側はそのまま待機させ、以下を`matunuc-NUC13ANHi5`のターミナルで実行する。GPU/ハンコンPCや解析PCでは実行しない。機体は静止のまま、ROS/FFBは起動しない。
+
+以下はGPU受信PCのLAN側IPが以前と同じ`150.89.169.78`、キャプチャdeviceが`/dev/video0`の場合。違う場合は実際の値へ置き換える。
+
+```bash
+cd ~/theta_ws
+export THETA_RTC_PYTHON="$PWD/theta-env/bin/python3"
+bash src/start_theta_stream_rtc.sh --diagnostic \
+  --receiver-ip 150.89.169.78 \
+  --device /dev/video0 \
+  --fps 30
+```
+
+受信PCのIPは**GPU/ハンコンPC**で`hostname -I`、deviceは**matunuc**で`v4l2-ctl --list-devices`により確認できる。別PCに接続されたカメラや、同じキャプチャのmetadata用deviceを選ばない。`bird_eye.py`や別の送信器で同じカメラを同時占有しない。
+
+`--diagnostic`は先頭に1回だけ指定する。通常モードでは1920×960等へ経路が変わるため、この1280×720距離診断とは混ぜない。既定の接続ポートは5002。送信側の`ICE completed`だけでなく、GPU側のウィンドウに実際の映像が出ることを確認する。まだモデルを用意していなければ`WITHHELD`や比較パネルの待機表示は想定内で、Lはまだ押さない。
+
+**上記の旧受信例を既に実行した場合**、受信を止め直す必要はない。現在のモデル読込み先は`$FLOOR_RUN/prepared_floor.json`である。[後続の導出コマンド](../fixed_floor_derivation_r01/README.md)で`$FLOOR_RUN/floor_model_r01/prepared_floor.json`へ生成した場合は、コマンド成功後、GPU側の別ターミナルで同じ既存`FLOOR_RUN`を指定し、未使用の読込み先へバイト同一で複製する。
+
+```bash
+cp -n -- "$FLOOR_RUN/floor_model_r01/prepared_floor.json" "$FLOOR_RUN/prepared_floor.json"
+cmp -- "$FLOOR_RUN/floor_model_r01/prepared_floor.json" "$FLOOR_RUN/prepared_floor.json"
+```
+
+symlinkではなく通常ファイルを使う。`cp -n`は既存ファイルを上書きしないため、`cmp`で不一致になった場合はLを押さず確認する。今はまだ生成前なので、この複製操作は不要。別ターミナルでは`FLOOR_RUN`を新しい日時で再生成せず、受信中の実際のフォルダへ合わせる。保存先の日付prefixが旧日のままでも、修正のために接続を切らず、終了後に11/4実施分として索引・解析先を整理する。
+
 ### 同じ受信接続を維持してモデルを用意
 
 受信GUIでSを押し、床基準のnative PNGを保存する。**受信は止めない**。別ターミナルで、その画像から別途導出・確認したモデルを準備する段階が必要（今回のexporterは導出を代行しない）。
