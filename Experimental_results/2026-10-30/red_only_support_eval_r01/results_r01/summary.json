@@ -1,0 +1,107 @@
+{
+  "status": "SAVED_DATA_RED_ONLY_SHADOW_AUDIT_NOT_PROMOTION",
+  "processed_frames": 1689,
+  "candidate_point_frames": 1636,
+  "candidate_reasons": {
+    "ambiguous_upper_body_colour": 18,
+    "unverified_visible_colour_support": 1636,
+    "colour_contour_reaches_roi_edge": 35
+  },
+  "baseline_support_reasons": {
+    "colour_contour_reaches_roi_edge": 1689
+  },
+  "selected_colours": {
+    "none": 18,
+    "red": 1671
+  },
+  "pose_available_frames": 0,
+  "distance_available_frames": 0,
+  "point_inside_bbox_x_frames": 1636,
+  "point_in_support_frames": 1636,
+  "y_above_bbox_bottom_px": {
+    "count": 1636,
+    "median": 1.4973,
+    "p95": 1.7213,
+    "minimum": -0.4766,
+    "maximum": 2.5722
+  },
+  "x_from_bbox_center_px": {
+    "count": 1636,
+    "median": -6.5062,
+    "p95": -4.6074,
+    "minimum": -7.5292,
+    "maximum": -0.376
+  },
+  "support_columns": {
+    "count": 1636,
+    "median": 37.0,
+    "p95": 39.0,
+    "minimum": 33,
+    "maximum": 40
+  },
+  "support_span_px": {
+    "count": 1636,
+    "median": 36.0,
+    "p95": 38.0,
+    "minimum": 32,
+    "maximum": 39
+  },
+  "seed_dominant_fraction": {
+    "count": 1636,
+    "median": 1.0,
+    "p95": 1.0,
+    "minimum": 0.9038,
+    "maximum": 1.0
+  },
+  "adjacent_pairs": 1627,
+  "adjacent_dx_px": {
+    "count": 1627,
+    "median": 0.0,
+    "p95": 1.0,
+    "minimum": -7,
+    "maximum": 7
+  },
+  "adjacent_dy_px": {
+    "count": 1627,
+    "median": 0.0,
+    "p95": 0.0,
+    "minimum": -2,
+    "maximum": 2
+  },
+  "adjacent_distance_px": {
+    "count": 1627,
+    "median": 0.0,
+    "p95": 1.0,
+    "minimum": 0.0,
+    "maximum": 7.0
+  },
+  "completion_same_point_frames": 1636,
+  "completion_dx_px": {
+    "count": 1636,
+    "median": 0.0,
+    "p95": 0.0,
+    "minimum": 0,
+    "maximum": 0
+  },
+  "completion_dy_px": {
+    "count": 1636,
+    "median": 0.0,
+    "p95": 0.0,
+    "minimum": 0,
+    "maximum": 0
+  },
+  "physical_reference": "none in this session: no same-frame or same-session surveyed floor marker; absolute distance and support-floor contact are not evaluable",
+  "conclusion": {
+    "availability": "red-only shadow yields a point in 1636/1689 frames while the union-mask baseline support is withheld in all frames",
+    "geometry": "1636/1636 points lie inside the bbox x-range; the point is an observed support column, not the bbox bottom",
+    "temporal": "adjacent-frame pixel movement is reported as image stability only; it is not contact correctness or metric accuracy",
+    "promotion": "not promoted: no independent physical reference, pose is unavailable, and the shadow is a different non-controlling path"
+  },
+  "input_sha256": {
+    "/home/robo25/theta_ws/recordings/2026-10-30/live_frame_evidence_r02_20261030_185348/distance_frames.jsonl": "5f0396a6f40e2fbef1c29613b8850523075324e0574b8ee44ec31748abc009e7"
+  },
+  "controlling_distance": false,
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "usable_for_ffb": false
+}

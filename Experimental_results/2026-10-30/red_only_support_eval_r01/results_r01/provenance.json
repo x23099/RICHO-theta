@@ -1,0 +1,13 @@
+{
+  "status": "SAVED_DATA_ONLY_NO_INFERENCE",
+  "method": "Experimental_results/2026-10-30/red_only_support_eval_r01/method.md",
+  "method_sha256": "61fa798a084a470d388b5a98fd109b313c0a3cbafb1bd40790ad7d560f62520f",
+  "analysis": "Experimental_results/2026-10-30/red_only_support_eval_r01/analyze.py",
+  "analysis_sha256": "e14f200daa375cef5f0b59cd65e8d0bbac2eb2c6d9c44f809ba968046bc784f1",
+  "input_sha256": {
+    "/home/robo25/theta_ws/recordings/2026-10-30/live_frame_evidence_r02_20261030_185348/distance_frames.jsonl": "5f0396a6f40e2fbef1c29613b8850523075324e0574b8ee44ec31748abc009e7"
+  },
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "usable_for_ffb": false
+}
