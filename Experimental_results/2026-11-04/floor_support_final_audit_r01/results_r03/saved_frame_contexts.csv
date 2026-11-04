@@ -1,0 +1,25 @@
+closed_in_both,direction,frame,new_runtime_grant,original_decision,original_lower_support_unchanged,physical_contact_verified,point_in_original_bbox,proposed_point,same_component_and_support,seed_connected
+True,top,32654,False,upper_point_outside_original_bbox,True,False,False,"[308, 419]",True,True
+False,lateral,32654,False,upper_point_outside_original_bbox,False,False,False,None,True,False
+False,bottom,32654,False,upper_point_outside_original_bbox,False,False,False,None,True,False
+True,top,32717,False,upper_point_outside_original_bbox,True,False,False,"[317, 419]",True,True
+False,lateral,32717,False,upper_point_outside_original_bbox,False,False,False,None,True,False
+False,bottom,32717,False,upper_point_outside_original_bbox,False,False,False,None,True,False
+False,top,32976,False,not_top_only_contact,False,False,False,None,True,False
+False,lateral,32976,False,not_top_only_contact,False,False,False,None,True,False
+False,bottom,32976,False,not_top_only_contact,False,False,False,None,True,False
+False,top,33066,False,not_top_only_contact,False,False,False,None,True,False
+True,lateral,33066,False,not_top_only_contact,True,False,False,"[314, 419]",True,True
+False,bottom,33066,False,not_top_only_contact,False,False,False,None,True,False
+False,top,33206,False,not_top_only_contact,False,False,False,None,True,False
+False,lateral,33206,False,not_top_only_contact,False,False,False,None,True,False
+True,bottom,33206,False,not_top_only_contact,True,False,False,"[317, 419]",True,True
+True,top,33271,False,upper_point_outside_original_bbox,True,False,False,"[307, 419]",True,True
+False,lateral,33271,False,upper_point_outside_original_bbox,False,False,False,None,True,False
+False,bottom,33271,False,upper_point_outside_original_bbox,False,False,False,None,True,False
+True,top,35562,False,same_closed_component_and_original_lower_support_in_two_contexts,True,False,True,"[308, 417]",True,True
+False,lateral,35562,False,same_closed_component_and_original_lower_support_in_two_contexts,False,False,False,None,True,False
+False,bottom,35562,False,same_closed_component_and_original_lower_support_in_two_contexts,False,False,False,None,True,False
+False,top,36478,False,not_top_only_contact,False,False,False,None,True,False
+True,lateral,36478,False,not_top_only_contact,False,False,False,"[310, 419]",True,True
+False,bottom,36478,False,not_top_only_contact,False,False,False,None,True,False

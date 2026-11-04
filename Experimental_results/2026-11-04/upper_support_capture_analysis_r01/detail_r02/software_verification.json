@@ -1,0 +1,12 @@
+{
+  "reused_tests": 435,
+  "prior_verification": "Experimental_results/2026-11-04/upper_support_live_r01/verification_r01/verification.json",
+  "prior_sha256": "f87b1918bc6eb79a8b1cfa51f7faf449b02565bec2148aa461d1e9dcafaead50",
+  "source_hash_mismatches": [],
+  "analysis_scripts_sha256": {
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/detail.py": "75633daed30db8c9e3564e8eb40528c2eefa15d98081f7a4971747f4b4abe511",
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/analyze.py": "d5659974c5f014bb2f723ee569c32198aaaeaf25421bdf24afdf77cf325d6eee",
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/reference.json": "c5dcd417acff27c580ab25fc9d37e1da4a6679ce54f82955c9436d6489dcb2fe"
+  },
+  "runtime_code_changed": false
+}

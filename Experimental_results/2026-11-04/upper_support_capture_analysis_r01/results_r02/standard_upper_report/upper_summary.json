@@ -1,0 +1,60 @@
+{
+  "schema": "upper_support_log_summary_v1",
+  "status": "UNVERIFIED_COMPARISON_LOG_NOT_RUN_OR_METRIC_APPROVAL",
+  "processed_rows": 38311,
+  "reasons": {
+    "frame_processing_too_old": 1,
+    "model_not_active": 34458,
+    "image_support_quality_not_confirmed": 22,
+    "unverified_comparison_only": 3779,
+    "support_point_unavailable": 51
+  },
+  "upper_numeric_rows": 3779,
+  "legacy_numeric_rows": 3776,
+  "upper_granted_rows": 12,
+  "evidence_states": {
+    "not_requested": 38259,
+    "saved": 8,
+    "rate_limited": 44
+  },
+  "model_values": {
+    "414ea62787afdc829900c12d109202ae5a0f75999e16259e12dccf109a87e92e/f005755_as_listed_s0_image_plane_plus_thickness": {
+      "count": 3779,
+      "minimum_m": 0.9340682039245213,
+      "maximum_m": 0.9571652835377883,
+      "mean_m": 0.9542671582922279
+    },
+    "414ea62787afdc829900c12d109202ae5a0f75999e16259e12dccf109a87e92e/f005755_as_listed_s0_external_height_image_normal": {
+      "count": 3779,
+      "minimum_m": 0.9473553678994219,
+      "maximum_m": 0.9707810045526067,
+      "mean_m": 0.9678416533396483
+    },
+    "414ea62787afdc829900c12d109202ae5a0f75999e16259e12dccf109a87e92e/f005755_swapped_s0_image_plane_plus_thickness": {
+      "count": 3779,
+      "minimum_m": 0.7527543116945269,
+      "maximum_m": 0.7892073984269699,
+      "mean_m": 0.7833574555988196
+    },
+    "414ea62787afdc829900c12d109202ae5a0f75999e16259e12dccf109a87e92e/f005755_swapped_s0_external_height_image_normal": {
+      "count": 3779,
+      "minimum_m": 2.0576907247487153,
+      "maximum_m": 2.157337020083716,
+      "mean_m": 2.141345915269451
+    }
+  },
+  "sessions": [
+    "9d0ab80cc3144a5aabdb9991e3368b77",
+    "b559e4240e364166935f9ede9ac3e7ae"
+  ],
+  "input_sha256": "8f80ce7ca7b4f336db286d44bada5e6f978097b06ed79dda75b22a1923e347cb",
+  "inference_sources": {
+    "live_cuda_yolo": 38311
+  },
+  "contains_injected_or_unverified_predictor": false,
+  "evidence_files_externally_verified": false,
+  "run_finalization_checked": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "display_availability_measured": false
+}

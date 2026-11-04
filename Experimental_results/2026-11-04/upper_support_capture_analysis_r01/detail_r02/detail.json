@@ -1,0 +1,91 @@
+{
+  "active_rows": 3852,
+  "causal_branch_verdicts_reproduced": 7704,
+  "mismatch_count": 0,
+  "full_upper_quality_records_reproduced": 3852,
+  "refusal_touching_edges": {
+    "top": 12,
+    "top+bottom": 1,
+    "bottom": 22,
+    "left": 16
+  },
+  "extra_numeric_frames": [
+    35562,
+    35563,
+    35564
+  ],
+  "mean_processed_rows_per_sec": 28.901738976653316,
+  "maximum_processed_source_gap_sec": 0.1292144940016442,
+  "processed_source_gaps_over_200ms": 0,
+  "model_reference_differences": {
+    "legacy__f005755_as_listed_s0_image_plane_plus_thickness": {
+      "median_m": 0.9568334144339383,
+      "reported_reference_m": 1.0,
+      "median_minus_reported_reference_cm": -4.316658556606168,
+      "physical_point_equivalence_verified": false,
+      "used_for_model_selection": false
+    },
+    "legacy__f005755_as_listed_s0_external_height_image_normal": {
+      "median_m": 0.9704444145952018,
+      "reported_reference_m": 1.0,
+      "median_minus_reported_reference_cm": -2.955558540479819,
+      "physical_point_equivalence_verified": false,
+      "used_for_model_selection": false
+    },
+    "legacy__f005755_swapped_s0_image_plane_plus_thickness": {
+      "median_m": 0.7870629810070051,
+      "reported_reference_m": 1.0,
+      "median_minus_reported_reference_cm": -21.29370189929949,
+      "physical_point_equivalence_verified": false,
+      "used_for_model_selection": false
+    },
+    "legacy__f005755_swapped_s0_external_height_image_normal": {
+      "median_m": 2.1514751501927054,
+      "reported_reference_m": 1.0,
+      "median_minus_reported_reference_cm": 115.14751501927054,
+      "physical_point_equivalence_verified": false,
+      "used_for_model_selection": false
+    },
+    "upper__f005755_as_listed_s0_image_plane_plus_thickness": {
+      "median_m": 0.9568334144339383,
+      "reported_reference_m": 1.0,
+      "median_minus_reported_reference_cm": -4.316658556606168,
+      "physical_point_equivalence_verified": false,
+      "used_for_model_selection": false
+    },
+    "upper__f005755_as_listed_s0_external_height_image_normal": {
+      "median_m": 0.9704444145952018,
+      "reported_reference_m": 1.0,
+      "median_minus_reported_reference_cm": -2.955558540479819,
+      "physical_point_equivalence_verified": false,
+      "used_for_model_selection": false
+    },
+    "upper__f005755_swapped_s0_image_plane_plus_thickness": {
+      "median_m": 0.7870629810070051,
+      "reported_reference_m": 1.0,
+      "median_minus_reported_reference_cm": -21.29370189929949,
+      "physical_point_equivalence_verified": false,
+      "used_for_model_selection": false
+    },
+    "upper__f005755_swapped_s0_external_height_image_normal": {
+      "median_m": 2.1514751501927054,
+      "reported_reference_m": 1.0,
+      "median_minus_reported_reference_cm": 115.14751501927054,
+      "physical_point_equivalence_verified": false,
+      "used_for_model_selection": false
+    }
+  },
+  "reference": {
+    "session": "b559e4240e364166935f9ede9ac3e7ae",
+    "distance_m": 1.0,
+    "source": "User confirmed 1 m after submission, 2026-11-04",
+    "definition": "Vehicle centre floor projection to the centre of the near edge of the cone base; horizontal straight-line distance",
+    "physical_equivalence_to_observed_colour_support_verified": false,
+    "used_for_calibration_or_model_selection": false
+  },
+  "calibration_updated": false,
+  "runtime_source_modified": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "plotted_model_chosen_for_order_not_accuracy": true
+}

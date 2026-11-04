@@ -1,0 +1,12 @@
+{
+  "schema": "native_floor_rectangles_v1",
+  "note": "New same-session PNG. Paper is near a bright floor reflection; perimeter vertices are diagnostic correspondence hypotheses, NOT approved physical corners. Complete grid detection failed. Do not select corners/models by cone range or height proximity. Keep all hypotheses and an independent contour control.",
+  "frames": [{
+    "file": "decoded_b559e4240e364166935f9ede9ac3e7ae_f005755.png",
+    "sha256": "382ccb5992ab80cfb69290ef057d7010d30e9a6392e434832a70a5613404d76b",
+    "corners_native_xy": [[297,407],[348,406],[353,423],[299,426]],
+    "side_lengths_mm": [296,210],
+    "side_assignment": "both",
+    "coordinates_source": "Native board ROI XYWH [280,395,90,50], gray threshold 170, RETR_EXTERNAL contour area 887.5 px2, approxPolyDP perimeter fraction 0.025. Fraction 0.02 gives seven vertices; 0.025/0.03/0.04 give the same four vertices. Reflection joins the upper-left boundary: four-vertex simplification does not prove physical paper corner identity. Threshold190/fraction0.04 gives a materially different upper-left vertex, retained separately. No measured cone distance used. Source image is unchanged."
+  }]
+}

@@ -1,0 +1,8 @@
+{
+  "session": "b559e4240e364166935f9ede9ac3e7ae",
+  "distance_m": 1.0,
+  "source": "User confirmed 1 m after submission, 2026-11-04",
+  "definition": "Vehicle centre floor projection to the centre of the near edge of the cone base; horizontal straight-line distance",
+  "physical_equivalence_to_observed_colour_support_verified": false,
+  "used_for_calibration_or_model_selection": false
+}

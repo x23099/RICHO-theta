@@ -1,0 +1,11 @@
+{
+  "schema": "native_floor_rectangles_v1",
+  "frames": [{
+    "file": "decoded_b559e4240e364166935f9ede9ac3e7ae_f005755.png",
+    "sha256": "382ccb5992ab80cfb69290ef057d7010d30e9a6392e434832a70a5613404d76b",
+    "corners_native_xy": [[303,404],[348,407],[353,422],[298,425]],
+    "side_lengths_mm": [296,210],
+    "side_assignment": "both",
+    "coordinates_source": "Separate sensitivity control from this native image only. Board ROI [280,395,90,50], gray threshold190, approxPolyDP fraction0.04. Upper-left reflection/paper boundary is ambiguous; not a physical approval and not selected using height or cone distance."
+  }]
+}

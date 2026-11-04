@@ -1,0 +1,6 @@
+# Partial local analysis before relative-path handling correction.
+results_r01/
+verification_r01/
+# Earlier valid table omitted the all-withheld models of the latest session.
+results_r02/
+verification_r02/

@@ -1,0 +1,32 @@
+{
+  "status": "PASS_OFFLINE_AUDIT_CHECKS_NOT_PHYSICAL_APPROVAL",
+  "checks": {
+    "local_tests_pass": true,
+    "source_images_and_inputs_unchanged": true,
+    "prior_435_runtime_hashes_unchanged": true,
+    "floor_solutions_reproduced": true,
+    "original_distance_rows_revalidated": true,
+    "saved_images_reproduced": true,
+    "all_models_including_withheld_retained": true,
+    "no_model_selected": true,
+    "no_runtime_changes": true,
+    "no_mixed_session_calibration": true
+  },
+  "tests": 11,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "prior_software_tests_reused": 435,
+  "source_hash_mismatches": [],
+  "prior_source_mismatches": [],
+  "source_sha256": {
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/verify.py": "120aa8b3eb61f2ef59b7165e8ce0ffbb24b14ee25c8fb617e16049c828bdb807",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/audit.py": "507c51ea0fbdb88a826ec3e1a0183d00887d2a17c11f11a66f3db0afb5ace82c",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/test_audit.py": "4ce230c2b4605308cdc931fde113e64de81c5d45ab78aab967696229a9c846dd",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/results_r03/summary.json": "14c8abbb9f74ef620146fd416f912291264da0e42e6abb6552d075c2c3af2d0d",
+    "Experimental_results/2026-11-04/upper_support_live_r01/verification_r01/verification.json": "f87b1918bc6eb79a8b1cfa51f7faf449b02565bec2148aa461d1e9dcafaead50"
+  },
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "hardware_started": false
+}
