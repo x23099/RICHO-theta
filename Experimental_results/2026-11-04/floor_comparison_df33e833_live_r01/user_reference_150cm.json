@@ -1,0 +1,22 @@
+{
+  "schema": "user_reported_single_placement_reference_v1",
+  "reported_date": "2026-11-04",
+  "source": "User replied '1.5mです' to request for current-placement horizontal straight distance from vehicle center to center of cone base vehicle-side edge",
+  "session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+  "first_frame": 29904,
+  "last_frame": 30504,
+  "recording_sha256": "f554d0c7755504b35eb323b3f1d1e6b6cc7c825a1bf5fd0f03c3d390eae48cc0",
+  "reported_horizontal_straight_distance_m": 1.50,
+  "reported_origin": "vehicle_center",
+  "reported_target": "center_of_cone_base_vehicle_side_edge",
+  "same_placement_basis": "answer to immediately preceding current-placement request; not independently verified",
+  "reference_precision": "approximate measurement requested; exact uncertainty not specified",
+  "measurement_uncertainty_m": null,
+  "independent_placement_count": 1,
+  "estimated_quantity": "horizontal_camera_foot_range_to_observed_colour_support_pixel",
+  "origin_and_target_equivalence_verified": false,
+  "previous_session_reference_reused": false,
+  "model_selection_or_calibration_applied": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}

@@ -1,0 +1,138 @@
+{
+  "status": "PASS_CURRENT_BUNDLE_CHECKS_NOT_LIVE_GUI_OR_METRIC_APPROVAL",
+  "checks": {
+    "tests_pass": true,
+    "native_source_unmodified": true,
+    "native_image_shape": true,
+    "all_observed_quads_verified": true,
+    "eight_unselected_models": true,
+    "exact_current_evidence": true,
+    "distribution_is_primary_bytes": true,
+    "old_session_rejected": true,
+    "future_evidence_rejected": true,
+    "wrong_config_rejected": true
+  },
+  "tests": 68,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+  "evidence_frame": 2292,
+  "source_image_sha256": "375be11d55ad8db1aaa97c2bde07c095db45c63cd84b174d89f43978c963c11a",
+  "distribution_sha256": "08d8409f9674c433d5151f99228c43d8f8f6fb10d7245954223f6598e3af3176",
+  "checkerboard_result": "checkerboard withheld: board_not_found; no rectangle fallback",
+  "contour_controls": [
+    {
+      "reference": "references.json",
+      "threshold": 170,
+      "epsilon": 0.02,
+      "contour_area_px2": 562.0,
+      "vertices": [
+        [
+          338,
+          398
+        ],
+        [
+          296,
+          399
+        ],
+        [
+          293,
+          411
+        ],
+        [
+          341,
+          410
+        ]
+      ]
+    },
+    {
+      "reference": "references_control_t150.json",
+      "threshold": 150,
+      "epsilon": 0.02,
+      "contour_area_px2": 575.5,
+      "vertices": [
+        [
+          293,
+          411
+        ],
+        [
+          341,
+          410
+        ],
+        [
+          338,
+          398
+        ],
+        [
+          296,
+          398
+        ]
+      ]
+    },
+    {
+      "reference": "references_control_t190.json",
+      "threshold": 190,
+      "epsilon": 0.025,
+      "contour_area_px2": 549.0,
+      "vertices": [
+        [
+          341,
+          408
+        ],
+        [
+          338,
+          398
+        ],
+        [
+          296,
+          399
+        ],
+        [
+          293,
+          411
+        ]
+      ]
+    },
+    {
+      "reference": "references_control_e030.json",
+      "threshold": 170,
+      "epsilon": 0.03,
+      "contour_area_px2": 562.0,
+      "vertices": [
+        [
+          341,
+          407
+        ],
+        [
+          338,
+          398
+        ],
+        [
+          296,
+          399
+        ],
+        [
+          293,
+          411
+        ]
+      ]
+    }
+  ],
+  "dimensions_carried_from_previous_user_measurement": true,
+  "prior_cone_distance_not_reused": true,
+  "physical_metric_verified": false,
+  "live_load_on_gpu_verified": false,
+  "physical_output": false,
+  "original_image_modified": false,
+  "source_sha256": {
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/verify.py": "026f18439d0eb31676bb32cba5b3a99b3cf0395d4e1c79d49206edfee3bb2291",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/prepared_floor_df33e833_f002292.json": "08d8409f9674c433d5151f99228c43d8f8f6fb10d7245954223f6598e3af3176",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/references.json": "fe8868e5eaf4d4089bbcb526013d0229ec429a84973fd2cc088eb1c76ae12917",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/references_control_t150.json": "6b5d7ae22acd698cc70626f0ad33220b22a11bc28f04b822f61839f045a96652",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/references_control_t190.json": "25e25350823650a05dafb855f95c5504eaa7e07dd4de730990f5fc4e316b599c",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/references_control_e030.json": "d65413625965f3fec5736bf8f64fef136f6d1855e68ce40b12b0e7bba2be5a89",
+    "src/derive_fixed_floor_live_bundle.py": "0daa5c6fc6703a698ccb7413fd5e1d2e3b6f26ff2584fb861e59d0caeef0e7e5",
+    "src/cone_fixed_floor_display.py": "dcc4adecc8e3e2f91c7e2aa06f1ade9a29504f77e006df7b0ba5e62fcd5cc8b4"
+  }
+}

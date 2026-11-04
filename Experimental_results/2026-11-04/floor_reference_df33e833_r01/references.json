@@ -1,0 +1,14 @@
+{
+  "schema": "native_floor_rectangles_v1",
+  "note": "New receiver session df33e833acdf4e7d8b00d1ec37b7bcae. Observe THIS source image; no corner/session carryover. Prior paper 296x210mm, approximate board thickness 15mm and lens-floor height 590mm are explicit carried physical inputs. Paper corners are image hypotheses, not approved correspondences. Do not use previous cone-distance measurements for this changed view.",
+  "frames": [
+    {
+      "file": "decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f002292.png",
+      "sha256": "375be11d55ad8db1aaa97c2bde07c095db45c63cd84b174d89f43978c963c11a",
+      "corners_native_xy": [[296,399],[338,398],[341,410],[293,411]],
+      "side_lengths_mm": [296,210],
+      "side_assignment": "both",
+      "coordinates_source": "Observed current native PNG, board ROI XYWH [280,390,80,40], gray threshold 170, RETR_EXTERNAL contour area 562px2, approxPolyDP epsilon 0.02 of perimeter. Four actual vertices ordered from upper-left. Keep as primary fixed-method observation, not chosen by inferred height or cone distance. Threshold 150 at epsilon 0.02 moves the upper-left corner one pixel; threshold 190 at epsilon 0.025 moves lower-right two pixels; threshold 170 at epsilon 0.03 moves lower-right three pixels. These are separate sensitivity controls, not a confidence interval. Small complete checkerboard was not detected. Original image is unchanged."
+    }
+  ]
+}

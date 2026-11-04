@@ -1,0 +1,42 @@
+{
+  "schema": "user_submitted_live_gui_evidence_v1",
+  "date": "2026-11-04",
+  "status": "LIVE_COMPARISON_GUI_NUMBERS_VISIBLE_AT_ONE_FRAME_NOT_ACCURACY_APPROVAL",
+  "session_from_model_and_previous_native_image": "df33e833acdf4e7d8b00d1ec37b7bcae",
+  "session_visible_in_screenshot": false,
+  "source_gui_path": "/home/robo25/Downloads/image (3).png",
+  "gui_copy": "Experimental_results/2026-11-04/report_assets/fixed_floor_comparison_gui_df33e833_f019541.png",
+  "gui_sha256": "1fcc94d86b038aaae7ee4d5817eca9d3bf01c0c371fa6571338308f7a39cbcd5",
+  "source_terminal_path": "/home/robo25/Downloads/image (4).png",
+  "terminal_copy": "Experimental_results/2026-11-04/report_assets/fixed_floor_comparison_terminal_df33e833.png",
+  "terminal_sha256": "4599392f501aac7b2ad12677ded27605d21a6ff154b2d0510fff1dc4aa8174e3",
+  "screenshot_bytes_modified": false,
+  "native_camera_image": false,
+  "calibration_input": false,
+  "observed_frame": 19541,
+  "observed_loader_state": "active",
+  "observed_loader_generation": 1,
+  "observed_comparison_reason": "unverified_comparison_only",
+  "observed_baseline_reason": "latest_scene_image_rejected",
+  "observed_available_models": 3,
+  "observed_total_models": 8,
+  "observed_model_span_min_m_rounded": 1.562,
+  "observed_model_span_max_m_rounded": 1.744,
+  "individual_model_values_visible": [
+    {"model_name": "f002292_as_listed_s0_image_plane_plus_thickness", "value_m_rounded": 1.562},
+    {"model_name": "f002292_as_listed_s0_external_height_image_normal", "value_m_rounded": 1.744}
+  ],
+  "individual_withheld_models_visible": [
+    "f002292_as_listed_s1_image_plane_plus_thickness",
+    "f002292_as_listed_s1_external_height_image_normal"
+  ],
+  "visible_model_withholding_reason": "support_behind_heading_reference",
+  "full_precision_values_available_in_screenshot": false,
+  "full_model_list_visible": false,
+  "load_transition_timestamps_available_in_terminal_screenshot": false,
+  "continuous_output_stability_verified": false,
+  "independent_reference_distance_for_current_placement_available": false,
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "usable_for_ffb": false
+}

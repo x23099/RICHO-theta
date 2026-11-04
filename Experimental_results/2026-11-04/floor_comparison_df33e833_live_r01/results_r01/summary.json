@@ -1,0 +1,134 @@
+{
+  "status": "LIVE_COMPARISON_STABLE_IN_SUBMITTED_WINDOW_NOT_METRIC_APPROVAL",
+  "input_sha256": "f554d0c7755504b35eb323b3f1d1e6b6cc7c825a1bf5fd0f03c3d390eae48cc0",
+  "input_path": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-04/floor_comparison_df33e833_live_r01/floor_comparison_df33e833_recent.jsonl",
+  "complete_rows": 600,
+  "trailing_incomplete_json_dropped": false,
+  "session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+  "first_frame": 29904,
+  "last_frame": 30504,
+  "source_span_sec": 19.993766132998644,
+  "processed_row_interval_rate_hz": 29.959338126466452,
+  "unlogged_source_sequence_numbers_in_span": 1,
+  "baseline_reasons": {
+    "latest_scene_image_rejected": 260,
+    "newer_scene_processing_pending": 28,
+    "colour_contour_reaches_roi_edge": 288,
+    "support_confirmation_pending": 24
+  },
+  "baseline_distance_available_rows": 0,
+  "baseline_marker_point_present_rows": 312,
+  "baseline_marker_point_absent_rows": 288,
+  "baseline_marker_presence_transitions": 35,
+  "absent_marker_touching_edges": {
+    "top": 229,
+    "top+right": 48,
+    "right": 11
+  },
+  "absent_marker_baseline_reasons": {
+    "colour_contour_reaches_roi_edge": 288
+  },
+  "comparison_numeric_rows": 600,
+  "comparison_numeric_fraction": 1.0,
+  "comparison_available_model_counts": {
+    "3": 600
+  },
+  "comparison_reasons": {
+    "unverified_comparison_only": 600
+  },
+  "comparison_quality_accepted_rows": 600,
+  "loader_states": {
+    "active": 600
+  },
+  "loader_generations": [
+    1
+  ],
+  "bundle_hashes": [
+    "08d8409f9674c433d5151f99228c43d8f8f6fb10d7245954223f6598e3af3176"
+  ],
+  "comparison_support_pixels": [
+    [
+      315,
+      389
+    ],
+    [
+      316,
+      389
+    ],
+    [
+      318,
+      389
+    ]
+  ],
+  "model_statistics": {
+    "f002292_as_listed_s0_image_plane_plus_thickness": {
+      "samples": 600,
+      "min_m": 1.560216922082323,
+      "median_m": 1.562406276857111,
+      "max_m": 1.562406276857111,
+      "stddev_m": 0.0003742703126395965
+    },
+    "f002292_as_listed_s0_external_height_image_normal": {
+      "samples": 600,
+      "min_m": 1.7411189152907127,
+      "median_m": 1.7435621185124661,
+      "max_m": 1.7435621185124661,
+      "stddev_m": 0.00041766571785351145
+    },
+    "f002292_swapped_s0_image_plane_plus_thickness": {
+      "samples": 600,
+      "min_m": 1.6565343850518488,
+      "median_m": 1.661652903699272,
+      "max_m": 1.661652903699272,
+      "stddev_m": 0.0008380273336485384
+    }
+  },
+  "model_withheld_reason_counts": {
+    "support_behind_heading_reference": 2400,
+    "outside_diagnostic_range": 600
+  },
+  "gui_reasons_at_logged_completion_time": {
+    "unverified_comparison_only": 600
+  },
+  "timing_ms": {
+    "frame_age_ms": {
+      "min": 18.37710699874151,
+      "median": 22.48057550059457,
+      "max": 48.48075399968366
+    },
+    "predict_ms": {
+      "min": 6.430354000258376,
+      "median": 6.9025875000079395,
+      "max": 25.774216999707278
+    },
+    "support_geometry_ms": {
+      "min": 10.905659999480122,
+      "median": 12.219833000926883,
+      "max": 22.226383998713573
+    },
+    "cone_service_ms": {
+      "min": 17.767850000382168,
+      "median": 19.20295849959075,
+      "max": 43.18724299992027
+    }
+  },
+  "independent_ground_truth_for_this_placement": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "gui_every_draw_recorded": false,
+  "logged_completion_time_check_not_current_live_replay": true,
+  "camera_gpu_ros_started_by_analysis": false,
+  "window_checks": {
+    "all_rows_have_numeric_comparison": true,
+    "comparison_quality_all_accepted": true,
+    "same_active_generation": true,
+    "all_missing_baseline_points_explained_by_roi_edge": true,
+    "gui_semantics_accept_all_logged_rows": true
+  },
+  "source_sha256": {
+    "Experimental_results/2026-11-04/floor_comparison_df33e833_live_r01/analyze.py": "4a8493ce4157932b908af09310a23cf0e25b50da45732e9b50b38b4ece03ca67",
+    "src/summarize_cone_distance_live.py": "e4623e0f7d2780ba905419a1713e405808e3abc3569a0019de86a208b4f61c75",
+    "src/cone_fixed_floor_display.py": "dcc4adecc8e3e2f91c7e2aa06f1ade9a29504f77e006df7b0ba5e62fcd5cc8b4",
+    "src/cone_distance_core.py": "2719a21fc3bb31edc2e13c9425d77b99494b4d9e1d20d88613457dd04fde282f"
+  }
+}

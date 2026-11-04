@@ -1,0 +1,10 @@
+{
+  "schema": "native_floor_rectangles_v1",
+  "frames": [{
+    "file": "decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f002292.png",
+    "sha256": "375be11d55ad8db1aaa97c2bde07c095db45c63cd84b174d89f43978c963c11a",
+    "corners_native_xy": [[296,399],[338,398],[341,407],[293,411]],
+    "side_lengths_mm": [296,210], "side_assignment": "both",
+    "coordinates_source": "Current native board contour, gray threshold 170, epsilon 0.03, three-pixel lower-right change from primary. Separate sensitivity control only; no selection using height or cone range."
+  }]
+}
