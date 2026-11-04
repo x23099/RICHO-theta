@@ -1,0 +1,23 @@
+{
+  "schema": "user_reported_single_distance_reference_v1",
+  "reference_status": "SUPERSEDED_BY_USER_CORRECTION_DO_NOT_USE_FOR_EVALUATION",
+  "superseded_by": "user_reference_corrected_r02.json",
+  "usable_for_evaluation": false,
+  "reported_date": "2026-11-04",
+  "source": "User replied '148cmですね' to request for camera-foot to cone near base edge measurement without changing recorded placement",
+  "session": "9b7d9a17f292490c96e697af31438fd1",
+  "first_frame": 131020,
+  "last_frame": 131141,
+  "recording_sha256": "cd785c7db9fa2e2020dcae86c664ec72359e3bae24c8e5e6ebdfce642419632f",
+  "reported_distance_m": 1.48,
+  "reported_origin": "camera_vertical_floor_projection",
+  "reported_target": "cone_base_vehicle_side_edge",
+  "same_placement_basis": "interpreted from answer to immediately preceding conditional measurement request; not independently verified",
+  "measurement_uncertainty_m": null,
+  "independent_placement_count": 1,
+  "comparison_quantity": "horizontal_camera_foot_range_to_observed_colour_support_pixel",
+  "point_and_direction_equivalence_verified": false,
+  "model_selection_or_calibration_applied": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}

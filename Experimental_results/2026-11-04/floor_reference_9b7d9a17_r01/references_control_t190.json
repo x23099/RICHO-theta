@@ -1,0 +1,14 @@
+{
+  "schema": "native_floor_rectangles_v1",
+  "note": "One-pixel perimeter control, NOT a second physical capture or a preferred solution. Same prior dimensions and same source hash as primary hypothesis.",
+  "frames": [
+    {
+      "file": "decoded_9b7d9a17f292490c96e697af31438fd1_f061717.png",
+      "sha256": "29dc0be0279f7aa93a525a5032050c1071d7c3e6fd699a807b416b27425332da",
+      "corners_native_xy": [[299, 398], [340, 396], [343, 405], [297, 410]],
+      "side_lengths_mm": [296, 210],
+      "side_assignment": "both",
+      "coordinates_source": "2026-11-04 native PNG; threshold 190/210, approxPolyDP perimeter fractions 0.03/0.04 give identical four observed vertices. Separate pixel sensitivity control, not selected by height or cone distance."
+    }
+  ]
+}

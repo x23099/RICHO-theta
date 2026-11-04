@@ -1,0 +1,104 @@
+{
+  "status": "LOGGED_COMPARISON_CONFIRMED_NOT_PHYSICAL_APPROVAL",
+  "input_path": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-04/floor_comparison_live_tail_r01/floor_comparison_recent.jsonl",
+  "input_sha256": "cd785c7db9fa2e2020dcae86c664ec72359e3bae24c8e5e6ebdfce642419632f",
+  "complete_rows": 120,
+  "trailing_incomplete_json_dropped": false,
+  "sessions": [
+    "9b7d9a17f292490c96e697af31438fd1"
+  ],
+  "first_frame": 131020,
+  "last_frame": 131141,
+  "source_span_sec": 4.037837496000066,
+  "baseline_reasons": {
+    "colour_contour_reaches_roi_edge": 120
+  },
+  "baseline_available_rows": 0,
+  "inference_sources": {
+    "live_cuda_yolo": 120
+  },
+  "loader_states": {
+    "active": 120
+  },
+  "comparison_reasons": {
+    "unverified_comparison_only": 120
+  },
+  "numeric_comparison_rows": 120,
+  "model_unavailable_reasons": {
+    "support_behind_heading_reference": 480,
+    "outside_diagnostic_range": 120
+  },
+  "original_in_memory_roi_validation_errors": {
+    "native front-lens target ROI required": 120
+  },
+  "model_statistics": {
+    "f061717_as_listed_s0_image_plane_plus_thickness": {
+      "samples": 120,
+      "min_m": 1.5667575066630945,
+      "median_m": 1.5667575066630945,
+      "max_m": 1.5688388630157393,
+      "stddev_m": 0.00048781307717279493
+    },
+    "f061717_as_listed_s0_external_height_image_normal": {
+      "samples": 120,
+      "min_m": 1.8418872587067083,
+      "median_m": 1.8418872587067083,
+      "max_m": 1.8443341107118594,
+      "stddev_m": 0.0005734752746700345
+    },
+    "f061717_swapped_s0_image_plane_plus_thickness": {
+      "samples": 120,
+      "min_m": 1.5601933380208364,
+      "median_m": 1.5601933380208364,
+      "max_m": 1.5629703995974424,
+      "stddev_m": 0.0006508673786020221
+    }
+  },
+  "timing_ms": {
+    "frame_age_ms": {
+      "min": 18.89076799943723,
+      "median": 22.069002500302304,
+      "max": 41.79687199939508
+    },
+    "predict_ms": {
+      "min": 6.447784000556567,
+      "median": 6.851395999547094,
+      "max": 12.287167000067711
+    },
+    "support_geometry_ms": {
+      "min": 10.861576000024797,
+      "median": 11.933257499549654,
+      "max": 16.528875999938464
+    },
+    "cone_service_ms": {
+      "min": 17.763598999408714,
+      "median": 18.874573499942926,
+      "max": 25.8976850000181
+    }
+  },
+  "support_pixels": [
+    [
+      287,
+      391
+    ],
+    [
+      288,
+      391
+    ]
+  ],
+  "comparison_bundle_sha256": [
+    "68b7f8ed660bffdbeaea16463e4d6834b134de9ad61648cae52ea0345effe2be"
+  ],
+  "independent_ground_truth_available": false,
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "usable_for_ffb": false,
+  "gui_rechecked_at_logged_completion_time_only": true,
+  "actual_live_gui_verified": false,
+  "camera_gpu_ros_started_by_this_analysis": false,
+  "source_sha256": {
+    "Experimental_results/2026-11-04/floor_comparison_live_tail_r01/analyze.py": "0e29246dfc6baa79bc9bad086d4f887c87dabe22d7fd6b9382bc9e90644faa33",
+    "src/cone_fixed_floor_display.py": "dcc4adecc8e3e2f91c7e2aa06f1ade9a29504f77e006df7b0ba5e62fcd5cc8b4",
+    "src/summarize_cone_distance_live.py": "e4623e0f7d2780ba905419a1713e405808e3abc3569a0019de86a208b4f61c75"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "native_floor_rectangles_v1",
+  "note": "Current submitted same-session image. User placed the previously discussed rigid floor board. Physical paper size/thickness are carried from prior user measurements, not measured again. Perimeter corners are observed image hypotheses, not approved physical correspondences.",
+  "frames": [
+    {
+      "file": "decoded_9b7d9a17f292490c96e697af31438fd1_f061717.png",
+      "sha256": "29dc0be0279f7aa93a525a5032050c1071d7c3e6fd699a807b416b27425332da",
+      "corners_native_xy": [[299, 397], [340, 396], [343, 405], [296, 410]],
+      "side_lengths_mm": [296, 210],
+      "side_assignment": "both",
+      "coordinates_source": "2026-11-04 native PNG; local gray threshold 170, observed contour vertices, approxPolyDP perimeter fraction 0.03. Original 0.02/0.025 fractions yielded five vertices, not four; 0.03/0.04 give identical four observed vertices. This simplification is a diagnostic correspondence hypothesis, NOT proof of physical corner identity. Threshold 190/210 shifts two coordinates by one pixel; retain as separate sensitivity control. No height/distance target used to choose vertices. Source image not edited."
+    }
+  ]
+}

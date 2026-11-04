@@ -75,7 +75,13 @@ def comparison_view_model(row=None, *, model_state=None, now=None, expected_sess
     if row.get("fixed_floor_shadow") is None:
         return withheld("no_comparison_result")
     try:
-        validate_row(row)
+        # The live engine keeps the checked ROI as a tuple; JSONL encodes it
+        # as a list. Adapt only this representation on a shallow copy so the
+        # same strict persisted-row validator can check both display inputs.
+        checked_row = row
+        if isinstance(row.get("target_roi_native_xyxy"), tuple):
+            checked_row = dict(row, target_roi_native_xyxy=list(row["target_roi_native_xyxy"]))
+        validate_row(checked_row)
     except (ValueError, TypeError, KeyError):
         return withheld("invalid_comparison_result")
     shadow = row["fixed_floor_shadow"]

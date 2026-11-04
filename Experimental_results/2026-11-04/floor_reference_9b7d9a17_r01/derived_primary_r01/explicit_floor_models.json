@@ -1,0 +1,346 @@
+{
+  "schema": "explicit_floor_models_v1",
+  "session": "9b7d9a17f292490c96e697af31438fd1",
+  "heading_reference": {
+    "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+    "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+  },
+  "models": [
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "f061717_as_listed_s0_image_plane_plus_thickness",
+      "session": "9b7d9a17f292490c96e697af31438fd1",
+      "normal_optical": [
+        -0.06486013370538721,
+        -0.9957630903377727,
+        0.06518459155880578
+      ],
+      "camera_to_floor_m": 0.5018694410103522,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "source PNG decoded_9b7d9a17f292490c96e697af31438fd1_f061717.png sha256=29dc0be0279f7aa93a525a5032050c1071d7c3e6fd699a807b416b27425332da",
+        "coordinate source: 2026-11-04 native PNG; local gray threshold 170, observed contour vertices, approxPolyDP perimeter fraction 0.03. Original 0.02/0.025 fractions yielded five vertices, not four; 0.03/0.04 give identical four observed vertices. This simplification is a diagnostic correspondence hypothesis, NOT proof of physical corner identity. Threshold 190/210 shifts two coordinates by one pixel; retain as separate sensitivity control. No height/distance target used to choose vertices. Source image not edited.",
+        "native KB4/IPPE solution 0; no solution selected",
+        "board thickness input mm=15.0; external floor height input mm=590.0"
+      ],
+      "assumptions": [
+        "operator confirms a rigid board lies flat and parallel to the same floor",
+        "image correspondences are observed hypotheses, not independently verified physical corners",
+        "camera/capture geometry is static within this session",
+        "external height with image normal is a separate control, not a fitted metric result",
+        "paper7 supplies heading convention only; yaw and base_link transform are not measured"
+      ],
+      "invalidation_conditions": [
+        "session, camera mount, capture geometry or floor changes",
+        "board not rigid/flat/on floor, or image correspondence incorrect",
+        "physical distance or FFB authority requested"
+      ],
+      "height_source": "image_plane_plus_thickness",
+      "printed_plane_height_m": 0.4868694410103523,
+      "native_reprojection_rmse_px": 0.9591282066159195,
+      "role": "unselected_planar_hypothesis",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "f061717_as_listed_s0_external_height_image_normal",
+      "session": "9b7d9a17f292490c96e697af31438fd1",
+      "normal_optical": [
+        -0.06486013370538721,
+        -0.9957630903377727,
+        0.06518459155880578
+      ],
+      "camera_to_floor_m": 0.59,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "source PNG decoded_9b7d9a17f292490c96e697af31438fd1_f061717.png sha256=29dc0be0279f7aa93a525a5032050c1071d7c3e6fd699a807b416b27425332da",
+        "coordinate source: 2026-11-04 native PNG; local gray threshold 170, observed contour vertices, approxPolyDP perimeter fraction 0.03. Original 0.02/0.025 fractions yielded five vertices, not four; 0.03/0.04 give identical four observed vertices. This simplification is a diagnostic correspondence hypothesis, NOT proof of physical corner identity. Threshold 190/210 shifts two coordinates by one pixel; retain as separate sensitivity control. No height/distance target used to choose vertices. Source image not edited.",
+        "native KB4/IPPE solution 0; no solution selected",
+        "board thickness input mm=15.0; external floor height input mm=590.0"
+      ],
+      "assumptions": [
+        "operator confirms a rigid board lies flat and parallel to the same floor",
+        "image correspondences are observed hypotheses, not independently verified physical corners",
+        "camera/capture geometry is static within this session",
+        "external height with image normal is a separate control, not a fitted metric result",
+        "paper7 supplies heading convention only; yaw and base_link transform are not measured"
+      ],
+      "invalidation_conditions": [
+        "session, camera mount, capture geometry or floor changes",
+        "board not rigid/flat/on floor, or image correspondence incorrect",
+        "physical distance or FFB authority requested"
+      ],
+      "height_source": "external_height_image_normal",
+      "printed_plane_height_m": 0.4868694410103523,
+      "native_reprojection_rmse_px": 0.9591282066159195,
+      "role": "unselected_planar_hypothesis",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "f061717_as_listed_s1_image_plane_plus_thickness",
+      "session": "9b7d9a17f292490c96e697af31438fd1",
+      "normal_optical": [
+        0.05237889452905661,
+        0.6758695954077114,
+        -0.735157630315656
+      ],
+      "camera_to_floor_m": 0.4858643813439601,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "source PNG decoded_9b7d9a17f292490c96e697af31438fd1_f061717.png sha256=29dc0be0279f7aa93a525a5032050c1071d7c3e6fd699a807b416b27425332da",
+        "coordinate source: 2026-11-04 native PNG; local gray threshold 170, observed contour vertices, approxPolyDP perimeter fraction 0.03. Original 0.02/0.025 fractions yielded five vertices, not four; 0.03/0.04 give identical four observed vertices. This simplification is a diagnostic correspondence hypothesis, NOT proof of physical corner identity. Threshold 190/210 shifts two coordinates by one pixel; retain as separate sensitivity control. No height/distance target used to choose vertices. Source image not edited.",
+        "native KB4/IPPE solution 1; no solution selected",
+        "board thickness input mm=15.0; external floor height input mm=590.0"
+      ],
+      "assumptions": [
+        "operator confirms a rigid board lies flat and parallel to the same floor",
+        "image correspondences are observed hypotheses, not independently verified physical corners",
+        "camera/capture geometry is static within this session",
+        "external height with image normal is a separate control, not a fitted metric result",
+        "paper7 supplies heading convention only; yaw and base_link transform are not measured"
+      ],
+      "invalidation_conditions": [
+        "session, camera mount, capture geometry or floor changes",
+        "board not rigid/flat/on floor, or image correspondence incorrect",
+        "physical distance or FFB authority requested"
+      ],
+      "height_source": "image_plane_plus_thickness",
+      "printed_plane_height_m": 0.4708643813439601,
+      "native_reprojection_rmse_px": 3.438974551147601,
+      "role": "unselected_planar_hypothesis",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "f061717_as_listed_s1_external_height_image_normal",
+      "session": "9b7d9a17f292490c96e697af31438fd1",
+      "normal_optical": [
+        0.05237889452905661,
+        0.6758695954077114,
+        -0.735157630315656
+      ],
+      "camera_to_floor_m": 0.59,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "source PNG decoded_9b7d9a17f292490c96e697af31438fd1_f061717.png sha256=29dc0be0279f7aa93a525a5032050c1071d7c3e6fd699a807b416b27425332da",
+        "coordinate source: 2026-11-04 native PNG; local gray threshold 170, observed contour vertices, approxPolyDP perimeter fraction 0.03. Original 0.02/0.025 fractions yielded five vertices, not four; 0.03/0.04 give identical four observed vertices. This simplification is a diagnostic correspondence hypothesis, NOT proof of physical corner identity. Threshold 190/210 shifts two coordinates by one pixel; retain as separate sensitivity control. No height/distance target used to choose vertices. Source image not edited.",
+        "native KB4/IPPE solution 1; no solution selected",
+        "board thickness input mm=15.0; external floor height input mm=590.0"
+      ],
+      "assumptions": [
+        "operator confirms a rigid board lies flat and parallel to the same floor",
+        "image correspondences are observed hypotheses, not independently verified physical corners",
+        "camera/capture geometry is static within this session",
+        "external height with image normal is a separate control, not a fitted metric result",
+        "paper7 supplies heading convention only; yaw and base_link transform are not measured"
+      ],
+      "invalidation_conditions": [
+        "session, camera mount, capture geometry or floor changes",
+        "board not rigid/flat/on floor, or image correspondence incorrect",
+        "physical distance or FFB authority requested"
+      ],
+      "height_source": "external_height_image_normal",
+      "printed_plane_height_m": 0.4708643813439601,
+      "native_reprojection_rmse_px": 3.438974551147601,
+      "role": "unselected_planar_hypothesis",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "f061717_swapped_s0_image_plane_plus_thickness",
+      "session": "9b7d9a17f292490c96e697af31438fd1",
+      "normal_optical": [
+        -0.06750545761838249,
+        -0.9646518829864483,
+        0.2547346812713816
+      ],
+      "camera_to_floor_m": 0.1886746329442836,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "source PNG decoded_9b7d9a17f292490c96e697af31438fd1_f061717.png sha256=29dc0be0279f7aa93a525a5032050c1071d7c3e6fd699a807b416b27425332da",
+        "coordinate source: 2026-11-04 native PNG; local gray threshold 170, observed contour vertices, approxPolyDP perimeter fraction 0.03. Original 0.02/0.025 fractions yielded five vertices, not four; 0.03/0.04 give identical four observed vertices. This simplification is a diagnostic correspondence hypothesis, NOT proof of physical corner identity. Threshold 190/210 shifts two coordinates by one pixel; retain as separate sensitivity control. No height/distance target used to choose vertices. Source image not edited.",
+        "native KB4/IPPE solution 0; no solution selected",
+        "board thickness input mm=15.0; external floor height input mm=590.0"
+      ],
+      "assumptions": [
+        "operator confirms a rigid board lies flat and parallel to the same floor",
+        "image correspondences are observed hypotheses, not independently verified physical corners",
+        "camera/capture geometry is static within this session",
+        "external height with image normal is a separate control, not a fitted metric result",
+        "paper7 supplies heading convention only; yaw and base_link transform are not measured"
+      ],
+      "invalidation_conditions": [
+        "session, camera mount, capture geometry or floor changes",
+        "board not rigid/flat/on floor, or image correspondence incorrect",
+        "physical distance or FFB authority requested"
+      ],
+      "height_source": "image_plane_plus_thickness",
+      "printed_plane_height_m": 0.17367463294428362,
+      "native_reprojection_rmse_px": 2.148416836671798,
+      "role": "unselected_planar_hypothesis",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "f061717_swapped_s0_external_height_image_normal",
+      "session": "9b7d9a17f292490c96e697af31438fd1",
+      "normal_optical": [
+        -0.06750545761838249,
+        -0.9646518829864483,
+        0.2547346812713816
+      ],
+      "camera_to_floor_m": 0.59,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "source PNG decoded_9b7d9a17f292490c96e697af31438fd1_f061717.png sha256=29dc0be0279f7aa93a525a5032050c1071d7c3e6fd699a807b416b27425332da",
+        "coordinate source: 2026-11-04 native PNG; local gray threshold 170, observed contour vertices, approxPolyDP perimeter fraction 0.03. Original 0.02/0.025 fractions yielded five vertices, not four; 0.03/0.04 give identical four observed vertices. This simplification is a diagnostic correspondence hypothesis, NOT proof of physical corner identity. Threshold 190/210 shifts two coordinates by one pixel; retain as separate sensitivity control. No height/distance target used to choose vertices. Source image not edited.",
+        "native KB4/IPPE solution 0; no solution selected",
+        "board thickness input mm=15.0; external floor height input mm=590.0"
+      ],
+      "assumptions": [
+        "operator confirms a rigid board lies flat and parallel to the same floor",
+        "image correspondences are observed hypotheses, not independently verified physical corners",
+        "camera/capture geometry is static within this session",
+        "external height with image normal is a separate control, not a fitted metric result",
+        "paper7 supplies heading convention only; yaw and base_link transform are not measured"
+      ],
+      "invalidation_conditions": [
+        "session, camera mount, capture geometry or floor changes",
+        "board not rigid/flat/on floor, or image correspondence incorrect",
+        "physical distance or FFB authority requested"
+      ],
+      "height_source": "external_height_image_normal",
+      "printed_plane_height_m": 0.17367463294428362,
+      "native_reprojection_rmse_px": 2.148416836671798,
+      "role": "unselected_planar_hypothesis",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "f061717_swapped_s1_image_plane_plus_thickness",
+      "session": "9b7d9a17f292490c96e697af31438fd1",
+      "normal_optical": [
+        0.06122295089329054,
+        0.8036315704341026,
+        -0.5919696354421703
+      ],
+      "camera_to_floor_m": 0.17683190287548534,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "source PNG decoded_9b7d9a17f292490c96e697af31438fd1_f061717.png sha256=29dc0be0279f7aa93a525a5032050c1071d7c3e6fd699a807b416b27425332da",
+        "coordinate source: 2026-11-04 native PNG; local gray threshold 170, observed contour vertices, approxPolyDP perimeter fraction 0.03. Original 0.02/0.025 fractions yielded five vertices, not four; 0.03/0.04 give identical four observed vertices. This simplification is a diagnostic correspondence hypothesis, NOT proof of physical corner identity. Threshold 190/210 shifts two coordinates by one pixel; retain as separate sensitivity control. No height/distance target used to choose vertices. Source image not edited.",
+        "native KB4/IPPE solution 1; no solution selected",
+        "board thickness input mm=15.0; external floor height input mm=590.0"
+      ],
+      "assumptions": [
+        "operator confirms a rigid board lies flat and parallel to the same floor",
+        "image correspondences are observed hypotheses, not independently verified physical corners",
+        "camera/capture geometry is static within this session",
+        "external height with image normal is a separate control, not a fitted metric result",
+        "paper7 supplies heading convention only; yaw and base_link transform are not measured"
+      ],
+      "invalidation_conditions": [
+        "session, camera mount, capture geometry or floor changes",
+        "board not rigid/flat/on floor, or image correspondence incorrect",
+        "physical distance or FFB authority requested"
+      ],
+      "height_source": "image_plane_plus_thickness",
+      "printed_plane_height_m": 0.16183190287548532,
+      "native_reprojection_rmse_px": 5.557720216630408,
+      "role": "unselected_planar_hypothesis",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "f061717_swapped_s1_external_height_image_normal",
+      "session": "9b7d9a17f292490c96e697af31438fd1",
+      "normal_optical": [
+        0.06122295089329054,
+        0.8036315704341026,
+        -0.5919696354421703
+      ],
+      "camera_to_floor_m": 0.59,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "source PNG decoded_9b7d9a17f292490c96e697af31438fd1_f061717.png sha256=29dc0be0279f7aa93a525a5032050c1071d7c3e6fd699a807b416b27425332da",
+        "coordinate source: 2026-11-04 native PNG; local gray threshold 170, observed contour vertices, approxPolyDP perimeter fraction 0.03. Original 0.02/0.025 fractions yielded five vertices, not four; 0.03/0.04 give identical four observed vertices. This simplification is a diagnostic correspondence hypothesis, NOT proof of physical corner identity. Threshold 190/210 shifts two coordinates by one pixel; retain as separate sensitivity control. No height/distance target used to choose vertices. Source image not edited.",
+        "native KB4/IPPE solution 1; no solution selected",
+        "board thickness input mm=15.0; external floor height input mm=590.0"
+      ],
+      "assumptions": [
+        "operator confirms a rigid board lies flat and parallel to the same floor",
+        "image correspondences are observed hypotheses, not independently verified physical corners",
+        "camera/capture geometry is static within this session",
+        "external height with image normal is a separate control, not a fitted metric result",
+        "paper7 supplies heading convention only; yaw and base_link transform are not measured"
+      ],
+      "invalidation_conditions": [
+        "session, camera mount, capture geometry or floor changes",
+        "board not rigid/flat/on floor, or image correspondence incorrect",
+        "physical distance or FFB authority requested"
+      ],
+      "height_source": "external_height_image_normal",
+      "printed_plane_height_m": 0.16183190287548532,
+      "native_reprojection_rmse_px": 5.557720216630408,
+      "role": "unselected_planar_hypothesis",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    }
+  ]
+}

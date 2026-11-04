@@ -1,0 +1,426 @@
+{
+  "status": "PASS_MODEL_FILE_CHECKS_NOT_GPU_OR_PHYSICAL_APPROVAL",
+  "checks": {
+    "tests_pass": true,
+    "source_unmodified": true,
+    "eight_unselected_models": true,
+    "exact_current_reference": true,
+    "same_session_only": true,
+    "no_future_reference": true,
+    "transfer_bytes_identical": true
+  },
+  "tests": 47,
+  "failures": 0,
+  "errors": 0,
+  "source_image_sha256": "29dc0be0279f7aa93a525a5032050c1071d7c3e6fd699a807b416b27425332da",
+  "model_sha256": "68b7f8ed660bffdbeaea16463e4d6834b134de9ad61648cae52ea0345effe2be",
+  "checkerboard_result": "checkerboard withheld: board_not_found; no rectangle fallback",
+  "contour_controls": [
+    {
+      "threshold": 170,
+      "epsilon_fraction": 0.02,
+      "vertices_native_xy": [
+        [
+          343,
+          405
+        ],
+        [
+          340,
+          396
+        ],
+        [
+          299,
+          397
+        ],
+        [
+          296,
+          410
+        ],
+        [
+          327,
+          410
+        ]
+      ]
+    },
+    {
+      "threshold": 170,
+      "epsilon_fraction": 0.025,
+      "vertices_native_xy": [
+        [
+          343,
+          405
+        ],
+        [
+          340,
+          396
+        ],
+        [
+          299,
+          397
+        ],
+        [
+          296,
+          410
+        ],
+        [
+          327,
+          410
+        ]
+      ]
+    },
+    {
+      "threshold": 170,
+      "epsilon_fraction": 0.03,
+      "vertices_native_xy": [
+        [
+          343,
+          405
+        ],
+        [
+          340,
+          396
+        ],
+        [
+          299,
+          397
+        ],
+        [
+          296,
+          410
+        ]
+      ]
+    },
+    {
+      "threshold": 170,
+      "epsilon_fraction": 0.04,
+      "vertices_native_xy": [
+        [
+          343,
+          405
+        ],
+        [
+          340,
+          396
+        ],
+        [
+          299,
+          397
+        ],
+        [
+          296,
+          410
+        ]
+      ]
+    },
+    {
+      "threshold": 190,
+      "epsilon_fraction": 0.02,
+      "vertices_native_xy": [
+        [
+          343,
+          405
+        ],
+        [
+          340,
+          396
+        ],
+        [
+          299,
+          398
+        ],
+        [
+          297,
+          410
+        ],
+        [
+          325,
+          410
+        ]
+      ]
+    },
+    {
+      "threshold": 190,
+      "epsilon_fraction": 0.025,
+      "vertices_native_xy": [
+        [
+          343,
+          405
+        ],
+        [
+          340,
+          396
+        ],
+        [
+          299,
+          398
+        ],
+        [
+          297,
+          410
+        ],
+        [
+          325,
+          410
+        ]
+      ]
+    },
+    {
+      "threshold": 190,
+      "epsilon_fraction": 0.03,
+      "vertices_native_xy": [
+        [
+          343,
+          405
+        ],
+        [
+          340,
+          396
+        ],
+        [
+          299,
+          398
+        ],
+        [
+          297,
+          410
+        ]
+      ]
+    },
+    {
+      "threshold": 190,
+      "epsilon_fraction": 0.04,
+      "vertices_native_xy": [
+        [
+          343,
+          405
+        ],
+        [
+          340,
+          396
+        ],
+        [
+          299,
+          398
+        ],
+        [
+          297,
+          410
+        ]
+      ]
+    },
+    {
+      "threshold": 210,
+      "epsilon_fraction": 0.02,
+      "vertices_native_xy": [
+        [
+          343,
+          405
+        ],
+        [
+          340,
+          396
+        ],
+        [
+          299,
+          398
+        ],
+        [
+          297,
+          410
+        ],
+        [
+          324,
+          410
+        ]
+      ]
+    },
+    {
+      "threshold": 210,
+      "epsilon_fraction": 0.025,
+      "vertices_native_xy": [
+        [
+          343,
+          405
+        ],
+        [
+          340,
+          396
+        ],
+        [
+          299,
+          398
+        ],
+        [
+          297,
+          410
+        ],
+        [
+          324,
+          410
+        ]
+      ]
+    },
+    {
+      "threshold": 210,
+      "epsilon_fraction": 0.03,
+      "vertices_native_xy": [
+        [
+          343,
+          405
+        ],
+        [
+          340,
+          396
+        ],
+        [
+          299,
+          398
+        ],
+        [
+          297,
+          410
+        ]
+      ]
+    },
+    {
+      "threshold": 210,
+      "epsilon_fraction": 0.04,
+      "vertices_native_xy": [
+        [
+          343,
+          405
+        ],
+        [
+          340,
+          396
+        ],
+        [
+          299,
+          398
+        ],
+        [
+          297,
+          410
+        ]
+      ]
+    }
+  ],
+  "plane_controls": [
+    {
+      "case": "derived_primary_r01",
+      "assignment": "as_listed",
+      "solutions": [
+        {
+          "index": 0,
+          "printed_plane_height_m": 0.4868694410103523,
+          "native_reprojection_rmse_px": 0.9591282066159195,
+          "up_optical": [
+            0.06486013370538721,
+            0.9957630903377727,
+            -0.06518459155880578
+          ]
+        },
+        {
+          "index": 1,
+          "printed_plane_height_m": 0.4708643813439601,
+          "native_reprojection_rmse_px": 3.438974551147601,
+          "up_optical": [
+            -0.05237889452905661,
+            -0.6758695954077114,
+            0.735157630315656
+          ]
+        }
+      ]
+    },
+    {
+      "case": "derived_primary_r01",
+      "assignment": "swapped",
+      "solutions": [
+        {
+          "index": 0,
+          "printed_plane_height_m": 0.17367463294428362,
+          "native_reprojection_rmse_px": 2.148416836671798,
+          "up_optical": [
+            0.06750545761838249,
+            0.9646518829864483,
+            -0.2547346812713816
+          ]
+        },
+        {
+          "index": 1,
+          "printed_plane_height_m": 0.16183190287548532,
+          "native_reprojection_rmse_px": 5.557720216630408,
+          "up_optical": [
+            -0.06122295089329054,
+            -0.8036315704341026,
+            0.5919696354421703
+          ]
+        }
+      ]
+    },
+    {
+      "case": "derived_pixel_control_r01",
+      "assignment": "as_listed",
+      "solutions": [
+        {
+          "index": 0,
+          "printed_plane_height_m": 0.47550134249008535,
+          "native_reprojection_rmse_px": 0.7626971592015541,
+          "up_optical": [
+            0.07724289116128497,
+            0.9937903333892917,
+            -0.08008938148747662
+          ]
+        },
+        {
+          "index": 1,
+          "printed_plane_height_m": 0.46244087564477643,
+          "native_reprojection_rmse_px": 3.0332802321001955,
+          "up_optical": [
+            -0.06772742020089935,
+            -0.6836074468701823,
+            0.7267006640540256
+          ]
+        }
+      ]
+    },
+    {
+      "case": "derived_pixel_control_r01",
+      "assignment": "swapped",
+      "solutions": [
+        {
+          "index": 0,
+          "printed_plane_height_m": 0.1691729667709561,
+          "native_reprojection_rmse_px": 2.229771359268967,
+          "up_optical": [
+            0.0811013379518842,
+            0.961586212771988,
+            -0.2622489816743605
+          ]
+        },
+        {
+          "index": 1,
+          "printed_plane_height_m": 0.15953670898566982,
+          "native_reprojection_rmse_px": 5.059837821536479,
+          "up_optical": [
+            -0.07631165210785079,
+            -0.8054532597308022,
+            0.5877257678046754
+          ]
+        }
+      ]
+    }
+  ],
+  "approximate_dimensions_carried_from_previous_user_measurement": true,
+  "corners_are_perimeter_hypotheses_not_approved_physical_points": true,
+  "contour_simplification_changed_from_0p02_to_0p03": true,
+  "metric_accuracy_verified": false,
+  "live_model_loaded_on_gpu": false,
+  "physical_output": false,
+  "source_sha256": {
+    "Experimental_results/2026-11-04/floor_reference_9b7d9a17_r01/verify.py": "2390881f14cb7c0d6edae29c51aef92d4b7482e48217dd3d8111af7edd702ef4",
+    "Experimental_results/2026-11-04/floor_reference_9b7d9a17_r01/references.json": "602798886aa4fcc577366212bc940ca122699f72c98c858e7dbd55a38a3193b1",
+    "Experimental_results/2026-11-04/floor_reference_9b7d9a17_r01/references_control_t190.json": "120ed714cc8b9c3549e1204f4a3c178678e1fcd85a6044763e09b7528ce68e4d",
+    "Experimental_results/2026-11-04/floor_reference_9b7d9a17_r01/prepared_floor_9b7d9a17_f061717.json": "68b7f8ed660bffdbeaea16463e4d6834b134de9ad61648cae52ea0345effe2be"
+  }
+}

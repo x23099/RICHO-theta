@@ -1,0 +1,157 @@
+{
+  "synthetic_only": true,
+  "real_camera_success_claimed": false,
+  "examples": [
+    {
+      "file": "SYNTHETIC_preview_f000015.png",
+      "frame": 15,
+      "ui": {
+        "mode": "synthetic",
+        "status": "UNVERIFIED_COMPARISON",
+        "reason": "unverified_comparison_only",
+        "range_span_m": [
+          0.516955522222377,
+          1.2667827639807299
+        ],
+        "model_count": 8,
+        "available_model_count": 4,
+        "models": [
+          {
+            "name": "f000001_as_listed_s0_image_plane_plus_thickness",
+            "value_m": 1.2667827639807205,
+            "available": true,
+            "reason": "EXPLICIT_FLOOR_MODEL_NOT_PHYSICALLY_VERIFIED"
+          },
+          {
+            "name": "f000001_as_listed_s0_external_height_image_normal",
+            "value_m": 1.2667827639807299,
+            "available": true,
+            "reason": "EXPLICIT_FLOOR_MODEL_NOT_PHYSICALLY_VERIFIED"
+          },
+          {
+            "name": "f000001_as_listed_s1_image_plane_plus_thickness",
+            "value_m": null,
+            "available": false,
+            "reason": "support_behind_heading_reference"
+          },
+          {
+            "name": "f000001_as_listed_s1_external_height_image_normal",
+            "value_m": null,
+            "available": false,
+            "reason": "support_behind_heading_reference"
+          },
+          {
+            "name": "f000001_swapped_s0_image_plane_plus_thickness",
+            "value_m": 0.8675152110181663,
+            "available": true,
+            "reason": "EXPLICIT_FLOOR_MODEL_NOT_PHYSICALLY_VERIFIED"
+          },
+          {
+            "name": "f000001_swapped_s0_external_height_image_normal",
+            "value_m": 0.516955522222377,
+            "available": true,
+            "reason": "EXPLICIT_FLOOR_MODEL_NOT_PHYSICALLY_VERIFIED"
+          },
+          {
+            "name": "f000001_swapped_s1_image_plane_plus_thickness",
+            "value_m": null,
+            "available": false,
+            "reason": "support_behind_heading_reference"
+          },
+          {
+            "name": "f000001_swapped_s1_external_height_image_normal",
+            "value_m": null,
+            "available": false,
+            "reason": "support_behind_heading_reference"
+          }
+        ],
+        "support_source": "support_completion_shadow",
+        "loader_state": "active",
+        "generation": 1,
+        "frame": 15,
+        "physical_metric_verified": false,
+        "controlling_distance": false,
+        "usable_for_ffb": false
+      },
+      "labels": [
+        "UNVERIFIED COMPARISON ONLY | SYNTHETIC PREVIEW - NOT REAL CAMERA | NO CONTROL / FFB",
+        "MODEL SPAN 0.517 - 1.267 m | available 4/8",
+        "unverified_comparison_only | loader=active gen=1 | result frame=15",
+        "Horizontal camera-foot range; NOT forward/base_link/contact. Model span is NOT accuracy or a confidence interval.",
+        "Bundle order, NOT ranking | support=support_completion_shadow | showing up to 4 of 8",
+        "01 f000001_as_listed_s0_image_plane_plus_thickness | 1.267 m (UNVERIFIED)",
+        "02 f000001_as_listed_s0_external_height_image_normal | 1.267 m (UNVERIFIED)",
+        "03 f000001_as_listed_s1_image_plane_plus_thickness | WITHHELD: support_behind_heading_reference",
+        "04 f000001_as_listed_s1_external_height_image_normal | WITHHELD: support_behind_heading_reference",
+        "4 more models not shown; ALL results in JSONL. Historical/synthetic display only; NOT live validation"
+      ],
+      "sha256": "f8ee86b808358fe240c92292dc0ea123a513145c70101f85dc5ff090d4cda03f"
+    },
+    {
+      "file": "SYNTHETIC_preview_f000060.png",
+      "frame": 60,
+      "ui": {
+        "mode": "synthetic",
+        "status": "WITHHELD",
+        "reason": "display_result_stale",
+        "range_span_m": null,
+        "model_count": 0,
+        "available_model_count": 0,
+        "models": [],
+        "support_source": null,
+        "loader_state": "active",
+        "generation": 1,
+        "frame": null,
+        "physical_metric_verified": false,
+        "controlling_distance": false,
+        "usable_for_ffb": false
+      },
+      "labels": [
+        "UNVERIFIED COMPARISON ONLY | SYNTHETIC PREVIEW - NOT REAL CAMERA | NO CONTROL / FFB",
+        "COMPARISON: WITHHELD",
+        "display_result_stale | loader=active gen=1 | result frame=None",
+        "Horizontal camera-foot range; NOT forward/base_link/contact. Model span is NOT accuracy or a confidence interval.",
+        "Bundle order, NOT ranking | support=None | showing up to 4 of 0",
+        "",
+        "",
+        "",
+        "",
+        "0 more models not shown; ALL results in JSONL. Historical/synthetic display only; NOT live validation"
+      ],
+      "sha256": "5b0192bc6cf0b40c4a439263f9445bbbed71c425dba9a21f3f406a71eb3e99bd"
+    },
+    {
+      "file": "SYNTHETIC_preview_f000111.png",
+      "frame": 111,
+      "ui": {
+        "mode": "synthetic",
+        "status": "WITHHELD",
+        "reason": "loader_loading:explicit_local_request",
+        "range_span_m": null,
+        "model_count": 0,
+        "available_model_count": 0,
+        "models": [],
+        "support_source": null,
+        "loader_state": "loading",
+        "generation": 3,
+        "frame": null,
+        "physical_metric_verified": false,
+        "controlling_distance": false,
+        "usable_for_ffb": false
+      },
+      "labels": [
+        "UNVERIFIED COMPARISON ONLY | SYNTHETIC PREVIEW - NOT REAL CAMERA | NO CONTROL / FFB",
+        "COMPARISON: WITHHELD",
+        "loader_loading:explicit_local_request | loader=loading gen=3 | result frame=None",
+        "Horizontal camera-foot range; NOT forward/base_link/contact. Model span is NOT accuracy or a confidence interval.",
+        "Bundle order, NOT ranking | support=None | showing up to 4 of 0",
+        "",
+        "",
+        "",
+        "",
+        "0 more models not shown; ALL results in JSONL. Historical/synthetic display only; NOT live validation"
+      ],
+      "sha256": "56809ff217b6e64fc76aa4d09c2725806af6aade8590a95f1d3a5cf199934c26"
+    }
+  ]
+}

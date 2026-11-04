@@ -1,0 +1,4 @@
+model_name,logged_rows,reference_approx_min_m,reference_approx_max_m,estimate_median_m,median_within_reported_range,reference_point_and_origin_equivalence_verified,metric_accuracy_approved
+f061717_as_listed_s0_image_plane_plus_thickness,120,1.55,1.58,1.5667575066630945,true,false,false
+f061717_as_listed_s0_external_height_image_normal,120,1.55,1.58,1.8418872587067083,false,false,false
+f061717_swapped_s0_image_plane_plus_thickness,120,1.55,1.58,1.5601933380208364,true,false,false

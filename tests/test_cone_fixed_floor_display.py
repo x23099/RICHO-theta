@@ -17,6 +17,7 @@ sys.path.insert(0, str(ROOT/"src"))
 from cone_distance_core import ConeDistanceEngine, load_config, render_distance
 from cone_fixed_floor_candidate import COORDINATE_FRAME, SCHEMA
 from cone_fixed_floor_display import append_comparison_panel, comparison_view_model, panel_lines
+from summarize_cone_distance_live import validate_row
 from theta_rtc_frames import NativeFrame
 
 
@@ -88,6 +89,67 @@ class FixedFloorDisplayTests(unittest.TestCase):
         np.testing.assert_array_equal(view[:720],before)
         self.assertEqual(result,self.row)
         self.assertFalse(np.shares_memory(view,base))
+
+    def test_live_engine_explicit_roi_matches_serialized_gui_without_mutation(self):
+        engine = ConeDistanceEngine(target_roi=(270,0,350,720),
+            support_completion_shadow=True, frame_evidence=True, fixed_floor_models=self.models)
+        engine.reset("synthetic_gui")
+        box = dict(x1=290.,y1=305.,x2=350.,y2=405.,confidence=.95,class_id=0)
+        for n in (4,5,6):
+            t=10.+n/30
+            row=engine.measure(NativeFrame("synthetic_gui",n,t,t,self.image),[box],t+.01)
+            row.update(predict_ms=0.,support_geometry_ms=10.,cone_service_ms=10.,
+                inference_source="SYNTHETIC_GUI_TEST")
+        row["fixed_floor_load"]=copy.deepcopy(self.state)
+        before=copy.deepcopy(row)
+        self.assertIsInstance(row["target_roi_native_xyxy"],tuple)
+        persisted=json.loads(json.dumps(row))
+        validate_row(persisted)
+        live=self.view(row)
+        recorded=self.view(persisted)
+        self.assertEqual(live["status"],"UNVERIFIED_COMPARISON")
+        self.assertEqual(live,recorded)
+        self.assertEqual(live["available_model_count"],6)
+        np.testing.assert_array_equal(
+            append_comparison_panel(self.image,row,model_state=self.state,now=row["completed_time_sec"]),
+            append_comparison_panel(self.image,persisted,model_state=self.state,now=row["completed_time_sec"]))
+        self.assertEqual(row,before)
+        self.assertIsInstance(row["target_roi_native_xyxy"],tuple)
+
+    def test_invalid_tuple_roi_is_still_withheld(self):
+        for roi in ((270,0,350), (350,0,270,720), (270,0,641,720),
+                    (True,0,350,720), (270.,0,350,720)):
+            row=copy.deepcopy(self.row)
+            row["target_roi_native_xyxy"]=roi
+            with self.subTest(roi=roi):
+                view=self.view(row)
+                self.assertEqual(view["reason"],"invalid_comparison_result")
+                self.assertIsNone(view["range_span_m"])
+
+    def test_persisted_row_validator_stays_strict_about_tuple_roi(self):
+        row=copy.deepcopy(self.row)
+        row["target_roi_native_xyxy"]=(270,0,350,720)
+        with self.assertRaisesRegex(ValueError,"native front-lens target ROI required"):
+            validate_row(row)
+
+    def test_live_tuple_roi_does_not_bypass_existing_validation(self):
+        variants=[]
+        row=copy.deepcopy(self.row)
+        row["fixed_floor_shadow"]["usable_for_ffb"]=True
+        variants.append(row)
+        row=copy.deepcopy(self.row)
+        row["fixed_floor_shadow"]["models"][0]["horizontal_camera_foot_range_m"]=float("nan")
+        variants.append(row)
+        row=copy.deepcopy(self.row)
+        row["fixed_floor_shadow"]["support_pixel"]=[0,0]
+        variants.append(row)
+        for row in variants:
+            row["target_roi_native_xyxy"]=(270,0,350,720)
+            self.assertEqual(self.view(row)["reason"],"invalid_comparison_result")
+        row=copy.deepcopy(self.row)
+        row["target_roi_native_xyxy"]=(270,0,350,720)
+        self.assertEqual(self.view(row,now=row["source_time_sec"]+.501)["reason"],"display_result_stale")
+        self.assertEqual(self.view(row,model_state=dict(self.state,generation=2))["reason"],"awaiting_current_model_result")
 
     def test_startup_bundle_and_recorded_modes_explicit(self):
         self.assertIsNotNone(self.view(self.startup,model_state=None)["range_span_m"])
