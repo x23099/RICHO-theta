@@ -1,0 +1,342 @@
+{
+  "status": "DIAGNOSIS_CONFIRMED_NO_RUNTIME_OR_PHYSICAL_APPROVAL",
+  "checks": {
+    "quality_replay_matches_after_explicit_cold_start": true,
+    "all_logged_geometry_reproduced": true,
+    "both_exact_image_frames_reproduced": true,
+    "original_input_hashes_preserved": true
+  },
+  "quality_rows": 1800,
+  "quality_compared_after_cold_start": 1794,
+  "cold_start_rows": [
+    {
+      "case": "z1p00",
+      "frame": 61545,
+      "index": 0,
+      "warmup": true,
+      "expected_reason": "temporally_consistent_IMAGE_support_NOT_verified_floor_contact",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": true,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 1,
+      "match": false
+    },
+    {
+      "case": "z1p00",
+      "frame": 61546,
+      "index": 1,
+      "warmup": true,
+      "expected_reason": "temporally_consistent_IMAGE_support_NOT_verified_floor_contact",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": true,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 2,
+      "match": false
+    },
+    {
+      "case": "z1p50",
+      "frame": 29904,
+      "index": 0,
+      "warmup": true,
+      "expected_reason": "temporally_consistent_IMAGE_support_NOT_verified_floor_contact",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": true,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 1,
+      "match": false
+    },
+    {
+      "case": "z1p50",
+      "frame": 29905,
+      "index": 1,
+      "warmup": true,
+      "expected_reason": "temporally_consistent_IMAGE_support_NOT_verified_floor_contact",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": true,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 2,
+      "match": false
+    },
+    {
+      "case": "z2p00",
+      "frame": 63914,
+      "index": 0,
+      "warmup": true,
+      "expected_reason": "temporally_consistent_IMAGE_support_NOT_verified_floor_contact",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": true,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 1,
+      "match": false
+    },
+    {
+      "case": "z2p00",
+      "frame": 63915,
+      "index": 1,
+      "warmup": true,
+      "expected_reason": "temporally_consistent_IMAGE_support_NOT_verified_floor_contact",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": true,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 2,
+      "match": false
+    }
+  ],
+  "support_unavailable_rows": 65,
+  "unavailable_reasons": {
+    "completed_point_outside_original_bbox": 6,
+    "not_lateral_only_contact": 59
+  },
+  "unavailable_edge_combinations": {
+    "left": 6,
+    "left+top": 6,
+    "top": 53
+  },
+  "reconfirmation_pending_rows": [
+    {
+      "case": "z1p00",
+      "frame": 61660,
+      "index": 108,
+      "warmup": false,
+      "expected_reason": "support_confirmation_pending",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": false,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 1,
+      "match": true
+    },
+    {
+      "case": "z1p00",
+      "frame": 61661,
+      "index": 109,
+      "warmup": false,
+      "expected_reason": "support_confirmation_pending",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": false,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 2,
+      "match": true
+    },
+    {
+      "case": "z1p00",
+      "frame": 61679,
+      "index": 126,
+      "warmup": false,
+      "expected_reason": "support_confirmation_pending",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": false,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 1,
+      "match": true
+    },
+    {
+      "case": "z1p00",
+      "frame": 61680,
+      "index": 127,
+      "warmup": false,
+      "expected_reason": "support_confirmation_pending",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": false,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 2,
+      "match": true
+    },
+    {
+      "case": "z1p00",
+      "frame": 61721,
+      "index": 168,
+      "warmup": false,
+      "expected_reason": "support_confirmation_pending",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": false,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 1,
+      "match": true
+    },
+    {
+      "case": "z1p00",
+      "frame": 61722,
+      "index": 169,
+      "warmup": false,
+      "expected_reason": "support_confirmation_pending",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": false,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 2,
+      "match": true
+    },
+    {
+      "case": "z1p00",
+      "frame": 61810,
+      "index": 257,
+      "warmup": false,
+      "expected_reason": "support_confirmation_pending",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": false,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 1,
+      "match": true
+    },
+    {
+      "case": "z1p00",
+      "frame": 61811,
+      "index": 258,
+      "warmup": false,
+      "expected_reason": "support_confirmation_pending",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": false,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 2,
+      "match": true
+    },
+    {
+      "case": "z1p00",
+      "frame": 61835,
+      "index": 282,
+      "warmup": false,
+      "expected_reason": "support_confirmation_pending",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": false,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 1,
+      "match": true
+    },
+    {
+      "case": "z1p00",
+      "frame": 61836,
+      "index": 283,
+      "warmup": false,
+      "expected_reason": "support_confirmation_pending",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": false,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 2,
+      "match": true
+    },
+    {
+      "case": "z1p00",
+      "frame": 62110,
+      "index": 557,
+      "warmup": false,
+      "expected_reason": "support_confirmation_pending",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": false,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 1,
+      "match": true
+    },
+    {
+      "case": "z1p00",
+      "frame": 62111,
+      "index": 558,
+      "warmup": false,
+      "expected_reason": "support_confirmation_pending",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": false,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 2,
+      "match": true
+    },
+    {
+      "case": "z1p00",
+      "frame": 62126,
+      "index": 573,
+      "warmup": false,
+      "expected_reason": "support_confirmation_pending",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": false,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 1,
+      "match": true
+    },
+    {
+      "case": "z1p00",
+      "frame": 62127,
+      "index": 574,
+      "warmup": false,
+      "expected_reason": "support_confirmation_pending",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": false,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 2,
+      "match": true
+    },
+    {
+      "case": "z1p00",
+      "frame": 62147,
+      "index": 594,
+      "warmup": false,
+      "expected_reason": "support_confirmation_pending",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": false,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 1,
+      "match": true
+    },
+    {
+      "case": "z1p00",
+      "frame": 62148,
+      "index": 595,
+      "warmup": false,
+      "expected_reason": "support_confirmation_pending",
+      "replayed_reason": "support_confirmation_pending",
+      "expected_accepted": false,
+      "replayed_accepted": false,
+      "replayed_confirmation_count": 2,
+      "match": true
+    }
+  ],
+  "logged_geometry_values_reproduced": 5076,
+  "max_absolute_geometry_difference_m": 1.7763568394002505e-15,
+  "same_frame_image_reproduction": [
+    {
+      "case": "z1p00",
+      "frame": 61948,
+      "baseline_and_comparison_exact": true,
+      "image_original_bytes_unchanged": true,
+      "source_sha256": "7012132d4ec29a24b0ed1a636892f1b62bd73166864d449e9fbe941ba3dffb01",
+      "observed_point": [
+        315,
+        419
+      ]
+    },
+    {
+      "case": "z2p00",
+      "frame": 64232,
+      "baseline_and_comparison_exact": true,
+      "image_original_bytes_unchanged": true,
+      "source_sha256": "63ac18d4fb0de73652e9c973d0e12837881e852b2fa79cd82b8af395a3078994",
+      "observed_point": [
+        316,
+        373
+      ]
+    }
+  ],
+  "input_sha256": {
+    "Experimental_results/2026-11-04/floor_df33e833_multidistance_r01/cases.json": "ec66d61d7ea7887d2becd7da0b6c094e8523c0368d3b481da796253f5b71d20b",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_primary_r01/explicit_floor_models.json": "12eabb9168d23a332b8730cd572883397505fd4d0787f94c32b603dd7fd897c1",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_control_t150_r01/explicit_floor_models.json": "8cc4d49098021a8de39ee4052e594cea6d130839c8314e1543c4852b8dd545d1",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_control_t190_r01/explicit_floor_models.json": "87f1d91194e64d0582a9f1999ce3c709ce00717dfe85f573654edbb4cf8470e7",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_control_e030_r01/explicit_floor_models.json": "65ff2c37dce6929bd534990fce3902f08e6388ae4bf610cc2f42e9dcb2c18ee2",
+    "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/floor_df33e833_z1p00_recent.jsonl": "8b9a336740ea734b2ba31d3cac395fff45baf504e308922b73de56a614d4bce5",
+    "recordings/2026-11-04/floor_comparison_df33e833_live_r01/floor_comparison_df33e833_recent.jsonl": "f554d0c7755504b35eb323b3f1d1e6b6cc7c825a1bf5fd0f03c3d390eae48cc0",
+    "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/floor_df33e833_z2p00_recent.jsonl": "f3f0ecb0375fdd6dd8df4e35a09942c7de7c837b5b9e13bd7950dd4e2e713c32",
+    "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f061948.png": "7012132d4ec29a24b0ed1a636892f1b62bd73166864d449e9fbe941ba3dffb01",
+    "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f064232.png": "63ac18d4fb0de73652e9c973d0e12837881e852b2fa79cd82b8af395a3078994"
+  },
+  "source_sha256": {
+    "Experimental_results/2026-11-04/floor_df33e833_diagnosis_r01/diagnose.py": "b0ac7db759b6b3f87f2025cf2ec0621bfe6ba0941a52927412c2f396e7ef7ed2",
+    "src/cone_support_quality.py": "ccc734d5c4e551ec82fceb3ca1c6fa638acad10a791da87578588fab1b742d82",
+    "src/cone_support_completion_candidate.py": "57b4403dca6066b19e8446f8cbc97f94a0a9541c8e6f384066b25487f634c348",
+    "src/cone_colour_support_candidate.py": "54d15953eaa8aee858c3626182f5ecaf4f8c3e3c0d8507d7161b4eb770e51246",
+    "src/cone_distance_core.py": "2719a21fc3bb31edc2e13c9425d77b99494b4d9e1d20d88613457dd04fde282f",
+    "src/cone_fixed_floor_candidate.py": "d54b56fe8b08ee91085c20cae2228efa9a020b84e05898ffb1af8c0f0df54398"
+  },
+  "counterfactual_images_or_points_are_not_real_additional_frames": true,
+  "physical_metric_verified": false,
+  "calibration_fitted": false,
+  "model_selected": false,
+  "runtime_modified": false,
+  "usable_for_ffb": false,
+  "camera_gpu_ros_started": false
+}

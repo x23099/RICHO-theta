@@ -1,0 +1,28 @@
+{
+  "schema": "upper_support_log_summary_v1",
+  "status": "UNVERIFIED_COMPARISON_LOG_NOT_RUN_OR_METRIC_APPROVAL",
+  "processed_rows": 2,
+  "reasons": {
+    "image_support_quality_not_confirmed": 2
+  },
+  "upper_numeric_rows": 0,
+  "legacy_numeric_rows": 2,
+  "upper_granted_rows": 0,
+  "evidence_states": {
+    "not_requested": 2
+  },
+  "model_values": {},
+  "sessions": [
+    "df33e833acdf4e7d8b00d1ec37b7bcae"
+  ],
+  "input_sha256": "6deac29806d5cb43af6414ab3388d0a2b508cba4ab99a0fb6b0d486b0bcbeabf",
+  "inference_sources": {
+    "recorded_boxes_and_injected_historical_clock_NOT_LIVE": 2
+  },
+  "contains_injected_or_unverified_predictor": true,
+  "evidence_files_externally_verified": false,
+  "run_finalization_checked": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "display_availability_measured": false
+}

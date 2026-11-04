@@ -1,5 +1,6 @@
 """Read-only distance worker adapters. Never run inference in the RTC loop."""
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import nullcontext
 import json
 import math
 import os
@@ -62,7 +63,13 @@ class DistanceWorker:
     def __init__(self, slot, config, predictor, log_path, *, scene_function=estimate_scene, clock=time.monotonic, target_roi=None,
                  colour_support_shadow=False, support_completion_shadow=False, frame_evidence=False,
                  fixed_floor_models=None, fixed_floor_support_source="support_completion_shadow",
-                 fixed_floor_reload_file=None):
+                 fixed_floor_reload_file=None, upper_support_shadow=False):
+        if type(upper_support_shadow) is not bool:
+            raise ValueError("explicit bool upper-support flag required")
+        if upper_support_shadow and (not support_completion_shadow or not frame_evidence
+                or fixed_floor_support_source != "support_completion_shadow"
+                or fixed_floor_models is None and fixed_floor_reload_file is None):
+            raise ValueError("upper comparison requires completion support, frame evidence and explicit fixed-floor mode")
         if fixed_floor_reload_file is not None and fixed_floor_models is not None:
             raise ValueError("startup and local-reload fixed-floor modes are exclusive")
         if fixed_floor_reload_file is not None and (
@@ -76,6 +83,11 @@ class DistanceWorker:
                                          fixed_floor_support_source=fixed_floor_support_source)
         self.scene_function = scene_function
         self.log_path = Path(log_path)
+        self.upper_comparison = None
+        if upper_support_shadow:
+            from cone_upper_support_live import UpperSupportLiveComparison
+            self.upper_comparison = UpperSupportLiveComparison(self.engine.settings,
+                self.engine.config_sha256, self.log_path.parent)
         self.model_loader = None
         if fixed_floor_reload_file is not None:
             from cone_fixed_floor_live_load import LocalFloorModelLoader
@@ -135,10 +147,14 @@ class DistanceWorker:
         future, ticket, last_key = None, None, None
         pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="cone-scene-diagnostic")
         try:
-            with self.log_path.open("x") as stream:
+            with self.log_path.open("x") as stream, (
+                    self.log_path.with_name("upper_support_comparison.jsonl").open("x")
+                    if self.upper_comparison is not None else nullcontext(None)) as upper_stream:
                 while not self.stop_event.is_set():
                     frame, _ = self.slot.current(self.clock())
                     if frame is None:
+                        if self.upper_comparison is not None:
+                            self.upper_comparison.invalidate()
                         if self.model_loader is not None:
                             self.model_loader.step(None)
                             self.engine.fixed_floor_shadow = None
@@ -178,6 +194,9 @@ class DistanceWorker:
                         future = None
                     if self.model_loader is None:
                         result = self.engine.measure(frame, boxes, self.clock)
+                        upper_result = (self.upper_comparison.observe(frame, result,
+                            self.engine.fixed_floor_shadow, self.engine.camera, self.engine.transform)
+                            if self.upper_comparison is not None else None)
                     else:
                         # Only the cone worker changes engine state. Serialize the
                         # small comparison/measure boundary, NEVER GPU inference.
@@ -186,6 +205,9 @@ class DistanceWorker:
                                 frame if current is not None and current.session == frame.session else None)
                             result = self.engine.measure(frame, boxes, self.clock)
                             result["fixed_floor_load"] = self.model_loader.snapshot()
+                            upper_result = (self.upper_comparison.observe(frame, result,
+                                self.engine.fixed_floor_shadow, self.engine.camera, self.engine.transform)
+                                if self.upper_comparison is not None else None)
                     finished = self.clock()
                     result.update(completed_time_sec=finished, frame_age_ms=1000*(finished-frame.received_at),
                                   predict_ms=1000*(predict_end-predict_start), support_geometry_ms=1000*(finished-predict_end),
@@ -212,8 +234,13 @@ class DistanceWorker:
                         fresh["within_limit"] = result["frame_age_ms"] <= fresh["limit_ms"]
                         fresh["blockers"] = list(result["blockers"])
                         fresh["primary_reason"] = result["reason"]
+                    if upper_result is not None:
+                        self.upper_comparison.finish(upper_result, finished, baseline=result)
                     stream.write(json.dumps(result) + "\n")
                     stream.flush()
+                    if upper_result is not None:
+                        upper_stream.write(json.dumps(upper_result) + "\n")
+                        upper_stream.flush()
                     current, _ = self.slot.current(self.clock())
                     with self.lock:
                         self.latest = ((frame, result) if not self.stop_event.is_set()

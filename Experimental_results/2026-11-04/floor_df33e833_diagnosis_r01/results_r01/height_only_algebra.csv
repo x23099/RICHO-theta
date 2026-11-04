@@ -1,0 +1,4 @@
+case,reported_reference_m,base_range_m,original_model_height_m,hypothetical_height_if_same_point_quantity_m,reference_equivalence_assumed_for_algebra_only,height_measured_or_fitted
+z1p00,1.0,1.0261695516909117,0.5286990888125932,0.5152161140831047,True,False
+z1p50,1.5,1.562406276857111,0.5286990888125932,0.5075815714297834,True,False
+z2p00,2.0,2.148675489432263,0.5286990888125932,0.4921162748054519,True,False

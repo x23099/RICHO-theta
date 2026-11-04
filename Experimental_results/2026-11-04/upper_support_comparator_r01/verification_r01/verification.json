@@ -1,0 +1,106 @@
+{
+  "status": "PASS_OFFLINE_UPPER_COMPARATOR_NOT_LIVE_RECOVERY_APPROVAL",
+  "checks": {
+    "tests_pass": true,
+    "original_runtime_hashes_unchanged": true,
+    "both_actual_saved_observations_preserved": true,
+    "no_new_actual_frame_acceptance": true,
+    "all_existing_counterfactual_points_preserved": true,
+    "counterfactual_count": true,
+    "native_hashes_unchanged": true
+  },
+  "tests": 415,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "patterns": [
+    "test_scene_sampling_clock.py",
+    "test_cone_distance_diagnostic.py",
+    "test_theta_rtc_diagnostic.py",
+    "test_cone_support_quality*.py",
+    "test_cone_distance_worker_lifecycle.py",
+    "test_cone_distance_live_cleanup.py",
+    "test_summarize_cone_distance_live.py",
+    "test_theta_rtc_capture_recovery.py",
+    "test_cone_colour_support_candidate.py",
+    "test_cone_support_completion_candidate.py",
+    "test_cone_completion_shadow_logging.py",
+    "test_frame_evidence_logging.py",
+    "test_cone_fixed_floor_candidate.py",
+    "test_cone_fixed_floor_shadow.py",
+    "test_cone_support_live_review.py",
+    "test_fixed_floor_causal_bootstrap.py",
+    "test_cone_fixed_floor_live_load.py",
+    "test_floor_reference_pose.py",
+    "test_diagnose_floor_board_pose.py",
+    "test_fisheye_intrinsic_calibration.py",
+    "test_derive_fixed_floor_live_bundle.py",
+    "test_fixed_floor_lifecycle_replay.py",
+    "test_cone_fixed_floor_display.py",
+    "test_cone_upper_support_candidate.py"
+  ],
+  "actual_saved_frame_results": [
+    {
+      "case": "z1p00",
+      "frame": 61948,
+      "old_point": [
+        315,
+        419
+      ],
+      "new_point": [
+        315,
+        419
+      ],
+      "prior_observation_preserved": true,
+      "upper_granted": false
+    },
+    {
+      "case": "z2p00",
+      "frame": 64232,
+      "old_point": [
+        316,
+        373
+      ],
+      "new_point": [
+        316,
+        373
+      ],
+      "prior_observation_preserved": true,
+      "upper_granted": false
+    }
+  ],
+  "counterfactual_conditions": 18,
+  "counterfactual_old_available": 15,
+  "counterfactual_new_available": 16,
+  "counterfactual_newly_observed_points": 1,
+  "runtime_source_hash_mismatches": [],
+  "prior_runtime_sha256": {
+    "src/cone_support_quality.py": "ccc734d5c4e551ec82fceb3ca1c6fa638acad10a791da87578588fab1b742d82",
+    "src/cone_support_completion_candidate.py": "57b4403dca6066b19e8446f8cbc97f94a0a9541c8e6f384066b25487f634c348",
+    "src/cone_colour_support_candidate.py": "54d15953eaa8aee858c3626182f5ecaf4f8c3e3c0d8507d7161b4eb770e51246",
+    "src/cone_distance_core.py": "2719a21fc3bb31edc2e13c9425d77b99494b4d9e1d20d88613457dd04fde282f",
+    "src/cone_fixed_floor_candidate.py": "d54b56fe8b08ee91085c20cae2228efa9a020b84e05898ffb1af8c0f0df54398",
+    "src/cone_fixed_floor_display.py": "dcc4adecc8e3e2f91c7e2aa06f1ade9a29504f77e006df7b0ba5e62fcd5cc8b4",
+    "src/run_cone_distance_live.py": "c4c3f95b66db648c7e19a5bf239a26a2e9916b98aafd7022a6e1010490785b97"
+  },
+  "image_sha256": {
+    "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f061948.png": "7012132d4ec29a24b0ed1a636892f1b62bd73166864d449e9fbe941ba3dffb01",
+    "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f064232.png": "63ac18d4fb0de73652e9c973d0e12837881e852b2fa79cd82b8af395a3078994"
+  },
+  "live_missing_frame_images_available": false,
+  "live_81_withheld_rows_recovery_measured": false,
+  "live_wiring_changed": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "actual_camera_images_modified": false,
+  "camera_gpu_ros_started": false,
+  "git_commit_or_push_performed": false,
+  "source_sha256": {
+    "Experimental_results/2026-11-04/upper_support_comparator_r01/verify.py": "489e9af2d78dde9e20647f3117cf81c96986d00865d9126a3f45e160e45a8e02",
+    "src/cone_upper_support_candidate.py": "22db172f69bc1140c207d706654ba6ac6b42ea8fb698cacc346c1d18d096d10a",
+    "tests/test_cone_upper_support_candidate.py": "384076d12ea48ce261c704f7c08917d42863189a5dfd08d2b529cb626670a3d5",
+    "Experimental_results/2026-11-04/floor_df33e833_multidistance_r01/cases.json": "ec66d61d7ea7887d2becd7da0b6c094e8523c0368d3b481da796253f5b71d20b",
+    "Experimental_results/2026-11-04/fixed_floor_display_roi_fix_r01/verification_r01/verification.json": "1163670c6bcfb7ed7b4219fd783df803817fc9ee9c89bf9c94f4aa9ea8eaf6ea",
+    "Experimental_results/2026-11-04/floor_df33e833_diagnosis_r01/results_r01/diagnosis.json": "cf9673035549e43f081dea4c14a16852ac705ceb659e6aaf0d1b248d990a1335"
+  }
+}

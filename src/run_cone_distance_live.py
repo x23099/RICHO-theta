@@ -39,6 +39,8 @@ def build_parser():
                         help="log bounded lateral completion candidate separately; NEVER controls distance")
     parser.add_argument("--frame-evidence", action="store_true",
                         help="log selected bbox/support/pose/floor/freshness per frame; NEVER controls distance")
+    parser.add_argument("--upper-support-shadow", action="store_true",
+                        help="separate opt-in upper comparison JSONL and bounded raw PNG evidence; NEVER changes GUI/control")
     fixed_group = parser.add_mutually_exclusive_group()
     fixed_group.add_argument("--fixed-floor-models", type=Path,
                         help="explicit session-bound model bundle for comparison log ONLY; default disabled")
@@ -60,6 +62,11 @@ async def run(args):
     fixed_models = getattr(args, "fixed_floor_models", None)
     reload_file = getattr(args, "fixed_floor_reload_file", None)
     fixed_source = getattr(args, "fixed_floor_support_source", "support_completion_shadow")
+    upper_shadow = getattr(args, "upper_support_shadow", False)
+    if upper_shadow and (not getattr(args, "support_completion_shadow", False)
+            or not getattr(args, "frame_evidence", False) or fixed_source != "support_completion_shadow"
+            or fixed_models is None and reload_file is None):
+        raise ValueError("upper comparison requires completion support, frame evidence and explicit fixed-floor mode")
     if fixed_models is not None or reload_file is not None:
         if ((fixed_source == "colour_support_shadow" and not getattr(args, "colour_support_shadow", False))
                 or (fixed_source == "support_completion_shadow" and not getattr(args, "support_completion_shadow", False))):
@@ -79,7 +86,8 @@ async def run(args):
                             colour_support_shadow=colour_shadow, support_completion_shadow=completion_shadow,
                             frame_evidence=getattr(args, "frame_evidence", False),
                             fixed_floor_models=fixed_models, fixed_floor_support_source=fixed_source,
-                            fixed_floor_reload_file=reload_file)
+                            fixed_floor_reload_file=reload_file,
+                            **(dict(upper_support_shadow=True) if upper_shadow else {}))
     app = web.Application(client_max_size=256 * 1024)
     app.router.add_post("/offer", server.offer)
     runner = web.AppRunner(app, access_log=None)
@@ -94,6 +102,10 @@ async def run(args):
     summary["frame_evidence_enabled"] = getattr(args, "frame_evidence", False)
     summary["fixed_floor_shadow_enabled"] = fixed_models is not None or reload_file is not None
     summary["fixed_floor_local_reload_enabled"] = reload_file is not None
+    if upper_shadow:
+        summary["upper_support_shadow"] = dict(enabled=True, log="upper_support_comparison.jsonl",
+            evidence_folder="upper_support_evidence", max_evidence_attempts=20,
+            minimum_evidence_interval_sec=1., controls_gui_or_ffb=False)
     if fixed_models is not None:
         summary["fixed_floor_model_bundle_sha256"] = digest(fixed_models)
     started = time.monotonic()

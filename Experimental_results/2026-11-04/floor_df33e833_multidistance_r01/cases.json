@@ -1,0 +1,36 @@
+{
+  "schema": "same_session_static_distance_comparison_v1",
+  "session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+  "bundle_sha256": "08d8409f9674c433d5151f99228c43d8f8f6fb10d7245954223f6598e3af3176",
+  "reference_origin": "vehicle_center_floor_position",
+  "reference_target": "center_of_cone_base_vehicle_side_edge",
+  "reference_quantity": "horizontal_straight_distance",
+  "estimated_quantity": "horizontal_camera_foot_range_to_observed_colour_support_pixel",
+  "origin_and_target_equivalence_verified": false,
+  "measurement_uncertainty_m": null,
+  "new_distance_confirmation": "User replied 'きっちり１ｍと２ｍです'; previous 1.50m is a separate user-confirmed placement in this same session",
+  "cases": [
+    {
+      "id": "z1p00", "reference_m": 1.00, "reference_status": "user_confirmed",
+      "input": "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/floor_df33e833_z1p00_recent.jsonl",
+      "sha256": "8b9a336740ea734b2ba31d3cac395fff45baf504e308922b73de56a614d4bce5",
+      "image": "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f061948.png",
+      "image_frame": 61948,
+      "image_sha256": "7012132d4ec29a24b0ed1a636892f1b62bd73166864d449e9fbe941ba3dffb01"
+    },
+    {
+      "id": "z1p50", "reference_m": 1.50, "reference_status": "user_reported_approximate",
+      "input": "recordings/2026-11-04/floor_comparison_df33e833_live_r01/floor_comparison_df33e833_recent.jsonl",
+      "sha256": "f554d0c7755504b35eb323b3f1d1e6b6cc7c825a1bf5fd0f03c3d390eae48cc0",
+      "image": null, "image_frame": null, "image_sha256": null
+    },
+    {
+      "id": "z2p00", "reference_m": 2.00, "reference_status": "user_confirmed",
+      "input": "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/floor_df33e833_z2p00_recent.jsonl",
+      "sha256": "f3f0ecb0375fdd6dd8df4e35a09942c7de7c837b5b9e13bd7950dd4e2e713c32",
+      "image": "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f064232.png",
+      "image_frame": 64232,
+      "image_sha256": "63ac18d4fb0de73652e9c973d0e12837881e852b2fa79cd82b8af395a3078994"
+    }
+  ]
+}

@@ -1,0 +1,9467 @@
+[
+  {
+    "case": "z1p00",
+    "source_frame": 61948,
+    "dy1": -1,
+    "dy2": -1,
+    "old_available": true,
+    "new_available": true,
+    "old_observation_preserved": true,
+    "upper_granted": false,
+    "upper_reason": "existing_comparison_point_preserved",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": [
+        [
+          293,
+          417
+        ],
+        [
+          294,
+          417
+        ],
+        [
+          295,
+          417
+        ],
+        [
+          296,
+          417
+        ],
+        [
+          297,
+          417
+        ],
+        [
+          298,
+          417
+        ],
+        [
+          299,
+          417
+        ],
+        [
+          300,
+          417
+        ],
+        [
+          301,
+          417
+        ],
+        [
+          302,
+          417
+        ],
+        [
+          303,
+          417
+        ],
+        [
+          304,
+          417
+        ],
+        [
+          305,
+          417
+        ],
+        [
+          306,
+          417
+        ],
+        [
+          307,
+          417
+        ],
+        [
+          308,
+          417
+        ],
+        [
+          309,
+          417
+        ],
+        [
+          310,
+          417
+        ],
+        [
+          311,
+          417
+        ],
+        [
+          312,
+          419
+        ],
+        [
+          313,
+          419
+        ],
+        [
+          314,
+          419
+        ],
+        [
+          315,
+          419
+        ],
+        [
+          316,
+          419
+        ],
+        [
+          317,
+          419
+        ],
+        [
+          318,
+          419
+        ],
+        [
+          319,
+          419
+        ],
+        [
+          320,
+          419
+        ],
+        [
+          321,
+          419
+        ],
+        [
+          322,
+          419
+        ],
+        [
+          323,
+          419
+        ],
+        [
+          324,
+          419
+        ],
+        [
+          325,
+          419
+        ],
+        [
+          326,
+          419
+        ],
+        [
+          327,
+          419
+        ],
+        [
+          328,
+          419
+        ],
+        [
+          329,
+          419
+        ],
+        [
+          330,
+          417
+        ],
+        [
+          331,
+          417
+        ],
+        [
+          332,
+          417
+        ],
+        [
+          333,
+          417
+        ],
+        [
+          334,
+          417
+        ],
+        [
+          335,
+          417
+        ],
+        [
+          336,
+          417
+        ],
+        [
+          337,
+          417
+        ],
+        [
+          338,
+          417
+        ],
+        [
+          339,
+          417
+        ],
+        [
+          340,
+          417
+        ],
+        [
+          341,
+          417
+        ],
+        [
+          342,
+          417
+        ]
+      ],
+      "point": [
+        315,
+        419
+      ],
+      "reason": "unverified_visible_colour_support",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        315,
+        325,
+        323,
+        349
+      ],
+      "seed_red_pixels": 192,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "unverified_visible_colour_support",
+      "original_shadow_point": [
+        315,
+        419
+      ],
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "existing_shadow_point_preserved",
+      "contexts": [],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": [
+          [
+            293,
+            417
+          ],
+          [
+            294,
+            417
+          ],
+          [
+            295,
+            417
+          ],
+          [
+            296,
+            417
+          ],
+          [
+            297,
+            417
+          ],
+          [
+            298,
+            417
+          ],
+          [
+            299,
+            417
+          ],
+          [
+            300,
+            417
+          ],
+          [
+            301,
+            417
+          ],
+          [
+            302,
+            417
+          ],
+          [
+            303,
+            417
+          ],
+          [
+            304,
+            417
+          ],
+          [
+            305,
+            417
+          ],
+          [
+            306,
+            417
+          ],
+          [
+            307,
+            417
+          ],
+          [
+            308,
+            417
+          ],
+          [
+            309,
+            417
+          ],
+          [
+            310,
+            417
+          ],
+          [
+            311,
+            417
+          ],
+          [
+            312,
+            419
+          ],
+          [
+            313,
+            419
+          ],
+          [
+            314,
+            419
+          ],
+          [
+            315,
+            419
+          ],
+          [
+            316,
+            419
+          ],
+          [
+            317,
+            419
+          ],
+          [
+            318,
+            419
+          ],
+          [
+            319,
+            419
+          ],
+          [
+            320,
+            419
+          ],
+          [
+            321,
+            419
+          ],
+          [
+            322,
+            419
+          ],
+          [
+            323,
+            419
+          ],
+          [
+            324,
+            419
+          ],
+          [
+            325,
+            419
+          ],
+          [
+            326,
+            419
+          ],
+          [
+            327,
+            419
+          ],
+          [
+            328,
+            419
+          ],
+          [
+            329,
+            419
+          ],
+          [
+            330,
+            417
+          ],
+          [
+            331,
+            417
+          ],
+          [
+            332,
+            417
+          ],
+          [
+            333,
+            417
+          ],
+          [
+            334,
+            417
+          ],
+          [
+            335,
+            417
+          ],
+          [
+            336,
+            417
+          ],
+          [
+            337,
+            417
+          ],
+          [
+            338,
+            417
+          ],
+          [
+            339,
+            417
+          ],
+          [
+            340,
+            417
+          ],
+          [
+            341,
+            417
+          ],
+          [
+            342,
+            417
+          ]
+        ],
+        "point": [
+          315,
+          419
+        ],
+        "reason": "unverified_visible_colour_support",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          315,
+          325,
+          323,
+          349
+        ],
+        "seed_red_pixels": 192,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "unverified_visible_colour_support",
+        "original_shadow_point": [
+          315,
+          419
+        ],
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "existing_shadow_point_preserved",
+        "contexts": [],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": false,
+      "upper_completion_granted": false,
+      "upper_completion_reason": "existing_comparison_point_preserved",
+      "upper_contexts": []
+    }
+  },
+  {
+    "case": "z1p00",
+    "source_frame": 61948,
+    "dy1": -1,
+    "dy2": 0,
+    "old_available": true,
+    "new_available": true,
+    "old_observation_preserved": true,
+    "upper_granted": false,
+    "upper_reason": "existing_comparison_point_preserved",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": [
+        [
+          293,
+          417
+        ],
+        [
+          294,
+          417
+        ],
+        [
+          295,
+          417
+        ],
+        [
+          296,
+          417
+        ],
+        [
+          297,
+          417
+        ],
+        [
+          298,
+          417
+        ],
+        [
+          299,
+          417
+        ],
+        [
+          300,
+          417
+        ],
+        [
+          301,
+          417
+        ],
+        [
+          302,
+          417
+        ],
+        [
+          303,
+          417
+        ],
+        [
+          304,
+          417
+        ],
+        [
+          305,
+          417
+        ],
+        [
+          306,
+          417
+        ],
+        [
+          307,
+          417
+        ],
+        [
+          308,
+          417
+        ],
+        [
+          309,
+          417
+        ],
+        [
+          310,
+          417
+        ],
+        [
+          311,
+          417
+        ],
+        [
+          312,
+          419
+        ],
+        [
+          313,
+          419
+        ],
+        [
+          314,
+          419
+        ],
+        [
+          315,
+          419
+        ],
+        [
+          316,
+          419
+        ],
+        [
+          317,
+          419
+        ],
+        [
+          318,
+          419
+        ],
+        [
+          319,
+          419
+        ],
+        [
+          320,
+          419
+        ],
+        [
+          321,
+          419
+        ],
+        [
+          322,
+          419
+        ],
+        [
+          323,
+          419
+        ],
+        [
+          324,
+          419
+        ],
+        [
+          325,
+          419
+        ],
+        [
+          326,
+          419
+        ],
+        [
+          327,
+          419
+        ],
+        [
+          328,
+          419
+        ],
+        [
+          329,
+          419
+        ],
+        [
+          330,
+          417
+        ],
+        [
+          331,
+          417
+        ],
+        [
+          332,
+          417
+        ],
+        [
+          333,
+          417
+        ],
+        [
+          334,
+          417
+        ],
+        [
+          335,
+          417
+        ],
+        [
+          336,
+          417
+        ],
+        [
+          337,
+          417
+        ],
+        [
+          338,
+          417
+        ],
+        [
+          339,
+          417
+        ],
+        [
+          340,
+          417
+        ],
+        [
+          341,
+          417
+        ],
+        [
+          342,
+          417
+        ]
+      ],
+      "point": [
+        315,
+        419
+      ],
+      "reason": "unverified_visible_colour_support",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        315,
+        325,
+        323,
+        349
+      ],
+      "seed_red_pixels": 192,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "unverified_visible_colour_support",
+      "original_shadow_point": [
+        315,
+        419
+      ],
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "existing_shadow_point_preserved",
+      "contexts": [],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": [
+          [
+            293,
+            417
+          ],
+          [
+            294,
+            417
+          ],
+          [
+            295,
+            417
+          ],
+          [
+            296,
+            417
+          ],
+          [
+            297,
+            417
+          ],
+          [
+            298,
+            417
+          ],
+          [
+            299,
+            417
+          ],
+          [
+            300,
+            417
+          ],
+          [
+            301,
+            417
+          ],
+          [
+            302,
+            417
+          ],
+          [
+            303,
+            417
+          ],
+          [
+            304,
+            417
+          ],
+          [
+            305,
+            417
+          ],
+          [
+            306,
+            417
+          ],
+          [
+            307,
+            417
+          ],
+          [
+            308,
+            417
+          ],
+          [
+            309,
+            417
+          ],
+          [
+            310,
+            417
+          ],
+          [
+            311,
+            417
+          ],
+          [
+            312,
+            419
+          ],
+          [
+            313,
+            419
+          ],
+          [
+            314,
+            419
+          ],
+          [
+            315,
+            419
+          ],
+          [
+            316,
+            419
+          ],
+          [
+            317,
+            419
+          ],
+          [
+            318,
+            419
+          ],
+          [
+            319,
+            419
+          ],
+          [
+            320,
+            419
+          ],
+          [
+            321,
+            419
+          ],
+          [
+            322,
+            419
+          ],
+          [
+            323,
+            419
+          ],
+          [
+            324,
+            419
+          ],
+          [
+            325,
+            419
+          ],
+          [
+            326,
+            419
+          ],
+          [
+            327,
+            419
+          ],
+          [
+            328,
+            419
+          ],
+          [
+            329,
+            419
+          ],
+          [
+            330,
+            417
+          ],
+          [
+            331,
+            417
+          ],
+          [
+            332,
+            417
+          ],
+          [
+            333,
+            417
+          ],
+          [
+            334,
+            417
+          ],
+          [
+            335,
+            417
+          ],
+          [
+            336,
+            417
+          ],
+          [
+            337,
+            417
+          ],
+          [
+            338,
+            417
+          ],
+          [
+            339,
+            417
+          ],
+          [
+            340,
+            417
+          ],
+          [
+            341,
+            417
+          ],
+          [
+            342,
+            417
+          ]
+        ],
+        "point": [
+          315,
+          419
+        ],
+        "reason": "unverified_visible_colour_support",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          315,
+          325,
+          323,
+          349
+        ],
+        "seed_red_pixels": 192,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "unverified_visible_colour_support",
+        "original_shadow_point": [
+          315,
+          419
+        ],
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "existing_shadow_point_preserved",
+        "contexts": [],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": false,
+      "upper_completion_granted": false,
+      "upper_completion_reason": "existing_comparison_point_preserved",
+      "upper_contexts": []
+    }
+  },
+  {
+    "case": "z1p00",
+    "source_frame": 61948,
+    "dy1": -1,
+    "dy2": 1,
+    "old_available": true,
+    "new_available": true,
+    "old_observation_preserved": true,
+    "upper_granted": false,
+    "upper_reason": "existing_comparison_point_preserved",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": [
+        [
+          293,
+          417
+        ],
+        [
+          294,
+          417
+        ],
+        [
+          295,
+          417
+        ],
+        [
+          296,
+          417
+        ],
+        [
+          297,
+          417
+        ],
+        [
+          298,
+          417
+        ],
+        [
+          299,
+          417
+        ],
+        [
+          300,
+          417
+        ],
+        [
+          301,
+          417
+        ],
+        [
+          302,
+          417
+        ],
+        [
+          303,
+          417
+        ],
+        [
+          304,
+          417
+        ],
+        [
+          305,
+          417
+        ],
+        [
+          306,
+          417
+        ],
+        [
+          307,
+          417
+        ],
+        [
+          308,
+          417
+        ],
+        [
+          309,
+          417
+        ],
+        [
+          310,
+          417
+        ],
+        [
+          311,
+          417
+        ],
+        [
+          312,
+          419
+        ],
+        [
+          313,
+          419
+        ],
+        [
+          314,
+          419
+        ],
+        [
+          315,
+          419
+        ],
+        [
+          316,
+          419
+        ],
+        [
+          317,
+          419
+        ],
+        [
+          318,
+          419
+        ],
+        [
+          319,
+          419
+        ],
+        [
+          320,
+          419
+        ],
+        [
+          321,
+          419
+        ],
+        [
+          322,
+          419
+        ],
+        [
+          323,
+          419
+        ],
+        [
+          324,
+          419
+        ],
+        [
+          325,
+          419
+        ],
+        [
+          326,
+          419
+        ],
+        [
+          327,
+          419
+        ],
+        [
+          328,
+          419
+        ],
+        [
+          329,
+          419
+        ],
+        [
+          330,
+          417
+        ],
+        [
+          331,
+          417
+        ],
+        [
+          332,
+          417
+        ],
+        [
+          333,
+          417
+        ],
+        [
+          334,
+          417
+        ],
+        [
+          335,
+          417
+        ],
+        [
+          336,
+          417
+        ],
+        [
+          337,
+          417
+        ],
+        [
+          338,
+          417
+        ],
+        [
+          339,
+          417
+        ],
+        [
+          340,
+          417
+        ],
+        [
+          341,
+          417
+        ],
+        [
+          342,
+          417
+        ]
+      ],
+      "point": [
+        315,
+        419
+      ],
+      "reason": "unverified_visible_colour_support",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        315,
+        325,
+        323,
+        350
+      ],
+      "seed_red_pixels": 200,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "unverified_visible_colour_support",
+      "original_shadow_point": [
+        315,
+        419
+      ],
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "existing_shadow_point_preserved",
+      "contexts": [],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": [
+          [
+            293,
+            417
+          ],
+          [
+            294,
+            417
+          ],
+          [
+            295,
+            417
+          ],
+          [
+            296,
+            417
+          ],
+          [
+            297,
+            417
+          ],
+          [
+            298,
+            417
+          ],
+          [
+            299,
+            417
+          ],
+          [
+            300,
+            417
+          ],
+          [
+            301,
+            417
+          ],
+          [
+            302,
+            417
+          ],
+          [
+            303,
+            417
+          ],
+          [
+            304,
+            417
+          ],
+          [
+            305,
+            417
+          ],
+          [
+            306,
+            417
+          ],
+          [
+            307,
+            417
+          ],
+          [
+            308,
+            417
+          ],
+          [
+            309,
+            417
+          ],
+          [
+            310,
+            417
+          ],
+          [
+            311,
+            417
+          ],
+          [
+            312,
+            419
+          ],
+          [
+            313,
+            419
+          ],
+          [
+            314,
+            419
+          ],
+          [
+            315,
+            419
+          ],
+          [
+            316,
+            419
+          ],
+          [
+            317,
+            419
+          ],
+          [
+            318,
+            419
+          ],
+          [
+            319,
+            419
+          ],
+          [
+            320,
+            419
+          ],
+          [
+            321,
+            419
+          ],
+          [
+            322,
+            419
+          ],
+          [
+            323,
+            419
+          ],
+          [
+            324,
+            419
+          ],
+          [
+            325,
+            419
+          ],
+          [
+            326,
+            419
+          ],
+          [
+            327,
+            419
+          ],
+          [
+            328,
+            419
+          ],
+          [
+            329,
+            419
+          ],
+          [
+            330,
+            417
+          ],
+          [
+            331,
+            417
+          ],
+          [
+            332,
+            417
+          ],
+          [
+            333,
+            417
+          ],
+          [
+            334,
+            417
+          ],
+          [
+            335,
+            417
+          ],
+          [
+            336,
+            417
+          ],
+          [
+            337,
+            417
+          ],
+          [
+            338,
+            417
+          ],
+          [
+            339,
+            417
+          ],
+          [
+            340,
+            417
+          ],
+          [
+            341,
+            417
+          ],
+          [
+            342,
+            417
+          ]
+        ],
+        "point": [
+          315,
+          419
+        ],
+        "reason": "unverified_visible_colour_support",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          315,
+          325,
+          323,
+          350
+        ],
+        "seed_red_pixels": 200,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "unverified_visible_colour_support",
+        "original_shadow_point": [
+          315,
+          419
+        ],
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "existing_shadow_point_preserved",
+        "contexts": [],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": false,
+      "upper_completion_granted": false,
+      "upper_completion_reason": "existing_comparison_point_preserved",
+      "upper_contexts": []
+    }
+  },
+  {
+    "case": "z1p00",
+    "source_frame": 61948,
+    "dy1": 0,
+    "dy2": -1,
+    "old_available": true,
+    "new_available": true,
+    "old_observation_preserved": true,
+    "upper_granted": false,
+    "upper_reason": "existing_comparison_point_preserved",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": [
+        [
+          293,
+          417
+        ],
+        [
+          294,
+          417
+        ],
+        [
+          295,
+          417
+        ],
+        [
+          296,
+          417
+        ],
+        [
+          297,
+          417
+        ],
+        [
+          298,
+          417
+        ],
+        [
+          299,
+          417
+        ],
+        [
+          300,
+          417
+        ],
+        [
+          301,
+          417
+        ],
+        [
+          302,
+          417
+        ],
+        [
+          303,
+          417
+        ],
+        [
+          304,
+          417
+        ],
+        [
+          305,
+          417
+        ],
+        [
+          306,
+          417
+        ],
+        [
+          307,
+          417
+        ],
+        [
+          308,
+          417
+        ],
+        [
+          309,
+          417
+        ],
+        [
+          310,
+          417
+        ],
+        [
+          311,
+          417
+        ],
+        [
+          312,
+          419
+        ],
+        [
+          313,
+          419
+        ],
+        [
+          314,
+          419
+        ],
+        [
+          315,
+          419
+        ],
+        [
+          316,
+          419
+        ],
+        [
+          317,
+          419
+        ],
+        [
+          318,
+          419
+        ],
+        [
+          319,
+          419
+        ],
+        [
+          320,
+          419
+        ],
+        [
+          321,
+          419
+        ],
+        [
+          322,
+          419
+        ],
+        [
+          323,
+          419
+        ],
+        [
+          324,
+          419
+        ],
+        [
+          325,
+          419
+        ],
+        [
+          326,
+          419
+        ],
+        [
+          327,
+          419
+        ],
+        [
+          328,
+          419
+        ],
+        [
+          329,
+          419
+        ],
+        [
+          330,
+          417
+        ],
+        [
+          331,
+          417
+        ],
+        [
+          332,
+          417
+        ],
+        [
+          333,
+          417
+        ],
+        [
+          334,
+          417
+        ],
+        [
+          335,
+          417
+        ],
+        [
+          336,
+          417
+        ],
+        [
+          337,
+          417
+        ],
+        [
+          338,
+          417
+        ],
+        [
+          339,
+          417
+        ],
+        [
+          340,
+          417
+        ],
+        [
+          341,
+          417
+        ],
+        [
+          342,
+          417
+        ]
+      ],
+      "point": [
+        315,
+        419
+      ],
+      "reason": "unverified_visible_colour_support",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        315,
+        326,
+        323,
+        350
+      ],
+      "seed_red_pixels": 192,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "unverified_visible_colour_support",
+      "original_shadow_point": [
+        315,
+        419
+      ],
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "existing_shadow_point_preserved",
+      "contexts": [],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": [
+          [
+            293,
+            417
+          ],
+          [
+            294,
+            417
+          ],
+          [
+            295,
+            417
+          ],
+          [
+            296,
+            417
+          ],
+          [
+            297,
+            417
+          ],
+          [
+            298,
+            417
+          ],
+          [
+            299,
+            417
+          ],
+          [
+            300,
+            417
+          ],
+          [
+            301,
+            417
+          ],
+          [
+            302,
+            417
+          ],
+          [
+            303,
+            417
+          ],
+          [
+            304,
+            417
+          ],
+          [
+            305,
+            417
+          ],
+          [
+            306,
+            417
+          ],
+          [
+            307,
+            417
+          ],
+          [
+            308,
+            417
+          ],
+          [
+            309,
+            417
+          ],
+          [
+            310,
+            417
+          ],
+          [
+            311,
+            417
+          ],
+          [
+            312,
+            419
+          ],
+          [
+            313,
+            419
+          ],
+          [
+            314,
+            419
+          ],
+          [
+            315,
+            419
+          ],
+          [
+            316,
+            419
+          ],
+          [
+            317,
+            419
+          ],
+          [
+            318,
+            419
+          ],
+          [
+            319,
+            419
+          ],
+          [
+            320,
+            419
+          ],
+          [
+            321,
+            419
+          ],
+          [
+            322,
+            419
+          ],
+          [
+            323,
+            419
+          ],
+          [
+            324,
+            419
+          ],
+          [
+            325,
+            419
+          ],
+          [
+            326,
+            419
+          ],
+          [
+            327,
+            419
+          ],
+          [
+            328,
+            419
+          ],
+          [
+            329,
+            419
+          ],
+          [
+            330,
+            417
+          ],
+          [
+            331,
+            417
+          ],
+          [
+            332,
+            417
+          ],
+          [
+            333,
+            417
+          ],
+          [
+            334,
+            417
+          ],
+          [
+            335,
+            417
+          ],
+          [
+            336,
+            417
+          ],
+          [
+            337,
+            417
+          ],
+          [
+            338,
+            417
+          ],
+          [
+            339,
+            417
+          ],
+          [
+            340,
+            417
+          ],
+          [
+            341,
+            417
+          ],
+          [
+            342,
+            417
+          ]
+        ],
+        "point": [
+          315,
+          419
+        ],
+        "reason": "unverified_visible_colour_support",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          315,
+          326,
+          323,
+          350
+        ],
+        "seed_red_pixels": 192,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "unverified_visible_colour_support",
+        "original_shadow_point": [
+          315,
+          419
+        ],
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "existing_shadow_point_preserved",
+        "contexts": [],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": false,
+      "upper_completion_granted": false,
+      "upper_completion_reason": "existing_comparison_point_preserved",
+      "upper_contexts": []
+    }
+  },
+  {
+    "case": "z1p00",
+    "source_frame": 61948,
+    "dy1": 0,
+    "dy2": 0,
+    "old_available": true,
+    "new_available": true,
+    "old_observation_preserved": true,
+    "upper_granted": false,
+    "upper_reason": "existing_comparison_point_preserved",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": [
+        [
+          293,
+          417
+        ],
+        [
+          294,
+          417
+        ],
+        [
+          295,
+          417
+        ],
+        [
+          296,
+          417
+        ],
+        [
+          297,
+          417
+        ],
+        [
+          298,
+          417
+        ],
+        [
+          299,
+          417
+        ],
+        [
+          300,
+          417
+        ],
+        [
+          301,
+          417
+        ],
+        [
+          302,
+          417
+        ],
+        [
+          303,
+          417
+        ],
+        [
+          304,
+          417
+        ],
+        [
+          305,
+          417
+        ],
+        [
+          306,
+          417
+        ],
+        [
+          307,
+          417
+        ],
+        [
+          308,
+          417
+        ],
+        [
+          309,
+          417
+        ],
+        [
+          310,
+          417
+        ],
+        [
+          311,
+          417
+        ],
+        [
+          312,
+          419
+        ],
+        [
+          313,
+          419
+        ],
+        [
+          314,
+          419
+        ],
+        [
+          315,
+          419
+        ],
+        [
+          316,
+          419
+        ],
+        [
+          317,
+          419
+        ],
+        [
+          318,
+          419
+        ],
+        [
+          319,
+          419
+        ],
+        [
+          320,
+          419
+        ],
+        [
+          321,
+          419
+        ],
+        [
+          322,
+          419
+        ],
+        [
+          323,
+          419
+        ],
+        [
+          324,
+          419
+        ],
+        [
+          325,
+          419
+        ],
+        [
+          326,
+          419
+        ],
+        [
+          327,
+          419
+        ],
+        [
+          328,
+          419
+        ],
+        [
+          329,
+          419
+        ],
+        [
+          330,
+          417
+        ],
+        [
+          331,
+          417
+        ],
+        [
+          332,
+          417
+        ],
+        [
+          333,
+          417
+        ],
+        [
+          334,
+          417
+        ],
+        [
+          335,
+          417
+        ],
+        [
+          336,
+          417
+        ],
+        [
+          337,
+          417
+        ],
+        [
+          338,
+          417
+        ],
+        [
+          339,
+          417
+        ],
+        [
+          340,
+          417
+        ],
+        [
+          341,
+          417
+        ],
+        [
+          342,
+          417
+        ]
+      ],
+      "point": [
+        315,
+        419
+      ],
+      "reason": "unverified_visible_colour_support",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        315,
+        326,
+        323,
+        350
+      ],
+      "seed_red_pixels": 192,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "unverified_visible_colour_support",
+      "original_shadow_point": [
+        315,
+        419
+      ],
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "existing_shadow_point_preserved",
+      "contexts": [],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": [
+          [
+            293,
+            417
+          ],
+          [
+            294,
+            417
+          ],
+          [
+            295,
+            417
+          ],
+          [
+            296,
+            417
+          ],
+          [
+            297,
+            417
+          ],
+          [
+            298,
+            417
+          ],
+          [
+            299,
+            417
+          ],
+          [
+            300,
+            417
+          ],
+          [
+            301,
+            417
+          ],
+          [
+            302,
+            417
+          ],
+          [
+            303,
+            417
+          ],
+          [
+            304,
+            417
+          ],
+          [
+            305,
+            417
+          ],
+          [
+            306,
+            417
+          ],
+          [
+            307,
+            417
+          ],
+          [
+            308,
+            417
+          ],
+          [
+            309,
+            417
+          ],
+          [
+            310,
+            417
+          ],
+          [
+            311,
+            417
+          ],
+          [
+            312,
+            419
+          ],
+          [
+            313,
+            419
+          ],
+          [
+            314,
+            419
+          ],
+          [
+            315,
+            419
+          ],
+          [
+            316,
+            419
+          ],
+          [
+            317,
+            419
+          ],
+          [
+            318,
+            419
+          ],
+          [
+            319,
+            419
+          ],
+          [
+            320,
+            419
+          ],
+          [
+            321,
+            419
+          ],
+          [
+            322,
+            419
+          ],
+          [
+            323,
+            419
+          ],
+          [
+            324,
+            419
+          ],
+          [
+            325,
+            419
+          ],
+          [
+            326,
+            419
+          ],
+          [
+            327,
+            419
+          ],
+          [
+            328,
+            419
+          ],
+          [
+            329,
+            419
+          ],
+          [
+            330,
+            417
+          ],
+          [
+            331,
+            417
+          ],
+          [
+            332,
+            417
+          ],
+          [
+            333,
+            417
+          ],
+          [
+            334,
+            417
+          ],
+          [
+            335,
+            417
+          ],
+          [
+            336,
+            417
+          ],
+          [
+            337,
+            417
+          ],
+          [
+            338,
+            417
+          ],
+          [
+            339,
+            417
+          ],
+          [
+            340,
+            417
+          ],
+          [
+            341,
+            417
+          ],
+          [
+            342,
+            417
+          ]
+        ],
+        "point": [
+          315,
+          419
+        ],
+        "reason": "unverified_visible_colour_support",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          315,
+          326,
+          323,
+          350
+        ],
+        "seed_red_pixels": 192,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "unverified_visible_colour_support",
+        "original_shadow_point": [
+          315,
+          419
+        ],
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "existing_shadow_point_preserved",
+        "contexts": [],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": false,
+      "upper_completion_granted": false,
+      "upper_completion_reason": "existing_comparison_point_preserved",
+      "upper_contexts": []
+    }
+  },
+  {
+    "case": "z1p00",
+    "source_frame": 61948,
+    "dy1": 0,
+    "dy2": 1,
+    "old_available": true,
+    "new_available": true,
+    "old_observation_preserved": true,
+    "upper_granted": false,
+    "upper_reason": "existing_comparison_point_preserved",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": [
+        [
+          293,
+          417
+        ],
+        [
+          294,
+          417
+        ],
+        [
+          295,
+          417
+        ],
+        [
+          296,
+          417
+        ],
+        [
+          297,
+          417
+        ],
+        [
+          298,
+          417
+        ],
+        [
+          299,
+          417
+        ],
+        [
+          300,
+          417
+        ],
+        [
+          301,
+          417
+        ],
+        [
+          302,
+          417
+        ],
+        [
+          303,
+          417
+        ],
+        [
+          304,
+          417
+        ],
+        [
+          305,
+          417
+        ],
+        [
+          306,
+          417
+        ],
+        [
+          307,
+          417
+        ],
+        [
+          308,
+          417
+        ],
+        [
+          309,
+          417
+        ],
+        [
+          310,
+          417
+        ],
+        [
+          311,
+          417
+        ],
+        [
+          312,
+          419
+        ],
+        [
+          313,
+          419
+        ],
+        [
+          314,
+          419
+        ],
+        [
+          315,
+          419
+        ],
+        [
+          316,
+          419
+        ],
+        [
+          317,
+          419
+        ],
+        [
+          318,
+          419
+        ],
+        [
+          319,
+          419
+        ],
+        [
+          320,
+          419
+        ],
+        [
+          321,
+          419
+        ],
+        [
+          322,
+          419
+        ],
+        [
+          323,
+          419
+        ],
+        [
+          324,
+          419
+        ],
+        [
+          325,
+          419
+        ],
+        [
+          326,
+          419
+        ],
+        [
+          327,
+          419
+        ],
+        [
+          328,
+          419
+        ],
+        [
+          329,
+          419
+        ],
+        [
+          330,
+          417
+        ],
+        [
+          331,
+          417
+        ],
+        [
+          332,
+          417
+        ],
+        [
+          333,
+          417
+        ],
+        [
+          334,
+          417
+        ],
+        [
+          335,
+          417
+        ],
+        [
+          336,
+          417
+        ],
+        [
+          337,
+          417
+        ],
+        [
+          338,
+          417
+        ],
+        [
+          339,
+          417
+        ],
+        [
+          340,
+          417
+        ],
+        [
+          341,
+          417
+        ],
+        [
+          342,
+          417
+        ]
+      ],
+      "point": [
+        315,
+        419
+      ],
+      "reason": "unverified_visible_colour_support",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        315,
+        326,
+        323,
+        350
+      ],
+      "seed_red_pixels": 192,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "unverified_visible_colour_support",
+      "original_shadow_point": [
+        315,
+        419
+      ],
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "existing_shadow_point_preserved",
+      "contexts": [],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": [
+          [
+            293,
+            417
+          ],
+          [
+            294,
+            417
+          ],
+          [
+            295,
+            417
+          ],
+          [
+            296,
+            417
+          ],
+          [
+            297,
+            417
+          ],
+          [
+            298,
+            417
+          ],
+          [
+            299,
+            417
+          ],
+          [
+            300,
+            417
+          ],
+          [
+            301,
+            417
+          ],
+          [
+            302,
+            417
+          ],
+          [
+            303,
+            417
+          ],
+          [
+            304,
+            417
+          ],
+          [
+            305,
+            417
+          ],
+          [
+            306,
+            417
+          ],
+          [
+            307,
+            417
+          ],
+          [
+            308,
+            417
+          ],
+          [
+            309,
+            417
+          ],
+          [
+            310,
+            417
+          ],
+          [
+            311,
+            417
+          ],
+          [
+            312,
+            419
+          ],
+          [
+            313,
+            419
+          ],
+          [
+            314,
+            419
+          ],
+          [
+            315,
+            419
+          ],
+          [
+            316,
+            419
+          ],
+          [
+            317,
+            419
+          ],
+          [
+            318,
+            419
+          ],
+          [
+            319,
+            419
+          ],
+          [
+            320,
+            419
+          ],
+          [
+            321,
+            419
+          ],
+          [
+            322,
+            419
+          ],
+          [
+            323,
+            419
+          ],
+          [
+            324,
+            419
+          ],
+          [
+            325,
+            419
+          ],
+          [
+            326,
+            419
+          ],
+          [
+            327,
+            419
+          ],
+          [
+            328,
+            419
+          ],
+          [
+            329,
+            419
+          ],
+          [
+            330,
+            417
+          ],
+          [
+            331,
+            417
+          ],
+          [
+            332,
+            417
+          ],
+          [
+            333,
+            417
+          ],
+          [
+            334,
+            417
+          ],
+          [
+            335,
+            417
+          ],
+          [
+            336,
+            417
+          ],
+          [
+            337,
+            417
+          ],
+          [
+            338,
+            417
+          ],
+          [
+            339,
+            417
+          ],
+          [
+            340,
+            417
+          ],
+          [
+            341,
+            417
+          ],
+          [
+            342,
+            417
+          ]
+        ],
+        "point": [
+          315,
+          419
+        ],
+        "reason": "unverified_visible_colour_support",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          315,
+          326,
+          323,
+          350
+        ],
+        "seed_red_pixels": 192,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "unverified_visible_colour_support",
+        "original_shadow_point": [
+          315,
+          419
+        ],
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "existing_shadow_point_preserved",
+        "contexts": [],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": false,
+      "upper_completion_granted": false,
+      "upper_completion_reason": "existing_comparison_point_preserved",
+      "upper_contexts": []
+    }
+  },
+  {
+    "case": "z1p00",
+    "source_frame": 61948,
+    "dy1": 1,
+    "dy2": -1,
+    "old_available": false,
+    "new_available": false,
+    "old_observation_preserved": true,
+    "upper_granted": false,
+    "upper_reason": "upper_point_outside_original_bbox",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": null,
+      "point": null,
+      "reason": "colour_contour_reaches_roi_edge",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        315,
+        327,
+        323,
+        350
+      ],
+      "seed_red_pixels": 184,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "colour_contour_reaches_roi_edge",
+      "original_shadow_point": null,
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "not_lateral_only_contact",
+      "contexts": [
+        {
+          "crop_xyxy": [
+            282,
+            300,
+            356,
+            422
+          ],
+          "lateral_padding_px": 4,
+          "vertical_padding_px": 4,
+          "reason": "colour_contour_reaches_roi_edge",
+          "component": {
+            "pixel_count": 3679,
+            "pixel_sha256": "b7339a81ad9ddc6fa4fdc759f45d8a722dda2ef27e43271a60fbb9286ee4e247",
+            "bounds_xyxy": [
+              286,
+              300,
+              349,
+              419
+            ],
+            "touches": {
+              "left": false,
+              "right": false,
+              "top": true,
+              "bottom": false
+            }
+          },
+          "observation": {
+            "support": null,
+            "point": null,
+            "reason": "colour_contour_reaches_roi_edge",
+            "floor_contact_verified": false
+          }
+        }
+      ],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": null,
+        "point": null,
+        "reason": "colour_contour_reaches_roi_edge",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          315,
+          327,
+          323,
+          350
+        ],
+        "seed_red_pixels": 184,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "colour_contour_reaches_roi_edge",
+        "original_shadow_point": null,
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "not_lateral_only_contact",
+        "contexts": [
+          {
+            "crop_xyxy": [
+              282,
+              300,
+              356,
+              422
+            ],
+            "lateral_padding_px": 4,
+            "vertical_padding_px": 4,
+            "reason": "colour_contour_reaches_roi_edge",
+            "component": {
+              "pixel_count": 3679,
+              "pixel_sha256": "b7339a81ad9ddc6fa4fdc759f45d8a722dda2ef27e43271a60fbb9286ee4e247",
+              "bounds_xyxy": [
+                286,
+                300,
+                349,
+                419
+              ],
+              "touches": {
+                "left": false,
+                "right": false,
+                "top": true,
+                "bottom": false
+              }
+            },
+            "observation": {
+              "support": null,
+              "point": null,
+              "reason": "colour_contour_reaches_roi_edge",
+              "floor_contact_verified": false
+            }
+          }
+        ],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": true,
+      "upper_completion_granted": false,
+      "upper_completion_reason": "upper_point_outside_original_bbox",
+      "upper_contexts": [
+        {
+          "crop_xyxy": [
+            282,
+            300,
+            356,
+            422
+          ],
+          "top_padding_px": 4,
+          "lateral_padding_px": 4,
+          "bottom_padding_px": 4,
+          "reason": "colour_contour_reaches_roi_edge",
+          "component": {
+            "pixel_count": 3679,
+            "pixel_sha256": "b7339a81ad9ddc6fa4fdc759f45d8a722dda2ef27e43271a60fbb9286ee4e247",
+            "bounds_xyxy": [
+              286,
+              300,
+              349,
+              419
+            ],
+            "touches": {
+              "left": false,
+              "right": false,
+              "top": true,
+              "bottom": false
+            },
+            "observed_lower_support": [
+              [
+                293,
+                417
+              ],
+              [
+                294,
+                417
+              ],
+              [
+                295,
+                417
+              ],
+              [
+                296,
+                417
+              ],
+              [
+                297,
+                417
+              ],
+              [
+                298,
+                417
+              ],
+              [
+                299,
+                417
+              ],
+              [
+                300,
+                417
+              ],
+              [
+                301,
+                417
+              ],
+              [
+                302,
+                417
+              ],
+              [
+                303,
+                417
+              ],
+              [
+                304,
+                417
+              ],
+              [
+                305,
+                417
+              ],
+              [
+                306,
+                417
+              ],
+              [
+                307,
+                417
+              ],
+              [
+                308,
+                417
+              ],
+              [
+                309,
+                417
+              ],
+              [
+                310,
+                417
+              ],
+              [
+                311,
+                417
+              ],
+              [
+                312,
+                419
+              ],
+              [
+                313,
+                419
+              ],
+              [
+                314,
+                419
+              ],
+              [
+                315,
+                419
+              ],
+              [
+                316,
+                419
+              ],
+              [
+                317,
+                419
+              ],
+              [
+                318,
+                419
+              ],
+              [
+                319,
+                419
+              ],
+              [
+                320,
+                419
+              ],
+              [
+                321,
+                419
+              ],
+              [
+                322,
+                419
+              ],
+              [
+                323,
+                419
+              ],
+              [
+                324,
+                419
+              ],
+              [
+                325,
+                419
+              ],
+              [
+                326,
+                419
+              ],
+              [
+                327,
+                419
+              ],
+              [
+                328,
+                419
+              ],
+              [
+                329,
+                419
+              ],
+              [
+                330,
+                417
+              ],
+              [
+                331,
+                417
+              ],
+              [
+                332,
+                417
+              ],
+              [
+                333,
+                417
+              ],
+              [
+                334,
+                417
+              ],
+              [
+                335,
+                417
+              ],
+              [
+                336,
+                417
+              ],
+              [
+                337,
+                417
+              ],
+              [
+                338,
+                417
+              ],
+              [
+                339,
+                417
+              ],
+              [
+                340,
+                417
+              ],
+              [
+                341,
+                417
+              ],
+              [
+                342,
+                417
+              ]
+            ]
+          },
+          "observation": {
+            "support": null,
+            "point": null,
+            "reason": "colour_contour_reaches_roi_edge",
+            "floor_contact_verified": false
+          }
+        },
+        {
+          "crop_xyxy": [
+            282,
+            288,
+            356,
+            422
+          ],
+          "top_padding_px": 16,
+          "lateral_padding_px": 4,
+          "bottom_padding_px": 4,
+          "reason": "unverified_visible_colour_support",
+          "component": {
+            "pixel_count": 3679,
+            "pixel_sha256": "b7339a81ad9ddc6fa4fdc759f45d8a722dda2ef27e43271a60fbb9286ee4e247",
+            "bounds_xyxy": [
+              286,
+              300,
+              349,
+              419
+            ],
+            "touches": {
+              "left": false,
+              "right": false,
+              "top": false,
+              "bottom": false
+            },
+            "observed_lower_support": [
+              [
+                293,
+                417
+              ],
+              [
+                294,
+                417
+              ],
+              [
+                295,
+                417
+              ],
+              [
+                296,
+                417
+              ],
+              [
+                297,
+                417
+              ],
+              [
+                298,
+                417
+              ],
+              [
+                299,
+                417
+              ],
+              [
+                300,
+                417
+              ],
+              [
+                301,
+                417
+              ],
+              [
+                302,
+                417
+              ],
+              [
+                303,
+                417
+              ],
+              [
+                304,
+                417
+              ],
+              [
+                305,
+                417
+              ],
+              [
+                306,
+                417
+              ],
+              [
+                307,
+                417
+              ],
+              [
+                308,
+                417
+              ],
+              [
+                309,
+                417
+              ],
+              [
+                310,
+                417
+              ],
+              [
+                311,
+                417
+              ],
+              [
+                312,
+                419
+              ],
+              [
+                313,
+                419
+              ],
+              [
+                314,
+                419
+              ],
+              [
+                315,
+                419
+              ],
+              [
+                316,
+                419
+              ],
+              [
+                317,
+                419
+              ],
+              [
+                318,
+                419
+              ],
+              [
+                319,
+                419
+              ],
+              [
+                320,
+                419
+              ],
+              [
+                321,
+                419
+              ],
+              [
+                322,
+                419
+              ],
+              [
+                323,
+                419
+              ],
+              [
+                324,
+                419
+              ],
+              [
+                325,
+                419
+              ],
+              [
+                326,
+                419
+              ],
+              [
+                327,
+                419
+              ],
+              [
+                328,
+                419
+              ],
+              [
+                329,
+                419
+              ],
+              [
+                330,
+                417
+              ],
+              [
+                331,
+                417
+              ],
+              [
+                332,
+                417
+              ],
+              [
+                333,
+                417
+              ],
+              [
+                334,
+                417
+              ],
+              [
+                335,
+                417
+              ],
+              [
+                336,
+                417
+              ],
+              [
+                337,
+                417
+              ],
+              [
+                338,
+                417
+              ],
+              [
+                339,
+                417
+              ],
+              [
+                340,
+                417
+              ],
+              [
+                341,
+                417
+              ],
+              [
+                342,
+                417
+              ]
+            ]
+          },
+          "observation": {
+            "support": [
+              [
+                293,
+                417
+              ],
+              [
+                294,
+                417
+              ],
+              [
+                295,
+                417
+              ],
+              [
+                296,
+                417
+              ],
+              [
+                297,
+                417
+              ],
+              [
+                298,
+                417
+              ],
+              [
+                299,
+                417
+              ],
+              [
+                300,
+                417
+              ],
+              [
+                301,
+                417
+              ],
+              [
+                302,
+                417
+              ],
+              [
+                303,
+                417
+              ],
+              [
+                304,
+                417
+              ],
+              [
+                305,
+                417
+              ],
+              [
+                306,
+                417
+              ],
+              [
+                307,
+                417
+              ],
+              [
+                308,
+                417
+              ],
+              [
+                309,
+                417
+              ],
+              [
+                310,
+                417
+              ],
+              [
+                311,
+                417
+              ],
+              [
+                312,
+                419
+              ],
+              [
+                313,
+                419
+              ],
+              [
+                314,
+                419
+              ],
+              [
+                315,
+                419
+              ],
+              [
+                316,
+                419
+              ],
+              [
+                317,
+                419
+              ],
+              [
+                318,
+                419
+              ],
+              [
+                319,
+                419
+              ],
+              [
+                320,
+                419
+              ],
+              [
+                321,
+                419
+              ],
+              [
+                322,
+                419
+              ],
+              [
+                323,
+                419
+              ],
+              [
+                324,
+                419
+              ],
+              [
+                325,
+                419
+              ],
+              [
+                326,
+                419
+              ],
+              [
+                327,
+                419
+              ],
+              [
+                328,
+                419
+              ],
+              [
+                329,
+                419
+              ],
+              [
+                330,
+                417
+              ],
+              [
+                331,
+                417
+              ],
+              [
+                332,
+                417
+              ],
+              [
+                333,
+                417
+              ],
+              [
+                334,
+                417
+              ],
+              [
+                335,
+                417
+              ],
+              [
+                336,
+                417
+              ],
+              [
+                337,
+                417
+              ],
+              [
+                338,
+                417
+              ],
+              [
+                339,
+                417
+              ],
+              [
+                340,
+                417
+              ],
+              [
+                341,
+                417
+              ],
+              [
+                342,
+                417
+              ]
+            ],
+            "point": [
+              315,
+              419
+            ],
+            "reason": "unverified_visible_colour_support",
+            "floor_contact_verified": false
+          }
+        },
+        {
+          "crop_xyxy": [
+            282,
+            272,
+            356,
+            422
+          ],
+          "top_padding_px": 32,
+          "lateral_padding_px": 4,
+          "bottom_padding_px": 4,
+          "reason": "unverified_visible_colour_support",
+          "component": {
+            "pixel_count": 3679,
+            "pixel_sha256": "b7339a81ad9ddc6fa4fdc759f45d8a722dda2ef27e43271a60fbb9286ee4e247",
+            "bounds_xyxy": [
+              286,
+              300,
+              349,
+              419
+            ],
+            "touches": {
+              "left": false,
+              "right": false,
+              "top": false,
+              "bottom": false
+            },
+            "observed_lower_support": [
+              [
+                293,
+                417
+              ],
+              [
+                294,
+                417
+              ],
+              [
+                295,
+                417
+              ],
+              [
+                296,
+                417
+              ],
+              [
+                297,
+                417
+              ],
+              [
+                298,
+                417
+              ],
+              [
+                299,
+                417
+              ],
+              [
+                300,
+                417
+              ],
+              [
+                301,
+                417
+              ],
+              [
+                302,
+                417
+              ],
+              [
+                303,
+                417
+              ],
+              [
+                304,
+                417
+              ],
+              [
+                305,
+                417
+              ],
+              [
+                306,
+                417
+              ],
+              [
+                307,
+                417
+              ],
+              [
+                308,
+                417
+              ],
+              [
+                309,
+                417
+              ],
+              [
+                310,
+                417
+              ],
+              [
+                311,
+                417
+              ],
+              [
+                312,
+                419
+              ],
+              [
+                313,
+                419
+              ],
+              [
+                314,
+                419
+              ],
+              [
+                315,
+                419
+              ],
+              [
+                316,
+                419
+              ],
+              [
+                317,
+                419
+              ],
+              [
+                318,
+                419
+              ],
+              [
+                319,
+                419
+              ],
+              [
+                320,
+                419
+              ],
+              [
+                321,
+                419
+              ],
+              [
+                322,
+                419
+              ],
+              [
+                323,
+                419
+              ],
+              [
+                324,
+                419
+              ],
+              [
+                325,
+                419
+              ],
+              [
+                326,
+                419
+              ],
+              [
+                327,
+                419
+              ],
+              [
+                328,
+                419
+              ],
+              [
+                329,
+                419
+              ],
+              [
+                330,
+                417
+              ],
+              [
+                331,
+                417
+              ],
+              [
+                332,
+                417
+              ],
+              [
+                333,
+                417
+              ],
+              [
+                334,
+                417
+              ],
+              [
+                335,
+                417
+              ],
+              [
+                336,
+                417
+              ],
+              [
+                337,
+                417
+              ],
+              [
+                338,
+                417
+              ],
+              [
+                339,
+                417
+              ],
+              [
+                340,
+                417
+              ],
+              [
+                341,
+                417
+              ],
+              [
+                342,
+                417
+              ]
+            ]
+          },
+          "observation": {
+            "support": [
+              [
+                293,
+                417
+              ],
+              [
+                294,
+                417
+              ],
+              [
+                295,
+                417
+              ],
+              [
+                296,
+                417
+              ],
+              [
+                297,
+                417
+              ],
+              [
+                298,
+                417
+              ],
+              [
+                299,
+                417
+              ],
+              [
+                300,
+                417
+              ],
+              [
+                301,
+                417
+              ],
+              [
+                302,
+                417
+              ],
+              [
+                303,
+                417
+              ],
+              [
+                304,
+                417
+              ],
+              [
+                305,
+                417
+              ],
+              [
+                306,
+                417
+              ],
+              [
+                307,
+                417
+              ],
+              [
+                308,
+                417
+              ],
+              [
+                309,
+                417
+              ],
+              [
+                310,
+                417
+              ],
+              [
+                311,
+                417
+              ],
+              [
+                312,
+                419
+              ],
+              [
+                313,
+                419
+              ],
+              [
+                314,
+                419
+              ],
+              [
+                315,
+                419
+              ],
+              [
+                316,
+                419
+              ],
+              [
+                317,
+                419
+              ],
+              [
+                318,
+                419
+              ],
+              [
+                319,
+                419
+              ],
+              [
+                320,
+                419
+              ],
+              [
+                321,
+                419
+              ],
+              [
+                322,
+                419
+              ],
+              [
+                323,
+                419
+              ],
+              [
+                324,
+                419
+              ],
+              [
+                325,
+                419
+              ],
+              [
+                326,
+                419
+              ],
+              [
+                327,
+                419
+              ],
+              [
+                328,
+                419
+              ],
+              [
+                329,
+                419
+              ],
+              [
+                330,
+                417
+              ],
+              [
+                331,
+                417
+              ],
+              [
+                332,
+                417
+              ],
+              [
+                333,
+                417
+              ],
+              [
+                334,
+                417
+              ],
+              [
+                335,
+                417
+              ],
+              [
+                336,
+                417
+              ],
+              [
+                337,
+                417
+              ],
+              [
+                338,
+                417
+              ],
+              [
+                339,
+                417
+              ],
+              [
+                340,
+                417
+              ],
+              [
+                341,
+                417
+              ],
+              [
+                342,
+                417
+              ]
+            ],
+            "point": [
+              315,
+              419
+            ],
+            "reason": "unverified_visible_colour_support",
+            "floor_contact_verified": false
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "z1p00",
+    "source_frame": 61948,
+    "dy1": 1,
+    "dy2": 0,
+    "old_available": false,
+    "new_available": false,
+    "old_observation_preserved": true,
+    "upper_granted": false,
+    "upper_reason": "upper_point_outside_original_bbox",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": null,
+      "point": null,
+      "reason": "colour_contour_reaches_roi_edge",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        315,
+        327,
+        323,
+        351
+      ],
+      "seed_red_pixels": 192,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "colour_contour_reaches_roi_edge",
+      "original_shadow_point": null,
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "not_lateral_only_contact",
+      "contexts": [
+        {
+          "crop_xyxy": [
+            282,
+            300,
+            356,
+            423
+          ],
+          "lateral_padding_px": 4,
+          "vertical_padding_px": 4,
+          "reason": "colour_contour_reaches_roi_edge",
+          "component": {
+            "pixel_count": 3679,
+            "pixel_sha256": "b7339a81ad9ddc6fa4fdc759f45d8a722dda2ef27e43271a60fbb9286ee4e247",
+            "bounds_xyxy": [
+              286,
+              300,
+              349,
+              419
+            ],
+            "touches": {
+              "left": false,
+              "right": false,
+              "top": true,
+              "bottom": false
+            }
+          },
+          "observation": {
+            "support": null,
+            "point": null,
+            "reason": "colour_contour_reaches_roi_edge",
+            "floor_contact_verified": false
+          }
+        }
+      ],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": null,
+        "point": null,
+        "reason": "colour_contour_reaches_roi_edge",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          315,
+          327,
+          323,
+          351
+        ],
+        "seed_red_pixels": 192,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "colour_contour_reaches_roi_edge",
+        "original_shadow_point": null,
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "not_lateral_only_contact",
+        "contexts": [
+          {
+            "crop_xyxy": [
+              282,
+              300,
+              356,
+              423
+            ],
+            "lateral_padding_px": 4,
+            "vertical_padding_px": 4,
+            "reason": "colour_contour_reaches_roi_edge",
+            "component": {
+              "pixel_count": 3679,
+              "pixel_sha256": "b7339a81ad9ddc6fa4fdc759f45d8a722dda2ef27e43271a60fbb9286ee4e247",
+              "bounds_xyxy": [
+                286,
+                300,
+                349,
+                419
+              ],
+              "touches": {
+                "left": false,
+                "right": false,
+                "top": true,
+                "bottom": false
+              }
+            },
+            "observation": {
+              "support": null,
+              "point": null,
+              "reason": "colour_contour_reaches_roi_edge",
+              "floor_contact_verified": false
+            }
+          }
+        ],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": true,
+      "upper_completion_granted": false,
+      "upper_completion_reason": "upper_point_outside_original_bbox",
+      "upper_contexts": [
+        {
+          "crop_xyxy": [
+            282,
+            300,
+            356,
+            423
+          ],
+          "top_padding_px": 4,
+          "lateral_padding_px": 4,
+          "bottom_padding_px": 4,
+          "reason": "colour_contour_reaches_roi_edge",
+          "component": {
+            "pixel_count": 3679,
+            "pixel_sha256": "b7339a81ad9ddc6fa4fdc759f45d8a722dda2ef27e43271a60fbb9286ee4e247",
+            "bounds_xyxy": [
+              286,
+              300,
+              349,
+              419
+            ],
+            "touches": {
+              "left": false,
+              "right": false,
+              "top": true,
+              "bottom": false
+            },
+            "observed_lower_support": [
+              [
+                293,
+                417
+              ],
+              [
+                294,
+                417
+              ],
+              [
+                295,
+                417
+              ],
+              [
+                296,
+                417
+              ],
+              [
+                297,
+                417
+              ],
+              [
+                298,
+                417
+              ],
+              [
+                299,
+                417
+              ],
+              [
+                300,
+                417
+              ],
+              [
+                301,
+                417
+              ],
+              [
+                302,
+                417
+              ],
+              [
+                303,
+                417
+              ],
+              [
+                304,
+                417
+              ],
+              [
+                305,
+                417
+              ],
+              [
+                306,
+                417
+              ],
+              [
+                307,
+                417
+              ],
+              [
+                308,
+                417
+              ],
+              [
+                309,
+                417
+              ],
+              [
+                310,
+                417
+              ],
+              [
+                311,
+                417
+              ],
+              [
+                312,
+                419
+              ],
+              [
+                313,
+                419
+              ],
+              [
+                314,
+                419
+              ],
+              [
+                315,
+                419
+              ],
+              [
+                316,
+                419
+              ],
+              [
+                317,
+                419
+              ],
+              [
+                318,
+                419
+              ],
+              [
+                319,
+                419
+              ],
+              [
+                320,
+                419
+              ],
+              [
+                321,
+                419
+              ],
+              [
+                322,
+                419
+              ],
+              [
+                323,
+                419
+              ],
+              [
+                324,
+                419
+              ],
+              [
+                325,
+                419
+              ],
+              [
+                326,
+                419
+              ],
+              [
+                327,
+                419
+              ],
+              [
+                328,
+                419
+              ],
+              [
+                329,
+                419
+              ],
+              [
+                330,
+                417
+              ],
+              [
+                331,
+                417
+              ],
+              [
+                332,
+                417
+              ],
+              [
+                333,
+                417
+              ],
+              [
+                334,
+                417
+              ],
+              [
+                335,
+                417
+              ],
+              [
+                336,
+                417
+              ],
+              [
+                337,
+                417
+              ],
+              [
+                338,
+                417
+              ],
+              [
+                339,
+                417
+              ],
+              [
+                340,
+                417
+              ],
+              [
+                341,
+                417
+              ],
+              [
+                342,
+                417
+              ]
+            ]
+          },
+          "observation": {
+            "support": null,
+            "point": null,
+            "reason": "colour_contour_reaches_roi_edge",
+            "floor_contact_verified": false
+          }
+        },
+        {
+          "crop_xyxy": [
+            282,
+            288,
+            356,
+            423
+          ],
+          "top_padding_px": 16,
+          "lateral_padding_px": 4,
+          "bottom_padding_px": 4,
+          "reason": "unverified_visible_colour_support",
+          "component": {
+            "pixel_count": 3679,
+            "pixel_sha256": "b7339a81ad9ddc6fa4fdc759f45d8a722dda2ef27e43271a60fbb9286ee4e247",
+            "bounds_xyxy": [
+              286,
+              300,
+              349,
+              419
+            ],
+            "touches": {
+              "left": false,
+              "right": false,
+              "top": false,
+              "bottom": false
+            },
+            "observed_lower_support": [
+              [
+                293,
+                417
+              ],
+              [
+                294,
+                417
+              ],
+              [
+                295,
+                417
+              ],
+              [
+                296,
+                417
+              ],
+              [
+                297,
+                417
+              ],
+              [
+                298,
+                417
+              ],
+              [
+                299,
+                417
+              ],
+              [
+                300,
+                417
+              ],
+              [
+                301,
+                417
+              ],
+              [
+                302,
+                417
+              ],
+              [
+                303,
+                417
+              ],
+              [
+                304,
+                417
+              ],
+              [
+                305,
+                417
+              ],
+              [
+                306,
+                417
+              ],
+              [
+                307,
+                417
+              ],
+              [
+                308,
+                417
+              ],
+              [
+                309,
+                417
+              ],
+              [
+                310,
+                417
+              ],
+              [
+                311,
+                417
+              ],
+              [
+                312,
+                419
+              ],
+              [
+                313,
+                419
+              ],
+              [
+                314,
+                419
+              ],
+              [
+                315,
+                419
+              ],
+              [
+                316,
+                419
+              ],
+              [
+                317,
+                419
+              ],
+              [
+                318,
+                419
+              ],
+              [
+                319,
+                419
+              ],
+              [
+                320,
+                419
+              ],
+              [
+                321,
+                419
+              ],
+              [
+                322,
+                419
+              ],
+              [
+                323,
+                419
+              ],
+              [
+                324,
+                419
+              ],
+              [
+                325,
+                419
+              ],
+              [
+                326,
+                419
+              ],
+              [
+                327,
+                419
+              ],
+              [
+                328,
+                419
+              ],
+              [
+                329,
+                419
+              ],
+              [
+                330,
+                417
+              ],
+              [
+                331,
+                417
+              ],
+              [
+                332,
+                417
+              ],
+              [
+                333,
+                417
+              ],
+              [
+                334,
+                417
+              ],
+              [
+                335,
+                417
+              ],
+              [
+                336,
+                417
+              ],
+              [
+                337,
+                417
+              ],
+              [
+                338,
+                417
+              ],
+              [
+                339,
+                417
+              ],
+              [
+                340,
+                417
+              ],
+              [
+                341,
+                417
+              ],
+              [
+                342,
+                417
+              ]
+            ]
+          },
+          "observation": {
+            "support": [
+              [
+                293,
+                417
+              ],
+              [
+                294,
+                417
+              ],
+              [
+                295,
+                417
+              ],
+              [
+                296,
+                417
+              ],
+              [
+                297,
+                417
+              ],
+              [
+                298,
+                417
+              ],
+              [
+                299,
+                417
+              ],
+              [
+                300,
+                417
+              ],
+              [
+                301,
+                417
+              ],
+              [
+                302,
+                417
+              ],
+              [
+                303,
+                417
+              ],
+              [
+                304,
+                417
+              ],
+              [
+                305,
+                417
+              ],
+              [
+                306,
+                417
+              ],
+              [
+                307,
+                417
+              ],
+              [
+                308,
+                417
+              ],
+              [
+                309,
+                417
+              ],
+              [
+                310,
+                417
+              ],
+              [
+                311,
+                417
+              ],
+              [
+                312,
+                419
+              ],
+              [
+                313,
+                419
+              ],
+              [
+                314,
+                419
+              ],
+              [
+                315,
+                419
+              ],
+              [
+                316,
+                419
+              ],
+              [
+                317,
+                419
+              ],
+              [
+                318,
+                419
+              ],
+              [
+                319,
+                419
+              ],
+              [
+                320,
+                419
+              ],
+              [
+                321,
+                419
+              ],
+              [
+                322,
+                419
+              ],
+              [
+                323,
+                419
+              ],
+              [
+                324,
+                419
+              ],
+              [
+                325,
+                419
+              ],
+              [
+                326,
+                419
+              ],
+              [
+                327,
+                419
+              ],
+              [
+                328,
+                419
+              ],
+              [
+                329,
+                419
+              ],
+              [
+                330,
+                417
+              ],
+              [
+                331,
+                417
+              ],
+              [
+                332,
+                417
+              ],
+              [
+                333,
+                417
+              ],
+              [
+                334,
+                417
+              ],
+              [
+                335,
+                417
+              ],
+              [
+                336,
+                417
+              ],
+              [
+                337,
+                417
+              ],
+              [
+                338,
+                417
+              ],
+              [
+                339,
+                417
+              ],
+              [
+                340,
+                417
+              ],
+              [
+                341,
+                417
+              ],
+              [
+                342,
+                417
+              ]
+            ],
+            "point": [
+              315,
+              419
+            ],
+            "reason": "unverified_visible_colour_support",
+            "floor_contact_verified": false
+          }
+        },
+        {
+          "crop_xyxy": [
+            282,
+            272,
+            356,
+            423
+          ],
+          "top_padding_px": 32,
+          "lateral_padding_px": 4,
+          "bottom_padding_px": 4,
+          "reason": "unverified_visible_colour_support",
+          "component": {
+            "pixel_count": 3679,
+            "pixel_sha256": "b7339a81ad9ddc6fa4fdc759f45d8a722dda2ef27e43271a60fbb9286ee4e247",
+            "bounds_xyxy": [
+              286,
+              300,
+              349,
+              419
+            ],
+            "touches": {
+              "left": false,
+              "right": false,
+              "top": false,
+              "bottom": false
+            },
+            "observed_lower_support": [
+              [
+                293,
+                417
+              ],
+              [
+                294,
+                417
+              ],
+              [
+                295,
+                417
+              ],
+              [
+                296,
+                417
+              ],
+              [
+                297,
+                417
+              ],
+              [
+                298,
+                417
+              ],
+              [
+                299,
+                417
+              ],
+              [
+                300,
+                417
+              ],
+              [
+                301,
+                417
+              ],
+              [
+                302,
+                417
+              ],
+              [
+                303,
+                417
+              ],
+              [
+                304,
+                417
+              ],
+              [
+                305,
+                417
+              ],
+              [
+                306,
+                417
+              ],
+              [
+                307,
+                417
+              ],
+              [
+                308,
+                417
+              ],
+              [
+                309,
+                417
+              ],
+              [
+                310,
+                417
+              ],
+              [
+                311,
+                417
+              ],
+              [
+                312,
+                419
+              ],
+              [
+                313,
+                419
+              ],
+              [
+                314,
+                419
+              ],
+              [
+                315,
+                419
+              ],
+              [
+                316,
+                419
+              ],
+              [
+                317,
+                419
+              ],
+              [
+                318,
+                419
+              ],
+              [
+                319,
+                419
+              ],
+              [
+                320,
+                419
+              ],
+              [
+                321,
+                419
+              ],
+              [
+                322,
+                419
+              ],
+              [
+                323,
+                419
+              ],
+              [
+                324,
+                419
+              ],
+              [
+                325,
+                419
+              ],
+              [
+                326,
+                419
+              ],
+              [
+                327,
+                419
+              ],
+              [
+                328,
+                419
+              ],
+              [
+                329,
+                419
+              ],
+              [
+                330,
+                417
+              ],
+              [
+                331,
+                417
+              ],
+              [
+                332,
+                417
+              ],
+              [
+                333,
+                417
+              ],
+              [
+                334,
+                417
+              ],
+              [
+                335,
+                417
+              ],
+              [
+                336,
+                417
+              ],
+              [
+                337,
+                417
+              ],
+              [
+                338,
+                417
+              ],
+              [
+                339,
+                417
+              ],
+              [
+                340,
+                417
+              ],
+              [
+                341,
+                417
+              ],
+              [
+                342,
+                417
+              ]
+            ]
+          },
+          "observation": {
+            "support": [
+              [
+                293,
+                417
+              ],
+              [
+                294,
+                417
+              ],
+              [
+                295,
+                417
+              ],
+              [
+                296,
+                417
+              ],
+              [
+                297,
+                417
+              ],
+              [
+                298,
+                417
+              ],
+              [
+                299,
+                417
+              ],
+              [
+                300,
+                417
+              ],
+              [
+                301,
+                417
+              ],
+              [
+                302,
+                417
+              ],
+              [
+                303,
+                417
+              ],
+              [
+                304,
+                417
+              ],
+              [
+                305,
+                417
+              ],
+              [
+                306,
+                417
+              ],
+              [
+                307,
+                417
+              ],
+              [
+                308,
+                417
+              ],
+              [
+                309,
+                417
+              ],
+              [
+                310,
+                417
+              ],
+              [
+                311,
+                417
+              ],
+              [
+                312,
+                419
+              ],
+              [
+                313,
+                419
+              ],
+              [
+                314,
+                419
+              ],
+              [
+                315,
+                419
+              ],
+              [
+                316,
+                419
+              ],
+              [
+                317,
+                419
+              ],
+              [
+                318,
+                419
+              ],
+              [
+                319,
+                419
+              ],
+              [
+                320,
+                419
+              ],
+              [
+                321,
+                419
+              ],
+              [
+                322,
+                419
+              ],
+              [
+                323,
+                419
+              ],
+              [
+                324,
+                419
+              ],
+              [
+                325,
+                419
+              ],
+              [
+                326,
+                419
+              ],
+              [
+                327,
+                419
+              ],
+              [
+                328,
+                419
+              ],
+              [
+                329,
+                419
+              ],
+              [
+                330,
+                417
+              ],
+              [
+                331,
+                417
+              ],
+              [
+                332,
+                417
+              ],
+              [
+                333,
+                417
+              ],
+              [
+                334,
+                417
+              ],
+              [
+                335,
+                417
+              ],
+              [
+                336,
+                417
+              ],
+              [
+                337,
+                417
+              ],
+              [
+                338,
+                417
+              ],
+              [
+                339,
+                417
+              ],
+              [
+                340,
+                417
+              ],
+              [
+                341,
+                417
+              ],
+              [
+                342,
+                417
+              ]
+            ],
+            "point": [
+              315,
+              419
+            ],
+            "reason": "unverified_visible_colour_support",
+            "floor_contact_verified": false
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "z1p00",
+    "source_frame": 61948,
+    "dy1": 1,
+    "dy2": 1,
+    "old_available": false,
+    "new_available": true,
+    "old_observation_preserved": true,
+    "upper_granted": true,
+    "upper_reason": "same_closed_component_and_original_lower_support_in_two_contexts",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": [
+        [
+          293,
+          417
+        ],
+        [
+          294,
+          417
+        ],
+        [
+          295,
+          417
+        ],
+        [
+          296,
+          417
+        ],
+        [
+          297,
+          417
+        ],
+        [
+          298,
+          417
+        ],
+        [
+          299,
+          417
+        ],
+        [
+          300,
+          417
+        ],
+        [
+          301,
+          417
+        ],
+        [
+          302,
+          417
+        ],
+        [
+          303,
+          417
+        ],
+        [
+          304,
+          417
+        ],
+        [
+          305,
+          417
+        ],
+        [
+          306,
+          417
+        ],
+        [
+          307,
+          417
+        ],
+        [
+          308,
+          417
+        ],
+        [
+          309,
+          417
+        ],
+        [
+          310,
+          417
+        ],
+        [
+          311,
+          417
+        ],
+        [
+          312,
+          419
+        ],
+        [
+          313,
+          419
+        ],
+        [
+          314,
+          419
+        ],
+        [
+          315,
+          419
+        ],
+        [
+          316,
+          419
+        ],
+        [
+          317,
+          419
+        ],
+        [
+          318,
+          419
+        ],
+        [
+          319,
+          419
+        ],
+        [
+          320,
+          419
+        ],
+        [
+          321,
+          419
+        ],
+        [
+          322,
+          419
+        ],
+        [
+          323,
+          419
+        ],
+        [
+          324,
+          419
+        ],
+        [
+          325,
+          419
+        ],
+        [
+          326,
+          419
+        ],
+        [
+          327,
+          419
+        ],
+        [
+          328,
+          419
+        ],
+        [
+          329,
+          419
+        ],
+        [
+          330,
+          417
+        ],
+        [
+          331,
+          417
+        ],
+        [
+          332,
+          417
+        ],
+        [
+          333,
+          417
+        ],
+        [
+          334,
+          417
+        ],
+        [
+          335,
+          417
+        ],
+        [
+          336,
+          417
+        ],
+        [
+          337,
+          417
+        ],
+        [
+          338,
+          417
+        ],
+        [
+          339,
+          417
+        ],
+        [
+          340,
+          417
+        ],
+        [
+          341,
+          417
+        ],
+        [
+          342,
+          417
+        ]
+      ],
+      "point": [
+        315,
+        419
+      ],
+      "reason": "unverified_upper_completed_colour_support",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        315,
+        327,
+        323,
+        351
+      ],
+      "seed_red_pixels": 192,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "colour_contour_reaches_roi_edge",
+      "original_shadow_point": null,
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "not_lateral_only_contact",
+      "contexts": [
+        {
+          "crop_xyxy": [
+            282,
+            300,
+            356,
+            424
+          ],
+          "lateral_padding_px": 4,
+          "vertical_padding_px": 4,
+          "reason": "colour_contour_reaches_roi_edge",
+          "component": {
+            "pixel_count": 3679,
+            "pixel_sha256": "b7339a81ad9ddc6fa4fdc759f45d8a722dda2ef27e43271a60fbb9286ee4e247",
+            "bounds_xyxy": [
+              286,
+              300,
+              349,
+              419
+            ],
+            "touches": {
+              "left": false,
+              "right": false,
+              "top": true,
+              "bottom": false
+            }
+          },
+          "observation": {
+            "support": null,
+            "point": null,
+            "reason": "colour_contour_reaches_roi_edge",
+            "floor_contact_verified": false
+          }
+        }
+      ],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": null,
+        "point": null,
+        "reason": "colour_contour_reaches_roi_edge",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          315,
+          327,
+          323,
+          351
+        ],
+        "seed_red_pixels": 192,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "colour_contour_reaches_roi_edge",
+        "original_shadow_point": null,
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "not_lateral_only_contact",
+        "contexts": [
+          {
+            "crop_xyxy": [
+              282,
+              300,
+              356,
+              424
+            ],
+            "lateral_padding_px": 4,
+            "vertical_padding_px": 4,
+            "reason": "colour_contour_reaches_roi_edge",
+            "component": {
+              "pixel_count": 3679,
+              "pixel_sha256": "b7339a81ad9ddc6fa4fdc759f45d8a722dda2ef27e43271a60fbb9286ee4e247",
+              "bounds_xyxy": [
+                286,
+                300,
+                349,
+                419
+              ],
+              "touches": {
+                "left": false,
+                "right": false,
+                "top": true,
+                "bottom": false
+              }
+            },
+            "observation": {
+              "support": null,
+              "point": null,
+              "reason": "colour_contour_reaches_roi_edge",
+              "floor_contact_verified": false
+            }
+          }
+        ],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": true,
+      "upper_completion_granted": true,
+      "upper_completion_reason": "same_closed_component_and_original_lower_support_in_two_contexts",
+      "upper_contexts": [
+        {
+          "crop_xyxy": [
+            282,
+            300,
+            356,
+            424
+          ],
+          "top_padding_px": 4,
+          "lateral_padding_px": 4,
+          "bottom_padding_px": 4,
+          "reason": "colour_contour_reaches_roi_edge",
+          "component": {
+            "pixel_count": 3679,
+            "pixel_sha256": "b7339a81ad9ddc6fa4fdc759f45d8a722dda2ef27e43271a60fbb9286ee4e247",
+            "bounds_xyxy": [
+              286,
+              300,
+              349,
+              419
+            ],
+            "touches": {
+              "left": false,
+              "right": false,
+              "top": true,
+              "bottom": false
+            },
+            "observed_lower_support": [
+              [
+                293,
+                417
+              ],
+              [
+                294,
+                417
+              ],
+              [
+                295,
+                417
+              ],
+              [
+                296,
+                417
+              ],
+              [
+                297,
+                417
+              ],
+              [
+                298,
+                417
+              ],
+              [
+                299,
+                417
+              ],
+              [
+                300,
+                417
+              ],
+              [
+                301,
+                417
+              ],
+              [
+                302,
+                417
+              ],
+              [
+                303,
+                417
+              ],
+              [
+                304,
+                417
+              ],
+              [
+                305,
+                417
+              ],
+              [
+                306,
+                417
+              ],
+              [
+                307,
+                417
+              ],
+              [
+                308,
+                417
+              ],
+              [
+                309,
+                417
+              ],
+              [
+                310,
+                417
+              ],
+              [
+                311,
+                417
+              ],
+              [
+                312,
+                419
+              ],
+              [
+                313,
+                419
+              ],
+              [
+                314,
+                419
+              ],
+              [
+                315,
+                419
+              ],
+              [
+                316,
+                419
+              ],
+              [
+                317,
+                419
+              ],
+              [
+                318,
+                419
+              ],
+              [
+                319,
+                419
+              ],
+              [
+                320,
+                419
+              ],
+              [
+                321,
+                419
+              ],
+              [
+                322,
+                419
+              ],
+              [
+                323,
+                419
+              ],
+              [
+                324,
+                419
+              ],
+              [
+                325,
+                419
+              ],
+              [
+                326,
+                419
+              ],
+              [
+                327,
+                419
+              ],
+              [
+                328,
+                419
+              ],
+              [
+                329,
+                419
+              ],
+              [
+                330,
+                417
+              ],
+              [
+                331,
+                417
+              ],
+              [
+                332,
+                417
+              ],
+              [
+                333,
+                417
+              ],
+              [
+                334,
+                417
+              ],
+              [
+                335,
+                417
+              ],
+              [
+                336,
+                417
+              ],
+              [
+                337,
+                417
+              ],
+              [
+                338,
+                417
+              ],
+              [
+                339,
+                417
+              ],
+              [
+                340,
+                417
+              ],
+              [
+                341,
+                417
+              ],
+              [
+                342,
+                417
+              ]
+            ]
+          },
+          "observation": {
+            "support": null,
+            "point": null,
+            "reason": "colour_contour_reaches_roi_edge",
+            "floor_contact_verified": false
+          }
+        },
+        {
+          "crop_xyxy": [
+            282,
+            288,
+            356,
+            424
+          ],
+          "top_padding_px": 16,
+          "lateral_padding_px": 4,
+          "bottom_padding_px": 4,
+          "reason": "unverified_visible_colour_support",
+          "component": {
+            "pixel_count": 3679,
+            "pixel_sha256": "b7339a81ad9ddc6fa4fdc759f45d8a722dda2ef27e43271a60fbb9286ee4e247",
+            "bounds_xyxy": [
+              286,
+              300,
+              349,
+              419
+            ],
+            "touches": {
+              "left": false,
+              "right": false,
+              "top": false,
+              "bottom": false
+            },
+            "observed_lower_support": [
+              [
+                293,
+                417
+              ],
+              [
+                294,
+                417
+              ],
+              [
+                295,
+                417
+              ],
+              [
+                296,
+                417
+              ],
+              [
+                297,
+                417
+              ],
+              [
+                298,
+                417
+              ],
+              [
+                299,
+                417
+              ],
+              [
+                300,
+                417
+              ],
+              [
+                301,
+                417
+              ],
+              [
+                302,
+                417
+              ],
+              [
+                303,
+                417
+              ],
+              [
+                304,
+                417
+              ],
+              [
+                305,
+                417
+              ],
+              [
+                306,
+                417
+              ],
+              [
+                307,
+                417
+              ],
+              [
+                308,
+                417
+              ],
+              [
+                309,
+                417
+              ],
+              [
+                310,
+                417
+              ],
+              [
+                311,
+                417
+              ],
+              [
+                312,
+                419
+              ],
+              [
+                313,
+                419
+              ],
+              [
+                314,
+                419
+              ],
+              [
+                315,
+                419
+              ],
+              [
+                316,
+                419
+              ],
+              [
+                317,
+                419
+              ],
+              [
+                318,
+                419
+              ],
+              [
+                319,
+                419
+              ],
+              [
+                320,
+                419
+              ],
+              [
+                321,
+                419
+              ],
+              [
+                322,
+                419
+              ],
+              [
+                323,
+                419
+              ],
+              [
+                324,
+                419
+              ],
+              [
+                325,
+                419
+              ],
+              [
+                326,
+                419
+              ],
+              [
+                327,
+                419
+              ],
+              [
+                328,
+                419
+              ],
+              [
+                329,
+                419
+              ],
+              [
+                330,
+                417
+              ],
+              [
+                331,
+                417
+              ],
+              [
+                332,
+                417
+              ],
+              [
+                333,
+                417
+              ],
+              [
+                334,
+                417
+              ],
+              [
+                335,
+                417
+              ],
+              [
+                336,
+                417
+              ],
+              [
+                337,
+                417
+              ],
+              [
+                338,
+                417
+              ],
+              [
+                339,
+                417
+              ],
+              [
+                340,
+                417
+              ],
+              [
+                341,
+                417
+              ],
+              [
+                342,
+                417
+              ]
+            ]
+          },
+          "observation": {
+            "support": [
+              [
+                293,
+                417
+              ],
+              [
+                294,
+                417
+              ],
+              [
+                295,
+                417
+              ],
+              [
+                296,
+                417
+              ],
+              [
+                297,
+                417
+              ],
+              [
+                298,
+                417
+              ],
+              [
+                299,
+                417
+              ],
+              [
+                300,
+                417
+              ],
+              [
+                301,
+                417
+              ],
+              [
+                302,
+                417
+              ],
+              [
+                303,
+                417
+              ],
+              [
+                304,
+                417
+              ],
+              [
+                305,
+                417
+              ],
+              [
+                306,
+                417
+              ],
+              [
+                307,
+                417
+              ],
+              [
+                308,
+                417
+              ],
+              [
+                309,
+                417
+              ],
+              [
+                310,
+                417
+              ],
+              [
+                311,
+                417
+              ],
+              [
+                312,
+                419
+              ],
+              [
+                313,
+                419
+              ],
+              [
+                314,
+                419
+              ],
+              [
+                315,
+                419
+              ],
+              [
+                316,
+                419
+              ],
+              [
+                317,
+                419
+              ],
+              [
+                318,
+                419
+              ],
+              [
+                319,
+                419
+              ],
+              [
+                320,
+                419
+              ],
+              [
+                321,
+                419
+              ],
+              [
+                322,
+                419
+              ],
+              [
+                323,
+                419
+              ],
+              [
+                324,
+                419
+              ],
+              [
+                325,
+                419
+              ],
+              [
+                326,
+                419
+              ],
+              [
+                327,
+                419
+              ],
+              [
+                328,
+                419
+              ],
+              [
+                329,
+                419
+              ],
+              [
+                330,
+                417
+              ],
+              [
+                331,
+                417
+              ],
+              [
+                332,
+                417
+              ],
+              [
+                333,
+                417
+              ],
+              [
+                334,
+                417
+              ],
+              [
+                335,
+                417
+              ],
+              [
+                336,
+                417
+              ],
+              [
+                337,
+                417
+              ],
+              [
+                338,
+                417
+              ],
+              [
+                339,
+                417
+              ],
+              [
+                340,
+                417
+              ],
+              [
+                341,
+                417
+              ],
+              [
+                342,
+                417
+              ]
+            ],
+            "point": [
+              315,
+              419
+            ],
+            "reason": "unverified_visible_colour_support",
+            "floor_contact_verified": false
+          }
+        },
+        {
+          "crop_xyxy": [
+            282,
+            272,
+            356,
+            424
+          ],
+          "top_padding_px": 32,
+          "lateral_padding_px": 4,
+          "bottom_padding_px": 4,
+          "reason": "unverified_visible_colour_support",
+          "component": {
+            "pixel_count": 3679,
+            "pixel_sha256": "b7339a81ad9ddc6fa4fdc759f45d8a722dda2ef27e43271a60fbb9286ee4e247",
+            "bounds_xyxy": [
+              286,
+              300,
+              349,
+              419
+            ],
+            "touches": {
+              "left": false,
+              "right": false,
+              "top": false,
+              "bottom": false
+            },
+            "observed_lower_support": [
+              [
+                293,
+                417
+              ],
+              [
+                294,
+                417
+              ],
+              [
+                295,
+                417
+              ],
+              [
+                296,
+                417
+              ],
+              [
+                297,
+                417
+              ],
+              [
+                298,
+                417
+              ],
+              [
+                299,
+                417
+              ],
+              [
+                300,
+                417
+              ],
+              [
+                301,
+                417
+              ],
+              [
+                302,
+                417
+              ],
+              [
+                303,
+                417
+              ],
+              [
+                304,
+                417
+              ],
+              [
+                305,
+                417
+              ],
+              [
+                306,
+                417
+              ],
+              [
+                307,
+                417
+              ],
+              [
+                308,
+                417
+              ],
+              [
+                309,
+                417
+              ],
+              [
+                310,
+                417
+              ],
+              [
+                311,
+                417
+              ],
+              [
+                312,
+                419
+              ],
+              [
+                313,
+                419
+              ],
+              [
+                314,
+                419
+              ],
+              [
+                315,
+                419
+              ],
+              [
+                316,
+                419
+              ],
+              [
+                317,
+                419
+              ],
+              [
+                318,
+                419
+              ],
+              [
+                319,
+                419
+              ],
+              [
+                320,
+                419
+              ],
+              [
+                321,
+                419
+              ],
+              [
+                322,
+                419
+              ],
+              [
+                323,
+                419
+              ],
+              [
+                324,
+                419
+              ],
+              [
+                325,
+                419
+              ],
+              [
+                326,
+                419
+              ],
+              [
+                327,
+                419
+              ],
+              [
+                328,
+                419
+              ],
+              [
+                329,
+                419
+              ],
+              [
+                330,
+                417
+              ],
+              [
+                331,
+                417
+              ],
+              [
+                332,
+                417
+              ],
+              [
+                333,
+                417
+              ],
+              [
+                334,
+                417
+              ],
+              [
+                335,
+                417
+              ],
+              [
+                336,
+                417
+              ],
+              [
+                337,
+                417
+              ],
+              [
+                338,
+                417
+              ],
+              [
+                339,
+                417
+              ],
+              [
+                340,
+                417
+              ],
+              [
+                341,
+                417
+              ],
+              [
+                342,
+                417
+              ]
+            ]
+          },
+          "observation": {
+            "support": [
+              [
+                293,
+                417
+              ],
+              [
+                294,
+                417
+              ],
+              [
+                295,
+                417
+              ],
+              [
+                296,
+                417
+              ],
+              [
+                297,
+                417
+              ],
+              [
+                298,
+                417
+              ],
+              [
+                299,
+                417
+              ],
+              [
+                300,
+                417
+              ],
+              [
+                301,
+                417
+              ],
+              [
+                302,
+                417
+              ],
+              [
+                303,
+                417
+              ],
+              [
+                304,
+                417
+              ],
+              [
+                305,
+                417
+              ],
+              [
+                306,
+                417
+              ],
+              [
+                307,
+                417
+              ],
+              [
+                308,
+                417
+              ],
+              [
+                309,
+                417
+              ],
+              [
+                310,
+                417
+              ],
+              [
+                311,
+                417
+              ],
+              [
+                312,
+                419
+              ],
+              [
+                313,
+                419
+              ],
+              [
+                314,
+                419
+              ],
+              [
+                315,
+                419
+              ],
+              [
+                316,
+                419
+              ],
+              [
+                317,
+                419
+              ],
+              [
+                318,
+                419
+              ],
+              [
+                319,
+                419
+              ],
+              [
+                320,
+                419
+              ],
+              [
+                321,
+                419
+              ],
+              [
+                322,
+                419
+              ],
+              [
+                323,
+                419
+              ],
+              [
+                324,
+                419
+              ],
+              [
+                325,
+                419
+              ],
+              [
+                326,
+                419
+              ],
+              [
+                327,
+                419
+              ],
+              [
+                328,
+                419
+              ],
+              [
+                329,
+                419
+              ],
+              [
+                330,
+                417
+              ],
+              [
+                331,
+                417
+              ],
+              [
+                332,
+                417
+              ],
+              [
+                333,
+                417
+              ],
+              [
+                334,
+                417
+              ],
+              [
+                335,
+                417
+              ],
+              [
+                336,
+                417
+              ],
+              [
+                337,
+                417
+              ],
+              [
+                338,
+                417
+              ],
+              [
+                339,
+                417
+              ],
+              [
+                340,
+                417
+              ],
+              [
+                341,
+                417
+              ],
+              [
+                342,
+                417
+              ]
+            ],
+            "point": [
+              315,
+              419
+            ],
+            "reason": "unverified_visible_colour_support",
+            "floor_contact_verified": false
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "z2p00",
+    "source_frame": 64232,
+    "dy1": -1,
+    "dy2": -1,
+    "old_available": true,
+    "new_available": true,
+    "old_observation_preserved": true,
+    "upper_granted": false,
+    "upper_reason": "existing_comparison_point_preserved",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": [
+        [
+          304,
+          373
+        ],
+        [
+          305,
+          373
+        ],
+        [
+          306,
+          373
+        ],
+        [
+          307,
+          373
+        ],
+        [
+          308,
+          373
+        ],
+        [
+          309,
+          373
+        ],
+        [
+          310,
+          373
+        ],
+        [
+          311,
+          373
+        ],
+        [
+          312,
+          373
+        ],
+        [
+          313,
+          373
+        ],
+        [
+          314,
+          373
+        ],
+        [
+          315,
+          373
+        ],
+        [
+          316,
+          373
+        ],
+        [
+          317,
+          373
+        ],
+        [
+          318,
+          373
+        ],
+        [
+          319,
+          373
+        ],
+        [
+          320,
+          373
+        ],
+        [
+          321,
+          373
+        ],
+        [
+          322,
+          373
+        ],
+        [
+          323,
+          373
+        ],
+        [
+          324,
+          373
+        ],
+        [
+          325,
+          373
+        ],
+        [
+          326,
+          373
+        ],
+        [
+          327,
+          373
+        ],
+        [
+          328,
+          373
+        ],
+        [
+          329,
+          373
+        ]
+      ],
+      "point": [
+        316,
+        373
+      ],
+      "reason": "unverified_visible_colour_support",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        317,
+        320,
+        321,
+        334
+      ],
+      "seed_red_pixels": 56,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "unverified_visible_colour_support",
+      "original_shadow_point": [
+        316,
+        373
+      ],
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "existing_shadow_point_preserved",
+      "contexts": [],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": [
+          [
+            304,
+            373
+          ],
+          [
+            305,
+            373
+          ],
+          [
+            306,
+            373
+          ],
+          [
+            307,
+            373
+          ],
+          [
+            308,
+            373
+          ],
+          [
+            309,
+            373
+          ],
+          [
+            310,
+            373
+          ],
+          [
+            311,
+            373
+          ],
+          [
+            312,
+            373
+          ],
+          [
+            313,
+            373
+          ],
+          [
+            314,
+            373
+          ],
+          [
+            315,
+            373
+          ],
+          [
+            316,
+            373
+          ],
+          [
+            317,
+            373
+          ],
+          [
+            318,
+            373
+          ],
+          [
+            319,
+            373
+          ],
+          [
+            320,
+            373
+          ],
+          [
+            321,
+            373
+          ],
+          [
+            322,
+            373
+          ],
+          [
+            323,
+            373
+          ],
+          [
+            324,
+            373
+          ],
+          [
+            325,
+            373
+          ],
+          [
+            326,
+            373
+          ],
+          [
+            327,
+            373
+          ],
+          [
+            328,
+            373
+          ],
+          [
+            329,
+            373
+          ]
+        ],
+        "point": [
+          316,
+          373
+        ],
+        "reason": "unverified_visible_colour_support",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          317,
+          320,
+          321,
+          334
+        ],
+        "seed_red_pixels": 56,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "unverified_visible_colour_support",
+        "original_shadow_point": [
+          316,
+          373
+        ],
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "existing_shadow_point_preserved",
+        "contexts": [],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": false,
+      "upper_completion_granted": false,
+      "upper_completion_reason": "existing_comparison_point_preserved",
+      "upper_contexts": []
+    }
+  },
+  {
+    "case": "z2p00",
+    "source_frame": 64232,
+    "dy1": -1,
+    "dy2": 0,
+    "old_available": true,
+    "new_available": true,
+    "old_observation_preserved": true,
+    "upper_granted": false,
+    "upper_reason": "existing_comparison_point_preserved",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": [
+        [
+          304,
+          373
+        ],
+        [
+          305,
+          373
+        ],
+        [
+          306,
+          373
+        ],
+        [
+          307,
+          373
+        ],
+        [
+          308,
+          373
+        ],
+        [
+          309,
+          373
+        ],
+        [
+          310,
+          373
+        ],
+        [
+          311,
+          373
+        ],
+        [
+          312,
+          373
+        ],
+        [
+          313,
+          373
+        ],
+        [
+          314,
+          373
+        ],
+        [
+          315,
+          373
+        ],
+        [
+          316,
+          373
+        ],
+        [
+          317,
+          373
+        ],
+        [
+          318,
+          373
+        ],
+        [
+          319,
+          373
+        ],
+        [
+          320,
+          373
+        ],
+        [
+          321,
+          373
+        ],
+        [
+          322,
+          373
+        ],
+        [
+          323,
+          373
+        ],
+        [
+          324,
+          373
+        ],
+        [
+          325,
+          373
+        ],
+        [
+          326,
+          373
+        ],
+        [
+          327,
+          373
+        ],
+        [
+          328,
+          373
+        ],
+        [
+          329,
+          373
+        ]
+      ],
+      "point": [
+        316,
+        373
+      ],
+      "reason": "unverified_visible_colour_support",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        317,
+        320,
+        321,
+        334
+      ],
+      "seed_red_pixels": 56,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "unverified_visible_colour_support",
+      "original_shadow_point": [
+        316,
+        373
+      ],
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "existing_shadow_point_preserved",
+      "contexts": [],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": [
+          [
+            304,
+            373
+          ],
+          [
+            305,
+            373
+          ],
+          [
+            306,
+            373
+          ],
+          [
+            307,
+            373
+          ],
+          [
+            308,
+            373
+          ],
+          [
+            309,
+            373
+          ],
+          [
+            310,
+            373
+          ],
+          [
+            311,
+            373
+          ],
+          [
+            312,
+            373
+          ],
+          [
+            313,
+            373
+          ],
+          [
+            314,
+            373
+          ],
+          [
+            315,
+            373
+          ],
+          [
+            316,
+            373
+          ],
+          [
+            317,
+            373
+          ],
+          [
+            318,
+            373
+          ],
+          [
+            319,
+            373
+          ],
+          [
+            320,
+            373
+          ],
+          [
+            321,
+            373
+          ],
+          [
+            322,
+            373
+          ],
+          [
+            323,
+            373
+          ],
+          [
+            324,
+            373
+          ],
+          [
+            325,
+            373
+          ],
+          [
+            326,
+            373
+          ],
+          [
+            327,
+            373
+          ],
+          [
+            328,
+            373
+          ],
+          [
+            329,
+            373
+          ]
+        ],
+        "point": [
+          316,
+          373
+        ],
+        "reason": "unverified_visible_colour_support",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          317,
+          320,
+          321,
+          334
+        ],
+        "seed_red_pixels": 56,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "unverified_visible_colour_support",
+        "original_shadow_point": [
+          316,
+          373
+        ],
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "existing_shadow_point_preserved",
+        "contexts": [],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": false,
+      "upper_completion_granted": false,
+      "upper_completion_reason": "existing_comparison_point_preserved",
+      "upper_contexts": []
+    }
+  },
+  {
+    "case": "z2p00",
+    "source_frame": 64232,
+    "dy1": -1,
+    "dy2": 1,
+    "old_available": true,
+    "new_available": true,
+    "old_observation_preserved": true,
+    "upper_granted": false,
+    "upper_reason": "existing_comparison_point_preserved",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": [
+        [
+          304,
+          373
+        ],
+        [
+          305,
+          373
+        ],
+        [
+          306,
+          373
+        ],
+        [
+          307,
+          373
+        ],
+        [
+          308,
+          373
+        ],
+        [
+          309,
+          373
+        ],
+        [
+          310,
+          373
+        ],
+        [
+          311,
+          373
+        ],
+        [
+          312,
+          373
+        ],
+        [
+          313,
+          373
+        ],
+        [
+          314,
+          373
+        ],
+        [
+          315,
+          373
+        ],
+        [
+          316,
+          373
+        ],
+        [
+          317,
+          373
+        ],
+        [
+          318,
+          373
+        ],
+        [
+          319,
+          373
+        ],
+        [
+          320,
+          373
+        ],
+        [
+          321,
+          373
+        ],
+        [
+          322,
+          373
+        ],
+        [
+          323,
+          373
+        ],
+        [
+          324,
+          373
+        ],
+        [
+          325,
+          373
+        ],
+        [
+          326,
+          373
+        ],
+        [
+          327,
+          373
+        ],
+        [
+          328,
+          373
+        ],
+        [
+          329,
+          373
+        ]
+      ],
+      "point": [
+        316,
+        373
+      ],
+      "reason": "unverified_visible_colour_support",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        317,
+        320,
+        321,
+        335
+      ],
+      "seed_red_pixels": 60,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "unverified_visible_colour_support",
+      "original_shadow_point": [
+        316,
+        373
+      ],
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "existing_shadow_point_preserved",
+      "contexts": [],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": [
+          [
+            304,
+            373
+          ],
+          [
+            305,
+            373
+          ],
+          [
+            306,
+            373
+          ],
+          [
+            307,
+            373
+          ],
+          [
+            308,
+            373
+          ],
+          [
+            309,
+            373
+          ],
+          [
+            310,
+            373
+          ],
+          [
+            311,
+            373
+          ],
+          [
+            312,
+            373
+          ],
+          [
+            313,
+            373
+          ],
+          [
+            314,
+            373
+          ],
+          [
+            315,
+            373
+          ],
+          [
+            316,
+            373
+          ],
+          [
+            317,
+            373
+          ],
+          [
+            318,
+            373
+          ],
+          [
+            319,
+            373
+          ],
+          [
+            320,
+            373
+          ],
+          [
+            321,
+            373
+          ],
+          [
+            322,
+            373
+          ],
+          [
+            323,
+            373
+          ],
+          [
+            324,
+            373
+          ],
+          [
+            325,
+            373
+          ],
+          [
+            326,
+            373
+          ],
+          [
+            327,
+            373
+          ],
+          [
+            328,
+            373
+          ],
+          [
+            329,
+            373
+          ]
+        ],
+        "point": [
+          316,
+          373
+        ],
+        "reason": "unverified_visible_colour_support",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          317,
+          320,
+          321,
+          335
+        ],
+        "seed_red_pixels": 60,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "unverified_visible_colour_support",
+        "original_shadow_point": [
+          316,
+          373
+        ],
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "existing_shadow_point_preserved",
+        "contexts": [],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": false,
+      "upper_completion_granted": false,
+      "upper_completion_reason": "existing_comparison_point_preserved",
+      "upper_contexts": []
+    }
+  },
+  {
+    "case": "z2p00",
+    "source_frame": 64232,
+    "dy1": 0,
+    "dy2": -1,
+    "old_available": true,
+    "new_available": true,
+    "old_observation_preserved": true,
+    "upper_granted": false,
+    "upper_reason": "existing_comparison_point_preserved",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": [
+        [
+          304,
+          373
+        ],
+        [
+          305,
+          373
+        ],
+        [
+          306,
+          373
+        ],
+        [
+          307,
+          373
+        ],
+        [
+          308,
+          373
+        ],
+        [
+          309,
+          373
+        ],
+        [
+          310,
+          373
+        ],
+        [
+          311,
+          373
+        ],
+        [
+          312,
+          373
+        ],
+        [
+          313,
+          373
+        ],
+        [
+          314,
+          373
+        ],
+        [
+          315,
+          373
+        ],
+        [
+          316,
+          373
+        ],
+        [
+          317,
+          373
+        ],
+        [
+          318,
+          373
+        ],
+        [
+          319,
+          373
+        ],
+        [
+          320,
+          373
+        ],
+        [
+          321,
+          373
+        ],
+        [
+          322,
+          373
+        ],
+        [
+          323,
+          373
+        ],
+        [
+          324,
+          373
+        ],
+        [
+          325,
+          373
+        ],
+        [
+          326,
+          373
+        ],
+        [
+          327,
+          373
+        ],
+        [
+          328,
+          373
+        ],
+        [
+          329,
+          373
+        ]
+      ],
+      "point": [
+        316,
+        373
+      ],
+      "reason": "unverified_visible_colour_support",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        317,
+        320,
+        321,
+        334
+      ],
+      "seed_red_pixels": 56,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "unverified_visible_colour_support",
+      "original_shadow_point": [
+        316,
+        373
+      ],
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "existing_shadow_point_preserved",
+      "contexts": [],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": [
+          [
+            304,
+            373
+          ],
+          [
+            305,
+            373
+          ],
+          [
+            306,
+            373
+          ],
+          [
+            307,
+            373
+          ],
+          [
+            308,
+            373
+          ],
+          [
+            309,
+            373
+          ],
+          [
+            310,
+            373
+          ],
+          [
+            311,
+            373
+          ],
+          [
+            312,
+            373
+          ],
+          [
+            313,
+            373
+          ],
+          [
+            314,
+            373
+          ],
+          [
+            315,
+            373
+          ],
+          [
+            316,
+            373
+          ],
+          [
+            317,
+            373
+          ],
+          [
+            318,
+            373
+          ],
+          [
+            319,
+            373
+          ],
+          [
+            320,
+            373
+          ],
+          [
+            321,
+            373
+          ],
+          [
+            322,
+            373
+          ],
+          [
+            323,
+            373
+          ],
+          [
+            324,
+            373
+          ],
+          [
+            325,
+            373
+          ],
+          [
+            326,
+            373
+          ],
+          [
+            327,
+            373
+          ],
+          [
+            328,
+            373
+          ],
+          [
+            329,
+            373
+          ]
+        ],
+        "point": [
+          316,
+          373
+        ],
+        "reason": "unverified_visible_colour_support",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          317,
+          320,
+          321,
+          334
+        ],
+        "seed_red_pixels": 56,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "unverified_visible_colour_support",
+        "original_shadow_point": [
+          316,
+          373
+        ],
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "existing_shadow_point_preserved",
+        "contexts": [],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": false,
+      "upper_completion_granted": false,
+      "upper_completion_reason": "existing_comparison_point_preserved",
+      "upper_contexts": []
+    }
+  },
+  {
+    "case": "z2p00",
+    "source_frame": 64232,
+    "dy1": 0,
+    "dy2": 0,
+    "old_available": true,
+    "new_available": true,
+    "old_observation_preserved": true,
+    "upper_granted": false,
+    "upper_reason": "existing_comparison_point_preserved",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": [
+        [
+          304,
+          373
+        ],
+        [
+          305,
+          373
+        ],
+        [
+          306,
+          373
+        ],
+        [
+          307,
+          373
+        ],
+        [
+          308,
+          373
+        ],
+        [
+          309,
+          373
+        ],
+        [
+          310,
+          373
+        ],
+        [
+          311,
+          373
+        ],
+        [
+          312,
+          373
+        ],
+        [
+          313,
+          373
+        ],
+        [
+          314,
+          373
+        ],
+        [
+          315,
+          373
+        ],
+        [
+          316,
+          373
+        ],
+        [
+          317,
+          373
+        ],
+        [
+          318,
+          373
+        ],
+        [
+          319,
+          373
+        ],
+        [
+          320,
+          373
+        ],
+        [
+          321,
+          373
+        ],
+        [
+          322,
+          373
+        ],
+        [
+          323,
+          373
+        ],
+        [
+          324,
+          373
+        ],
+        [
+          325,
+          373
+        ],
+        [
+          326,
+          373
+        ],
+        [
+          327,
+          373
+        ],
+        [
+          328,
+          373
+        ],
+        [
+          329,
+          373
+        ]
+      ],
+      "point": [
+        316,
+        373
+      ],
+      "reason": "unverified_visible_colour_support",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        317,
+        321,
+        321,
+        335
+      ],
+      "seed_red_pixels": 56,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "unverified_visible_colour_support",
+      "original_shadow_point": [
+        316,
+        373
+      ],
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "existing_shadow_point_preserved",
+      "contexts": [],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": [
+          [
+            304,
+            373
+          ],
+          [
+            305,
+            373
+          ],
+          [
+            306,
+            373
+          ],
+          [
+            307,
+            373
+          ],
+          [
+            308,
+            373
+          ],
+          [
+            309,
+            373
+          ],
+          [
+            310,
+            373
+          ],
+          [
+            311,
+            373
+          ],
+          [
+            312,
+            373
+          ],
+          [
+            313,
+            373
+          ],
+          [
+            314,
+            373
+          ],
+          [
+            315,
+            373
+          ],
+          [
+            316,
+            373
+          ],
+          [
+            317,
+            373
+          ],
+          [
+            318,
+            373
+          ],
+          [
+            319,
+            373
+          ],
+          [
+            320,
+            373
+          ],
+          [
+            321,
+            373
+          ],
+          [
+            322,
+            373
+          ],
+          [
+            323,
+            373
+          ],
+          [
+            324,
+            373
+          ],
+          [
+            325,
+            373
+          ],
+          [
+            326,
+            373
+          ],
+          [
+            327,
+            373
+          ],
+          [
+            328,
+            373
+          ],
+          [
+            329,
+            373
+          ]
+        ],
+        "point": [
+          316,
+          373
+        ],
+        "reason": "unverified_visible_colour_support",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          317,
+          321,
+          321,
+          335
+        ],
+        "seed_red_pixels": 56,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "unverified_visible_colour_support",
+        "original_shadow_point": [
+          316,
+          373
+        ],
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "existing_shadow_point_preserved",
+        "contexts": [],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": false,
+      "upper_completion_granted": false,
+      "upper_completion_reason": "existing_comparison_point_preserved",
+      "upper_contexts": []
+    }
+  },
+  {
+    "case": "z2p00",
+    "source_frame": 64232,
+    "dy1": 0,
+    "dy2": 1,
+    "old_available": true,
+    "new_available": true,
+    "old_observation_preserved": true,
+    "upper_granted": false,
+    "upper_reason": "existing_comparison_point_preserved",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": [
+        [
+          304,
+          373
+        ],
+        [
+          305,
+          373
+        ],
+        [
+          306,
+          373
+        ],
+        [
+          307,
+          373
+        ],
+        [
+          308,
+          373
+        ],
+        [
+          309,
+          373
+        ],
+        [
+          310,
+          373
+        ],
+        [
+          311,
+          373
+        ],
+        [
+          312,
+          373
+        ],
+        [
+          313,
+          373
+        ],
+        [
+          314,
+          373
+        ],
+        [
+          315,
+          373
+        ],
+        [
+          316,
+          373
+        ],
+        [
+          317,
+          373
+        ],
+        [
+          318,
+          373
+        ],
+        [
+          319,
+          373
+        ],
+        [
+          320,
+          373
+        ],
+        [
+          321,
+          373
+        ],
+        [
+          322,
+          373
+        ],
+        [
+          323,
+          373
+        ],
+        [
+          324,
+          373
+        ],
+        [
+          325,
+          373
+        ],
+        [
+          326,
+          373
+        ],
+        [
+          327,
+          373
+        ],
+        [
+          328,
+          373
+        ],
+        [
+          329,
+          373
+        ]
+      ],
+      "point": [
+        316,
+        373
+      ],
+      "reason": "unverified_visible_colour_support",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        317,
+        321,
+        321,
+        335
+      ],
+      "seed_red_pixels": 56,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "unverified_visible_colour_support",
+      "original_shadow_point": [
+        316,
+        373
+      ],
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "existing_shadow_point_preserved",
+      "contexts": [],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": [
+          [
+            304,
+            373
+          ],
+          [
+            305,
+            373
+          ],
+          [
+            306,
+            373
+          ],
+          [
+            307,
+            373
+          ],
+          [
+            308,
+            373
+          ],
+          [
+            309,
+            373
+          ],
+          [
+            310,
+            373
+          ],
+          [
+            311,
+            373
+          ],
+          [
+            312,
+            373
+          ],
+          [
+            313,
+            373
+          ],
+          [
+            314,
+            373
+          ],
+          [
+            315,
+            373
+          ],
+          [
+            316,
+            373
+          ],
+          [
+            317,
+            373
+          ],
+          [
+            318,
+            373
+          ],
+          [
+            319,
+            373
+          ],
+          [
+            320,
+            373
+          ],
+          [
+            321,
+            373
+          ],
+          [
+            322,
+            373
+          ],
+          [
+            323,
+            373
+          ],
+          [
+            324,
+            373
+          ],
+          [
+            325,
+            373
+          ],
+          [
+            326,
+            373
+          ],
+          [
+            327,
+            373
+          ],
+          [
+            328,
+            373
+          ],
+          [
+            329,
+            373
+          ]
+        ],
+        "point": [
+          316,
+          373
+        ],
+        "reason": "unverified_visible_colour_support",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          317,
+          321,
+          321,
+          335
+        ],
+        "seed_red_pixels": 56,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "unverified_visible_colour_support",
+        "original_shadow_point": [
+          316,
+          373
+        ],
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "existing_shadow_point_preserved",
+        "contexts": [],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": false,
+      "upper_completion_granted": false,
+      "upper_completion_reason": "existing_comparison_point_preserved",
+      "upper_contexts": []
+    }
+  },
+  {
+    "case": "z2p00",
+    "source_frame": 64232,
+    "dy1": 1,
+    "dy2": -1,
+    "old_available": true,
+    "new_available": true,
+    "old_observation_preserved": true,
+    "upper_granted": false,
+    "upper_reason": "existing_comparison_point_preserved",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": [
+        [
+          304,
+          373
+        ],
+        [
+          305,
+          373
+        ],
+        [
+          306,
+          373
+        ],
+        [
+          307,
+          373
+        ],
+        [
+          308,
+          373
+        ],
+        [
+          309,
+          373
+        ],
+        [
+          310,
+          373
+        ],
+        [
+          311,
+          373
+        ],
+        [
+          312,
+          373
+        ],
+        [
+          313,
+          373
+        ],
+        [
+          314,
+          373
+        ],
+        [
+          315,
+          373
+        ],
+        [
+          316,
+          373
+        ],
+        [
+          317,
+          373
+        ],
+        [
+          318,
+          373
+        ],
+        [
+          319,
+          373
+        ],
+        [
+          320,
+          373
+        ],
+        [
+          321,
+          373
+        ],
+        [
+          322,
+          373
+        ],
+        [
+          323,
+          373
+        ],
+        [
+          324,
+          373
+        ],
+        [
+          325,
+          373
+        ],
+        [
+          326,
+          373
+        ],
+        [
+          327,
+          373
+        ],
+        [
+          328,
+          373
+        ],
+        [
+          329,
+          373
+        ]
+      ],
+      "point": [
+        316,
+        373
+      ],
+      "reason": "unverified_visible_colour_support",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        317,
+        321,
+        321,
+        335
+      ],
+      "seed_red_pixels": 56,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "unverified_visible_colour_support",
+      "original_shadow_point": [
+        316,
+        373
+      ],
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "existing_shadow_point_preserved",
+      "contexts": [],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": [
+          [
+            304,
+            373
+          ],
+          [
+            305,
+            373
+          ],
+          [
+            306,
+            373
+          ],
+          [
+            307,
+            373
+          ],
+          [
+            308,
+            373
+          ],
+          [
+            309,
+            373
+          ],
+          [
+            310,
+            373
+          ],
+          [
+            311,
+            373
+          ],
+          [
+            312,
+            373
+          ],
+          [
+            313,
+            373
+          ],
+          [
+            314,
+            373
+          ],
+          [
+            315,
+            373
+          ],
+          [
+            316,
+            373
+          ],
+          [
+            317,
+            373
+          ],
+          [
+            318,
+            373
+          ],
+          [
+            319,
+            373
+          ],
+          [
+            320,
+            373
+          ],
+          [
+            321,
+            373
+          ],
+          [
+            322,
+            373
+          ],
+          [
+            323,
+            373
+          ],
+          [
+            324,
+            373
+          ],
+          [
+            325,
+            373
+          ],
+          [
+            326,
+            373
+          ],
+          [
+            327,
+            373
+          ],
+          [
+            328,
+            373
+          ],
+          [
+            329,
+            373
+          ]
+        ],
+        "point": [
+          316,
+          373
+        ],
+        "reason": "unverified_visible_colour_support",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          317,
+          321,
+          321,
+          335
+        ],
+        "seed_red_pixels": 56,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "unverified_visible_colour_support",
+        "original_shadow_point": [
+          316,
+          373
+        ],
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "existing_shadow_point_preserved",
+        "contexts": [],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": false,
+      "upper_completion_granted": false,
+      "upper_completion_reason": "existing_comparison_point_preserved",
+      "upper_contexts": []
+    }
+  },
+  {
+    "case": "z2p00",
+    "source_frame": 64232,
+    "dy1": 1,
+    "dy2": 0,
+    "old_available": true,
+    "new_available": true,
+    "old_observation_preserved": true,
+    "upper_granted": false,
+    "upper_reason": "existing_comparison_point_preserved",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": [
+        [
+          304,
+          373
+        ],
+        [
+          305,
+          373
+        ],
+        [
+          306,
+          373
+        ],
+        [
+          307,
+          373
+        ],
+        [
+          308,
+          373
+        ],
+        [
+          309,
+          373
+        ],
+        [
+          310,
+          373
+        ],
+        [
+          311,
+          373
+        ],
+        [
+          312,
+          373
+        ],
+        [
+          313,
+          373
+        ],
+        [
+          314,
+          373
+        ],
+        [
+          315,
+          373
+        ],
+        [
+          316,
+          373
+        ],
+        [
+          317,
+          373
+        ],
+        [
+          318,
+          373
+        ],
+        [
+          319,
+          373
+        ],
+        [
+          320,
+          373
+        ],
+        [
+          321,
+          373
+        ],
+        [
+          322,
+          373
+        ],
+        [
+          323,
+          373
+        ],
+        [
+          324,
+          373
+        ],
+        [
+          325,
+          373
+        ],
+        [
+          326,
+          373
+        ],
+        [
+          327,
+          373
+        ],
+        [
+          328,
+          373
+        ],
+        [
+          329,
+          373
+        ]
+      ],
+      "point": [
+        316,
+        373
+      ],
+      "reason": "unverified_visible_colour_support",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        317,
+        321,
+        321,
+        335
+      ],
+      "seed_red_pixels": 56,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "unverified_visible_colour_support",
+      "original_shadow_point": [
+        316,
+        373
+      ],
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "existing_shadow_point_preserved",
+      "contexts": [],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": [
+          [
+            304,
+            373
+          ],
+          [
+            305,
+            373
+          ],
+          [
+            306,
+            373
+          ],
+          [
+            307,
+            373
+          ],
+          [
+            308,
+            373
+          ],
+          [
+            309,
+            373
+          ],
+          [
+            310,
+            373
+          ],
+          [
+            311,
+            373
+          ],
+          [
+            312,
+            373
+          ],
+          [
+            313,
+            373
+          ],
+          [
+            314,
+            373
+          ],
+          [
+            315,
+            373
+          ],
+          [
+            316,
+            373
+          ],
+          [
+            317,
+            373
+          ],
+          [
+            318,
+            373
+          ],
+          [
+            319,
+            373
+          ],
+          [
+            320,
+            373
+          ],
+          [
+            321,
+            373
+          ],
+          [
+            322,
+            373
+          ],
+          [
+            323,
+            373
+          ],
+          [
+            324,
+            373
+          ],
+          [
+            325,
+            373
+          ],
+          [
+            326,
+            373
+          ],
+          [
+            327,
+            373
+          ],
+          [
+            328,
+            373
+          ],
+          [
+            329,
+            373
+          ]
+        ],
+        "point": [
+          316,
+          373
+        ],
+        "reason": "unverified_visible_colour_support",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          317,
+          321,
+          321,
+          335
+        ],
+        "seed_red_pixels": 56,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "unverified_visible_colour_support",
+        "original_shadow_point": [
+          316,
+          373
+        ],
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "existing_shadow_point_preserved",
+        "contexts": [],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": false,
+      "upper_completion_granted": false,
+      "upper_completion_reason": "existing_comparison_point_preserved",
+      "upper_contexts": []
+    }
+  },
+  {
+    "case": "z2p00",
+    "source_frame": 64232,
+    "dy1": 1,
+    "dy2": 1,
+    "old_available": true,
+    "new_available": true,
+    "old_observation_preserved": true,
+    "upper_granted": false,
+    "upper_reason": "existing_comparison_point_preserved",
+    "actual_extra_frame": false,
+    "candidate": {
+      "support": [
+        [
+          304,
+          373
+        ],
+        [
+          305,
+          373
+        ],
+        [
+          306,
+          373
+        ],
+        [
+          307,
+          373
+        ],
+        [
+          308,
+          373
+        ],
+        [
+          309,
+          373
+        ],
+        [
+          310,
+          373
+        ],
+        [
+          311,
+          373
+        ],
+        [
+          312,
+          373
+        ],
+        [
+          313,
+          373
+        ],
+        [
+          314,
+          373
+        ],
+        [
+          315,
+          373
+        ],
+        [
+          316,
+          373
+        ],
+        [
+          317,
+          373
+        ],
+        [
+          318,
+          373
+        ],
+        [
+          319,
+          373
+        ],
+        [
+          320,
+          373
+        ],
+        [
+          321,
+          373
+        ],
+        [
+          322,
+          373
+        ],
+        [
+          323,
+          373
+        ],
+        [
+          324,
+          373
+        ],
+        [
+          325,
+          373
+        ],
+        [
+          326,
+          373
+        ],
+        [
+          327,
+          373
+        ],
+        [
+          328,
+          373
+        ],
+        [
+          329,
+          373
+        ]
+      ],
+      "point": [
+        316,
+        373
+      ],
+      "reason": "unverified_visible_colour_support",
+      "selected_colour": "red",
+      "method": "bounded_upper_completion_shadow_v1",
+      "seed_xyxy": [
+        317,
+        322,
+        321,
+        336
+      ],
+      "seed_red_pixels": 56,
+      "seed_yellow_pixels": 0,
+      "seed_dominant_fraction": 1.0,
+      "controlling_distance": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false,
+      "original_shadow_reason": "unverified_visible_colour_support",
+      "original_shadow_point": [
+        316,
+        373
+      ],
+      "completion_attempted": false,
+      "completion_granted": false,
+      "completion_reason": "existing_shadow_point_preserved",
+      "contexts": [],
+      "physical_metric_verified": false,
+      "original_comparison": {
+        "support": [
+          [
+            304,
+            373
+          ],
+          [
+            305,
+            373
+          ],
+          [
+            306,
+            373
+          ],
+          [
+            307,
+            373
+          ],
+          [
+            308,
+            373
+          ],
+          [
+            309,
+            373
+          ],
+          [
+            310,
+            373
+          ],
+          [
+            311,
+            373
+          ],
+          [
+            312,
+            373
+          ],
+          [
+            313,
+            373
+          ],
+          [
+            314,
+            373
+          ],
+          [
+            315,
+            373
+          ],
+          [
+            316,
+            373
+          ],
+          [
+            317,
+            373
+          ],
+          [
+            318,
+            373
+          ],
+          [
+            319,
+            373
+          ],
+          [
+            320,
+            373
+          ],
+          [
+            321,
+            373
+          ],
+          [
+            322,
+            373
+          ],
+          [
+            323,
+            373
+          ],
+          [
+            324,
+            373
+          ],
+          [
+            325,
+            373
+          ],
+          [
+            326,
+            373
+          ],
+          [
+            327,
+            373
+          ],
+          [
+            328,
+            373
+          ],
+          [
+            329,
+            373
+          ]
+        ],
+        "point": [
+          316,
+          373
+        ],
+        "reason": "unverified_visible_colour_support",
+        "selected_colour": "red",
+        "method": "bounded_lateral_completion_shadow_v1",
+        "seed_xyxy": [
+          317,
+          322,
+          321,
+          336
+        ],
+        "seed_red_pixels": 56,
+        "seed_yellow_pixels": 0,
+        "seed_dominant_fraction": 1.0,
+        "controlling_distance": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false,
+        "original_shadow_reason": "unverified_visible_colour_support",
+        "original_shadow_point": [
+          316,
+          373
+        ],
+        "completion_attempted": false,
+        "completion_granted": false,
+        "completion_reason": "existing_shadow_point_preserved",
+        "contexts": [],
+        "physical_metric_verified": false
+      },
+      "upper_completion_attempted": false,
+      "upper_completion_granted": false,
+      "upper_completion_reason": "existing_comparison_point_preserved",
+      "upper_contexts": []
+    }
+  }
+]

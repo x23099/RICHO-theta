@@ -1,0 +1,99 @@
+{
+  "status": "PASS_UPPER_LIVE_WIRING_SOFTWARE_ONLY_NOT_SCHOOL_GPU_APPROVAL",
+  "checks": {
+    "tests_pass": true,
+    "old_sources_preserved_except_explicit_worker_and_entrypoint": true,
+    "original_comparator_unchanged": true,
+    "two_exact_recorded_frames": true,
+    "legacy_and_native_inputs_preserved": true,
+    "two_sparse_recorded_frames_not_claimed_as_new_temporal_confirmation": true,
+    "report_marks_recorded_predictor": true
+  },
+  "tests": 435,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "patterns": [
+    "test_scene_sampling_clock.py",
+    "test_cone_distance_diagnostic.py",
+    "test_theta_rtc_diagnostic.py",
+    "test_cone_support_quality*.py",
+    "test_cone_distance_worker_lifecycle.py",
+    "test_cone_distance_live_cleanup.py",
+    "test_summarize_cone_distance_live.py",
+    "test_theta_rtc_capture_recovery.py",
+    "test_cone_colour_support_candidate.py",
+    "test_cone_support_completion_candidate.py",
+    "test_cone_completion_shadow_logging.py",
+    "test_frame_evidence_logging.py",
+    "test_cone_fixed_floor_candidate.py",
+    "test_cone_fixed_floor_shadow.py",
+    "test_cone_support_live_review.py",
+    "test_fixed_floor_causal_bootstrap.py",
+    "test_cone_fixed_floor_live_load.py",
+    "test_floor_reference_pose.py",
+    "test_diagnose_floor_board_pose.py",
+    "test_fisheye_intrinsic_calibration.py",
+    "test_derive_fixed_floor_live_bundle.py",
+    "test_fixed_floor_lifecycle_replay.py",
+    "test_cone_fixed_floor_display.py",
+    "test_cone_upper_support_candidate.py",
+    "test_cone_upper_support_live.py"
+  ],
+  "prior_hash_mismatches": [],
+  "recorded_frame_results": [
+    {
+      "frame": 61948,
+      "source_image": "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f061948.png",
+      "upper_point": [
+        315,
+        419
+      ],
+      "reason": "image_support_quality_not_confirmed",
+      "legacy_unchanged": true,
+      "source_pixels_unchanged": true,
+      "numeric": false
+    },
+    {
+      "frame": 64232,
+      "source_image": "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f064232.png",
+      "upper_point": [
+        316,
+        373
+      ],
+      "reason": "image_support_quality_not_confirmed",
+      "legacy_unchanged": true,
+      "source_pixels_unchanged": true,
+      "numeric": false
+    }
+  ],
+  "image_sha256": {
+    "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f061948.png": "7012132d4ec29a24b0ed1a636892f1b62bd73166864d449e9fbe941ba3dffb01",
+    "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f064232.png": "63ac18d4fb0de73652e9c973d0e12837881e852b2fa79cd82b8af395a3078994"
+  },
+  "source_sha256": {
+    "Experimental_results/2026-11-04/upper_support_live_r01/verify.py": "593d10b693ee9303de2884e67cb849f16beccfb08eac3653ea801d40ae802447",
+    "src/cone_upper_support_live.py": "8c51b92650c4f312e2ead9d67044b9d9f1959efb159e8ddef25f0cd240b0a508",
+    "tests/test_cone_upper_support_live.py": "537cc5dd1145a21572c8400dbdfeb7f42c11131462b1d3d507e0dfd3844b2422",
+    "src/cone_distance_worker.py": "5d6aff37f0e37d1a964df504bdd4122a10f38c03bdae5ab140787bcd7610a6e4",
+    "src/run_cone_distance_live.py": "74487b887ae0cfdc93ac89d9c6265dab2904eaa538dffb1bd67542bdea0d6634",
+    "Experimental_results/2026-11-04/upper_support_live_r01/source_snapshot/cone_distance_worker.py": "d9172c2452f3449a93c98b1c4fa44bfa744c2e0ad9f1b49bf6f307d02347e152",
+    "Experimental_results/2026-11-04/upper_support_live_r01/source_snapshot/run_cone_distance_live.py": "c4c3f95b66db648c7e19a5bf239a26a2e9916b98aafd7022a6e1010490785b97",
+    "Experimental_results/2026-11-04/upper_support_comparator_r01/verification_r01/verification.json": "561bf4e19e3fdbed5f65404e292088ce6a7caf8b9b17b15c03087f1583b3270b",
+    "Experimental_results/2026-11-04/floor_df33e833_multidistance_r01/cases.json": "ec66d61d7ea7887d2becd7da0b6c094e8523c0368d3b481da796253f5b71d20b",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/prepared_floor_df33e833_f002292.json": "08d8409f9674c433d5151f99228c43d8f8f6fb10d7245954223f6598e3af3176"
+  },
+  "changed_existing_runtime": [
+    "src/cone_distance_worker.py",
+    "src/run_cone_distance_live.py"
+  ],
+  "new_runtime": "src/cone_upper_support_live.py",
+  "primary_gui_or_distance_algorithm_changed": false,
+  "default_enabled": false,
+  "school_gpu_latency_measured": false,
+  "real_missing_frames_recovery_measured": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "hardware_started": false,
+  "git_commit_or_push_performed": false
+}
