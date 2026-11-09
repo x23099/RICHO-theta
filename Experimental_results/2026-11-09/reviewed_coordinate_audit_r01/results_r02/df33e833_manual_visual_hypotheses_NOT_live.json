@@ -1,0 +1,346 @@
+{
+  "schema": "explicit_floor_models_v1",
+  "session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+  "heading_reference": {
+    "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+    "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+  },
+  "models": [
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "f002292_as_listed_s0_image_plane_plus_thickness",
+      "session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+      "normal_optical": [
+        -0.011716214066188639,
+        -0.9997147243733085,
+        0.020813461969485737
+      ],
+      "camera_to_floor_m": 0.5510150671755285,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "source PNG decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f002292.png sha256=375be11d55ad8db1aaa97c2bde07c095db45c63cd84b174d89f43978c963c11a",
+        "coordinate source: explicit human visual coordinates; decision sha256=df60e387a5c202f896c3ea232c38ae5e5005bedf13ac77bfa7d91333791fbbaa",
+        "native KB4/IPPE solution 0; no solution selected",
+        "board thickness input mm=15; external floor height input mm=590"
+      ],
+      "assumptions": [
+        "operator confirms a rigid board lies flat and parallel to the same floor",
+        "image correspondences are observed hypotheses, not independently verified physical corners",
+        "camera/capture geometry is static within this session",
+        "external height with image normal is a separate control, not a fitted metric result",
+        "paper7 supplies heading convention only; yaw and base_link transform are not measured"
+      ],
+      "invalidation_conditions": [
+        "session, camera mount, capture geometry or floor changes",
+        "board not rigid/flat/on floor, or image correspondence incorrect",
+        "physical distance or FFB authority requested"
+      ],
+      "height_source": "image_plane_plus_thickness",
+      "printed_plane_height_m": 0.5360150671755285,
+      "native_reprojection_rmse_px": 0.2541831075098255,
+      "role": "unselected_planar_hypothesis",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "f002292_as_listed_s0_external_height_image_normal",
+      "session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+      "normal_optical": [
+        -0.011716214066188639,
+        -0.9997147243733085,
+        0.020813461969485737
+      ],
+      "camera_to_floor_m": 0.59,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "source PNG decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f002292.png sha256=375be11d55ad8db1aaa97c2bde07c095db45c63cd84b174d89f43978c963c11a",
+        "coordinate source: explicit human visual coordinates; decision sha256=df60e387a5c202f896c3ea232c38ae5e5005bedf13ac77bfa7d91333791fbbaa",
+        "native KB4/IPPE solution 0; no solution selected",
+        "board thickness input mm=15; external floor height input mm=590"
+      ],
+      "assumptions": [
+        "operator confirms a rigid board lies flat and parallel to the same floor",
+        "image correspondences are observed hypotheses, not independently verified physical corners",
+        "camera/capture geometry is static within this session",
+        "external height with image normal is a separate control, not a fitted metric result",
+        "paper7 supplies heading convention only; yaw and base_link transform are not measured"
+      ],
+      "invalidation_conditions": [
+        "session, camera mount, capture geometry or floor changes",
+        "board not rigid/flat/on floor, or image correspondence incorrect",
+        "physical distance or FFB authority requested"
+      ],
+      "height_source": "external_height_image_normal",
+      "printed_plane_height_m": 0.5360150671755285,
+      "native_reprojection_rmse_px": 0.2541831075098255,
+      "role": "unselected_planar_hypothesis",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "f002292_as_listed_s1_image_plane_plus_thickness",
+      "session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+      "normal_optical": [
+        0.020160170304036072,
+        0.6236548734009137,
+        -0.7814398034504016
+      ],
+      "camera_to_floor_m": 0.5342683339539573,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "source PNG decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f002292.png sha256=375be11d55ad8db1aaa97c2bde07c095db45c63cd84b174d89f43978c963c11a",
+        "coordinate source: explicit human visual coordinates; decision sha256=df60e387a5c202f896c3ea232c38ae5e5005bedf13ac77bfa7d91333791fbbaa",
+        "native KB4/IPPE solution 1; no solution selected",
+        "board thickness input mm=15; external floor height input mm=590"
+      ],
+      "assumptions": [
+        "operator confirms a rigid board lies flat and parallel to the same floor",
+        "image correspondences are observed hypotheses, not independently verified physical corners",
+        "camera/capture geometry is static within this session",
+        "external height with image normal is a separate control, not a fitted metric result",
+        "paper7 supplies heading convention only; yaw and base_link transform are not measured"
+      ],
+      "invalidation_conditions": [
+        "session, camera mount, capture geometry or floor changes",
+        "board not rigid/flat/on floor, or image correspondence incorrect",
+        "physical distance or FFB authority requested"
+      ],
+      "height_source": "image_plane_plus_thickness",
+      "printed_plane_height_m": 0.5192683339539573,
+      "native_reprojection_rmse_px": 3.3421045665771847,
+      "role": "unselected_planar_hypothesis",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "f002292_as_listed_s1_external_height_image_normal",
+      "session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+      "normal_optical": [
+        0.020160170304036072,
+        0.6236548734009137,
+        -0.7814398034504016
+      ],
+      "camera_to_floor_m": 0.59,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "source PNG decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f002292.png sha256=375be11d55ad8db1aaa97c2bde07c095db45c63cd84b174d89f43978c963c11a",
+        "coordinate source: explicit human visual coordinates; decision sha256=df60e387a5c202f896c3ea232c38ae5e5005bedf13ac77bfa7d91333791fbbaa",
+        "native KB4/IPPE solution 1; no solution selected",
+        "board thickness input mm=15; external floor height input mm=590"
+      ],
+      "assumptions": [
+        "operator confirms a rigid board lies flat and parallel to the same floor",
+        "image correspondences are observed hypotheses, not independently verified physical corners",
+        "camera/capture geometry is static within this session",
+        "external height with image normal is a separate control, not a fitted metric result",
+        "paper7 supplies heading convention only; yaw and base_link transform are not measured"
+      ],
+      "invalidation_conditions": [
+        "session, camera mount, capture geometry or floor changes",
+        "board not rigid/flat/on floor, or image correspondence incorrect",
+        "physical distance or FFB authority requested"
+      ],
+      "height_source": "external_height_image_normal",
+      "printed_plane_height_m": 0.5192683339539573,
+      "native_reprojection_rmse_px": 3.3421045665771847,
+      "role": "unselected_planar_hypothesis",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "f002292_swapped_s0_image_plane_plus_thickness",
+      "session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+      "normal_optical": [
+        -0.01432231685229928,
+        -0.9703343904724641,
+        0.24134216769229158
+      ],
+      "camera_to_floor_m": 0.20595753034087794,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "source PNG decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f002292.png sha256=375be11d55ad8db1aaa97c2bde07c095db45c63cd84b174d89f43978c963c11a",
+        "coordinate source: explicit human visual coordinates; decision sha256=df60e387a5c202f896c3ea232c38ae5e5005bedf13ac77bfa7d91333791fbbaa",
+        "native KB4/IPPE solution 0; no solution selected",
+        "board thickness input mm=15; external floor height input mm=590"
+      ],
+      "assumptions": [
+        "operator confirms a rigid board lies flat and parallel to the same floor",
+        "image correspondences are observed hypotheses, not independently verified physical corners",
+        "camera/capture geometry is static within this session",
+        "external height with image normal is a separate control, not a fitted metric result",
+        "paper7 supplies heading convention only; yaw and base_link transform are not measured"
+      ],
+      "invalidation_conditions": [
+        "session, camera mount, capture geometry or floor changes",
+        "board not rigid/flat/on floor, or image correspondence incorrect",
+        "physical distance or FFB authority requested"
+      ],
+      "height_source": "image_plane_plus_thickness",
+      "printed_plane_height_m": 0.19095753034087795,
+      "native_reprojection_rmse_px": 2.154127202612536,
+      "role": "unselected_planar_hypothesis",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "f002292_swapped_s0_external_height_image_normal",
+      "session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+      "normal_optical": [
+        -0.01432231685229928,
+        -0.9703343904724641,
+        0.24134216769229158
+      ],
+      "camera_to_floor_m": 0.59,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "source PNG decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f002292.png sha256=375be11d55ad8db1aaa97c2bde07c095db45c63cd84b174d89f43978c963c11a",
+        "coordinate source: explicit human visual coordinates; decision sha256=df60e387a5c202f896c3ea232c38ae5e5005bedf13ac77bfa7d91333791fbbaa",
+        "native KB4/IPPE solution 0; no solution selected",
+        "board thickness input mm=15; external floor height input mm=590"
+      ],
+      "assumptions": [
+        "operator confirms a rigid board lies flat and parallel to the same floor",
+        "image correspondences are observed hypotheses, not independently verified physical corners",
+        "camera/capture geometry is static within this session",
+        "external height with image normal is a separate control, not a fitted metric result",
+        "paper7 supplies heading convention only; yaw and base_link transform are not measured"
+      ],
+      "invalidation_conditions": [
+        "session, camera mount, capture geometry or floor changes",
+        "board not rigid/flat/on floor, or image correspondence incorrect",
+        "physical distance or FFB authority requested"
+      ],
+      "height_source": "external_height_image_normal",
+      "printed_plane_height_m": 0.19095753034087795,
+      "native_reprojection_rmse_px": 2.154127202612536,
+      "role": "unselected_planar_hypothesis",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "f002292_swapped_s1_image_plane_plus_thickness",
+      "session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+      "normal_optical": [
+        0.01857245084575383,
+        0.7810505155717482,
+        -0.6241916021500837
+      ],
+      "camera_to_floor_m": 0.1931314744434811,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "source PNG decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f002292.png sha256=375be11d55ad8db1aaa97c2bde07c095db45c63cd84b174d89f43978c963c11a",
+        "coordinate source: explicit human visual coordinates; decision sha256=df60e387a5c202f896c3ea232c38ae5e5005bedf13ac77bfa7d91333791fbbaa",
+        "native KB4/IPPE solution 1; no solution selected",
+        "board thickness input mm=15; external floor height input mm=590"
+      ],
+      "assumptions": [
+        "operator confirms a rigid board lies flat and parallel to the same floor",
+        "image correspondences are observed hypotheses, not independently verified physical corners",
+        "camera/capture geometry is static within this session",
+        "external height with image normal is a separate control, not a fitted metric result",
+        "paper7 supplies heading convention only; yaw and base_link transform are not measured"
+      ],
+      "invalidation_conditions": [
+        "session, camera mount, capture geometry or floor changes",
+        "board not rigid/flat/on floor, or image correspondence incorrect",
+        "physical distance or FFB authority requested"
+      ],
+      "height_source": "image_plane_plus_thickness",
+      "printed_plane_height_m": 0.1781314744434811,
+      "native_reprojection_rmse_px": 5.675178261270728,
+      "role": "unselected_planar_hypothesis",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "schema": "explicit_floor_model_v1",
+      "name": "f002292_swapped_s1_external_height_image_normal",
+      "session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+      "normal_optical": [
+        0.01857245084575383,
+        0.7810505155717482,
+        -0.6241916021500837
+      ],
+      "camera_to_floor_m": 0.59,
+      "coordinate_frame": "paper7_heading_carryover_camera_foot",
+      "heading_reference": {
+        "path": "Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json",
+        "sha256": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465"
+      },
+      "evidence": [
+        "source PNG decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f002292.png sha256=375be11d55ad8db1aaa97c2bde07c095db45c63cd84b174d89f43978c963c11a",
+        "coordinate source: explicit human visual coordinates; decision sha256=df60e387a5c202f896c3ea232c38ae5e5005bedf13ac77bfa7d91333791fbbaa",
+        "native KB4/IPPE solution 1; no solution selected",
+        "board thickness input mm=15; external floor height input mm=590"
+      ],
+      "assumptions": [
+        "operator confirms a rigid board lies flat and parallel to the same floor",
+        "image correspondences are observed hypotheses, not independently verified physical corners",
+        "camera/capture geometry is static within this session",
+        "external height with image normal is a separate control, not a fitted metric result",
+        "paper7 supplies heading convention only; yaw and base_link transform are not measured"
+      ],
+      "invalidation_conditions": [
+        "session, camera mount, capture geometry or floor changes",
+        "board not rigid/flat/on floor, or image correspondence incorrect",
+        "physical distance or FFB authority requested"
+      ],
+      "height_source": "external_height_image_normal",
+      "printed_plane_height_m": 0.1781314744434811,
+      "native_reprojection_rmse_px": 5.675178261270728,
+      "role": "unselected_planar_hypothesis",
+      "controlling_distance": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "usable_for_ffb": false
+    }
+  ]
+}

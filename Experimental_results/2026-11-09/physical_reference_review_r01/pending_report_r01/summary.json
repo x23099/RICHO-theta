@@ -1,0 +1,45 @@
+{
+  "schema": "physical_reference_visual_summary_v1",
+  "queue_sha256": "49a1fe1197737bc8b66caa12f150f817fedf22d2ca52ca0b1901ed1f9130d284",
+  "items": [
+    {
+      "item_id": "paper_b559_f005755",
+      "kind": "paper",
+      "status": "pending"
+    },
+    {
+      "item_id": "paper_df33_f002292",
+      "kind": "paper",
+      "status": "pending"
+    },
+    {
+      "item_id": "cone_b559_f032654",
+      "kind": "cone_near_edge",
+      "status": "pending"
+    },
+    {
+      "item_id": "cone_b559_f035562",
+      "kind": "cone_near_edge",
+      "status": "pending"
+    },
+    {
+      "item_id": "cone_df33_f061948",
+      "kind": "cone_near_edge",
+      "status": "pending"
+    },
+    {
+      "item_id": "cone_df33_f064232",
+      "kind": "cone_near_edge",
+      "status": "pending"
+    }
+  ],
+  "counts": {
+    "pending": 6
+  },
+  "selected_model": null,
+  "note": "Pending/unclear are not approved. Human clicks are visual claims, not surveyed contact/metric ground truth.",
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "usable_for_ffb": false,
+  "controlling_distance": false
+}

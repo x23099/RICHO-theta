@@ -1,0 +1,50 @@
+test_bad_hash_frame_and_native_resolution_rejected (test_review_physical_reference.ReviewTests) ... ok
+test_changed_image_cannot_accept_old_clicks (test_review_physical_reference.ReviewTests) ... ok
+test_cone_endpoints_are_not_automatic_midpoint (test_review_physical_reference.ReviewTests) ... ok
+test_decision_folder_unknown_item_and_symlink_rejected (test_review_physical_reference.ReviewTests) ... ok
+test_decision_identity_and_false_claims_rejected (test_review_physical_reference.ReviewTests) ... ok
+test_duplicate_unknown_kind_and_authority_in_queue_rejected (test_review_physical_reference.ReviewTests) ... ok
+test_explicit_dimension_has_only_that_correspondence_but_keeps_planar_solutions (test_review_physical_reference.ReviewTests) ... ok
+test_immutable_save_and_alternate_review_directory (test_review_physical_reference.ReviewTests) ... ok
+test_paper_order_and_native_coordinates (test_review_physical_reference.ReviewTests) ... ok
+test_path_escape_and_symlink_rejected (test_review_physical_reference.ReviewTests) ... ok
+test_pending_and_unclear_report_never_fit (test_review_physical_reference.ReviewTests) ... ok
+test_prepare_has_no_synthetic_approval_and_no_image_output (test_review_physical_reference.ReviewTests) ... ok
+test_unclear_discards_guesses_and_dimension_claims (test_review_physical_reference.ReviewTests) ... ok
+test_unknown_dimension_keeps_both_without_selecting_height_match (test_review_physical_reference.ReviewTests) ... ok
+test_visual_record_no_metric_or_contact_authority (test_review_physical_reference.ReviewTests) ... ok
+test_zoom_coordinate_mapping_remains_native (test_review_physical_reference.ReviewTests) ... ok
+test_ambiguous_assignment_cannot_silently_select_long_edge (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_checkerboard_failure_has_no_rectangle_fallback (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_checkerboard_rear_roi_and_missing_square_size_refused (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_checkerboard_requires_explicit_floor_board_roi (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_complete_checkerboard_points_use_existing_pose_solver (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_complete_command_produces_loader_compatible_bytes_without_image_edit (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_confirmations_required_before_output (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_existing_output_never_overwritten (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_input_changed_during_fit_leaves_no_prepared_model (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_invalid_measurements_refused (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_large_residual_does_not_silently_select_a_convenient_solution (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_mixed_session_and_duplicate_frames_refused (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_mode_specific_options_not_silently_ignored (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_modes_are_explicit (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_no_default_height_or_thickness_is_assumed (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_nonpositive_front_depth_cannot_produce_a_model (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_partial_rear_crossing_and_duplicate_corners_refused (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_paths_cannot_escape_image_directory (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_rectangle_keeps_both_assignments_and_both_planar_solutions (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_thickness_and_external_height_remain_distinct_controls (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_unknown_source_name_and_hash_refused (test_derive_fixed_floor_live_bundle.DeriveFloorTests) ... ok
+test_collinear_floor_points_refused (test_floor_reference_pose.FloorPoseTests) ... ok
+test_duplicate_correspondences_refused (test_floor_reference_pose.FloorPoseTests) ... ok
+test_holdout_ray_intersection_uses_same_transform (test_floor_reference_pose.FloorPoseTests) ... ok
+test_known_pose_recovered_without_height_constraint (test_floor_reference_pose.FloorPoseTests) ... ok
+test_less_than_four_references_refused (test_floor_reference_pose.FloorPoseTests) ... ok
+test_nonfinite_inputs_refused (test_floor_reference_pose.FloorPoseTests) ... ok
+test_nonfloor_point_refused_not_projected_to_floor_silently (test_floor_reference_pose.FloorPoseTests) ... ok
+test_rear_pixel_not_remapped_to_front (test_floor_reference_pose.FloorPoseTests) ... ok
+
+----------------------------------------------------------------------
+Ran 45 tests in 1.632s
+
+OK

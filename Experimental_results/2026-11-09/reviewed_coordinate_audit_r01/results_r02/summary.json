@@ -1,0 +1,54 @@
+{
+  "status": "COMPLETED_REVIEWED_COORDINATE_AUDIT_NOT_LIVE_OR_METRIC_APPROVAL",
+  "human_status_counts": {
+    "reviewed": 6
+  },
+  "paper_side_assignments": {
+    "paper_b559_f005755": "unknown",
+    "paper_df33_f002292": "unknown"
+  },
+  "models_per_session": {
+    "b559e424": 8,
+    "df33e833": 8
+  },
+  "paper_corner_count": 8,
+  "image_point_comparisons": 4,
+  "factorial_records": 128,
+  "df33_replay_records": 24,
+  "same_frame_integer_measurements_crosschecked": 32,
+  "stored_same_frame_model_verdicts_crosschecked": 24,
+  "selected_model": null,
+  "source_sha256": {
+    "Experimental_results/2026-11-09/physical_reference_review_r01/prepared_r01/queue.json": "49a1fe1197737bc8b66caa12f150f817fedf22d2ca52ca0b1901ed1f9130d284",
+    "recordings/2026-11-04/floor_reference_b559e424_r01/decoded_b559e4240e364166935f9ede9ac3e7ae_f005755.png": "382ccb5992ab80cfb69290ef057d7010d30e9a6392e434832a70a5613404d76b",
+    "Experimental_results/2026-11-09/physical_reference_review_r01/prepared_r01/decisions/paper_b559_f005755.json": "1706dec1677e0a418e6f7c786932c9629e7cff43660ffb8e516c38e6552f2f91",
+    "recordings/2026-11-04/floor_reference_df33e833_r01/decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f002292.png": "375be11d55ad8db1aaa97c2bde07c095db45c63cd84b174d89f43978c963c11a",
+    "Experimental_results/2026-11-09/physical_reference_review_r01/prepared_r01/decisions/paper_df33_f002292.json": "df60e387a5c202f896c3ea232c38ae5e5005bedf13ac77bfa7d91333791fbbaa",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/upper_support_evidence/decoded_b559e4240e364166935f9ede9ac3e7ae_f032654.png": "12f1422b553ecf1d9dabf787bf8e728cb115cf98c42b2f524ebca393eb44f518",
+    "Experimental_results/2026-11-09/physical_reference_review_r01/prepared_r01/decisions/cone_b559_f032654.json": "747da2ff6c264226746f3f2b0d1b654182b63ff540cf3f1ea29a4a74d10a70a9",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/upper_support_evidence/decoded_b559e4240e364166935f9ede9ac3e7ae_f035562.png": "b1c786d71cec56246e9370920f89fc34cab9e691ed616c366fe5f3ea9e45bd7f",
+    "Experimental_results/2026-11-09/physical_reference_review_r01/prepared_r01/decisions/cone_b559_f035562.json": "a67864830450ff7688f2b3669a7dea927fc4720cd5525b1c856ca23b45b9b7d8",
+    "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f061948.png": "7012132d4ec29a24b0ed1a636892f1b62bd73166864d449e9fbe941ba3dffb01",
+    "Experimental_results/2026-11-09/physical_reference_review_r01/prepared_r01/decisions/cone_df33_f061948.json": "10dae3bd67c19d6b21e58baa47a1fa75fb7ba10d3312af1711cec09b89ac653e",
+    "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/decoded_df33e833acdf4e7d8b00d1ec37b7bcae_f064232.png": "63ac18d4fb0de73652e9c973d0e12837881e852b2fa79cd82b8af395a3078994",
+    "Experimental_results/2026-11-09/physical_reference_review_r01/prepared_r01/decisions/cone_df33_f064232.json": "8d766eb68a68c638c726eaf755f1b367ed912760edac193a6fc500fc99bc1d3b",
+    "Experimental_results/2026-11-04/floor_reference_b559e424_r01/derived_primary_r01/explicit_floor_models.json": "81bbb38e04bd6ebeffaefd0d2367aa99c7a522f03d495d2f1d2c24fd2c85ce23",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_primary_r01/explicit_floor_models.json": "12eabb9168d23a332b8730cd572883397505fd4d0787f94c32b603dd7fd897c1",
+    "Experimental_results/2026-11-04/floor_reference_b559e424_r01/references.json": "6ade11e92f6d90004058a78b2594dab1138b31402c4001f38a93f59a00c75034",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/references.json": "fe8868e5eaf4d4089bbcb526013d0229ec429a84973fd2cc088eb1c76ae12917",
+    "Experimental_results/2026-11-04/floor_df33e833_multidistance_r01/cases.json": "ec66d61d7ea7887d2becd7da0b6c094e8523c0368d3b481da796253f5b71d20b",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_primary_r01/prepared_floor.json": "08d8409f9674c433d5151f99228c43d8f8f6fb10d7245954223f6598e3af3176",
+    "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/floor_df33e833_z1p00_recent.jsonl": "8b9a336740ea734b2ba31d3cac395fff45baf504e308922b73de56a614d4bce5",
+    "recordings/2026-11-04/floor_comparison_df33e833_live_r01/floor_comparison_df33e833_recent.jsonl": "f554d0c7755504b35eb323b3f1d1e6b6cc7c825a1bf5fd0f03c3d390eae48cc0",
+    "recordings/2026-11-04/floor_comparison_df33e833_multidistance_r01/floor_df33e833_z2p00_recent.jsonl": "f3f0ecb0375fdd6dd8df4e35a09942c7de7c837b5b9e13bd7950dd4e2e713c32",
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/results_r02/audit.json": "8529c5f2da991190012f290cf4fdc4af6bad160650315c2cb15293b3be2aef2d",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/prepared_floor.json": "414ea62787afdc829900c12d109202ae5a0f75999e16259e12dccf109a87e92e",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/upper_support_comparison.jsonl": "8f80ce7ca7b4f336db286d44bada5e6f978097b06ed79dda75b22a1923e347cb"
+  },
+  "original_images_modified": false,
+  "physical_edge_identity_and_floor_contact_verified": false,
+  "calibration_fitted_to_distance": false,
+  "runtime_changed": false,
+  "usable_for_ffb": false,
+  "physical_metric_verified": false
+}

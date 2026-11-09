@@ -1,0 +1,17 @@
+assignment,branch_index_changed,f32654_range_m,f32654_reason,f35562_range_m,f35562_reason,f61948_range_m,f61948_reason,f64232_range_m,f64232_reason,height_mm,height_source,normal_change_deg,raw_branch,reprojection_rmse_px,session,tracked_branch
+as_listed,False,0.9702533513225875,,0.9939610160935652,,,,,,597.2384140798462,image_plane_plus_thickness,0.0,s0,0.4639638644919412,b559e4240e364166935f9ede9ac3e7ae,s0
+as_listed,False,0.9584940683400089,,0.9819144007987426,,,,,,590.0,external_height_image_normal,0.0,s0,0.4639638644919412,b559e4240e364166935f9ede9ac3e7ae,s0
+as_listed,False,,behind_heading_reference,,behind_heading_reference,,,,,578.6387293625463,image_plane_plus_thickness,8.537736462515939e-07,s1,3.7787231369926904,b559e4240e364166935f9ede9ac3e7ae,s1
+as_listed,False,,behind_heading_reference,,behind_heading_reference,,,,,590.0,external_height_image_normal,8.537736462515939e-07,s1,3.7787231369926904,b559e4240e364166935f9ede9ac3e7ae,s1
+swapped,False,0.7890227404945163,,0.8227996881198545,,,,,,221.89519071761305,image_plane_plus_thickness,0.0,s0,2.935110720977753,b559e4240e364166935f9ede9ac3e7ae,s0
+swapped,False,2.0979427962645487,,2.1877527603043325,,,,,,590.0,external_height_image_normal,0.0,s0,2.935110720977753,b559e4240e364166935f9ede9ac3e7ae,s0
+swapped,False,,behind_heading_reference,,behind_heading_reference,,,,,206.95200453648056,image_plane_plus_thickness,0.0,s1,6.81818689595368,b559e4240e364166935f9ede9ac3e7ae,s1
+swapped,False,,behind_heading_reference,,behind_heading_reference,,,,,590.0,external_height_image_normal,0.0,s1,6.81818689595368,b559e4240e364166935f9ede9ac3e7ae,s1
+as_listed,False,,,,,0.9701432201652525,,1.9834619303683168,,551.0150671755285,image_plane_plus_thickness,0.0,s0,0.2541831075098255,df33e833acdf4e7d8b00d1ec37b7bcae,s0
+as_listed,False,,,,,1.0387819389976192,,2.1237940822850865,,590.0,external_height_image_normal,0.0,s0,0.2541831075098255,df33e833acdf4e7d8b00d1ec37b7bcae,s0
+as_listed,False,,,,,,behind_heading_reference,,behind_heading_reference,534.2683339539574,image_plane_plus_thickness,8.537736462515939e-07,s1,3.3421045665771847,df33e833acdf4e7d8b00d1ec37b7bcae,s1
+as_listed,False,,,,,,behind_heading_reference,,behind_heading_reference,590.0,external_height_image_normal,8.537736462515939e-07,s1,3.3421045665771847,df33e833acdf4e7d8b00d1ec37b7bcae,s1
+swapped,False,,,,,0.6811434894609231,,,outside_diagnostic_range,205.95753034087792,image_plane_plus_thickness,0.0,s0,2.154127202612536,df33e833acdf4e7d8b00d1ec37b7bcae,s0
+swapped,False,,,,,1.951250134514657,,,outside_diagnostic_range,590.0,external_height_image_normal,0.0,s0,2.154127202612536,df33e833acdf4e7d8b00d1ec37b7bcae,s0
+swapped,False,,,,,,behind_heading_reference,,behind_heading_reference,193.13147444348112,image_plane_plus_thickness,0.0,s1,5.675178261270728,df33e833acdf4e7d8b00d1ec37b7bcae,s1
+swapped,False,,,,,,behind_heading_reference,,behind_heading_reference,590.0,external_height_image_normal,0.0,s1,5.675178261270728,df33e833acdf4e7d8b00d1ec37b7bcae,s1

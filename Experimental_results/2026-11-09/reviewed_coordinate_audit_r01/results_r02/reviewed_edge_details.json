@@ -1,0 +1,74 @@
+[
+  {
+    "item": "cone_b559_f032654",
+    "endpoints": [
+      [
+        285.032,
+        416.271
+      ],
+      [
+        345.646,
+        415.116
+      ]
+    ],
+    "reviewed_point_precision_not_measured": true,
+    "support_columns_compared": 0,
+    "median_lower_support_offset_px": null,
+    "direct_pixel_chord_max_difference_px": 0.8532208472748266,
+    "no_point_outside_annotation_span_extrapolated": true
+  },
+  {
+    "item": "cone_b559_f035562",
+    "endpoints": [
+      [
+        285.708,
+        417.544
+      ],
+      [
+        345.413,
+        415.77
+      ]
+    ],
+    "reviewed_point_precision_not_measured": true,
+    "support_columns_compared": 52,
+    "median_lower_support_offset_px": -0.0035028999600115185,
+    "direct_pixel_chord_max_difference_px": 0.8344867434981325,
+    "no_point_outside_annotation_span_extrapolated": true
+  },
+  {
+    "item": "cone_df33_f061948",
+    "endpoints": [
+      [
+        287.11,
+        416.443
+      ],
+      [
+        347.997,
+        415.498
+      ]
+    ],
+    "reviewed_point_precision_not_measured": true,
+    "support_columns_compared": 50,
+    "median_lower_support_offset_px": 0.7444605504353774,
+    "direct_pixel_chord_max_difference_px": 0.8634105229400575,
+    "no_point_outside_annotation_span_extrapolated": true
+  },
+  {
+    "item": "cone_df33_f064232",
+    "endpoints": [
+      [
+        302.387,
+        371.654
+      ],
+      [
+        334.752,
+        371.506
+      ]
+    ],
+    "reviewed_point_precision_not_measured": true,
+    "support_columns_compared": 26,
+    "median_lower_support_offset_px": 1.2916206968865254,
+    "direct_pixel_chord_max_difference_px": 0.14155953260848264,
+    "no_point_outside_annotation_span_extrapolated": true
+  }
+]

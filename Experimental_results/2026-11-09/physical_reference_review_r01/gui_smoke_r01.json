@@ -1,0 +1,21 @@
+{
+  "status": "PASS_SYNTHETIC_GUI_ONLY",
+  "checks": {
+    "no_image_save_toolbar": true,
+    "incomplete_confirmation_not_saved": true,
+    "zoom_changes_view_only": true,
+    "zoom_click_native_coordinates": true,
+    "paper_dimension_recorded": true,
+    "unclear_clears_guess": true,
+    "two_windows_exercised": true,
+    "pending_zero_for_synthetic_only": true,
+    "synthetic_pixels_unchanged": true,
+    "no_image_exports": true,
+    "no_unhandled_callback_errors": true
+  },
+  "errors": [],
+  "real_human_reviews_performed": 0,
+  "real_source_images_modified": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}

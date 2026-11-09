@@ -1,0 +1,29 @@
+{
+  "schema": "physical_reference_visual_decision_v1",
+  "queue_sha256": "49a1fe1197737bc8b66caa12f150f817fedf22d2ca52ca0b1901ed1f9130d284",
+  "item_id": "cone_df33_f064232",
+  "kind": "cone_near_edge",
+  "session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+  "frame": 64232,
+  "image_sha256": "63ac18d4fb0de73652e9c973d0e12837881e852b2fa79cd82b8af395a3078994",
+  "status": "reviewed",
+  "points_native_xy": [
+    [
+      302.387,
+      371.654
+    ],
+    [
+      334.752,
+      371.506
+    ]
+  ],
+  "side_assignment": "unknown",
+  "reviewer": "human_local",
+  "confirmation_method": "explicit_manual_key",
+  "independently_surveyed_ground_truth": false,
+  "note": "human selected visible image features; physical correspondence unverified",
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "usable_for_ffb": false,
+  "controlling_distance": false
+}

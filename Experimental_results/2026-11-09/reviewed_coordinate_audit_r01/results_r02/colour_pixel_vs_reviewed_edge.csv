@@ -1,0 +1,5 @@
+closest_sample_distance_px,frame,item,physical_contact_verified,point_role,point_x,point_y,session,signed_y_below_reviewed_edge_px,straight_edge_and_intrinsic_model_assumed,x_within_reviewed_edge
+2.3636244614645774,32654,cone_b559_f032654,False,rejected_context_proposal_NOT_live_point,308,419,b559e4240e364166935f9ede9ac3e7ae,2.3635663286087265,True,True
+0.6624513720861743,35562,cone_b559_f035562,False,recorded_upper_point,308,417,b559e4240e364166935f9ede9ac3e7ae,-0.662396343354203,True,True
+2.132464801370424,61948,cone_df33_f061948,False,recorded_legacy_point,315,419,df33e833acdf4e7d8b00d1ec37b7bcae,2.1325766586943473,True,True
+1.270267110931365,64232,cone_df33_f064232,False,recorded_legacy_point,316,373,df33e833acdf4e7d8b00d1ec37b7bcae,1.2702603076307923,True,True

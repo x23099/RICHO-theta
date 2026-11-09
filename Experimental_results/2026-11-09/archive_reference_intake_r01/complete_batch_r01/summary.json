@@ -1,0 +1,344 @@
+{
+  "status": "COMPLETE_READ_ONLY_BATCH_AUDIT",
+  "checks": {
+    "input_archives_and_code_unchanged": true,
+    "existing_reference_files_unchanged": true,
+    "every_member_matches_existing": true,
+    "all_image_roles_resolved": true,
+    "all_current_batch_paths_inspected": true
+  },
+  "attachments_in_messages": 23,
+  "unique_archive_paths": 14,
+  "repeated_names_in_messages": {
+    "floor_support_final_audit_r01.tar.xz": 2,
+    "upper_support_live_r01.tar.xz": 2,
+    "upper_support_comparator_r01.tar.xz": 2,
+    "report_assets.tar.xz": 2,
+    "floor_df33e833_multidistance_r01.tar.xz": 2,
+    "floor_df33e833_diagnosis_r01.tar.xz": 2,
+    "floor_reference_df33e833_r01.tar.xz": 2,
+    "floor_comparison_df33e833_live_r01.tar.xz": 2,
+    "upper_support_capture_r01.tar.xz": 2
+  },
+  "historical_upload_versions_separately_accessible": false,
+  "archives_with_identical_member_contents": [],
+  "regular_member_occurrences": 166,
+  "member_roles": {
+    "metadata_code_report_or_resource": 135,
+    "synthetic_test_image": 4,
+    "existing_analysis_graph": 10,
+    "structured_log_NOT_video": 4,
+    "native_camera_png_byte_copy": 1,
+    "user_gui_or_terminal_screenshot": 2,
+    "native_camera_png": 10
+  },
+  "unique_native_camera_png_contents": 10,
+  "raw_image_copy_matches_native": true,
+  "video_candidates": [],
+  "changed_or_new_members": [],
+  "duplicate_member_content_groups": [
+    {
+      "sha256": "68b7f8ed660bffdbeaea16463e4d6834b134de9ad61648cae52ea0345effe2be",
+      "occurrences": [
+        {
+          "archive": "floor_reference_9b7d9a17_r01.tar.xz",
+          "member": "floor_reference_9b7d9a17_r01/derived_primary_r01/prepared_floor.json",
+          "role": "metadata_code_report_or_resource"
+        },
+        {
+          "archive": "floor_reference_9b7d9a17_r01.tar.xz",
+          "member": "floor_reference_9b7d9a17_r01/prepared_floor_9b7d9a17_f061717.json",
+          "role": "metadata_code_report_or_resource"
+        }
+      ]
+    },
+    {
+      "sha256": "414ea62787afdc829900c12d109202ae5a0f75999e16259e12dccf109a87e92e",
+      "occurrences": [
+        {
+          "archive": "floor_reference_b559e424_r01.tar.xz",
+          "member": "floor_reference_b559e424_r01/derived_primary_r01/prepared_floor.json",
+          "role": "metadata_code_report_or_resource"
+        },
+        {
+          "archive": "floor_reference_b559e424_r01.tar.xz",
+          "member": "floor_reference_b559e424_r01/prepared_floor_b559e424_f005755.json",
+          "role": "metadata_code_report_or_resource"
+        },
+        {
+          "archive": "upper_support_capture_r01.tar.xz",
+          "member": "upper_support_capture_r01/prepared_floor.json",
+          "role": "metadata_code_report_or_resource"
+        }
+      ]
+    },
+    {
+      "sha256": "65c9bca4abf621a625a8a24df80754267080038707e150395b776a03ea9634c0",
+      "occurrences": [
+        {
+          "archive": "upper_support_capture_analysis_r01.tar.xz",
+          "member": "upper_support_capture_analysis_r01/detail_r02/live_comparison.png",
+          "role": "existing_analysis_graph"
+        },
+        {
+          "archive": "report_assets.tar.xz",
+          "member": "report_assets/upper_support_b559e424_live_comparison.png",
+          "role": "existing_analysis_graph"
+        }
+      ]
+    },
+    {
+      "sha256": "b1c786d71cec56246e9370920f89fc34cab9e691ed616c366fe5f3ea9e45bd7f",
+      "occurrences": [
+        {
+          "archive": "report_assets.tar.xz",
+          "member": "report_assets/upper_support_b559e424_f035562.png",
+          "role": "native_camera_png_byte_copy"
+        },
+        {
+          "archive": "upper_support_capture_r01.tar.xz",
+          "member": "upper_support_capture_r01/upper_support_evidence/decoded_b559e4240e364166935f9ede9ac3e7ae_f035562.png",
+          "role": "native_camera_png"
+        }
+      ]
+    },
+    {
+      "sha256": "0289bd538edb1e9f8e6179013f95e5bfa7be14f5394afab60c1774d009cca45f",
+      "occurrences": [
+        {
+          "archive": "report_assets.tar.xz",
+          "member": "report_assets/fixed_floor_df33e833_live_stability.png",
+          "role": "existing_analysis_graph"
+        },
+        {
+          "archive": "floor_comparison_df33e833_live_r01.tar.xz",
+          "member": "floor_comparison_df33e833_live_r01/results_r01/live_stability.png",
+          "role": "existing_analysis_graph"
+        }
+      ]
+    },
+    {
+      "sha256": "7b853fc9d0cb2c1d6f48bf33bd3a300e47ec7cfd089874ea29ecb2069c79f80f",
+      "occurrences": [
+        {
+          "archive": "report_assets.tar.xz",
+          "member": "report_assets/fixed_floor_df33e833_multidistance.png",
+          "role": "existing_analysis_graph"
+        },
+        {
+          "archive": "floor_df33e833_multidistance_r01.tar.xz",
+          "member": "floor_df33e833_multidistance_r01/results_r01/distance_comparison.png",
+          "role": "existing_analysis_graph"
+        }
+      ]
+    },
+    {
+      "sha256": "08d8409f9674c433d5151f99228c43d8f8f6fb10d7245954223f6598e3af3176",
+      "occurrences": [
+        {
+          "archive": "floor_reference_df33e833_r01.tar.xz",
+          "member": "floor_reference_df33e833_r01/derived_primary_r01/prepared_floor.json",
+          "role": "metadata_code_report_or_resource"
+        },
+        {
+          "archive": "floor_reference_df33e833_r01.tar.xz",
+          "member": "floor_reference_df33e833_r01/prepared_floor_df33e833_f002292.json",
+          "role": "metadata_code_report_or_resource"
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "/home/robo25/Downloads/floor_reference_9b7d9a17_r01.tar.xz": "116b015386e8f1150c0e5261d05aa65754e1c818c76c7b8c4fe1ab945dd5a4e8",
+    "/home/robo25/Downloads/fixed_floor_display_roi_fix_r01.tar.xz": "0de46132592e975df3b2309fb90fb1b5f0456949f0b97bf18a8b6c82eaf521d4",
+    "/home/robo25/Downloads/floor_comparison_live_tail_r01.tar.xz": "38301d160a2f2d158df21ed6c364d044abd1a86bbb17364689cc754363c12bc5",
+    "/home/robo25/Downloads/floor_reference_b559e424_r01.tar.xz": "1137475c7c0112f2fac928f1b9d2e5bde107e3b244cc21a5d9653b418e337b4c",
+    "/home/robo25/Downloads/upper_support_capture_analysis_r01.tar.xz": "fff21ff9a777a933dd43f2adf1a71b0cbb30305cf36b87a52e831dd8e621581b",
+    "/home/robo25/Downloads/floor_support_final_audit_r01.tar.xz": "9591f83e4bcde76901ca283295da0a2e0de6a94fd380f4253ba2a7ceb55a2058",
+    "/home/robo25/Downloads/upper_support_live_r01.tar.xz": "e420117422017ea2269e9bddc4b53f2ecaa9792c2a88d257e4e6dfcc48f32089",
+    "/home/robo25/Downloads/upper_support_comparator_r01.tar.xz": "9120cf889d8e631ba7638c4b7f7b53625de657d863a45cbeb0b4a95c7e24b080",
+    "/home/robo25/Downloads/report_assets.tar.xz": "8db683eb1ad3dd941b6802b2232d6432ef4d357c2b42cc175d35c941a7492def",
+    "/home/robo25/Downloads/floor_df33e833_multidistance_r01.tar.xz": "043338cbed880e6cbc991d757c97cba5ecfd96c1f5591143e0311d7dfe1494d2",
+    "/home/robo25/Downloads/floor_df33e833_diagnosis_r01.tar.xz": "02bc5d0207eb19b1f72dec20ffd49fbfe8a0cc31b5484af7889f506635c40cbd",
+    "/home/robo25/Downloads/floor_reference_df33e833_r01.tar.xz": "f6b74e0f60d3b9daa5e10416549f1a3a0f8f7a8d53af7a0b50aa934b0b584920",
+    "/home/robo25/Downloads/floor_comparison_df33e833_live_r01.tar.xz": "7c11add65b0adc37548242ad27dce88df9d7188c87350d695c3a779f75327c1f",
+    "/home/robo25/Downloads/upper_support_capture_r01.tar.xz": "89536aafa5b1f8e8abe5c39e6f92a1fd538c336dddbc4bb48e11da1d35eeea7f",
+    "Experimental_results/2026-11-09/archive_reference_intake_r01/inspect_complete_batch.py": "fa8c54e30507ed4cba3d2044cbea893ec341e789a98c77761f1fd5b9990ba8a8",
+    "Experimental_results/2026-11-09/archive_reference_intake_r01/inspect_archives.py": "de7b8853c5ef32595910070a540a7175117915f8f3592285eed9847466d0248a",
+    "Experimental_results/2026-11-04/report_assets/README.md": "c2c46545533101089f71cb9e0cfa4ed16a1ba37313c38652ad37586cea0675bb"
+  },
+  "existing_file_sha256": {
+    "Experimental_results/2026-11-04/floor_reference_9b7d9a17_r01/README.md": "87731f14f8ba1e2b3860256f342ee15016374261de2b503cb50503dc23229588",
+    "Experimental_results/2026-11-04/floor_reference_9b7d9a17_r01/derived_pixel_control_r01/derivation_report.json": "4ba0671175cbb5db6de804ce70466c350b0d17fbde1942a8dd585f001be003dc",
+    "Experimental_results/2026-11-04/floor_reference_9b7d9a17_r01/derived_pixel_control_r01/explicit_floor_models.json": "cf6d49bf37735b61511b73f813f49392ba541bfa2c13b544affd6eee89caa7d7",
+    "Experimental_results/2026-11-04/floor_reference_9b7d9a17_r01/derived_pixel_control_r01/prepared_floor.json": "869c0ea870e2cddccdbaf8fa09056813e01d34c2c2a13a42cb5f1c0536879923",
+    "Experimental_results/2026-11-04/floor_reference_9b7d9a17_r01/derived_primary_r01/derivation_report.json": "ee29a5409b6734839cb63366e25d636ab8ab525f24da1907ad1cb192161a0cee",
+    "Experimental_results/2026-11-04/floor_reference_9b7d9a17_r01/derived_primary_r01/explicit_floor_models.json": "d70550a0cd553914b8d5c91aa0e6d87ca6252fca31e8a51e4bb8e82df5a19d73",
+    "Experimental_results/2026-11-04/floor_reference_9b7d9a17_r01/derived_primary_r01/prepared_floor.json": "68b7f8ed660bffdbeaea16463e4d6834b134de9ad61648cae52ea0345effe2be",
+    "Experimental_results/2026-11-04/floor_reference_9b7d9a17_r01/prepared_floor_9b7d9a17_f061717.json": "68b7f8ed660bffdbeaea16463e4d6834b134de9ad61648cae52ea0345effe2be",
+    "Experimental_results/2026-11-04/floor_reference_9b7d9a17_r01/references.json": "602798886aa4fcc577366212bc940ca122699f72c98c858e7dbd55a38a3193b1",
+    "Experimental_results/2026-11-04/floor_reference_9b7d9a17_r01/references_control_t190.json": "120ed714cc8b9c3549e1204f4a3c178678e1fcd85a6044763e09b7528ce68e4d",
+    "Experimental_results/2026-11-04/floor_reference_9b7d9a17_r01/verification_r01/tests.log": "c375567cb95f029f607cb5de80b5655c9b0e2b153dd665aad34edad3c4c202e7",
+    "Experimental_results/2026-11-04/floor_reference_9b7d9a17_r01/verification_r01/verification.json": "d4caa610e650f41e9e4ed12f1dad7ec503ed61b011216938bcc986bdc62124d6",
+    "Experimental_results/2026-11-04/floor_reference_9b7d9a17_r01/verify.py": "2390881f14cb7c0d6edae29c51aef92d4b7482e48217dd3d8111af7edd702ef4",
+    "Experimental_results/2026-11-04/fixed_floor_display_roi_fix_r01/README.md": "dfd574ac4a03ef4b992e026e4109ca438c78b03280391dd9c56f5ca4fe23b8e9",
+    "Experimental_results/2026-11-04/fixed_floor_display_roi_fix_r01/live_retest_procedure.md": "be86e3177253e56d7c3e73a3498a66a4455ea8bca4758b6cce3f5a4a0bc23845",
+    "Experimental_results/2026-11-04/fixed_floor_display_roi_fix_r01/verification_r01/SYNTHETIC_native_cone.png": "f60c2a08cae24244186cad1f906302449b344a0108da3ae2a2079dc557b6ab16",
+    "Experimental_results/2026-11-04/fixed_floor_display_roi_fix_r01/verification_r01/SYNTHETIC_preview_f000015.png": "f8ee86b808358fe240c92292dc0ea123a513145c70101f85dc5ff090d4cda03f",
+    "Experimental_results/2026-11-04/fixed_floor_display_roi_fix_r01/verification_r01/SYNTHETIC_preview_f000060.png": "5b0192bc6cf0b40c4a439263f9445bbbed71c425dba9a21f3f406a71eb3e99bd",
+    "Experimental_results/2026-11-04/fixed_floor_display_roi_fix_r01/verification_r01/SYNTHETIC_preview_f000111.png": "56809ff217b6e64fc76aa4d09c2725806af6aade8590a95f1d3a5cf199934c26",
+    "Experimental_results/2026-11-04/fixed_floor_display_roi_fix_r01/verification_r01/preview_manifest.json": "92c95d77fa9cd4ac10877501858f3307384f905331608a9278053feb895fd18d",
+    "Experimental_results/2026-11-04/fixed_floor_display_roi_fix_r01/verification_r01/real_panel_summary.json": "45e63030ccc6364dfeb537305f2120d780dd486aa1e6975c1c3f4d13effd16db",
+    "Experimental_results/2026-11-04/fixed_floor_display_roi_fix_r01/verification_r01/synthetic_cpu_render_cost.csv": "b15e5796cd370aacf4e500dd54ba28b14835859961ff64afd1e304282f44ff53",
+    "Experimental_results/2026-11-04/fixed_floor_display_roi_fix_r01/verification_r01/synthetic_panel_views.json": "241668aea15fe790ab645b4f5bd11bcb0cad7ff7261c2d27868045144eea9aca",
+    "Experimental_results/2026-11-04/fixed_floor_display_roi_fix_r01/verification_r01/tests.csv": "14522f069bde5cd2666940f2e339fcbe8dd7b1df03b909b75d0763854a182521",
+    "Experimental_results/2026-11-04/fixed_floor_display_roi_fix_r01/verification_r01/tests.log": "544e25a5e1225482c7e9dd4757847550d5ffa74ab2f3104437f23652bfbfbcc7",
+    "Experimental_results/2026-11-04/fixed_floor_display_roi_fix_r01/verification_r01/verification.json": "1163670c6bcfb7ed7b4219fd783df803817fc9ee9c89bf9c94f4aa9ea8eaf6ea",
+    "Experimental_results/2026-11-04/floor_comparison_live_tail_r01/README.md": "5c236ab22238d03efc8530e1789d193fe54abb8e3c9e0c3d98ac862969ac2cab",
+    "Experimental_results/2026-11-04/floor_comparison_live_tail_r01/analyze.py": "0e29246dfc6baa79bc9bad086d4f887c87dabe22d7fd6b9382bc9e90644faa33",
+    "Experimental_results/2026-11-04/floor_comparison_live_tail_r01/comparison_to_148cm.csv": "2adee10e9b21ae0df8c94bf28d3bf2de8de8f27a6851e7f7b5c87ff2fd291daf",
+    "Experimental_results/2026-11-04/floor_comparison_live_tail_r01/comparison_to_corrected_reference_r02.csv": "0f0d8ec84e2e46b396db524cde08a8e1a337be15d31c9ee63e12f63aeffef942",
+    "Experimental_results/2026-11-04/floor_comparison_live_tail_r01/results_r01/model_ranges.csv": "3361e333d5c22e2941b03960c7ed678f095339928b1d8f7d2759decb4124b668",
+    "Experimental_results/2026-11-04/floor_comparison_live_tail_r01/results_r01/summary.json": "5164d91f78638f3e27b1a295526bb66cdca74c408da1b61db7c691a2ceaaaee6",
+    "Experimental_results/2026-11-04/floor_comparison_live_tail_r01/user_reference_148cm.json": "230cb8680a99f1085980f24e3d8d47a8570a20e87e95580edd3effb74c04b6dc",
+    "Experimental_results/2026-11-04/floor_comparison_live_tail_r01/user_reference_corrected_r02.json": "3f79cfd94305dee296b44bc779255e754a311d18916283d549c5cbbb4175df22",
+    "Experimental_results/2026-11-04/floor_reference_b559e424_r01/README.md": "84875be5a534f4dc2feaa771a642c28b68f083cf16692986807a33de160eb49f",
+    "Experimental_results/2026-11-04/floor_reference_b559e424_r01/derived_control_t190_r01/derivation_report.json": "00247d56e8bc726ddecae3a39d122b484e106b420aee9df4423fa67af76ef533",
+    "Experimental_results/2026-11-04/floor_reference_b559e424_r01/derived_control_t190_r01/explicit_floor_models.json": "5a22bd48332f2c331a75168215ef87644bd356ba7f5a888038576b65ddbe0df6",
+    "Experimental_results/2026-11-04/floor_reference_b559e424_r01/derived_control_t190_r01/prepared_floor.json": "2dc429805bc3a63e3f5ee93fcf3e86abf72a0a78643c443bf91cd440f38d1d58",
+    "Experimental_results/2026-11-04/floor_reference_b559e424_r01/derived_primary_r01/derivation_report.json": "4bdfa0ab469738b97a871a053597eef8d3b5476d5c6c67fd618a71d41fb833d7",
+    "Experimental_results/2026-11-04/floor_reference_b559e424_r01/derived_primary_r01/explicit_floor_models.json": "81bbb38e04bd6ebeffaefd0d2367aa99c7a522f03d495d2f1d2c24fd2c85ce23",
+    "Experimental_results/2026-11-04/floor_reference_b559e424_r01/derived_primary_r01/prepared_floor.json": "414ea62787afdc829900c12d109202ae5a0f75999e16259e12dccf109a87e92e",
+    "Experimental_results/2026-11-04/floor_reference_b559e424_r01/prepared_floor_b559e424_f005755.json": "414ea62787afdc829900c12d109202ae5a0f75999e16259e12dccf109a87e92e",
+    "Experimental_results/2026-11-04/floor_reference_b559e424_r01/references.json": "6ade11e92f6d90004058a78b2594dab1138b31402c4001f38a93f59a00c75034",
+    "Experimental_results/2026-11-04/floor_reference_b559e424_r01/references_control_t190.json": "1603fc10baa3ddf12d345e9934bc88def9a1c4f63ba4fe92d1781706dd876997",
+    "Experimental_results/2026-11-04/floor_reference_b559e424_r01/verification_r01/verification.json": "43410d6ed1a32fdfeb8e1aab8e60fa6bf0fef501d788d8911c61c5300e6fd3b5",
+    "Experimental_results/2026-11-04/floor_reference_b559e424_r01/verify.py": "2aa4ed40427325f24826a4003e0a43d77b45febabe2a9d91ee10653d0397dc46",
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/.gitignore": "fb86775e628be8ec3d1705d3d44606893f18c5cabfc68223b40baecd98519e20",
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/README.md": "c627697d54844101ea4cfb51cd6965d67739cda473dcc73d329ae42c0d444735",
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/analyze.py": "d5659974c5f014bb2f723ee569c32198aaaeaf25421bdf24afdf77cf325d6eee",
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/detail.py": "75633daed30db8c9e3564e8eb40528c2eefa15d98081f7a4971747f4b4abe511",
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/detail_r02/active_plot_data.csv": "42fcc824f1010cbaae08ed841d24373eb2780b92ee010b154a4a3fde60451b5e",
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/detail_r02/detail.json": "b598ccfab57273019f62082420a8778764cb50a471c0c00a57e1658775aafd2b",
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/detail_r02/live_comparison.png": "65c9bca4abf621a625a8a24df80754267080038707e150395b776a03ea9634c0",
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/detail_r02/recovered_event.png": "a90aac0029223403f1fd4ad963fccb8b6df359130a876a8d4409c8f026f48e39",
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/detail_r02/refused_candidates.csv": "777d7b075471f318a59429c914a3ed888ecbdfe5c70f7c62da0c4b6aae7c0cbd",
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/detail_r02/software_verification.json": "04bbe475e45ec934aad12c69ad6049b5108eeeb23e402cb9fe1e2682aa3eac56",
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/reference.json": "c5dcd417acff27c580ab25fc9d37e1da4a6679ce54f82955c9436d6489dcb2fe",
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/results_r02/audit.json": "8529c5f2da991190012f290cf4fdc4af6bad160650315c2cb15293b3be2aef2d",
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/results_r02/evidence_verification.json": "1f286e8e8bf3a11ad66c88a2a3de247b2fc64995072fdaabbd45f963e8c934c8",
+    "Experimental_results/2026-11-04/upper_support_capture_analysis_r01/results_r02/standard_upper_report/upper_summary.json": "4d47b7dac249a6d83e776b199521ba0d24bbf532e37fc6d6ad220d22845b27c8",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/.gitignore": "f95476d142db9b5f170e3cb405a25472fedf8887cd8cb0430589f9ad3f4f390b",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/README.md": "511f19547051672f33a45dd5ebbbf327d7d78d27001e1c902208e06c2c096727",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/audit.py": "507c51ea0fbdb88a826ec3e1a0183d00887d2a17c11f11a66f3db0afb5ace82c",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/results_r03/corner_controls.csv": "d4b3aa9fbe7645f78cb07e3abec36230c8c739a6b9b1445bf0f1f49585168c84",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/results_r03/paper_geometry.csv": "1aafa16c5a1c1d90b1d228b47a501a400063efd4dfac684136d7cb6c5a5f6e83",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/results_r03/paper_height_consistency.png": "f1d9d2b46a751a2b690a53b293c2a64cb72dccc7907eb2ee6f9eacc58b838b88",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/results_r03/saved_frame_contexts.csv": "6060c0e809411172774bdec39041a3a21427a49f2c8282e6959b32292134058e",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/results_r03/saved_frame_contexts.json": "ced4fc02fd88954d2ed9d4efee2826c08747b34bc736cc7b7009976dbcf06199",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/results_r03/session_distance_comparison.csv": "9983d84a70a1494a322ae9b77c56379d4a7d1d3d7caa2bb392572bceff89fc34",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/results_r03/session_distances.png": "53d5e01c48e006107ca86d8efe6d666144ac29e7b3e43ea7156889c233d277cd",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/results_r03/summary.json": "14c8abbb9f74ef620146fd416f912291264da0e42e6abb6552d075c2c3af2d0d",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/test_audit.py": "4ce230c2b4605308cdc931fde113e64de81c5d45ab78aab967696229a9c846dd",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/verification_r03/tests.log": "a866f512ce47eeab7b07e2ff8c9288f0616f016f86fc127bfc2fa4246293daeb",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/verification_r03/verification.json": "ec7d1e3a8ebbdb6a53827740a7f324a442ec85a7bcb8eb893a8b562eb5cd37b8",
+    "Experimental_results/2026-11-04/floor_support_final_audit_r01/verify.py": "120aa8b3eb61f2ef59b7165e8ce0ffbb24b14ee25c8fb617e16049c828bdb807",
+    "Experimental_results/2026-11-04/upper_support_live_r01/README.md": "66baacea1cbf6680fd0f9ab1cd30935ed3c8ef37b83a32c800768f3238c5d425",
+    "Experimental_results/2026-11-04/upper_support_live_r01/live_procedure.md": "b56fd51cc8520c1a7af4b24fb9b540b0fcd682ebfb0001d7c1b105228137cbfe",
+    "Experimental_results/2026-11-04/upper_support_live_r01/source_snapshot/cone_distance_worker.py": "d9172c2452f3449a93c98b1c4fa44bfa744c2e0ad9f1b49bf6f307d02347e152",
+    "Experimental_results/2026-11-04/upper_support_live_r01/source_snapshot/run_cone_distance_live.py": "c4c3f95b66db648c7e19a5bf239a26a2e9916b98aafd7022a6e1010490785b97",
+    "Experimental_results/2026-11-04/upper_support_live_r01/verification_r01/RECORDED_RECOMPUTATION_NOT_LIVE/upper_support_comparison.jsonl": "6deac29806d5cb43af6414ab3388d0a2b508cba4ab99a0fb6b0d486b0bcbeabf",
+    "Experimental_results/2026-11-04/upper_support_live_r01/verification_r01/recorded_log_report/upper_summary.json": "d6899739725ee4989bd7fc1eb240f7992719479d4b23629599fb38ff561ab897",
+    "Experimental_results/2026-11-04/upper_support_live_r01/verification_r01/tests.csv": "a8dabf8d1fcd66ea671e75a4db1a897d2fd4573f234973b1017995d89d5af4ee",
+    "Experimental_results/2026-11-04/upper_support_live_r01/verification_r01/tests.log": "0f7c07ccee119dde616a04498d01bf79758b67a1655071a88fb2fdd3e4b88d19",
+    "Experimental_results/2026-11-04/upper_support_live_r01/verification_r01/verification.json": "f87b1918bc6eb79a8b1cfa51f7faf449b02565bec2148aa461d1e9dcafaead50",
+    "Experimental_results/2026-11-04/upper_support_live_r01/verify.py": "593d10b693ee9303de2884e67cb849f16beccfb08eac3653ea801d40ae802447",
+    "Experimental_results/2026-11-04/upper_support_comparator_r01/README.md": "02ae23172c0ae2f536a511406205335860fa3ecafe7a290bc8100c92c4ec33b5",
+    "Experimental_results/2026-11-04/upper_support_comparator_r01/verification_r01/bbox_counterfactual.csv": "f0407c46978ac237e34923cf60b7a83067786dd9b03739dc5ade2a82599d71f4",
+    "Experimental_results/2026-11-04/upper_support_comparator_r01/verification_r01/counterfactual_traces.json": "35abcadeae7d51c835011e2dfe1ae5f49cf04fa41b9495e69ba55f67610891e8",
+    "Experimental_results/2026-11-04/upper_support_comparator_r01/verification_r01/tests.csv": "2c377994bc1252dee1f46042255784d8c7bf6b6785dfc6d0460d889bd5eb5024",
+    "Experimental_results/2026-11-04/upper_support_comparator_r01/verification_r01/tests.log": "c95aad4d0ddd901d315e59a57e3c1cfdfc1a4fff0d7a4f40455fa3c5c79ce9f0",
+    "Experimental_results/2026-11-04/upper_support_comparator_r01/verification_r01/verification.json": "561bf4e19e3fdbed5f65404e292088ce6a7caf8b9b17b15c03087f1583b3270b",
+    "Experimental_results/2026-11-04/upper_support_comparator_r01/verify.py": "489e9af2d78dde9e20647f3117cf81c96986d00865d9126a3f45e160e45a8e02",
+    "Experimental_results/2026-11-04/report_assets/README.md": "c2c46545533101089f71cb9e0cfa4ed16a1ba37313c38652ad37586cea0675bb",
+    "Experimental_results/2026-11-04/report_assets/upper_support_b559e424_f035562.png": "b1c786d71cec56246e9370920f89fc34cab9e691ed616c366fe5f3ea9e45bd7f",
+    "Experimental_results/2026-11-04/report_assets/upper_support_b559e424_live_comparison.png": "65c9bca4abf621a625a8a24df80754267080038707e150395b776a03ea9634c0",
+    "Experimental_results/2026-11-04/report_assets/fixed_floor_comparison_gui_df33e833_f019541.png": "1fcc94d86b038aaae7ee4d5817eca9d3bf01c0c371fa6571338308f7a39cbcd5",
+    "Experimental_results/2026-11-04/report_assets/fixed_floor_comparison_terminal_df33e833.png": "4599392f501aac7b2ad12677ded27605d21a6ff154b2d0510fff1dc4aa8174e3",
+    "Experimental_results/2026-11-04/report_assets/fixed_floor_df33e833_live_stability.png": "0289bd538edb1e9f8e6179013f95e5bfa7be14f5394afab60c1774d009cca45f",
+    "Experimental_results/2026-11-04/report_assets/fixed_floor_df33e833_multidistance.png": "7b853fc9d0cb2c1d6f48bf33bd3a300e47ec7cfd089874ea29ecb2069c79f80f",
+    "Experimental_results/2026-11-04/floor_df33e833_multidistance_r01/README.md": "85d8328d14e5a5406cf52d99534c0411d2256850a1c9ece1013c3bd90118ff42",
+    "Experimental_results/2026-11-04/floor_df33e833_multidistance_r01/analyze.py": "1fa635704e646cd75d01245c1e02d0b28306210b5ee012cf93a4880e7d5ca8ea",
+    "Experimental_results/2026-11-04/floor_df33e833_multidistance_r01/cases.json": "ec66d61d7ea7887d2becd7da0b6c094e8523c0368d3b481da796253f5b71d20b",
+    "Experimental_results/2026-11-04/floor_df33e833_multidistance_r01/results_r01/case_model_summary.csv": "0a7612af830eb37fe762494b0d15ef58ce7df99d564eaf3eddc41d46eb5840b9",
+    "Experimental_results/2026-11-04/floor_df33e833_multidistance_r01/results_r01/distance_comparison.png": "7b853fc9d0cb2c1d6f48bf33bd3a300e47ec7cfd089874ea29ecb2069c79f80f",
+    "Experimental_results/2026-11-04/floor_df33e833_multidistance_r01/results_r01/frame_status.csv": "5fece77cfd8e715adc534fe3882fa4370caf843a6640211f6fbd304efd381063",
+    "Experimental_results/2026-11-04/floor_df33e833_multidistance_r01/results_r01/summary.json": "08e38afa27a4cd7e2aaa32eae54ab604198bd79b4a781aabef75b9d8bed17676",
+    "Experimental_results/2026-11-04/floor_df33e833_multidistance_r01/results_r01/support_y_sensitivity.csv": "454a003e797e9de83bfd53ac25d372114b137d8ca68813cbbfd33c7736f2839d",
+    "Experimental_results/2026-11-04/floor_df33e833_diagnosis_r01/README.md": "eb3b86734a165087f40e0c25d7dd00c01f0cac4bfbdeb85ed5b2237ffe4c4ca6",
+    "Experimental_results/2026-11-04/floor_df33e833_diagnosis_r01/diagnose.py": "b0ac7db759b6b3f87f2025cf2ec0621bfe6ba0941a52927412c2f396e7ef7ed2",
+    "Experimental_results/2026-11-04/floor_df33e833_diagnosis_r01/results_r01/bbox_counterfactual.csv": "ca7387298176a2c63255b4989377a91fcc162e2c4769ce33992cad56948ade29",
+    "Experimental_results/2026-11-04/floor_df33e833_diagnosis_r01/results_r01/diagnosis.json": "cf9673035549e43f081dea4c14a16852ac705ceb659e6aaf0d1b248d990a1335",
+    "Experimental_results/2026-11-04/floor_df33e833_diagnosis_r01/results_r01/geometry_sensitivity.png": "ab576a789b649f64aee6c98f7352c2a12cff3017b9ef6d717b432e55b9c6c390",
+    "Experimental_results/2026-11-04/floor_df33e833_diagnosis_r01/results_r01/height_only_algebra.csv": "906c8d0136b09f5efe7650c3989b8c914d0ee14099b713cd0141bc55f63f415e",
+    "Experimental_results/2026-11-04/floor_df33e833_diagnosis_r01/results_r01/pixel_sensitivity.csv": "aa7c33cacd8253ab712c0f014e3fab8a84303b52b006cd5ba685d25100fb6faf",
+    "Experimental_results/2026-11-04/floor_df33e833_diagnosis_r01/results_r01/plane_corner_controls.csv": "d82466aea3b7b50bad12222c5f4b1ac8b60435ba64877f4783c74d3bf092d003",
+    "Experimental_results/2026-11-04/floor_df33e833_diagnosis_r01/results_r01/quality_replay.csv": "d2f74c15f579cc14c862945bb97ebf58e72b466dc5f50bcc7ee7f4ff62d10e13",
+    "Experimental_results/2026-11-04/floor_df33e833_diagnosis_r01/results_r01/unavailable_support.csv": "2bca9a3f67dab73d3fbc935a98f29a6c9029c2824fe58a794de70f8c409e72d7",
+    "Experimental_results/2026-11-04/floor_df33e833_diagnosis_r01/test_diagnose.py": "99724c386e4f9b5a23716edec99c873e5357f57e0f42910c07a9eab326a2dc31",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/README.md": "587e5621e584023f0ba09258967eff2f9b73fb9830f55092d8fb5b0b29ee9b76",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_control_e030_r01/derivation_report.json": "060cd274fe827322932106b7066ff98e2304414b0897a8234d1534f85e042993",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_control_e030_r01/explicit_floor_models.json": "65ff2c37dce6929bd534990fce3902f08e6388ae4bf610cc2f42e9dcb2c18ee2",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_control_e030_r01/prepared_floor.json": "40b4363aed150ce7466ae4b712da5fdd8e4b64e6c06f6a8e00f37bb09fa77699",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_control_t150_r01/derivation_report.json": "a012b6bb45050e578b37e9b1bd912cf2f0a6692ac699cafa5a18f023647138b9",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_control_t150_r01/explicit_floor_models.json": "8cc4d49098021a8de39ee4052e594cea6d130839c8314e1543c4852b8dd545d1",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_control_t150_r01/prepared_floor.json": "209b7e9d5a5f7c4f19652f48d7660cdf586e96bf0948a79941c34a0b932ca486",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_control_t190_r01/derivation_report.json": "46db26a9d1393e9d061ebbea42e23e4a16a18d5cadb48c9dbcf12dfe07215f57",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_control_t190_r01/explicit_floor_models.json": "87f1d91194e64d0582a9f1999ce3c709ce00717dfe85f573654edbb4cf8470e7",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_control_t190_r01/prepared_floor.json": "1e6fc3d783c9b839e668079c0f1f6bea07034e0d245821455b01e10adf8ee84c",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_primary_r01/derivation_report.json": "ff08f68feeb237c3fa08445ff5656c68c925878db2616cf5c64f1a26b07dfbe6",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_primary_r01/explicit_floor_models.json": "12eabb9168d23a332b8730cd572883397505fd4d0787f94c32b603dd7fd897c1",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/derived_primary_r01/prepared_floor.json": "08d8409f9674c433d5151f99228c43d8f8f6fb10d7245954223f6598e3af3176",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/live_gui_screenshot_evidence.json": "f4f01c7875d085d574b04faf6e086f7cfdd22521cfb27efc78d3eeabe9e1d968",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/prepared_floor_df33e833_f002292.json": "08d8409f9674c433d5151f99228c43d8f8f6fb10d7245954223f6598e3af3176",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/references.json": "fe8868e5eaf4d4089bbcb526013d0229ec429a84973fd2cc088eb1c76ae12917",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/references_control_e030.json": "d65413625965f3fec5736bf8f64fef136f6d1855e68ce40b12b0e7bba2be5a89",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/references_control_t150.json": "6b5d7ae22acd698cc70626f0ad33220b22a11bc28f04b822f61839f045a96652",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/references_control_t190.json": "25e25350823650a05dafb855f95c5504eaa7e07dd4de730990f5fc4e316b599c",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/verification_r01/tests.log": "122dd0a60743a55c39fcdfc830397aefeb816d27c97bbc0e25644c065dce3e56",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/verification_r01/verification.json": "7e9dbbcf500f804a56ad16ae9ba991d9e81d70b77fbd44c789cf552e1ffa2344",
+    "Experimental_results/2026-11-04/floor_reference_df33e833_r01/verify.py": "026f18439d0eb31676bb32cba5b3a99b3cf0395d4e1c79d49206edfee3bb2291",
+    "Experimental_results/2026-11-04/floor_comparison_df33e833_live_r01/README.md": "e1988267dc3d94897f8ce502a7e3c058b85900b61bc199dc40f3b73a94388e79",
+    "Experimental_results/2026-11-04/floor_comparison_df33e833_live_r01/analyze.py": "4a8493ce4157932b908af09310a23cf0e25b50da45732e9b50b38b4ece03ca67",
+    "Experimental_results/2026-11-04/floor_comparison_df33e833_live_r01/comparison_to_150cm.csv": "e7cbaf3709ca66e7bbf2ff9870650d37d25944e7fe9911a852a5f543e0b6f907",
+    "Experimental_results/2026-11-04/floor_comparison_df33e833_live_r01/results_r01/frame_status.csv": "8f450560d219a8cedb3867d59710bb744bea7a8caff100e162c620c2291a7f37",
+    "Experimental_results/2026-11-04/floor_comparison_df33e833_live_r01/results_r01/live_stability.png": "0289bd538edb1e9f8e6179013f95e5bfa7be14f5394afab60c1774d009cca45f",
+    "Experimental_results/2026-11-04/floor_comparison_df33e833_live_r01/results_r01/model_ranges.csv": "2b50c14525275bb853cd1038cb2c631ba3755aecf18edb09b21e149c5c3dbbb4",
+    "Experimental_results/2026-11-04/floor_comparison_df33e833_live_r01/results_r01/summary.json": "2e497cf49b4d66241649f9c77a80aca08cc0bf7f9cecd633a1053a1fc8fd9007",
+    "Experimental_results/2026-11-04/floor_comparison_df33e833_live_r01/user_reference_150cm.json": "1889a29edcf0226971e4e3a434159572686ffa40e47fff5d1b97213a022c3c10",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/ultralytics_config/Ultralytics/Arial.ttf": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/ultralytics_config/Ultralytics/settings.json": "92808b604c8b5f264b408628bcac83a8cbfa9f703e1935bb182c120098a04049",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/ultralytics_config/matplotlib/fontlist-v390.json": "d1cd1e7fc7e622f13a1396c490ec2c0ce65ed2a9a5cb79f6a069693e3511c45a",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/fixed_floor_model_events.jsonl": "e68863c1bf20f4ab611cf006b90e72c9574e00f88288101ca25bf65d602959ea",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/distance_frames.jsonl": "05e7a113f77228be28772da1bac420c39afd1e72c7a9e3a0e85997f2e435d655",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/upper_support_comparison.jsonl": "8f80ce7ca7b4f336db286d44bada5e6f978097b06ed79dda75b22a1923e347cb",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/decoded_b559e4240e364166935f9ede9ac3e7ae_f002427.png": "445b7b7b2f6e38f130990b2824ca3fccb905a47a97f312a5e23c2fd5b0702457",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/decoded_b559e4240e364166935f9ede9ac3e7ae_f005755.png": "382ccb5992ab80cfb69290ef057d7010d30e9a6392e434832a70a5613404d76b",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/prepared_floor.json": "414ea62787afdc829900c12d109202ae5a0f75999e16259e12dccf109a87e92e",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/upper_support_evidence/decoded_b559e4240e364166935f9ede9ac3e7ae_f032654.png": "12f1422b553ecf1d9dabf787bf8e728cb115cf98c42b2f524ebca393eb44f518",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/upper_support_evidence/decoded_b559e4240e364166935f9ede9ac3e7ae_f032717.png": "a8094cd1afbc1d6c469550ff37d2001d89107f2fdb1629ecd0c610a5f99e0bf7",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/upper_support_evidence/decoded_b559e4240e364166935f9ede9ac3e7ae_f032976.png": "fbede2d650f3f57e522077f863b9a2db22c2fb1760a0ff2f00f2de29d637958a",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/upper_support_evidence/decoded_b559e4240e364166935f9ede9ac3e7ae_f033066.png": "8d4f4fe6712dc59a41f71ba0af8792d427c2831f9d6240ce38d109dcc4784c52",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/upper_support_evidence/decoded_b559e4240e364166935f9ede9ac3e7ae_f033206.png": "400e3cb52753c4633be45f3903c4d4a5cce23684ec14d83d45e4014c82f21afb",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/upper_support_evidence/decoded_b559e4240e364166935f9ede9ac3e7ae_f033271.png": "85335ba0427ee8863c8e3942f6b166a977cd1ccba30998f0c930824997114c17",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/upper_support_evidence/decoded_b559e4240e364166935f9ede9ac3e7ae_f035562.png": "b1c786d71cec56246e9370920f89fc34cab9e691ed616c366fe5f3ea9e45bd7f",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/upper_support_evidence/decoded_b559e4240e364166935f9ede9ac3e7ae_f036478.png": "7e6df151a481d0f88b62a5b821e98a0f7737c43a17f7a93d4ab64ae6635eae98",
+    "recordings/2026-11-04/upper_support_capture_submission_r01/upper_support_capture_r01/live_summary.json": "0ee56bde0d8f81513d34e6284f12e9f7681303f6326bf51faae6f00efc6c322c"
+  },
+  "archives_extracted": false,
+  "attached_code_or_instructions_executed": false,
+  "original_images_modified": false,
+  "runtime_changed": false,
+  "new_independent_physical_reference_found": false,
+  "usable_for_ffb": false
+}

@@ -1,0 +1,12 @@
+contour_area_px2,contour_count,epsilon,reason,session,threshold,vertices
+1039.5,1,0.02,not_four_vertices,b559e4240e364166935f9ede9ac3e7ae,150,7
+1039.5,1,0.025,not_four_vertices,b559e4240e364166935f9ede9ac3e7ae,150,6
+1039.5,1,0.03,not_four_vertices,b559e4240e364166935f9ede9ac3e7ae,150,6
+1039.5,1,0.04,not_four_vertices,b559e4240e364166935f9ede9ac3e7ae,150,6
+887.5,1,0.02,not_four_vertices,b559e4240e364166935f9ede9ac3e7ae,170,7
+864.0,1,0.02,not_four_vertices,b559e4240e364166935f9ede9ac3e7ae,190,5
+864.0,1,0.025,not_four_vertices,b559e4240e364166935f9ede9ac3e7ae,190,5
+864.0,1,0.03,not_four_vertices,b559e4240e364166935f9ede9ac3e7ae,190,5
+575.5,1,0.025,not_four_vertices,df33e833acdf4e7d8b00d1ec37b7bcae,150,5
+562.0,1,0.025,not_four_vertices,df33e833acdf4e7d8b00d1ec37b7bcae,170,5
+549.0,1,0.02,not_four_vertices,df33e833acdf4e7d8b00d1ec37b7bcae,190,5

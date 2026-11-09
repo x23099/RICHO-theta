@@ -1,0 +1,37 @@
+{
+  "schema": "physical_reference_visual_decision_v1",
+  "queue_sha256": "49a1fe1197737bc8b66caa12f150f817fedf22d2ca52ca0b1901ed1f9130d284",
+  "item_id": "paper_b559_f005755",
+  "kind": "paper",
+  "session": "b559e4240e364166935f9ede9ac3e7ae",
+  "frame": 5755,
+  "image_sha256": "382ccb5992ab80cfb69290ef057d7010d30e9a6392e434832a70a5613404d76b",
+  "status": "reviewed",
+  "points_native_xy": [
+    [
+      300.379,
+      408.468
+    ],
+    [
+      348.366,
+      405.942
+    ],
+    [
+      353.417,
+      423.621
+    ],
+    [
+      298.214,
+      425.786
+    ]
+  ],
+  "side_assignment": "unknown",
+  "reviewer": "human_local",
+  "confirmation_method": "explicit_manual_key",
+  "independently_surveyed_ground_truth": false,
+  "note": "human selected visible image features; physical correspondence unverified",
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "usable_for_ffb": false,
+  "controlling_distance": false
+}
