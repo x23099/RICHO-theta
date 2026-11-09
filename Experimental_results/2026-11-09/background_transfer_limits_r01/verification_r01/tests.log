@@ -1,0 +1,21 @@
+test_coherent_wrong_matches_cannot_be_detected_by_residual_alone (test_background_transfer_limits.BackgroundTransferLimitsTests) ... ok
+test_concentrated_features_are_rejected_despite_sufficient_count (test_background_transfer_limits.BackgroundTransferLimitsTests) ... ok
+test_controls_do_not_mutate_source_pixels_or_pose (test_background_transfer_limits.BackgroundTransferLimitsTests) ... ok
+test_feature_loss_never_invents_an_identity_rotation (test_background_transfer_limits.BackgroundTransferLimitsTests) ... ok
+test_heldout_corruption_does_not_change_training_rotation (test_background_transfer_limits.BackgroundTransferLimitsTests) ... ok
+test_heldout_corruption_is_rejected_without_distance (test_background_transfer_limits.BackgroundTransferLimitsTests) ... ok
+test_identity_and_true_rotations_recover_targets (test_background_transfer_limits.BackgroundTransferLimitsTests) ... ok
+test_independent_true_pose_recovers_translation_and_rotation (test_background_transfer_limits.BackgroundTransferLimitsTests) ... ok
+test_large_true_rotation_is_rejected_despite_perfect_fit (test_background_transfer_limits.BackgroundTransferLimitsTests) ... ok
+test_lateral_translation_can_pass_but_distance_remains_wrong (test_background_transfer_limits.BackgroundTransferLimitsTests) ... ok
+test_partial_outliers_are_rejected (test_background_transfer_limits.BackgroundTransferLimitsTests) ... ok
+test_real_jackknife_preserves_original_heldout_count (test_background_transfer_limits.BackgroundTransferLimitsTests) ... ok
+test_saved_stress_results_have_no_metric_or_runtime_promotion (test_background_transfer_limits.BackgroundTransferLimitsTests) ... ok
+test_synthetic_grid_has_no_duplicate_correspondences (test_background_transfer_limits.BackgroundTransferLimitsTests) ... ok
+test_target_truth_is_not_used_to_estimate_background (test_background_transfer_limits.BackgroundTransferLimitsTests) ... ok
+test_training_corruption_is_rejected_by_independent_points (test_background_transfer_limits.BackgroundTransferLimitsTests) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.213s
+
+OK

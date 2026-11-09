@@ -1,0 +1,25 @@
+test_constant_image_does_not_invent_convex_corner (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_expanded_roi_uses_only_the_selected_component (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_extended_roi_can_recover_clipped_component_without_changing_corner_id (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_missing_markers_do_not_fall_back_to_integer_coordinates (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_multiple_convergence_basins_are_withheld (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_multiple_positive_crossings_are_not_resolved_by_nearest_distance (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_native_gray_contract_refuses_resized_or_float_images (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_no_crossing_is_withheld (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_nonpredeclared_roi_is_refused (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_parallel_edges_do_not_invent_an_intersection (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_positive_threshold_crossing_recovers_known_offset (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_results_do_not_select_by_known_range_or_promote_live (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_returning_every_input_unchanged_is_not_seed_consistency_success (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_sampling_never_extrapolates_outside_front_lens_rectangle (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_seed_stable_result_is_still_not_physical_approval (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_synthetic_outer_corner_is_approximately_recovered_without_image_changes (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_too_few_edge_samples_are_refused (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_two_edge_ray_planes_recover_the_known_native_intersection (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_two_expanded_rois_agree_on_shared_component_coordinates (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+test_weak_gradient_is_withheld_not_guessed (test_wide_l_boundary_audit.LBoundaryAuditTests) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.189s
+
+OK

@@ -13,12 +13,16 @@ case "$DISTANCE_MODE" in
     shift
     exec "$DISTANCE_PYTHON" "$DISTANCE_DIR/src/run_cone_distance_live.py" "$@"
     ;;
+  motion-receive)
+    shift
+    exec "$DISTANCE_PYTHON" "$DISTANCE_DIR/src/run_cone_motion_live.py" "$@"
+    ;;
   report)
     shift
     exec "$DISTANCE_PYTHON" "$DISTANCE_DIR/src/summarize_cone_distance_live.py" "$@"
     ;;
   *)
-    echo "Usage: bash start_cone_distance.sh {replay|receive|report} --help"
+    echo "Usage: bash start_cone_distance.sh {replay|receive|motion-receive|report} --help"
     if [ "$DISTANCE_MODE" != "--help" ]; then exit 2; fi
     ;;
 esac

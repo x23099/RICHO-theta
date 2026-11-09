@@ -1,0 +1,282 @@
+{
+  "status": "WITHHELD_HANDEDNESS_AND_POINT_REVIEW_REQUIRED",
+  "session": "159c37ad534a4ac0b96ca69791713567",
+  "image_count": 10,
+  "fixed_fit_frames": [
+    20063,
+    20493
+  ],
+  "holdout_frames": 8,
+  "declared_user_left_frames": [
+    51180,
+    51342
+  ],
+  "declared_user_right_frames": [
+    54907,
+    55094
+  ],
+  "vehicle_left_confirmed_facing_forward": true,
+  "fixed_point_ids_inferred_from_handedness_not_individually_verified": true,
+  "hypotheses": [
+    "image_left_is_vehicle_left_control",
+    "vehicle_sides_follow_E_unmodified_rays",
+    "vehicle_sides_follow_E_reflected_ray_x_control"
+  ],
+  "selected_hypothesis": null,
+  "selected_solution": null,
+  "intrinsic_refit": false,
+  "height_fitted_to_reported_590mm": false,
+  "E_used_for_fit": false,
+  "camera_images_edited_or_exported": false,
+  "runtime_changed": false,
+  "physical_metric_verified": false,
+  "published_to_ros": false,
+  "usable_for_ffb": false,
+  "point_coordinates_human_reviewed": false,
+  "measurement_uncertainties_supplied": false,
+  "deployed_school_source_hashes_available": false,
+  "max_fixed_point_proposal_shift_px": 2.8284271247461903,
+  "opencv_version": "4.5.5",
+  "metrics": [
+    {
+      "hypothesis": "image_left_is_vehicle_left_control",
+      "solution_index": 0,
+      "group": "P1",
+      "available": 4,
+      "total": 4,
+      "median_X_m": 0.02924589849253295,
+      "median_Z_m": 1.4250069865893173,
+      "median_error_m": 0.038479500476407476
+    },
+    {
+      "hypothesis": "image_left_is_vehicle_left_control",
+      "solution_index": 0,
+      "group": "P2",
+      "available": 4,
+      "total": 4,
+      "median_X_m": 0.03671997387758207,
+      "median_Z_m": 2.0449826300258316,
+      "median_error_m": 0.05806714635326206
+    },
+    {
+      "hypothesis": "image_left_is_vehicle_left_control",
+      "solution_index": 0,
+      "group": "P3_vehicle_left",
+      "available": 4,
+      "total": 4,
+      "median_X_m": 0.21969118923719705,
+      "median_Z_m": 1.4153176587354914,
+      "median_error_m": 0.41997062396371215
+    },
+    {
+      "hypothesis": "image_left_is_vehicle_left_control",
+      "solution_index": 0,
+      "group": "P4_vehicle_right",
+      "available": 4,
+      "total": 4,
+      "median_X_m": -0.1861955075500212,
+      "median_Z_m": 1.4390920301198826,
+      "median_error_m": 0.38816897978935966
+    },
+    {
+      "hypothesis": "image_left_is_vehicle_left_control",
+      "solution_index": 1,
+      "group": "P1",
+      "available": 4,
+      "total": 4,
+      "median_X_m": 0.021141863326874732,
+      "median_Z_m": 1.5999990251494582,
+      "median_error_m": 0.2011133721204682
+    },
+    {
+      "hypothesis": "image_left_is_vehicle_left_control",
+      "solution_index": 1,
+      "group": "P2",
+      "available": 4,
+      "total": 4,
+      "median_X_m": 0.014981552033381204,
+      "median_Z_m": 1.825203017046321,
+      "median_error_m": 0.17543782987439646
+    },
+    {
+      "hypothesis": "image_left_is_vehicle_left_control",
+      "solution_index": 1,
+      "group": "P3_vehicle_left",
+      "available": 4,
+      "total": 4,
+      "median_X_m": 0.14703661494876852,
+      "median_Z_m": 1.5937773736714396,
+      "median_error_m": 0.3974721155780624
+    },
+    {
+      "hypothesis": "image_left_is_vehicle_left_control",
+      "solution_index": 1,
+      "group": "P4_vehicle_right",
+      "available": 4,
+      "total": 4,
+      "median_X_m": -0.11836155520354295,
+      "median_Z_m": 1.6088317177759013,
+      "median_error_m": 0.3807423882113105
+    },
+    {
+      "hypothesis": "vehicle_sides_follow_E_unmodified_rays",
+      "solution_index": 0,
+      "group": "P1",
+      "available": 0,
+      "total": 4,
+      "median_X_m": null,
+      "median_Z_m": null,
+      "median_error_m": null
+    },
+    {
+      "hypothesis": "vehicle_sides_follow_E_unmodified_rays",
+      "solution_index": 0,
+      "group": "P2",
+      "available": 0,
+      "total": 4,
+      "median_X_m": null,
+      "median_Z_m": null,
+      "median_error_m": null
+    },
+    {
+      "hypothesis": "vehicle_sides_follow_E_unmodified_rays",
+      "solution_index": 0,
+      "group": "P3_vehicle_left",
+      "available": 0,
+      "total": 4,
+      "median_X_m": null,
+      "median_Z_m": null,
+      "median_error_m": null
+    },
+    {
+      "hypothesis": "vehicle_sides_follow_E_unmodified_rays",
+      "solution_index": 0,
+      "group": "P4_vehicle_right",
+      "available": 0,
+      "total": 4,
+      "median_X_m": null,
+      "median_Z_m": null,
+      "median_error_m": null
+    },
+    {
+      "hypothesis": "vehicle_sides_follow_E_unmodified_rays",
+      "solution_index": 1,
+      "group": "P1",
+      "available": 0,
+      "total": 4,
+      "median_X_m": null,
+      "median_Z_m": null,
+      "median_error_m": null
+    },
+    {
+      "hypothesis": "vehicle_sides_follow_E_unmodified_rays",
+      "solution_index": 1,
+      "group": "P2",
+      "available": 0,
+      "total": 4,
+      "median_X_m": null,
+      "median_Z_m": null,
+      "median_error_m": null
+    },
+    {
+      "hypothesis": "vehicle_sides_follow_E_unmodified_rays",
+      "solution_index": 1,
+      "group": "P3_vehicle_left",
+      "available": 0,
+      "total": 4,
+      "median_X_m": null,
+      "median_Z_m": null,
+      "median_error_m": null
+    },
+    {
+      "hypothesis": "vehicle_sides_follow_E_unmodified_rays",
+      "solution_index": 1,
+      "group": "P4_vehicle_right",
+      "available": 0,
+      "total": 4,
+      "median_X_m": null,
+      "median_Z_m": null,
+      "median_error_m": null
+    },
+    {
+      "hypothesis": "vehicle_sides_follow_E_reflected_ray_x_control",
+      "solution_index": 0,
+      "group": "P1",
+      "available": 4,
+      "total": 4,
+      "median_X_m": -0.029245898492534204,
+      "median_Z_m": 1.4250069865893427,
+      "median_error_m": 0.03847950047642488
+    },
+    {
+      "hypothesis": "vehicle_sides_follow_E_reflected_ray_x_control",
+      "solution_index": 0,
+      "group": "P2",
+      "available": 4,
+      "total": 4,
+      "median_X_m": -0.036719973877584064,
+      "median_Z_m": 2.0449826300258844,
+      "median_error_m": 0.058067146353304254
+    },
+    {
+      "hypothesis": "vehicle_sides_follow_E_reflected_ray_x_control",
+      "solution_index": 0,
+      "group": "P3_vehicle_left",
+      "available": 4,
+      "total": 4,
+      "median_X_m": -0.2196911892372017,
+      "median_Z_m": 1.4153176587355165,
+      "median_error_m": 0.02494741675430617
+    },
+    {
+      "hypothesis": "vehicle_sides_follow_E_reflected_ray_x_control",
+      "solution_index": 0,
+      "group": "P4_vehicle_right",
+      "available": 4,
+      "total": 4,
+      "median_X_m": 0.1861955075500238,
+      "median_Z_m": 1.4390920301199084,
+      "median_error_m": 0.041457819898027465
+    },
+    {
+      "hypothesis": "vehicle_sides_follow_E_reflected_ray_x_control",
+      "solution_index": 1,
+      "group": "P1",
+      "available": 4,
+      "total": 4,
+      "median_X_m": -0.02114186332687519,
+      "median_Z_m": 1.5999990251495846,
+      "median_error_m": 0.20111337212059388
+    },
+    {
+      "hypothesis": "vehicle_sides_follow_E_reflected_ray_x_control",
+      "solution_index": 1,
+      "group": "P2",
+      "available": 4,
+      "total": 4,
+      "median_X_m": -0.014981552033382672,
+      "median_Z_m": 1.82520301704643,
+      "median_error_m": 0.17543782987428796
+    },
+    {
+      "hypothesis": "vehicle_sides_follow_E_reflected_ray_x_control",
+      "solution_index": 1,
+      "group": "P3_vehicle_left",
+      "available": 4,
+      "total": 4,
+      "median_X_m": -0.14703661494875195,
+      "median_Z_m": 1.5937773736715666,
+      "median_error_m": 0.20088501861297856
+    },
+    {
+      "hypothesis": "vehicle_sides_follow_E_reflected_ray_x_control",
+      "solution_index": 1,
+      "group": "P4_vehicle_right",
+      "available": 4,
+      "total": 4,
+      "median_X_m": 0.11836155520352376,
+      "median_Z_m": 1.6088317177760256,
+      "median_error_m": 0.22422203731585563
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "status": "PASS_OFFLINE_ONLY",
+  "tests": 79,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "provenance_hash_checks": 57,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/background_rotation_transfer_r01/verify.py": "d0214a7b088831ed0ac8ad7b9b8ccbb4c069cf956089218f5fa05fb044a3756d",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/background_rotation_transfer_r01/analyze.py": "4cd74b4fc74389c45e4c5ac12a847b95507e54f10ddc50187571eea7ebe1a852",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_background_rotation_transfer.py": "9c51fd01849636894f1a38a91b7cb7b9a9d4239621f859b46545eddabbde4d4a",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_wide_floor_corner_identity.py": "d6a886bdb136ead633ba49e8b8200f0ffedec150518080104ab50d0cd9223fbb",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_wide_floor_reference_audit.py": "4ca20ccbd8c1fc089f2186a962393e941d6c49b9b48ff82c3ec853c98dfda8ea",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_floor_reference_pose.py": "cc129277e7faf805cbb57c5eea9be75875bc774c77979e96270a323824ee9628",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_angular_fisheye_geometry.py": "131fe0cf000c91f4403c789ed9ae094c3f15ac4722eb4907b603e7432348dff9",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_diagnose_floor_board_pose.py": "b5837ded69014495b141475d2de8a6547b94ac09e5c0fb6a83d6db56b0522322",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_derive_fixed_floor_live_bundle.py": "11a0a51e43fb724ea4e93ec4d9b8f0e22b613eaac384378d85f46819ac1379ab"
+  },
+  "camera_started": false,
+  "ros_started": false,
+  "physical_output": false,
+  "runtime_changed": false,
+  "physical_metric_verified": false
+}

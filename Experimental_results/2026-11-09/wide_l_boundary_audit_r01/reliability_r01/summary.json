@@ -1,0 +1,13 @@
+{
+  "status": "SUBPIXEL_OUTPUT_IS_NOT_REFINEMENT_OR_PHYSICAL_PROOF",
+  "observations": 96,
+  "passed_seed_consistency": 46,
+  "input_returned_observations": 50,
+  "all_seeds_returned_unchanged": 40,
+  "synthetic_rows": 44,
+  "selected_method": null,
+  "camera_images_edited_or_exported": false,
+  "runtime_changed": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}

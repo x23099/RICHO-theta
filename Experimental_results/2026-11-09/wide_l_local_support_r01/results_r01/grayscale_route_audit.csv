@@ -1,0 +1,11 @@
+frame,canonical_route,comparison_route,differing_pixels,difference_min,difference_max,floor_region_difference_pixels,comparison_route_used_for_fitting
+20063,imread_IMREAD_GRAYSCALE,cvtColor_BGR2GRAY,250237,-1,0,5443,False
+20493,imread_IMREAD_GRAYSCALE,cvtColor_BGR2GRAY,251268,-1,0,5428,False
+38231,imread_IMREAD_GRAYSCALE,cvtColor_BGR2GRAY,253757,-1,0,4109,False
+38464,imread_IMREAD_GRAYSCALE,cvtColor_BGR2GRAY,248494,-1,0,4426,False
+43924,imread_IMREAD_GRAYSCALE,cvtColor_BGR2GRAY,256003,-1,0,4384,False
+44053,imread_IMREAD_GRAYSCALE,cvtColor_BGR2GRAY,254151,-1,0,4346,False
+51180,imread_IMREAD_GRAYSCALE,cvtColor_BGR2GRAY,254469,-1,0,4384,False
+51342,imread_IMREAD_GRAYSCALE,cvtColor_BGR2GRAY,255816,-1,0,4362,False
+54907,imread_IMREAD_GRAYSCALE,cvtColor_BGR2GRAY,253745,-1,0,4788,False
+55094,imread_IMREAD_GRAYSCALE,cvtColor_BGR2GRAY,252891,-1,0,4650,False

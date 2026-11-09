@@ -1,0 +1,103 @@
+{
+  "status": "EXPANDED_ROI_DIAGNOSTIC_ONLY_NOT_DISTANCE_SELECTED",
+  "observations": 1536,
+  "pose_rows": 336,
+  "coverage": [
+    {
+      "method": "isocross_rayplane_arc4_roi24x16",
+      "available": 133,
+      "total": 192,
+      "complete_E_frames_at_threshold110": 5,
+      "reasons": {
+        "component_reaches_expanded_roi_edge": 15,
+        "insufficient_distinct_arm_samples": 34,
+        "weak_outward_gradient": 10
+      }
+    },
+    {
+      "method": "isocross_rayplane_arc4_roi32x20",
+      "available": 133,
+      "total": 192,
+      "complete_E_frames_at_threshold110": 5,
+      "reasons": {
+        "component_reaches_expanded_roi_edge": 15,
+        "insufficient_distinct_arm_samples": 34,
+        "weak_outward_gradient": 10
+      }
+    },
+    {
+      "method": "isocross_rayplane_arc5_roi24x16",
+      "available": 142,
+      "total": 192,
+      "complete_E_frames_at_threshold110": 3,
+      "reasons": {
+        "component_reaches_expanded_roi_edge": 15,
+        "insufficient_distinct_arm_samples": 19,
+        "weak_outward_gradient": 16
+      }
+    },
+    {
+      "method": "isocross_rayplane_arc5_roi32x20",
+      "available": 142,
+      "total": 192,
+      "complete_E_frames_at_threshold110": 3,
+      "reasons": {
+        "component_reaches_expanded_roi_edge": 15,
+        "insufficient_distinct_arm_samples": 19,
+        "weak_outward_gradient": 16
+      }
+    },
+    {
+      "method": "raster_rayplane_arc4_roi24x16",
+      "available": 143,
+      "total": 192,
+      "complete_E_frames_at_threshold110": 5,
+      "reasons": {
+        "component_reaches_expanded_roi_edge": 15,
+        "insufficient_distinct_arm_samples": 34
+      }
+    },
+    {
+      "method": "raster_rayplane_arc4_roi32x20",
+      "available": 143,
+      "total": 192,
+      "complete_E_frames_at_threshold110": 5,
+      "reasons": {
+        "component_reaches_expanded_roi_edge": 15,
+        "insufficient_distinct_arm_samples": 34
+      }
+    },
+    {
+      "method": "raster_rayplane_arc5_roi24x16",
+      "available": 158,
+      "total": 192,
+      "complete_E_frames_at_threshold110": 5,
+      "reasons": {
+        "component_reaches_expanded_roi_edge": 15,
+        "insufficient_distinct_arm_samples": 19
+      }
+    },
+    {
+      "method": "raster_rayplane_arc5_roi32x20",
+      "available": 158,
+      "total": 192,
+      "complete_E_frames_at_threshold110": 5,
+      "reasons": {
+        "component_reaches_expanded_roi_edge": 15,
+        "insufficient_distinct_arm_samples": 19
+      }
+    }
+  ],
+  "withheld_frame_methods": 200,
+  "seed_stress_cases": 480,
+  "seed_stress_max_pair_distance_px": 2.5918094851022495,
+  "selected_method": null,
+  "E_targets_used_to_choose_parameters": false,
+  "old_point_identity_reselected": false,
+  "camera_images_edited_or_exported": false,
+  "runtime_changed": false,
+  "physical_outer_corner_identity_verified": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "selected": false
+}

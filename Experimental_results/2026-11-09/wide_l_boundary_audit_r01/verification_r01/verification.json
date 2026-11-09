@@ -1,0 +1,43 @@
+{
+  "status": "PASS_OFFLINE_ONLY",
+  "new_tests_run": 20,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "prior_tests_reused": 79,
+  "prior_verification": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/background_rotation_transfer_r01/verification_r01/verification.json",
+  "prior_verification_sha256": "151b0ed1a6ecaae517c06eb36c34b2c62b8e68b4fb77599f0f4044caa0d72842",
+  "provenance_hash_checks": 41,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/verify.py": "4dafa6bc96b45dbe97033a82e51978a2a606327ba894c9c4dac31766d3b85b9c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/analyze.py": "2676717dbef694b015878f8d0ab770f5b693dc2ee3b4ff5b66cec6a02e3f4aba",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/audit_expanded_roi.py": "6e7c9a9cfc238de9abc5f1983e8f43f94fc59e51e325607c117047d91da70181",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/audit_reliability.py": "30007690c36f04549fa8a81747e408abe0c83045cdcded8c9d5a6ccdf315110d",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_wide_l_boundary_audit.py": "89538728d7c55188437326f15e14f018cc6cda8a7c7f711762a147b3c3fd0136"
+  },
+  "results_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/results_r01/boundary_observations.json": "4d84afbb7b9f567eb594030ee1889dcba7285577101db826ae56e5368453bfde",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/results_r01/input_provenance.json": "5c68d431a254e6b596a468fa2c539b6645aa7ada7f3170318453bb5778cf0752",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/results_r01/point_coordinates.csv": "95240923670752fac1ab28e672acf8950cba333142815a2f04191ea7584dbb94",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/results_r01/pose_evaluation.csv": "82cc622fc973202253a9780f9cb1869e72f5b4a2f49da8cb979447abc35f4ac2",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/results_r01/summary.json": "aa4e3b376a7c1022a66d360e4070d5ce944041d9edc1675c01e6b9e55b16bd52",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/results_r01/withheld_methods.json": "4f072d9b596a534b20d3c2300383c0c3b610a3164be5e164445a572fa35613a5",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/expanded_roi_r01/boundary_observations.json": "5e18f77146a40be3d691d63ef1ed595fdc2c962c635610956057f9b2fe75a5cd",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/expanded_roi_r01/comparison_metrics.csv": "973f7e31f7c77ec2d2b2f1fc90cf4ed95f56533fbdc8544be3da9e3949e76a5a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/expanded_roi_r01/input_provenance.json": "3e9dd95990f0c8f96e717eceead1adf422c2c515de27b28f4a0ad95f5238df79",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/expanded_roi_r01/pose_evaluation.csv": "c4cbc4108a8047be2f7d88f111d2cad9903528c633e0c412a278d74230112f8a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/expanded_roi_r01/seed_stress.json": "4c5b10dd31b59c150b7fcef3df3a4fd35e47aff801d49129f0a25e019234a13f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/expanded_roi_r01/seed_stress_summary.csv": "010b06ec3230793d1cf6009f1d78db677343e4cca02f637059b75bdaaba49cc4",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/expanded_roi_r01/summary.json": "c0fc48a44d4846c9f82d57d5fdacd37885e2b87ec59c431cba217966fedf1499",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/expanded_roi_r01/withheld_methods.json": "d3deae1ebe077147ad315739c126a6061fa61c8facf2edf9ce1ce85999275d00",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/reliability_r01/input_provenance.json": "8ce83c19c0322088edce0cefc14983cdacc2b090061234a32246d9a472cdb6ba",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/reliability_r01/refinement_reliability.csv": "a633e903b9e1fef8e5f2119cc50ad9352755fa3e5d154b38c500bd34d136d0bb",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/reliability_r01/refinement_reliability.json": "71082d0e9bb35d4babaf3e5f96c2d451586c09ffe3a4268e7a872f273ecd4104",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/reliability_r01/summary.json": "ef9df10039d232dfe399970ffb1793af0270317ee2e230ca79277b0e7daed04d",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_l_boundary_audit_r01/reliability_r01/synthetic_controls.json": "d7089e3c3d8cef96e0688b41112000f17f3cca703c3f2994bfc8672de882c5a7"
+  },
+  "camera_started": false,
+  "ros_started": false,
+  "runtime_changed": false,
+  "physical_metric_verified": false
+}

@@ -1,0 +1,11 @@
+session,frame,range_available,range_m,reason,observed_point,offline_engine_service_ms,live_timing_measured,calibration_transfer_verified,physical_metric_verified,usable_for_ffb
+b559e4240e364166935f9ede9ac3e7ae,32654,False,,colour_contour_reaches_roi_edge,,42.84926600303152,False,False,False,False
+b559e4240e364166935f9ede9ac3e7ae,32717,False,,colour_contour_reaches_roi_edge,,33.19451700008358,False,False,False,False
+b559e4240e364166935f9ede9ac3e7ae,32976,False,,colour_contour_reaches_roi_edge,,12.727937999443384,False,False,False,False
+b559e4240e364166935f9ede9ac3e7ae,33066,False,,colour_contour_reaches_roi_edge,,31.905469000776066,False,False,False,False
+b559e4240e364166935f9ede9ac3e7ae,33206,False,,colour_contour_reaches_roi_edge,,14.503271999274148,False,False,False,False
+b559e4240e364166935f9ede9ac3e7ae,33271,False,,colour_contour_reaches_roi_edge,,35.06954999829759,False,False,False,False
+b559e4240e364166935f9ede9ac3e7ae,35562,True,1.0064573733815785,EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT,"[308, 417]",46.62072399878525,False,False,False,False
+b559e4240e364166935f9ede9ac3e7ae,36478,False,,colour_contour_reaches_roi_edge,,40.96913399916957,False,False,False,False
+df33e833acdf4e7d8b00d1ec37b7bcae,61948,True,0.9790628904230803,EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT,"[315, 419]",8.677189001900842,False,False,False,False
+df33e833acdf4e7d8b00d1ec37b7bcae,64232,True,1.9544256948889729,EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT,"[316, 373]",8.967302997916704,False,False,False,False

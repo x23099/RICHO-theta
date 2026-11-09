@@ -1,0 +1,31 @@
+{
+  "status": "PASS_OFFLINE_ONLY",
+  "new_tests_run": 16,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "prior_tests_reused": 79,
+  "prior_verification": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/background_rotation_transfer_r01/verification_r01/verification.json",
+  "prior_verification_sha256": "151b0ed1a6ecaae517c06eb36c34b2c62b8e68b4fb77599f0f4044caa0d72842",
+  "provenance_hash_checks": 32,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/background_transfer_limits_r01/verify.py": "28041061f1fe6dd5c1ef5f4c648da4bdf5b26773645eb7df2c7561f67d00850f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/background_transfer_limits_r01/analyze.py": "71f60b7915028f5b723f974d4e92456ad53f0291ed1cc1a766163f606b87a859",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_background_transfer_limits.py": "e453ff40b8030d629686e59730bea6da81f601993550d3493505184e10fe63cd"
+  },
+  "results_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/background_transfer_limits_r01/results_r01/input_provenance.json": "97e03b1aa087ffb7dfcd9327ae3fb61d13a5cd8fc6aaa8a0adcfb719325cd601",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/background_transfer_limits_r01/results_r01/positive_controls.json": "5b4abc0da790d5c2474a016c088cdbc010521d96561b987683524ad12953480e",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/background_transfer_limits_r01/results_r01/real_jackknife.json": "803f034341cf2ddbddbfdfed77a43086425e6243c832b5fef1c42d2bcaacc0d3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/background_transfer_limits_r01/results_r01/real_jackknife_summary.csv": "7053a456caab06cfa9aff59880e881e5fb0a525c6c8d4d0c845876be32b0f2ca",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/background_transfer_limits_r01/results_r01/summary.json": "c0a4c6bbf29502dcb4bde9fe33b346cdba8b260e120081ab6db1135056d9f60c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/background_transfer_limits_r01/results_r01/synthetic_motion_cases.json": "f87526c14c9328c6e09726a8276f7e93c1d2ae14cb063ce4e3a5779bec30ebb5",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/background_transfer_limits_r01/results_r01/synthetic_motion_metrics.csv": "4ff09ca95db9aff933232c2690064069b8a7a4e0018cf02ddfaffc2c2cd2dd2a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/background_transfer_limits_r01/results_r01/tracking_controls.json": "e2138aa7b50445bf37deaee802d15de7f1011e61b416373115259945c12f3caa",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/background_transfer_limits_r01/results_r01/tracking_metrics.csv": "cdf871395ffd7886208af1fcaed1f4a8fc38c6a079a21fe444e6befc6fb24108"
+  },
+  "runtime_changed": false,
+  "camera_started": false,
+  "ros_started": false,
+  "physical_metric_verified": false
+}

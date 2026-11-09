@@ -1,0 +1,20 @@
+{
+  "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_floor_geometry_r01/analyze.py": "7b702328489e767361c0243b953cd17b319a7653e129705eefe9823e61cc5bd4",
+  "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_diagnostic_config.json": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+  "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+  "/home/robo25/theta_ws/RICHO-theta/src/floor_reference_pose.py": "a3a8b26174c52bf7e77b106028896c940298ae04b16bff0cd8dca74d77cab389",
+  "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+  "/home/robo25/Downloads/decoded_159c37ad534a4ac0b96ca69791713567_f020063.png": "5ce286ac2d72a7adeeb5d3629fc44dc742103d5b3960c96e7d2fccf24b6f10ce",
+  "/home/robo25/Downloads/decoded_159c37ad534a4ac0b96ca69791713567_f020493.png": "44de35e74987e2d5c04307018fb13b0a613d0db8d699eedd3db845e77cca3884",
+  "/home/robo25/Downloads/decoded_159c37ad534a4ac0b96ca69791713567_f038231.png": "973e19b6ee85c0702056426d83a07e86f503755a76ab635099f3a869287bd4f1",
+  "/home/robo25/Downloads/decoded_159c37ad534a4ac0b96ca69791713567_f038464.png": "39c62eaa526a3309a121e1b57f41bccc055f9855cef05fc6ec1a743fb0bd162a",
+  "/home/robo25/Downloads/decoded_159c37ad534a4ac0b96ca69791713567_f043924.png": "69647485aedc6fc88871a5a08fb110fadded6f7d57dd23def457adc743131fe4",
+  "/home/robo25/Downloads/decoded_159c37ad534a4ac0b96ca69791713567_f044053.png": "16150c60d3dc592e51ddfbaa813a97b7ada56d92f6c51e468f81bff64be17d5a",
+  "/home/robo25/Downloads/decoded_159c37ad534a4ac0b96ca69791713567_f051180.png": "bd2a235725ce400347704c6816f91199332338606a8ca7436e6e8f79c11e7162",
+  "/home/robo25/Downloads/decoded_159c37ad534a4ac0b96ca69791713567_f051342.png": "60db1e01f9d26a2733f613d70f33042fd3569930211fb0ec7542ce903f85f690",
+  "/home/robo25/Downloads/decoded_159c37ad534a4ac0b96ca69791713567_f054907.png": "abdee3a89dbc24023baccd3a619145076089e1811fca240d94c00013ce8fa963",
+  "/home/robo25/Downloads/decoded_159c37ad534a4ac0b96ca69791713567_f055094.png": "e55d7b257f62be2a20682740ca9a9527527e3e8a31a938bd0f1ac0fc852615d9",
+  "/home/robo25/theta_ws/RICHO-theta/src/theta_rtc_diagnostic.py": "83813ed1c22188cc30f1afca6ab3ee75e2329f0c46d4adb020235e3a569d391e",
+  "/home/robo25/theta_ws/RICHO-theta/src/theta_rtc_frames.py": "a87197c27d5e45235aee3486bc4286c41eb0cfd481e87167c2d8272148f89076",
+  "/home/robo25/theta_ws/RICHO-theta/src/start_theta_stream_rtc.sh": "8ad1363aadb8b828a5ec8a1d45a05c08c3d5f03404186623abed9ad36c80fe7e"
+}

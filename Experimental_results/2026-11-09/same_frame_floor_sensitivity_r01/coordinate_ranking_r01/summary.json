@@ -1,0 +1,12 @@
+{
+  "status": "FIXED_CORNER_LOCAL_SENSITIVITY_ONLY",
+  "per_frame_rows": 768,
+  "group_rows": 384,
+  "E_pixel_perturbed": false,
+  "E_target_used": false,
+  "selected_model": null,
+  "runtime_changed": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "camera_images_edited_or_exported": false
+}

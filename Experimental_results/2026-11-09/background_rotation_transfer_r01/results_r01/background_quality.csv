@@ -1,0 +1,9 @@
+frame,group,accepted_for_offline_diagnostic,matches,train_count,test_count,test_median_px,test_p90_px,rotation_deg,translation_estimated,physical_metric_verified,usable_for_ffb,model_selected,reason
+38231,P1,True,50,20,30,0.45067674132313873,1.140601502180515,0.7953657168362709,False,False,False,False,background_test_passed_NOT_metric_approval
+38464,P1,True,61,27,34,0.25146891868468724,0.523915474046574,0.8033311369316505,False,False,False,False,background_test_passed_NOT_metric_approval
+43924,P2,True,65,29,36,0.2627796568395101,0.5253939465344022,0.8099276151407889,False,False,False,False,background_test_passed_NOT_metric_approval
+44053,P2,True,65,29,36,0.2582367442112353,0.5268786443337221,0.809233205867014,False,False,False,False,background_test_passed_NOT_metric_approval
+51180,P3_vehicle_left,True,61,27,34,0.24091113019184224,0.47615225882361867,0.8146792064681608,False,False,False,False,background_test_passed_NOT_metric_approval
+51342,P3_vehicle_left,True,61,27,34,0.24610475493717318,0.47890312572465843,0.8133126838505167,False,False,False,False,background_test_passed_NOT_metric_approval
+54907,P4_vehicle_right,True,65,29,36,0.2523768856084695,0.6164052884753553,0.8197156250066808,False,False,False,False,background_test_passed_NOT_metric_approval
+55094,P4_vehicle_right,True,65,29,36,0.26694286518340593,0.6137831087175688,0.8173847946140237,False,False,False,False,background_test_passed_NOT_metric_approval

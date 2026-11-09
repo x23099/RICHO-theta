@@ -1,0 +1,816 @@
+[
+  {
+    "width_px": 1.0,
+    "angle_deg": 0.0,
+    "method": "all",
+    "available": false,
+    "reason": "original_convex_corner_unavailable",
+    "synthetic": true
+  },
+  {
+    "width_px": 1.0,
+    "angle_deg": 20.0,
+    "method": "all",
+    "available": false,
+    "reason": "original_convex_corner_unavailable",
+    "synthetic": true
+  },
+  {
+    "width_px": 2.0,
+    "angle_deg": 0.0,
+    "method": "integer_convex",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      321.0,
+      390.0
+    ],
+    "error_to_known_outer_corner_px": 0.9604686356149416,
+    "reason": "synthetic_integer_pixel_center",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 2.0,
+    "angle_deg": 0.0,
+    "method": "raster_arc4",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.9999422218909,
+      389.9964621160354
+    ],
+    "error_to_known_outer_corner_px": 0.9626376855053683,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 2.0,
+    "angle_deg": 0.0,
+    "method": "isocross_arc4",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.33329279812943,
+      390.5624952092893
+    ],
+    "error_to_known_outer_corner_px": 0.09134713759328322,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 2.0,
+    "angle_deg": 0.0,
+    "method": "raster_arc5",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.99991911550563,
+      389.9950470348246
+    ],
+    "error_to_known_outer_corner_px": 0.9635075349343554,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 2.0,
+    "angle_deg": 0.0,
+    "method": "isocross_arc5",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.33328005356896,
+      390.5605951943775
+    ],
+    "error_to_known_outer_corner_px": 0.0921320032811337,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 2.0,
+    "angle_deg": 0.0,
+    "method": "cornerSubPix_w2",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.50067138671875,
+      390.4347229003906
+    ],
+    "error_to_known_outer_corner_px": 0.3002543318168714,
+    "reason": "unverified_subpixel_corner",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 2.0,
+    "angle_deg": 0.0,
+    "method": "cornerSubPix_w3",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.77667236328125,
+      390.050048828125
+    ],
+    "error_to_known_outer_corner_px": 0.7614657376999754,
+    "reason": "unverified_subpixel_corner",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 2.0,
+    "angle_deg": 20.0,
+    "method": "integer_convex",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      321.0,
+      390.0
+    ],
+    "error_to_known_outer_corner_px": 0.9604686356149416,
+    "reason": "synthetic_integer_pixel_center",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 2.0,
+    "angle_deg": 20.0,
+    "method": "raster_arc4",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.06659014895604,
+      390.9943133585508
+    ],
+    "error_to_known_outer_corner_px": 0.4348818209486016,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 2.0,
+    "angle_deg": 20.0,
+    "method": "isocross_arc4",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.1353421497594,
+      390.71936881332044
+    ],
+    "error_to_known_outer_corner_px": 0.16551536549612467,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 2.0,
+    "angle_deg": 20.0,
+    "method": "raster_arc5",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.8331361215605,
+      390.39485159554295
+    ],
+    "error_to_known_outer_corner_px": 0.618169559360488,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 2.0,
+    "angle_deg": 20.0,
+    "method": "isocross_arc5",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.21898367486773,
+      390.6144672645804
+    ],
+    "error_to_known_outer_corner_px": 0.034224467404909455,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 2.0,
+    "angle_deg": 20.0,
+    "method": "cornerSubPix_w2",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.3570556640625,
+      390.4295654296875
+    ],
+    "error_to_known_outer_corner_px": 0.20126812456391874,
+    "reason": "unverified_subpixel_corner",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 2.0,
+    "angle_deg": 20.0,
+    "method": "cornerSubPix_w3",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.6876525878906,
+      390.27886962890625
+    ],
+    "error_to_known_outer_corner_px": 0.542830086607389,
+    "reason": "unverified_subpixel_corner",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 3.0,
+    "angle_deg": 0.0,
+    "method": "integer_convex",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      321.0,
+      390.0
+    ],
+    "error_to_known_outer_corner_px": 0.9604686356149416,
+    "reason": "synthetic_integer_pixel_center",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 3.0,
+    "angle_deg": 0.0,
+    "method": "raster_arc4",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.9999422218909,
+      389.9964621160354
+    ],
+    "error_to_known_outer_corner_px": 0.9626376855053683,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 3.0,
+    "angle_deg": 0.0,
+    "method": "isocross_arc4",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.33329279812943,
+      390.5624952092893
+    ],
+    "error_to_known_outer_corner_px": 0.09134713759328322,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 3.0,
+    "angle_deg": 0.0,
+    "method": "raster_arc5",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.99991911550563,
+      389.9950470348246
+    ],
+    "error_to_known_outer_corner_px": 0.9635075349343554,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 3.0,
+    "angle_deg": 0.0,
+    "method": "isocross_arc5",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.33328005356896,
+      390.5605951943775
+    ],
+    "error_to_known_outer_corner_px": 0.0921320032811337,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 3.0,
+    "angle_deg": 0.0,
+    "method": "cornerSubPix_w2",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.4692077636719,
+      390.4617919921875
+    ],
+    "error_to_known_outer_corner_px": 0.25913991795462726,
+    "reason": "unverified_subpixel_corner",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 3.0,
+    "angle_deg": 0.0,
+    "method": "cornerSubPix_w3",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.5210266113281,
+      390.398193359375
+    ],
+    "error_to_known_outer_corner_px": 0.3379073012652488,
+    "reason": "unverified_subpixel_corner",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 3.0,
+    "angle_deg": 20.0,
+    "method": "integer_convex",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      321.0,
+      390.0
+    ],
+    "error_to_known_outer_corner_px": 0.9604686356149416,
+    "reason": "synthetic_integer_pixel_center",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 3.0,
+    "angle_deg": 20.0,
+    "method": "raster_arc4",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.06659014895604,
+      390.9943133585508
+    ],
+    "error_to_known_outer_corner_px": 0.4348818209486016,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 3.0,
+    "angle_deg": 20.0,
+    "method": "isocross_arc4",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.1353421497594,
+      390.71936881332044
+    ],
+    "error_to_known_outer_corner_px": 0.16551536549612467,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 3.0,
+    "angle_deg": 20.0,
+    "method": "raster_arc5",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.8331361215605,
+      390.39485159554295
+    ],
+    "error_to_known_outer_corner_px": 0.618169559360488,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 3.0,
+    "angle_deg": 20.0,
+    "method": "isocross_arc5",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.21898367486773,
+      390.6144672645804
+    ],
+    "error_to_known_outer_corner_px": 0.034224467404909455,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 3.0,
+    "angle_deg": 20.0,
+    "method": "cornerSubPix_w2",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.39105224609375,
+      390.43109130859375
+    ],
+    "error_to_known_outer_corner_px": 0.22005881523054532,
+    "reason": "unverified_subpixel_corner",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 3.0,
+    "angle_deg": 20.0,
+    "method": "cornerSubPix_w3",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.4105224609375,
+      390.4669189453125
+    ],
+    "error_to_known_outer_corner_px": 0.2085138546528135,
+    "reason": "unverified_subpixel_corner",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 4.0,
+    "angle_deg": 0.0,
+    "method": "integer_convex",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      321.0,
+      390.0
+    ],
+    "error_to_known_outer_corner_px": 0.9604686356149416,
+    "reason": "synthetic_integer_pixel_center",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 4.0,
+    "angle_deg": 0.0,
+    "method": "raster_arc4",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.9999422218909,
+      389.9964621160354
+    ],
+    "error_to_known_outer_corner_px": 0.9626376855053683,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 4.0,
+    "angle_deg": 0.0,
+    "method": "isocross_arc4",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.33329279812943,
+      390.5624952092893
+    ],
+    "error_to_known_outer_corner_px": 0.09134713759328322,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 4.0,
+    "angle_deg": 0.0,
+    "method": "raster_arc5",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.99991911550563,
+      389.9950470348246
+    ],
+    "error_to_known_outer_corner_px": 0.9635075349343554,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 4.0,
+    "angle_deg": 0.0,
+    "method": "isocross_arc5",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.33328005356896,
+      390.5605951943775
+    ],
+    "error_to_known_outer_corner_px": 0.0921320032811337,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 4.0,
+    "angle_deg": 0.0,
+    "method": "cornerSubPix_w2",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.4697570800781,
+      390.46209716796875
+    ],
+    "error_to_known_outer_corner_px": 0.2594424123513904,
+    "reason": "unverified_subpixel_corner",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 4.0,
+    "angle_deg": 0.0,
+    "method": "cornerSubPix_w3",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.4322814941406,
+      390.4848327636719
+    ],
+    "error_to_known_outer_corner_px": 0.21561548049618826,
+    "reason": "unverified_subpixel_corner",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 4.0,
+    "angle_deg": 20.0,
+    "method": "integer_convex",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      321.0,
+      390.0
+    ],
+    "error_to_known_outer_corner_px": 0.9604686356149416,
+    "reason": "synthetic_integer_pixel_center",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 4.0,
+    "angle_deg": 20.0,
+    "method": "raster_arc4",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.06659014895604,
+      390.9943133585508
+    ],
+    "error_to_known_outer_corner_px": 0.4348818209486016,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 4.0,
+    "angle_deg": 20.0,
+    "method": "isocross_arc4",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.1353421497594,
+      390.71936881332044
+    ],
+    "error_to_known_outer_corner_px": 0.16551536549612467,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 4.0,
+    "angle_deg": 20.0,
+    "method": "raster_arc5",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.8331361215605,
+      390.39485159554295
+    ],
+    "error_to_known_outer_corner_px": 0.618169559360488,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 4.0,
+    "angle_deg": 20.0,
+    "method": "isocross_arc5",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.21898367486773,
+      390.6144672645804
+    ],
+    "error_to_known_outer_corner_px": 0.034224467404909455,
+    "reason": "unverified_edge_intersection",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 4.0,
+    "angle_deg": 20.0,
+    "method": "cornerSubPix_w2",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.3965759277344,
+      390.4329833984375
+    ],
+    "error_to_known_outer_corner_px": 0.2222139684823778,
+    "reason": "unverified_subpixel_corner",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  },
+  {
+    "width_px": 4.0,
+    "angle_deg": 20.0,
+    "method": "cornerSubPix_w3",
+    "synthetic": true,
+    "true_outer_corner_native_xy": [
+      320.25,
+      390.6
+    ],
+    "available": true,
+    "point": [
+      320.365966796875,
+      390.45587158203125
+    ],
+    "error_to_known_outer_corner_px": 0.18498999660421847,
+    "reason": "unverified_subpixel_corner",
+    "physical_metric_verified": false,
+    "usable_for_ffb": false
+  }
+]

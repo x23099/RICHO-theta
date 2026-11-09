@@ -1,0 +1,299 @@
+[
+  {
+    "synthetic": true,
+    "physical_trial": false,
+    "background_optical_z": "5.0",
+    "true_shift_optical_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "true_rotation_vector_rad": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "model": {
+      "accepted_for_offline_diagnostic": true,
+      "conditions": {
+        "enough_matches": true,
+        "enough_training": true,
+        "enough_test": true,
+        "horizontal_span": true,
+        "vertical_span": true,
+        "test_median": true,
+        "test_p90": true,
+        "small_rotation": true
+      },
+      "matches": 35,
+      "train_count": 18,
+      "test_count": 17,
+      "rotation_current_from_reference": [
+        [
+          0.9999999999999999,
+          1.4077235913089477e-16,
+          -5.449560746091121e-17
+        ],
+        [
+          -1.2088323038324287e-16,
+          0.9999999999999997,
+          -1.9101287518285477e-16
+        ],
+        [
+          3.8658965307514686e-17,
+          -2.319832151527627e-16,
+          0.9999999999999994
+        ]
+      ],
+      "test_median_px": 4.0194366942304644e-14,
+      "test_p90_px": 8.92236126058296e-14,
+      "rotation_deg": 1.7075472925031877e-06,
+      "translation_estimated": false,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false,
+      "model_selected": false,
+      "reason": "background_test_passed_NOT_metric_approval"
+    },
+    "max_planar_error_m": 1.3394761424494089e-15,
+    "target_results": [
+      {
+        "target_forward_m": 1.0,
+        "target_left_m": 0.0,
+        "predicted_forward_m": 1.0000000000000002,
+        "predicted_left_m": 1.734723475976807e-16,
+        "planar_error_m": 2.8177377798042847e-16
+      },
+      {
+        "target_forward_m": 1.4,
+        "target_left_m": 0.0,
+        "predicted_forward_m": 1.4000000000000004,
+        "predicted_left_m": 1.3877787807814457e-17,
+        "planar_error_m": 4.443059973708341e-16
+      },
+      {
+        "target_forward_m": 2.0,
+        "target_left_m": 0.0,
+        "predicted_forward_m": 2.0000000000000013,
+        "predicted_left_m": 1.3877787807814457e-16,
+        "planar_error_m": 1.3394761424494089e-15
+      },
+      {
+        "target_forward_m": 1.4,
+        "target_left_m": 0.2,
+        "predicted_forward_m": 1.4000000000000004,
+        "predicted_left_m": 0.20000000000000048,
+        "planar_error_m": 6.4796043696850615e-16
+      },
+      {
+        "target_forward_m": 1.4,
+        "target_left_m": -0.2,
+        "predicted_forward_m": 1.4000000000000004,
+        "predicted_left_m": -0.19999999999999998,
+        "planar_error_m": 4.449557262054371e-16
+      }
+    ],
+    "distance_withheld": false,
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "model_selected": false,
+    "runtime_changed": false
+  },
+  {
+    "synthetic": true,
+    "physical_trial": false,
+    "background_optical_z": "5.0",
+    "true_shift_optical_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "true_rotation_vector_rad": [
+      0.013962634015954637,
+      0.0,
+      0.0
+    ],
+    "model": {
+      "accepted_for_offline_diagnostic": true,
+      "conditions": {
+        "enough_matches": true,
+        "enough_training": true,
+        "enough_test": true,
+        "horizontal_span": true,
+        "vertical_span": true,
+        "test_median": true,
+        "test_p90": true,
+        "small_rotation": true
+      },
+      "matches": 35,
+      "train_count": 18,
+      "test_count": 17,
+      "rotation_current_from_reference": [
+        [
+          0.9999999999999999,
+          -1.0266993807330182e-17,
+          -1.0503765731874578e-16
+        ],
+        [
+          8.254094515063507e-17,
+          0.999902524009304,
+          -0.01396218033914503
+        ],
+        [
+          5.563195098578371e-17,
+          0.013962180339144804,
+          0.999902524009304
+        ]
+      ],
+      "test_median_px": 8.526512829121202e-14,
+      "test_p90_px": 1.1508638664983733e-13,
+      "rotation_deg": 0.8000000000007993,
+      "translation_estimated": false,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false,
+      "model_selected": false,
+      "reason": "background_test_passed_NOT_metric_approval"
+    },
+    "max_planar_error_m": 2.2463269135509123e-15,
+    "target_results": [
+      {
+        "target_forward_m": 1.0,
+        "target_left_m": 0.0,
+        "predicted_forward_m": 1.0000000000000009,
+        "predicted_left_m": -1.97758476261356e-16,
+        "planar_error_m": 9.099281950539972e-16
+      },
+      {
+        "target_forward_m": 1.4,
+        "target_left_m": 0.0,
+        "predicted_forward_m": 1.400000000000002,
+        "predicted_left_m": -6.591949208711867e-17,
+        "planar_error_m": 1.999488362586388e-15
+      },
+      {
+        "target_forward_m": 2.0,
+        "target_left_m": 0.0,
+        "predicted_forward_m": 2.000000000000002,
+        "predicted_left_m": -3.400058012914542e-16,
+        "planar_error_m": 2.2463269135509123e-15
+      },
+      {
+        "target_forward_m": 1.4,
+        "target_left_m": 0.2,
+        "predicted_forward_m": 1.4000000000000017,
+        "predicted_left_m": 0.19999999999999998,
+        "planar_error_m": 1.776573666601473e-15
+      },
+      {
+        "target_forward_m": 1.4,
+        "target_left_m": -0.2,
+        "predicted_forward_m": 1.4000000000000012,
+        "predicted_left_m": -0.2000000000000005,
+        "planar_error_m": 1.4228624520802642e-15
+      }
+    ],
+    "distance_withheld": false,
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "model_selected": false,
+    "runtime_changed": false
+  },
+  {
+    "synthetic": true,
+    "physical_trial": false,
+    "background_optical_z": "5.0",
+    "true_shift_optical_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "true_rotation_vector_rad": [
+      0.0,
+      0.013962634015954637,
+      0.0
+    ],
+    "model": {
+      "accepted_for_offline_diagnostic": true,
+      "conditions": {
+        "enough_matches": true,
+        "enough_training": true,
+        "enough_test": true,
+        "horizontal_span": true,
+        "vertical_span": true,
+        "test_median": true,
+        "test_p90": true,
+        "small_rotation": true
+      },
+      "matches": 35,
+      "train_count": 18,
+      "test_count": 17,
+      "rotation_current_from_reference": [
+        [
+          0.9999025240093042,
+          -3.743278248938845e-17,
+          0.013962180339145272
+        ],
+        [
+          1.0489992335553906e-16,
+          1.0000000000000004,
+          4.817017600937786e-16
+        ],
+        [
+          -0.01396218033914531,
+          -1.0346629689363064e-16,
+          0.9999025240093047
+        ]
+      ],
+      "test_median_px": 6.355287432313019e-14,
+      "test_p90_px": 8.711001169295263e-14,
+      "rotation_deg": 0.7999999999980658,
+      "translation_estimated": false,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false,
+      "model_selected": false,
+      "reason": "background_test_passed_NOT_metric_approval"
+    },
+    "max_planar_error_m": 6.684427777288335e-16,
+    "target_results": [
+      {
+        "target_forward_m": 1.0,
+        "target_left_m": 0.0,
+        "predicted_forward_m": 1.0000000000000007,
+        "predicted_left_m": 2.0816681711721685e-17,
+        "planar_error_m": 6.664589960562512e-16
+      },
+      {
+        "target_forward_m": 1.4,
+        "target_left_m": 0.0,
+        "predicted_forward_m": 1.4000000000000001,
+        "predicted_left_m": -1.97758476261356e-16,
+        "planar_error_m": 2.973419269284548e-16
+      },
+      {
+        "target_forward_m": 2.0,
+        "target_left_m": 0.0,
+        "predicted_forward_m": 2.0000000000000004,
+        "predicted_left_m": 1.0061396160665481e-16,
+        "planar_error_m": 4.553442605056512e-16
+      },
+      {
+        "target_forward_m": 1.4,
+        "target_left_m": 0.2,
+        "predicted_forward_m": 1.3999999999999997,
+        "predicted_left_m": 0.20000000000000004,
+        "planar_error_m": 2.237726045655905e-16
+      },
+      {
+        "target_forward_m": 1.4,
+        "target_left_m": -0.2,
+        "predicted_forward_m": 1.4000000000000006,
+        "predicted_left_m": -0.19999999999999996,
+        "planar_error_m": 6.684427777288335e-16
+      }
+    ],
+    "distance_withheld": false,
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "model_selected": false,
+    "runtime_changed": false
+  }
+]

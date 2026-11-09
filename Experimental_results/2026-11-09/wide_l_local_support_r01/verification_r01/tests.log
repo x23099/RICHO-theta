@@ -1,0 +1,32 @@
+test_changing_E_coordinates_does_not_change_pose_fit_input (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+test_color_auxiliary_breaks_colored_connection_without_moving_original_corner (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+test_color_filter_uses_absolute_difference_without_uint8_wrap (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+test_color_only_boundary_cannot_fake_a_grayscale_crossing (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+test_diagnostic_results_do_not_promote_physical_or_live_status (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+test_edge_comparison_on_synthetic_marker_remains_non_authoritative (test_wide_l_local_support.WideLLocalSupportTests) ... FAIL
+test_historical_grayscale_control_is_exactly_reproduced (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+test_missing_E_never_triggers_pose_fit_or_fallback (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+test_native_image_inputs_are_not_modified (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+test_neutral_dark_connection_is_not_falsely_removed_by_color (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+test_nonfinite_contour_is_refused (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+test_nonpredeclared_chroma_is_refused (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+test_nonunique_corner_is_withheld (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+test_pixel_staircase_can_have_three_samples_despite_first_step_rejection (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+test_principal_sampling_preserves_three_sample_minimum (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+test_removing_original_corner_does_not_relocate_to_nearby_black_object (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+test_repeated_support_does_not_inflate_sample_count (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+test_retained_conditions_include_degraded_not_only_best_coverage (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+test_unknown_arm_method_is_refused (test_wide_l_local_support.WideLLocalSupportTests) ... ok
+
+======================================================================
+FAIL: test_edge_comparison_on_synthetic_marker_remains_non_authoritative (test_wide_l_local_support.WideLLocalSupportTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/robo25/theta_ws/RICHO-theta/tests/test_wide_l_local_support.py", line 92, in test_edge_comparison_on_synthetic_marker_remains_non_authoritative
+    self.assertLess(np.linalg.norm(np.asarray(result["point"])-[319.5, 390.5]), .05)
+AssertionError: 0.0843688797060394 not less than 0.05
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.073s
+
+FAILED (failures=1)

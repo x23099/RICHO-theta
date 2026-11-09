@@ -1,0 +1,60 @@
+{
+  "synthetic": true,
+  "physical_trial": false,
+  "camera_translation_m": [
+    0.05,
+    0.0,
+    0.0
+  ],
+  "background_optical_z_m": 5.0,
+  "model": {
+    "accepted_for_offline_diagnostic": true,
+    "conditions": {
+      "enough_matches": true,
+      "enough_training": true,
+      "enough_test": true,
+      "horizontal_span": true,
+      "vertical_span": true,
+      "test_median": true,
+      "test_p90": true,
+      "small_rotation": true
+    },
+    "matches": 36,
+    "train_count": 18,
+    "test_count": 18,
+    "rotation_current_from_reference": [
+      [
+        0.9999875479504847,
+        0.00224862622583588,
+        -0.004455067235591882
+      ],
+      [
+        -0.0022490169819381054,
+        0.9999974675382378,
+        -8.270263316992339e-05
+      ],
+      [
+        0.0044548699859945345,
+        9.272112522108297e-05,
+        0.9999900727188252
+      ]
+    ],
+    "test_median_px": 0.2218808315970093,
+    "test_p90_px": 0.4362522850278293,
+    "rotation_deg": 0.28597335580215116,
+    "translation_estimated": false,
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "model_selected": false,
+    "reason": "background_test_passed_NOT_metric_approval"
+  },
+  "target_metric": {
+    "available": true,
+    "reason": "unapproved_hypothesis_only",
+    "predicted_X_m": -0.04250501048581702,
+    "predicted_Z_m": 2.000280558704234,
+    "error_X_m": -0.04250501048581702,
+    "error_Z_m": 0.0002805587042340463,
+    "planar_error_m": 0.042505936404059336
+  }
+}

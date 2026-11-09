@@ -1,0 +1,33 @@
+{
+  "schema": "native_metric_rectangle_points_v1",
+  "image_sha256": "973e19b6ee85c0702056426d83a07e86f503755a76ab635099f3a869287bd4f1",
+  "corner_order": [
+    "near_image_left",
+    "near_image_right",
+    "far_image_left",
+    "far_image_right"
+  ],
+  "corners_native_xy": [
+    [
+      254.69232545243605,
+      413.5716842852723
+    ],
+    [
+      384.0921157576567,
+      409.52236742452527
+    ],
+    [
+      278.1667545128992,
+      376.72819145978747
+    ],
+    [
+      357.7189079537764,
+      374.7076024022576
+    ]
+  ],
+  "width_m": 0.8,
+  "depth_m": 0.8,
+  "point_coordinates_human_reviewed": false,
+  "physical_metric_verified": false,
+  "provenance": "existing local-support comparator; arbitrary board axes, not vehicle left/right; no E fitting"
+}

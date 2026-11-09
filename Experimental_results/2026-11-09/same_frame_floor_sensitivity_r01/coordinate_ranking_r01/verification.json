@@ -1,0 +1,13 @@
+{
+  "status": "PASS_OFFLINE_ONLY",
+  "command": "/home/robo25/theta-env/bin/python3 -m unittest discover -s tests -p test_same_frame_floor_coordinate_ranking.py -v",
+  "new_tests_run": 6,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "source_hash_manifest": "input_provenance.json",
+  "prior_sensitivity_tests_record": "../verification_r01/verification.json",
+  "runtime_changed": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}

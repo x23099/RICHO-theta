@@ -1,0 +1,12 @@
+{
+  "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/background_rotation_transfer_r01/analyze.py": "4cd74b4fc74389c45e4c5ac12a847b95507e54f10ddc50187571eea7ebe1a852",
+  "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_floor_geometry_r01/same_frame_pose_r01/input_provenance.json": "e51d00e4d51f0cbd6107cdf2ed363a0d155c12669d3e2217102fd1bb0517e427",
+  "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_floor_geometry_r01/same_frame_pose_r01/background_tracks.csv": "e368b269cbba6b446a6ea53972906cd78fafef4a249a1e090755cb9fb0d28256",
+  "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_floor_geometry_r01/corner_identity_r01/corner_identity_comparison.csv": "7f1cd46265d49d8c8af6a28a8dd4bdca93e76f03f48a5887633feaab0c5f0091",
+  "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_diagnostic_config.json": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+  "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+  "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py": "cf747b786e3f204a86b347cacd3bfed6864b30b0262a20599d029053bdb4d2b8",
+  "/home/robo25/theta_ws/RICHO-theta/src/fisheye_floor_geometry.py": "b012f42743d155aa675a43dbb0c1dc86d11f1586da61b38b2938e59d30470419",
+  "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_floor_geometry_r01/audit_same_frame_pose.py": "dcf2fb834fea24c2c3f420b191d8ca59a9b53536b420d4aa7611a91cc75ea387",
+  "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/wide_floor_geometry_r01/analyze.py": "7b702328489e767361c0243b953cd17b319a7653e129705eefe9823e61cc5bd4"
+}

@@ -1,0 +1,9 @@
+case,background_pass,reason,matches,training,heldout,heldout_median_px,heldout_p90_px,apparent_rotation_deg,max_planar_error_m,distance_withheld,physical_metric_verified,usable_for_ffb,model_selected,runtime_changed
+correct_identity,True,background_test_passed_NOT_metric_approval,35,18,17,4.0194366942304644e-14,9.663381206337364e-14,1.7075472925031877e-06,1.783825521506726e-15,False,False,False,False,False
+heldout_only_wrong_8px,False,background_test_rejected,35,18,17,8.0,8.0,1.7075472925031877e-06,,True,False,False,False,False
+training_only_wrong_8px,False,background_test_rejected,35,18,17,8.209526136515159,8.700355264518288,2.584642733243076,,True,False,False,False,False
+every_fifth_wrong_8px,False,background_test_rejected,35,18,17,1.6423192791190862,6.1620352537390675,0.43970477241419975,,True,False,False,False,False
+coherent_wrong_rotation_0p8deg,True,background_test_passed_NOT_metric_approval,35,18,17,8.987733679556355e-14,1.1905440209147377e-13,0.7999999999980658,0.0965098918965022,False,False,False,False,False
+insufficient_10_matches,False,insufficient_background_geometry,10,5,5,,,,,True,False,False,False,False
+narrow_40px_coverage,False,insufficient_background_geometry,30,18,12,,,,,True,False,False,False,False
+true_rotation_6deg,False,background_test_rejected,35,18,17,6.355287432313019e-14,9.491677435240215e-14,5.9999999999997815,,True,False,False,False,False

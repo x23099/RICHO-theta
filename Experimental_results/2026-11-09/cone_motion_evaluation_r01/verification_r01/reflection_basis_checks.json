@@ -1,0 +1,32 @@
+[
+  {
+    "pixel": [
+      300.0,
+      380.0
+    ],
+    "raw_range_m": 1.7313355256794842,
+    "simultaneous_basis_reflection_range_m": 1.7313355256794842,
+    "absolute_difference_m": 0.0,
+    "physical_mirror_verified": false
+  },
+  {
+    "pixel": [
+      320.0,
+      400.0
+    ],
+    "raw_range_m": 1.2534415066881717,
+    "simultaneous_basis_reflection_range_m": 1.2534415066881717,
+    "absolute_difference_m": 0.0,
+    "physical_mirror_verified": false
+  },
+  {
+    "pixel": [
+      350.0,
+      430.0
+    ],
+    "raw_range_m": 0.8539549804482408,
+    "simultaneous_basis_reflection_range_m": 0.8539549804482408,
+    "absolute_difference_m": 0.0,
+    "physical_mirror_verified": false
+  }
+]

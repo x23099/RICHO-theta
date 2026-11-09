@@ -1,0 +1,330 @@
+{
+  "38231": {
+    "accepted_for_offline_diagnostic": true,
+    "conditions": {
+      "enough_matches": true,
+      "enough_training": true,
+      "enough_test": true,
+      "horizontal_span": true,
+      "vertical_span": true,
+      "test_median": true,
+      "test_p90": true,
+      "small_rotation": true
+    },
+    "matches": 50,
+    "train_count": 20,
+    "test_count": 30,
+    "rotation_current_from_reference": [
+      [
+        0.9999087462686785,
+        0.0017948073632133652,
+        0.013389466080728756
+      ],
+      [
+        -0.0017520506196181357,
+        0.9999933311789276,
+        -0.003204358952259795
+      ],
+      [
+        -0.013395127995816946,
+        0.003180607520204569,
+        0.9999052226495146
+      ]
+    ],
+    "test_median_px": 0.45067674132313873,
+    "test_p90_px": 1.140601502180515,
+    "rotation_deg": 0.7953657168362709,
+    "translation_estimated": false,
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "model_selected": false,
+    "reason": "background_test_passed_NOT_metric_approval"
+  },
+  "38464": {
+    "accepted_for_offline_diagnostic": true,
+    "conditions": {
+      "enough_matches": true,
+      "enough_training": true,
+      "enough_test": true,
+      "horizontal_span": true,
+      "vertical_span": true,
+      "test_median": true,
+      "test_p90": true,
+      "small_rotation": true
+    },
+    "matches": 61,
+    "train_count": 27,
+    "test_count": 34,
+    "rotation_current_from_reference": [
+      [
+        0.9999066047579044,
+        0.0009944855877991757,
+        0.013630581790040147
+      ],
+      [
+        -0.0009518346112851506,
+        0.9999946322664204,
+        -0.0031351952442348566
+      ],
+      [
+        -0.013633626531193821,
+        0.0031219283723960094,
+        0.9999021841114485
+      ]
+    ],
+    "test_median_px": 0.25146891868468724,
+    "test_p90_px": 0.523915474046574,
+    "rotation_deg": 0.8033311369316505,
+    "translation_estimated": false,
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "model_selected": false,
+    "reason": "background_test_passed_NOT_metric_approval"
+  },
+  "43924": {
+    "accepted_for_offline_diagnostic": true,
+    "conditions": {
+      "enough_matches": true,
+      "enough_training": true,
+      "enough_test": true,
+      "horizontal_span": true,
+      "vertical_span": true,
+      "test_median": true,
+      "test_p90": true,
+      "small_rotation": true
+    },
+    "matches": 65,
+    "train_count": 29,
+    "test_count": 36,
+    "rotation_current_from_reference": [
+      [
+        0.9999054777531701,
+        0.0008689425494854369,
+        0.013721534099748477
+      ],
+      [
+        -0.0008238935393221088,
+        0.9999942537957905,
+        -0.0032884000420380097
+      ],
+      [
+        -0.0137243126837277,
+        0.003276784131783144,
+        0.9999004480082572
+      ]
+    ],
+    "test_median_px": 0.2627796568395101,
+    "test_p90_px": 0.5253939465344022,
+    "rotation_deg": 0.8099276151407889,
+    "translation_estimated": false,
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "model_selected": false,
+    "reason": "background_test_passed_NOT_metric_approval"
+  },
+  "44053": {
+    "accepted_for_offline_diagnostic": true,
+    "conditions": {
+      "enough_matches": true,
+      "enough_training": true,
+      "enough_test": true,
+      "horizontal_span": true,
+      "vertical_span": true,
+      "test_median": true,
+      "test_p90": true,
+      "small_rotation": true
+    },
+    "matches": 65,
+    "train_count": 29,
+    "test_count": 36,
+    "rotation_current_from_reference": [
+      [
+        0.9999057109325218,
+        0.0008295155140450498,
+        0.013706974448799574
+      ],
+      [
+        -0.0007842565835952501,
+        0.9999942245414709,
+        -0.0033069359404447507
+      ],
+      [
+        -0.013709638439403614,
+        0.003295874347586703,
+        0.9999005865715586
+      ]
+    ],
+    "test_median_px": 0.2582367442112353,
+    "test_p90_px": 0.5268786443337221,
+    "rotation_deg": 0.809233205867014,
+    "translation_estimated": false,
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "model_selected": false,
+    "reason": "background_test_passed_NOT_metric_approval"
+  },
+  "51180": {
+    "accepted_for_offline_diagnostic": true,
+    "conditions": {
+      "enough_matches": true,
+      "enough_training": true,
+      "enough_test": true,
+      "horizontal_span": true,
+      "vertical_span": true,
+      "test_median": true,
+      "test_p90": true,
+      "small_rotation": true
+    },
+    "matches": 61,
+    "train_count": 27,
+    "test_count": 34,
+    "rotation_current_from_reference": [
+      [
+        0.9999041814755562,
+        0.0008791687003202579,
+        0.013815025519162163
+      ],
+      [
+        -0.0008343231341992404,
+        0.9999943655749415,
+        -0.003251572431823504
+      ],
+      [
+        -0.01381780636014502,
+        0.003239734675561903,
+        0.9998992811011657
+      ]
+    ],
+    "test_median_px": 0.24091113019184224,
+    "test_p90_px": 0.47615225882361867,
+    "rotation_deg": 0.8146792064681608,
+    "translation_estimated": false,
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "model_selected": false,
+    "reason": "background_test_passed_NOT_metric_approval"
+  },
+  "51342": {
+    "accepted_for_offline_diagnostic": true,
+    "conditions": {
+      "enough_matches": true,
+      "enough_training": true,
+      "enough_test": true,
+      "horizontal_span": true,
+      "vertical_span": true,
+      "test_median": true,
+      "test_p90": true,
+      "small_rotation": true
+    },
+    "matches": 61,
+    "train_count": 27,
+    "test_count": 34,
+    "rotation_current_from_reference": [
+      [
+        0.9999044669881602,
+        0.0009129041069278779,
+        0.013792153682993963
+      ],
+      [
+        -0.0008683597869043824,
+        0.9999943892829806,
+        -0.003235329015956084
+      ],
+      [
+        -0.013795029844268444,
+        0.0032230433835988624,
+        0.9998996495363651
+      ]
+    ],
+    "test_median_px": 0.24610475493717318,
+    "test_p90_px": 0.47890312572465843,
+    "rotation_deg": 0.8133126838505167,
+    "translation_estimated": false,
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "model_selected": false,
+    "reason": "background_test_passed_NOT_metric_approval"
+  },
+  "54907": {
+    "accepted_for_offline_diagnostic": true,
+    "conditions": {
+      "enough_matches": true,
+      "enough_training": true,
+      "enough_test": true,
+      "horizontal_span": true,
+      "vertical_span": true,
+      "test_median": true,
+      "test_p90": true,
+      "small_rotation": true
+    },
+    "matches": 65,
+    "train_count": 29,
+    "test_count": 36,
+    "rotation_current_from_reference": [
+      [
+        0.9999033572967022,
+        0.0007457846428256216,
+        0.013882358302866694
+      ],
+      [
+        -0.0006989198111882031,
+        0.9999940421833141,
+        -0.0033804007118599603
+      ],
+      [
+        -0.013884796645258065,
+        0.0033703713655525735,
+        0.999897921299458
+      ]
+    ],
+    "test_median_px": 0.2523768856084695,
+    "test_p90_px": 0.6164052884753553,
+    "rotation_deg": 0.8197156250066808,
+    "translation_estimated": false,
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "model_selected": false,
+    "reason": "background_test_passed_NOT_metric_approval"
+  },
+  "55094": {
+    "accepted_for_offline_diagnostic": true,
+    "conditions": {
+      "enough_matches": true,
+      "enough_training": true,
+      "enough_test": true,
+      "horizontal_span": true,
+      "vertical_span": true,
+      "test_median": true,
+      "test_p90": true,
+      "small_rotation": true
+    },
+    "matches": 65,
+    "train_count": 29,
+    "test_count": 36,
+    "rotation_current_from_reference": [
+      [
+        0.999903844942459,
+        0.0007622496287648818,
+        0.0138462935398218
+      ],
+      [
+        -0.000715891713253303,
+        0.9999941234809787,
+        -0.0033526858731256852
+      ],
+      [
+        -0.013848767755376565,
+        0.0033424510486186926,
+        0.9998985146766874
+      ]
+    ],
+    "test_median_px": 0.26694286518340593,
+    "test_p90_px": 0.6137831087175688,
+    "rotation_deg": 0.8173847946140237,
+    "translation_estimated": false,
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "model_selected": false,
+    "reason": "background_test_passed_NOT_metric_approval"
+  }
+}

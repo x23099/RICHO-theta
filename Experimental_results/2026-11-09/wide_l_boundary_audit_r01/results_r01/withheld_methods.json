@@ -1,0 +1,2163 @@
+[
+  {
+    "frame": 38231,
+    "threshold": 90,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 90,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 90,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 100,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 100,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 100,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 110,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 110,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 110,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 120,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 120,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 120,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38231,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 90,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 90,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 90,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 100,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 100,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 100,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 110,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 110,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 110,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 120,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 120,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 120,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 38464,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 90,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 90,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 90,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 100,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 100,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 100,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 110,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 110,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_right"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_right"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 110,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_right"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_right"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 120,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 120,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 120,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 43924,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 90,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 90,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 90,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 100,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 100,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 100,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "E"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 110,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 110,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 110,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 120,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 120,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 120,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right"
+    ]
+  },
+  {
+    "frame": 44053,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 90,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 90,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 90,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 100,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 100,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 100,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 110,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 110,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 110,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 120,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 120,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 120,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51180,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 90,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 90,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 90,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 100,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 100,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 100,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 110,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 110,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 110,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 120,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 120,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 120,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 51342,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 90,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 90,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 90,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 100,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 100,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 100,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 110,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 110,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 110,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 120,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 120,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 120,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 54907,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 90,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 90,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 90,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 90,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 100,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 100,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 100,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 100,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 110,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 110,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 110,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 110,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 120,
+    "method": "raster_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc3",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "near_image_left",
+      "near_image_right",
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 120,
+    "method": "raster_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc4",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 120,
+    "method": "raster_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  },
+  {
+    "frame": 55094,
+    "threshold": 120,
+    "method": "isocross_rayplane_arc5",
+    "reason": "missing_marker_no_fallback",
+    "missing": [
+      "far_image_left",
+      "far_image_right",
+      "E"
+    ]
+  }
+]

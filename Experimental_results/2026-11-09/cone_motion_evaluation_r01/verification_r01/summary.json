@@ -1,0 +1,160 @@
+{
+  "status": "PASS_SOFTWARE_ONLY_NOT_LIVE_DRIVING_VALIDATION",
+  "tests": 31,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "real_saved_images": 10,
+  "range_available_images": 3,
+  "cached_detection_replay": true,
+  "new_yolo_inference_run": false,
+  "actual_camera_or_cuda_test_run": false,
+  "actual_vehicle_motion_trial": false,
+  "no_new_recording": true,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "control_or_robot_started": false,
+  "baseline_static_runtime_changed": false,
+  "metric": "horizontal_camera_foot_range_m_NOT_forward_or_contact",
+  "metrics": [
+    {
+      "session": "b559e4240e364166935f9ede9ac3e7ae",
+      "frame": 32654,
+      "range_available": false,
+      "range_m": null,
+      "reason": "colour_contour_reaches_roi_edge",
+      "observed_point": null,
+      "offline_engine_service_ms": 42.84926600303152,
+      "live_timing_measured": false,
+      "calibration_transfer_verified": false,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "b559e4240e364166935f9ede9ac3e7ae",
+      "frame": 32717,
+      "range_available": false,
+      "range_m": null,
+      "reason": "colour_contour_reaches_roi_edge",
+      "observed_point": null,
+      "offline_engine_service_ms": 33.19451700008358,
+      "live_timing_measured": false,
+      "calibration_transfer_verified": false,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "b559e4240e364166935f9ede9ac3e7ae",
+      "frame": 32976,
+      "range_available": false,
+      "range_m": null,
+      "reason": "colour_contour_reaches_roi_edge",
+      "observed_point": null,
+      "offline_engine_service_ms": 12.727937999443384,
+      "live_timing_measured": false,
+      "calibration_transfer_verified": false,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "b559e4240e364166935f9ede9ac3e7ae",
+      "frame": 33066,
+      "range_available": false,
+      "range_m": null,
+      "reason": "colour_contour_reaches_roi_edge",
+      "observed_point": null,
+      "offline_engine_service_ms": 31.905469000776066,
+      "live_timing_measured": false,
+      "calibration_transfer_verified": false,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "b559e4240e364166935f9ede9ac3e7ae",
+      "frame": 33206,
+      "range_available": false,
+      "range_m": null,
+      "reason": "colour_contour_reaches_roi_edge",
+      "observed_point": null,
+      "offline_engine_service_ms": 14.503271999274148,
+      "live_timing_measured": false,
+      "calibration_transfer_verified": false,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "b559e4240e364166935f9ede9ac3e7ae",
+      "frame": 33271,
+      "range_available": false,
+      "range_m": null,
+      "reason": "colour_contour_reaches_roi_edge",
+      "observed_point": null,
+      "offline_engine_service_ms": 35.06954999829759,
+      "live_timing_measured": false,
+      "calibration_transfer_verified": false,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "b559e4240e364166935f9ede9ac3e7ae",
+      "frame": 35562,
+      "range_available": true,
+      "range_m": 1.0064573733815785,
+      "reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+      "observed_point": [
+        308,
+        417
+      ],
+      "offline_engine_service_ms": 46.62072399878525,
+      "live_timing_measured": false,
+      "calibration_transfer_verified": false,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "b559e4240e364166935f9ede9ac3e7ae",
+      "frame": 36478,
+      "range_available": false,
+      "range_m": null,
+      "reason": "colour_contour_reaches_roi_edge",
+      "observed_point": null,
+      "offline_engine_service_ms": 40.96913399916957,
+      "live_timing_measured": false,
+      "calibration_transfer_verified": false,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+      "frame": 61948,
+      "range_available": true,
+      "range_m": 0.9790628904230803,
+      "reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+      "observed_point": [
+        315,
+        419
+      ],
+      "offline_engine_service_ms": 8.677189001900842,
+      "live_timing_measured": false,
+      "calibration_transfer_verified": false,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    },
+    {
+      "session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+      "frame": 64232,
+      "range_available": true,
+      "range_m": 1.9544256948889729,
+      "reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+      "observed_point": [
+        316,
+        373
+      ],
+      "offline_engine_service_ms": 8.967302997916704,
+      "live_timing_measured": false,
+      "calibration_transfer_verified": false,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false
+    }
+  ]
+}

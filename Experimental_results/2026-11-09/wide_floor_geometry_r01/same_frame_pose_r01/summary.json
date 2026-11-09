@@ -1,0 +1,311 @@
+{
+  "status": "WITHHELD_HANDEDNESS_DESPITE_BETTER_PAIRED_FRAME_DIAGNOSTIC",
+  "session": "159c37ad534a4ac0b96ca69791713567",
+  "image_count": 10,
+  "input_images": [
+    {
+      "frame": 20063,
+      "group": "P0",
+      "sha256": "5ce286ac2d72a7adeeb5d3629fc44dc742103d5b3960c96e7d2fccf24b6f10ce"
+    },
+    {
+      "frame": 20493,
+      "group": "P0",
+      "sha256": "44de35e74987e2d5c04307018fb13b0a613d0db8d699eedd3db845e77cca3884"
+    },
+    {
+      "frame": 38231,
+      "group": "P1",
+      "sha256": "973e19b6ee85c0702056426d83a07e86f503755a76ab635099f3a869287bd4f1"
+    },
+    {
+      "frame": 38464,
+      "group": "P1",
+      "sha256": "39c62eaa526a3309a121e1b57f41bccc055f9855cef05fc6ec1a743fb0bd162a"
+    },
+    {
+      "frame": 43924,
+      "group": "P2",
+      "sha256": "69647485aedc6fc88871a5a08fb110fadded6f7d57dd23def457adc743131fe4"
+    },
+    {
+      "frame": 44053,
+      "group": "P2",
+      "sha256": "16150c60d3dc592e51ddfbaa813a97b7ada56d92f6c51e468f81bff64be17d5a"
+    },
+    {
+      "frame": 51180,
+      "group": "P3_vehicle_left",
+      "sha256": "bd2a235725ce400347704c6816f91199332338606a8ca7436e6e8f79c11e7162"
+    },
+    {
+      "frame": 51342,
+      "group": "P3_vehicle_left",
+      "sha256": "60db1e01f9d26a2733f613d70f33042fd3569930211fb0ec7542ce903f85f690"
+    },
+    {
+      "frame": 54907,
+      "group": "P4_vehicle_right",
+      "sha256": "abdee3a89dbc24023baccd3a619145076089e1811fca240d94c00013ce8fa963"
+    },
+    {
+      "frame": 55094,
+      "group": "P4_vehicle_right",
+      "sha256": "e55d7b257f62be2a20682740ca9a9527527e3e8a31a938bd0f1ac0fc852615d9"
+    }
+  ],
+  "fixed_pose_fit_uses_same_frame_A_to_D_only": true,
+  "E_in_pose_fit": false,
+  "background_used_for_floor_fit": false,
+  "mirror_hypothesis_independently_verified": false,
+  "physical_corner_identity_verified": false,
+  "camera_images_edited_or_exported": false,
+  "runtime_changed": false,
+  "usable_for_ffb": false,
+  "physical_metric_verified": false,
+  "selected_hypothesis": null,
+  "selected_solution": null,
+  "group_metrics": [
+    {
+      "group": "P1",
+      "hypothesis": "image_left_is_vehicle_left_control",
+      "solution_index": 0,
+      "available": 2,
+      "total": 2,
+      "median_X_m": 0.011978720247351107,
+      "median_Z_m": 1.3936439210265976,
+      "median_planar_error_m": 0.013560585484426034
+    },
+    {
+      "group": "P1",
+      "hypothesis": "image_left_is_vehicle_left_control",
+      "solution_index": 1,
+      "available": 2,
+      "total": 2,
+      "median_X_m": 0.011310119644728285,
+      "median_Z_m": 1.577900041073605,
+      "median_planar_error_m": 0.1782592029051192
+    },
+    {
+      "group": "P1",
+      "hypothesis": "vehicle_sides_follow_E_unmodified_rays",
+      "solution_index": 0,
+      "available": 0,
+      "total": 2,
+      "median_X_m": null,
+      "median_Z_m": null,
+      "median_planar_error_m": null
+    },
+    {
+      "group": "P1",
+      "hypothesis": "vehicle_sides_follow_E_unmodified_rays",
+      "solution_index": 1,
+      "available": 0,
+      "total": 2,
+      "median_X_m": null,
+      "median_Z_m": null,
+      "median_planar_error_m": null
+    },
+    {
+      "group": "P1",
+      "hypothesis": "vehicle_sides_follow_E_reflected_ray_x_control",
+      "solution_index": 0,
+      "available": 2,
+      "total": 2,
+      "median_X_m": -0.011978720247351048,
+      "median_Z_m": 1.3936439210266054,
+      "median_planar_error_m": 0.013560585484422339
+    },
+    {
+      "group": "P1",
+      "hypothesis": "vehicle_sides_follow_E_reflected_ray_x_control",
+      "solution_index": 1,
+      "available": 2,
+      "total": 2,
+      "median_X_m": -0.011310119644728577,
+      "median_Z_m": 1.5779000410736483,
+      "median_planar_error_m": 0.17825920290516245
+    },
+    {
+      "group": "P2",
+      "hypothesis": "image_left_is_vehicle_left_control",
+      "solution_index": 0,
+      "available": 2,
+      "total": 2,
+      "median_X_m": 0.007788564655420157,
+      "median_Z_m": 1.9833405371002977,
+      "median_planar_error_m": 0.018390199659009097
+    },
+    {
+      "group": "P2",
+      "hypothesis": "image_left_is_vehicle_left_control",
+      "solution_index": 1,
+      "available": 2,
+      "total": 2,
+      "median_X_m": 0.0064731452086923946,
+      "median_Z_m": 1.8123834497372253,
+      "median_planar_error_m": 0.18772818526102328
+    },
+    {
+      "group": "P2",
+      "hypothesis": "vehicle_sides_follow_E_unmodified_rays",
+      "solution_index": 0,
+      "available": 0,
+      "total": 2,
+      "median_X_m": null,
+      "median_Z_m": null,
+      "median_planar_error_m": null
+    },
+    {
+      "group": "P2",
+      "hypothesis": "vehicle_sides_follow_E_unmodified_rays",
+      "solution_index": 1,
+      "available": 0,
+      "total": 2,
+      "median_X_m": null,
+      "median_Z_m": null,
+      "median_planar_error_m": null
+    },
+    {
+      "group": "P2",
+      "hypothesis": "vehicle_sides_follow_E_reflected_ray_x_control",
+      "solution_index": 0,
+      "available": 2,
+      "total": 2,
+      "median_X_m": -0.007788564655420029,
+      "median_Z_m": 1.9833405371003134,
+      "median_planar_error_m": 0.01839019965899476
+    },
+    {
+      "group": "P2",
+      "hypothesis": "vehicle_sides_follow_E_reflected_ray_x_control",
+      "solution_index": 1,
+      "available": 2,
+      "total": 2,
+      "median_X_m": -0.006473145208692984,
+      "median_Z_m": 1.8123834497372626,
+      "median_planar_error_m": 0.187728185260986
+    },
+    {
+      "group": "P3_vehicle_left",
+      "hypothesis": "image_left_is_vehicle_left_control",
+      "solution_index": 0,
+      "available": 2,
+      "total": 2,
+      "median_X_m": 0.20100422949421348,
+      "median_Z_m": 1.3910477396757155,
+      "median_planar_error_m": 0.4011041448765664
+    },
+    {
+      "group": "P3_vehicle_left",
+      "hypothesis": "image_left_is_vehicle_left_control",
+      "solution_index": 1,
+      "available": 2,
+      "total": 2,
+      "median_X_m": 0.1403343378766312,
+      "median_Z_m": 1.5761278480767114,
+      "median_planar_error_m": 0.38320814240574025
+    },
+    {
+      "group": "P3_vehicle_left",
+      "hypothesis": "vehicle_sides_follow_E_unmodified_rays",
+      "solution_index": 0,
+      "available": 0,
+      "total": 2,
+      "median_X_m": null,
+      "median_Z_m": null,
+      "median_planar_error_m": null
+    },
+    {
+      "group": "P3_vehicle_left",
+      "hypothesis": "vehicle_sides_follow_E_unmodified_rays",
+      "solution_index": 1,
+      "available": 0,
+      "total": 2,
+      "median_X_m": null,
+      "median_Z_m": null,
+      "median_planar_error_m": null
+    },
+    {
+      "group": "P3_vehicle_left",
+      "hypothesis": "vehicle_sides_follow_E_reflected_ray_x_control",
+      "solution_index": 0,
+      "available": 2,
+      "total": 2,
+      "median_X_m": -0.20100422949421443,
+      "median_Z_m": 1.391047739675723,
+      "median_planar_error_m": 0.00900840950393975
+    },
+    {
+      "group": "P3_vehicle_left",
+      "hypothesis": "vehicle_sides_follow_E_reflected_ray_x_control",
+      "solution_index": 1,
+      "available": 2,
+      "total": 2,
+      "median_X_m": -0.14033433787662553,
+      "median_Z_m": 1.5761278480767547,
+      "median_planar_error_m": 0.18595970021692626
+    },
+    {
+      "group": "P4_vehicle_right",
+      "hypothesis": "image_left_is_vehicle_left_control",
+      "solution_index": 0,
+      "available": 2,
+      "total": 2,
+      "median_X_m": -0.2007707250588667,
+      "median_Z_m": 1.399561410513607,
+      "median_planar_error_m": 0.4007709650473039
+    },
+    {
+      "group": "P4_vehicle_right",
+      "hypothesis": "image_left_is_vehicle_left_control",
+      "solution_index": 1,
+      "available": 2,
+      "total": 2,
+      "median_X_m": -0.1333682959498958,
+      "median_Z_m": 1.581926897922594,
+      "median_planar_error_m": 0.37977864201699824
+    },
+    {
+      "group": "P4_vehicle_right",
+      "hypothesis": "vehicle_sides_follow_E_unmodified_rays",
+      "solution_index": 0,
+      "available": 0,
+      "total": 2,
+      "median_X_m": null,
+      "median_Z_m": null,
+      "median_planar_error_m": null
+    },
+    {
+      "group": "P4_vehicle_right",
+      "hypothesis": "vehicle_sides_follow_E_unmodified_rays",
+      "solution_index": 1,
+      "available": 0,
+      "total": 2,
+      "median_X_m": null,
+      "median_Z_m": null,
+      "median_planar_error_m": null
+    },
+    {
+      "group": "P4_vehicle_right",
+      "hypothesis": "vehicle_sides_follow_E_reflected_ray_x_control",
+      "solution_index": 0,
+      "available": 2,
+      "total": 2,
+      "median_X_m": 0.200770725058868,
+      "median_Z_m": 1.399561410513615,
+      "median_planar_error_m": 0.0008867794843897272
+    },
+    {
+      "group": "P4_vehicle_right",
+      "hypothesis": "vehicle_sides_follow_E_reflected_ray_x_control",
+      "solution_index": 1,
+      "available": 2,
+      "total": 2,
+      "median_X_m": 0.13336829594988886,
+      "median_Z_m": 1.5819268979226373,
+      "median_planar_error_m": 0.19374514231942777
+    }
+  ],
+  "opencv_version": "4.5.5"
+}

@@ -1,0 +1,28 @@
+{
+  "status": "PASS_OFFLINE_ONLY",
+  "new_tests_run": 16,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "prior_tests_reused": 79,
+  "prior_verification": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/background_rotation_transfer_r01/verification_r01/verification.json",
+  "prior_verification_sha256": "151b0ed1a6ecaae517c06eb36c34b2c62b8e68b4fb77599f0f4044caa0d72842",
+  "provenance_hash_checks": 35,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/same_frame_floor_sensitivity_r01/verify.py": "19fac277574f258d0d8db161ee83abfc4446298891f681af7f16997ca72304a8",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/same_frame_floor_sensitivity_r01/analyze.py": "35858398b5e4492591c579cd15f30cea8f3f5c61a4a36e873a6b67e656c7eeff",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_same_frame_floor_sensitivity.py": "ec64be09818ce435e7d116b345d398dd23d8dd16fd48a8a41f7681fabaad8267"
+  },
+  "results_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/same_frame_floor_sensitivity_r01/results_r01/all_raw_assignments.csv": "317a5c01e32b301f472bca6e5baaa0dfd6647fb2d2ef0909e6055f7d16f8047c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/same_frame_floor_sensitivity_r01/results_r01/group_metrics.csv": "4dc1e6a21fd3ed659359983bc5ab4506c71550a0a8319b3beb3efb2fc1ac25bf",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/same_frame_floor_sensitivity_r01/results_r01/input_provenance.json": "bdfdf7afe6494d56b65d043cf0d61964006bc02ccd3a08a33317e0fd84347813",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/same_frame_floor_sensitivity_r01/results_r01/pixel_stress.csv": "f55b40afc4f9a07b22baf257464bb5f18cfaacfdecd5f6884ab4bb09f890ef1b",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/same_frame_floor_sensitivity_r01/results_r01/raw_assignment_diagnostic.csv": "fe1e945864f50177376c5b6f6a22de707d4152d1c0cdf3090a465e8daa6f8efe",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/same_frame_floor_sensitivity_r01/results_r01/summary.json": "c437c5ce559f32d1c401f46413671850fd93be54f570bbe2e40ba8a3963d73d2"
+  },
+  "camera_started": false,
+  "ros_started": false,
+  "runtime_changed": false,
+  "physical_metric_verified": false
+}
