@@ -2,6 +2,14 @@
 
 更新日: **2026-11-10（JST）**。対象リポジトリ: `RICHO-theta`。
 
+## 11/10後続：走行中測距確認と保留frame保存の準備
+
+[実走行ログ解析](Experimental_results/2026-11-10/driver_motion_live_analysis_r01/README.md)を参照。ユーザーが通常の運転画面で走行し、session `7f33c225af3948c2aa61d66d52765c2e` の全55,906処理ログを提出。走行録画対応569件では29.89件/秒、数値549件、支持輪郭境界による保留20件。19個の表示値がログと一致した。実測誤差・操縦遅延は未認定。下の「実走行未確認」は実装時点の履歴。
+
+追加撮影なしで20保留の座標境界／下側拡張を比較したが、liveの判定緩和は未採用。次の不足入力は保留frameの未展開画素であり、再校正や追加寸法測定ではない。[既定OFFの保留frame PNG＋判定JSON保存](Experimental_results/2026-11-10/withheld_frame_evidence_r01/README.md)を実装し、新規24＋回帰48＝72テスト成功、保存ONの実ローカルpipe再生で10/10同値・7組の画素／ログ照合と正常終了を確認した。新しい実カメラ撮影・CUDA推論・実機操作は行っていない。
+
+有効化はGPU PC受信コマンドへの `--motion-withheld-evidence-dir recordings/...` の明示追加。既定は輪郭境界の保留のみ、最大40組、間隔1秒、PNG＋JSON計128MiB。今回の変更はまだGPU PCへ反映・Git commit/pushしていないため、先にコード反映が必要。sender／操縦／距離の値と保留条件は維持する。初回再生r01の終了不備は修正済みで、正式記録はr02。次担当は上記手順・検証を優先し、古い静止校正や追加撮影の依頼から再開しない。
+
 ## 11/10の再開後：運転映像から測距への分岐を実装
 
 [最新の実装・手順・検証](Experimental_results/2026-11-10/driver_motion_bridge_r01/README.md)を先に読む。昨日「未実装」だった運転用受信映像からの分岐を、既定OFFの `--motion-distance` として追加した。別GPUプロセスへ最新の生画像だけを渡し、運転画面とは別の数値欄に元session/frame・受信後経過時間を表示する。senderは運転用control/telemetryを維持する `--motion-native`。旧コマンドと操縦／ROS速度指令の処理は維持する。

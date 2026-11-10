@@ -9,7 +9,7 @@ import time
 from driver_motion_protocol import compact_result, read_frame, write_message
 
 
-def serve(engine, predictor, input_stream, output_stream, log_path, *, clock=time.monotonic):
+def serve(engine, predictor, input_stream, output_stream, log_path, *, clock=time.monotonic, evidence=None):
     processed = available = 0
     with Path(log_path).open("x") as log:
         while True:
@@ -33,8 +33,15 @@ def serve(engine, predictor, input_stream, output_stream, log_path, *, clock=tim
             if finished-frame.received_at > engine.settings["frame_max_age_sec"]:
                 from cone_motion_range import revoke_range
                 revoke_range(result,"frame_processing_too_old")
-            log.write(json.dumps(result,allow_nan=False)+"\n");log.flush()
+            result_line=json.dumps(result,allow_nan=False)+"\n"
+            log.write(result_line);log.flush()
             write_message(output_stream,dict(type="result",result=compact_result(result)))
+            if evidence is not None:
+                try:
+                    evidence.offer(frame,result,result_line)
+                except Exception as error:
+                    print("[WARNING] evidence disabled; distance continues: "+str(error),file=sys.stderr)
+                    evidence=None
             processed += 1
             available += int(result["distance_available"])
 
@@ -44,6 +51,8 @@ def main(argv=None):
     from cone_distance_worker import YoloConePredictor
     from cone_motion_range import MotionRangeEngine, load_motion_profile
     from cone_upper_support_candidate import observe_upper_completion
+    from driver_withheld_evidence import (WithheldEvidenceRecorder, EvidenceLimits,
+        add_evidence_arguments, evidence_path, limits_from_args)
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--weights",type=Path,required=True)
     parser.add_argument("--profile",type=Path,required=True)
@@ -52,11 +61,24 @@ def main(argv=None):
     parser.add_argument("--device",type=int,default=0)
     parser.add_argument("--target-roi",type=int,nargs=4)
     parser.add_argument("--experimental-rigid-mount",action="store_true",required=True)
+    add_evidence_arguments(parser)
     args=parser.parse_args(argv)
     # Keep stdout exclusively for IPC, including during model setup/predict.
     output=sys.stdout.buffer
+    evidence=None
+    previous_sigterm=None
+    class EvidenceShutdown(BaseException):
+        pass
+    def stop_evidence_worker(signum,frame):
+        import signal
+        signal.signal(signal.SIGTERM,signal.SIG_IGN)
+        raise EvidenceShutdown()
     try:
         with redirect_stdout(sys.stderr):
+            limits=limits_from_args(args)
+            if args.withheld_evidence_dir is None and limits != EvidenceLimits():
+                raise ValueError("evidence limits require --withheld-evidence-dir")
+            directory=evidence_path(args.withheld_evidence_dir) if args.withheld_evidence_dir is not None else None
             settings,camera,_,_=load_config(args.config)
             profile,sha=load_motion_profile(args.profile,settings)
             engine=MotionRangeEngine(settings,camera,profile,sha,acknowledged=True,
@@ -67,12 +89,35 @@ def main(argv=None):
                 gpu=predictor.gpu,physical_metric_verified=False,usable_for_ffb=False,
                 published_to_ros=False,mount_or_floor_tilt_compensated=False,
                 metric="horizontal_camera_foot_range_m_NOT_base_link_or_contact")
+            if directory is not None:
+                try:
+                    evidence=WithheldEvidenceRecorder(directory,args.output_dir/"motion_distance_frames.jsonl",limits)
+                    import signal
+                    previous_sigterm=signal.signal(signal.SIGTERM,stop_evidence_worker)
+                except Exception as error:
+                    print("[WARNING] evidence initialization failed; distance continues: "+str(error),file=sys.stderr)
+                    summary["withheld_evidence_initialization_error"]=f"{type(error).__name__}: {error}"[:1000]
+            summary["withheld_evidence"]=dict(requested=directory is not None,
+                recorder_started=evidence is not None, directory=str(directory) if directory else None,
+                target_reason="colour_contour_reaches_roi_edge", max_frames=limits.max_frames,
+                max_png_and_sidecar_bytes=limits.max_bytes, interval_sec=limits.interval_sec)
             (args.output_dir/"motion_engine_summary.json").write_text(json.dumps(summary,indent=2)+"\n")
             (args.output_dir/"motion_profile_used.json").write_text(json.dumps(profile,indent=2)+"\n")
-            serve(engine,predictor,sys.stdin.buffer,output,args.output_dir/"motion_distance_frames.jsonl")
+            serve(engine,predictor,sys.stdin.buffer,output,args.output_dir/"motion_distance_frames.jsonl",evidence=evidence)
+    except EvidenceShutdown:
+        return 0
     except Exception as error:
         write_message(output,dict(type="error",error=f"{type(error).__name__}: {error}"[:1000]))
         return 1
+    finally:
+        if previous_sigterm is not None:
+            import signal
+            signal.signal(signal.SIGTERM,signal.SIG_IGN)
+        if evidence is not None:
+            evidence.close(timeout=.25)
+        if previous_sigterm is not None:
+            import signal
+            signal.signal(signal.SIGTERM,previous_sigterm)
     return 0
 
 

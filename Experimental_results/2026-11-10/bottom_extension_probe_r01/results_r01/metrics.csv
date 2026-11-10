@@ -1,0 +1,11 @@
+session,frame,baseline_available,guarded_available,baseline_m,guarded_m,closure_only_point_NOT_safe,guarded_candidate,probe_reason
+b559e4240e364166935f9ede9ac3e7ae,32654,False,False,,,,False,not_bottom_only_contact
+b559e4240e364166935f9ede9ac3e7ae,32717,False,False,,,,False,not_bottom_only_contact
+b559e4240e364166935f9ede9ac3e7ae,32976,False,False,,,,False,not_bottom_only_contact
+b559e4240e364166935f9ede9ac3e7ae,33066,False,False,,,,False,not_bottom_only_contact
+b559e4240e364166935f9ede9ac3e7ae,33206,False,False,,,"[317, 419]",False,point_outside_original_float_bbox
+b559e4240e364166935f9ede9ac3e7ae,33271,False,False,,,,False,not_bottom_only_contact
+b559e4240e364166935f9ede9ac3e7ae,35562,True,True,1.0064573733815785,1.0064573733815785,,False,baseline_preserved
+b559e4240e364166935f9ede9ac3e7ae,36478,False,False,,,,False,not_bottom_only_contact
+df33e833acdf4e7d8b00d1ec37b7bcae,61948,True,True,0.9790628904230803,0.9790628904230803,,False,baseline_preserved
+df33e833acdf4e7d8b00d1ec37b7bcae,64232,True,True,1.9544256948889729,1.9544256948889729,,False,baseline_preserved

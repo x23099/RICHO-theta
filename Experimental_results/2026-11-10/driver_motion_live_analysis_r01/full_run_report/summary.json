@@ -1,0 +1,80 @@
+{
+  "schema": "driver_motion_offline_report_v1",
+  "sessions": [
+    {
+      "session": "7f33c225af3948c2aa61d66d52765c2e",
+      "profile_sha256": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+      "processed_frames": 55906,
+      "inference_sources": {
+        "live_cuda_yolo": 55906
+      },
+      "numeric_results": 28288,
+      "processed_withheld_fraction": 0.4940077988051372,
+      "withheld_reasons": {
+        "frame_processing_too_old": 1,
+        "no_candidate": 15117,
+        "grazing_or_outside_range": 5222,
+        "base_point_outside_observed_support": 25,
+        "colour_contour_reaches_roi_edge": 6804,
+        "insufficient_upper_body_colour_evidence": 49,
+        "ambiguous_upper_body_colour": 11,
+        "ambiguous_front_cones": 387,
+        "bbox_crosses_front_angular_domain": 2
+      },
+      "completion_span_sec": 1884.9865799269996,
+      "processed_result_interval_hz": 29.65803608117202,
+      "completion_gap_ms": {
+        "count": 55905,
+        "min": 7.077766999998403,
+        "max": 351.2124170001698,
+        "p50": 33.484823999970104,
+        "p95": 47.75236799991944
+      },
+      "bridge_events": 55906,
+      "bridge_accepted": 55905,
+      "bridge_retired": 1,
+      "bridge_accepted_numeric": 28288,
+      "frames_without_bridge_event": 0,
+      "distance_m": {
+        "count": 28288,
+        "min": 0.6828227841870212,
+        "max": 3.830682945974943,
+        "p50": 1.0083568958657958,
+        "p95": 1.0575054669068862
+      },
+      "timing_ms": {
+        "frame_age_ms": {
+          "count": 55906,
+          "min": 7.242507999990266,
+          "max": 1451.5172120000557,
+          "p50": 15.063777000023038,
+          "p95": 25.983547000123508
+        },
+        "predict_ms": {
+          "count": 55906,
+          "min": 5.721936999975696,
+          "max": 1446.3701330000163,
+          "p50": 6.870523000088724,
+          "p95": 9.217680000006112
+        },
+        "support_geometry_ms": {
+          "count": 55906,
+          "min": 0.02147500003957248,
+          "max": 110.80597299996953,
+          "p50": 3.443190999860235,
+          "p95": 12.786465000090175
+        }
+      }
+    }
+  ],
+  "physical_accuracy_error_m": null,
+  "gui_time_withheld_fraction": null,
+  "end_to_end_camera_latency_ms": null,
+  "physical_metric_verified": false,
+  "usable_for_control": false,
+  "input_dir": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_live_intake_r01/driver_motion_live_20261110_151151",
+  "input_sha256": {
+    "motion_distance_frames_jsonl": "df537387f444c9fcf574ebd64f32af516ca0f47812c18d99088ad25661858eb4",
+    "motion_bridge_events_jsonl": "d7935fdcd1ff78247f9d48eaa6d32e716ba2197df17562c51f098616e0c7fe44"
+  }
+}

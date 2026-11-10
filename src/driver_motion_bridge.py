@@ -22,11 +22,20 @@ def add_motion_arguments(parser):
     group.add_argument("--motion-device",type=int,default=0)
     group.add_argument("--motion-target-roi",type=int,nargs=4)
     group.add_argument("--motion-experimental-rigid-mount",action="store_true")
+    from driver_withheld_evidence import add_evidence_arguments
+    add_evidence_arguments(group, prefix="motion-")
 
 
 def bridge_from_args(args):
+    from driver_withheld_evidence import EvidenceLimits, evidence_path, limits_from_args
+    evidence_dir = args.motion_withheld_evidence_dir
+    limits = limits_from_args(args, prefix="motion_")
     if not args.motion_distance:
+        if evidence_dir is not None or limits != EvidenceLimits():
+            raise ValueError("withheld evidence requires --motion-distance")
         return None
+    if evidence_dir is None and limits != EvidenceLimits():
+        raise ValueError("evidence limits require --motion-withheld-evidence-dir")
     if not args.motion_experimental_rigid_mount:
         raise ValueError("--motion-experimental-rigid-mount required; NOT accuracy approval")
     if (args.cam_width,args.cam_height) != (1280,720) or args.front_lens != "left" or args.mock_camera:
@@ -43,6 +52,11 @@ def bridge_from_args(args):
         x1,y1,x2,y2=args.motion_target_roi
         if not 0 <= x1 < x2 <= 640 or not 0 <= y1 < y2 <= 720:
             raise ValueError("native front ROI x1 y1 x2 y2 required")
+    if evidence_dir is not None:
+        evidence_dir = evidence_path(evidence_dir)
+        output = args.motion_output_dir.resolve()
+        if evidence_dir == output or output in evidence_dir.parents or evidence_dir in output.parents:
+            raise ValueError("evidence directory and motion output must be separate")
     command=[str(args.motion_python.expanduser().absolute()),"-u",
         str(Path(__file__).with_name("driver_motion_process.py")),
         "--weights",str(args.motion_weights.expanduser().resolve()),
@@ -53,7 +67,12 @@ def bridge_from_args(args):
         command.extend(["--config",str(args.motion_config.resolve())])
     if args.motion_target_roi is not None:
         command.extend(["--target-roi",*map(str,args.motion_target_roi)])
-    return DriverMotionBridge(command,args.motion_output_dir)
+    if evidence_dir is not None:
+        command.extend(["--withheld-evidence-dir", str(evidence_dir),
+            "--withheld-evidence-max-frames", str(limits.max_frames),
+            "--withheld-evidence-max-mib", str(limits.max_bytes//(1024*1024)),
+            "--withheld-evidence-interval-sec", str(limits.interval_sec)])
+    return DriverMotionBridge(command,args.motion_output_dir,evidence_dir=evidence_dir)
 
 
 class DriverMotionBridge:
@@ -63,8 +82,9 @@ class DriverMotionBridge:
     mutable capture buffer. UI remapping/annotation must continue to use copies.
     No image copy, file write, GPU call or pipe I/O occurs in publish().
     """
-    def __init__(self,command,output_dir,*,clock=time.monotonic):
+    def __init__(self,command,output_dir,*,clock=time.monotonic,evidence_dir=None):
         self.command,self.output_dir,self.clock=list(command),Path(output_dir),clock
+        self.evidence_dir=Path(evidence_dir) if evidence_dir is not None else None
         self.output_dir.mkdir(parents=True,exist_ok=False)
         self.lock=threading.Lock();self.stop_event=threading.Event();self.ready=threading.Event()
         self.process=None;self.error=None;self.latest=None;self.result=None
@@ -219,7 +239,10 @@ class DriverMotionBridge:
             worker_error=self.error,child_exitcode=self.process.poll() if self.process is not None else None,
             io_thread_stopped=not self.thread.is_alive(),
             child_stopped=self.process is None or self.process.poll() is not None,
-            image_files_written=False,physical_metric_verified=False,usable_for_ffb=False,
+            image_files_written=None if self.evidence_dir is not None else False,
+            withheld_evidence_requested=self.evidence_dir is not None,
+            withheld_evidence_status_file=str(self.evidence_dir/"evidence_status.json") if self.evidence_dir else None,
+            physical_metric_verified=False,usable_for_ffb=False,
             distance_published_to_ros=False,control_channel_modified=False,
             metric="horizontal_camera_foot_range_m_NOT_base_link_or_contact")
         (self.output_dir/"driver_motion_summary.json").write_text(json.dumps(self.shutdown,indent=2)+"\n")

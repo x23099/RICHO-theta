@@ -1,0 +1,92 @@
+[
+  {
+    "original_session": "b559e4240e364166935f9ede9ac3e7ae",
+    "original_frame": 32654,
+    "offline_session": "f7c4e28bccbd446dad5ec67ccc665069",
+    "offline_frame": 1,
+    "baseline_equal": true,
+    "distance_available": false,
+    "reason": "colour_contour_reaches_roi_edge"
+  },
+  {
+    "original_session": "b559e4240e364166935f9ede9ac3e7ae",
+    "original_frame": 32717,
+    "offline_session": "f7c4e28bccbd446dad5ec67ccc665069",
+    "offline_frame": 2,
+    "baseline_equal": true,
+    "distance_available": false,
+    "reason": "colour_contour_reaches_roi_edge"
+  },
+  {
+    "original_session": "b559e4240e364166935f9ede9ac3e7ae",
+    "original_frame": 32976,
+    "offline_session": "f7c4e28bccbd446dad5ec67ccc665069",
+    "offline_frame": 3,
+    "baseline_equal": true,
+    "distance_available": false,
+    "reason": "colour_contour_reaches_roi_edge"
+  },
+  {
+    "original_session": "b559e4240e364166935f9ede9ac3e7ae",
+    "original_frame": 33066,
+    "offline_session": "f7c4e28bccbd446dad5ec67ccc665069",
+    "offline_frame": 4,
+    "baseline_equal": true,
+    "distance_available": false,
+    "reason": "colour_contour_reaches_roi_edge"
+  },
+  {
+    "original_session": "b559e4240e364166935f9ede9ac3e7ae",
+    "original_frame": 33206,
+    "offline_session": "f7c4e28bccbd446dad5ec67ccc665069",
+    "offline_frame": 5,
+    "baseline_equal": true,
+    "distance_available": false,
+    "reason": "colour_contour_reaches_roi_edge"
+  },
+  {
+    "original_session": "b559e4240e364166935f9ede9ac3e7ae",
+    "original_frame": 33271,
+    "offline_session": "f7c4e28bccbd446dad5ec67ccc665069",
+    "offline_frame": 6,
+    "baseline_equal": true,
+    "distance_available": false,
+    "reason": "colour_contour_reaches_roi_edge"
+  },
+  {
+    "original_session": "b559e4240e364166935f9ede9ac3e7ae",
+    "original_frame": 35562,
+    "offline_session": "f7c4e28bccbd446dad5ec67ccc665069",
+    "offline_frame": 7,
+    "baseline_equal": true,
+    "distance_available": true,
+    "reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+  },
+  {
+    "original_session": "b559e4240e364166935f9ede9ac3e7ae",
+    "original_frame": 36478,
+    "offline_session": "f7c4e28bccbd446dad5ec67ccc665069",
+    "offline_frame": 8,
+    "baseline_equal": true,
+    "distance_available": false,
+    "reason": "colour_contour_reaches_roi_edge"
+  },
+  {
+    "original_session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+    "original_frame": 61948,
+    "offline_session": "64a6163c65ba4edebfc8fc1ec0ddfae6",
+    "offline_frame": 1,
+    "baseline_equal": true,
+    "distance_available": true,
+    "reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+  },
+  {
+    "original_session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+    "original_frame": 64232,
+    "offline_session": "64a6163c65ba4edebfc8fc1ec0ddfae6",
+    "offline_frame": 2,
+    "baseline_equal": true,
+    "distance_available": true,
+    "reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+  }
+]

@@ -1,0 +1,56 @@
+{
+  "status": "PASS_OFFLINE_ONLY",
+  "tests": 72,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "checks": [
+    {
+      "command": [
+        "/home/robo25/theta-env/bin/python3",
+        "/home/robo25/theta_ws/RICHO-theta/src/driver_motion_process.py",
+        "--help"
+      ],
+      "exit_code": 0,
+      "output": "usage: driver_motion_process.py [-h] --weights WEIGHTS --profile PROFILE\n                                [--config CONFIG] --output-dir OUTPUT_DIR\n                                [--device DEVICE]\n                                [--target-roi TARGET_ROI TARGET_ROI TARGET_ROI TARGET_ROI]\n                                --experimental-rigid-mount\n                                [--withheld-evidence-dir WITHHELD_EVIDENCE_DIR]\n                                [--withheld-evidence-max-frames WITHHELD_EVIDENCE_MAX_FRAMES]\n                                [--withheld-evidence-max-mib WITHHELD_EVIDENCE_MAX_MIB]\n                                [--withheld-evidence-interval-sec WITHHELD_EVIDENCE_INTERVAL_SEC]\n\nGPU subprocess for driver frame tap. No ROS, Qt, camera or RTC listener.\n\noptions:\n  -h, --help            show this help message and exit\n  --weights WEIGHTS\n  --profile PROFILE\n  --config CONFIG\n  --output-dir OUTPUT_DIR\n  --device DEVICE\n  --target-roi TARGET_ROI TARGET_ROI TARGET_ROI TARGET_ROI\n  --experimental-rigid-mount\n  --withheld-evidence-dir WITHHELD_EVIDENCE_DIR\n                        OFF by default; native support-boundary rejection\n                        PNG/JSON under recordings/\n  --withheld-evidence-max-frames WITHHELD_EVIDENCE_MAX_FRAMES\n  --withheld-evidence-max-mib WITHHELD_EVIDENCE_MAX_MIB\n  --withheld-evidence-interval-sec WITHHELD_EVIDENCE_INTERVAL_SEC\n"
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "/home/robo25/theta_ws/RICHO-theta/src/start_theta_receive_rtc.sh"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "bash",
+        "/home/robo25/theta_ws/RICHO-theta/src/start_theta_receive_rtc.sh",
+        "--motion-distance",
+        "--help"
+      ],
+      "exit_code": 0,
+      "output": "usage: webrtc_receive_ui.py [-h] [--front-width FRONT_WIDTH]\n                            [--front-height FRONT_HEIGHT]\n                            [--front-fov FRONT_FOV] [--rear-width REAR_WIDTH]\n                            [--rear-height REAR_HEIGHT] [--rear-fov REAR_FOV]\n                            [--mirror-width MIRROR_WIDTH]\n                            [--mirror-height MIRROR_HEIGHT]\n                            [--mirror-fov MIRROR_FOV]\n                            [--left-mirror-yaw LEFT_MIRROR_YAW]\n                            [--right-mirror-yaw RIGHT_MIRROR_YAW]\n                            [--front-lens {left,right}] [--roll ROLL]\n                            [--max-speed MAX_SPEED]\n                            [--speed-scale SPEED_SCALE] [--fullscreen]\n                            [--aiformula] [--hide-path]\n                            [--interpolation {linear,nearest}]\n                            [--device DEVICE] [--cam-width CAM_WIDTH]\n                            [--cam-height CAM_HEIGHT] [--mock-camera]\n                            [--mock-speed] [--minimap-width MINIMAP_WIDTH]\n                            [--minimap-height MINIMAP_HEIGHT]\n                            [--minimap-scale MINIMAP_SCALE]\n                            [--minimap-course-image MINIMAP_COURSE_IMAGE]\n                            [--minimap-origin-x MINIMAP_ORIGIN_X]\n                            [--minimap-origin-y MINIMAP_ORIGIN_Y]\n                            [--minimap-image-zoom MINIMAP_IMAGE_ZOOM]\n                            [--minimap-image-offset-x MINIMAP_IMAGE_OFFSET_X]\n                            [--minimap-image-offset-y MINIMAP_IMAGE_OFFSET_Y]\n                            [--motion-distance]\n                            [--motion-python MOTION_PYTHON]\n                            [--motion-weights MOTION_WEIGHTS]\n                            [--motion-profile MOTION_PROFILE]\n                            [--motion-output-dir MOTION_OUTPUT_DIR]\n                            [--motion-config MOTION_CONFIG]\n                            [--motion-device MOTION_DEVICE]\n                            [--motion-target-roi MOTION_TARGET_ROI MOTION_TARGET_ROI MOTION_TARGET_ROI MOTION_TARGET_ROI]\n                            [--motion-experimental-rigid-mount]\n                            [--motion-withheld-evidence-dir MOTION_WITHHELD_EVIDENCE_DIR]\n                            [--motion-withheld-evidence-max-frames MOTION_WITHHELD_EVIDENCE_MAX_FRAMES]\n                            [--motion-withheld-evidence-max-mib MOTION_WITHHELD_EVIDENCE_MAX_MIB]\n                            [--motion-withheld-evidence-interval-sec MOTION_WITHHELD_EVIDENCE_INTERVAL_SEC]\n\noptions:\n  -h, --help            show this help message and exit\n  --front-width FRONT_WIDTH\n  --front-height FRONT_HEIGHT\n  --front-fov FRONT_FOV\n  --rear-width REAR_WIDTH\n  --rear-height REAR_HEIGHT\n  --rear-fov REAR_FOV\n  --mirror-width MIRROR_WIDTH\n  --mirror-height MIRROR_HEIGHT\n  --mirror-fov MIRROR_FOV\n  --left-mirror-yaw LEFT_MIRROR_YAW\n  --right-mirror-yaw RIGHT_MIRROR_YAW\n  --front-lens {left,right}\n  --roll ROLL\n  --max-speed MAX_SPEED\n  --speed-scale SPEED_SCALE\n  --fullscreen\n  --aiformula           Run in aiformula mode with smaller window size\n                        constraints\n  --hide-path           Hide predicted path on startup\n  --interpolation {linear,nearest}\n  --device DEVICE\n  --cam-width CAM_WIDTH\n  --cam-height CAM_HEIGHT\n  --mock-camera\n  --mock-speed\n  --minimap-width MINIMAP_WIDTH\n  --minimap-height MINIMAP_HEIGHT\n  --minimap-scale MINIMAP_SCALE\n  --minimap-course-image MINIMAP_COURSE_IMAGE\n  --minimap-origin-x MINIMAP_ORIGIN_X\n  --minimap-origin-y MINIMAP_ORIGIN_Y\n  --minimap-image-zoom MINIMAP_IMAGE_ZOOM\n  --minimap-image-offset-x MINIMAP_IMAGE_OFFSET_X\n  --minimap-image-offset-y MINIMAP_IMAGE_OFFSET_Y\n\nexperimental non-controlling motion range:\n  --motion-distance\n  --motion-python MOTION_PYTHON\n                        GPU Python; independent of the ROS/Qt UI Python\n  --motion-weights MOTION_WEIGHTS\n  --motion-profile MOTION_PROFILE\n  --motion-output-dir MOTION_OUTPUT_DIR\n  --motion-config MOTION_CONFIG\n  --motion-device MOTION_DEVICE\n  --motion-target-roi MOTION_TARGET_ROI MOTION_TARGET_ROI MOTION_TARGET_ROI MOTION_TARGET_ROI\n  --motion-experimental-rigid-mount\n  --motion-withheld-evidence-dir MOTION_WITHHELD_EVIDENCE_DIR\n                        OFF by default; native support-boundary rejection\n                        PNG/JSON under recordings/\n  --motion-withheld-evidence-max-frames MOTION_WITHHELD_EVIDENCE_MAX_FRAMES\n  --motion-withheld-evidence-max-mib MOTION_WITHHELD_EVIDENCE_MAX_MIB\n  --motion-withheld-evidence-interval-sec MOTION_WITHHELD_EVIDENCE_INTERVAL_SEC\n"
+    }
+  ],
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/src/driver_motion_process.py": "ca984655097c7e550e758971dabb28be82a59cfa62a5fec20c6a2c651fa50f6f",
+    "/home/robo25/theta_ws/RICHO-theta/src/driver_motion_bridge.py": "f7223516644bc6a8bc04657e2f4c21f88788b69a318decbc260be3d7ecdba926",
+    "/home/robo25/theta_ws/RICHO-theta/src/driver_withheld_evidence.py": "ef8a4e56e6494d4117e3a80b2aca167446c465f6d0c74aa5070bc71c0125fa8e",
+    "/home/robo25/theta_ws/RICHO-theta/src/verify_driver_withheld_evidence.py": "276ce2b3f04993fc3e142dad8655bd7786b42aed336ad2bc619522e26b88734f",
+    "/home/robo25/theta_ws/RICHO-theta/src/report_driver_motion_logs.py": "58e876a45ac9e4b8380da0a5cde9df7f11d6073e0d1f4eb75c1525a00e949427",
+    "/home/robo25/theta_ws/RICHO-theta/src/driver_motion_protocol.py": "8f9ed011643eea75be54a741fdaa595646c7dc66d3277a1e3327f14256bc94dd",
+    "/home/robo25/theta_ws/RICHO-theta/src/webrtc_receive_ui.py": "8d4165df3bb45eaf61f737ce758b936bd2f992a93d99ce82e26e037e0bc50590",
+    "/home/robo25/theta_ws/RICHO-theta/src/webrtc_stream.py": "b7a1914f26d2285c3a959038c8b310505e626e9594ee7f67e0e1ce2f85d80899",
+    "/home/robo25/theta_ws/RICHO-theta/src/start_theta_receive_rtc.sh": "ffa06fb2407f23138549d4a2e703c8e948c012d9dca30ee1a162b08e842019e4",
+    "/home/robo25/theta_ws/RICHO-theta/src/start_theta_stream_rtc.sh": "773958f7ccd360a0bfb71a6c0ad29d08df4c36c72b567073c6d6728399919ae6",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_driver_motion_camera.py": "83d24a3d7db67433b9c07acb902a3d45741bcd71c5e84c32ed95ff9c1bda7292",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_driver_motion_integration.py": "acd4f1cf7fffd974892d4c21baf38bccf89676dddf86651833efc07dd9d25291",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_driver_motion_bridge.py": "188359e910ac9e757148a3638b6ad464146a109f1e85bf61c348613209715b4f",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_driver_withheld_evidence.py": "3b526718a12060add851d3a853a1e1fc893d6c755c0f170d43878f6e1ad45a87",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-10/withheld_frame_evidence_r01/check_tests.py": "fbcd956306d78b937e059de5ca5103add81617c7760ef8e9f669e1dda419fce2"
+  },
+  "real_cuda_or_camera_started": false,
+  "actual_vehicle_or_control_latency_measured": false
+}

@@ -1,0 +1,127 @@
+{
+  "schema": "driver_motion_offline_report_v1",
+  "sessions": [
+    {
+      "session": "f5fed21fc5d544cea09ec1bcb4c23fc6",
+      "profile_sha256": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+      "processed_frames": 8,
+      "inference_sources": {
+        "cached_YOLO_boxes_NOT_new_inference_NOT_live_GPU": 8
+      },
+      "numeric_results": 1,
+      "processed_withheld_fraction": 0.875,
+      "withheld_reasons": {
+        "colour_contour_reaches_roi_edge": 7
+      },
+      "completion_span_sec": 0.4321979399974225,
+      "processed_result_interval_hz": 16.196282657066217,
+      "completion_gap_ms": {
+        "count": 7,
+        "min": 38.051220995839685,
+        "max": 73.36052900063805,
+        "p50": 67.9518770048162,
+        "p95": 73.36052900063805
+      },
+      "bridge_events": 8,
+      "bridge_accepted": 8,
+      "bridge_retired": 0,
+      "bridge_accepted_numeric": 1,
+      "frames_without_bridge_event": 0,
+      "distance_m": {
+        "count": 1,
+        "min": 1.0064573733815785,
+        "max": 1.0064573733815785,
+        "p50": 1.0064573733815785,
+        "p95": 1.0064573733815785
+      },
+      "timing_ms": {
+        "frame_age_ms": {
+          "count": 8,
+          "min": 17.272892000619322,
+          "max": 48.29402700124774,
+          "p50": 44.101126011810265,
+          "p95": 48.29402700124774
+        },
+        "predict_ms": {
+          "count": 8,
+          "min": 3.027522994671017,
+          "max": 5.221119994530454,
+          "p50": 3.0532160017173737,
+          "p95": 5.221119994530454
+        },
+        "support_geometry_ms": {
+          "count": 8,
+          "min": 12.51365699863527,
+          "max": 37.79539199604187,
+          "p50": 33.80104798998218,
+          "p95": 37.79539199604187
+        }
+      }
+    },
+    {
+      "session": "279dfd610885401d9b2b2966b8047033",
+      "profile_sha256": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+      "processed_frames": 2,
+      "inference_sources": {
+        "cached_YOLO_boxes_NOT_new_inference_NOT_live_GPU": 2
+      },
+      "numeric_results": 2,
+      "processed_withheld_fraction": 0.0,
+      "withheld_reasons": {},
+      "completion_span_sec": 0.039056166002410464,
+      "processed_result_interval_hz": 25.60415172186338,
+      "completion_gap_ms": {
+        "count": 1,
+        "min": 39.056166002410464,
+        "max": 39.056166002410464,
+        "p50": 39.056166002410464,
+        "p95": 39.056166002410464
+      },
+      "bridge_events": 2,
+      "bridge_accepted": 2,
+      "bridge_retired": 0,
+      "bridge_accepted_numeric": 2,
+      "frames_without_bridge_event": 0,
+      "distance_m": {
+        "count": 2,
+        "min": 0.9790628904230803,
+        "max": 1.9544256948889729,
+        "p50": 0.9790628904230803,
+        "p95": 1.9544256948889729
+      },
+      "timing_ms": {
+        "frame_age_ms": {
+          "count": 2,
+          "min": 14.898591995006427,
+          "max": 24.066320998826995,
+          "p50": 14.898591995006427,
+          "p95": 24.066320998826995
+        },
+        "predict_ms": {
+          "count": 2,
+          "min": 3.030619991477579,
+          "max": 3.90366799547337,
+          "p50": 3.030619991477579,
+          "p95": 3.90366799547337
+        },
+        "support_geometry_ms": {
+          "count": 2,
+          "min": 8.267276003607549,
+          "max": 14.152875999570824,
+          "p50": 8.267276003607549,
+          "p95": 14.152875999570824
+        }
+      }
+    }
+  ],
+  "physical_accuracy_error_m": null,
+  "gui_time_withheld_fraction": null,
+  "end_to_end_camera_latency_ms": null,
+  "physical_metric_verified": false,
+  "usable_for_control": false,
+  "input_dir": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-10/driver_motion_bridge_r01/verification_r03/pipe_replay",
+  "input_sha256": {
+    "motion_distance_frames_jsonl": "05dec9d05d27ce8114e809830628af7b2eb1d9e85a2648275bcda9f194ceaf6a",
+    "motion_bridge_events_jsonl": "5b28f4357fe011626bd3f51d09ba8a91424b99bbca56c7886ae061e53d5d5e90"
+  }
+}

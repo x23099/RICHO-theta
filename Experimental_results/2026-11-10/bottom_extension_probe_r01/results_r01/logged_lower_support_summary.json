@@ -1,0 +1,10 @@
+{
+  "records": 15,
+  "without_central_lower_edge_contact": 9,
+  "with_central_lower_edge_contact": 6,
+  "input_sha256": "df537387f444c9fcf574ebd64f32af516ca0f47812c18d99088ad25661858eb4",
+  "new_point_selected": false,
+  "native_pixels_available": false,
+  "lower_support_stable_after_extension_verified": false,
+  "adoption_authorized": false
+}
