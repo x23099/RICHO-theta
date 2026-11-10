@@ -12,6 +12,7 @@ import queue
 import json
 import logging
 import asyncio
+import uuid
 from fractions import Fraction
 import aiohttp
 from aiohttp import web
@@ -19,7 +20,7 @@ from aiortc import RTCPeerConnection, RTCSessionDescription
 from PySide6.QtCore import Qt, QTimer, QPointF, QRectF, QObject, Signal, Slot
 from PySide6.QtGui import QImage, QPixmap, QKeyEvent, QPainter, QColor, QPen, QFont, QPolygonF
 from PySide6.QtOpenGLWidgets import QOpenGLWidget
-from PySide6.QtWidgets import QApplication, QLabel, QWidget, QHBoxLayout
+from PySide6.QtWidgets import QApplication, QLabel, QWidget, QHBoxLayout, QVBoxLayout
 
 # logging setup
 logging.basicConfig(level=logging.INFO)
@@ -2001,7 +2002,7 @@ class ReceiveSignals(QObject):
     latency_updated = Signal(float, float, str)
 
 class WebRTCServerThread(threading.Thread):
-    def __init__(self, signals):
+    def __init__(self, signals, motion=None):
         super().__init__(daemon=True)
         self.signals = signals
         self.loop = None
@@ -2009,6 +2010,20 @@ class WebRTCServerThread(threading.Thread):
         self.latest_frame = None
         self.frame_lock = threading.Lock()
         self.control_channel = None
+        self.motion = motion
+
+    def _observe_motion(self, method, *args):
+        if self.motion is not None:
+            try:
+                return getattr(self.motion, method)(*args)
+            except Exception as error:
+                # An optional observer must never terminate video/control.
+                logger.error("Motion tap disabled: %s", error)
+                try:
+                    self.motion.fail(error)
+                except Exception:
+                    pass
+                self.motion = None
 
     def send_control_data(self, data_dict):
         if self.control_channel and self.control_channel.readyState == "open":
@@ -2043,12 +2058,21 @@ class WebRTCServerThread(threading.Thread):
         params = await request.json()
         offer = RTCSessionDescription(sdp=params["sdp"], type=params["type"])
         self.pc = RTCPeerConnection()
+        peer = self.pc
+        motion_session = uuid.uuid4().hex if self.motion is not None else None
+        if motion_session is not None:
+            self._observe_motion("begin", motion_session, params.get("motion_native_profile"))
+
+            @peer.on("connectionstatechange")
+            async def motion_connection_state():
+                if peer.connectionState in ("closed", "failed", "disconnected"):
+                    self._observe_motion("end", motion_session)
 
         @self.pc.on("track")
         def on_track(track):
             logger.info(f"Video track received: {track.kind}")
             if track.kind == "video":
-                asyncio.ensure_future(self.process_video(track))
+                asyncio.ensure_future(self.process_video(track, motion_session))
 
         @self.pc.on("datachannel")
         def on_datachannel(channel):
@@ -2073,32 +2097,42 @@ class WebRTCServerThread(threading.Thread):
             text=json.dumps({"sdp": self.pc.localDescription.sdp, "type": self.pc.localDescription.type})
         )
 
-    async def process_video(self, track):
+    async def process_video(self, track, motion_session=None):
         recv_count = 0
         t_last = time.time()
-        while True:
-            try:
-                frame = await track.recv()
-                img = frame.to_ndarray(format="bgr24")
-                with self.frame_lock:
-                    self.latest_frame = img
-                
-                # FPS / タイムスタンプの簡易測定
-                recv_count += 1
-                now = time.time()
-                if now - t_last >= 1.0:
-                    fps = recv_count / (now - t_last)
-                    self.signals.latency_updated.emit(0.0, fps, "sender")
-                    recv_count = 0
-                    t_last = now
-            except Exception as e:
-                logger.error(f"Video receive error: {e}")
-                break
+        try:
+            while True:
+                try:
+                    frame = await track.recv()
+                    received_at = time.monotonic()
+                    img = frame.to_ndarray(format="bgr24")
+                    with self.frame_lock:
+                        self.latest_frame = img
+                    if self.motion is not None and motion_session is not None:
+                        # Owned decoded image is never annotated; UI uses a copy.
+                        img.flags.writeable = False
+                        self._observe_motion("publish", motion_session, img, frame.time, received_at)
+
+                    # FPS / タイムスタンプの簡易測定
+                    recv_count += 1
+                    now = time.time()
+                    if now - t_last >= 1.0:
+                        fps = recv_count / (now - t_last)
+                        self.signals.latency_updated.emit(0.0, fps, "sender")
+                        recv_count = 0
+                        t_last = now
+                except Exception as e:
+                    logger.error(f"Video receive error: {e}")
+                    break
+        finally:
+            if motion_session is not None:
+                self._observe_motion("end", motion_session, "driver_video_track_ended")
 
 class ThetaDriverUI(QWidget):
     def __init__(self, args):
         super().__init__()
         self.args = args
+        self.motion = getattr(args, "motion_controller", None)
         self.start_time = time.time()
         
         # Keyboard steering controller simulation (WASD)
@@ -2173,7 +2207,7 @@ class ThetaDriverUI(QWidget):
         self.signals = ReceiveSignals()
         self.signals.telemetry_received.connect(self.update_telemetry)
         
-        self.server_thread = WebRTCServerThread(self.signals)
+        self.server_thread = WebRTCServerThread(self.signals, motion=self.motion)
         self.server_thread.start()
 
         # 映像表示更新用の定周期タイマー (24FPS = 約41ms)
@@ -2186,6 +2220,12 @@ class ThetaDriverUI(QWidget):
             self.input_timer = QTimer(self)
             self.input_timer.timeout.connect(self.update_input_state)
             self.input_timer.start(30)
+        if self.motion is not None:
+            try:
+                self.motion.start()  # Only starts a pipe I/O thread, never GPU work here.
+            except Exception as error:
+                logger.error("Motion observer startup failed; driver continues: %s", error)
+                self.motion.request_stop()
 
     @Slot(dict)
     def update_telemetry(self, data):
@@ -2255,7 +2295,17 @@ class ThetaDriverUI(QWidget):
         else:
             layout.addWidget(self.center_widget)
 
-        self.setLayout(layout)
+        if self.motion is not None:
+            outer = QVBoxLayout()
+            outer.setContentsMargins(0, 0, 0, 0)
+            outer.addLayout(layout)
+            self.motion_label = QLabel("RANGE EXPERIMENT: WITHHELD | waiting for native sender")
+            self.motion_label.setStyleSheet("color: #ffdd55; font-size: 13px; padding: 8px;")
+            self.motion_label.setWordWrap(True)
+            outer.addWidget(self.motion_label)
+            self.setLayout(outer)
+        else:
+            self.setLayout(layout)
 
         if self.args.fullscreen:
             self.showFullScreen()
@@ -2528,6 +2578,12 @@ class ThetaDriverUI(QWidget):
         return front_view
 
     def update_frame(self):
+        if self.motion is not None:
+            from driver_motion_bridge import panel_text
+            try:
+                self.motion_label.setText(panel_text(self.motion.snapshot()))
+            except Exception as error:
+                self.motion_label.setText("RANGE WITHHELD: " + str(error)[:200])
         # WebRTCスレッドから最新の画像フレームをスレッドセーフに取得する
         frame = None
         if hasattr(self, "server_thread") and self.server_thread is not None:
@@ -2592,6 +2648,8 @@ class ThetaDriverUI(QWidget):
             self.process_keyboard_control()
 
     def closeEvent(self, event):
+        if self.motion is not None:
+            self.motion.request_stop()  # Only this inference subprocess; NOT a robot stop.
         if hasattr(self, "input_timer"):
             self.input_timer.stop()
 
@@ -2644,7 +2702,10 @@ def main():
     parser.add_argument("--minimap-image-offset-x", type=float, default=0.0)
     parser.add_argument("--minimap-image-offset-y", type=float, default=0.0)
 
+    from driver_motion_bridge import add_motion_arguments, bridge_from_args
+    add_motion_arguments(parser)
     args = parser.parse_args()
+    args.motion_controller = bridge_from_args(args)  # Validate opt-in before ROS startup.
 
     app = QApplication(sys.argv)
     
@@ -2675,6 +2736,11 @@ def main():
     try:
         sys.exit(app.exec())
     finally:
+        if args.motion_controller is not None:
+            try:
+                args.motion_controller.close()
+            except Exception as error:
+                logger.error("Motion observer shutdown incomplete: %s", error)
         try:
             rclpy.shutdown()
         except Exception:

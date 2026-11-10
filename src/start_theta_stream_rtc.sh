@@ -8,6 +8,21 @@ if [ "${1:-}" = "--diagnostic" ]; then
     exec "$DIAG_PYTHON" "$DIAG_DIR/theta_rtc_diagnostic.py" send "$@"
 fi
 
+# Native measurement input WITH the existing driver ROS/control DataChannels.
+if [ "${1:-}" = "--motion-native" ]; then
+    shift
+    MOTION_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    if [ -n "${THETA_RTC_PYTHON:-}" ]; then
+        MOTION_STREAM_PYTHON="$THETA_RTC_PYTHON"
+    elif [ -x "$MOTION_SCRIPT_DIR/../theta-env/bin/python" ]; then
+        MOTION_STREAM_PYTHON="$MOTION_SCRIPT_DIR/../theta-env/bin/python"
+    else
+        MOTION_STREAM_PYTHON="python3"
+    fi
+    exec "$MOTION_STREAM_PYTHON" "$MOTION_SCRIPT_DIR/webrtc_stream.py" \
+        --cam-width 1280 --cam-height 720 --motion-native "$@"
+fi
+
 # IP address of the receiver PC
 RECEIVER_IP="${1:-150.89.169.70}"
 # Camera device file

@@ -245,7 +245,7 @@ def ros2_spin_thread(node):
     except Exception as e:
         logger.error(f"ROS 2 spin error: {e}")
 
-async def run(args):
+async def _run_driver(args):
     rclpy.init()
     telemetry_node = TelemetryNode(
         args.odom_topic,
@@ -260,13 +260,15 @@ async def run(args):
     spin_thread.start()
 
     logger.info("Initializing WebRTC Connection (Zero-copy)...")
-    video_track = CameraVideoTrack(
-        device=args.device,
-        width=args.cam_width,
-        height=args.cam_height,
-        fps=args.fps,
-        is_mock=args.mock_camera
-    )
+    video_track = getattr(args, "_motion_video_track", None)
+    if video_track is None:
+        video_track = CameraVideoTrack(
+            device=args.device,
+            width=args.cam_width,
+            height=args.cam_height,
+            fps=args.fps,
+            is_mock=args.mock_camera
+        )
 
     pc = RTCPeerConnection()
     
@@ -342,6 +344,9 @@ async def run(args):
         "sdp": local_sdp.sdp,
         "type": local_sdp.type
     }
+    if getattr(args, "motion_native", False):
+        from driver_motion_protocol import PROFILE as MOTION_NATIVE_PROFILE
+        payload["motion_native_profile"] = dict(MOTION_NATIVE_PROFILE)
 
     async with aiohttp.ClientSession() as session:
         try:
@@ -392,6 +397,11 @@ async def run(args):
         telemetry_node.destroy_node()
         rclpy.shutdown()
 
+async def run(args):
+    from driver_motion_camera import run_native_driver
+    return await run_native_driver(args, _run_driver)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Integrated birds-eye-view WebRTC Streamer (Zero-copy)")
     parser.add_argument("--receiver-ip", default="127.0.0.1", help="Receiver IP address")
@@ -402,6 +412,8 @@ if __name__ == "__main__":
     parser.add_argument("--bitrate", default="15M", help="VP8 transmission bitrate (e.g. 15M, 1500k)")
     parser.add_argument("--telemetry-hz", type=int, default=24, help="Frequency of telemetry updates")
     parser.add_argument("--mock-camera", action="store_true")
+    parser.add_argument("--motion-native", action="store_true",
+        help="opt-in real 1280x720 fresh native video; existing ROS/control channels are unchanged")
     
     # ROS 2 Topics
     parser.add_argument("--odom-topic", default="/odom")

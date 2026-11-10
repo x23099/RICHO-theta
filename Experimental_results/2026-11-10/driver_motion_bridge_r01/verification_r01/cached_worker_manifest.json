@@ -1,0 +1,145 @@
+{
+  "profile": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-09/cone_motion_evaluation_r01/prepared_r01/motion_profile_r01.json",
+  "frames_by_decoded_pixel_sha256": {
+    "cc10957d9449fa8348926aaf0175f35d6c501bdeebb261860fdc161b9f96eeee": {
+      "boxes": [
+        {
+          "x1": 285.7691345214844,
+          "y1": 300.70208740234375,
+          "x2": 349.8116149902344,
+          "y2": 417.4178161621094,
+          "confidence": 0.9479400515556335,
+          "class_id": 0.0
+        }
+      ],
+      "original_session": "b559e4240e364166935f9ede9ac3e7ae",
+      "original_frame": 32654
+    },
+    "0cbd0ea7fff4c90f4922ca562ce7aa818b863463a1c246999400720233ca21ba": {
+      "boxes": [
+        {
+          "x1": 285.7763671875,
+          "y1": 301.6526794433594,
+          "x2": 349.89471435546875,
+          "y2": 417.59173583984375,
+          "confidence": 0.9468783140182495,
+          "class_id": 0.0
+        }
+      ],
+      "original_session": "b559e4240e364166935f9ede9ac3e7ae",
+      "original_frame": 32717
+    },
+    "804047b79e2a5be399a077e8f8a25f4b50ac413ac4328c9756d4aaef2d76ca51": {
+      "boxes": [
+        {
+          "x1": 285.8328857421875,
+          "y1": 301.9090270996094,
+          "x2": 349.9467468261719,
+          "y2": 417.7400817871094,
+          "confidence": 0.937130868434906,
+          "class_id": 0.0
+        }
+      ],
+      "original_session": "b559e4240e364166935f9ede9ac3e7ae",
+      "original_frame": 32976
+    },
+    "db3bd79e068fc130127d06982c91acc045ffce649f15cc5e971845df778dfdb6": {
+      "boxes": [
+        {
+          "x1": 286.1244812011719,
+          "y1": 301.448974609375,
+          "x2": 349.4955749511719,
+          "y2": 417.3692321777344,
+          "confidence": 0.9497621655464172,
+          "class_id": 0.0
+        }
+      ],
+      "original_session": "b559e4240e364166935f9ede9ac3e7ae",
+      "original_frame": 33066
+    },
+    "f6d787cea4ed9e479bbb4f9ddd97eec3460330c219f99c794cb87a61c6b62d08": {
+      "boxes": [
+        {
+          "x1": 285.7361755371094,
+          "y1": 301.71820068359375,
+          "x2": 350.0096130371094,
+          "y2": 417.8404235839844,
+          "confidence": 0.9578357934951782,
+          "class_id": 0.0
+        }
+      ],
+      "original_session": "b559e4240e364166935f9ede9ac3e7ae",
+      "original_frame": 33206
+    },
+    "ec650193bcc5e82323c16be55504b1a983b33472de830206cf7e6f78fa40172c": {
+      "boxes": [
+        {
+          "x1": 285.7310485839844,
+          "y1": 300.9429626464844,
+          "x2": 349.8108825683594,
+          "y2": 417.39569091796875,
+          "confidence": 0.948383092880249,
+          "class_id": 0.0
+        }
+      ],
+      "original_session": "b559e4240e364166935f9ede9ac3e7ae",
+      "original_frame": 33271
+    },
+    "eba06ebb68f737e2e868b7aa813dbdf7ccc3d327d8000480f08a7cc5e2f6576e": {
+      "boxes": [
+        {
+          "x1": 285.887451171875,
+          "y1": 300.93060302734375,
+          "x2": 349.7808837890625,
+          "y2": 417.41619873046875,
+          "confidence": 0.9442613124847412,
+          "class_id": 0.0
+        }
+      ],
+      "original_session": "b559e4240e364166935f9ede9ac3e7ae",
+      "original_frame": 35562
+    },
+    "d96dc6d181468268736166ada75dd3b5017b3866eabae62e199b1f18156e27a8": {
+      "boxes": [
+        {
+          "x1": 285.83221435546875,
+          "y1": 300.48284912109375,
+          "x2": 350.13494873046875,
+          "y2": 417.42401123046875,
+          "confidence": 0.9419344067573547,
+          "class_id": 0.0
+        }
+      ],
+      "original_session": "b559e4240e364166935f9ede9ac3e7ae",
+      "original_frame": 36478
+    },
+    "f026f2e8e3e0ff36ccd32cda7e3f2b7df40e16a8bf8412d40fac850638353185": {
+      "boxes": [
+        {
+          "x1": 286.69940185546875,
+          "y1": 303.650390625,
+          "x2": 351.70330810546875,
+          "y2": 418.05633544921875,
+          "confidence": 0.9520499110221863,
+          "class_id": 0.0
+        }
+      ],
+      "original_session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+      "original_frame": 61948
+    },
+    "477010f9b90cec80d94a51e26f9109acaea62b3ad56dd311004f049f1f758c42": {
+      "boxes": [
+        {
+          "x1": 301.6265869140625,
+          "y1": 307.881103515625,
+          "x2": 335.9290771484375,
+          "y2": 373.70037841796875,
+          "confidence": 0.945012092590332,
+          "class_id": 0.0
+        }
+      ],
+      "original_session": "df33e833acdf4e7d8b00d1ec37b7bcae",
+      "original_frame": 64232
+    }
+  }
+}

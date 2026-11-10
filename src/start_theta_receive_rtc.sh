@@ -8,6 +8,20 @@ if [ "${1:-}" = "--diagnostic" ]; then
     exec "$DIAG_PYTHON" "$DIAG_DIR/theta_rtc_diagnostic.py" receive "$@"
 fi
 
+# Opt-in driver UI + independent GPU subprocess. NOT the diagnostic receiver.
+if [ "${1:-}" = "--motion-distance" ]; then
+    shift
+    MOTION_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    MOTION_UI_PYTHON="${THETA_UI_PYTHON:-python3}"
+    if [ -n "${THETA_UI_PYTHON:-}" ]; then
+        # Respect an explicitly selected ROS/Qt Python instead of the UI's
+        # legacy src/theta-env auto-reexec. The old launcher is unchanged.
+        export THETA_UI_NO_VENV=1
+    fi
+    exec "$MOTION_UI_PYTHON" "$MOTION_SCRIPT_DIR/webrtc_receive_ui.py" \
+        --cam-width 1280 --cam-height 720 --motion-distance "$@"
+fi
+
 DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$DIR" || exit 1
 

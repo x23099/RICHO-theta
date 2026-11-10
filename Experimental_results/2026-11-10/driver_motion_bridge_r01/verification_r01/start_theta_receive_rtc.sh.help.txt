@@ -1,0 +1,83 @@
+usage: webrtc_receive_ui.py [-h] [--front-width FRONT_WIDTH]
+                            [--front-height FRONT_HEIGHT]
+                            [--front-fov FRONT_FOV] [--rear-width REAR_WIDTH]
+                            [--rear-height REAR_HEIGHT] [--rear-fov REAR_FOV]
+                            [--mirror-width MIRROR_WIDTH]
+                            [--mirror-height MIRROR_HEIGHT]
+                            [--mirror-fov MIRROR_FOV]
+                            [--left-mirror-yaw LEFT_MIRROR_YAW]
+                            [--right-mirror-yaw RIGHT_MIRROR_YAW]
+                            [--front-lens {left,right}] [--roll ROLL]
+                            [--max-speed MAX_SPEED]
+                            [--speed-scale SPEED_SCALE] [--fullscreen]
+                            [--aiformula] [--hide-path]
+                            [--interpolation {linear,nearest}]
+                            [--device DEVICE] [--cam-width CAM_WIDTH]
+                            [--cam-height CAM_HEIGHT] [--mock-camera]
+                            [--mock-speed] [--minimap-width MINIMAP_WIDTH]
+                            [--minimap-height MINIMAP_HEIGHT]
+                            [--minimap-scale MINIMAP_SCALE]
+                            [--minimap-course-image MINIMAP_COURSE_IMAGE]
+                            [--minimap-origin-x MINIMAP_ORIGIN_X]
+                            [--minimap-origin-y MINIMAP_ORIGIN_Y]
+                            [--minimap-image-zoom MINIMAP_IMAGE_ZOOM]
+                            [--minimap-image-offset-x MINIMAP_IMAGE_OFFSET_X]
+                            [--minimap-image-offset-y MINIMAP_IMAGE_OFFSET_Y]
+                            [--motion-distance]
+                            [--motion-python MOTION_PYTHON]
+                            [--motion-weights MOTION_WEIGHTS]
+                            [--motion-profile MOTION_PROFILE]
+                            [--motion-output-dir MOTION_OUTPUT_DIR]
+                            [--motion-config MOTION_CONFIG]
+                            [--motion-device MOTION_DEVICE]
+                            [--motion-target-roi MOTION_TARGET_ROI MOTION_TARGET_ROI MOTION_TARGET_ROI MOTION_TARGET_ROI]
+                            [--motion-experimental-rigid-mount]
+
+options:
+  -h, --help            show this help message and exit
+  --front-width FRONT_WIDTH
+  --front-height FRONT_HEIGHT
+  --front-fov FRONT_FOV
+  --rear-width REAR_WIDTH
+  --rear-height REAR_HEIGHT
+  --rear-fov REAR_FOV
+  --mirror-width MIRROR_WIDTH
+  --mirror-height MIRROR_HEIGHT
+  --mirror-fov MIRROR_FOV
+  --left-mirror-yaw LEFT_MIRROR_YAW
+  --right-mirror-yaw RIGHT_MIRROR_YAW
+  --front-lens {left,right}
+  --roll ROLL
+  --max-speed MAX_SPEED
+  --speed-scale SPEED_SCALE
+  --fullscreen
+  --aiformula           Run in aiformula mode with smaller window size
+                        constraints
+  --hide-path           Hide predicted path on startup
+  --interpolation {linear,nearest}
+  --device DEVICE
+  --cam-width CAM_WIDTH
+  --cam-height CAM_HEIGHT
+  --mock-camera
+  --mock-speed
+  --minimap-width MINIMAP_WIDTH
+  --minimap-height MINIMAP_HEIGHT
+  --minimap-scale MINIMAP_SCALE
+  --minimap-course-image MINIMAP_COURSE_IMAGE
+  --minimap-origin-x MINIMAP_ORIGIN_X
+  --minimap-origin-y MINIMAP_ORIGIN_Y
+  --minimap-image-zoom MINIMAP_IMAGE_ZOOM
+  --minimap-image-offset-x MINIMAP_IMAGE_OFFSET_X
+  --minimap-image-offset-y MINIMAP_IMAGE_OFFSET_Y
+
+experimental non-controlling motion range:
+  --motion-distance
+  --motion-python MOTION_PYTHON
+                        GPU Python; independent of the ROS/Qt UI Python
+  --motion-weights MOTION_WEIGHTS
+  --motion-profile MOTION_PROFILE
+  --motion-output-dir MOTION_OUTPUT_DIR
+  --motion-config MOTION_CONFIG
+  --motion-device MOTION_DEVICE
+  --motion-target-roi MOTION_TARGET_ROI MOTION_TARGET_ROI MOTION_TARGET_ROI MOTION_TARGET_ROI
+  --motion-experimental-rigid-mount

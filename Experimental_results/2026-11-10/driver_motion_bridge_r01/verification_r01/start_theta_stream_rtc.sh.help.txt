@@ -1,0 +1,39 @@
+usage: webrtc_stream.py [-h] [--receiver-ip RECEIVER_IP] [--device DEVICE]
+                        [--cam-width CAM_WIDTH] [--cam-height CAM_HEIGHT]
+                        [--fps FPS] [--bitrate BITRATE]
+                        [--telemetry-hz TELEMETRY_HZ] [--mock-camera]
+                        [--motion-native] [--odom-topic ODOM_TOPIC]
+                        [--mode-topic MODE_TOPIC]
+                        [--page-delta-topic PAGE_DELTA_TOPIC]
+                        [--battery-topic BATTERY_TOPIC]
+                        [--imu-topic IMU_TOPIC] [--pedal-topic PEDAL_TOPIC]
+                        [--window-id WINDOW_ID] [--display DISPLAY]
+                        [--video-size VIDEO_SIZE]
+
+Integrated birds-eye-view WebRTC Streamer (Zero-copy)
+
+options:
+  -h, --help            show this help message and exit
+  --receiver-ip RECEIVER_IP
+                        Receiver IP address
+  --device DEVICE       Camera video device file or RTSP stream
+  --cam-width CAM_WIDTH
+  --cam-height CAM_HEIGHT
+  --fps FPS
+  --bitrate BITRATE     VP8 transmission bitrate (e.g. 15M, 1500k)
+  --telemetry-hz TELEMETRY_HZ
+                        Frequency of telemetry updates
+  --mock-camera
+  --motion-native       opt-in real 1280x720 fresh native video; existing
+                        ROS/control channels are unchanged
+  --odom-topic ODOM_TOPIC
+  --mode-topic MODE_TOPIC
+  --page-delta-topic PAGE_DELTA_TOPIC
+  --battery-topic BATTERY_TOPIC
+  --imu-topic IMU_TOPIC
+  --pedal-topic PEDAL_TOPIC
+  --window-id WINDOW_ID
+                        Ignored
+  --display DISPLAY     Ignored
+  --video-size VIDEO_SIZE
+                        Ignored
