@@ -1,0 +1,58 @@
+{
+  "schema": "daily_report_assets_v1",
+  "date": "2026-11-10",
+  "script_sha256": "7436c3e41331177acb8b9ef58ec21b86213a19c37e72e3b03669f4471c6f6b0b",
+  "camera_pixels_modified": false,
+  "assets": [
+    {
+      "file": "decoded_4c34c8c3d6d44949afb2e921e819e563_f014203.png",
+      "source": "recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014203.png",
+      "sha256": "eb554d5e73b12b3167323fd3e94b3cc72edb26a458e76c424fe861cfc615f0ef",
+      "kind": "unmodified_native_png",
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14203,
+      "png_sha256": "eb554d5e73b12b3167323fd3e94b3cc72edb26a458e76c424fe861cfc615f0ef",
+      "image_size": [
+        1280,
+        720
+      ],
+      "source_archive": "motion_withheld_20261110_171250.tar.xz"
+    },
+    {
+      "file": "decoded_4c34c8c3d6d44949afb2e921e819e563_f014604.png",
+      "source": "recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014604.png",
+      "sha256": "0e9a4b5a0085d0e6eaf670e07f5bc3498e3d3865ae8be8f2ed9059872653b698",
+      "kind": "unmodified_native_png",
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14604,
+      "png_sha256": "0e9a4b5a0085d0e6eaf670e07f5bc3498e3d3865ae8be8f2ed9059872653b698",
+      "image_size": [
+        1280,
+        720
+      ],
+      "source_archive": "motion_withheld_20261110_171250.tar.xz"
+    },
+    {
+      "file": "decoded_4c34c8c3d6d44949afb2e921e819e563_f014922.png",
+      "source": "recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014922.png",
+      "sha256": "f72f92be99e4e420f2ea9f9c6cd32f3a82c8e5f2eae7d8974515429cfd7e0a38",
+      "kind": "unmodified_native_png",
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14922,
+      "png_sha256": "f72f92be99e4e420f2ea9f9c6cd32f3a82c8e5f2eae7d8974515429cfd7e0a38",
+      "image_size": [
+        1280,
+        720
+      ],
+      "source_archive": "motion_withheld_20261110_171250.tar.xz"
+    },
+    {
+      "file": "distance_timeline.svg",
+      "source": "Experimental_results/2026-11-10/motion_boundary_timeline_r01/results_r01/distance_timeline.svg",
+      "sha256": "63e59edc624a317375011d232b24eacde7108b8a4819fc52dc103ad00a0044cb",
+      "kind": "data_derived_svg_NOT_camera_overlay",
+      "source_csv": "Experimental_results/2026-11-10/motion_boundary_timeline_r01/results_r01/local_window.csv",
+      "generator": "Experimental_results/2026-11-10/motion_boundary_timeline_r01/plot_timeline.py"
+    }
+  ]
+}

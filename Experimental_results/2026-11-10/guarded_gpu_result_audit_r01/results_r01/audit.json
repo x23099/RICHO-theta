@@ -1,0 +1,80 @@
+{
+  "schema": "guarded_gpu_result_audit_v1",
+  "state": "pass",
+  "archive": "/home/robo25/Downloads/guarded_comparison_171250_r01.tar.xz",
+  "archive_sha256": "62515ac258fd671cd69ada01b23e905cfa9879d20e3c725ce5eb6284837f488c",
+  "audit_source_sha256": "91fe311010c6aeebf190a00be94b618b90d89f88a3d47e0cf3ad79cc276e73d9",
+  "submitted_summary_sha256": "2da392993f98d1dfa7b6c5d4a2c53ed89196bef032b77a1eac5c3452e61b909f",
+  "local_summary_sha256": "00722582b13c577c0f8251ec0cae5b870a1778f19a858cdebb7baaddb685ad2b",
+  "comparison_log_sha256": "267ea27025ed57b6c60165582c16c28a5061c73eee605852fddbc35a615fcba9",
+  "comparison_log_byte_identical": true,
+  "summary_identical_except_machine_paths": true,
+  "input_files_local_rehashed_and_reported_hashes_matched": 23,
+  "source_files_local_rehashed_and_reported_hashes_matched": 8,
+  "remote_files_directly_accessed": false,
+  "remote_environment_or_live_deployment_verified": false,
+  "evidence_verification_identical": true,
+  "baseline_reproduced_rows": 8,
+  "frames": [
+    6861,
+    14203,
+    14267,
+    14297,
+    14329,
+    14382,
+    14604,
+    14922
+  ],
+  "numeric_comparison": [
+    {
+      "frame": 14922,
+      "range_m": 1.142471541888944,
+      "support_pixel": [
+        312,
+        407
+      ]
+    }
+  ],
+  "posthoc_reference_rows": 6,
+  "input_sha256_by_role": {
+    "source_log/motion_distance_frames.jsonl": "eacc20f9c14ff760448f0a6f934e1dd5d121be8435317bf0e23a9d7a58238f65",
+    "source_log/motion_profile_used.json": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "source_log/motion_engine_summary.json": "7d4a4db1fbc7e7b300361927d90f90f7e26b975a3a7942479e842834c24a4319",
+    "evidence/evidence_index.jsonl": "df441c1b437ef502e20acf5fdd77700da62b9a9df34184845f444995d6006448",
+    "evidence/evidence_status.json": "e36549bdf3fae4b31975235282d8b381dc33755937f8484314cb63a3987f42da",
+    "reference/reference.json": "21dc739e66de3b12db9fe5bd760c7635e73bc57b04e6039bdbc29b97437a3584",
+    "implementation/cone_distance_diagnostic_config.json": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "evidence/decoded_4c34c8c3d6d44949afb2e921e819e563_f006861.png": "be450f38486cfd7407b4257935cfdd6ef400b2397811e63b3780c9089b3614d6",
+    "evidence/decoded_4c34c8c3d6d44949afb2e921e819e563_f006861.json": "66a8a63a665b1ece18dcd94718f7c25056ee5caa3882ab091d70752ad753065b",
+    "evidence/decoded_4c34c8c3d6d44949afb2e921e819e563_f014203.png": "eb554d5e73b12b3167323fd3e94b3cc72edb26a458e76c424fe861cfc615f0ef",
+    "evidence/decoded_4c34c8c3d6d44949afb2e921e819e563_f014203.json": "4b438b485e970643a0afd6f7c5d52ab6b1ee01e49bcc3b591a5e9e0cbe966732",
+    "evidence/decoded_4c34c8c3d6d44949afb2e921e819e563_f014267.png": "174c6afd5b66dd09fe7ae0be8a3aea72405989a5ec840489fe10df64daa6e65c",
+    "evidence/decoded_4c34c8c3d6d44949afb2e921e819e563_f014267.json": "14612708d198000cac1e2a0e700d0aa1ae7e737d56cad656ee76db197d22ea3e",
+    "evidence/decoded_4c34c8c3d6d44949afb2e921e819e563_f014297.png": "776c046e2ca3364b4dcb347a2099db7f7e90b3e9ce4514dc1e73e864f28bcad9",
+    "evidence/decoded_4c34c8c3d6d44949afb2e921e819e563_f014297.json": "218921c3c39f5f993310ea3310ae9d60b7b73f2801fd4732eb28ecd4bbb56f47",
+    "evidence/decoded_4c34c8c3d6d44949afb2e921e819e563_f014329.png": "54e66552e5ca771e73c761f807ba38fc5c8bcecf4028f52e339a2b18d39b45aa",
+    "evidence/decoded_4c34c8c3d6d44949afb2e921e819e563_f014329.json": "83cc0a23725d397076a26b296a663322ebeff3bde1180e6e80276f97a70911f1",
+    "evidence/decoded_4c34c8c3d6d44949afb2e921e819e563_f014382.png": "8cbc9de7b3333e7fb2a248ab44c8690b9adda0ed1645ceb8af018e2771eb1642",
+    "evidence/decoded_4c34c8c3d6d44949afb2e921e819e563_f014382.json": "d801f704039d1469348409209e44fc0aa92b3c65e02702e053c240e1462f8ea5",
+    "evidence/decoded_4c34c8c3d6d44949afb2e921e819e563_f014604.png": "0e9a4b5a0085d0e6eaf670e07f5bc3498e3d3865ae8be8f2ed9059872653b698",
+    "evidence/decoded_4c34c8c3d6d44949afb2e921e819e563_f014604.json": "1c753a36284810109dd820864ea7842c3b2597a38106b390044a298b60863dc8",
+    "evidence/decoded_4c34c8c3d6d44949afb2e921e819e563_f014922.png": "f72f92be99e4e420f2ea9f9c6cd32f3a82c8e5f2eae7d8974515429cfd7e0a38",
+    "evidence/decoded_4c34c8c3d6d44949afb2e921e819e563_f014922.json": "b6bf47ed1295eeeeb76bda93a808be899ab32f437bb1c85fc9d4f5a8dca2c092"
+  },
+  "source_sha256_by_role": {
+    "implementation/run_guarded_recording_comparison.py": "2f1de748944e0887b73793c9f8d0c8b57c2b1d83dc5e3b2c62083a2de30c32aa",
+    "implementation/cone_guarded_lower_edge_shadow.py": "bdcbcd37a98427e17ce23c5021784288750d7aee223d04e7c5a7ddc956764db0",
+    "implementation/cone_bbox_boundary_shadow.py": "9530eee1add5d026c31707b7e600f9909a022520050f0b77702fcf8972db77c0",
+    "implementation/cone_self_body_shadow.py": "e0b2c6f7517f5514df570abf0928eb759680e64f91be83c1acfdfe5b87e9486f",
+    "implementation/cone_motion_range.py": "71023e8578053453437fe526ca79cfef311d3ee5a51eb44ddc16dfc26005904e",
+    "implementation/cone_upper_support_candidate.py": "22db172f69bc1140c207d706654ba6ac6b42ea8fb698cacc346c1d18d096d10a",
+    "implementation/cone_support_completion_candidate.py": "57b4403dca6066b19e8446f8cbc97f94a0a9541c8e6f384066b25487f634c348",
+    "implementation/verify_driver_withheld_evidence.py": "276ce2b3f04993fc3e142dad8655bd7786b42aed336ad2bc619522e26b88734f"
+  },
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "main_display_modified": false,
+  "controlling_distance": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}

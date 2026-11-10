@@ -2,6 +2,26 @@
 
 更新日: **2026-11-10（JST）**。対象リポジトリ: `RICHO-theta`。
 
+## 11/10終業：日報・Git保存と明日のリモート再開
+
+ユーザーの終了依頼により研究作業を終了し、[本日日報](Daily_reports/2026-11-10_daily_report.md)・[代表資料4点](Experimental_results/2026-11-10/report_assets/README.md)・最新の監査／prototype／テスト結果をcommit・push対象に整理した。最終commit IDとpush成否はGit履歴／終了報告を参照。以下の各作業時点の「commit/push未実施」は履歴である。別作業 `src/collision_risk.py` と `tests/test_collision_gradient.py` は保持し対象外。
+
+明日はこのPCで比較専用worker・pin/loadイベント・別JSONLの非同期接続と保存画像再生から再開でき、直ちに実機必須ではない。実装／再生完了後にGPU PCへ反映し、まず静止実映像の追加負荷を確認、その後現地監視下で低速走行。GPU PCへの遠隔接続と元ログ／画像／重み／環境の保持を準備する。カメラを使える状態なら静止確認まで進められるが、無人遠隔走行は前提にしない。主測距・操縦・ROS・FFBの接続範囲は変えない。
+
+## 11/10後続：比較ストリームの参照管理を実装、live接続は次段階
+
+[実装・検証・次の接続範囲](Experimental_results/2026-11-10/guarded_stream_lifecycle_r01/README.md)。新規 `src/cone_guarded_stream_comparison.py` は単一ownerの状態管理prototypeで、live entry pointへ未接続。同じ接続で明示pinした元画素と参照PNGのSHA／復号画素を照合し、activateより後のframeだけ比較する。入力途切れ・再接続・鮮度切れ・比較失敗で失効。元判定・操縦・ROS・FFBは変更しない。旧オフライン依存コードのSHAも維持。
+
+新規25＋既存関連54＝79テスト成功。既存16,929行の元時刻によるID受付は16,928、起動時遅延1行を拒否。実画素8枚では参照前6枚と当該14604には数値なし、後続14922だけ1.1424715m。14604で参照読込み可能だったと仮定した録画後の模擬ストリームで、実機の読込み時刻・実時間性能を証明しない。未保存画素の再計算なし、後の参照による遡及適用0。
+
+次は容量1の比較専用worker、pin／明示loadイベント、別JSONLへの非同期接続と保存データ再生。主測距IPCとRTC／操縦threadへ比較の重い処理を入れない。追加撮影やユーザー操作は今は不要。Git commit/pushなし。別作業collision_risk.pyとtest_collision_gradient.pyは保持・対象外。
+
+## 11/10後続：GPU PCの録画後比較も一致を確認
+
+[提出結果の監査](Experimental_results/2026-11-10/guarded_gpu_result_audit_r01/README.md)。ユーザーがGPU PCで既存17:12録画の比較手順を実行し、summary／比較JSONLを提出。JSONLはこのPCとバイト一致、summaryはPC固有パス以外一致。入力23・解析コード8の記録SHAと、このPCの対応実ファイルの再hashも一致。元判定8/8再現、比較候補は14922の1.1424715mだけ。**この比較コマンドと依存コードのGPU PC実行は確認済みであり、以下の「GPU PC未反映」は追加当時の履歴。** GPU PC全体のGit状態や別の終了待ち修正の反映までは未確認。
+
+同じ録画後比較の再実行・追加撮影は不要。改良候補はリアルタイム表示へ未接続で、物理精度・接地・制御の承認ではない。次は主測距を維持した比較専用リアルタイム経路の設計・接続検証。同session参照の取扱いと失効を明示し、新sessionへ参照を書換え転用しない。既存データ／模擬入力から進める。今回Git commit/push・実機操作なし。別作業のcollision_risk.py変更は保持した。
+
 ## 11/10後続：独立した録画後比較ログのコマンドを追加
 
 [最新の比較ログ・手順](Experimental_results/2026-11-10/guarded_comparison_log_r01/README.md)。新規 `src/run_guarded_recording_comparison.py` が、正常終了した自動保存画像と元ログを読み、別の新規出力先へ `comparison_frames.jsonl`／summaryを作る。**リアルタイム比較ではない。** 録画中の起動では`--wait-sec`でwriter終了まで待ち、その後一度だけ比較。受信UI／測距workerにhookやimportを追加していない。

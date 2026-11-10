@@ -65,7 +65,9 @@ cd /home/robo25/theta_ws/RICHO-theta
 
 ### GPU PCで同じ17:12実行を使う場合
 
-**今回追加したコード・参照はまだGPU PCへ反映していない。** 実行する場合は先に同じリポジトリの更新が必要。新規の`run_guarded_recording_comparison.py`、`cone_guarded_lower_edge_shadow.py`、`cone_self_body_shadow.py`と、既存のbbox比較・幾何・保存検証の依存をまとめて揃える。単独スクリプトだけをコピーしない。
+**追記：ユーザーによるGPU PCでの実行は完了し、[提出結果の一致を確認済み](../guarded_gpu_result_audit_r01/README.md)。** 同じ操作の繰返しは不要。以下は実行済み手順の保存であり、改良候補をリアルタイム表示へ反映したわけではない。
+
+初回は先に同じリポジトリの更新が必要。新規の`run_guarded_recording_comparison.py`、`cone_guarded_lower_edge_shadow.py`、`cone_self_body_shadow.py`と、既存のbbox比較・幾何・保存検証の依存をまとめて揃える。単独スクリプトだけをコピーしない。
 
 その後、元の保存先が残っているなら：
 
