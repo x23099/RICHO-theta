@@ -1,0 +1,27 @@
+test_baseline_observation_mismatch_is_not_a_candidate (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_body_veto_does_not_turn_hidden_point_into_distance (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_cli_does_not_start_anything_on_help (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_closed_recording_produces_separate_source_labelled_log_and_no_input_changes (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_config_or_engine_profile_mismatch_is_rejected (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_corrupt_png_is_rejected_before_comparison (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_disk_publish_failure_does_not_leave_a_completed_log_or_touch_input (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_existing_output_is_never_overwritten (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_incomplete_writer_is_rejected_without_comparison_log (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_live_writer_without_wait_is_not_called_a_complete_recording (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_no_control_authority_or_main_display_change_in_outputs (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_no_live_entry_point_imports_this_post_recording_command (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_orphan_file_or_partial_index_is_not_silently_ignored (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_other_source_log_is_not_used_as_if_corresponding (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_output_cannot_be_nested_in_input_or_evidence (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_symlink_reference_and_regular_hash_size_cap_are_rejected (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_wait_bounds_are_finite_and_bounded (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_wait_can_observe_atomic_writer_completion (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_wait_cancellation_is_explicit_and_does_not_touch_recording (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_wrong_reference_frame_or_hash_is_not_accepted (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_wrong_reference_hash_is_not_accepted (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_wrong_reference_session_is_not_rebound (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 2.464s
+
+OK

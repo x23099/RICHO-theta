@@ -1,0 +1,2654 @@
+{
+  "schema": "driver_motion_submitted_run_audit_v1",
+  "session": "4c34c8c3d6d44949afb2e921e819e563",
+  "input_sha256": {
+    "motion_distance_frames_jsonl": "eacc20f9c14ff760448f0a6f934e1dd5d121be8435317bf0e23a9d7a58238f65",
+    "motion_bridge_events_jsonl": "54138e2b840c4591496226cb9ae84a99d113af62cfca83d8bd7a0ceeaf6b5d3c"
+  },
+  "metadata": {
+    "engine": {
+      "schema": "driver_motion_engine_v1",
+      "profile_sha256": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+      "weights_sha256": "3a6e124adb15c16efd7d22c853406066371f48873c82f1d3cfc445b22ae5997b",
+      "config_sha256": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+        "index": 0,
+        "torch_version": "2.7.1+cu118",
+        "torch_cuda_version": "11.8"
+      },
+      "physical_metric_verified": false,
+      "usable_for_ffb": false,
+      "published_to_ros": false,
+      "mount_or_floor_tilt_compensated": false,
+      "metric": "horizontal_camera_foot_range_m_NOT_base_link_or_contact",
+      "withheld_evidence": {
+        "requested": true,
+        "recorder_started": true,
+        "directory": "/home/hsr/yopi_ws/RICHO-theta/recordings/2026-11-10/motion_withheld_20261110_171250",
+        "target_reason": "colour_contour_reaches_roi_edge",
+        "max_frames": 40,
+        "max_png_and_sidecar_bytes": 134217728,
+        "interval_sec": 1.0
+      }
+    },
+    "bridge": {
+      "schema": "driver_motion_bridge_summary_v1",
+      "sent": 16930,
+      "returned": 16929,
+      "retired_results": 1,
+      "tap_lock_drops": 1,
+      "max_publish_ms": 0.23756500013405457,
+      "worker_error": null,
+      "child_exitcode": null,
+      "io_thread_stopped": false,
+      "child_stopped": false,
+      "image_files_written": null,
+      "withheld_evidence_requested": true,
+      "withheld_evidence_status_file": "/home/hsr/yopi_ws/RICHO-theta/recordings/2026-11-10/motion_withheld_20261110_171250/evidence_status.json",
+      "physical_metric_verified": false,
+      "usable_for_ffb": false,
+      "distance_published_to_ros": false,
+      "control_channel_modified": false,
+      "metric": "horizontal_camera_foot_range_m_NOT_base_link_or_contact"
+    }
+  },
+  "metadata_sha256": {
+    "motion_worker_stderr.log": "16f6d95fd620c338aa7190b92643afc20aab06e8b5886559c0795b0c5c5d9442",
+    "driver_motion_summary.json": "ef23830eae46e562eb24b787ce979b0daf84f681b02a9df73d47a7b4c142ad15",
+    "motion_profile_used.json": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "motion_engine_summary.json": "7d4a4db1fbc7e7b300361927d90f90f7e26b975a3a7942479e842834c24a4319"
+  },
+  "frame_count_matches_bridge_returned": true,
+  "sent_minus_returned": 1,
+  "worker_error_reported": null,
+  "child_shutdown_confirmed": false,
+  "evidence_requested": true,
+  "evidence_recorder_started": true,
+  "evidence_directory_on_gpu_pc": "/home/hsr/yopi_ws/RICHO-theta/recordings/2026-11-10/motion_withheld_20261110_171250",
+  "evidence_images_in_submission": 0,
+  "evidence_index_in_submission": false,
+  "evidence_saved_pairs_verified": null,
+  "evidence_archive_needed": true,
+  "startup_stale_records": [
+    {
+      "frame": 2,
+      "frame_age_ms": 948.3798760002173,
+      "predict_ms": 941.5052240001387
+    }
+  ],
+  "non_startup_timing_ms": {
+    "frame_age_ms": {
+      "count": 16928,
+      "min": 7.435745000293537,
+      "max": 105.10218899980828,
+      "p50": 13.730397000472294,
+      "p95": 21.23423100056243
+    },
+    "predict_ms": {
+      "count": 16928,
+      "min": 5.742545999964932,
+      "max": 17.680138000287116,
+      "p50": 6.792529000449576,
+      "p95": 8.968658999947365
+    },
+    "support_geometry_ms": {
+      "count": 16928,
+      "min": 0.02296900038345484,
+      "max": 95.06233499996597,
+      "p50": 2.8587599990714807,
+      "p95": 8.653066000988474
+    }
+  },
+  "boundary_rejections": 78,
+  "boundary_original_touches": {
+    "right+bottom": 1,
+    "left": 74,
+    "left+top": 3
+  },
+  "boundary_completion_reasons": {
+    "not_lateral_only_contact": 4,
+    "completed_point_outside_original_bbox": 74
+  },
+  "boundary_frames": [
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 6861,
+      "media_time_sec": 228.65517777777777,
+      "touches": {
+        "left": false,
+        "right": true,
+        "top": false,
+        "bottom": true
+      },
+      "completion_reason": "not_lateral_only_contact",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:6861",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8467468023300171,
+          "x1": 285.13250732421875,
+          "y1": 295.5101013183594,
+          "x2": 334.33349609375,
+          "y2": 415.203857421875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14203,
+      "media_time_sec": 473.4096333333333,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14203",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9387428760528564,
+          "x1": 276.05255126953125,
+          "y1": 297.45068359375,
+          "x2": 359.68450927734375,
+          "y2": 458.9287109375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14204,
+      "media_time_sec": 473.4409,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14204",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.938387930393219,
+          "x1": 276.00054931640625,
+          "y1": 297.4432067871094,
+          "x2": 359.6885986328125,
+          "y2": 458.934814453125
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14205,
+      "media_time_sec": 473.4804111111111,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14205",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9414050579071045,
+          "x1": 276.0372009277344,
+          "y1": 297.39398193359375,
+          "x2": 360.3775329589844,
+          "y2": 458.99041748046875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14206,
+      "media_time_sec": 473.5102111111111,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14206",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9429619312286377,
+          "x1": 276.0247497558594,
+          "y1": 297.4053649902344,
+          "x2": 360.37005615234375,
+          "y2": 458.95989990234375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14267,
+      "media_time_sec": 475.5434111111111,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14267",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9151957035064697,
+          "x1": 276.5716552734375,
+          "y1": 288.25067138671875,
+          "x2": 361.66357421875,
+          "y2": 458.51629638671875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14268,
+      "media_time_sec": 475.5794111111111,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14268",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9133467078208923,
+          "x1": 276.47021484375,
+          "y1": 288.4873962402344,
+          "x2": 361.60003662109375,
+          "y2": 458.417724609375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14269,
+      "media_time_sec": 475.6123111111111,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14269",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9124128818511963,
+          "x1": 276.25177001953125,
+          "y1": 287.66156005859375,
+          "x2": 361.6794128417969,
+          "y2": 458.46478271484375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14270,
+      "media_time_sec": 475.6437,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14270",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9107881188392639,
+          "x1": 276.53265380859375,
+          "y1": 287.6123046875,
+          "x2": 361.7675476074219,
+          "y2": 458.4383239746094
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14271,
+      "media_time_sec": 475.68028888888887,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14271",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9143525958061218,
+          "x1": 276.4775085449219,
+          "y1": 287.6270446777344,
+          "x2": 361.9647216796875,
+          "y2": 458.4793395996094
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14272,
+      "media_time_sec": 475.7089555555556,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14272",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9182896614074707,
+          "x1": 276.3865966796875,
+          "y1": 287.6209411621094,
+          "x2": 362.17803955078125,
+          "y2": 458.52874755859375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14273,
+      "media_time_sec": 475.7442,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14273",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9136475920677185,
+          "x1": 276.11260986328125,
+          "y1": 287.52239990234375,
+          "x2": 361.9317626953125,
+          "y2": 458.52728271484375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14289,
+      "media_time_sec": 476.27913333333333,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14289",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9201083779335022,
+          "x1": 276.1889343261719,
+          "y1": 287.5953063964844,
+          "x2": 361.88970947265625,
+          "y2": 458.56390380859375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14290,
+      "media_time_sec": 476.3098,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14290",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9202463626861572,
+          "x1": 276.193359375,
+          "y1": 287.3982849121094,
+          "x2": 361.8895263671875,
+          "y2": 458.57275390625
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14291,
+      "media_time_sec": 476.34523333333334,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14291",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9201558232307434,
+          "x1": 276.2026062011719,
+          "y1": 287.4185485839844,
+          "x2": 361.9019775390625,
+          "y2": 458.554443359375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14292,
+      "media_time_sec": 476.3762777777778,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14292",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9200466275215149,
+          "x1": 276.2033386230469,
+          "y1": 287.3753356933594,
+          "x2": 361.9059753417969,
+          "y2": 458.5556640625
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14293,
+      "media_time_sec": 476.4105777777778,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14293",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.920143723487854,
+          "x1": 276.3221435546875,
+          "y1": 287.3890075683594,
+          "x2": 361.8930358886719,
+          "y2": 458.5330505371094
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14294,
+      "media_time_sec": 476.4435,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14294",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.919975221157074,
+          "x1": 276.3250427246094,
+          "y1": 287.50390625,
+          "x2": 361.8742370605469,
+          "y2": 458.5440368652344
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14295,
+      "media_time_sec": 476.47922222222223,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14295",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.920377254486084,
+          "x1": 276.3398132324219,
+          "y1": 287.5955505371094,
+          "x2": 361.8905944824219,
+          "y2": 458.50439453125
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14296,
+      "media_time_sec": 476.51045555555555,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14296",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.92051762342453,
+          "x1": 276.3345947265625,
+          "y1": 287.5850524902344,
+          "x2": 361.8874206542969,
+          "y2": 458.5039978027344
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14297,
+      "media_time_sec": 476.5463,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14297",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9202245473861694,
+          "x1": 276.3985290527344,
+          "y1": 287.5440368652344,
+          "x2": 361.9048767089844,
+          "y2": 458.4939880371094
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14298,
+      "media_time_sec": 476.5794,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14298",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9200833439826965,
+          "x1": 276.4078063964844,
+          "y1": 287.5838317871094,
+          "x2": 362.003662109375,
+          "y2": 458.4920349121094
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14299,
+      "media_time_sec": 476.60946666666666,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14299",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9205743074417114,
+          "x1": 276.354736328125,
+          "y1": 287.5927734375,
+          "x2": 361.9697265625,
+          "y2": 458.52166748046875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14300,
+      "media_time_sec": 476.6443777777778,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14300",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9203125238418579,
+          "x1": 276.42987060546875,
+          "y1": 287.58294677734375,
+          "x2": 361.95062255859375,
+          "y2": 458.52581787109375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14301,
+      "media_time_sec": 476.6773333333333,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14301",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9215214848518372,
+          "x1": 276.48284912109375,
+          "y1": 287.1708984375,
+          "x2": 361.91796875,
+          "y2": 458.510009765625
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14302,
+      "media_time_sec": 476.70928888888886,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14302",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9218047857284546,
+          "x1": 276.5444030761719,
+          "y1": 287.31689453125,
+          "x2": 361.982421875,
+          "y2": 458.478515625
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14303,
+      "media_time_sec": 476.7391666666667,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14303",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9176015853881836,
+          "x1": 276.93780517578125,
+          "y1": 287.0677185058594,
+          "x2": 361.8573913574219,
+          "y2": 458.36590576171875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14304,
+      "media_time_sec": 476.7786,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14304",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9183474183082581,
+          "x1": 276.65301513671875,
+          "y1": 287.4638671875,
+          "x2": 361.6936950683594,
+          "y2": 458.37420654296875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14305,
+      "media_time_sec": 476.81005555555555,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14305",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9196555018424988,
+          "x1": 276.5625,
+          "y1": 287.6375427246094,
+          "x2": 361.75018310546875,
+          "y2": 458.38934326171875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14306,
+      "media_time_sec": 476.8435666666667,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14306",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.914940595626831,
+          "x1": 276.7603759765625,
+          "y1": 287.30169677734375,
+          "x2": 361.4313659667969,
+          "y2": 458.370361328125
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14307,
+      "media_time_sec": 476.8798,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14307",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9183264374732971,
+          "x1": 276.5362548828125,
+          "y1": 287.96160888671875,
+          "x2": 361.7421875,
+          "y2": 458.423828125
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14308,
+      "media_time_sec": 476.9114777777778,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14308",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9187023639678955,
+          "x1": 276.6506042480469,
+          "y1": 287.89544677734375,
+          "x2": 361.70794677734375,
+          "y2": 458.36083984375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14309,
+      "media_time_sec": 476.9430222222222,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14309",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9169667363166809,
+          "x1": 276.63336181640625,
+          "y1": 287.93865966796875,
+          "x2": 361.4239196777344,
+          "y2": 458.33544921875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14310,
+      "media_time_sec": 476.9809222222222,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14310",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.919769823551178,
+          "x1": 276.6104431152344,
+          "y1": 288.0296325683594,
+          "x2": 361.87738037109375,
+          "y2": 458.3445739746094
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14311,
+      "media_time_sec": 477.0094888888889,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14311",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9187878966331482,
+          "x1": 276.30084228515625,
+          "y1": 288.125244140625,
+          "x2": 361.9014892578125,
+          "y2": 458.36370849609375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14312,
+      "media_time_sec": 477.04175555555554,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14312",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9161744713783264,
+          "x1": 276.17340087890625,
+          "y1": 288.12493896484375,
+          "x2": 361.886962890625,
+          "y2": 458.302734375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14313,
+      "media_time_sec": 477.07986666666665,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14313",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9196836948394775,
+          "x1": 276.0616149902344,
+          "y1": 288.75726318359375,
+          "x2": 361.974609375,
+          "y2": 458.3589782714844
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14314,
+      "media_time_sec": 477.1096,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14314",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9196121096611023,
+          "x1": 276.1128845214844,
+          "y1": 288.71484375,
+          "x2": 361.9930114746094,
+          "y2": 458.37158203125
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14316,
+      "media_time_sec": 477.17825555555555,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14316",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9207490682601929,
+          "x1": 276.14752197265625,
+          "y1": 289.52093505859375,
+          "x2": 361.91754150390625,
+          "y2": 458.4273376464844
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14318,
+      "media_time_sec": 477.24235555555555,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14318",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9227152466773987,
+          "x1": 276.1099548339844,
+          "y1": 290.00390625,
+          "x2": 361.859375,
+          "y2": 458.4292907714844
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14319,
+      "media_time_sec": 477.27976666666666,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14319",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.923173189163208,
+          "x1": 276.5889892578125,
+          "y1": 290.7142028808594,
+          "x2": 361.74346923828125,
+          "y2": 458.3095703125
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14320,
+      "media_time_sec": 477.3102,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14320",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.922521710395813,
+          "x1": 276.434326171875,
+          "y1": 290.735595703125,
+          "x2": 361.7250671386719,
+          "y2": 458.2828063964844
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14321,
+      "media_time_sec": 477.3427,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14321",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9249697327613831,
+          "x1": 276.6520690917969,
+          "y1": 291.4280700683594,
+          "x2": 361.75128173828125,
+          "y2": 458.33612060546875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14322,
+      "media_time_sec": 477.3808222222222,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14322",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9261023998260498,
+          "x1": 276.3583984375,
+          "y1": 291.486572265625,
+          "x2": 361.7100524902344,
+          "y2": 458.4297790527344
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14323,
+      "media_time_sec": 477.4075222222222,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14323",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9259199500083923,
+          "x1": 276.1585388183594,
+          "y1": 291.414794921875,
+          "x2": 361.68701171875,
+          "y2": 458.46728515625
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14329,
+      "media_time_sec": 477.60835555555553,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14329",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9304665327072144,
+          "x1": 276.09442138671875,
+          "y1": 291.911865234375,
+          "x2": 361.15960693359375,
+          "y2": 458.57025146484375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14382,
+      "media_time_sec": 479.37791111111113,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14382",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9549034237861633,
+          "x1": 276.1374206542969,
+          "y1": 296.594482421875,
+          "x2": 361.0357666015625,
+          "y2": 458.948486328125
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14383,
+      "media_time_sec": 479.41186666666664,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14383",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9538789391517639,
+          "x1": 276.00823974609375,
+          "y1": 296.6436462402344,
+          "x2": 360.90740966796875,
+          "y2": 458.9312438964844
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14385,
+      "media_time_sec": 479.4785111111111,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14385",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9504814147949219,
+          "x1": 275.8125,
+          "y1": 296.684814453125,
+          "x2": 360.379150390625,
+          "y2": 458.9314880371094
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14387,
+      "media_time_sec": 479.5441,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14387",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9509250521659851,
+          "x1": 275.66534423828125,
+          "y1": 296.5623474121094,
+          "x2": 360.28839111328125,
+          "y2": 458.8682556152344
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14388,
+      "media_time_sec": 479.5784,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14388",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9505891799926758,
+          "x1": 275.4927673339844,
+          "y1": 296.4595642089844,
+          "x2": 360.22454833984375,
+          "y2": 458.806640625
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14389,
+      "media_time_sec": 479.61168888888886,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14389",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9516831040382385,
+          "x1": 275.48846435546875,
+          "y1": 296.71875,
+          "x2": 360.3106384277344,
+          "y2": 458.882568359375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14390,
+      "media_time_sec": 479.64346666666665,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14390",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9510031938552856,
+          "x1": 275.41900634765625,
+          "y1": 296.8506774902344,
+          "x2": 360.4866638183594,
+          "y2": 458.91522216796875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14406,
+      "media_time_sec": 480.18035555555554,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14406",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9541200399398804,
+          "x1": 276.09063720703125,
+          "y1": 298.7076110839844,
+          "x2": 358.8516540527344,
+          "y2": 458.9917907714844
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14407,
+      "media_time_sec": 480.20843333333335,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14407",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9548337459564209,
+          "x1": 276.0785827636719,
+          "y1": 298.79345703125,
+          "x2": 358.8121032714844,
+          "y2": 458.8587341308594
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14408,
+      "media_time_sec": 480.2473111111111,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14408",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9561497569084167,
+          "x1": 276.114501953125,
+          "y1": 298.76263427734375,
+          "x2": 358.7412109375,
+          "y2": 458.51629638671875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14604,
+      "media_time_sec": 486.7791,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": true,
+        "bottom": false
+      },
+      "completion_reason": "not_lateral_only_contact",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14604",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9395796060562134,
+          "x1": 290.7974853515625,
+          "y1": 313.20941162109375,
+          "x2": 341.0185546875,
+          "y2": 409.3550720214844
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14606,
+      "media_time_sec": 486.8407222222222,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": true,
+        "bottom": false
+      },
+      "completion_reason": "not_lateral_only_contact",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14606",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.940411388874054,
+          "x1": 290.652099609375,
+          "y1": 313.1099548339844,
+          "x2": 340.65447998046875,
+          "y2": 409.3191833496094
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14616,
+      "media_time_sec": 487.1787111111111,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": true,
+        "bottom": false
+      },
+      "completion_reason": "not_lateral_only_contact",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14616",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.9287937879562378,
+          "x1": 290.886474609375,
+          "y1": 312.819091796875,
+          "x2": 341.10064697265625,
+          "y2": 408.9454040527344
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14922,
+      "media_time_sec": 497.3734,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14922",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8662914037704468,
+          "x1": 290.62078857421875,
+          "y1": 307.3287048339844,
+          "x2": 346.82672119140625,
+          "y2": 406.912841796875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14923,
+      "media_time_sec": 497.4073666666667,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14923",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8635144233703613,
+          "x1": 290.5509948730469,
+          "y1": 307.3648376464844,
+          "x2": 346.6930847167969,
+          "y2": 406.9208984375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14924,
+      "media_time_sec": 497.4426555555556,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14924",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8701334595680237,
+          "x1": 290.79931640625,
+          "y1": 307.3663024902344,
+          "x2": 347.12225341796875,
+          "y2": 406.67547607421875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14926,
+      "media_time_sec": 497.51146666666665,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14926",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8734360337257385,
+          "x1": 290.5024108886719,
+          "y1": 307.2586364746094,
+          "x2": 347.4918212890625,
+          "y2": 406.53265380859375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14927,
+      "media_time_sec": 497.54231111111113,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14927",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8772016167640686,
+          "x1": 290.6673583984375,
+          "y1": 307.265869140625,
+          "x2": 346.97430419921875,
+          "y2": 406.72259521484375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14928,
+      "media_time_sec": 497.57506666666666,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14928",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.87984699010849,
+          "x1": 290.6210632324219,
+          "y1": 307.2388610839844,
+          "x2": 346.68585205078125,
+          "y2": 406.8575134277344
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14929,
+      "media_time_sec": 497.61142222222225,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14929",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8865146040916443,
+          "x1": 290.3226013183594,
+          "y1": 307.33587646484375,
+          "x2": 346.47491455078125,
+          "y2": 406.80657958984375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14931,
+      "media_time_sec": 497.6743,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14931",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8897200226783752,
+          "x1": 290.6380615234375,
+          "y1": 307.3782653808594,
+          "x2": 346.53253173828125,
+          "y2": 406.9251403808594
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14932,
+      "media_time_sec": 497.71133333333336,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14932",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8884044289588928,
+          "x1": 290.46490478515625,
+          "y1": 307.4765625,
+          "x2": 346.07061767578125,
+          "y2": 406.81707763671875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14933,
+      "media_time_sec": 497.7421777777778,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14933",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8839631676673889,
+          "x1": 290.5660095214844,
+          "y1": 307.4190368652344,
+          "x2": 345.772705078125,
+          "y2": 406.896728515625
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14934,
+      "media_time_sec": 497.7741111111111,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14934",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8906137347221375,
+          "x1": 290.6053161621094,
+          "y1": 307.348876953125,
+          "x2": 346.0977478027344,
+          "y2": 406.729248046875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14935,
+      "media_time_sec": 497.8104222222222,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14935",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8941429853439331,
+          "x1": 290.6287841796875,
+          "y1": 307.343505859375,
+          "x2": 346.3045654296875,
+          "y2": 406.80218505859375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14936,
+      "media_time_sec": 497.8416222222222,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14936",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8921951651573181,
+          "x1": 290.761962890625,
+          "y1": 307.3626403808594,
+          "x2": 346.384765625,
+          "y2": 406.795654296875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14937,
+      "media_time_sec": 497.8748,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14937",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8895795345306396,
+          "x1": 290.80609130859375,
+          "y1": 307.30126953125,
+          "x2": 346.3388671875,
+          "y2": 406.7659606933594
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14938,
+      "media_time_sec": 497.9108,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14938",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8931594491004944,
+          "x1": 290.57012939453125,
+          "y1": 307.2080078125,
+          "x2": 346.43902587890625,
+          "y2": 406.623046875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14939,
+      "media_time_sec": 497.9455111111111,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14939",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8944445252418518,
+          "x1": 290.52734375,
+          "y1": 307.26483154296875,
+          "x2": 346.82489013671875,
+          "y2": 406.61279296875
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14940,
+      "media_time_sec": 497.9723,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14940",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8941377401351929,
+          "x1": 290.8587341308594,
+          "y1": 307.2847595214844,
+          "x2": 347.09320068359375,
+          "y2": 406.6533203125
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14941,
+      "media_time_sec": 498.0108666666667,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14941",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.8955823183059692,
+          "x1": 290.60577392578125,
+          "y1": 307.257080078125,
+          "x2": 347.0354919433594,
+          "y2": 406.88177490234375
+        }
+      ],
+      "native_pixels_available": false
+    },
+    {
+      "session": "4c34c8c3d6d44949afb2e921e819e563",
+      "frame": 14942,
+      "media_time_sec": 498.0440111111111,
+      "touches": {
+        "left": true,
+        "right": false,
+        "top": false,
+        "bottom": false
+      },
+      "completion_reason": "completed_point_outside_original_bbox",
+      "upper_completion_reason": "not_top_only_contact",
+      "selected_colours": "red",
+      "detector_boxes": [
+        {
+          "image": "4c34c8c3d6d44949afb2e921e819e563:14942",
+          "prediction_index": 0,
+          "class_id": 0,
+          "confidence": 0.900143563747406,
+          "x1": 290.288330078125,
+          "y1": 307.26458740234375,
+          "x2": 347.2998962402344,
+          "y2": 406.952392578125
+        }
+      ],
+      "native_pixels_available": false
+    }
+  ],
+  "boundary_processed_bursts": [
+    {
+      "first_frame": 6861,
+      "last_frame": 6861,
+      "count": 1,
+      "completion_span_ms": 0.0,
+      "next_processed_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "first_frame": 14203,
+      "last_frame": 14206,
+      "count": 4,
+      "completion_span_ms": 92.03422800055705,
+      "next_processed_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "first_frame": 14267,
+      "last_frame": 14273,
+      "count": 7,
+      "completion_span_ms": 206.5096940004878,
+      "next_processed_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "first_frame": 14289,
+      "last_frame": 14314,
+      "count": 26,
+      "completion_span_ms": 839.2381199992087,
+      "next_processed_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "first_frame": 14316,
+      "last_frame": 14316,
+      "count": 1,
+      "completion_span_ms": 0.0,
+      "next_processed_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "first_frame": 14318,
+      "last_frame": 14323,
+      "count": 6,
+      "completion_span_ms": 159.83042399966507,
+      "next_processed_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "first_frame": 14329,
+      "last_frame": 14329,
+      "count": 1,
+      "completion_span_ms": 0.0,
+      "next_processed_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "first_frame": 14382,
+      "last_frame": 14383,
+      "count": 2,
+      "completion_span_ms": 35.825063998345286,
+      "next_processed_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "first_frame": 14385,
+      "last_frame": 14385,
+      "count": 1,
+      "completion_span_ms": 0.0,
+      "next_processed_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "first_frame": 14387,
+      "last_frame": 14390,
+      "count": 4,
+      "completion_span_ms": 105.05805499997223,
+      "next_processed_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "first_frame": 14406,
+      "last_frame": 14408,
+      "count": 3,
+      "completion_span_ms": 77.44836799975019,
+      "next_processed_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "first_frame": 14604,
+      "last_frame": 14604,
+      "count": 1,
+      "completion_span_ms": 0.0,
+      "next_processed_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "first_frame": 14606,
+      "last_frame": 14606,
+      "count": 1,
+      "completion_span_ms": 0.0,
+      "next_processed_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "first_frame": 14616,
+      "last_frame": 14616,
+      "count": 1,
+      "completion_span_ms": 0.0,
+      "next_processed_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "first_frame": 14922,
+      "last_frame": 14924,
+      "count": 3,
+      "completion_span_ms": 80.84254499954113,
+      "next_processed_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "first_frame": 14926,
+      "last_frame": 14929,
+      "count": 4,
+      "completion_span_ms": 98.41055300057633,
+      "next_processed_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "first_frame": 14931,
+      "last_frame": 14942,
+      "count": 12,
+      "completion_span_ms": 365.0093860014749,
+      "next_processed_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    }
+  ],
+  "thirty_second_bins": [
+    {
+      "relative_source_start_sec": 0,
+      "processed": 867,
+      "numeric": 0,
+      "withheld_reasons": {
+        "frame_processing_too_old": 1,
+        "no_candidate": 866
+      },
+      "distance_m": {
+        "count": 0,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 30,
+      "processed": 891,
+      "numeric": 0,
+      "withheld_reasons": {
+        "no_candidate": 891
+      },
+      "distance_m": {
+        "count": 0,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 60,
+      "processed": 884,
+      "numeric": 0,
+      "withheld_reasons": {
+        "no_candidate": 884
+      },
+      "distance_m": {
+        "count": 0,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 90,
+      "processed": 893,
+      "numeric": 0,
+      "withheld_reasons": {
+        "no_candidate": 893
+      },
+      "distance_m": {
+        "count": 0,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 120,
+      "processed": 898,
+      "numeric": 0,
+      "withheld_reasons": {
+        "no_candidate": 898
+      },
+      "distance_m": {
+        "count": 0,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 150,
+      "processed": 893,
+      "numeric": 0,
+      "withheld_reasons": {
+        "no_candidate": 893
+      },
+      "distance_m": {
+        "count": 0,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 180,
+      "processed": 898,
+      "numeric": 0,
+      "withheld_reasons": {
+        "no_candidate": 898
+      },
+      "distance_m": {
+        "count": 0,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 210,
+      "processed": 888,
+      "numeric": 339,
+      "withheld_reasons": {
+        "no_candidate": 548,
+        "colour_contour_reaches_roi_edge": 1
+      },
+      "distance_m": {
+        "count": 339,
+        "min": 0.8902953436130835,
+        "max": 1.0566181137521613,
+        "p50": 0.9337054659338441,
+        "p95": 1.0301858488880542
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 240,
+      "processed": 895,
+      "numeric": 895,
+      "withheld_reasons": {},
+      "distance_m": {
+        "count": 895,
+        "min": 0.9112721940509649,
+        "max": 0.9344830857554898,
+        "p50": 0.9337054659338441,
+        "p95": 0.9344830857554898
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 270,
+      "processed": 900,
+      "numeric": 887,
+      "withheld_reasons": {
+        "ambiguous_upper_body_colour": 9,
+        "no_candidate": 4
+      },
+      "distance_m": {
+        "count": 887,
+        "min": 0.9116358892815177,
+        "max": 0.9361683542069947,
+        "p50": 0.9340888701096951,
+        "p95": 0.9344830857554898
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 300,
+      "processed": 900,
+      "numeric": 900,
+      "withheld_reasons": {},
+      "distance_m": {
+        "count": 900,
+        "min": 0.9340888701096951,
+        "max": 0.9340888701096951,
+        "p50": 0.9340888701096951,
+        "p95": 0.9340888701096951
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 330,
+      "processed": 896,
+      "numeric": 839,
+      "withheld_reasons": {
+        "ambiguous_front_cones": 57
+      },
+      "distance_m": {
+        "count": 839,
+        "min": 0.932971041793818,
+        "max": 0.9344830857554898,
+        "p50": 0.9340888701096951,
+        "p95": 0.9340888701096951
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 360,
+      "processed": 895,
+      "numeric": 893,
+      "withheld_reasons": {
+        "ambiguous_front_cones": 2
+      },
+      "distance_m": {
+        "count": 893,
+        "min": 0.9337054659338441,
+        "max": 0.9344830857554898,
+        "p50": 0.9337054659338441,
+        "p95": 0.9340888701096951
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 390,
+      "processed": 895,
+      "numeric": 809,
+      "withheld_reasons": {
+        "ambiguous_front_cones": 86
+      },
+      "distance_m": {
+        "count": 809,
+        "min": 0.9337054659338441,
+        "max": 0.9340888701096951,
+        "p50": 0.9337054659338441,
+        "p95": 0.9340888701096951
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 420,
+      "processed": 894,
+      "numeric": 892,
+      "withheld_reasons": {
+        "ambiguous_front_cones": 2
+      },
+      "distance_m": {
+        "count": 892,
+        "min": 0.9337054659338441,
+        "max": 0.9337054659338441,
+        "p50": 0.9337054659338441,
+        "p95": 0.9337054659338441
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 450,
+      "processed": 893,
+      "numeric": 841,
+      "withheld_reasons": {
+        "colour_contour_reaches_roi_edge": 52
+      },
+      "distance_m": {
+        "count": 841,
+        "min": 0.6226871750150229,
+        "max": 0.9565469989440681,
+        "p50": 0.9337054659338441,
+        "p95": 0.9337054659338441
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 480,
+      "processed": 897,
+      "numeric": 846,
+      "withheld_reasons": {
+        "colour_contour_reaches_roi_edge": 25,
+        "ambiguous_front_cones": 26
+      },
+      "distance_m": {
+        "count": 846,
+        "min": 0.6229818212520897,
+        "max": 1.1745345271699867,
+        "p50": 1.142471541888944,
+        "p95": 1.1429523833983977
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 510,
+      "processed": 899,
+      "numeric": 625,
+      "withheld_reasons": {
+        "ambiguous_front_cones": 274
+      },
+      "distance_m": {
+        "count": 625,
+        "min": 1.142471541888944,
+        "max": 1.142471541888944,
+        "p50": 1.142471541888944,
+        "p95": 1.142471541888944
+      },
+      "physical_motion_observed": false
+    },
+    {
+      "relative_source_start_sec": 540,
+      "processed": 853,
+      "numeric": 748,
+      "withheld_reasons": {
+        "ambiguous_front_cones": 105
+      },
+      "distance_m": {
+        "count": 748,
+        "min": 1.142471541888944,
+        "max": 1.142471541888944,
+        "p50": 1.142471541888944,
+        "p95": 1.142471541888944
+      },
+      "physical_motion_observed": false
+    }
+  ],
+  "screen_recording_provided": false,
+  "motion_interval_identified": false,
+  "physical_accuracy_error_m": null,
+  "gui_time_withheld_fraction": null,
+  "actual_evidence_disk_load_measured": false,
+  "control_or_live_logic_changed": false
+}

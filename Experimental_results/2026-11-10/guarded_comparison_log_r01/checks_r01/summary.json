@@ -1,0 +1,14 @@
+{
+  "status": "PASS_OFFLINE_ONLY",
+  "tests": 22,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "help_exitcode": 0,
+  "actual_camera_model_ros_or_vehicle_started": false,
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-10/guarded_comparison_log_r01/check.py": "d1160b3afcab03a059074177a33cfd6b02ad8f38b9b05f5171cf04669d3d77de",
+    "/home/robo25/theta_ws/RICHO-theta/src/run_guarded_recording_comparison.py": "2f1de748944e0887b73793c9f8d0c8b57c2b1d83dc5e3b2c62083a2de30c32aa",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_guarded_recording_comparison.py": "d6621f47f0c08f9fd0afe3e357b56e8bf27d80b67a1e3e305ae84bc0d9ab1db3"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "input_csv": "Experimental_results/2026-11-10/motion_boundary_timeline_r01/results_r01/local_window.csv",
+  "input_sha256": "ea67055fc9fc7eaa719ddbff6fea157f410e702c182b80034420490649896641",
+  "plotted_records": 303,
+  "source_time_range": [
+    471.3898100690012,
+    481.47636756200063
+  ],
+  "output_sha256": "63e59edc624a317375011d232b24eacde7108b8a4819fc52dc103ad00a0044cb",
+  "camera_images_modified": false,
+  "physical_accuracy_measured": false
+}

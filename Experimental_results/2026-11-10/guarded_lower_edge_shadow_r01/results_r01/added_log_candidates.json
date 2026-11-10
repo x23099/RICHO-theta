@@ -1,0 +1,743 @@
+[
+  {
+    "frame": 14922,
+    "source_time_sec": 8514.042336081,
+    "completed_time_sec": 8514.062904414,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.087158203125,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14921,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14925,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": true
+  },
+  {
+    "frame": 14923,
+    "source_time_sec": 8514.090474142,
+    "completed_time_sec": 8514.117178072,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.0791015625,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14921,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14925,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  },
+  {
+    "frame": 14924,
+    "source_time_sec": 8514.124407594,
+    "completed_time_sec": 8514.143746959,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.32452392578125,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14921,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14925,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  },
+  {
+    "frame": 14926,
+    "source_time_sec": 8514.18682102,
+    "completed_time_sec": 8514.205163854,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.46734619140625,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14925,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14930,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  },
+  {
+    "frame": 14927,
+    "source_time_sec": 8514.219437175,
+    "completed_time_sec": 8514.239132934,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.27740478515625,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14925,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14930,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  },
+  {
+    "frame": 14928,
+    "source_time_sec": 8514.260959068,
+    "completed_time_sec": 8514.284998141,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.142486572265625,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14925,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14930,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  },
+  {
+    "frame": 14929,
+    "source_time_sec": 8514.284109931,
+    "completed_time_sec": 8514.303574407,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.19342041015625,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14925,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14930,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  },
+  {
+    "frame": 14931,
+    "source_time_sec": 8514.357110694,
+    "completed_time_sec": 8514.383345817,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.074859619140625,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14930,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14943,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  },
+  {
+    "frame": 14932,
+    "source_time_sec": 8514.391090141,
+    "completed_time_sec": 8514.41216858,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.18292236328125,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14930,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14943,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  },
+  {
+    "frame": 14933,
+    "source_time_sec": 8514.42580479,
+    "completed_time_sec": 8514.447791417,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.103271484375,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14930,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14943,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  },
+  {
+    "frame": 14934,
+    "source_time_sec": 8514.469074604,
+    "completed_time_sec": 8514.487692359,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.270751953125,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14930,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14943,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  },
+  {
+    "frame": 14935,
+    "source_time_sec": 8514.485724465,
+    "completed_time_sec": 8514.505396956,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.19781494140625,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14930,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14943,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  },
+  {
+    "frame": 14936,
+    "source_time_sec": 8514.515991069,
+    "completed_time_sec": 8514.542010145,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.204345703125,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14930,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14943,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  },
+  {
+    "frame": 14937,
+    "source_time_sec": 8514.555498418,
+    "completed_time_sec": 8514.579147365,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.234039306640625,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14930,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14943,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  },
+  {
+    "frame": 14938,
+    "source_time_sec": 8514.590656627,
+    "completed_time_sec": 8514.614806097,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.376953125,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14930,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14943,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  },
+  {
+    "frame": 14939,
+    "source_time_sec": 8514.611032961,
+    "completed_time_sec": 8514.633475463,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.38720703125,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14930,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14943,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  },
+  {
+    "frame": 14940,
+    "source_time_sec": 8514.656112025,
+    "completed_time_sec": 8514.684171412,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.3466796875,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14930,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14943,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  },
+  {
+    "frame": 14941,
+    "source_time_sec": 8514.684864614,
+    "completed_time_sec": 8514.722166234,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.11822509765625,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14930,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14943,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  },
+  {
+    "frame": 14942,
+    "source_time_sec": 8514.724513194,
+    "completed_time_sec": 8514.748355203,
+    "original_available": false,
+    "original_range_m": null,
+    "proposed_available": true,
+    "proposed_range_m": 1.142471541888944,
+    "proposed_point": [
+      312,
+      407
+    ],
+    "outcome": "new_numeric_LOG_CONDITIONS_ONLY",
+    "lower_half_pixel_eligible": true,
+    "body_clear": true,
+    "native_pixels_rechecked": false,
+    "lower_shortfall_px": 0.047607421875,
+    "adjacent_original_numeric_NOT_ground_truth": [
+      {
+        "frame": 14930,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      },
+      {
+        "frame": 14943,
+        "point": [
+          312,
+          407
+        ],
+        "range_m": 1.142471541888944
+      }
+    ],
+    "same_point_as_both_neighbours": true,
+    "max_neighbour_range_difference_m": 0.0,
+    "same_frame_native_replay_available": false
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "schema": "qualitative_native_frame_review_v1",
+  "reviewer": "assistant_native_image_inspection_NOT_independent_ground_truth",
+  "session": "4c34c8c3d6d44949afb2e921e819e563",
+  "physical_contact_labels": false,
+  "frames": [
+    {"frame": 6861, "review": "hand_crosses_front_view"},
+    {"frame": 14203, "review": "near_base_hidden_by_platform"},
+    {"frame": 14267, "review": "near_base_hidden_by_platform"},
+    {"frame": 14297, "review": "near_base_hidden_by_platform"},
+    {"frame": 14329, "review": "near_base_hidden_by_platform"},
+    {"frame": 14382, "review": "near_base_hidden_by_platform"},
+    {"frame": 14604, "review": "base_visible_reference_frame_NOT_independent"},
+    {"frame": 14922, "review": "base_visible_neighbor_vehicle_NOT_metric_ground_truth"}
+  ]
+}

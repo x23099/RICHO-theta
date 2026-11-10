@@ -1,0 +1,20 @@
+test_body_boundary_veto_takes_precedence_over_pixel_overlap (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_clear_closed_current_support_can_be_proposed_without_moving_point (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_exact_half_pixel_inclusive_and_no_relaxation_when_already_inside (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_existing_baseline_can_be_revoked_but_cannot_grant_contact (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_existing_clear_baseline_is_kept_verbatim (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_invalid_geometry_noninteger_points_or_policy_parameters_raise (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_left_right_and_top_shortfalls_are_never_relaxed (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_live_entry_points_do_not_import_comparator (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_missing_component_or_open_bottom_stays_unavailable (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_more_than_half_pixel_does_not_fallback_to_integer_rounding (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_original_pixels_box_reference_and_separate_baseline_not_mutated (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_proposed_point_never_has_physical_or_control_authority (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_session_mismatch_unchecked_hash_and_partial_scope_never_rescue (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_side_only_half_overlap_proposal_is_discarded (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_yellow_seed_is_not_relabelled_as_red (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.445s
+
+OK

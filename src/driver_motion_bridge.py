@@ -10,6 +10,9 @@ import time
 from driver_motion_protocol import checked_result, profile_matches, read_message, write_frame
 from theta_rtc_frames import NativeFrame, finite_time, native_frame
 
+_SHUTDOWN_GRACE_SEC = 2.
+_SHUTDOWN_FORCE_SEC = 1.
+
 
 def add_motion_arguments(parser):
     group=parser.add_argument_group("experimental non-controlling motion range")
@@ -92,6 +95,7 @@ class DriverMotionBridge:
         self.reason="waiting_for_motion_native_sender";self.sent=self.returned=self.retired=self.dropped=0
         self.used_sessions=set()
         self.max_publish_ms=0.;self.shutdown=None
+        self.forced_worker_kill=False;self.shutdown_error=None
         self.thread=threading.Thread(target=self._io_loop,name="driver-range-pipe-io",daemon=True)
 
     def start(self):
@@ -232,13 +236,35 @@ class DriverMotionBridge:
             except ProcessLookupError:pass
 
     def close(self):
+        started=time.monotonic()
         self.request_stop()
-        if self.thread.ident is not None:self.thread.join(3.)
+        if self.thread.ident is not None:self.thread.join(_SHUTDOWN_GRACE_SEC)
+        if self.thread.is_alive():
+            # read_message may be blocked while a child ignores SIGTERM or is
+            # slow to exit. Its I/O-thread finally cannot enforce a timeout
+            # until that read returns. Bound this wait independently, outside
+            # the RTC/UI loop, and signal ONLY our exact inference child.
+            process=self.process
+            if process is not None and process.poll() is None:
+                try:
+                    process.kill()
+                    self.forced_worker_kill=True
+                except ProcessLookupError:
+                    pass
+                except OSError as error:
+                    self.shutdown_error=f"{type(error).__name__}: {error}"[:1000]
+            self.thread.join(_SHUTDOWN_FORCE_SEC)
+        io_stopped=not self.thread.is_alive()
+        child_stopped=self.process is None or self.process.poll() is not None
         self.shutdown=dict(schema="driver_motion_bridge_summary_v1",sent=self.sent,returned=self.returned,
             retired_results=self.retired,tap_lock_drops=self.dropped,max_publish_ms=self.max_publish_ms,
             worker_error=self.error,child_exitcode=self.process.poll() if self.process is not None else None,
-            io_thread_stopped=not self.thread.is_alive(),
-            child_stopped=self.process is None or self.process.poll() is not None,
+            io_thread_stopped=io_stopped, child_stopped=child_stopped,
+            shutdown_complete=io_stopped and child_stopped,
+            shutdown_reason=("complete_after_forced_worker_kill" if self.forced_worker_kill else "complete")
+                if io_stopped and child_stopped else "shutdown_incomplete",
+            forced_worker_kill=self.forced_worker_kill,shutdown_error=self.shutdown_error,
+            shutdown_wait_ms=1000*(time.monotonic()-started),
             image_files_written=None if self.evidence_dir is not None else False,
             withheld_evidence_requested=self.evidence_dir is not None,
             withheld_evidence_status_file=str(self.evidence_dir/"evidence_status.json") if self.evidence_dir else None,

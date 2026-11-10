@@ -1,0 +1,2190 @@
+{
+  "processed_records": 16929,
+  "state_counts": {
+    "other_withheld:frame_processing_too_old": 1,
+    "other_withheld:no_candidate": 6775,
+    "boundary_withheld_unresolved": 4,
+    "numeric_clear_of_body_boundary": 9325,
+    "other_withheld:ambiguous_upper_body_colour": 9,
+    "other_withheld:ambiguous_front_cones": 552,
+    "numeric_body_boundary_conflict": 189,
+    "boundary_withheld_body_boundary_conflict": 55,
+    "boundary_withheld_clear_candidate": 19
+  },
+  "transitions": {
+    "other_withheld:no_candidate -> other_withheld:no_candidate": 6771,
+    "other_withheld:no_candidate -> boundary_withheld_unresolved": 1,
+    "boundary_withheld_unresolved -> numeric_clear_of_body_boundary": 4,
+    "numeric_clear_of_body_boundary -> numeric_clear_of_body_boundary": 9166,
+    "numeric_clear_of_body_boundary -> other_withheld:ambiguous_upper_body_colour": 1,
+    "other_withheld:ambiguous_upper_body_colour -> other_withheld:no_candidate": 1,
+    "other_withheld:no_candidate -> other_withheld:ambiguous_upper_body_colour": 1,
+    "other_withheld:ambiguous_upper_body_colour -> other_withheld:ambiguous_upper_body_colour": 7,
+    "other_withheld:ambiguous_upper_body_colour -> numeric_clear_of_body_boundary": 1,
+    "numeric_clear_of_body_boundary -> other_withheld:ambiguous_front_cones": 147,
+    "other_withheld:ambiguous_front_cones -> numeric_clear_of_body_boundary": 147,
+    "other_withheld:ambiguous_front_cones -> other_withheld:ambiguous_front_cones": 405,
+    "numeric_clear_of_body_boundary -> numeric_body_boundary_conflict": 1,
+    "numeric_body_boundary_conflict -> numeric_body_boundary_conflict": 178,
+    "numeric_body_boundary_conflict -> boundary_withheld_body_boundary_conflict": 10,
+    "boundary_withheld_body_boundary_conflict -> boundary_withheld_body_boundary_conflict": 45,
+    "boundary_withheld_body_boundary_conflict -> numeric_body_boundary_conflict": 10,
+    "numeric_body_boundary_conflict -> numeric_clear_of_body_boundary": 1,
+    "numeric_clear_of_body_boundary -> boundary_withheld_unresolved": 3,
+    "numeric_clear_of_body_boundary -> boundary_withheld_clear_candidate": 3,
+    "boundary_withheld_clear_candidate -> boundary_withheld_clear_candidate": 16,
+    "boundary_withheld_clear_candidate -> numeric_clear_of_body_boundary": 3
+  },
+  "conflict_episodes": [
+    {
+      "first_frame": 14172,
+      "last_frame": 14416,
+      "count": 244,
+      "state_counts": {
+        "numeric_body_boundary_conflict": 189,
+        "boundary_withheld_body_boundary_conflict": 55
+      },
+      "source_span_ms": 8133.3448460009095,
+      "completion_span_ms": 8140.051524000228,
+      "numeric_min_m": 0.6226871750150229,
+      "numeric_max_m": 0.6505931721525214,
+      "previous_processed": {
+        "frame": 14171,
+        "source_time_sec": 8489.030587176,
+        "completed_time_sec": 8489.046800237,
+        "state": "numeric_clear_of_body_boundary",
+        "range_m": 0.6502924061951502
+      },
+      "next_processed": {
+        "frame": 14417,
+        "source_time_sec": 8497.227436658,
+        "completed_time_sec": 8497.241892123,
+        "state": "numeric_clear_of_body_boundary",
+        "range_m": 0.6505931721525214
+      },
+      "next_clear_numeric": {
+        "frame": 14417,
+        "source_time_sec": 8497.227436658,
+        "completed_time_sec": 8497.241892123,
+        "state": "numeric_clear_of_body_boundary",
+        "range_m": 0.6505931721525214
+      },
+      "next_clear_source_gap_ms": 32.98241300035443
+    }
+  ],
+  "state_runs": [
+    {
+      "first_index": 0,
+      "last_index": 0,
+      "state": "other_withheld:frame_processing_too_old",
+      "count": 1
+    },
+    {
+      "first_index": 1,
+      "last_index": 1905,
+      "state": "other_withheld:no_candidate",
+      "count": 1905
+    },
+    {
+      "first_index": 1906,
+      "last_index": 6355,
+      "state": "other_withheld:no_candidate",
+      "count": 4450
+    },
+    {
+      "first_index": 6356,
+      "last_index": 6771,
+      "state": "other_withheld:no_candidate",
+      "count": 416
+    },
+    {
+      "first_index": 6772,
+      "last_index": 6772,
+      "state": "boundary_withheld_unresolved",
+      "count": 1
+    },
+    {
+      "first_index": 6773,
+      "last_index": 8462,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1690
+    },
+    {
+      "first_index": 8463,
+      "last_index": 8463,
+      "state": "other_withheld:ambiguous_upper_body_colour",
+      "count": 1
+    },
+    {
+      "first_index": 8464,
+      "last_index": 8467,
+      "state": "other_withheld:no_candidate",
+      "count": 4
+    },
+    {
+      "first_index": 8468,
+      "last_index": 8475,
+      "state": "other_withheld:ambiguous_upper_body_colour",
+      "count": 8
+    },
+    {
+      "first_index": 8476,
+      "last_index": 10523,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2048
+    },
+    {
+      "first_index": 10524,
+      "last_index": 10524,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 10525,
+      "last_index": 10525,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 10526,
+      "last_index": 10527,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 10528,
+      "last_index": 10528,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 10529,
+      "last_index": 10542,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 14
+    },
+    {
+      "first_index": 10543,
+      "last_index": 10543,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 10544,
+      "last_index": 10547,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 4
+    },
+    {
+      "first_index": 10548,
+      "last_index": 10551,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 4
+    },
+    {
+      "first_index": 10552,
+      "last_index": 10555,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 4
+    },
+    {
+      "first_index": 10556,
+      "last_index": 10556,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 10557,
+      "last_index": 10557,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 10558,
+      "last_index": 10558,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 10559,
+      "last_index": 10559,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 10560,
+      "last_index": 10560,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 10561,
+      "last_index": 10572,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 12
+    },
+    {
+      "first_index": 10573,
+      "last_index": 10573,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 10574,
+      "last_index": 10574,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 10575,
+      "last_index": 10603,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 29
+    },
+    {
+      "first_index": 10604,
+      "last_index": 10609,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 6
+    },
+    {
+      "first_index": 10610,
+      "last_index": 10610,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 10611,
+      "last_index": 10621,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 11
+    },
+    {
+      "first_index": 10622,
+      "last_index": 11571,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 950
+    },
+    {
+      "first_index": 11572,
+      "last_index": 11573,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 11574,
+      "last_index": 12205,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 632
+    },
+    {
+      "first_index": 12206,
+      "last_index": 12207,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 12208,
+      "last_index": 12208,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 12209,
+      "last_index": 12212,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 4
+    },
+    {
+      "first_index": 12213,
+      "last_index": 12236,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 24
+    },
+    {
+      "first_index": 12237,
+      "last_index": 12238,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 12239,
+      "last_index": 12364,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 126
+    },
+    {
+      "first_index": 12365,
+      "last_index": 12400,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 36
+    },
+    {
+      "first_index": 12401,
+      "last_index": 12407,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 7
+    },
+    {
+      "first_index": 12408,
+      "last_index": 12411,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 4
+    },
+    {
+      "first_index": 12412,
+      "last_index": 12437,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 26
+    },
+    {
+      "first_index": 12438,
+      "last_index": 12470,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 33
+    },
+    {
+      "first_index": 12471,
+      "last_index": 12471,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 12472,
+      "last_index": 12475,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 4
+    },
+    {
+      "first_index": 12476,
+      "last_index": 12482,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 7
+    },
+    {
+      "first_index": 12483,
+      "last_index": 12483,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 12484,
+      "last_index": 12520,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 37
+    },
+    {
+      "first_index": 12521,
+      "last_index": 12521,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 12522,
+      "last_index": 12527,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 6
+    },
+    {
+      "first_index": 12528,
+      "last_index": 12528,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 12529,
+      "last_index": 13285,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 757
+    },
+    {
+      "first_index": 13286,
+      "last_index": 13735,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 450
+    },
+    {
+      "first_index": 13736,
+      "last_index": 14050,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 315
+    },
+    {
+      "first_index": 14051,
+      "last_index": 14081,
+      "state": "numeric_body_boundary_conflict",
+      "count": 31
+    },
+    {
+      "first_index": 14082,
+      "last_index": 14085,
+      "state": "boundary_withheld_body_boundary_conflict",
+      "count": 4
+    },
+    {
+      "first_index": 14086,
+      "last_index": 14145,
+      "state": "numeric_body_boundary_conflict",
+      "count": 60
+    },
+    {
+      "first_index": 14146,
+      "last_index": 14152,
+      "state": "boundary_withheld_body_boundary_conflict",
+      "count": 7
+    },
+    {
+      "first_index": 14153,
+      "last_index": 14166,
+      "state": "numeric_body_boundary_conflict",
+      "count": 14
+    },
+    {
+      "first_index": 14167,
+      "last_index": 14192,
+      "state": "boundary_withheld_body_boundary_conflict",
+      "count": 26
+    },
+    {
+      "first_index": 14193,
+      "last_index": 14193,
+      "state": "numeric_body_boundary_conflict",
+      "count": 1
+    },
+    {
+      "first_index": 14194,
+      "last_index": 14194,
+      "state": "boundary_withheld_body_boundary_conflict",
+      "count": 1
+    },
+    {
+      "first_index": 14195,
+      "last_index": 14195,
+      "state": "numeric_body_boundary_conflict",
+      "count": 1
+    },
+    {
+      "first_index": 14196,
+      "last_index": 14201,
+      "state": "boundary_withheld_body_boundary_conflict",
+      "count": 6
+    },
+    {
+      "first_index": 14202,
+      "last_index": 14206,
+      "state": "numeric_body_boundary_conflict",
+      "count": 5
+    },
+    {
+      "first_index": 14207,
+      "last_index": 14207,
+      "state": "boundary_withheld_body_boundary_conflict",
+      "count": 1
+    },
+    {
+      "first_index": 14208,
+      "last_index": 14259,
+      "state": "numeric_body_boundary_conflict",
+      "count": 52
+    },
+    {
+      "first_index": 14260,
+      "last_index": 14261,
+      "state": "boundary_withheld_body_boundary_conflict",
+      "count": 2
+    },
+    {
+      "first_index": 14262,
+      "last_index": 14262,
+      "state": "numeric_body_boundary_conflict",
+      "count": 1
+    },
+    {
+      "first_index": 14263,
+      "last_index": 14263,
+      "state": "boundary_withheld_body_boundary_conflict",
+      "count": 1
+    },
+    {
+      "first_index": 14264,
+      "last_index": 14264,
+      "state": "numeric_body_boundary_conflict",
+      "count": 1
+    },
+    {
+      "first_index": 14265,
+      "last_index": 14268,
+      "state": "boundary_withheld_body_boundary_conflict",
+      "count": 4
+    },
+    {
+      "first_index": 14269,
+      "last_index": 14283,
+      "state": "numeric_body_boundary_conflict",
+      "count": 15
+    },
+    {
+      "first_index": 14284,
+      "last_index": 14286,
+      "state": "boundary_withheld_body_boundary_conflict",
+      "count": 3
+    },
+    {
+      "first_index": 14287,
+      "last_index": 14294,
+      "state": "numeric_body_boundary_conflict",
+      "count": 8
+    },
+    {
+      "first_index": 14295,
+      "last_index": 14310,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 16
+    },
+    {
+      "first_index": 14311,
+      "last_index": 14311,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 14312,
+      "last_index": 14434,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 123
+    },
+    {
+      "first_index": 14435,
+      "last_index": 14455,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 21
+    },
+    {
+      "first_index": 14456,
+      "last_index": 14458,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 3
+    },
+    {
+      "first_index": 14459,
+      "last_index": 14461,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 3
+    },
+    {
+      "first_index": 14462,
+      "last_index": 14480,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 19
+    },
+    {
+      "first_index": 14481,
+      "last_index": 14481,
+      "state": "boundary_withheld_unresolved",
+      "count": 1
+    },
+    {
+      "first_index": 14482,
+      "last_index": 14482,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 14483,
+      "last_index": 14483,
+      "state": "boundary_withheld_unresolved",
+      "count": 1
+    },
+    {
+      "first_index": 14484,
+      "last_index": 14492,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 9
+    },
+    {
+      "first_index": 14493,
+      "last_index": 14493,
+      "state": "boundary_withheld_unresolved",
+      "count": 1
+    },
+    {
+      "first_index": 14494,
+      "last_index": 14797,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 304
+    },
+    {
+      "first_index": 14798,
+      "last_index": 14800,
+      "state": "boundary_withheld_clear_candidate",
+      "count": 3
+    },
+    {
+      "first_index": 14801,
+      "last_index": 14801,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 14802,
+      "last_index": 14805,
+      "state": "boundary_withheld_clear_candidate",
+      "count": 4
+    },
+    {
+      "first_index": 14806,
+      "last_index": 14806,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 14807,
+      "last_index": 14818,
+      "state": "boundary_withheld_clear_candidate",
+      "count": 12
+    },
+    {
+      "first_index": 14819,
+      "last_index": 14876,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 58
+    },
+    {
+      "first_index": 14877,
+      "last_index": 14877,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 14878,
+      "last_index": 15386,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 509
+    },
+    {
+      "first_index": 15387,
+      "last_index": 15387,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15388,
+      "last_index": 15402,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 15
+    },
+    {
+      "first_index": 15403,
+      "last_index": 15403,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15404,
+      "last_index": 15408,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 5
+    },
+    {
+      "first_index": 15409,
+      "last_index": 15411,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 3
+    },
+    {
+      "first_index": 15412,
+      "last_index": 15412,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15413,
+      "last_index": 15413,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15414,
+      "last_index": 15414,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15415,
+      "last_index": 15419,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 5
+    },
+    {
+      "first_index": 15420,
+      "last_index": 15420,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15421,
+      "last_index": 15422,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 15423,
+      "last_index": 15423,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15424,
+      "last_index": 15435,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 12
+    },
+    {
+      "first_index": 15436,
+      "last_index": 15440,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 5
+    },
+    {
+      "first_index": 15441,
+      "last_index": 15451,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 11
+    },
+    {
+      "first_index": 15452,
+      "last_index": 15453,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 15454,
+      "last_index": 15457,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 4
+    },
+    {
+      "first_index": 15458,
+      "last_index": 15539,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 82
+    },
+    {
+      "first_index": 15540,
+      "last_index": 15541,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 15542,
+      "last_index": 15550,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 9
+    },
+    {
+      "first_index": 15551,
+      "last_index": 15551,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15552,
+      "last_index": 15553,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 15554,
+      "last_index": 15554,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15555,
+      "last_index": 15557,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 3
+    },
+    {
+      "first_index": 15558,
+      "last_index": 15558,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15559,
+      "last_index": 15561,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 3
+    },
+    {
+      "first_index": 15562,
+      "last_index": 15562,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15563,
+      "last_index": 15576,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 14
+    },
+    {
+      "first_index": 15577,
+      "last_index": 15578,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 15579,
+      "last_index": 15579,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15580,
+      "last_index": 15581,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 15582,
+      "last_index": 15587,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 6
+    },
+    {
+      "first_index": 15588,
+      "last_index": 15588,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15589,
+      "last_index": 15593,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 5
+    },
+    {
+      "first_index": 15594,
+      "last_index": 15594,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15595,
+      "last_index": 15595,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15596,
+      "last_index": 15596,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15597,
+      "last_index": 15608,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 12
+    },
+    {
+      "first_index": 15609,
+      "last_index": 15613,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 5
+    },
+    {
+      "first_index": 15614,
+      "last_index": 15614,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15615,
+      "last_index": 15620,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 6
+    },
+    {
+      "first_index": 15621,
+      "last_index": 15628,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 8
+    },
+    {
+      "first_index": 15629,
+      "last_index": 15634,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 6
+    },
+    {
+      "first_index": 15635,
+      "last_index": 15635,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15636,
+      "last_index": 15652,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 17
+    },
+    {
+      "first_index": 15653,
+      "last_index": 15654,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 15655,
+      "last_index": 15655,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15656,
+      "last_index": 15668,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 13
+    },
+    {
+      "first_index": 15669,
+      "last_index": 15672,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 4
+    },
+    {
+      "first_index": 15673,
+      "last_index": 15674,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 15675,
+      "last_index": 15675,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15676,
+      "last_index": 15689,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 14
+    },
+    {
+      "first_index": 15690,
+      "last_index": 15691,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 15692,
+      "last_index": 15696,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 5
+    },
+    {
+      "first_index": 15697,
+      "last_index": 15699,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 3
+    },
+    {
+      "first_index": 15700,
+      "last_index": 15706,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 7
+    },
+    {
+      "first_index": 15707,
+      "last_index": 15708,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 15709,
+      "last_index": 15709,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15710,
+      "last_index": 15710,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15711,
+      "last_index": 15720,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 10
+    },
+    {
+      "first_index": 15721,
+      "last_index": 15722,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 15723,
+      "last_index": 15725,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 3
+    },
+    {
+      "first_index": 15726,
+      "last_index": 15726,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15727,
+      "last_index": 15727,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15728,
+      "last_index": 15728,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15729,
+      "last_index": 15742,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 14
+    },
+    {
+      "first_index": 15743,
+      "last_index": 15743,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15744,
+      "last_index": 15755,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 12
+    },
+    {
+      "first_index": 15756,
+      "last_index": 15757,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 15758,
+      "last_index": 15758,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15759,
+      "last_index": 15759,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15760,
+      "last_index": 15783,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 24
+    },
+    {
+      "first_index": 15784,
+      "last_index": 15784,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15785,
+      "last_index": 15787,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 3
+    },
+    {
+      "first_index": 15788,
+      "last_index": 15791,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 4
+    },
+    {
+      "first_index": 15792,
+      "last_index": 15797,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 6
+    },
+    {
+      "first_index": 15798,
+      "last_index": 15798,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15799,
+      "last_index": 15803,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 5
+    },
+    {
+      "first_index": 15804,
+      "last_index": 15806,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 3
+    },
+    {
+      "first_index": 15807,
+      "last_index": 15817,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 11
+    },
+    {
+      "first_index": 15818,
+      "last_index": 15820,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 3
+    },
+    {
+      "first_index": 15821,
+      "last_index": 15821,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15822,
+      "last_index": 15823,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 15824,
+      "last_index": 15825,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 15826,
+      "last_index": 15828,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 3
+    },
+    {
+      "first_index": 15829,
+      "last_index": 15831,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 3
+    },
+    {
+      "first_index": 15832,
+      "last_index": 15837,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 6
+    },
+    {
+      "first_index": 15838,
+      "last_index": 15839,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 15840,
+      "last_index": 15848,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 9
+    },
+    {
+      "first_index": 15849,
+      "last_index": 15849,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15850,
+      "last_index": 15852,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 3
+    },
+    {
+      "first_index": 15853,
+      "last_index": 15853,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15854,
+      "last_index": 15855,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 15856,
+      "last_index": 15859,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 4
+    },
+    {
+      "first_index": 15860,
+      "last_index": 15865,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 6
+    },
+    {
+      "first_index": 15866,
+      "last_index": 15866,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15867,
+      "last_index": 15868,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 15869,
+      "last_index": 15870,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 15871,
+      "last_index": 15876,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 6
+    },
+    {
+      "first_index": 15877,
+      "last_index": 15899,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 23
+    },
+    {
+      "first_index": 15900,
+      "last_index": 15901,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 15902,
+      "last_index": 15912,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 11
+    },
+    {
+      "first_index": 15913,
+      "last_index": 15915,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 3
+    },
+    {
+      "first_index": 15916,
+      "last_index": 15922,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 7
+    },
+    {
+      "first_index": 15923,
+      "last_index": 15926,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 4
+    },
+    {
+      "first_index": 15927,
+      "last_index": 15929,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 3
+    },
+    {
+      "first_index": 15930,
+      "last_index": 15930,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15931,
+      "last_index": 15932,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 15933,
+      "last_index": 15933,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15934,
+      "last_index": 15934,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15935,
+      "last_index": 15935,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15936,
+      "last_index": 15945,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 10
+    },
+    {
+      "first_index": 15946,
+      "last_index": 15948,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 3
+    },
+    {
+      "first_index": 15949,
+      "last_index": 15953,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 5
+    },
+    {
+      "first_index": 15954,
+      "last_index": 15971,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 18
+    },
+    {
+      "first_index": 15972,
+      "last_index": 15972,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15973,
+      "last_index": 15973,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 15974,
+      "last_index": 15975,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 15976,
+      "last_index": 15981,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 6
+    },
+    {
+      "first_index": 15982,
+      "last_index": 15982,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 15983,
+      "last_index": 15991,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 9
+    },
+    {
+      "first_index": 15992,
+      "last_index": 15993,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 15994,
+      "last_index": 15995,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 15996,
+      "last_index": 16003,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 8
+    },
+    {
+      "first_index": 16004,
+      "last_index": 16017,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 14
+    },
+    {
+      "first_index": 16018,
+      "last_index": 16018,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 16019,
+      "last_index": 16019,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16020,
+      "last_index": 16021,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 16022,
+      "last_index": 16032,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 11
+    },
+    {
+      "first_index": 16033,
+      "last_index": 16033,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 16034,
+      "last_index": 16047,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 14
+    },
+    {
+      "first_index": 16048,
+      "last_index": 16048,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 16049,
+      "last_index": 16050,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 16051,
+      "last_index": 16052,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 16053,
+      "last_index": 16062,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 10
+    },
+    {
+      "first_index": 16063,
+      "last_index": 16063,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 16064,
+      "last_index": 16074,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 11
+    },
+    {
+      "first_index": 16075,
+      "last_index": 16076,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 16077,
+      "last_index": 16083,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 7
+    },
+    {
+      "first_index": 16084,
+      "last_index": 16086,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 3
+    },
+    {
+      "first_index": 16087,
+      "last_index": 16093,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 7
+    },
+    {
+      "first_index": 16094,
+      "last_index": 16094,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 16095,
+      "last_index": 16098,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 4
+    },
+    {
+      "first_index": 16099,
+      "last_index": 16100,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 16101,
+      "last_index": 16101,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16102,
+      "last_index": 16102,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 16103,
+      "last_index": 16103,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16104,
+      "last_index": 16109,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 6
+    },
+    {
+      "first_index": 16110,
+      "last_index": 16110,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16111,
+      "last_index": 16111,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 16112,
+      "last_index": 16112,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16113,
+      "last_index": 16115,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 3
+    },
+    {
+      "first_index": 16116,
+      "last_index": 16117,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 16118,
+      "last_index": 16119,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 16120,
+      "last_index": 16129,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 10
+    },
+    {
+      "first_index": 16130,
+      "last_index": 16130,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 16131,
+      "last_index": 16132,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 16133,
+      "last_index": 16133,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 16134,
+      "last_index": 16134,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16135,
+      "last_index": 16137,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 3
+    },
+    {
+      "first_index": 16138,
+      "last_index": 16142,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 5
+    },
+    {
+      "first_index": 16143,
+      "last_index": 16143,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 16144,
+      "last_index": 16146,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 3
+    },
+    {
+      "first_index": 16147,
+      "last_index": 16149,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 3
+    },
+    {
+      "first_index": 16150,
+      "last_index": 16154,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 5
+    },
+    {
+      "first_index": 16155,
+      "last_index": 16156,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 16157,
+      "last_index": 16157,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16158,
+      "last_index": 16159,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 16160,
+      "last_index": 16165,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 6
+    },
+    {
+      "first_index": 16166,
+      "last_index": 16172,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 7
+    },
+    {
+      "first_index": 16173,
+      "last_index": 16175,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 3
+    },
+    {
+      "first_index": 16176,
+      "last_index": 16234,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 59
+    },
+    {
+      "first_index": 16235,
+      "last_index": 16235,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16236,
+      "last_index": 16266,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 31
+    },
+    {
+      "first_index": 16267,
+      "last_index": 16267,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16268,
+      "last_index": 16286,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 19
+    },
+    {
+      "first_index": 16287,
+      "last_index": 16287,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16288,
+      "last_index": 16288,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 16289,
+      "last_index": 16289,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16290,
+      "last_index": 16302,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 13
+    },
+    {
+      "first_index": 16303,
+      "last_index": 16303,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16304,
+      "last_index": 16330,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 27
+    },
+    {
+      "first_index": 16331,
+      "last_index": 16332,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 16333,
+      "last_index": 16333,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 16334,
+      "last_index": 16335,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 16336,
+      "last_index": 16336,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 16337,
+      "last_index": 16337,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16338,
+      "last_index": 16371,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 34
+    },
+    {
+      "first_index": 16372,
+      "last_index": 16372,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16373,
+      "last_index": 16400,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 28
+    },
+    {
+      "first_index": 16401,
+      "last_index": 16401,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16402,
+      "last_index": 16412,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 11
+    },
+    {
+      "first_index": 16413,
+      "last_index": 16413,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16414,
+      "last_index": 16416,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 3
+    },
+    {
+      "first_index": 16417,
+      "last_index": 16417,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16418,
+      "last_index": 16425,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 8
+    },
+    {
+      "first_index": 16426,
+      "last_index": 16426,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16427,
+      "last_index": 16429,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 3
+    },
+    {
+      "first_index": 16430,
+      "last_index": 16430,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16431,
+      "last_index": 16433,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 3
+    },
+    {
+      "first_index": 16434,
+      "last_index": 16435,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 16436,
+      "last_index": 16445,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 10
+    },
+    {
+      "first_index": 16446,
+      "last_index": 16446,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16447,
+      "last_index": 16451,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 5
+    },
+    {
+      "first_index": 16452,
+      "last_index": 16452,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16453,
+      "last_index": 16453,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 1
+    },
+    {
+      "first_index": 16454,
+      "last_index": 16454,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16455,
+      "last_index": 16466,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 12
+    },
+    {
+      "first_index": 16467,
+      "last_index": 16471,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 5
+    },
+    {
+      "first_index": 16472,
+      "last_index": 16477,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 6
+    },
+    {
+      "first_index": 16478,
+      "last_index": 16478,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16479,
+      "last_index": 16505,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 27
+    },
+    {
+      "first_index": 16506,
+      "last_index": 16507,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 16508,
+      "last_index": 16521,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 14
+    },
+    {
+      "first_index": 16522,
+      "last_index": 16522,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16523,
+      "last_index": 16527,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 5
+    },
+    {
+      "first_index": 16528,
+      "last_index": 16529,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 16530,
+      "last_index": 16561,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 32
+    },
+    {
+      "first_index": 16562,
+      "last_index": 16562,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16563,
+      "last_index": 16570,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 8
+    },
+    {
+      "first_index": 16571,
+      "last_index": 16573,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 3
+    },
+    {
+      "first_index": 16574,
+      "last_index": 16574,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16575,
+      "last_index": 16594,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 20
+    },
+    {
+      "first_index": 16595,
+      "last_index": 16596,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 2
+    },
+    {
+      "first_index": 16597,
+      "last_index": 16602,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 6
+    },
+    {
+      "first_index": 16603,
+      "last_index": 16603,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16604,
+      "last_index": 16613,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 10
+    },
+    {
+      "first_index": 16614,
+      "last_index": 16614,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16615,
+      "last_index": 16638,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 24
+    },
+    {
+      "first_index": 16639,
+      "last_index": 16639,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16640,
+      "last_index": 16648,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 9
+    },
+    {
+      "first_index": 16649,
+      "last_index": 16649,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16650,
+      "last_index": 16651,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 2
+    },
+    {
+      "first_index": 16652,
+      "last_index": 16652,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16653,
+      "last_index": 16667,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 15
+    },
+    {
+      "first_index": 16668,
+      "last_index": 16668,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16669,
+      "last_index": 16708,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 40
+    },
+    {
+      "first_index": 16709,
+      "last_index": 16709,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16710,
+      "last_index": 16774,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 65
+    },
+    {
+      "first_index": 16775,
+      "last_index": 16775,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16776,
+      "last_index": 16829,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 54
+    },
+    {
+      "first_index": 16830,
+      "last_index": 16830,
+      "state": "other_withheld:ambiguous_front_cones",
+      "count": 1
+    },
+    {
+      "first_index": 16831,
+      "last_index": 16928,
+      "state": "numeric_clear_of_body_boundary",
+      "count": 98
+    }
+  ],
+  "gap_limit_sec": 0.2,
+  "gui_hold_duration_measured": false,
+  "physical_motion_measured": false,
+  "boundary_candidate_audit_reasons": {
+    "no_logged_late_bbox_only_rejection": 4,
+    "logged_closed_pair_rejected_at_float_bbox_only": 74
+  },
+  "conflict_bridge_accepted": 244,
+  "conflict_frame_count": 244,
+  "saved_images_in_conflict": 5,
+  "window_processed_records": 303,
+  "source_log_sha256": "eacc20f9c14ff760448f0a6f934e1dd5d121be8435317bf0e23a9d7a58238f65",
+  "input_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/driver_motion_live_20261110_171250/motion_profile_used.json": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/driver_motion_live_20261110_171250/motion_engine_summary.json": "7d4a4db1fbc7e7b300361927d90f90f7e26b975a3a7942479e842834c24a4319",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_diagnostic_config.json": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/evidence_index.jsonl": "df441c1b437ef502e20acf5fdd77700da62b9a9df34184845f444995d6006448",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/evidence_status.json": "e36549bdf3fae4b31975235282d8b381dc33755937f8484314cb63a3987f42da",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/driver_motion_live_20261110_171250/motion_distance_frames.jsonl": "eacc20f9c14ff760448f0a6f934e1dd5d121be8435317bf0e23a9d7a58238f65",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f006861.png": "be450f38486cfd7407b4257935cfdd6ef400b2397811e63b3780c9089b3614d6",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f006861.json": "66a8a63a665b1ece18dcd94718f7c25056ee5caa3882ab091d70752ad753065b",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014203.png": "eb554d5e73b12b3167323fd3e94b3cc72edb26a458e76c424fe861cfc615f0ef",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014203.json": "4b438b485e970643a0afd6f7c5d52ab6b1ee01e49bcc3b591a5e9e0cbe966732",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014267.png": "174c6afd5b66dd09fe7ae0be8a3aea72405989a5ec840489fe10df64daa6e65c",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014267.json": "14612708d198000cac1e2a0e700d0aa1ae7e737d56cad656ee76db197d22ea3e",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014297.png": "776c046e2ca3364b4dcb347a2099db7f7e90b3e9ce4514dc1e73e864f28bcad9",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014297.json": "218921c3c39f5f993310ea3310ae9d60b7b73f2801fd4732eb28ecd4bbb56f47",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014329.png": "54e66552e5ca771e73c761f807ba38fc5c8bcecf4028f52e339a2b18d39b45aa",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014329.json": "83cc0a23725d397076a26b296a663322ebeff3bde1180e6e80276f97a70911f1",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014382.png": "8cbc9de7b3333e7fb2a248ab44c8690b9adda0ed1645ceb8af018e2771eb1642",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014382.json": "d801f704039d1469348409209e44fc0aa92b3c65e02702e053c240e1462f8ea5",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014604.png": "0e9a4b5a0085d0e6eaf670e07f5bc3498e3d3865ae8be8f2ed9059872653b698",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014604.json": "1c753a36284810109dd820864ea7842c3b2597a38106b390044a298b60863dc8",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014922.png": "f72f92be99e4e420f2ea9f9c6cd32f3a82c8e5f2eae7d8974515429cfd7e0a38",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014922.json": "b6bf47ed1295eeeeb76bda93a808be899ab32f437bb1c85fc9d4f5a8dca2c092",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-10/driver_motion_171250_review_r01/analyze_evidence.py": "36430c2e6d78e1b3afa08eb75d7ab114be3b39526f913819301d8868f9b7fca9",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_bbox_boundary_shadow.py": "9530eee1add5d026c31707b7e600f9909a022520050f0b77702fcf8972db77c0",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py": "71023e8578053453437fe526ca79cfef311d3ee5a51eb44ddc16dfc26005904e",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_upper_support_candidate.py": "22db172f69bc1140c207d706654ba6ac6b42ea8fb698cacc346c1d18d096d10a",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_support_completion_candidate.py": "57b4403dca6066b19e8446f8cbc97f94a0a9541c8e6f384066b25487f634c348",
+    "/home/robo25/theta_ws/RICHO-theta/src/verify_driver_withheld_evidence.py": "276ce2b3f04993fc3e142dad8655bd7786b42aed336ad2bc619522e26b88734f",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-10/driver_motion_171250_review_r01/evidence_replay_r01/comparisons.json": "a543f148237f96b67364ddf336401c620abc79a2fb143c891eb6c2ffbeaf761c",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-10/driver_motion_171250_review_r01/evidence_replay_r01/summary.json": "3b4107a666df5d6df701db730f7346d7eb5a0248c44aee05b71dd349e69bc702",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-10/self_body_boundary_shadow_r01/reference.json": "21dc739e66de3b12db9fe5bd760c7635e73bc57b04e6039bdbc29b97437a3584",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-10/self_body_boundary_shadow_r01/visual_review.json": "c2fef3f59e2be0697650e07b8541dc7ef73637554d8062800d66915b95127bfc",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-10/driver_motion_171250_review_r01/audit_r02.json": "28b8a584ee2949ca37e9f156cf7509eda04f954c3092a4121ce4bd376d2e2c17",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-10/self_body_boundary_shadow_r01/verify.py": "154d31cf45ab2a77ee2094f804a8be1044000add69b57cd563f7d883ecd40701",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py": "e0b2c6f7517f5514df570abf0928eb759680e64f91be83c1acfdfe5b87e9486f",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_cone_self_body_shadow.py": "a90984ee824965b517382a8c3fdf281233dee47799a4e467c2aa0a013478d4b3",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-10/self_body_boundary_shadow_r01/results_r01/numeric_log_shadow.csv": "02a779c71fec5479d90830ec77990943901fc049f2fdd990e71538cf604ce879",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-10/support_boundary_audit_r01/audit.py": "e58eb45cb74db71e49776e951e02dbe256d6ffeb9f3e919ea4b712ce6e0bc733",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-10/self_body_boundary_shadow_r01/results_r01/summary.json": "32357f8c6b90ac6e6ba3b5f954faf6ff7a58023c6ed202857b279e9e437269f4",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/driver_motion_live_20261110_171250/motion_bridge_events.jsonl": "54138e2b840c4591496226cb9ae84a99d113af62cfca83d8bd7a0ceeaf6b5d3c"
+  },
+  "source_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-10/motion_boundary_timeline_r01/analyze.py": "8b2b23d32e92ce265b2a6e2c6f7165d8316fc33c9474008b82a6f2b241e9544a",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-10/motion_boundary_timeline_r01/timeline.py": "240714c16b5ab22110fdb25cc2ce45d89c992f2793d7c8ae7c50baeaf5b8b39d",
+    "/home/robo25/theta_ws/RICHO-theta/tests/test_motion_boundary_timeline.py": "49f82eea7f2a31efc4c2324b57b0fbb9e8a1398c8d9671f35d2ccea9a3e4ee2f"
+  },
+  "original_live_results_modified": false,
+  "physical_error_measured": false,
+  "new_camera_or_vehicle_operation": false,
+  "tests": {
+    "run": 8,
+    "failures": 0,
+    "errors": 0
+  }
+}

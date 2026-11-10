@@ -1,0 +1,21 @@
+usage: run_guarded_recording_comparison.py [-h] --input-dir INPUT_DIR
+                                           --evidence-dir EVIDENCE_DIR
+                                           --reference REFERENCE --output-dir
+                                           OUTPUT_DIR [--config CONFIG]
+                                           [--wait-sec WAIT_SEC]
+                                           [--poll-sec POLL_SEC]
+
+Post-recording comparison ONLY. No UI, IPC, camera, ROS, model or control. Can
+wait for an existing evidence writer to finish, but never compares live
+frames. Reads committed native evidence and writes a separate bounded JSONL.
+
+options:
+  -h, --help            show this help message and exit
+  --input-dir INPUT_DIR
+  --evidence-dir EVIDENCE_DIR
+  --reference REFERENCE
+  --output-dir OUTPUT_DIR
+  --config CONFIG
+  --wait-sec WAIT_SEC   wait up to 3600 seconds for writer completion, NOT
+                        live comparison
+  --poll-sec POLL_SEC
