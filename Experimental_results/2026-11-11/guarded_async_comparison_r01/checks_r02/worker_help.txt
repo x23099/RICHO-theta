@@ -1,0 +1,30 @@
+usage: driver_motion_process.py [-h] --weights WEIGHTS --profile PROFILE
+                                [--config CONFIG] --output-dir OUTPUT_DIR
+                                [--device DEVICE]
+                                [--target-roi TARGET_ROI TARGET_ROI TARGET_ROI TARGET_ROI]
+                                --experimental-rigid-mount
+                                [--comparison-dir COMPARISON_DIR]
+                                [--withheld-evidence-dir WITHHELD_EVIDENCE_DIR]
+                                [--withheld-evidence-max-frames WITHHELD_EVIDENCE_MAX_FRAMES]
+                                [--withheld-evidence-max-mib WITHHELD_EVIDENCE_MAX_MIB]
+                                [--withheld-evidence-interval-sec WITHHELD_EVIDENCE_INTERVAL_SEC]
+
+GPU subprocess for driver frame tap. No ROS, Qt, camera or RTC listener.
+
+options:
+  -h, --help            show this help message and exit
+  --weights WEIGHTS
+  --profile PROFILE
+  --config CONFIG
+  --output-dir OUTPUT_DIR
+  --device DEVICE
+  --target-roi TARGET_ROI TARGET_ROI TARGET_ROI TARGET_ROI
+  --experimental-rigid-mount
+  --comparison-dir COMPARISON_DIR
+                        OFF by default; new recordings/ comparison directory
+  --withheld-evidence-dir WITHHELD_EVIDENCE_DIR
+                        OFF by default; native support-boundary rejection
+                        PNG/JSON under recordings/
+  --withheld-evidence-max-frames WITHHELD_EVIDENCE_MAX_FRAMES
+  --withheld-evidence-max-mib WITHHELD_EVIDENCE_MAX_MIB
+  --withheld-evidence-interval-sec WITHHELD_EVIDENCE_INTERVAL_SEC

@@ -1,6 +1,18 @@
 # コーン測距・FFB開発 引き継ぎ資料
 
-更新日: **2026-11-10（JST）**。対象リポジトリ: `RICHO-theta`。
+更新日: **2026-11-11（JST）**。対象リポジトリ: `RICHO-theta`。
+
+## 11/11：比較専用workerの接続と保存画像の実pipe検証を完了
+
+[最新実装・正式検証](Experimental_results/2026-11-11/guarded_async_comparison_r01/README.md)、[GPU PC反映・実カメラの静止手順](Experimental_results/2026-11-11/guarded_async_comparison_r01/live_procedure.md)を優先する。ユーザーは「カメラが必要な段階まで」の継続を依頼し、GPU PCは使用可能と回答済み。GPU PC／カメラ／ROS等をこちらから起動してはいない。
+
+`--motion-comparison-dir`で既定OFFの専用daemonへ、主結果のpipe送信後に元画素と不変JSONLを渡す。最新待ち1枚、別比較ログ、端末pin/load/invalidate/status、保存／ログ／要求上限・終了を追加。load完了前に受信済みの待ち画像も使わない。主表示・主IPC・操縦／ROS／FFBへの比較値接続はなし。GPU子内でCPU資源を共有するため実機の負荷はまだ未確認。
+
+正式198テストPASS、実子・pipeによる保存8画像の比較OFF/ONで主結果8/8一致、比較は後続14922対応の1.1424715mだけ。別session load拒否、元画素不変、両子／I/O・比較writer終了確認。保存枠による明示的オフライン再生であり、新規YOLO推論・実カメラ・実機走行ではない。r02が正式記録、r01は追加試験／状態表示の補強前の履歴。
+
+次はGPU PCへの反映後、現在カメラ接続を静止状態で通常受信し、端末pinで天板境界の読めるnative1枚＋同名JSON／statusを取得する。校正マーカー・実測・走行は今は不要。pin後は同接続を維持して現在の参照JSONを用意しloadする。過去参照のsession書換え転用はしない。
+
+今日はGit commit/push未実施。GPU反映用13ファイル限定パッチ `recordings/2026-11-11/guarded_async_update_r02.patch` とmanifestを用意し、基準49f5c40への正向きdry-runと現worktreeへの逆向きdry-runを確認する。`git pull`だけで本日の機能が入ると案内しない。別作業collision_risk.py／test_collision_gradient.pyは保持・対象外。日報は終了依頼時に作成する。
 
 ## 11/10終業：日報・Git保存と明日のリモート再開
 

@@ -21,6 +21,45 @@ RISK_LEVELS = {
     "UNKNOWN",
 }
 
+# Steering-risk gradient defaults.  The gradient is the sensitivity of the
+# path-collision risk to a small change of the commanded yaw rate.  Positive
+# angular velocity is a left turn, so g > 0 means that steering further left
+# increases risk.
+GRADIENT_MIN_TTC_SEC = 0.1
+GRADIENT_MAX_TTC_SEC = 10.0
+GRADIENT_DEFAULT_DELTA_RADPS = 0.15
+GRADIENT_DEFAULT_G_SCALE = 1.0
+GRADIENT_DEFAULT_EMA_ALPHA = 0.25
+GRADIENT_DEFAULT_DEADBAND = 0.1
+GRADIENT_MIN_SPEED_MPS = 0.02
+
+
+def _finite_value(value):
+    """Return a finite float, or None when the value is unusable."""
+
+    if value is None:
+        return None
+    try:
+        parsed = float(value)
+    except (TypeError, ValueError):
+        return None
+    return parsed if math.isfinite(parsed) else None
+
+
+def _ttc_bounds(min_ttc_sec, max_ttc_sec):
+    """Validate and return the TTC clamp bounds used by the path risk."""
+
+    min_ttc = float(min_ttc_sec)
+    max_ttc = float(max_ttc_sec)
+    if (
+        not math.isfinite(min_ttc)
+        or not math.isfinite(max_ttc)
+        or min_ttc <= 0.0
+        or max_ttc <= min_ttc
+    ):
+        raise ValueError("TTC bounds must satisfy 0 < min < max")
+    return min_ttc, max_ttc
+
 
 def predict_unicycle_path(
     linear_mps,
@@ -372,3 +411,258 @@ def assess_path_collision(
         "path_eta_sec": path_eta_sec,
         "risk_level": risk_level,
     }
+
+
+def path_risk_from_eta(
+    path_eta_sec,
+    in_collision_corridor,
+    *,
+    min_ttc_sec=GRADIENT_MIN_TTC_SEC,
+    max_ttc_sec=GRADIENT_MAX_TTC_SEC,
+):
+    """Return a scalar path risk from a closest-approach time.
+
+    Phase 1 uses ``path_eta_sec`` from :func:`assess_path_collision` as a
+    TTC proxy.  A clear path has zero risk.  An in-corridor path without a
+    finite ETA, for example at near-zero speed, gets the floor risk.
+    """
+
+    min_ttc, max_ttc = _ttc_bounds(min_ttc_sec, max_ttc_sec)
+    if not in_collision_corridor:
+        return 0.0
+    eta = _finite_value(path_eta_sec)
+    if eta is None:
+        return 1.0 / max_ttc
+    eta = min(max(eta, min_ttc), max_ttc)
+    return 1.0 / eta
+
+
+def gradient_to_direction(
+    gradient_normalized,
+    *,
+    threshold=GRADIENT_DEFAULT_DEADBAND,
+):
+    """Map a normalized gradient to the FFB direction field.
+
+    ``-1`` means that a left turn is more dangerous, so the left-cut
+    resistance must be increased.  ``+1`` is the mirrored case.
+    """
+
+    threshold = float(threshold)
+    if not math.isfinite(threshold) or threshold < 0.0:
+        raise ValueError("threshold must be finite and >= 0")
+    value = _finite_value(gradient_normalized)
+    if value is None:
+        return 0
+    if value > threshold:
+        return -1
+    if value < -threshold:
+        return 1
+    return 0
+
+
+def _inactive_gradient(reason, delta_radps, *, valid=True):
+    """Return an all-zero gradient result for a suppressed evaluation."""
+
+    return {
+        "valid": bool(valid),
+        "reason": str(reason),
+        "gradient_raw": 0.0,
+        "gradient_normalized": 0.0,
+        "direction": 0,
+        "delta_radps": float(delta_radps),
+        "risk_left": 0.0,
+        "risk_center": 0.0,
+        "risk_right": 0.0,
+        "eta_left": None,
+        "eta_center": None,
+        "eta_right": None,
+        "corridor_left": False,
+        "corridor_center": False,
+        "corridor_right": False,
+    }
+
+
+def evaluate_candidate_steering(
+    linear_mps,
+    angular_radps,
+    obstacle_forward_m,
+    obstacle_left_m,
+    vehicle_width_m,
+    *,
+    delta_radps=GRADIENT_DEFAULT_DELTA_RADPS,
+    path_factory=None,
+    prediction_time_sec=3.5,
+    step_sec=0.05,
+    min_distance_m=1.5,
+    max_prediction_time_sec=15.0,
+    max_abs_yaw_deg=100.0,
+    safety_margin_m=0.10,
+    min_ttc_sec=GRADIENT_MIN_TTC_SEC,
+    max_ttc_sec=GRADIENT_MAX_TTC_SEC,
+    g_scale=GRADIENT_DEFAULT_G_SCALE,
+    risk_level=None,
+):
+    """Evaluate the risk gradient for a small change of yaw rate.
+
+    The same obstacle snapshot is assessed on three constant-twist paths:
+    ``omega - delta``, ``omega`` and ``omega + delta``.  The result is only a
+    display/recording signal in Phase 1; it does not produce a command.
+
+    ``path_factory`` must accept ``(linear_mps, angular_radps)`` and return
+    path points.  The default uses :func:`predict_unicycle_path`, so callers
+    can later inject a path predictor with a different input mapping.
+    """
+
+    linear_mps = float(linear_mps)
+    angular_radps = float(angular_radps)
+    if not math.isfinite(linear_mps) or not math.isfinite(angular_radps):
+        raise ValueError("linear and angular velocity must be finite")
+    delta_radps = float(delta_radps)
+    if not math.isfinite(delta_radps) or delta_radps <= 0.0:
+        raise ValueError("delta_radps must be finite and > 0")
+    g_scale = float(g_scale)
+    if not math.isfinite(g_scale) or g_scale <= 0.0:
+        raise ValueError("g_scale must be finite and > 0")
+    vehicle_width_m = float(vehicle_width_m)
+    if not math.isfinite(vehicle_width_m) or vehicle_width_m < 0.0:
+        raise ValueError("vehicle_width_m must be finite and >= 0")
+    _ttc_bounds(min_ttc_sec, max_ttc_sec)
+
+    level = None if risk_level is None else str(risk_level).strip().upper()
+    if level in {"CLEAR", "PATH"}:
+        return _inactive_gradient("inactive_risk_level", delta_radps)
+    if abs(linear_mps) < GRADIENT_MIN_SPEED_MPS:
+        return _inactive_gradient("low_speed", delta_radps)
+
+    obstacle_forward_m = _finite_value(obstacle_forward_m)
+    obstacle_left_m = _finite_value(obstacle_left_m)
+    if obstacle_forward_m is None or obstacle_left_m is None:
+        return _inactive_gradient(
+            "invalid_obstacle", delta_radps, valid=False
+        )
+
+    factory = path_factory
+
+    def default_path_factory(v, w):
+        return predict_unicycle_path(
+            v,
+            w,
+            prediction_time_sec=prediction_time_sec,
+            step_sec=step_sec,
+            min_distance_m=min_distance_m,
+            max_prediction_time_sec=max_prediction_time_sec,
+            max_abs_yaw_deg=max_abs_yaw_deg,
+        )
+
+    if factory is None:
+        factory = default_path_factory
+
+    omegas = (
+        angular_radps - delta_radps,
+        angular_radps,
+        angular_radps + delta_radps,
+    )
+    assessments = []
+    risks = []
+    for omega in omegas:
+        path_points = factory(linear_mps, omega)
+        assessment = assess_path_collision(
+            path_points,
+            obstacle_forward_m=obstacle_forward_m,
+            obstacle_left_m=obstacle_left_m,
+            vehicle_width_m=vehicle_width_m,
+            safety_margin_m=safety_margin_m,
+            path_speed_mps=linear_mps,
+            ttc_sec=None,
+        )
+        assessments.append(assessment)
+        risks.append(
+            path_risk_from_eta(
+                assessment["path_eta_sec"],
+                assessment["in_collision_corridor"],
+                min_ttc_sec=min_ttc_sec,
+                max_ttc_sec=max_ttc_sec,
+            )
+        )
+
+    gradient_raw = (risks[2] - risks[0]) / (2.0 * delta_radps)
+    left_index, right_index = 2, 0
+    if linear_mps < 0.0:
+        # Reverse motion mirrors the yaw-rate sign in the vehicle frame, so
+        # the travel-frame left/right candidates swap and the gradient flips.
+        gradient_raw = -gradient_raw
+        left_index, right_index = 0, 2
+    gradient_normalized = min(1.0, max(-1.0, gradient_raw / g_scale))
+    return {
+        "valid": True,
+        "reason": "ok",
+        "gradient_raw": gradient_raw,
+        "gradient_normalized": gradient_normalized,
+        "direction": gradient_to_direction(gradient_normalized),
+        "delta_radps": delta_radps,
+        "risk_left": risks[left_index],
+        "risk_center": risks[1],
+        "risk_right": risks[right_index],
+        "eta_left": assessments[left_index]["path_eta_sec"],
+        "eta_center": assessments[1]["path_eta_sec"],
+        "eta_right": assessments[right_index]["path_eta_sec"],
+        "corridor_left": bool(
+            assessments[left_index]["in_collision_corridor"]
+        ),
+        "corridor_center": bool(
+            assessments[1]["in_collision_corridor"]
+        ),
+        "corridor_right": bool(
+            assessments[right_index]["in_collision_corridor"]
+        ),
+    }
+
+
+class SteeringGradientFilter:
+    """Smooth and deadband a normalized steering-risk gradient.
+
+    The internal value is reset to zero when the alert becomes inactive or a
+    measurement is invalid.  This prevents a stale direction from surviving
+    a CLEAR interval and biasing the next warning.
+    """
+
+    def __init__(
+        self,
+        ema_alpha=GRADIENT_DEFAULT_EMA_ALPHA,
+        deadband=GRADIENT_DEFAULT_DEADBAND,
+    ):
+        self.ema_alpha = float(ema_alpha)
+        self.deadband = float(deadband)
+        if (
+            not math.isfinite(self.ema_alpha)
+            or not 0.0 < self.ema_alpha <= 1.0
+        ):
+            raise ValueError("ema_alpha must be within (0, 1]")
+        if (
+            not math.isfinite(self.deadband)
+            or not 0.0 <= self.deadband <= 1.0
+        ):
+            raise ValueError("deadband must be within [0, 1]")
+        self.value = 0.0
+
+    def reset(self):
+        """Return the filtered gradient to zero."""
+
+        self.value = 0.0
+
+    def update(self, gradient_normalized, *, risk_level=None, valid=True):
+        """Return the filtered gradient for one evaluation."""
+
+        level = None if risk_level is None else str(risk_level).strip().upper()
+        value = _finite_value(gradient_normalized)
+        if not valid or value is None or level in {"CLEAR", "PATH"}:
+            self.reset()
+            return 0.0
+        value = min(1.0, max(-1.0, value))
+        self.value = (
+            self.ema_alpha * value + (1.0 - self.ema_alpha) * self.value
+        )
+        if abs(self.value) < self.deadband:
+            self.value = 0.0
+        return self.value

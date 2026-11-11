@@ -1,4 +1,4 @@
-"""Comparison-stream lifecycle prototype; NOT wired into any live entry point.
+"""Comparison-stream lifecycle, owned by the opt-in asynchronous comparator.
 
 Single serialized owner, no threads, file/network I/O, model, ROS or control.
 The owner must call admit for each processed input and invalidate on disconnect.
@@ -42,11 +42,12 @@ class GuardedStreamComparison:
         self._generation = 0
         self._retired_sessions = set()
         self._activation_frame = None
+        self._activated_at = None
         self._closed = False
         self.reason = 'comparison_reference_not_loaded'
 
     def invalidate(self, reason='comparison_input_interrupted'):
-        self._reference = self._latest = self._activation_frame = None
+        self._reference = self._latest = self._activation_frame = self._activated_at = None
         self._witnesses.clear()
         self.reason = reason
 
@@ -111,7 +112,7 @@ class GuardedStreamComparison:
 
     def activate(self, reference, png_bytes):
         """Explicit local request, invalidates previous generation even on failure."""
-        self._reference = self._latest = self._activation_frame = None
+        self._reference = self._latest = self._activation_frame = self._activated_at = None
         self._generation += 1
         self.reason = 'comparison_reference_load_failed'
         try:
@@ -132,12 +133,13 @@ class GuardedStreamComparison:
             if hashlib.sha256(image.tobytes()).hexdigest() != witness[1]:
                 raise ValueError('reference PNG does not match admitted native pixels')
             # Loading cost also counts toward input freshness.
-            self._fresh(self._clock())
+            activated_at = self._fresh(self._clock())
             self._reference = ref
             self._activation_frame = self._current[1]
+            self._activated_at = activated_at
             self.reason = 'comparison_reference_active_future_frames_only'
         except Exception:
-            self._reference = self._latest = self._activation_frame = None
+            self._reference = self._latest = self._activation_frame = self._activated_at = None
             raise
 
     def _row(self, frame, original):
@@ -168,7 +170,7 @@ class GuardedStreamComparison:
                 raise ValueError('matching non-controlling main result required')
             if self._reference is None:
                 row['reason'] = self.reason
-            elif frame.sequence <= self._activation_frame:
+            elif frame.sequence <= self._activation_frame or frame.received_at < self._activated_at:
                 row['reason'] = 'comparison_waiting_for_post_activation_frame'
             else:
                 selected = original.get('selected_detector_boxes') or []

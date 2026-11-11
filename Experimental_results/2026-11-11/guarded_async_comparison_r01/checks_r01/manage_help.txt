@@ -1,0 +1,11 @@
+usage: manage_guarded_comparison.py [-h] --directory DIRECTORY
+                                    {pin,load,invalidate,status}
+
+Local comparison requests/status ONLY; never camera, driving, ROS or FFB.
+
+positional arguments:
+  {pin,load,invalidate,status}
+
+options:
+  -h, --help            show this help message and exit
+  --directory DIRECTORY

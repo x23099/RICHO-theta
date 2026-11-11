@@ -25,6 +25,8 @@ def add_motion_arguments(parser):
     group.add_argument("--motion-device",type=int,default=0)
     group.add_argument("--motion-target-roi",type=int,nargs=4)
     group.add_argument("--motion-experimental-rigid-mount",action="store_true")
+    group.add_argument("--motion-comparison-dir",type=Path,
+        help="OFF by default; separate comparison log + explicit pin/load requests under recordings/")
     from driver_withheld_evidence import add_evidence_arguments
     add_evidence_arguments(group, prefix="motion-")
 
@@ -32,9 +34,10 @@ def add_motion_arguments(parser):
 def bridge_from_args(args):
     from driver_withheld_evidence import EvidenceLimits, evidence_path, limits_from_args
     evidence_dir = args.motion_withheld_evidence_dir
+    comparison_dir = getattr(args, "motion_comparison_dir", None)
     limits = limits_from_args(args, prefix="motion_")
     if not args.motion_distance:
-        if evidence_dir is not None or limits != EvidenceLimits():
+        if evidence_dir is not None or limits != EvidenceLimits() or comparison_dir is not None:
             raise ValueError("withheld evidence requires --motion-distance")
         return None
     if evidence_dir is None and limits != EvidenceLimits():
@@ -60,6 +63,13 @@ def bridge_from_args(args):
         output = args.motion_output_dir.resolve()
         if evidence_dir == output or output in evidence_dir.parents or evidence_dir in output.parents:
             raise ValueError("evidence directory and motion output must be separate")
+    if comparison_dir is not None:
+        from driver_guarded_comparison import comparison_path
+        comparison_dir = comparison_path(comparison_dir)
+        for other in (args.motion_output_dir.resolve(), evidence_dir):
+            if other is not None and (comparison_dir == other or comparison_dir in other.parents
+                                      or other in comparison_dir.parents):
+                raise ValueError("comparison, evidence, and primary output must be separate")
     command=[str(args.motion_python.expanduser().absolute()),"-u",
         str(Path(__file__).with_name("driver_motion_process.py")),
         "--weights",str(args.motion_weights.expanduser().resolve()),
@@ -70,12 +80,14 @@ def bridge_from_args(args):
         command.extend(["--config",str(args.motion_config.resolve())])
     if args.motion_target_roi is not None:
         command.extend(["--target-roi",*map(str,args.motion_target_roi)])
+    if comparison_dir is not None:
+        command.extend(["--comparison-dir",str(comparison_dir)])
     if evidence_dir is not None:
         command.extend(["--withheld-evidence-dir", str(evidence_dir),
             "--withheld-evidence-max-frames", str(limits.max_frames),
             "--withheld-evidence-max-mib", str(limits.max_bytes//(1024*1024)),
             "--withheld-evidence-interval-sec", str(limits.interval_sec)])
-    return DriverMotionBridge(command,args.motion_output_dir,evidence_dir=evidence_dir)
+    return DriverMotionBridge(command,args.motion_output_dir,evidence_dir=evidence_dir,comparison_dir=comparison_dir)
 
 
 class DriverMotionBridge:
@@ -85,9 +97,10 @@ class DriverMotionBridge:
     mutable capture buffer. UI remapping/annotation must continue to use copies.
     No image copy, file write, GPU call or pipe I/O occurs in publish().
     """
-    def __init__(self,command,output_dir,*,clock=time.monotonic,evidence_dir=None):
+    def __init__(self,command,output_dir,*,clock=time.monotonic,evidence_dir=None,comparison_dir=None):
         self.command,self.output_dir,self.clock=list(command),Path(output_dir),clock
         self.evidence_dir=Path(evidence_dir) if evidence_dir is not None else None
+        self.comparison_dir=Path(comparison_dir) if comparison_dir is not None else None
         self.output_dir.mkdir(parents=True,exist_ok=False)
         self.lock=threading.Lock();self.stop_event=threading.Event();self.ready=threading.Event()
         self.process=None;self.error=None;self.latest=None;self.result=None
@@ -265,7 +278,9 @@ class DriverMotionBridge:
                 if io_stopped and child_stopped else "shutdown_incomplete",
             forced_worker_kill=self.forced_worker_kill,shutdown_error=self.shutdown_error,
             shutdown_wait_ms=1000*(time.monotonic()-started),
-            image_files_written=None if self.evidence_dir is not None else False,
+            image_files_written=None if self.evidence_dir is not None or self.comparison_dir is not None else False,
+            guarded_comparison_requested=self.comparison_dir is not None,
+            guarded_comparison_status_file=str(self.comparison_dir/"comparison_status.json") if self.comparison_dir else None,
             withheld_evidence_requested=self.evidence_dir is not None,
             withheld_evidence_status_file=str(self.evidence_dir/"evidence_status.json") if self.evidence_dir else None,
             physical_metric_verified=False,usable_for_ffb=False,

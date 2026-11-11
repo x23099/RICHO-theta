@@ -1,0 +1,74 @@
+{
+  "schema": "experimental_rigid_mount_range_v1",
+  "camera_sha256": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+  "config_sha256": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+  "image_size": [
+    1280,
+    720
+  ],
+  "native_ray_basis": "unmodified",
+  "metric": "horizontal_camera_foot_range_m",
+  "primary_model": "ippe_0",
+  "models": [
+    {
+      "id": "ippe_0",
+      "up_optical": [
+        -0.023902399089715066,
+        -0.9997041620762414,
+        0.004501515877554066
+      ],
+      "height_m": 0.5767672744708221,
+      "native_rmse_px": 0.10584493788665551,
+      "solution_index": 0
+    },
+    {
+      "id": "ippe_1",
+      "up_optical": [
+        0.02777437288197132,
+        0.7138294444831829,
+        -0.6997686106134253
+      ],
+      "height_m": 0.3877313764340629,
+      "native_rmse_px": 34.837971869428976,
+      "solution_index": 1
+    }
+  ],
+  "source": {
+    "image_sha256": "973e19b6ee85c0702056426d83a07e86f503755a76ab635099f3a869287bd4f1",
+    "image_file": "decoded_159c37ad534a4ac0b96ca69791713567_f038231.png",
+    "session": "159c37ad534a4ac0b96ca69791713567",
+    "frame": 38231,
+    "points_sha256": "95f2414dcc124dab2987cc795acf68fcbc95f4f5237663724bb8bf302d6166c7",
+    "E_used": false
+  },
+  "local_metric_rectangle": {
+    "width_m": 0.8,
+    "depth_m": 0.8,
+    "corners_native_xy": [
+      [
+        254.69232545243605,
+        413.5716842852723
+      ],
+      [
+        384.0921157576567,
+        409.52236742452527
+      ],
+      [
+        278.1667545128992,
+        376.72819145978747
+      ],
+      [
+        357.7189079537764,
+        374.7076024022576
+      ]
+    ],
+    "coordinate_frame": "arbitrary_metric_board_NOT_vehicle_or_base_link"
+  },
+  "mount_or_floor_tilt_compensated": false,
+  "cross_session_mount_verified": false,
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "controlling_distance": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}

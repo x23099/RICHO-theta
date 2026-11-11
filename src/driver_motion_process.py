@@ -9,7 +9,7 @@ import time
 from driver_motion_protocol import compact_result, read_frame, write_message
 
 
-def serve(engine, predictor, input_stream, output_stream, log_path, *, clock=time.monotonic, evidence=None):
+def serve(engine, predictor, input_stream, output_stream, log_path, *, clock=time.monotonic, evidence=None, comparison=None):
     processed = available = 0
     with Path(log_path).open("x") as log:
         while True:
@@ -36,6 +36,12 @@ def serve(engine, predictor, input_stream, output_stream, log_path, *, clock=tim
             result_line=json.dumps(result,allow_nan=False)+"\n"
             log.write(result_line);log.flush()
             write_message(output_stream,dict(type="result",result=compact_result(result)))
+            if comparison is not None:
+                try:
+                    comparison.offer(frame,result_line)
+                except Exception as error:
+                    print("[WARNING] comparison disabled; main distance continues: "+str(error),file=sys.stderr)
+                    comparison=None
             if evidence is not None:
                 try:
                     evidence.offer(frame,result,result_line)
@@ -61,11 +67,13 @@ def main(argv=None):
     parser.add_argument("--device",type=int,default=0)
     parser.add_argument("--target-roi",type=int,nargs=4)
     parser.add_argument("--experimental-rigid-mount",action="store_true",required=True)
+    parser.add_argument("--comparison-dir",type=Path,help="OFF by default; new recordings/ comparison directory")
     add_evidence_arguments(parser)
     args=parser.parse_args(argv)
     # Keep stdout exclusively for IPC, including during model setup/predict.
     output=sys.stdout.buffer
     evidence=None
+    comparison=None
     previous_sigterm=None
     class EvidenceShutdown(BaseException):
         pass
@@ -79,6 +87,14 @@ def main(argv=None):
             if args.withheld_evidence_dir is None and limits != EvidenceLimits():
                 raise ValueError("evidence limits require --withheld-evidence-dir")
             directory=evidence_path(args.withheld_evidence_dir) if args.withheld_evidence_dir is not None else None
+            comparison_directory=None
+            if args.comparison_dir is not None:
+                from driver_guarded_comparison import comparison_path
+                comparison_directory=comparison_path(args.comparison_dir)
+                for other in (args.output_dir.resolve(),directory):
+                    if other is not None and (other == comparison_directory or other in comparison_directory.parents
+                                              or comparison_directory in other.parents):
+                        raise ValueError("comparison, evidence, and main output must be separate")
             settings,camera,_,_=load_config(args.config)
             profile,sha=load_motion_profile(args.profile,settings)
             engine=MotionRangeEngine(settings,camera,profile,sha,acknowledged=True,
@@ -92,18 +108,31 @@ def main(argv=None):
             if directory is not None:
                 try:
                     evidence=WithheldEvidenceRecorder(directory,args.output_dir/"motion_distance_frames.jsonl",limits)
-                    import signal
-                    previous_sigterm=signal.signal(signal.SIGTERM,stop_evidence_worker)
                 except Exception as error:
                     print("[WARNING] evidence initialization failed; distance continues: "+str(error),file=sys.stderr)
                     summary["withheld_evidence_initialization_error"]=f"{type(error).__name__}: {error}"[:1000]
+            if comparison_directory is not None:
+                try:
+                    from driver_guarded_comparison import GuardedComparisonWorker
+                    comparison=GuardedComparisonWorker(comparison_directory,settings,camera,profile,sha,
+                        target_roi=args.target_roi)
+                except Exception as error:
+                    summary["comparison_initialization_error"]=f"{type(error).__name__}: {error}"[:1000]
+                    print("[WARNING] comparison initialization failed; main distance continues: "+str(error),file=sys.stderr)
+            if evidence is not None or comparison is not None:
+                import signal
+                previous_sigterm=signal.signal(signal.SIGTERM,stop_evidence_worker)
+            summary["guarded_comparison"]=dict(requested=comparison_directory is not None,
+                worker_started=comparison is not None,directory=str(comparison_directory) if comparison_directory else None,
+                main_display_modified=False,controlling_distance=False)
             summary["withheld_evidence"]=dict(requested=directory is not None,
                 recorder_started=evidence is not None, directory=str(directory) if directory else None,
                 target_reason="colour_contour_reaches_roi_edge", max_frames=limits.max_frames,
                 max_png_and_sidecar_bytes=limits.max_bytes, interval_sec=limits.interval_sec)
             (args.output_dir/"motion_engine_summary.json").write_text(json.dumps(summary,indent=2)+"\n")
             (args.output_dir/"motion_profile_used.json").write_text(json.dumps(profile,indent=2)+"\n")
-            serve(engine,predictor,sys.stdin.buffer,output,args.output_dir/"motion_distance_frames.jsonl",evidence=evidence)
+            serve(engine,predictor,sys.stdin.buffer,output,args.output_dir/"motion_distance_frames.jsonl",
+                evidence=evidence,comparison=comparison)
     except EvidenceShutdown:
         return 0
     except Exception as error:
@@ -115,6 +144,8 @@ def main(argv=None):
             signal.signal(signal.SIGTERM,signal.SIG_IGN)
         if evidence is not None:
             evidence.close(timeout=.25)
+        if comparison is not None:
+            comparison.close(timeout=.25)
         if previous_sigterm is not None:
             import signal
             signal.signal(signal.SIGTERM,previous_sigterm)

@@ -1,0 +1,62 @@
+{
+  "schema": "guarded_async_checks_v1",
+  "state": "pass",
+  "tests_run": 195,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "sources_unchanged": true,
+  "source_sha256": {
+    "tests/test_driver_guarded_comparison.py": "9c2a97847c770ea7031cf4c48802893c15bba950156b7e0328314cfef6814c93",
+    "tests/test_cone_guarded_stream_comparison.py": "384798c2ebff9f668a319bbfefd37ff8aa35e73ae43ea8ebe643557f4b3f94ac",
+    "tests/test_driver_motion_bridge.py": "188359e910ac9e757148a3638b6ad464146a109f1e85bf61c348613209715b4f",
+    "tests/test_driver_motion_camera.py": "83d24a3d7db67433b9c07acb902a3d45741bcd71c5e84c32ed95ff9c1bda7292",
+    "tests/test_driver_motion_integration.py": "acd4f1cf7fffd974892d4c21baf38bccf89676dddf86651833efc07dd9d25291",
+    "tests/test_driver_motion_shutdown.py": "f7c507a27715480c2a2dac4c7ce6a1043695184089faf0392d534e7301bbccb5",
+    "tests/test_driver_withheld_evidence.py": "3b526718a12060add851d3a853a1e1fc893d6c755c0f170d43878f6e1ad45a87",
+    "tests/test_cone_guarded_lower_edge_shadow.py": "6f3f34c2c0693100f4affd5571933e5a8c59b7157224801c5183e22bfe6bce84",
+    "tests/test_cone_bbox_boundary_shadow.py": "409569323acab5a9e436f34f9a5f9334c9e83592921493e0ff1133ac58ceeac3",
+    "tests/test_cone_self_body_shadow.py": "a90984ee824965b517382a8c3fdf281233dee47799a4e467c2aa0a013478d4b3",
+    "tests/test_guarded_recording_comparison.py": "472c696097249ce2c5cff2eeb4276123073c9b6b0ed50770af2ceca2e9e2239e",
+    "src/driver_guarded_comparison.py": "fc10d78ab3ccc6e8c1e649899943ee42e3154cd3bca2fb3baeb2272453baef4c",
+    "src/manage_guarded_comparison.py": "0c57602467b97475802218978e49f199190e84f6a96549857c06002b651fe001",
+    "src/cone_guarded_stream_comparison.py": "b30a1b10719a68966e1efb5ddf2aab7cb4d5b7ac40465058a29db1190dec7880",
+    "src/driver_motion_bridge.py": "d763a982fde11586f1169ac7519c6257779ae8f99a2c2270397bd4b8c9903a85",
+    "src/driver_motion_process.py": "1f9d8dd5b9dc8837a472f509ae602177a4885c93ce4a6971dfc1e91da3a7e4f0",
+    "src/driver_motion_protocol.py": "8f9ed011643eea75be54a741fdaa595646c7dc66d3277a1e3327f14256bc94dd",
+    "src/driver_withheld_evidence.py": "ef8a4e56e6494d4117e3a80b2aca167446c465f6d0c74aa5070bc71c0125fa8e",
+    "src/webrtc_receive_ui.py": "8d4165df3bb45eaf61f737ce758b936bd2f992a93d99ce82e26e037e0bc50590",
+    "src/webrtc_stream.py": "b7a1914f26d2285c3a959038c8b310505e626e9594ee7f67e0e1ce2f85d80899",
+    "Experimental_results/2026-11-11/guarded_async_comparison_r01/check.py": "62330a6d1c1d6c651ec7078734dca0a0320384215390a6d9707d39533aaee75b"
+  },
+  "cli_checks": [
+    {
+      "command": [
+        "/home/robo25/theta-env/bin/python3",
+        "src/driver_motion_process.py",
+        "--help"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/home/robo25/theta-env/bin/python3",
+        "src/manage_guarded_comparison.py",
+        "--help"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "src/start_theta_receive_rtc.sh"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "camera_started": false,
+  "cuda_inference_started": false,
+  "ros_started": false,
+  "vehicle_operated": false
+}

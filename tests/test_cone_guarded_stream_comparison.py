@@ -99,6 +99,13 @@ class StreamComparisonTests(unittest.TestCase):
         self.assertFalse(row['comparison_distance_available'])
         self.assertEqual(row['reason'], 'comparison_waiting_for_post_activation_frame')
 
+    def test_queued_frame_received_before_load_completion_is_not_used(self):
+        self.activate()
+        row = self.next_result(2, 10.005)
+        self.assertFalse(row['comparison_distance_available'])
+        self.assertEqual(row['reason'], 'comparison_waiting_for_post_activation_frame')
+        self.assertTrue(self.next_result(3, 10.03)['comparison_distance_available'])
+
     def test_self_body_veto_preserved(self):
         self.reference['boundary_xy'] = [[280, 400], [360, 400]]
         self.activate()
