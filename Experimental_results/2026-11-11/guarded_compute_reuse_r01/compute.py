@@ -19,8 +19,8 @@ FIELDS=('distance_available','horizontal_camera_foot_range_m','reason','support_
     'models','selected_detector_boxes','support_observation','front_candidates','primary_model','profile_sha256',*FLAGS)
 
 
-def evaluate_offline_frame(frame,boxes,original,data,reference,*,completed_at,shared=False,offline_only=False):
-    if offline_only is not True or type(shared) is not bool:
+def evaluate_offline_frame(frame,boxes,original,data,reference,*,completed_at,shared=False,offline_only=False,compact=False):
+    if offline_only is not True or type(shared) is not bool or type(compact) is not bool:
         raise ValueError('explicit offline compute mode required')
     native_frame(frame.image)
     if (not math.isfinite(completed_at) or original.get('schema')!='cone_motion_range_v1'
@@ -35,7 +35,7 @@ def evaluate_offline_frame(frame,boxes,original,data,reference,*,completed_at,sh
     comparison=None
     if len(selected)==1:
         comparison=compare_guarded_lower_edge(frame.image,selected[0],data['camera'],reference,
-            session=frame.session,reference_matches=True)
+            session=frame.session,reference_matches=True,compact=compact)
 
     def current_observation(image,box,camera):
         # Local closure, no shared/global/per-stream cache or main-log observation.

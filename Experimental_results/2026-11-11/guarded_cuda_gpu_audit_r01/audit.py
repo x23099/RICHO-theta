@@ -25,15 +25,17 @@ def require(condition,message):
     if not condition:raise ValueError(message)
 
 
-def archive_payload(path):
+def archive_payload(path, *, prefix='guarded_cuda_gpu_r01'):
     """Never extract links/special files or trust names as filesystem targets."""
+    require(isinstance(prefix,str) and re.fullmatch(r'guarded_cuda_gpu_r[0-9]{2}',prefix),
+        'explicit bounded archive root required')
     out={};seen=set();total=0
     with tarfile.open(path,'r:xz') as archive:
         for i,member in enumerate(archive):
             require(i<128,'too many archive entries')
             name=member.name.rstrip('/');p=PurePosixPath(name)
             require(name==str(p) and not p.is_absolute() and '..' not in p.parts
-                and '\\' not in name and p.parts[0]=='guarded_cuda_gpu_r01','unsafe archive path')
+                and '\\' not in name and p.parts[0]==prefix,'unsafe archive path')
             require(name not in seen,'duplicate archive entry');seen.add(name)
             require(member.isdir() or member.isfile(),'links and special files rejected')
             if member.isdir():continue
@@ -41,7 +43,7 @@ def archive_payload(path):
             total+=member.size;require(total<=64*1024*1024,'oversized expanded archive')
             payload=archive.extractfile(member).read(member.size+1)
             require(len(payload)==member.size,'incomplete archive member')
-            out[str(p.relative_to('guarded_cuda_gpu_r01'))]=payload
+            out[str(p.relative_to(prefix))]=payload
     require('summary.json' in out,'summary required')
     return out
 

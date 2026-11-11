@@ -29,13 +29,22 @@ def boundary_contains(box, point, policy):
     return math.floor(x1) <= x <= math.ceil(x2) and math.floor(y1) <= y <= math.ceil(y2)
 
 
-def compare_boundary_observations(image, box, camera):
+def compare_boundary_observations(image, box, camera, *, compact=False):
+    """Full independent diagnostics by default.
+
+    compact is an owned, read-only-in-use temporary graph for the serialized
+    comparison pipeline: only the consumed half-pixel policy is constructed.
+    Nested diagnostics may alias WITHIN that fresh graph, never across calls.
+    """
+    if type(compact) is not bool:
+        raise ValueError('explicit bool compact mode required')
     native_frame(image)
     # This baseline runs the actual existing observer against original pixels.
     baseline = observe_upper_completion(image, box, camera)
-    outputs = {policy: dict(observation=copy.deepcopy(baseline), changed=False,
-                            diagnostic_reason="baseline_preserved") for policy in POLICIES}
-    result = dict(baseline=copy.deepcopy(baseline), comparisons=outputs,
+    policies = ('half_pixel_overlap',) if compact else POLICIES
+    outputs = {policy: dict(observation=baseline if compact else copy.deepcopy(baseline), changed=False,
+                            diagnostic_reason="baseline_preserved") for policy in policies}
+    result = dict(baseline=baseline if compact else copy.deepcopy(baseline), comparisons=outputs,
                   diagnostic_only=True, live_authorized=False,
                   physical_metric_verified=False, controlling_distance=False, usable_for_ffb=False)
     if (baseline.get("point") is not None or baseline.get("reason") != "colour_contour_reaches_roi_edge"
@@ -70,8 +79,8 @@ def compare_boundary_observations(image, box, camera):
         if not boundary_contains(box, point, policy):
             item["diagnostic_reason"] = "outside_diagnostic_boundary_policy"
             continue
-        candidate = copy.deepcopy(baseline)
-        candidate.update(copy.deepcopy(observation))
+        candidate = dict(baseline) if compact else copy.deepcopy(baseline)
+        candidate.update(observation if compact else copy.deepcopy(observation))
         candidate.update(reason="unverified_bbox_boundary_shadow",
                          bbox_boundary_shadow_policy=policy, bbox_boundary_shadow_granted=True,
                          **{k: False for k in OBS_FLAGS})

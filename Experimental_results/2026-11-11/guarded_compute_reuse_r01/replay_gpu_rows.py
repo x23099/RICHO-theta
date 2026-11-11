@@ -13,10 +13,11 @@ from cone_guarded_stream_comparison import GuardedStreamComparison
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output-dir',type=Path,required=True)
+    parser.add_argument('--input-dir',type=Path,default=ROOT/'recordings/2026-11-11/guarded_cuda_gpu_intake_r01')
     args=parser.parse_args();args.output_dir.mkdir(parents=True,exist_ok=False)
     base=ROOT/'recordings/2026-11-10/driver_motion_171250_intake_r01'
     data=replay.load_inputs(base/'driver_motion_live_20261110_171250',base/'motion_withheld_20261110_171250')
-    incoming=ROOT/'recordings/2026-11-11/guarded_cuda_gpu_intake_r01'
+    incoming=args.input_dir.resolve()
     fields=('session','frame','source_time_sec','original_distance_available','original_range_m',
         'comparison_distance_available','comparison_range_m','comparison_support_pixel','reason',
         'baseline_reproduced','reference_generation','reference_frame','reference_scope_verified',

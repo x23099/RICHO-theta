@@ -32,6 +32,16 @@ class CudaArchiveAuditTests(unittest.TestCase):
         self.assertEqual(gpu_audit.archive_payload(self.path),{'summary.json':b'{}'})
         self.assertEqual(list(self.path.parent.iterdir()),[self.path])
 
+    def test_second_run_requires_explicit_root(self):
+        self.archive([('guarded_cuda_gpu_r02/summary.json','file',b'{}')])
+        with self.assertRaises(ValueError):gpu_audit.archive_payload(self.path)
+        self.assertEqual(gpu_audit.archive_payload(self.path,prefix='guarded_cuda_gpu_r02'),{'summary.json':b'{}'})
+
+    def test_invalid_requested_root_rejected(self):
+        for prefix in ('../guarded_cuda_gpu_r02','/guarded_cuda_gpu_r02','guarded_cuda_gpu_r02/','',None):
+            with self.subTest(prefix=prefix),self.assertRaises(ValueError):
+                gpu_audit.archive_payload(self.path,prefix=prefix)
+
     def test_path_traversal_absolute_and_noncanonical_names_rejected(self):
         for name in ('../summary.json','/summary.json','guarded_cuda_gpu_r01/../summary.json',
                      'guarded_cuda_gpu_r01/./summary.json','other/summary.json',

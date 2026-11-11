@@ -177,7 +177,7 @@ class GuardedStreamComparison:
                 comparison = None
                 if len(selected) == 1:
                     comparison = compare_guarded_lower_edge(frame.image, selected[0], self._engine.camera,
-                        self._reference, session=frame.session, reference_matches=True)
+                        self._reference, session=frame.session, reference_matches=True, compact=True)
                 def current_observation(image, box, camera):
                     # Comparator above independently extracted this frame's pixels.
                     # Do NOT take original['support_observation'] or cache across frames.

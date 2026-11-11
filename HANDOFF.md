@@ -2,6 +2,26 @@
 
 更新日: **2026-11-11（JST）**。対象リポジトリ: `RICHO-theta`。
 
+## 11/11後続：比較内の診断コピーを削減、GPU r03の速度確認待ち
+
+[最新手順](Experimental_results/2026-11-11/guarded_compact_compute_r01/README.md)。既存の通常APIは独立したdeepcopy・両bbox policyを維持し、比較stream内部だけがcompact経路を選ぶ。毎回元画素から新規抽出した同一呼出し内の診断graphを読み取り専用で共有し、half-pixel以外の未使用policy・不要な深いコピーを省く。棄却は別top-level dictへ行う。主ログ観測・前フレームの借用や、比較頻度・thread数の変更ではない。engineの結果コピー、stream外へ返す所有権、500ms鮮度、参照失効、主行再現・自己領域棄却、主測距・操縦・ROS・FFB未接続を維持。
+
+元8画像のfull/compact全値一致、CPUカーネルP50 60.31→50.26ms（16.7%短縮）、P95 74.97→61.67ms。最大値87.90→107.20msで一律改善ではない。8ケースの再帰を含むdeepcopy呼出し128156→28794、画像観測は8→8のまま。接続後の関連290テスト全成功、GPU r02の比較320行（数値40）を新runtime＋模擬時計で全再現。実子／pipe／比較threadの元8画像再生も主8/8一致・比較1.142471541888944m・別session拒否・元画素不変・正常終了。正式記録は同フォルダbench_r01／checks_r01／gpu_rows_replay_r01／pipe_replay_r01。
+
+GPU効果・30fps達成は未確認。次は今回の8ファイル限定 `recordings/2026-11-11/guarded_compact_update_r01.patch`＋manifestをGPU PCへ反映し、既存CUDA試験を新しい `recordings/2026-11-11/guarded_cuda_gpu_r03` へ保存する。旧r01/r02は保持。旧パッチ再適用不要。同じ更新がGitで既に入っていれば重ねず、reverse --checkで確認。手順はスマート引用符を避ける絶対パス表記へ変更した。カメラ・matunuc・ROS・走行・画面録画は不要。
+
+今回runtime4ファイルに比較専用compact経路を追加。主測距の既定observer・距離式は変更なし。このPCで実CUDA・実機は起動せず、commit/push・日報作成なし。前回GPU r02監査の未commit変更は保持。旧コードSHA固定の監査結果は履歴として扱う。
+
+## 11/11後続：二重抽出削減のGPU効果を確認、比較ONは約23.9件/秒
+
+[最新GPU監査](Experimental_results/2026-11-11/guarded_cuda_gpu_audit_r02/README.md)。ユーザーが `guarded_cuda_gpu_r02.tar.xz` を提出。開始HEAD `882c6ae`（1111v3）、clean。元入力25・依存24を照合し、前回との差は予定したruntime2ファイルだけで、更新の反映を確認できた。パッチ適用／Gitのどちらで反映したかの再質問や重ねての適用は不要。
+
+今回の主640＋setup4＋warmup8＋比較322行と両pin画素・参照・終了を照合。今回のOFF/ON320組は検出枠・主判定一致。前回r01との比較でも検出枠・主判定640/640、比較の値・理由・flags322/322が一致。主640は保留画像の反復で全件保留、比較40数値は元14922の1.142471541888944mだけ。独立精度検証ではない。両writer正常終了、slot上書き／tap失敗なし。
+
+GPU上の比較ONの主処理P50は45.69→33.51ms、P95は67.23→55.59ms、測定blockの件数/秒は20.05→23.86。33.33ms超過は201/320→166/320（51.88%）。比較service P95は64.45→34.96ms、入力から比較完了までP95は177.46→93.67ms。OFFは主処理P50約22.51ms・29.74件/秒でほぼ同じ。改善は確認したが、比較ONの30fps維持や通信込みの実遅延は未認定。
+
+次は保存データで残る辞書コピー等の仕事量・比較実行頻度を調べる。**追加撮影、同じ未変更コードのGPU再試験、パッチ再適用は今は不要。** 現時点で実機が必須になったとはしない。比較側の負荷対策後にGPU確認→現在カメラの静止映像へ進む。今回runtime・主表示・ROS・FFB・環境の追加変更なし、commit/push・日報作成なし。rawは `recordings/2026-11-11/guarded_cuda_gpu_intake_r02/`、根拠は上記results_r01。監査parserは明示r02 root対応を追加し、関連11テスト成功。
+
 ## 11/11後続：比較の同一フレーム二重抽出を削減、GPU速度の再確認待ち
 
 [最新手順・根拠](Experimental_results/2026-11-11/guarded_compute_reuse_r01/README.md)。比較関数で元画素から独立に得た現在観測をbaseline距離の再現にも使い、比較側だけの上側補完抽出を2回→1回に削減した。主ログ観測や前フレームの再利用ではない。`MotionRangeEngine.measure` にper-call observerを追加し、通常主測距は既存defaultを維持。frame順序・500ms鮮度・box選択・幾何・主行との再現照合、参照pin/load/失効、自己領域棄却は残す。主表示・操縦・ROS・FFBへの比較接続なし。

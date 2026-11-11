@@ -23,25 +23,33 @@ def lower_half_pixel_only(box, point):
 
 
 def compare_guarded_lower_edge(image, box, camera, reference, *, session,
-                               reference_matches=False, margin_px=2.):
+                               reference_matches=False, margin_px=2., compact=False):
+    """compact: owned per-call graph, read-only until consumed by an engine.
+
+    Values/guards are unchanged; independent deep diagnostic copies remain the
+    default API. No compact graph is stored between frames or returned by IPC.
+    """
+    if type(compact) is not bool:
+        raise ValueError('explicit bool compact mode required')
     # Existing comparator enforces seeded, closed, identical components and
     # spatial support before it can propose any half-pixel observation.
-    comparison = compare_boundary_observations(image, box, camera)
+    comparison = compare_boundary_observations(image, box, camera, compact=compact)
     baseline = comparison["baseline"]
     baseline_review = compare_self_body(baseline, reference, session=session,
-        reference_matches=reference_matches, margin_px=margin_px)
+        reference_matches=reference_matches, margin_px=margin_px, compact=compact)
     half = comparison["comparisons"]["half_pixel_overlap"]
     candidate = half["observation"]
     eligible = (baseline.get("point") is None and half["changed"] is True
                 and candidate.get("point") is not None and lower_half_pixel_only(box, candidate["point"]))
     proposal_review = (compare_self_body(candidate, reference, session=session,
-        reference_matches=reference_matches, margin_px=margin_px) if eligible else baseline_review)
-    proposal = copy.deepcopy(proposal_review["observation"])
+        reference_matches=reference_matches, margin_px=margin_px, compact=compact) if eligible else baseline_review)
+    proposal = dict(proposal_review['observation']) if compact else copy.deepcopy(proposal_review["observation"])
     if (proposal.get("point") is not None and baseline.get("point") is None
             and not eligible):
         raise ValueError("candidate bypassed lower-edge-only rule")
-    return dict(baseline=copy.deepcopy(baseline), baseline_body_review=copy.deepcopy(baseline_review),
-        proposed_observation=proposal, proposed_body_review=copy.deepcopy(proposal_review),
+    return dict(baseline=baseline if compact else copy.deepcopy(baseline),
+        baseline_body_review=baseline_review if compact else copy.deepcopy(baseline_review),
+        proposed_observation=proposal, proposed_body_review=proposal_review if compact else copy.deepcopy(proposal_review),
         lower_half_pixel_eligible=bool(eligible),
         new_point_proposed=baseline.get("point") is None and proposal.get("point") is not None,
         baseline_point_revoked=baseline.get("point") is not None and proposal.get("point") is None,

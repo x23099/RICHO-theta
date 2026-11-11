@@ -45,19 +45,23 @@ def _edge_y(points, x):
     raise ValueError("no boundary extrapolation")
 
 
-def compare_self_body(observation, reference, *, session, margin_px=2., reference_matches=False):
+def compare_self_body(observation, reference, *, session, margin_px=2., reference_matches=False, compact=False):
     """Return a separate observation; only preserve or revoke, NEVER rescue.
 
     Caller must check the reference PNG hash before setting reference_matches.
     All support columns must lie strictly ABOVE edge-margin, not just the point.
     Invalid/unknown references fail closed for this OFFLINE proposal only.
     """
+    # Compact is only consumed within one fresh comparison call. All rejection
+    # edits are top-level; the borrowed nested diagnostics remain read-only.
+    if type(compact) is not bool:
+        raise ValueError('explicit bool compact mode required')
     if type(margin_px) not in (int, float) or not math.isfinite(margin_px) or not 0 <= margin_px <= 16:
         raise ValueError("finite 0..16 pixel margin required")
     if not isinstance(observation, dict):
         raise ValueError("observation dict required")
     ref = checked_reference(reference)
-    result = dict(observation=copy.deepcopy(observation), revoked=False, reference_usable=False,
+    result = dict(observation=dict(observation) if compact else copy.deepcopy(observation), revoked=False, reference_usable=False,
         reason="no_observed_point", min_clearance_px=None, point_clearance_px=None,
         affected_columns=0, support_columns=0, margin_px=float(margin_px),
         diagnostic_only=True, live_authorized=False, floor_contact_verified=False,
