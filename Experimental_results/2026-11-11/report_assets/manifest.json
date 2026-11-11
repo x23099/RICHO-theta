@@ -1,0 +1,40 @@
+{
+  "state": "pass",
+  "report_date": "2026-11-11",
+  "representative_assets": 3,
+  "source_sha256": {
+    "Experimental_results/2026-11-11/report_assets/build.py": "f6f658f6cfb3b0aa21f046533b08c7153ea996257ba3972ccd1d77e1f14f6b68"
+  },
+  "input_sha256": {
+    "Experimental_results/2026-11-11/guarded_cuda_gpu_audit_r01/results_r01/audit.json": "ed40407752c7eec84b8e232463401a15588f5a1756f84fccda5e9c93d8324734",
+    "Experimental_results/2026-11-11/guarded_cuda_gpu_audit_r02/results_r01/audit.json": "5ba78e49d1e3e0173dcc11d2a8050b8f64e223c1cda7e93975fbb28f041870c3",
+    "Experimental_results/2026-11-11/guarded_cuda_gpu_audit_r03/results_r01/audit.json": "ef6a1a4133b6368501db97730925b25be0b66dca0c2d044c9883bf8df4456882",
+    "Experimental_results/2026-11-11/guarded_cuda_gpu_audit_r04/results_r01/audit.json": "a24fd9fe2ebd457258a2c3b59c7f250e0c8d10a5841eec260ab88ff3de3460cb",
+    "recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014922.png": "f72f92be99e4e420f2ea9f9c6cd32f3a82c8e5f2eae7d8974515429cfd7e0a38",
+    "recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014922.json": "b6bf47ed1295eeeeb76bda93a808be899ab32f437bb1c85fc9d4f5a8dca2c092",
+    "recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/evidence_index.jsonl": "df441c1b437ef502e20acf5fdd77700da62b9a9df34184845f444995d6006448"
+  },
+  "native": {
+    "session": "4c34c8c3d6d44949afb2e921e819e563",
+    "frame": 14922,
+    "width": 1280,
+    "height": 720,
+    "historical_capture_date": "2026-11-10",
+    "image_modified": false,
+    "byte_identical": true,
+    "png_sha256": "f72f92be99e4e420f2ea9f9c6cd32f3a82c8e5f2eae7d8974515429cfd7e0a38",
+    "decoded_bgr_sha256": "78f9954fc52547807cf37319df9b478c331ed6a027b1bcfe997d4900ba2f51b6",
+    "range_not_drawn": true,
+    "NOT_independent_physical_distance_ground_truth": true
+  },
+  "output_sha256": {
+    "gpu_primary_p95.png": "cd6e483e23d934f5f789b3f56ec1a16c472abac5f7142c379b81fbe6fda7d4aa",
+    "gpu_throughput.png": "ab92bf2311e0b0eac3b839ea6b54d9ccc1bea36f930cb8463779a8fbc41cedef",
+    "gpu_performance.csv": "aa2ca65d0040e9869006a93d619f0c27ee62064f4af328a3f7ec6e321e1042a9",
+    "decoded_4c34c8c3d6d44949afb2e921e819e563_f014922.png": "f72f92be99e4e420f2ea9f9c6cd32f3a82c8e5f2eae7d8974515429cfd7e0a38"
+  },
+  "camera_started": false,
+  "cuda_started": false,
+  "vehicle_operated": false,
+  "same_repeated_images_NOT_new_accuracy_or_live_latency_experiment": true
+}

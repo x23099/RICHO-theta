@@ -2,6 +2,16 @@
 
 更新日: **2026-11-11（JST）**。対象リポジトリ: `RICHO-theta`。
 
+## 11/11終業：日報・Git保存、次回はカメラが使える日の静止確認
+
+ユーザーの終了依頼により研究を終了し、[本日日報](Daily_reports/2026-11-11_daily_report.md)・[代表3点／集計CSV／来歴](Experimental_results/2026-11-11/report_assets/README.md)・日報索引・この最新状態資料をcommit/push対象として整理した。開始HEAD `d313ac5`（1111v6）、worktreeはclean。runtimeとGPU r04監査は既存commitに保存済みで、今回は測距コードやGPU環境を追加変更しない。最終commit ID・push成否は終了報告とGit履歴を参照。
+
+保存画像の負荷対策は一区切り。比較ONの主P95 23.91ms・28.96件/秒、r03との主640／比較322行一致、33.33ms超過1/320件。ただし常時30fps・通信／表示遅延・物理精度の完成ではない。次は [静止手順1から](Experimental_results/2026-11-11/guarded_async_comparison_r01/live_procedure.md) 進める。GPU r04実行PCでパッチ再適用・同じ再生・Pullのやり直しは不要。
+
+matunuc／カメラが使える日に、停止状態で通常映像→現在native画像をpin→PNG／同名JSON／statusを提出→現在の天板境界参照をこちらで準備→同接続でloadし静止確認。初回確認に走行・画面録画・床マーカー・距離再測定は不要。カメラなしの今、必須の再試験や新撮影は求めない。旧参照のsession書換え転用・無人遠隔走行はしない。主表示・ROS・FFBへの比較値接続はない。
+
+代表PNGは11/10の元14922のバイト一致コピーで本日の新撮影ではない。グラフ2点は監査済みr01〜r04のJSONから生成し、入力／出力SHAを保存。raw・重み・venv・別作業は追加しない。以前の各段階の「未commit／未push」は当時の履歴として読む。
+
 ## 11/11後続：GPU r04の主P95は23.91ms。保存画像の負荷対策を終え、次は静止実映像
 
 [最新監査](Experimental_results/2026-11-11/guarded_cuda_gpu_audit_r04/README.md)。ユーザーが `guarded_cuda_gpu_r04.tar.xz` を提出。開始HEAD `2cca269`（1111v5）、clean。元入力25・コード25のSHA、主640／setup4／warmup8／比較322行、両pin／参照／元画素・鮮度・終了を照合した。r03との差は予定したruntime5＋測定SHA追加1だけ。GPU PCはGit経由の今回runtime反映済み、Pullのやり直し・パッチ適用・同じCUDA再生は不要。
