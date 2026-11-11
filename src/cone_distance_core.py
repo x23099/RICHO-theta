@@ -14,7 +14,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-from angular_fisheye_geometry import camera_from_candidate, floor_from_rays, unproject
+from angular_fisheye_geometry import camera_from_candidate, floor_from_rays, unproject, pixels_in_domain
 from cone_observation import checked_bbox
 from cone_scene_diagnostic import PastOnlyPose, align_up_preserving_heading_reference
 from cone_support_quality import ConeSupportQualityGate
@@ -97,7 +97,7 @@ def select_front_boxes(boxes, camera, confidence, target_roi=None):
             a, b, c, d = target_roi
             if not a <= cx <= c or not b <= cy <= d:
                 continue
-        _, valid = unproject([[(x1 + x2) / 2, (y1 + y2) / 2]], camera, image_size=(1280, 720))
+        valid = pixels_in_domain([[(x1 + x2) / 2, (y1 + y2) / 2]], camera, image_size=(1280, 720))
         if valid[0]:
             selected.append(box)
     return selected
@@ -116,7 +116,7 @@ def observe_support(image, box, camera, *, evidence=False):
     x1, y1, x2, y2 = checked_bbox(box, 1280, 720)
     result = dict(support=None, point=None, reason="", floor_contact_verified=False)
     corners = [[x, y] for x in (x1, x2) for y in (y1, y2)]
-    _, valid = unproject(corners, camera, image_size=(1280, 720))
+    valid = pixels_in_domain(corners, camera, image_size=(1280, 720))
     if not valid.all():
         return dict(result, reason="bbox_crosses_front_angular_domain")
     left, top, right, bottom = math.floor(x1)-4, math.floor(y1)-4, math.ceil(x2)+4, math.ceil(y2)+4

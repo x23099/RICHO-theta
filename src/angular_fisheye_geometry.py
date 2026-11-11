@@ -55,7 +55,7 @@ def camera_from_candidate(data):
     return AngularCamera(data['K'],data['D'],math.radians(data['observed_max_angle_deg']))
 
 
-def unproject(pixels,camera,*,image_size):
+def _native_domain(pixels,camera,*,image_size):
     if not isinstance(camera,AngularCamera) or image_size!=camera.image_size or np.iscomplexobj(pixels):
         raise ValueError('matching native image size, angular camera and real pixels required')
     p=np.asarray(pixels,float)
@@ -66,7 +66,20 @@ def unproject(pixels,camera,*,image_size):
     radius=np.linalg.norm(norm,axis=1)
     x,y,w,h=camera.roi_xywh
     valid=(p[:,0]>=x)&(p[:,0]<x+w)&(p[:,1]>=y)&(p[:,1]<y+h)&(radius<=camera.radial(camera.max_theta_rad))
-    rays=np.full((len(p),3),np.nan)
+    return norm,radius,valid
+
+
+def pixels_in_domain(pixels,camera,*,image_size):
+    """Exact unproject validity, without solving rays the caller discards.
+
+    Same native/finite/ROI/angular checks; no approximation, lookup or cache.
+    """
+    return _native_domain(pixels,camera,image_size=image_size)[2]
+
+
+def unproject(pixels,camera,*,image_size):
+    norm,radius,valid=_native_domain(pixels,camera,image_size=image_size)
+    rays=np.full((len(radius),3),np.nan)
     lo=np.zeros(np.count_nonzero(valid));hi=np.full_like(lo,camera.max_theta_rad)
     target=radius[valid]
     for _ in range(64):

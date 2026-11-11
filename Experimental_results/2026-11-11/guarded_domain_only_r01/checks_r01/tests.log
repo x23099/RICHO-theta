@@ -1,0 +1,447 @@
+test_bounded_close_reports_blocked_worker_and_discards_pending (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_capacity_one_skips_intermediate_frames_while_comparison_blocked (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_clean_close_status_and_requests_after_close_rejected (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_default_no_reference_no_snapshot_or_numeric (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_explicit_invalidate (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_log_budget_and_request_budget_disable_comparison_only (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_mismatching_main_line_disables_comparison (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_native_dimensions_immutable_buffer_and_size_bounds (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_no_candidate_does_not_hold_previous_value (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_nonblocking_busy_offer (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_pin_load_future_result_exact_pixels_and_primary_unchanged (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_primary_numeric_is_kept_when_comparison_body_veto_withholds (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_primary_pipe_is_identical_when_optional_offer_raises (test_driver_guarded_comparison.AsyncComparisonTests) ... [WARNING] comparison disabled; main distance continues: comparison failure
+ok
+test_request_not_replayed_and_higher_id_required (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_snapshot_budget_stops_only_new_pin (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_stale_snapshot_and_session_change_remove_numeric (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_symlink_reference_and_bad_request_invalidate (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_write_failure_disables_worker_not_primary (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_wrong_session_load_rejected_without_restoring_old_value (test_driver_guarded_comparison.AsyncComparisonTests) ... ok
+test_comparison_path_is_new_and_under_recordings (test_driver_guarded_comparison.ComparisonCLIPathTests) ... ok
+test_default_off_and_comparison_cannot_start_without_main_optin (test_driver_guarded_comparison.ComparisonCLIPathTests) ... ok
+test_nested_primary_and_comparison_paths_are_rejected (test_driver_guarded_comparison.ComparisonCLIPathTests) ... ok
+test_ui_option_is_forwarded_to_child_without_starting_process (test_driver_guarded_comparison.ComparisonCLIPathTests) ... ok
+test_all_physical_and_control_flags_false_and_no_live_entry_import (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_backward_duplicate_stale_and_future_inputs_rejected (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_close_cannot_be_restarted (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_comparator_exception_is_isolated_to_comparison (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_comparison_cost_and_clock_rollback_revoke_number (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_corrupt_or_wrong_sized_or_unbounded_png_rejected (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_current_no_candidate_never_holds_previous_number (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_explicit_disconnect_does_not_reuse_reference (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_explicit_opt_in_required (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_future_frame_can_use_verified_reference_without_changing_main (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_input_gap_invalidates_even_without_poll (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_late_retired_session_cannot_revive_a_connection (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_mismatched_result_profile_flags_and_baseline_fail_closed (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_no_reference_never_outputs_a_comparison_distance (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_pin_wrong_frame_or_changed_pixels_invalidates (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_png_digest_and_decoded_pixels_are_both_required (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_poll_expiry_clears_reference_and_requires_explicit_reactivation (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_poll_returns_copy_and_never_relabels_result_frame (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_queued_frame_received_before_load_completion_is_not_used (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_reference_ownership_no_mutable_alias (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_self_body_veto_preserved (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_session_change_clears_reference_witnesses_and_number (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_source_or_pre_activation_frame_is_never_recomputed (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_unpinned_source_frame_cannot_activate (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_witness_capacity_is_bounded_and_no_silent_eviction (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_wrong_session_reference_rejected_without_rebinding (test_cone_guarded_stream_comparison.StreamComparisonTests) ... ok
+test_default_has_no_output_process_or_model_dependency (test_driver_motion_bridge.DriverMotionCLITests) ... ok
+test_existing_driver_geometry_cannot_be_silently_scaled (test_driver_motion_bridge.DriverMotionCLITests) ... ok
+test_opt_in_requires_explicit_mount_ack_before_process (test_driver_motion_bridge.DriverMotionCLITests) ... ok
+test_valid_command_keeps_explicit_python_path_and_starts_no_process (test_driver_motion_bridge.DriverMotionCLITests) ... ok
+test_blocked_native_inference_is_terminated_without_waiting_in_publish (test_driver_motion_bridge.DriverSubprocessTests) ... ok
+test_child_exit_after_request_is_detected_without_any_camera_frame (test_driver_motion_bridge.DriverSubprocessTests) ... ok
+test_child_model_crash_becomes_distance_failure_only (test_driver_motion_bridge.DriverSubprocessTests) ... ok
+test_child_stdout_noise_is_not_parsed_as_a_distance (test_driver_motion_bridge.DriverSubprocessTests) ... ok
+test_real_pipe_measurement_and_metadata_logs_without_images (test_driver_motion_bridge.DriverSubprocessTests) ... ok
+test_reconnect_during_inference_drops_retired_peer_result (test_driver_motion_bridge.DriverSubprocessTests) ... ok
+test_slow_inference_skips_intermediate_inputs_without_blocking_publisher (test_driver_motion_bridge.DriverSubprocessTests) ... ok
+test_duplicate_time_future_time_or_nan_clears_current_range (test_driver_motion_bridge.DriverTapTests) ... ok
+test_legacy_offer_acceptance_is_not_range_approval (test_driver_motion_bridge.DriverTapTests) ... ok
+test_old_disconnect_does_not_invalidate_new_peer (test_driver_motion_bridge.DriverTapTests) ... ok
+test_panel_is_separate_source_labeled_and_non_controlling (test_driver_motion_bridge.DriverTapTests) ... ok
+test_publish_never_waits_for_pipe_or_busy_tap_lock (test_driver_motion_bridge.DriverTapTests) ... ok
+test_stale_range_is_not_displayed_over_newer_frame (test_driver_motion_bridge.DriverTapTests) ... ok
+test_stop_clears_numbers_and_cannot_restart (test_driver_motion_bridge.DriverTapTests) ... ok
+test_tap_borrows_owned_readonly_original_not_remapped_or_resized (test_driver_motion_bridge.DriverTapTests) ... ok
+test_wrong_dimension_or_mutable_buffer_latches_distance_only_invalid (test_driver_motion_bridge.DriverTapTests) ... ok
+test_compact_result_excludes_images_and_support_arrays (test_driver_motion_bridge.MotionPipeProtocolTests) ... ok
+test_native_pixels_and_source_identity_roundtrip_without_mutation (test_driver_motion_bridge.MotionPipeProtocolTests) ... ok
+test_oversize_frame_header_and_invalid_session_are_rejected_before_pixels (test_driver_motion_bridge.MotionPipeProtocolTests) ... ok
+test_partial_reads_are_reassembled_not_assumed_atomic (test_driver_motion_bridge.MotionPipeProtocolTests) ... ok
+test_profile_matches_exact_types_and_fields (test_driver_motion_bridge.MotionPipeProtocolTests) ... ok
+test_protocol_rejects_noise_oversize_nonfinite_and_nonobjects (test_driver_motion_bridge.MotionPipeProtocolTests) ... ok
+test_result_must_match_input_and_cannot_grant_control_permission (test_driver_motion_bridge.MotionPipeProtocolTests) ... ok
+test_truncated_native_pixels_are_rejected (test_driver_motion_bridge.MotionPipeProtocolTests) ... ok
+test_diagnostic_mode_still_selects_old_diagnostic_program (test_driver_motion_camera.DriverMotionShellTests) ... ok
+test_explicit_ui_python_is_not_overridden_by_legacy_venv_reexec (test_driver_motion_camera.DriverMotionShellTests) ... ok
+test_receiver_opt_in_keeps_driver_ui_not_diagnostic_listener (test_driver_motion_camera.DriverMotionShellTests) ... ok
+test_sender_opt_in_keeps_driver_sender_with_control_channels (test_driver_motion_camera.DriverMotionShellTests) ... ok
+test_legacy_mode_calls_original_driver_without_opening_another_camera (test_driver_motion_camera.DriverNativeCameraTests) ... ok
+test_native_requires_real_input_and_exact_geometry_before_capture_or_ros (test_driver_motion_camera.DriverNativeCameraTests) ... ok
+test_one_native_reader_track_is_passed_to_original_control_driver (test_driver_motion_camera.DriverNativeCameraTests) ... ok
+test_signaling_failure_or_early_return_cleans_native_reader (test_driver_motion_camera.DriverNativeCameraTests) ... ok
+test_legacy_shell_commands_are_byte_identical_after_opt_in_branches (test_driver_motion_integration.DriverControlInvarianceTests) ... ok
+test_panel_updates_even_when_driver_has_no_frame_to_render (test_driver_motion_integration.DriverControlInvarianceTests) ... ok
+test_receiver_control_ros_and_keyboard_function_bodies_unchanged (test_driver_motion_integration.DriverControlInvarianceTests) ... ok
+test_sender_control_publish_and_legacy_camera_unchanged (test_driver_motion_integration.DriverControlInvarianceTests) ... ok
+test_disabled_tap_keeps_legacy_frame_mutability_and_needs_no_profile (test_driver_motion_integration.ReceiverTapIntegrationTests) ... Video receive error: synthetic track ended
+ok
+test_legacy_profile_does_not_reject_driving_connection (test_driver_motion_integration.ReceiverTapIntegrationTests) ... ok
+test_native_frame_tap_is_before_remap_and_does_not_modify_pixels (test_driver_motion_integration.ReceiverTapIntegrationTests) ... ok
+test_offer_keeps_control_and_telemetry_handlers_with_valid_motion_profile (test_driver_motion_integration.ReceiverTapIntegrationTests) ... ok
+test_old_peer_disconnect_does_not_invalidate_new_session (test_driver_motion_integration.ReceiverTapIntegrationTests) ... ok
+test_tap_failure_disables_distance_without_terminating_video_or_control (test_driver_motion_integration.ReceiverTapIntegrationTests) ... Motion tap disabled: synthetic tap failure
+ok
+test_legacy_driver_has_no_new_profile_or_extra_capture (test_driver_motion_integration.SenderConnectionIntegrationTests) ... Failed to set sender parameters: synthetic unavailable optional bitrate API
+WebRTC connection failed. Stopping...
+Executing <Task pending name='Task-38' coro=<IsolatedAsyncioTestCase._asyncioLoopRunner() running at /usr/lib/python3.10/unittest/async_case.py:95> wait_for=<Future pending cb=[Task.task_wakeup()] created at /usr/lib/python3.10/asyncio/base_events.py:429> created at /usr/lib/python3.10/unittest/async_case.py:117> took 0.212 seconds
+ok
+test_native_driver_still_negotiates_control_and_telemetry (test_driver_motion_integration.SenderConnectionIntegrationTests) ... Failed to set sender parameters: synthetic unavailable optional bitrate API
+WebRTC connection failed. Stopping...
+ok
+test_default_sigterm_exit_is_not_force_killed (test_driver_motion_shutdown.ShutdownTests) ... ok
+test_graceful_delayed_exit_is_not_force_killed (test_driver_motion_shutdown.ShutdownTests) ... ok
+test_ignored_sigterm_and_blocked_stdout_are_stopped_by_deadline (test_driver_motion_shutdown.ShutdownTests) ... ok
+test_kill_failure_is_bounded_and_truthfully_incomplete (test_driver_motion_shutdown.ShutdownTests) ... ok
+test_never_started_bridge_closes_without_starting_a_child (test_driver_motion_shutdown.ShutdownTests) ... ok
+test_no_signal_to_an_unrelated_child (test_driver_motion_shutdown.ShutdownTests) ... ok
+test_second_close_preserves_forced_kill_history (test_driver_motion_shutdown.ShutdownTests) ... ok
+test_summary_is_persisted_without_granting_control_or_image_proof (test_driver_motion_shutdown.ShutdownTests) ... ok
+test_disabled_by_default_and_cannot_silently_enable_without_motion (test_driver_withheld_evidence.EvidenceCLITests) ... ok
+test_enabled_options_reach_child_without_starting_process (test_driver_withheld_evidence.EvidenceCLITests) ... ok
+test_limits_without_directory_fail_before_any_process (test_driver_withheld_evidence.EvidenceCLITests) ... ok
+test_bad_frame_identity_or_mutable_pixels_never_get_filenames (test_driver_withheld_evidence.EvidenceRecorderTests) ... ok
+test_byte_budget_does_not_write_oversized_pair (test_driver_withheld_evidence.EvidenceRecorderTests) ... ok
+test_closed_recorder_rejects_new_frames (test_driver_withheld_evidence.EvidenceRecorderTests) ... ok
+test_encoding_failure_only_disables_recorder (test_driver_withheld_evidence.EvidenceRecorderTests) ... ok
+test_existing_directory_never_overwritten (test_driver_withheld_evidence.EvidenceRecorderTests) ... ok
+test_file_write_failure_only_disables_recorder (test_driver_withheld_evidence.EvidenceRecorderTests) ... ok
+test_interval_count_limit_and_duplicate (test_driver_withheld_evidence.EvidenceRecorderTests) ... ok
+test_limits_are_finite_bounded_and_paths_stay_under_recordings (test_driver_withheld_evidence.EvidenceRecorderTests) ... ok
+test_native_png_exact_pixels_sidecar_hash_and_full_measurement (test_driver_withheld_evidence.EvidenceRecorderTests) ... ok
+test_numeric_other_reason_and_stale_rejection_not_saved (test_driver_withheld_evidence.EvidenceRecorderTests) ... ok
+test_slow_save_has_only_one_waiting_slot_and_close_is_bounded (test_driver_withheld_evidence.EvidenceRecorderTests) ... ok
+test_source_line_mismatch_disables_saving_not_measurement (test_driver_withheld_evidence.EvidenceRecorderTests) ... ok
+test_verifier_does_not_follow_index_paths_or_sidecar_source_paths (test_driver_withheld_evidence.EvidenceRecorderTests) ... ok
+test_verifier_ignores_unfinished_tail_and_orphan_file (test_driver_withheld_evidence.EvidenceRecorderTests) ... ok
+test_verifier_rejects_corrupt_png (test_driver_withheld_evidence.EvidenceRecorderTests) ... ok
+test_verifier_rejects_symlink_instead_of_reading_target (test_driver_withheld_evidence.EvidenceRecorderTests) ... ok
+test_verifier_requires_matching_explicit_source_log (test_driver_withheld_evidence.EvidenceRecorderTests) ... ok
+test_default_off_creates_only_existing_measurement_log (test_driver_withheld_evidence.EvidenceServeTests) ... ok
+test_result_is_sent_before_evidence_offer_and_bad_saver_cannot_change_results (test_driver_withheld_evidence.EvidenceServeTests) ... ok
+test_saver_initialization_failure_does_not_prevent_worker_request (test_driver_withheld_evidence.EvidenceWorkerStartupTests) ... ok
+test_sigterm_is_ignored_during_bounded_evidence_close_then_restored (test_driver_withheld_evidence.EvidenceWorkerStartupTests) ... ok
+test_body_boundary_veto_takes_precedence_over_pixel_overlap (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_clear_closed_current_support_can_be_proposed_without_moving_point (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_exact_half_pixel_inclusive_and_no_relaxation_when_already_inside (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_existing_baseline_can_be_revoked_but_cannot_grant_contact (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_existing_clear_baseline_is_kept_verbatim (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_invalid_geometry_noninteger_points_or_policy_parameters_raise (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_left_right_and_top_shortfalls_are_never_relaxed (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_live_entry_points_do_not_import_comparator (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_missing_component_or_open_bottom_stays_unavailable (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_more_than_half_pixel_does_not_fallback_to_integer_rounding (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_original_pixels_box_reference_and_separate_baseline_not_mutated (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_proposed_point_never_has_physical_or_control_authority (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_session_mismatch_unchecked_hash_and_partial_scope_never_rescue (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_side_only_half_overlap_proposal_is_discarded (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_yellow_seed_is_not_relabelled_as_red (test_cone_guarded_lower_edge_shadow.GuardedLowerEdgeTests) ... ok
+test_blank_frame_never_rescued (test_cone_bbox_boundary_shadow.BboxBoundaryShadowTests) ... ok
+test_bottom_connection_never_rescued (test_cone_bbox_boundary_shadow.BboxBoundaryShadowTests) ... ok
+test_competing_contour_never_rescued (test_cone_bbox_boundary_shadow.BboxBoundaryShadowTests) ... ok
+test_half_pixel_and_outward_integer_are_not_equivalent (test_cone_bbox_boundary_shadow.BboxBoundaryShadowTests) ... ok
+test_half_pixel_case_observed_point_is_never_clamped (test_cone_bbox_boundary_shadow.BboxBoundaryShadowTests) ... ok
+test_live_entry_points_have_no_import_of_offline_comparator (test_cone_bbox_boundary_shadow.BboxBoundaryShadowTests) ... ok
+test_mixed_seed_never_rescued (test_cone_bbox_boundary_shadow.BboxBoundaryShadowTests) ... ok
+test_more_than_one_pixel_is_not_rescued (test_cone_bbox_boundary_shadow.BboxBoundaryShadowTests) ... ok
+test_native_pixels_box_and_baseline_unchanged (test_cone_bbox_boundary_shadow.BboxBoundaryShadowTests) ... ok
+test_new_results_never_grant_physical_or_control_authority (test_cone_bbox_boundary_shadow.BboxBoundaryShadowTests) ... ok
+test_old_red_yellow_acceptances_are_verbatim_preserved (test_cone_bbox_boundary_shadow.BboxBoundaryShadowTests) ... ok
+test_still_open_lateral_background_never_rescued (test_cone_bbox_boundary_shadow.BboxBoundaryShadowTests) ... ok
+test_top_only_failure_is_not_a_lateral_bbox_candidate (test_cone_bbox_boundary_shadow.BboxBoundaryShadowTests) ... ok
+test_wrong_geometry_invalid_policy_and_noninteger_point_rejected (test_cone_bbox_boundary_shadow.BboxBoundaryShadowTests) ... ok
+test_yellow_late_bbox_candidate_keeps_colour (test_cone_bbox_boundary_shadow.BboxBoundaryShadowTests) ... ok
+test_any_support_column_can_revoke_even_if_chosen_point_is_clear (test_cone_self_body_shadow.SelfBodyTests) ... ok
+test_at_boundary_and_below_boundary_are_both_rejected (test_cone_self_body_shadow.SelfBodyTests) ... ok
+test_clear_support_is_preserved_verbatim_without_contact_grant (test_cone_self_body_shadow.SelfBodyTests) ... ok
+test_inputs_and_reference_are_not_mutated_or_aliased (test_cone_self_body_shadow.SelfBodyTests) ... ok
+test_invalid_support_or_point_cannot_gain_output (test_cone_self_body_shadow.SelfBodyTests) ... ok
+test_margin_boundary_is_inclusive_and_monotone (test_cone_self_body_shadow.SelfBodyTests) ... ok
+test_margin_rejects_boolean_nonfinite_negative_or_over_limit (test_cone_self_body_shadow.SelfBodyTests) ... ok
+test_new_revocation_never_has_control_or_physical_authority (test_cone_self_body_shadow.SelfBodyTests) ... ok
+test_no_import_from_live_entry_points (test_cone_self_body_shadow.SelfBodyTests) ... ok
+test_no_rescue_of_unavailable_point_and_exact_original_reason_preserved (test_cone_self_body_shadow.SelfBodyTests) ... ok
+test_one_outside_support_column_is_not_extrapolated_or_trimmed (test_cone_self_body_shadow.SelfBodyTests) ... ok
+test_other_session_is_not_assumed_to_share_mount (test_cone_self_body_shadow.SelfBodyTests) ... ok
+test_reference_hash_must_have_been_checked_by_caller (test_cone_self_body_shadow.SelfBodyTests) ... ok
+test_reference_validation_rejects_wrong_geometry_authority_order_and_nan (test_cone_self_body_shadow.SelfBodyTests) ... ok
+test_verified_or_authorized_observation_is_not_silently_relabelled (test_cone_self_body_shadow.SelfBodyTests) ... ok
+test_baseline_observation_mismatch_is_not_a_candidate (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_body_veto_does_not_turn_hidden_point_into_distance (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_cli_does_not_start_anything_on_help (test_guarded_recording_comparison.RecordingComparisonTests) ... usage: check.py [-h] --input-dir INPUT_DIR --evidence-dir EVIDENCE_DIR
+                --reference REFERENCE --output-dir OUTPUT_DIR
+                [--config CONFIG] [--wait-sec WAIT_SEC] [--poll-sec POLL_SEC]
+
+Post-recording comparison ONLY. No UI, IPC, camera, ROS, model or control. Can
+wait for an existing evidence writer to finish, but never compares live
+frames. Reads committed native evidence and writes a separate bounded JSONL.
+
+options:
+  -h, --help            show this help message and exit
+  --input-dir INPUT_DIR
+  --evidence-dir EVIDENCE_DIR
+  --reference REFERENCE
+  --output-dir OUTPUT_DIR
+  --config CONFIG
+  --wait-sec WAIT_SEC   wait up to 3600 seconds for writer completion, NOT
+                        live comparison
+  --poll-sec POLL_SEC
+ok
+test_closed_recording_produces_separate_source_labelled_log_and_no_input_changes (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_config_or_engine_profile_mismatch_is_rejected (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_corrupt_png_is_rejected_before_comparison (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_disk_publish_failure_does_not_leave_a_completed_log_or_touch_input (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_existing_output_is_never_overwritten (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_incomplete_writer_is_rejected_without_comparison_log (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_live_writer_without_wait_is_not_called_a_complete_recording (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_no_control_authority_or_main_display_change_in_outputs (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_no_live_entry_point_imports_this_post_recording_command (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_orphan_file_or_partial_index_is_not_silently_ignored (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_other_session_in_same_evidence_folder_gets_no_comparison_value (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_other_source_log_is_not_used_as_if_corresponding (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_output_cannot_be_nested_in_input_or_evidence (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_source_modified_during_comparison_is_not_committed (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_symlink_reference_and_regular_hash_size_cap_are_rejected (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_wait_bounds_are_finite_and_bounded (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_wait_can_observe_atomic_writer_completion (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_wait_cancellation_is_explicit_and_does_not_touch_recording (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_wrong_reference_frame_or_hash_is_not_accepted (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_wrong_reference_hash_is_not_accepted (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_wrong_reference_session_is_not_rebound (test_guarded_recording_comparison.RecordingComparisonTests) ... ok
+test_fifth_point_or_nonfinite_point_is_not_accepted (test_cone_motion_range.MotionProfilePreparationTests) ... ok
+test_nonpositive_nonfinite_or_boolean_rectangle_dimensions_fail (test_cone_motion_range.MotionProfilePreparationTests) ... ok
+test_primary_solution_must_exist_no_automatic_fallback (test_cone_motion_range.MotionProfilePreparationTests) ... ok
+test_real_four_point_geometry_keeps_both_hypotheses_without_E (test_cone_motion_range.MotionProfilePreparationTests) ... ok
+test_rejected_geometry_is_not_repaired_with_absolute_height (test_cone_motion_range.MotionProfilePreparationTests) ... ok
+test_wrong_image_hash_or_corner_order_fails (test_cone_motion_range.MotionProfilePreparationTests) ... ok
+test_all_outputs_remain_non_controlling_and_not_contact_verified (test_cone_motion_range.MotionRangeTests) ... ok
+test_backward_frame_or_time_is_refused (test_cone_motion_range.MotionRangeTests) ... ok
+test_cli_opt_in_failure_precedes_gpu_or_socket (test_cone_motion_range.MotionRangeTests) ... ok
+test_current_support_requires_actual_observed_point (test_cone_motion_range.MotionRangeTests) ... ok
+test_disconnected_or_unordered_columns_are_not_accepted (test_cone_motion_range.MotionRangeTests) ... ok
+test_explicit_opt_in_is_required (test_cone_motion_range.MotionRangeTests) ... ok
+test_first_frame_and_large_motion_both_produce_current_frame_ranges (test_cone_motion_range.MotionRangeTests) ... ok
+test_grazing_or_upward_ray_is_withheld (test_cone_motion_range.MotionRangeTests) ... ok
+test_height_normal_geometry_recovers_known_horizontal_range (test_cone_motion_range.MotionRangeTests) ... ok
+test_late_completion_revokes_all_model_numbers (test_cone_motion_range.MotionRangeTests) ... ok
+test_missing_current_support_does_not_hold_last_number (test_cone_motion_range.MotionRangeTests) ... ok
+test_model_primary_failure_does_not_fall_back_to_alternative (test_cone_motion_range.MotionRangeTests) ... ok
+test_multiple_cones_and_no_cone_are_withheld (test_cone_motion_range.MotionRangeTests) ... ok
+test_negative_height_is_not_absolutized (test_cone_motion_range.MotionRangeTests) ... ok
+test_new_session_resets_sequence_without_reusing_a_distance (test_cone_motion_range.MotionRangeTests) ... ok
+test_nonunit_ray_is_refused (test_cone_motion_range.MotionRangeTests) ... ok
+test_planar_vehicle_translation_and_yaw_need_no_world_pose_update (test_cone_motion_range.MotionRangeTests) ... ok
+test_profile_cannot_claim_physical_approval_or_change_pixel_basis (test_cone_motion_range.MotionRangeTests) ... ok
+test_profile_is_owned_copy_not_caller_mutable (test_cone_motion_range.MotionRangeTests) ... ok
+test_profile_keeps_both_models_and_explicit_primary (test_cone_motion_range.MotionRangeTests) ... ok
+test_render_changes_only_display_copy_and_makes_no_image_file (test_cone_motion_range.MotionRangeTests) ... ok
+test_simultaneous_optical_basis_reflection_does_not_change_scalar_range (test_cone_motion_range.MotionRangeTests) ... ok
+test_stale_frame_is_withheld_without_observation_work (test_cone_motion_range.MotionRangeTests) ... ok
+test_listener_failure_still_cleans_receiver_runner_and_worker_and_writes_summary (test_cone_motion_range.MotionReceiverCleanupTests) ... ok
+test_close_during_inference_reports_incomplete_then_never_restores_result (test_cone_motion_worker.MotionWorkerTests) ... ok
+test_closed_worker_cannot_start_and_bad_timeout_does_not_close (test_cone_motion_worker.MotionWorkerTests) ... ok
+test_first_frame_distance_is_paired_with_its_own_image (test_cone_motion_worker.MotionWorkerTests) ... ok
+test_predictor_exception_is_visible_failure_not_no_cone (test_cone_motion_worker.MotionWorkerTests) ... ok
+test_reconnect_during_inference_discards_retired_frame (test_cone_motion_worker.MotionWorkerTests) ... ok
+test_slow_predictor_skips_to_latest_without_catchup_queue (test_cone_motion_worker.MotionWorkerTests) ... ok
+test_stale_disconnect_and_session_change_never_display_old_number (test_cone_motion_worker.MotionWorkerTests) ... ok
+test_benchmark_option_limits (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_budget_rejects_overflow_without_partial_write (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_cli_requires_explicit_mount_acknowledgement (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_invalid_cli_bounds_rejected_before_loading (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_measure_calls_predictor_with_exact_native_pixels (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_missing_weights_rejected (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_model_init_failure_saved_without_cpu_fallback (test_guarded_cuda_replay.SavedCudaReplayTests) ... Loading trusted local CUDA model; no camera/ROS/control.
+ok
+test_new_empty_detection_is_not_replaced_with_historical_detection (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_output_cannot_overlap_original (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_pairing_omits_only_replay_image_provenance_not_detection_fields (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_predictor_mutating_source_is_rejected (test_guarded_cuda_replay.SavedCudaReplayTests) ... block 1/4 comparison=False 1/2
+ok
+test_primary_difference_reported_without_claiming_cause (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_processing_age_gate_preserved (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_real_thread_abba_synthetic_predictor_and_immutable_pixels (test_guarded_cuda_replay.SavedCudaReplayTests) ... block 1/4 comparison=False 1/2
+block 2/4 comparison=True 1/2
+block 3/4 comparison=True 1/2
+block 4/4 comparison=False 1/2
+ok
+test_signatures_order_independent_and_nonfinite_rejected (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_summary_separates_detection_variation_from_primary (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_unpaired_summary_rejected (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_validate_only_never_constructs_yolo (test_guarded_cuda_replay.SavedCudaReplayTests) ... {
+  "state": "validated_inputs_only",
+  "actual_cuda_inference": false,
+  "actual_camera": false
+}
+ok
+test_wait_is_bounded (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_wait_reports_worker_error (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_worker_setup_error_does_not_get_success_summary (test_guarded_cuda_replay.SavedCudaReplayTests) ... block 1/4 comparison=False 1/2
+ok
+test_wrong_checkpoint_rejected_before_constructor_and_output (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_baseline_existing_point_preserved_when_clear (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_body_veto_preserved (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_comparator_failure_does_not_return_a_past_result (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_each_call_reextracts_no_cross_frame_cache (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_explicit_offline_only_ack_required (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_geometry_forgery_rejected (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_input_flags_profile_and_identity_rejected (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_main_log_observation_forgery_is_not_reused (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_no_candidate_or_ambiguous_never_inherits_previous_number (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_observation_runs_twice_versus_once_from_current_pixels (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_original_pixels_boxes_and_results_unchanged (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_reference_mismatch_cannot_grant_a_number (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_same_complete_results_for_legacy_and_shared (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_selected_box_forgery_rejected_independently_of_raw_boxes (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_does_not_trust_modified_main_observation (test_guarded_observation_reuse_runtime.RuntimeReuseTests) ... ok
+test_invalid_observer_rejected_without_consuming_sequence (test_guarded_observation_reuse_runtime.RuntimeReuseTests) ... ok
+test_per_call_override_does_not_replace_default_observer (test_guarded_observation_reuse_runtime.RuntimeReuseTests) ... ok
+test_selected_box_mismatch_cannot_reuse_another_observation (test_guarded_observation_reuse_runtime.RuntimeReuseTests) ... ok
+test_stream_extracts_once_and_preserves_engine_sequence_state (test_guarded_observation_reuse_runtime.RuntimeReuseTests) ... ok
+test_all_guarded_values_equal_across_late_bbox_boundaries (test_guarded_compact_compute.CompactComputeTests) ... ok
+test_bad_reference_and_margin_checks_still_apply (test_guarded_compact_compute.CompactComputeTests) ... ok
+test_compact_body_rejection_changes_only_its_own_top_level (test_guarded_compact_compute.CompactComputeTests) ... ok
+test_compact_does_not_mutate_pixels_box_or_reference (test_guarded_compact_compute.CompactComputeTests) ... ok
+test_compact_mode_rejects_non_bool_at_all_layers (test_guarded_compact_compute.CompactComputeTests) ... ok
+test_compact_only_constructs_consumed_policy (test_guarded_compact_compute.CompactComputeTests) ... ok
+test_compact_uses_fresh_graph_each_call (test_guarded_compact_compute.CompactComputeTests) ... ok
+test_default_body_review_nested_input_isolation_preserved (test_guarded_compact_compute.CompactComputeTests) ... ok
+test_default_diagnostic_views_remain_independently_owned (test_guarded_compact_compute.CompactComputeTests) ... ok
+test_engine_result_owns_copy_after_compact_graph_is_discarded (test_guarded_compact_compute.CompactComputeTests) ... ok
+test_no_physical_or_control_authority (test_guarded_compact_compute.CompactComputeTests) ... ok
+test_red_yellow_blank_and_open_component_equal (test_guarded_compact_compute.CompactComputeTests) ... ok
+test_runtime_only_uses_compact_after_reference_activation (test_guarded_compact_compute.CompactComputeTests) ... ok
+test_veto_margin_and_reference_scope_equal (test_guarded_compact_compute.CompactComputeTests) ... ok
+test_candidate_schema_must_be_explicit (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_empty_and_duplicate_pixels (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_grazing_or_upward_rays_not_forced_to_floor (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_input_calibration_copied_and_readonly (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_invalid_roi_domain_and_image_size (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_known_offset_is_not_implicitly_subtracted_from_reference (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_known_segment_recovers_positive_depth_and_base_height (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_nonmonotonic_and_invalid_camera_refused (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_optical_centre_limit (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_roundtrip_across_90_degrees_preserves_order (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_synthetic_floor_coordinates_restore_with_subpixel_precision (test_angular_fisheye_geometry.AngularGeometryTests) ... ok
+test_domain_only_does_not_run_inverse_solver (test_angular_domain_only.AngularDomainTests) ... ok
+test_empty_duplicate_and_integer_arrays_bit_exact (test_angular_domain_only.AngularDomainTests) ... ok
+test_invalid_inputs_keep_exception_type_for_both_apis (test_angular_domain_only.AngularDomainTests) ... ok
+test_max_radial_domain_and_nextafter_neighbours_bit_exact (test_angular_domain_only.AngularDomainTests) ... ok
+test_no_mutation_or_cross_call_mask_alias (test_angular_domain_only.AngularDomainTests) ... ok
+test_random_pixels_bit_exact_for_both_cameras (test_angular_domain_only.AngularDomainTests) ... ok
+test_roi_centre_and_subpixel_edges_bit_exact (test_angular_domain_only.AngularDomainTests) ... ok
+test_wrong_camera_and_image_size_rejected (test_angular_domain_only.AngularDomainTests) ... ok
+test_10hz_does_not_preserve_every_numeric_opportunity (test_guarded_cadence_selection.CadenceSelectionTests) ... ok
+test_15hz_phase_can_hide_all_numeric_opportunities (test_guarded_cadence_selection.CadenceSelectionTests) ... ok
+test_unlimited_keeps_every_opportunity (test_guarded_cadence_selection.CadenceSelectionTests) ... ok
+test_cli_requires_explicit_shadow_flag (test_cone_colour_support_candidate.ColourShadowTests) ... ok
+test_default_engine_does_not_enable_candidate (test_cone_colour_support_candidate.ColourShadowTests) ... ok
+test_missing_seed_does_not_guess_from_base (test_cone_colour_support_candidate.ColourShadowTests) ... ok
+test_mixed_seed_stays_ambiguous (test_cone_colour_support_candidate.ColourShadowTests) ... ok
+test_no_resize (test_cone_colour_support_candidate.ColourShadowTests) ... ok
+test_rear_box_not_mapped_to_front (test_cone_colour_support_candidate.ColourShadowTests) ... ok
+test_red_over_yellow_background_is_split (test_cone_colour_support_candidate.ColourShadowTests) ... ok
+test_red_supported_without_changing_input (test_cone_colour_support_candidate.ColourShadowTests) ... ok
+test_same_time_inputs_have_same_controlling_results (test_cone_colour_support_candidate.ColourShadowTests) ... ok
+test_settings_reject_nonfinite_and_relaxed_ambiguity (test_cone_colour_support_candidate.ColourShadowTests) ... ok
+test_shadow_cannot_initialize_pose_or_grant_distance (test_cone_colour_support_candidate.ColourShadowTests) ... ok
+test_shadow_cannot_replace_rejected_baseline_even_with_initialized_pose (test_cone_colour_support_candidate.ColourShadowTests) ... ok
+test_shadow_failure_is_not_invalid_detector_and_does_not_alter_gates (test_cone_colour_support_candidate.ColourShadowTests) ... ok
+test_shared_mask_guards_bounds (test_cone_colour_support_candidate.ColourShadowTests) ... ok
+test_worker_serializes_shadow_and_original_bbox_without_distance (test_cone_colour_support_candidate.ColourShadowTests) ... ok
+test_yellow_background_stays_rejected_no_red_sticker_fallback (test_cone_colour_support_candidate.ColourShadowTests) ... ok
+test_yellow_is_not_dropped_from_model_scope (test_cone_colour_support_candidate.ColourShadowTests) ... ok
+test_absent_or_mixed_seed_preserves_rejection (test_cone_support_completion_candidate.SupportCompletionTests) ... ok
+test_bottom_connection_is_not_rescued (test_cone_support_completion_candidate.SupportCompletionTests) ... ok
+test_competitor_in_outer_context_is_not_ignored (test_cone_support_completion_candidate.SupportCompletionTests) ... ok
+test_completed_point_outside_original_bbox_is_rejected (test_cone_support_completion_candidate.SupportCompletionTests) ... ok
+test_context_beyond_image_is_not_clamped (test_cone_support_completion_candidate.SupportCompletionTests) ... ok
+test_existing_red_and_yellow_points_preserved (test_cone_support_completion_candidate.SupportCompletionTests) ... ok
+test_lateral_background_still_open_is_rejected (test_cone_support_completion_candidate.SupportCompletionTests) ... ok
+test_lateral_clipped_component_completed_in_two_closed_contexts (test_cone_support_completion_candidate.SupportCompletionTests) ... ok
+test_new_module_is_not_used_by_current_engine (test_cone_support_completion_candidate.SupportCompletionTests) ... ok
+test_no_physical_or_controlling_authority (test_cone_support_completion_candidate.SupportCompletionTests) ... ok
+test_no_resize_or_image_modification (test_cone_support_completion_candidate.SupportCompletionTests) ... ok
+test_rear_pixels_not_mapped_to_front (test_cone_support_completion_candidate.SupportCompletionTests) ... ok
+test_repeatability_and_bounded_padding (test_cone_support_completion_candidate.SupportCompletionTests) ... ok
+test_yellow_floor_not_replaced_by_red_sticker (test_cone_support_completion_candidate.SupportCompletionTests) ... ok
+test_absent_seed_is_not_invented (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_bottom_contact_is_not_rescued (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_bounds_are_not_clamped_and_rear_is_not_remapped (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_change_in_observed_lower_columns_is_rejected (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_completed_point_must_stay_in_original_float_bbox (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_component_still_open_within_bound_is_not_extended_further (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_existing_lateral_completion_is_preserved (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_existing_nonclipped_observations_preserved (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_live_engine_does_not_call_new_offline_comparator (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_mixed_seed_does_not_fall_back_to_successful_colour (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_new_candidate_does_not_skip_temporal_confirmation (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_original_input_pixels_and_cached_legacy_result_unchanged (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_outer_competing_contour_not_ignored (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_top_and_side_contact_not_jointly_rescued (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_top_only_red_component_closes_without_changing_lower_support (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_wrong_resolution_and_nonfinite_bbox_rejected (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_yellow_bottom_contamination_does_not_fall_back_to_red (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_yellow_top_completion_keeps_original_colour (test_cone_upper_support_candidate.UpperSupportTests) ... ok
+test_actual_lower_envelope_point_is_in_trimmed_support (test_cone_distance_diagnostic.ConfigAndSupportTest) ... ok
+test_changed_camera_hash_refused (test_cone_distance_diagnostic.ConfigAndSupportTest) ... ok
+test_competing_colours_are_rejected (test_cone_distance_diagnostic.ConfigAndSupportTest) ... ok
+test_config_keeps_height_and_nonphysical_flags (test_cone_distance_diagnostic.ConfigAndSupportTest) ... ok
+test_explicit_target_scope_excludes_only_bbox_centres (test_cone_distance_diagnostic.ConfigAndSupportTest) ... ok
+test_front_and_rear_are_not_mixed (test_cone_distance_diagnostic.ConfigAndSupportTest) ... ok
+test_native_shape_required_no_resize (test_cone_distance_diagnostic.ConfigAndSupportTest) ... ok
+test_no_colour_never_uses_bbox_bottom (test_cone_distance_diagnostic.ConfigAndSupportTest) ... ok
+test_annotated_display_does_not_change_original (test_cone_distance_diagnostic.EngineStateTest) ... ok
+test_bad_detector_values_fail_closed (test_cone_distance_diagnostic.EngineStateTest) ... ok
+test_current_processing_clock_is_sampled_after_support (test_cone_distance_diagnostic.EngineStateTest) ... ok
+test_duplicate_source_or_wrong_session_refused (test_cone_distance_diagnostic.EngineStateTest) ... ok
+test_later_evidence_cannot_change_past_results (test_cone_distance_diagnostic.EngineStateTest) ... ok
+test_missing_detection_does_not_hold_previous_distance (test_cone_distance_diagnostic.EngineStateTest) ... ok
+test_multiple_front_cones_not_arbitrarily_selected (test_cone_distance_diagnostic.EngineStateTest) ... ok
+test_no_own_scene_initialization_no_distance (test_cone_distance_diagnostic.EngineStateTest) ... ok
+test_old_scene_future_cannot_mutate_reconnected_session (test_cone_distance_diagnostic.EngineStateTest) ... ok
+test_pending_scene_blocks_then_rejection_is_not_bypassed (test_cone_distance_diagnostic.EngineStateTest) ... ok
+test_scene_cadence_capacity_one (test_cone_distance_diagnostic.EngineStateTest) ... ok
+test_scene_completion_does_not_refresh_source_age (test_cone_distance_diagnostic.EngineStateTest) ... ok
+test_slow_current_frame_withheld_without_stretching_ttl (test_cone_distance_diagnostic.EngineStateTest) ... ok
+test_three_support_frames_then_conditional_output (test_cone_distance_diagnostic.EngineStateTest) ... ok
+test_native_recorded_scene_matches_saved_single_frame_decision (test_cone_distance_diagnostic.PortLineageTest) ... ok
+test_promoted_functions_are_ast_identical_to_frozen_algorithms (test_cone_distance_diagnostic.PortLineageTest) ... ok
+test_cone_thread_with_completed_scene_futures_writes_diagnostic_log (test_cone_distance_diagnostic.WorkerAndEntrypointTest) ... ok
+test_core_and_replay_do_not_import_hardware_or_gpu (test_cone_distance_diagnostic.WorkerAndEntrypointTest) ... ok
+test_disconnect_while_predicting_cannot_publish_visible_result (test_cone_distance_diagnostic.WorkerAndEntrypointTest) ... ok
+test_stale_inference_logged_as_withheld_not_as_valid_output (test_cone_distance_diagnostic.WorkerAndEntrypointTest) ... ok
+test_untrusted_weights_rejected_before_torch_import (test_cone_distance_diagnostic.WorkerAndEntrypointTest) ... ok
+test_worker_result_pairing_source_ttl_and_session_checks (test_cone_distance_diagnostic.WorkerAndEntrypointTest) ... ok
+test_close_before_start_is_safe_and_hides_results (test_cone_distance_worker_lifecycle.WorkerLifecycleTest) ... ok
+test_current_scene_exception_still_fails_closed (test_cone_distance_worker_lifecycle.WorkerLifecycleTest) ... ok
+test_injected_predictor_log_does_not_claim_cuda_inference (test_cone_distance_worker_lifecycle.WorkerLifecycleTest) ... ok
+test_invalid_shutdown_timeout_does_not_stop_worker (test_cone_distance_worker_lifecycle.WorkerLifecycleTest) ... ok
+test_predictor_failure_is_not_silently_downgraded_to_no_cone (test_cone_distance_worker_lifecycle.WorkerLifecycleTest) ... ok
+test_real_scene_executor_shutdown_reports_then_clears_running_job (test_cone_distance_worker_lifecycle.WorkerLifecycleTest) ... ok
+test_reconnect_during_inference_defers_retired_scene_exception (test_cone_distance_worker_lifecycle.WorkerLifecycleTest) ... ok
+test_retired_scene_exception_does_not_kill_new_session (test_cone_distance_worker_lifecycle.WorkerLifecycleTest) ... ok
+test_retired_success_does_not_seed_new_pose (test_cone_distance_worker_lifecycle.WorkerLifecycleTest) ... ok
+test_shutdown_reports_scene_job_still_running (test_cone_distance_worker_lifecycle.WorkerLifecycleTest) ... ok
+test_slow_predictor_uses_latest_frame_and_no_catchup_queue (test_cone_distance_worker_lifecycle.WorkerLifecycleTest) ... ok
+test_stop_during_predictor_never_restores_visible_result (test_cone_distance_worker_lifecycle.WorkerLifecycleTest) ... ok
+test_unfinished_retired_job_does_not_create_scene_queue (test_cone_distance_worker_lifecycle.WorkerLifecycleTest) ... ok
+
+----------------------------------------------------------------------
+Ran 404 tests in 20.049s
+
+OK

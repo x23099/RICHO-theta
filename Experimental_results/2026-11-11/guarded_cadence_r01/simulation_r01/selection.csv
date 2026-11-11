@@ -1,0 +1,17 @@
+block,clock_kind,max_hz,offered,selected,skipped,numeric_opportunities,numeric_selected,numeric_skipped
+1,saved_worker_start_times,0,160,160,0,20,20,0
+1,saved_worker_start_times,5,160,29,131,20,4,16
+1,saved_worker_start_times,10,160,49,111,20,1,19
+1,saved_worker_start_times,15,160,70,90,20,3,17
+1,synthetic_uniform_30hz,0,160,160,0,20,20,0
+1,synthetic_uniform_30hz,5,160,27,133,20,0,20
+1,synthetic_uniform_30hz,10,160,54,106,20,7,13
+1,synthetic_uniform_30hz,15,160,80,80,20,0,20
+2,saved_worker_start_times,0,160,160,0,20,20,0
+2,saved_worker_start_times,5,160,28,132,20,5,15
+2,saved_worker_start_times,10,160,48,112,20,0,20
+2,saved_worker_start_times,15,160,71,89,20,7,13
+2,synthetic_uniform_30hz,0,160,160,0,20,20,0
+2,synthetic_uniform_30hz,5,160,27,133,20,0,20
+2,synthetic_uniform_30hz,10,160,54,106,20,7,13
+2,synthetic_uniform_30hz,15,160,80,80,20,0,20

@@ -13,7 +13,7 @@ import math
 import cv2
 import numpy as np
 
-from angular_fisheye_geometry import unproject
+from angular_fisheye_geometry import pixels_in_domain
 from cone_distance_core import support_from_colour_mask
 from cone_observation import checked_bbox
 from cone_support_completion_candidate import observe_lateral_completion
@@ -36,7 +36,7 @@ def _upper_context(image, box, camera, colour, seed, top_padding):
         lateral_padding_px=4,bottom_padding_px=4,reason="",component=None)
     if left<0 or top<0 or right>1280 or bottom>720:
         return dict(info,reason="context_outside_native_image"),None
-    _,valid=unproject([[x,y] for x in (left,right-1) for y in (top,bottom-1)],
+    valid=pixels_in_domain([[x,y] for x in (left,right-1) for y in (top,bottom-1)],
                       camera,image_size=(1280,720))
     if not valid.all():
         return dict(info,reason="context_outside_front_angular_domain"),None

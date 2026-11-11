@@ -1,0 +1,15 @@
+{
+  "state": "pass",
+  "tests_run": 22,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "source_sha256": {
+    "Experimental_results/2026-11-11/guarded_domain_only_r01/check_metadata.py": "f1d0a0c11887bb44d253a762eed7ec3e8127c13523da3e5c2cda26f03247104f",
+    "tests/test_guarded_cuda_replay.py": "d35994f61f42c2479a4e1a1224bac6096b35c4cde3803473e7da46ac0050ed23",
+    "Experimental_results/2026-11-11/guarded_cuda_replay_r01/cuda_replay.py": "30c6bd9268d7e0ced7f6ddfffc76a5c9082ea61ab6315d84dd9b5154de3f17a0"
+  },
+  "sources_unchanged": true,
+  "cuda_started": false,
+  "camera_started": false
+}

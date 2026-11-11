@@ -342,6 +342,7 @@ def run(args):
         paths=[Path(__file__),*[ROOT/'src'/name for name in ('cone_distance_worker.py','run_cone_yolo.py',
             'cone_detection_diagnostics.py','cone_distance_core.py','angular_fisheye_geometry.py',
             'cone_motion_range.py','cone_upper_support_candidate.py','cone_support_completion_candidate.py',
+            'cone_colour_support_candidate.py',
             'cone_support_quality.py','cone_observation.py','theta_rtc_frames.py',
             'driver_guarded_comparison.py','manage_guarded_comparison.py','driver_motion_protocol.py',
             'driver_withheld_evidence.py','cone_guarded_stream_comparison.py',

@@ -1,0 +1,11 @@
+test_cross_run_input_mismatch_rejected (test_guarded_cuda_cross_run.CrossRunAuditTests) ... ok
+test_default_two_source_change_remains_supported (test_guarded_cuda_cross_run.CrossRunAuditTests) ... ok
+test_detection_variation_is_reported_separately (test_guarded_cuda_cross_run.CrossRunAuditTests) ... ok
+test_explicit_four_source_change_supported (test_guarded_cuda_cross_run.CrossRunAuditTests) ... ok
+test_shortened_primary_block_rejected (test_guarded_cuda_cross_run.CrossRunAuditTests) ... ok
+test_unexpected_source_change_rejected (test_guarded_cuda_cross_run.CrossRunAuditTests) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.207s
+
+OK

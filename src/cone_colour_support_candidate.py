@@ -10,7 +10,7 @@ import math
 import cv2
 import numpy as np
 
-from angular_fisheye_geometry import unproject
+from angular_fisheye_geometry import pixels_in_domain
 from cone_observation import checked_bbox
 from theta_rtc_frames import native_frame
 from cone_distance_core import support_from_colour_mask
@@ -43,7 +43,7 @@ def observe_separated_support(image, box, camera, settings=None):
                   method="upper_body_colour_seed_shadow_v1", seed_xyxy=None,
                   seed_red_pixels=0, seed_yellow_pixels=0, seed_dominant_fraction=None,
                   controlling_distance=False, floor_contact_verified=False, usable_for_ffb=False)
-    _, valid = unproject([[x, y] for x in (x1, x2) for y in (y1, y2)], camera, image_size=(1280, 720))
+    valid = pixels_in_domain([[x, y] for x in (x1, x2) for y in (y1, y2)], camera, image_size=(1280, 720))
     if not valid.all():
         return dict(result, reason="bbox_crosses_front_angular_domain")
     left, top, right, bottom = math.floor(x1)-4, math.floor(y1)-4, math.ceil(x2)+4, math.ceil(y2)+4

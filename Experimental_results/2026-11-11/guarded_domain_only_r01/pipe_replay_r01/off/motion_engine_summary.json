@@ -1,0 +1,30 @@
+{
+  "schema": "driver_motion_engine_v1",
+  "profile_sha256": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+  "weights_sha256": "verifier_saved_boxes_NOT_live_weights",
+  "config_sha256": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+  "gpu": {
+    "name": "offline replay NOT CUDA"
+  },
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false,
+  "mount_or_floor_tilt_compensated": false,
+  "metric": "horizontal_camera_foot_range_m_NOT_base_link_or_contact",
+  "guarded_comparison": {
+    "requested": false,
+    "worker_started": false,
+    "directory": null,
+    "main_display_modified": false,
+    "controlling_distance": false
+  },
+  "withheld_evidence": {
+    "requested": false,
+    "recorder_started": false,
+    "directory": null,
+    "target_reason": "colour_contour_reaches_roi_edge",
+    "max_frames": 40,
+    "max_png_and_sidecar_bytes": 134217728,
+    "interval_sec": 1.0
+  }
+}

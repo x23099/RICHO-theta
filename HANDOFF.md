@@ -2,6 +2,28 @@
 
 更新日: **2026-11-11（JST）**。対象リポジトリ: `RICHO-theta`。
 
+## 11/11後続：間引きは見送り、捨てていた光線の逆算を削減。GPU r04待ち
+
+[最新の変更・GPU手順](Experimental_results/2026-11-11/guarded_domain_only_r01/README.md)。matunucは使用不可、このPCとGPU PCのみ。単純な比較頻度制限は、r03の保存開始時刻で10Hz選択すると40数値機会のうち1回しか残らなかったため今回は実装しない。この数字は8画像反復の位相依存で、実カメラの検出率・精度ではない。根拠は [選択試算](Experimental_results/2026-11-11/guarded_cadence_r01/README.md)。
+
+代わりにbbox中心／角／contextの有効域boolだけを使う呼出しから、捨てているrayの64回反復逆算を外した。`angular_fisheye_geometry` の同じ入力・ROI・最大半径チェックを共通化し、core／colour／lateral／upperの4モジュールで `pixels_in_domain` を使用。runtime計5ファイル変更。実際の支持点のray・距離式・閾値・丸め・校正・鮮度・参照失効・自己領域棄却は維持。主測距にも同じ意味の軽量化が効くが主判定は変えず、比較の頻度・thread数・権限／ROS／FFB接続は変更しない。
+
+関連404テスト成功、元の式とray／validのbit単位一致。元8画像のbaseline／proposal全値一致、CPU比較P50 49.14→33.15ms（32.5%短縮）、P95 63.98→48.62ms。8ケースのunproject 61→1回、距離算出の1回は維持。GPU r03の比較320/320行（数値40）を新runtime＋模擬時計で再現。実子／pipe／threadの元8画像も主8/8一致・比較1.142471541888944m・別session拒否・元画素不変・正常終了。CPU時間をGPU性能や実映像遅延へ換算しない。
+
+GPU測定の依存SHAリストにcolourモジュール1件を追加しただけの後続変更は、影響するCUDA試験22件を再実行して成功。404と重複するため426件の独立テストとは数えない。正式記録は上記フォルダchecks_r01／checks_metadata_r01／bench_r01／gpu_rows_replay_r01／pipe_replay_r01。旧hash固定監査は履歴であり、新ソースでそのまま一致すると案内しない。
+
+次は今回の10ファイル限定 `recordings/2026-11-11/guarded_domain_update_r01.patch`＋manifestをGPU PCへ反映して、保存画像CUDA試験を新規 `recordings/2026-11-11/guarded_cuda_gpu_r04` に実行・全フォルダ提出。既にGitで反映済みならreverse **--check** が成功するので重ねてapplyしない。旧r01〜r03は保持。カメラ・送信・ROS・走行・画面録画は不要。GPU効果・30件/秒維持は未確認。今回は実CUDA／実機の起動、commit/push、日報作成なし。前回r03監査の未commit差分・別作業は保持。
+
+## 11/11後続：compactのGPU効果を照合、比較ONは26.54件/秒
+
+[最新GPU r03監査](Experimental_results/2026-11-11/guarded_cuda_gpu_audit_r03/README.md)。ユーザーが `guarded_cuda_gpu_r03.tar.xz` を提出。開始HEAD `0576314`（1111v4）、clean。入力25・依存24のSHAを照合し、r02との差は予定したcompact関連runtime4ファイルのみ。更新済みで、パッチ再適用や反映方法の再確認は不要。
+
+主640／setup4／warmup8／比較322行と両pin・元画素・参照・終了を照合。今回のOFF/ON320組は検出枠・主判定一致。r02との比較も検出枠・主判定640/640、比較値・理由・flags322/322一致。主数値は保留標本で0、比較40数値は元14922反復の1.142471541888944mだけ。独立精度検証ではない。両writer正常終了、slot上書き／tap失敗0。
+
+GPU比較ONはr02の23.86→26.54件/秒へ改善。主処理P50 33.51→27.68ms、P95 55.59→45.22ms、33.33ms超過166/320→119/320（37.19%残る）。比較service P95 34.96→26.15ms、入力から比較完了までP95 93.67→71.35ms。OFFは主P50 22.78ms・29.62件/秒。中央値が33.33ms以下になっただけで30fps維持・通信込み実遅延を認定しない。
+
+次は保存データで残るCPU処理内訳・比較だけの実行頻度を主測距優先の観点で検討できる。**追加撮影、同じ未変更GPU試験、パッチ再適用は今は不要。** 今回監査ではruntime・頻度・主表示・ROS・FFB・環境の変更なし。実CUDA／カメラ／機体をこのPCで起動せず、commit/push・日報作成なし。rawは `recordings/2026-11-11/guarded_cuda_gpu_intake_r03/`、根拠は上記results_r01。監査helperをrun／期待差分指定へ一般化し、新規6テスト成功。
+
 ## 11/11後続：比較内の診断コピーを削減、GPU r03の速度確認待ち
 
 [最新手順](Experimental_results/2026-11-11/guarded_compact_compute_r01/README.md)。既存の通常APIは独立したdeepcopy・両bbox policyを維持し、比較stream内部だけがcompact経路を選ぶ。毎回元画素から新規抽出した同一呼出し内の診断graphを読み取り専用で共有し、half-pixel以外の未使用policy・不要な深いコピーを省く。棄却は別top-level dictへ行う。主ログ観測・前フレームの借用や、比較頻度・thread数の変更ではない。engineの結果コピー、stream外へ返す所有権、500ms鮮度、参照失効、主行再現・自己領域棄却、主測距・操縦・ROS・FFB未接続を維持。

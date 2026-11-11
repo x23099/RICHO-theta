@@ -20,7 +20,7 @@ COMPARISON_FIELDS=('frame','original_distance_available','original_range_m',
     'body_review_reason','lower_half_pixel_eligible',*replay.FLAGS)
 
 
-def cross_run(old_dir,payload):
+def cross_run(old_dir,payload,*,expected_sources=None):
     old_summary=replay.parse_json((old_dir/'summary.json').read_bytes())
     new_summary=replay.parse_json(payload['summary.json'])
     require=checker.require
@@ -51,7 +51,9 @@ def cross_run(old_dir,payload):
                 comparison_total+=1
     changed=sorted(name for name in set(old_summary['source_sha256'])|set(new_summary['source_sha256'])
         if old_summary['source_sha256'].get(name)!=new_summary['source_sha256'].get(name))
-    require(changed==['src/cone_guarded_stream_comparison.py','src/cone_motion_range.py'],
+    expected_sources=expected_sources if expected_sources is not None else [
+        'src/cone_guarded_stream_comparison.py','src/cone_motion_range.py']
+    require(changed==sorted(expected_sources),
         'unexpected cross-run code changes')
     metrics=[]
     def throughput(summary,enabled):
@@ -79,32 +81,39 @@ def cross_run(old_dir,payload):
         NOT_independent_accuracy_or_latency_validation=True),metrics
 
 
-def main():
+def main(defaults=None,extra_sources=()):
+    defaults={} if defaults is None else defaults
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--archive',type=Path,required=True)
     parser.add_argument('--intake-dir',type=Path,required=True)
     parser.add_argument('--output-dir',type=Path,required=True)
+    parser.add_argument('--archive-root',default=defaults.get('archive_root','guarded_cuda_gpu_r02'))
+    parser.add_argument('--previous-dir',type=Path,default=defaults.get('previous_dir',ROOT/'recordings/2026-11-11/guarded_cuda_gpu_intake_r01'))
+    parser.add_argument('--previous-audit',type=Path,default=defaults.get('previous_audit',ROOT/'Experimental_results/2026-11-11/guarded_cuda_gpu_audit_r01/results_r01/audit.json'))
+    parser.add_argument('--expected-source',nargs='+',default=defaults.get('expected_sources'))
     args=parser.parse_args()
     checker.require(not args.intake_dir.exists() and not args.output_dir.exists(),'new output directories required')
-    payload=checker.archive_payload(args.archive,prefix='guarded_cuda_gpu_r02')
+    payload=checker.archive_payload(args.archive,prefix=args.archive_root)
     base=ROOT/'recordings/2026-11-10/driver_motion_171250_intake_r01'
     data=replay.load_inputs(base/'driver_motion_live_20261110_171250',base/'motion_withheld_20261110_171250')
     report,primary,comparison=checker.audit(payload,data)
-    previous=ROOT/'recordings/2026-11-11/guarded_cuda_gpu_intake_r01'
+    previous=args.previous_dir.resolve()
     # Verify all old artifacts that are consumed against the recorded first audit.
-    old_report_path=ROOT/'Experimental_results/2026-11-11/guarded_cuda_gpu_audit_r01/results_r01/audit.json'
+    old_report_path=args.previous_audit.resolve()
     old_audit=replay.parse_json(old_report_path.read_bytes())
-    cross,metrics=cross_run(previous,payload)
+    cross,metrics=cross_run(previous,payload,expected_sources=args.expected_source)
     for name,digest in cross['input_sha256'].items():
         relative=str(Path(name).relative_to(previous))
         checker.require(digest==old_audit['supplied_files_sha256'][relative],'previous artifact modified')
-    report.update(schema='guarded_cuda_gpu_reuse_archive_audit_v1',
+    report.update(schema=defaults.get('schema','guarded_cuda_gpu_reuse_archive_audit_v1'),
         archive_sha256=replay.hash_regular(args.archive,64*1024*1024),
         source_sha256={str(path.relative_to(ROOT)):replay.hash_regular(path,512*1024)
-            for path in (Path(__file__),Path(checker.__file__))},
+            for path in (Path(__file__),Path(checker.__file__),*extra_sources)},
         supplied_files_sha256={name:replay.digest_bytes(blob) for name,blob in sorted(payload.items())},
-        first_audit_sha256=replay.hash_regular(old_report_path,512*1024),cross_run=cross,
-        performance_decision='improved_but_30fps_budget_still_not_met_in_saved_image_sample')
+        previous_audit_sha256=replay.hash_regular(old_report_path,512*1024),cross_run=cross,
+        performance_decision=('30fps_p95_budget_not_met_in_saved_image_sample'
+            if report['groups']['on']['primary_ms']['p95']>1000/30 else
+            'p95_budget_met_in_saved_image_sample_NOT_live_validation'))
     for name,blob in payload.items():
         path=args.intake_dir/name;path.parent.mkdir(parents=True,exist_ok=True)
         with path.open('xb') as stream:stream.write(blob)
