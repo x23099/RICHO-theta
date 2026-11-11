@@ -1,0 +1,423 @@
+{
+  "schema": "guarded_cuda_gpu_domain_archive_audit_v1",
+  "state": "pass",
+  "actual_cuda_execution_supported_by_submitted_logs": true,
+  "local_cuda_inference_started": false,
+  "actual_camera": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "submitted_gpu": {
+    "name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+    "index": 0,
+    "torch_version": "2.7.1+cu118",
+    "torch_cuda_version": "11.8"
+  },
+  "runtime_versions": {
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "executable": "/home/hsr/yopi_ws/RICHO-theta/yolo-env/bin/python3",
+    "numpy": "2.2.6",
+    "opencv-python": "5.0.0.93",
+    "torch": "2.7.1+cu118",
+    "ultralytics": "8.4.175"
+  },
+  "source_hashes_local_rehashed": 25,
+  "original_inputs_local_rehashed": 25,
+  "weights_sha_matches_config": true,
+  "weights_file_supplied": false,
+  "primary_rows_checked": 640,
+  "setup_rows_checked": 4,
+  "warmup_rows_checked": 8,
+  "primary_equal_pairs": 320,
+  "primary_changed_pairs": 0,
+  "detector_changed_pairs": 0,
+  "distinct_input_detection_cases_recomputed_on_cpu": 8,
+  "comparison_rows_checked": 322,
+  "comparison_numeric_rows": 40,
+  "comparison_numeric_cases": [
+    {
+      "original_frame": 14922,
+      "range_m": 1.142471541888944,
+      "rows": 40
+    }
+  ],
+  "both_pin_pixels_match_original": true,
+  "both_comparison_workers_closed": true,
+  "groups": {
+    "off": {
+      "measured_frames": 320,
+      "predict_ms": {
+        "count": 320,
+        "min": 6.237028006580658,
+        "max": 8.778842995525338,
+        "p50": 6.874190992675722,
+        "p95": 7.774587007588707
+      },
+      "primary_ms": {
+        "count": 320,
+        "min": 7.647149002877995,
+        "max": 97.22099000646267,
+        "p50": 19.059710000874475,
+        "p95": 21.314318000804633
+      },
+      "comparison_tap_ms": {
+        "count": 320,
+        "min": 0.0,
+        "max": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      },
+      "primary_log_and_tap_ms": {
+        "count": 320,
+        "min": 7.853757007978857,
+        "max": 97.78710799582768,
+        "p50": 19.501454997225665,
+        "p95": 21.78205898962915
+      },
+      "start_interval_ms": {
+        "count": 318,
+        "min": 33.35883699764963,
+        "max": 97.79450700443704,
+        "p50": 33.41155899397563,
+        "p95": 33.423822998884134
+      },
+      "numeric_frames": 0,
+      "period_overruns": 2,
+      "reason_counts": {
+        "colour_contour_reaches_roi_edge": 320
+      }
+    },
+    "on": {
+      "measured_frames": 320,
+      "predict_ms": {
+        "count": 320,
+        "min": 6.5792179957497865,
+        "max": 27.23142500326503,
+        "p50": 7.282624996150844,
+        "p95": 10.796753005706705
+      },
+      "primary_ms": {
+        "count": 320,
+        "min": 7.865485007641837,
+        "max": 39.30607500660699,
+        "p50": 19.813324004644528,
+        "p95": 23.914175006211735
+      },
+      "comparison_tap_ms": {
+        "count": 320,
+        "min": 0.017721002222970128,
+        "max": 0.0587679969612509,
+        "p50": 0.026023000827990472,
+        "p95": 0.032508003641851246
+      },
+      "primary_log_and_tap_ms": {
+        "count": 320,
+        "min": 8.136956006637774,
+        "max": 39.82484900916461,
+        "p50": 20.390940000652336,
+        "p95": 24.45537601306569
+      },
+      "start_interval_ms": {
+        "count": 318,
+        "min": 33.36683199449908,
+        "max": 117.31759700342081,
+        "p50": 33.41666499909479,
+        "p95": 36.72715100401547
+      },
+      "numeric_frames": 0,
+      "period_overruns": 1,
+      "reason_counts": {
+        "colour_contour_reaches_roi_edge": 320
+      }
+    }
+  },
+  "comparison_service_ms": {
+    "count": 322,
+    "min": 0.017942991689778864,
+    "max": 104.37323999940418,
+    "p50": 13.057787989964709,
+    "p95": 16.42970800457988
+  },
+  "comparison_age_ms": {
+    "count": 322,
+    "min": 9.871146001387388,
+    "max": 124.7797910036752,
+    "p50": 34.13108400127385,
+    "p95": 41.17555799894035
+  },
+  "blocks": [
+    {
+      "id": 0,
+      "comparison_enabled": false,
+      "measured_wall_sec": 5.387679698993452,
+      "period_overruns": 1,
+      "comparison_rows": 0,
+      "comparison_numeric_rows": 0,
+      "comparison_reason_counts": {}
+    },
+    {
+      "id": 1,
+      "comparison_enabled": true,
+      "measured_wall_sec": 5.461753797993879,
+      "period_overruns": 1,
+      "comparison_rows": 161,
+      "comparison_numeric_rows": 20,
+      "comparison_reason_counts": {
+        "comparison_pin_requested": 1,
+        "colour_contour_reaches_roi_edge": 60,
+        "possible_self_body_occlusion": 80,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 20
+      }
+    },
+    {
+      "id": 2,
+      "comparison_enabled": true,
+      "measured_wall_sec": 5.587186953998753,
+      "period_overruns": 0,
+      "comparison_rows": 161,
+      "comparison_numeric_rows": 20,
+      "comparison_reason_counts": {
+        "comparison_pin_requested": 1,
+        "colour_contour_reaches_roi_edge": 60,
+        "possible_self_body_occlusion": 80,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 20
+      }
+    },
+    {
+      "id": 3,
+      "comparison_enabled": false,
+      "measured_wall_sec": 5.391539316988201,
+      "period_overruns": 1,
+      "comparison_rows": 0,
+      "comparison_numeric_rows": 0,
+      "comparison_reason_counts": {}
+    }
+  ],
+  "performance_decision": "p95_budget_met_in_saved_image_sample_NOT_live_validation",
+  "cause": "not_isolated_CPU_thread_GIL_memory_contention_or_duplicate_work_are_hypotheses",
+  "summary_completion_is_NOT_a_30fps_or_live_latency_pass": true,
+  "remote_paths_opened": false,
+  "archive_sha256": "3e7991d37a831e7d7166e5d538420dec9a76c4649d8a3aa499f48bebc20c0954",
+  "source_sha256": {
+    "Experimental_results/2026-11-11/guarded_cuda_gpu_audit_r02/review.py": "7af46d8c55fec50d291ffa09c2085b767211cb773abec2dc43520aba36fdbde4",
+    "Experimental_results/2026-11-11/guarded_cuda_gpu_audit_r01/audit.py": "314e0c5a1392a7fb7c3055259f6ed2a182a0ca32655da9555581ab9872781e61",
+    "Experimental_results/2026-11-11/guarded_cuda_gpu_audit_r04/review.py": "2a42851479504ef48ff94e055fb6eff99b38749050a110aca9d7fa72247116fb"
+  },
+  "supplied_files_sha256": {
+    "block_00_off/primary_frames.jsonl": "1d6e4d4b0c6e55d96aee6497a52309bddffd38c3e8033821cbbd70ecabd57686",
+    "block_00_off/setup.jsonl": "c594ad4f706079b3e2153590864fd92b02531c9f8b9f7ebfa731e5b1fe750257",
+    "block_01_on/comparison/comparison_frames.jsonl": "22410585e7fa4cf753d82a2d3aee82aa70838291a101764a0ade574ebe046255",
+    "block_01_on/comparison/comparison_status.json": "f001714fdc1d13d2440b3b2a6b483bcaaa1e40039debdb0dfc84c31f555f5fcc",
+    "block_01_on/comparison/decoded_e2d7df85c5de4e7fb057846ff751610d_f000001.json": "18166e86155ee41607a1b4fb3d08735487761a17918b4c4c31b7252ac1cd1d13",
+    "block_01_on/comparison/decoded_e2d7df85c5de4e7fb057846ff751610d_f000001.png": "0e9a4b5a0085d0e6eaf670e07f5bc3498e3d3865ae8be8f2ed9059872653b698",
+    "block_01_on/comparison/reference.json": "dd67b8dd89d2e83d38c4f627afe7d69388427135967f09a760b2a4537da19348",
+    "block_01_on/comparison/request.json": "d23dbd0a788888511c6ec6e322d86f6c543feee74b681a516f19d5ffa1a08d84",
+    "block_01_on/primary_frames.jsonl": "0da0ca7dc8a54b175907f7a2258132c503e18ae9a4721f882507c4849985a8ef",
+    "block_01_on/setup.jsonl": "330049de7c4dd06700df27f070730400659e75c6276e89676c2f279982598638",
+    "block_02_on/comparison/comparison_frames.jsonl": "f7b8f658ade286a55588bcdea9a1d9dda29d3bf9964875d471c67a92eb53e12a",
+    "block_02_on/comparison/comparison_status.json": "d2be6356e1032d910ef9a0fb48bc61d6352c5aff30a71f94f718e692867a7573",
+    "block_02_on/comparison/decoded_3250caef92a24eedb9ffa962fe05ac45_f000001.json": "d9f8d57feae95b427a1fc6413acd210e33591754032078bd01f61b1107ecc60e",
+    "block_02_on/comparison/decoded_3250caef92a24eedb9ffa962fe05ac45_f000001.png": "0e9a4b5a0085d0e6eaf670e07f5bc3498e3d3865ae8be8f2ed9059872653b698",
+    "block_02_on/comparison/reference.json": "145366a257fe3d6df2a8e2e1333346745565473c80c34aa9313fdd0dd31d6265",
+    "block_02_on/comparison/request.json": "ddbfd5d9b45b455e978a275ff4c516478bae6d4c7ab46c6e65c441dc170fc8ce",
+    "block_02_on/primary_frames.jsonl": "f2a5325dc21878685ffc069916b885f0b7e6e8c227a70f603023e5cfb0ee44af",
+    "block_02_on/setup.jsonl": "6bcc4f3f328688911c382dc61ebf9599a195954e15c7493081e1c5e8ea853977",
+    "block_03_off/primary_frames.jsonl": "670422ff57e09675c59681be13d7d0ecfcc6730ec7e65fbda9ebd4e7bbb9b8f2",
+    "block_03_off/setup.jsonl": "6368552c9825e59c9c8189a6748e252ad3fe6197e503982796cf9448fd4889f7",
+    "model/ultralytics_config/Ultralytics/Arial.ttf": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22",
+    "model/ultralytics_config/Ultralytics/settings.json": "5bb65aabe8c7ffc784ffd78e1a82e9fe93f287286a2d397b30e67c485e33793f",
+    "model/ultralytics_config/matplotlib/fontlist-v390.json": "cf29cf23d86a1e6fac16ba3fe6738f4e48ac8185c62affaab88433d2ebebd821",
+    "summary.json": "c047034bbdb50a09e50d5f88a6aee0a4130c589c46a245987b7eeec4e8e203b0",
+    "warmup.jsonl": "2c8735748a334294570ee1df87f28cbe6a9f679fb4d6da006a29aa2ed0108b43"
+  },
+  "previous_audit_sha256": "ef6a1a4133b6368501db97730925b25be0b66dca0c2d044c9883bf8df4456882",
+  "cross_run": {
+    "primary_pairs": 640,
+    "primary_equal": 640,
+    "detector_equal": 640,
+    "comparison_pairs": 322,
+    "comparison_equal": 322,
+    "changed_source_files": [
+      "Experimental_results/2026-11-11/guarded_cuda_replay_r01/cuda_replay.py",
+      "src/angular_fisheye_geometry.py",
+      "src/cone_colour_support_candidate.py",
+      "src/cone_distance_core.py",
+      "src/cone_support_completion_candidate.py",
+      "src/cone_upper_support_candidate.py"
+    ],
+    "same_input_hashes": true,
+    "gpu_metadata_equal": true,
+    "runtime_versions_equal": true,
+    "metrics": [
+      {
+        "condition": "off",
+        "metric": "predict_ms_p50",
+        "unit": "ms",
+        "before": 6.847904995083809,
+        "after": 6.874190992675722,
+        "change_percent": 0.383854589261734
+      },
+      {
+        "condition": "off",
+        "metric": "predict_ms_p95",
+        "unit": "ms",
+        "before": 8.194937006919645,
+        "after": 7.774587007588707,
+        "change_percent": -5.129386583154972
+      },
+      {
+        "condition": "off",
+        "metric": "primary_ms_p50",
+        "unit": "ms",
+        "before": 22.78424300311599,
+        "after": 19.059710000874475,
+        "change_percent": -16.346968392727135
+      },
+      {
+        "condition": "off",
+        "metric": "primary_ms_p95",
+        "unit": "ms",
+        "before": 26.44161599164363,
+        "after": 21.314318000804633,
+        "change_percent": -19.39101601225652
+      },
+      {
+        "condition": "off",
+        "metric": "primary_log_and_tap_ms_p50",
+        "unit": "ms",
+        "before": 23.235726010170765,
+        "after": 19.501454997225665,
+        "change_percent": -16.071247402859424
+      },
+      {
+        "condition": "off",
+        "metric": "primary_log_and_tap_ms_p95",
+        "unit": "ms",
+        "before": 26.924892998067662,
+        "after": 21.78205898962915,
+        "change_percent": -19.100666468043535
+      },
+      {
+        "condition": "off",
+        "metric": "start_interval_ms_p50",
+        "unit": "ms",
+        "before": 33.409103998565115,
+        "after": 33.41155899397563,
+        "change_percent": 0.007348282703478759
+      },
+      {
+        "condition": "off",
+        "metric": "start_interval_ms_p95",
+        "unit": "ms",
+        "before": 33.428886003093794,
+        "after": 33.423822998884134,
+        "change_percent": -0.015145596563381769
+      },
+      {
+        "condition": "off",
+        "metric": "measured_block_throughput",
+        "unit": "frames/sec",
+        "before": 29.61985320486222,
+        "after": 29.686751844039595,
+        "change_percent": 0.2258574298619198
+      },
+      {
+        "condition": "off",
+        "metric": "primary_over_33p33ms_count",
+        "unit": "frames/320",
+        "before": 2,
+        "after": 2,
+        "change_percent": 0.0
+      },
+      {
+        "condition": "on",
+        "metric": "predict_ms_p50",
+        "unit": "ms",
+        "before": 13.428748992737383,
+        "after": 7.282624996150844,
+        "change_percent": -45.76840329587307
+      },
+      {
+        "condition": "on",
+        "metric": "predict_ms_p95",
+        "unit": "ms",
+        "before": 26.93695000198204,
+        "after": 10.796753005706705,
+        "change_percent": -59.918428014633164
+      },
+      {
+        "condition": "on",
+        "metric": "primary_ms_p50",
+        "unit": "ms",
+        "before": 27.677616002620198,
+        "after": 19.813324004644528,
+        "change_percent": -28.413906736877802
+      },
+      {
+        "condition": "on",
+        "metric": "primary_ms_p95",
+        "unit": "ms",
+        "before": 45.218895000289194,
+        "after": 23.914175006211735,
+        "change_percent": -47.114640890586124
+      },
+      {
+        "condition": "on",
+        "metric": "primary_log_and_tap_ms_p50",
+        "unit": "ms",
+        "before": 28.16641599929426,
+        "after": 20.390940000652336,
+        "change_percent": -27.605485905046447
+      },
+      {
+        "condition": "on",
+        "metric": "primary_log_and_tap_ms_p95",
+        "unit": "ms",
+        "before": 45.91259300650563,
+        "after": 24.45537601306569,
+        "change_percent": -46.734927366005095
+      },
+      {
+        "condition": "on",
+        "metric": "start_interval_ms_p50",
+        "unit": "ms",
+        "before": 35.29212900320999,
+        "after": 33.41666499909479,
+        "change_percent": -5.314114101602141
+      },
+      {
+        "condition": "on",
+        "metric": "start_interval_ms_p95",
+        "unit": "ms",
+        "before": 46.536992987967096,
+        "after": 36.72715100401547,
+        "change_percent": -21.079664486461603
+      },
+      {
+        "condition": "on",
+        "metric": "measured_block_throughput",
+        "unit": "frames/sec",
+        "before": 26.53695980325232,
+        "after": 28.962052307348042,
+        "change_percent": 9.138546849660244
+      },
+      {
+        "condition": "on",
+        "metric": "primary_over_33p33ms_count",
+        "unit": "frames/320",
+        "before": 119,
+        "after": 1,
+        "change_percent": -99.15966386554622
+      }
+    ],
+    "input_sha256": {
+      "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-11/guarded_cuda_gpu_intake_r03/summary.json": "24519ab1ba3e2052760f5c0ab997a92bb5d290134c0b24c9dec94bf7afaccee6",
+      "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-11/guarded_cuda_gpu_intake_r03/block_00_off/primary_frames.jsonl": "9c9c0502b14bb19952767c9ffa64cee4698923277f4a94867e4dec0c04366390",
+      "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-11/guarded_cuda_gpu_intake_r03/block_01_on/primary_frames.jsonl": "14a3a64bd2d3c9fe17a0e559d73ab93d7947accfdf194231f9b3fd772c07483a",
+      "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-11/guarded_cuda_gpu_intake_r03/block_01_on/comparison/comparison_frames.jsonl": "755b5a2df1475a7db803a638339d9616d098fd39547af128b8823fcc239bfbee",
+      "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-11/guarded_cuda_gpu_intake_r03/block_02_on/primary_frames.jsonl": "8e87d324b9b439f3dc7ec868aa5b27dd5e09cbeef19a9716ae724fddfe63a3a4",
+      "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-11/guarded_cuda_gpu_intake_r03/block_02_on/comparison/comparison_frames.jsonl": "86f483813db4a8d819cae7ea1d2f4ba350526513bdc3315a53c3f526274ee644",
+      "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-11/guarded_cuda_gpu_intake_r03/block_03_off/primary_frames.jsonl": "765fda7fe77a0cd9b4468135a4043c49055460c97cbf74467e60350d5e14779e"
+    },
+    "NOT_independent_accuracy_or_latency_validation": true
+  }
+}

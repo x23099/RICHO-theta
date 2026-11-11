@@ -96,7 +96,7 @@ def main(defaults=None,extra_sources=()):
     payload=checker.archive_payload(args.archive,prefix=args.archive_root)
     base=ROOT/'recordings/2026-11-10/driver_motion_171250_intake_r01'
     data=replay.load_inputs(base/'driver_motion_live_20261110_171250',base/'motion_withheld_20261110_171250')
-    report,primary,comparison=checker.audit(payload,data)
+    report,primary,comparison=checker.audit(payload,data,expected_source_count=defaults.get('expected_source_count',24))
     previous=args.previous_dir.resolve()
     # Verify all old artifacts that are consumed against the recorded first audit.
     old_report_path=args.previous_audit.resolve()

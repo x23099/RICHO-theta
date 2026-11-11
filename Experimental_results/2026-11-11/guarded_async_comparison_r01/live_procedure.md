@@ -1,38 +1,14 @@
 # GPU PCへの反映と、実カメラの静止確認
 
-> **後続更新**：[GPU PCでの保存データ再生は確認済み](../guarded_gpu_cached_audit_r01/README.md)。同じGPU PCへ手順0のパッチを再適用せず、末尾の再生も繰り返さなくてよい。本日はmatunucが使用不可のため、手順1～4はまだ実施しない。以下は実カメラが使える時のための手順保存。
+> **最新更新**：[GPU r04の実CUDA負荷確認まで完了](../guarded_cuda_gpu_audit_r04/README.md)。比較ONの主処理P95は23.91ms・28.96件/秒で、保存画像の負荷対策を一区切りとした。r04実行PCは `2cca269`（1111v5）まで反映済み。パッチ再適用・同じ再生・Pullのやり直しは不要で、カメラが使える日に手順1から進める。本日はmatunucが使用不可のため、まだ実行を求めない。静止実映像の遅延は未確認。
 
 2026-11-11。保存データによる実装試験は完了。**ここから現在sessionのカメラ画像が必要になる。** まず静止状態で、主測距と別の比較ログを確認する。走行・画面録画・チェックボード／L字・距離の測り直しは今回不要。
 
 ## 0. 更新を反映する
 
-本日の変更はまだGitへpushしていない。`git pull`だけでは今日の機能は入らない。解析PCで生成した `recordings/2026-11-11/guarded_async_update_r02.patch` と同名prefixの `.manifest.json` を、普段のファイル転送でGPU PCのDownloadsへコピーする。manifestにはパッチSHA・対象ファイルとSHA・基準commitがある。r02は文言と手順の更新を含む最終配布用で、r01と両方を適用しない。
+**今回r04を実行したGPU PCでは完了済み。この手順を飛ばして手順1へ進む。** 以前のasync／compute_reuse／compact／domainパッチはどれも再適用しない。測距runtimeは `2cca269`（1111v5）でGitに反映済みで、提出コードSHAも一致した。
 
-普段の停止方法で機体を停止し、旧受信UIを終了してから反映する。Gitに別作業があれば保持する。以下の `git apply --check` が失敗した場合は適用せず、エラーと`git status --short`を共有する。`reset --hard`、checkout、強制上書きはしない。
-
-```bash
-cd ~/yopi_ws/RICHO-theta
-git status --short
-git pull --ff-only
-sha256sum "$HOME/Downloads/guarded_async_update_r02.patch"
-```
-
-SHAをmanifestの`patch_sha256`と照合し、相違がなければ：
-
-```bash
-git apply --check "$HOME/Downloads/guarded_async_update_r02.patch"
-```
-
-上が成功した場合だけ：
-
-```bash
-git apply "$HOME/Downloads/guarded_async_update_r02.patch"
-export THETA_DISTANCE_PYTHON="$PWD/yolo-env/bin/python3"
-"$THETA_DISTANCE_PYTHON" src/driver_motion_process.py --help
-"$THETA_DISTANCE_PYTHON" src/manage_guarded_comparison.py --help
-```
-
-worker helpに`--comparison-dir`があれば反映できている。パッチを再適用しない。既に同じ機能が入っている場合や独自変更が衝突する場合は、この場で無理に解消しない。送信側は今日変更しておらず、昨日の動いた`--motion-native`をそのまま使う。
+別PCを新規に準備する場合だけ、普段のVSCode等で同じリポジトリをPullする。別作業の削除・未追跡ファイルや独自変更を保持し、競合時にreset・強制上書きしない。更新は受信UIを終了し機体を停止した状態で行う。送信側は今回変更しておらず、これまで動いた `--motion-native` を使う。
 
 ## 1. GPU PCで受信を開始（端末A）
 
@@ -114,6 +90,8 @@ export THETA_DISTANCE_PYTHON="$PWD/yolo-env/bin/python3"
 比較だけを無効化する端末要求は`invalidate`。これも機体停止命令ではない。
 
 ## カメラがまだ使えない場合のGPU PC確認（任意）
+
+**r04を提出済みのGPU PCでは以下も完了済みの履歴。繰り返さなくてよい。** 未変更コードでの実行を、カメラを待つ間の必須作業とはしない。
 
 新しい環境で保存データの再生だけを試せる。これは実カメラ確認の代替ではなく、ローカルでは既に同じ8画像で成功済み。元17:12フォルダが前日と同じ保存先にある場合：
 

@@ -76,7 +76,27 @@ def checked_primary(row,job,session,sequence,profile_sha):
         require(box['image']==f'{session}:{sequence}','detector provenance mismatch')
 
 
-def audit(payload,data):
+def checked_source_hashes(summary,*,expected_count=24):
+    require(type(expected_count) is int and expected_count in (24,25),'explicit supported source count required')
+    source_hashes=dict(summary['source_sha256'])
+    for block in summary['blocks']:
+        if not block['comparison_enabled']:continue
+        for name,digest in block['comparison_final_status']['source_sha256'].items():
+            key='src/'+name
+            require(key not in source_hashes or source_hashes[key]==digest,'inconsistent source SHA')
+            source_hashes[key]=digest
+    require(len(source_hashes)==expected_count,'expected benchmark/dependency source hashes')
+    if expected_count==25:
+        require('src/cone_colour_support_candidate.py' in source_hashes,'colour dependency SHA required')
+    for name,digest in source_hashes.items():
+        p=PurePosixPath(name)
+        require(not p.is_absolute() and '..' not in p.parts and str(p)==name,'unsafe recorded source path')
+        require((ROOT/name).resolve().is_relative_to(ROOT),'source escapes repository')
+        require(replay.hash_regular(ROOT/name,512*1024)==digest,'source SHA mismatch: '+name)
+    return source_hashes
+
+
+def audit(payload,data,*,expected_source_count=24):
     import cv2
     import numpy as np
     summary=replay.parse_json(payload['summary.json'])
@@ -102,19 +122,7 @@ def audit(payload,data):
         require(known[name]==digest==replay.hash_regular(path,512*1024*1024),'original input SHA mismatch')
     require(known['cone_distance_v03.pt']==summary['weights_sha256']==data['settings']['weights_sha256'],
         'checkpoint SHA mismatch')
-    source_hashes=dict(summary['source_sha256'])
-    for block in summary['blocks']:
-        if not block['comparison_enabled']:continue
-        for name,digest in block['comparison_final_status']['source_sha256'].items():
-            key='src/'+name
-            require(key not in source_hashes or source_hashes[key]==digest,'inconsistent source SHA')
-            source_hashes[key]=digest
-    require(len(source_hashes)==24,'expected benchmark/dependency source hashes')
-    for name,digest in source_hashes.items():
-        p=PurePosixPath(name)
-        require(not p.is_absolute() and '..' not in p.parts and str(p)==name,'unsafe recorded source path')
-        require((ROOT/name).resolve().is_relative_to(ROOT),'source escapes repository')
-        require(replay.hash_regular(ROOT/name,512*1024)==digest,'source SHA mismatch: '+name)
+    source_hashes=checked_source_hashes(summary,expected_count=expected_source_count)
     warmup=rows(payload['warmup.jsonl'])
     require(len(warmup)==8 and [r['call'] for r in warmup]==list(range(1,9)),'invalid warmup calls')
     require(all(r['excluded_from_measured_distributions'] is True for r in warmup),'warmup not excluded')

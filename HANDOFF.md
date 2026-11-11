@@ -2,6 +2,18 @@
 
 更新日: **2026-11-11（JST）**。対象リポジトリ: `RICHO-theta`。
 
+## 11/11後続：GPU r04の主P95は23.91ms。保存画像の負荷対策を終え、次は静止実映像
+
+[最新監査](Experimental_results/2026-11-11/guarded_cuda_gpu_audit_r04/README.md)。ユーザーが `guarded_cuda_gpu_r04.tar.xz` を提出。開始HEAD `2cca269`（1111v5）、clean。元入力25・コード25のSHA、主640／setup4／warmup8／比較322行、両pin／参照／元画素・鮮度・終了を照合した。r03との差は予定したruntime5＋測定SHA追加1だけ。GPU PCはGit経由の今回runtime反映済み、Pullのやり直し・パッチ適用・同じCUDA再生は不要。
+
+OFF/ON320組の検出枠・主判定一致、r03との検出枠・主判定640/640・比較の値／理由／flags322/322一致。主数値は保留画像反復で0、比較40数値は元14922反復の1.142471541888944mのみで独立精度検証ではない。両比較worker正常終了、slot上書き／tap失敗0。
+
+比較ONの主P50は27.68→19.81ms、P95 45.22→23.91ms、ログ／tap込みP95 24.46ms、件数/秒26.54→28.96、33.33ms超過119/320→1/320（0.31%）。比較service P95 26.15→16.43ms、age P95 71.35→41.18ms。OFFは主P95 21.31ms・29.69件/秒。ON両blockの主P95が33.33ms以内になったが、開始間隔P95 36.73ms・最大117.32msが残るため、全フレーム30fps維持・実映像遅延の認定ではない。
+
+**保存画像での負荷対策は一区切り。次はカメラ／matunucが使える日に静止実映像を確認する。** 現状このPC＋GPU PCのみなので今すぐ新撮影は求めない。[静止手順1から](Experimental_results/2026-11-11/guarded_async_comparison_r01/live_procedure.md)通常受信→送信→現在native画像をpin→PNG／同名JSON／status提出→こちらで現在境界参照を用意→同接続でloadし静止20〜30秒を確認。過去参照のsession書換え転用や、無人遠隔走行はしない。最初の確認に走行・画面録画・床マーカー・距離再測定は不要。主画面は現行のまま、比較値は別ログのみ、ROS／FFB／制御未接続。
+
+監査helperは旧既定24を保ち、r04のみ明示25かつcolour依存SHA必須へ拡張。関連26テスト成功。未変更の測距404＋重複する測定メタデータ22テストはSHA照合で再利用し、今回の再実行数に加えない。正式記録は上記results_r01／checks_r01／checks_reuse_r01。rawは `recordings/2026-11-11/guarded_cuda_gpu_intake_r04/`。今回runtime／GPU環境変更・実CUDA／実機起動・日報／commit／pushなし。
+
 ## 11/11後続：間引きは見送り、捨てていた光線の逆算を削減。GPU r04待ち
 
 [最新の変更・GPU手順](Experimental_results/2026-11-11/guarded_domain_only_r01/README.md)。matunucは使用不可、このPCとGPU PCのみ。単純な比較頻度制限は、r03の保存開始時刻で10Hz選択すると40数値機会のうち1回しか残らなかったため今回は実装しない。この数字は8画像反復の位相依存で、実カメラの検出率・精度ではない。根拠は [選択試算](Experimental_results/2026-11-11/guarded_cadence_r01/README.md)。

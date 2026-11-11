@@ -62,6 +62,18 @@ class CrossRunAuditTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'unexpected cross-run code changes'):
             review.cross_run(self.directory,payload)
 
+    def test_new_dependency_key_is_an_explicit_cross_run_change(self):
+        names=['src/angular_fisheye_geometry.py','src/cone_colour_support_candidate.py',
+            'Experimental_results/2026-11-11/guarded_cuda_replay_r01/cuda_replay.py']
+        payload=self.fixture(names)
+        previous=json.loads((self.directory/'summary.json').read_bytes())
+        previous['source_sha256'].pop('src/cone_colour_support_candidate.py')
+        (self.directory/'summary.json').write_text(json.dumps(previous))
+        result,_=review.cross_run(self.directory,payload,expected_sources=names)
+        self.assertEqual(result['changed_source_files'],sorted(names))
+        self.assertEqual(result['primary_equal'],640)
+        self.assertEqual(result['comparison_equal'],322)
+
     def test_cross_run_input_mismatch_rejected(self):
         payload=self.fixture(['src/a.py']);summary=json.loads(payload['summary.json'])
         summary['input_sha256']['/not/opened/source.json']='d'*64
