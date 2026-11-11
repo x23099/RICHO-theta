@@ -1,0 +1,25 @@
+usage: cuda_replay.py [-h] --input-dir INPUT_DIR --evidence-dir EVIDENCE_DIR
+                      [--weights WEIGHTS] --output-dir OUTPUT_DIR
+                      [--config CONFIG] [--device DEVICE] [--cycles CYCLES]
+                      [--warmup WARMUP] [--fps FPS]
+                      [--max-duration-sec MAX_DURATION_SEC] [--validate-only]
+                      --experimental-rigid-mount
+
+CUDA YOLO on saved native PNGs; NO camera, RTC, ROS, UI or vehicle control. No
+cached-box/CPU inference fallback. --validate-only checks data without CUDA.
+Timing is predictor/primary wall time on preloaded images, NOT live latency.
+
+options:
+  -h, --help            show this help message and exit
+  --input-dir INPUT_DIR
+  --evidence-dir EVIDENCE_DIR
+  --weights WEIGHTS
+  --output-dir OUTPUT_DIR
+  --config CONFIG
+  --device DEVICE
+  --cycles CYCLES
+  --warmup WARMUP
+  --fps FPS
+  --max-duration-sec MAX_DURATION_SEC
+  --validate-only
+  --experimental-rigid-mount

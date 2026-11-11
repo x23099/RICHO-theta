@@ -1,0 +1,174 @@
+{
+  "schema": "guarded_gpu_cached_archive_audit_v1",
+  "state": "pass",
+  "archive_sha256": "1370a5a07ff2a8192d66bea83548c12e1a9386333ac69fad09ff5cf20d7ba4e5",
+  "audit_source_sha256": "200dd44b80b9843f842fc3bdbed7128d95a0ff3efb78547643631bc4219482bd",
+  "archive_regular_files": 15,
+  "supplied_files_sha256": {
+    "off/driver_motion_summary.json": "d84fdd37f2c13831c3e707eb2cde82cc20a0afb33410f87cd54a44698d1a43b7",
+    "off/motion_bridge_events.jsonl": "52961be771c0992462c72fe9efea0209b35534e56e7701754c58db2dc75111fa",
+    "off/motion_distance_frames.jsonl": "bfc83f483bebb19c65de2c04c5b38029b72876fefedbfffbaee322c1129f99d5",
+    "off/motion_engine_summary.json": "887c26b6a4c83ff617f9dca2aa3b15f0cad243a354fbec73caba6b9b65241089",
+    "off/motion_profile_used.json": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "off/motion_worker_stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "off_manifest.json": "37c793f632ac21ce49ae558a8f89f7e563aab75055dfe73d9c0681395b6176bc",
+    "on/driver_motion_summary.json": "68ebe143837271279576571dfc0fcf3733018139979cae0e859aa7471fe8baeb",
+    "on/motion_bridge_events.jsonl": "84c1993aed8badf51bc2d11ece28ae6ae87fe03e97715f5e456d555c35b7492a",
+    "on/motion_distance_frames.jsonl": "d3d9190f327b1e93ba0f2e9d6ffe71a49f4fd5160fc5b1c3912053bb1e63b71a",
+    "on/motion_engine_summary.json": "1fa171fbd5f84fd8f32d23b8cc75fef7397aff7aec7f24c6aedb2240c7093cd1",
+    "on/motion_profile_used.json": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "on/motion_worker_stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "on_manifest.json": "7c96723970c4a8d797dd36d52f663ae4260b6d54711b9e5f28140cd7da820b87",
+    "summary.json": "ccc811687e2387760049f8dce52b10976cabff59f8a543dd5b4d31ce7bd0d230"
+  },
+  "primary_off_on_equal_images": 8,
+  "primary_rows_independently_checked": 16,
+  "bridge_events_checked": 16,
+  "source_files_recorded_hashes_matched_and_local_rehashed": 13,
+  "original_inputs_recorded_hashes_matched_and_local_rehashed": 23,
+  "main_geometry_and_flags_equal_to_local": true,
+  "primary_rows": [
+    {
+      "trial": "off",
+      "replay_frame": 1,
+      "original_frame": 6861,
+      "baseline_geometry_and_flags_equal": true,
+      "primary_distance_available": false,
+      "primary_reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "trial": "off",
+      "replay_frame": 2,
+      "original_frame": 14203,
+      "baseline_geometry_and_flags_equal": true,
+      "primary_distance_available": false,
+      "primary_reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "trial": "off",
+      "replay_frame": 3,
+      "original_frame": 14267,
+      "baseline_geometry_and_flags_equal": true,
+      "primary_distance_available": false,
+      "primary_reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "trial": "off",
+      "replay_frame": 4,
+      "original_frame": 14297,
+      "baseline_geometry_and_flags_equal": true,
+      "primary_distance_available": false,
+      "primary_reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "trial": "off",
+      "replay_frame": 5,
+      "original_frame": 14329,
+      "baseline_geometry_and_flags_equal": true,
+      "primary_distance_available": false,
+      "primary_reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "trial": "off",
+      "replay_frame": 6,
+      "original_frame": 14382,
+      "baseline_geometry_and_flags_equal": true,
+      "primary_distance_available": false,
+      "primary_reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "trial": "off",
+      "replay_frame": 7,
+      "original_frame": 14604,
+      "baseline_geometry_and_flags_equal": true,
+      "primary_distance_available": false,
+      "primary_reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "trial": "off",
+      "replay_frame": 8,
+      "original_frame": 14922,
+      "baseline_geometry_and_flags_equal": true,
+      "primary_distance_available": false,
+      "primary_reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "trial": "on",
+      "replay_frame": 1,
+      "original_frame": 6861,
+      "baseline_geometry_and_flags_equal": true,
+      "primary_distance_available": false,
+      "primary_reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "trial": "on",
+      "replay_frame": 2,
+      "original_frame": 14203,
+      "baseline_geometry_and_flags_equal": true,
+      "primary_distance_available": false,
+      "primary_reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "trial": "on",
+      "replay_frame": 3,
+      "original_frame": 14267,
+      "baseline_geometry_and_flags_equal": true,
+      "primary_distance_available": false,
+      "primary_reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "trial": "on",
+      "replay_frame": 4,
+      "original_frame": 14297,
+      "baseline_geometry_and_flags_equal": true,
+      "primary_distance_available": false,
+      "primary_reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "trial": "on",
+      "replay_frame": 5,
+      "original_frame": 14329,
+      "baseline_geometry_and_flags_equal": true,
+      "primary_distance_available": false,
+      "primary_reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "trial": "on",
+      "replay_frame": 6,
+      "original_frame": 14382,
+      "baseline_geometry_and_flags_equal": true,
+      "primary_distance_available": false,
+      "primary_reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "trial": "on",
+      "replay_frame": 7,
+      "original_frame": 14604,
+      "baseline_geometry_and_flags_equal": true,
+      "primary_distance_available": false,
+      "primary_reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "trial": "on",
+      "replay_frame": 8,
+      "original_frame": 14922,
+      "baseline_geometry_and_flags_equal": true,
+      "primary_distance_available": false,
+      "primary_reason": "colour_contour_reaches_roi_edge"
+    }
+  ],
+  "both_child_and_io_shutdown_complete": true,
+  "comparison_writer_reported_complete": true,
+  "comparison_numeric_rows_reported": 1,
+  "comparison_range_m_reported": 1.142471541888944,
+  "comparison_rows_and_pin_png_supplied": false,
+  "comparison_rows_independently_read": false,
+  "comparison_report_consistent_with_verified_source": true,
+  "expected_bad_session_error": true,
+  "pin_source_log_line_sha256_matched": true,
+  "remote_files_opened": false,
+  "actual_camera": false,
+  "actual_cuda_inference": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}

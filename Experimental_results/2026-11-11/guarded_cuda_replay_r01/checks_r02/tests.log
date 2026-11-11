@@ -1,0 +1,39 @@
+test_benchmark_option_limits (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_budget_rejects_overflow_without_partial_write (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_cli_requires_explicit_mount_acknowledgement (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_invalid_cli_bounds_rejected_before_loading (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_measure_calls_predictor_with_exact_native_pixels (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_missing_weights_rejected (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_model_init_failure_saved_without_cpu_fallback (test_guarded_cuda_replay.SavedCudaReplayTests) ... Loading trusted local CUDA model; no camera/ROS/control.
+ok
+test_new_empty_detection_is_not_replaced_with_historical_detection (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_output_cannot_overlap_original (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_pairing_omits_only_replay_image_provenance_not_detection_fields (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_predictor_mutating_source_is_rejected (test_guarded_cuda_replay.SavedCudaReplayTests) ... block 1/4 comparison=False 1/2
+ok
+test_primary_difference_reported_without_claiming_cause (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_processing_age_gate_preserved (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_real_thread_abba_synthetic_predictor_and_immutable_pixels (test_guarded_cuda_replay.SavedCudaReplayTests) ... block 1/4 comparison=False 1/2
+block 2/4 comparison=True 1/2
+block 3/4 comparison=True 1/2
+block 4/4 comparison=False 1/2
+ok
+test_signatures_order_independent_and_nonfinite_rejected (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_summary_separates_detection_variation_from_primary (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_unpaired_summary_rejected (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_validate_only_never_constructs_yolo (test_guarded_cuda_replay.SavedCudaReplayTests) ... {
+  "state": "validated_inputs_only",
+  "actual_cuda_inference": false,
+  "actual_camera": false
+}
+ok
+test_wait_is_bounded (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_wait_reports_worker_error (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+test_worker_setup_error_does_not_get_success_summary (test_guarded_cuda_replay.SavedCudaReplayTests) ... block 1/4 comparison=False 1/2
+ok
+test_wrong_checkpoint_rejected_before_constructor_and_output (test_guarded_cuda_replay.SavedCudaReplayTests) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 1.935s
+
+OK

@@ -2,6 +2,22 @@
 
 更新日: **2026-11-11（JST）**。対象リポジトリ: `RICHO-theta`。
 
+## 11/11後続：保存画像の実CUDA再推論試験を準備（GPU実行待ち）
+
+[最新手順](Experimental_results/2026-11-11/guarded_cuda_replay_r01/README.md)。本日はこのPC＋GPU PCのみ、matunuc使用不可。GPUの保存枠再生は完了しており再実行不要。次は新規standaloneの `cuda_replay.py` で保存native8枚を毎回YOLOへ通す。既存CUDA専用predictor／主測距engine／比較workerを使用し、運転runtimeの変更なし。OFF→ON→ON→OFF各160回、warmup8＋setup4は別記録、上限30回/秒。元画素は変更しない。新しい再生IDのみ除外して座標／confidence／主判定を対応比較する。
+
+ローカルは合成predictor＋実threadの新規22テスト成功と元8枚の事前照合まで。実CUDA／カメラ／ROS／車体操作は未実施。正式記録は同フォルダ `checks_r02`、実データ事前照合は `recordings/2026-11-11/guarded_cuda_preflight_r02/summary.json`。既存198テスト成功は対象ソースSHAで再利用し、再実行扱いにしない。GPU PCへは新規6ファイルだけの `recordings/2026-11-11/guarded_cuda_update_r01.patch`＋manifestを渡す。以前の13ファイルパッチは再適用しない。主／比較JSONLとpinを含むGPU出力フォルダ全体を提出してもらう。
+
+この試験で物理精度、通信込み遅延、実カメラでの負荷は認定しない。実CUDA結果を確認後に現在カメラの静止映像が必要になる。比較値を主表示・ROS・FFB・制御へ接続しない。今回commit/push・日報作成は未依頼のため未実施。
+
+## 11/11後続：GPU PCの再生も成功、matunucは本日使用不可
+
+[GPU提出物の監査](Experimental_results/2026-11-11/guarded_gpu_cached_audit_r01/README.md)。ユーザーはこのPC＋GPU PCのみ使用可能。matunucがないのに送信や実カメラpinを依頼しない。GPUで実行した非同期比較の保存データ再生を提出し、主ログOFF/ON計16行・bridge16行、主判定8/8一致、元入力SHA23・依存SHA13、両子／I/O終了を照合した。比較writerも8行・snapshot1枚・正常終了を記録。比較約1.1424715mはsummary記録と検証済みソースが一致するが、比較側JSONL／pin PNGは今回archiveにないため直接読取り認定はしない。追加提出は不要。
+
+summaryのFileNotFoundErrorは意図的な別session参照拒否試験。実処理失敗ではない。GPU PCの再生は完了で、再実行・パッチ再適用を求めない。実CUDA／実カメラは未実行。さらにカメラなしで進める場合は、保存画像の実YOLO再推論・追加負荷確認を別試験として準備可能。実映像確認はmatunucが使える日に行う。
+
+今回開始時のHEADはユーザー側で整理された `8e5172b`（1111）、worktreeはclean。以下の未commit／未push・GPU未反映は作業時点の履歴。監査でruntime変更・新たなcommit/pushなし。
+
 ## 11/11：比較専用workerの接続と保存画像の実pipe検証を完了
 
 [最新実装・正式検証](Experimental_results/2026-11-11/guarded_async_comparison_r01/README.md)、[GPU PC反映・実カメラの静止手順](Experimental_results/2026-11-11/guarded_async_comparison_r01/live_procedure.md)を優先する。ユーザーは「カメラが必要な段階まで」の継続を依頼し、GPU PCは使用可能と回答済み。GPU PC／カメラ／ROS等をこちらから起動してはいない。
