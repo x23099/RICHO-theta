@@ -1,0 +1,14 @@
+test_duplicate_file_rejected (test_guarded_cuda_gpu_audit.CudaArchiveAuditTests) ... ok
+test_links_and_fifo_rejected (test_guarded_cuda_gpu_audit.CudaArchiveAuditTests) ... ok
+test_matching_primary_identity_and_timing_accepted (test_guarded_cuda_gpu_audit.CudaArchiveAuditTests) ... ok
+test_oversized_member_rejected_before_read (test_guarded_cuda_gpu_audit.CudaArchiveAuditTests) ... ok
+test_path_traversal_absolute_and_noncanonical_names_rejected (test_guarded_cuda_gpu_audit.CudaArchiveAuditTests) ... ok
+test_regular_payload_accepted_without_extracting (test_guarded_cuda_gpu_audit.CudaArchiveAuditTests) ... ok
+test_tampered_primary_identity_timing_or_authority_rejected (test_guarded_cuda_gpu_audit.CudaArchiveAuditTests) ... ok
+test_timing_comparison_rejects_nonfinite_or_drift (test_guarded_cuda_gpu_audit.CudaArchiveAuditTests) ... ok
+test_truncated_nonfinite_and_duplicate_json_rejected (test_guarded_cuda_gpu_audit.CudaArchiveAuditTests) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.045s
+
+OK

@@ -1,0 +1,16 @@
+{
+  "state": "pass",
+  "tests_run": 9,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "source_sha256": {
+    "Experimental_results/2026-11-11/guarded_cuda_gpu_audit_r01/check.py": "57d64f7fa0e28bdc750cb0e4eebab8b7a7500754e443b899a0aa8a41400d8a3a",
+    "Experimental_results/2026-11-11/guarded_cuda_gpu_audit_r01/audit.py": "8c58ffd66387bf7aca04d2dcdda5c5a17b30d778c3edeb57d7eedc04884ba03d",
+    "tests/test_guarded_cuda_gpu_audit.py": "ff98c610a2aa5d964d59e995a27ca3cde6b1054e8eefeb87286c4f57a535a551"
+  },
+  "sources_unchanged": true,
+  "cuda_started": false,
+  "camera_started": false,
+  "vehicle_operated": false
+}

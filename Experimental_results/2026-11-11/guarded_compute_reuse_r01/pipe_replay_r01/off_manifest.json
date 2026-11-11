@@ -1,0 +1,103 @@
+{
+  "profile": "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/driver_motion_live_20261110_171250/motion_profile_used.json",
+  "boxes": {
+    "2c9dab6ff75e30e0c046b37484ac3a14c4cc479a2d91a808129861402e93e5fb": [
+      {
+        "image": "4c34c8c3d6d44949afb2e921e819e563:6861",
+        "prediction_index": 0,
+        "class_id": 0,
+        "confidence": 0.8467468023300171,
+        "x1": 285.13250732421875,
+        "y1": 295.5101013183594,
+        "x2": 334.33349609375,
+        "y2": 415.203857421875
+      }
+    ],
+    "7e032db0f32aa36d238b7aee4797d39b61e30173fe2d28045e888e83c8a7d557": [
+      {
+        "image": "4c34c8c3d6d44949afb2e921e819e563:14203",
+        "prediction_index": 0,
+        "class_id": 0,
+        "confidence": 0.9387428760528564,
+        "x1": 276.05255126953125,
+        "y1": 297.45068359375,
+        "x2": 359.68450927734375,
+        "y2": 458.9287109375
+      }
+    ],
+    "7e1776a868c98210e2a94b91c547ee057b2bded8fe180fb39c2fc69868a282e9": [
+      {
+        "image": "4c34c8c3d6d44949afb2e921e819e563:14267",
+        "prediction_index": 0,
+        "class_id": 0,
+        "confidence": 0.9151957035064697,
+        "x1": 276.5716552734375,
+        "y1": 288.25067138671875,
+        "x2": 361.66357421875,
+        "y2": 458.51629638671875
+      }
+    ],
+    "1ffb1bd69ba0ef8c5ca5c67aa7571f99e64ab20b4acc43d5b76d17c7fe641858": [
+      {
+        "image": "4c34c8c3d6d44949afb2e921e819e563:14297",
+        "prediction_index": 0,
+        "class_id": 0,
+        "confidence": 0.9202245473861694,
+        "x1": 276.3985290527344,
+        "y1": 287.5440368652344,
+        "x2": 361.9048767089844,
+        "y2": 458.4939880371094
+      }
+    ],
+    "948c31f3e81b58a646257cc13bb9687d1561701ae6a4c6189b2598bdd74a21ab": [
+      {
+        "image": "4c34c8c3d6d44949afb2e921e819e563:14329",
+        "prediction_index": 0,
+        "class_id": 0,
+        "confidence": 0.9304665327072144,
+        "x1": 276.09442138671875,
+        "y1": 291.911865234375,
+        "x2": 361.15960693359375,
+        "y2": 458.57025146484375
+      }
+    ],
+    "64638467ef446eb97574110215df3e3e8833e4bd8a7feee707881a5f93cc5ed3": [
+      {
+        "image": "4c34c8c3d6d44949afb2e921e819e563:14382",
+        "prediction_index": 0,
+        "class_id": 0,
+        "confidence": 0.9549034237861633,
+        "x1": 276.1374206542969,
+        "y1": 296.594482421875,
+        "x2": 361.0357666015625,
+        "y2": 458.948486328125
+      }
+    ],
+    "41ed0671b86c6eaef29f3d8fbf719e62fdee031a2b0c9f4b987755913df4fa16": [
+      {
+        "image": "4c34c8c3d6d44949afb2e921e819e563:14604",
+        "prediction_index": 0,
+        "class_id": 0,
+        "confidence": 0.9395796060562134,
+        "x1": 290.7974853515625,
+        "y1": 313.20941162109375,
+        "x2": 341.0185546875,
+        "y2": 409.3550720214844
+      }
+    ],
+    "78f9954fc52547807cf37319df9b478c331ed6a027b1bcfe997d4900ba2f51b6": [
+      {
+        "image": "4c34c8c3d6d44949afb2e921e819e563:14922",
+        "prediction_index": 0,
+        "class_id": 0,
+        "confidence": 0.8662914037704468,
+        "x1": 290.62078857421875,
+        "y1": 307.3287048339844,
+        "x2": 346.82672119140625,
+        "y2": 406.912841796875
+      }
+    ]
+  },
+  "output": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-11/guarded_compute_reuse_r01/pipe_replay_r01/off",
+  "comparison": null
+}

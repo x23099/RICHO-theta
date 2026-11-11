@@ -178,7 +178,15 @@ class GuardedStreamComparison:
                 if len(selected) == 1:
                     comparison = compare_guarded_lower_edge(frame.image, selected[0], self._engine.camera,
                         self._reference, session=frame.session, reference_matches=True)
-                baseline = self._engine.measure(frame, boxes, started)
+                def current_observation(image, box, camera):
+                    # Comparator above independently extracted this frame's pixels.
+                    # Do NOT take original['support_observation'] or cache across frames.
+                    if image is not frame.image or camera is not self._engine.camera or box != selected[0]:
+                        raise ValueError('comparison observation input mismatch')
+                    return comparison['baseline']  # Engine owns its result deepcopy.
+
+                baseline = self._engine.measure(frame, boxes, started,
+                    observer=current_observation if comparison is not None else None)
                 fields = ('distance_available', 'horizontal_camera_foot_range_m', 'reason',
                           'support_pixel', 'models', 'selected_detector_boxes', 'support_observation')
                 if any(baseline.get(k) != original.get(k) for k in fields):

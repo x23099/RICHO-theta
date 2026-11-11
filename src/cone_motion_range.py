@@ -132,7 +132,11 @@ class MotionRangeEngine:
     def reset(self, session):
         self.session, self.last_frame, self.last_source = session, 0, None
 
-    def measure(self, frame, boxes, completed_at):
+    def measure(self, frame, boxes, completed_at, *, observer=None):
+        # Per-call observer for a freshly computed SAME-frame comparison.
+        # Default callers and all state/selection/age/geometry guards are unchanged.
+        if observer is not None and not callable(observer):
+            raise ValueError('callable current-frame observer required')
         native_frame(frame.image)
         now, source = finite_time(completed_at), finite_time(frame.received_at)
         if (not isinstance(frame.session, str) or not frame.session or type(frame.sequence) is not int
@@ -164,7 +168,8 @@ class MotionRangeEngine:
         result["selected_detector_boxes"] = [dict(b) for b in selected]
         if len(selected) != 1:
             return revoke_range(result, "no_candidate" if not selected else "ambiguous_front_cones")
-        observation = self.observer(frame.image, selected[0], self.camera)
+        observe = self.observer if observer is None else observer
+        observation = observe(frame.image, selected[0], self.camera)
         result["support_observation"] = copy.deepcopy(observation)
         point, reason = checked_current_support(observation)
         if point is None:

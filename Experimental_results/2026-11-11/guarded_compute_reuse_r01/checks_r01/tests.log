@@ -1,0 +1,19 @@
+test_baseline_existing_point_preserved_when_clear (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_body_veto_preserved (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_comparator_failure_does_not_return_a_past_result (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_each_call_reextracts_no_cross_frame_cache (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_explicit_offline_only_ack_required (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_geometry_forgery_rejected (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_input_flags_profile_and_identity_rejected (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_main_log_observation_forgery_is_not_reused (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_no_candidate_or_ambiguous_never_inherits_previous_number (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_observation_runs_twice_versus_once_from_current_pixels (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_original_pixels_boxes_and_results_unchanged (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_reference_mismatch_cannot_grant_a_number (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_same_complete_results_for_legacy_and_shared (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+test_selected_box_forgery_rejected_independently_of_raw_boxes (test_guarded_compute_reuse.CurrentFrameReuseTests) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 2.182s
+
+OK

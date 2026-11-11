@@ -1,0 +1,228 @@
+{
+  "schema": "guarded_cuda_gpu_archive_audit_v1",
+  "state": "pass",
+  "actual_cuda_execution_supported_by_submitted_logs": true,
+  "local_cuda_inference_started": false,
+  "actual_camera": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "submitted_gpu": {
+    "name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+    "index": 0,
+    "torch_version": "2.7.1+cu118",
+    "torch_cuda_version": "11.8"
+  },
+  "runtime_versions": {
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "executable": "/home/hsr/yopi_ws/RICHO-theta/yolo-env/bin/python3",
+    "numpy": "2.2.6",
+    "opencv-python": "5.0.0.93",
+    "torch": "2.7.1+cu118",
+    "ultralytics": "8.4.175"
+  },
+  "source_hashes_local_rehashed": 24,
+  "original_inputs_local_rehashed": 25,
+  "weights_sha_matches_config": true,
+  "weights_file_supplied": false,
+  "primary_rows_checked": 640,
+  "setup_rows_checked": 4,
+  "warmup_rows_checked": 8,
+  "primary_equal_pairs": 320,
+  "primary_changed_pairs": 0,
+  "detector_changed_pairs": 0,
+  "distinct_input_detection_cases_recomputed_on_cpu": 8,
+  "comparison_rows_checked": 322,
+  "comparison_numeric_rows": 40,
+  "comparison_numeric_cases": [
+    {
+      "original_frame": 14922,
+      "range_m": 1.142471541888944,
+      "rows": 40
+    }
+  ],
+  "both_pin_pixels_match_original": true,
+  "both_comparison_workers_closed": true,
+  "groups": {
+    "off": {
+      "measured_frames": 320,
+      "predict_ms": {
+        "count": 320,
+        "min": 6.1153999995440245,
+        "max": 16.689020005287603,
+        "p50": 6.823782998253591,
+        "p95": 8.389331997022964
+      },
+      "primary_ms": {
+        "count": 320,
+        "min": 9.933410998200998,
+        "max": 115.01678000786342,
+        "p50": 22.688024007948115,
+        "p95": 27.06505799142178
+      },
+      "comparison_tap_ms": {
+        "count": 320,
+        "min": 0.0,
+        "max": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      },
+      "primary_log_and_tap_ms": {
+        "count": 320,
+        "min": 10.18210599431768,
+        "max": 115.49784200906288,
+        "p50": 23.150535998865962,
+        "p95": 27.507908991537988
+      },
+      "start_interval_ms": {
+        "count": 318,
+        "min": 33.359570006723516,
+        "max": 115.50400500709657,
+        "p50": 33.41024000837933,
+        "p95": 33.438926009694114
+      },
+      "numeric_frames": 0,
+      "period_overruns": 3,
+      "reason_counts": {
+        "colour_contour_reaches_roi_edge": 320
+      }
+    },
+    "on": {
+      "measured_frames": 320,
+      "predict_ms": {
+        "count": 320,
+        "min": 6.548427001689561,
+        "max": 121.45487000816502,
+        "p50": 27.272919993265532,
+        "p95": 41.852169000776485
+      },
+      "primary_ms": {
+        "count": 320,
+        "min": 10.841566996532492,
+        "max": 138.01396200142335,
+        "p50": 45.68838998966385,
+        "p95": 67.23156300722621
+      },
+      "comparison_tap_ms": {
+        "count": 320,
+        "min": 0.015794998034834862,
+        "max": 0.07279901183210313,
+        "p50": 0.023442000383511186,
+        "p95": 0.03308500163257122
+      },
+      "primary_log_and_tap_ms": {
+        "count": 320,
+        "min": 11.199544998817146,
+        "max": 138.92763500916772,
+        "p50": 46.12934398755897,
+        "p95": 68.11596499755979
+      },
+      "start_interval_ms": {
+        "count": 318,
+        "min": 33.39215400046669,
+        "max": 138.93680000910535,
+        "p50": 46.208170999307185,
+        "p95": 68.62743401143234
+      },
+      "numeric_frames": 0,
+      "period_overruns": 201,
+      "reason_counts": {
+        "colour_contour_reaches_roi_edge": 320
+      }
+    }
+  },
+  "comparison_service_ms": {
+    "count": 322,
+    "min": 0.020449995645321906,
+    "max": 135.65678900340572,
+    "p50": 43.59494999516755,
+    "p95": 64.44666000606958
+  },
+  "comparison_age_ms": {
+    "count": 322,
+    "min": 19.887127011315897,
+    "max": 199.32515200343914,
+    "p50": 93.74071699858177,
+    "p95": 177.45807599567343
+  },
+  "blocks": [
+    {
+      "id": 0,
+      "comparison_enabled": false,
+      "measured_wall_sec": 5.41978083999129,
+      "period_overruns": 2,
+      "comparison_rows": 0,
+      "comparison_numeric_rows": 0,
+      "comparison_reason_counts": {}
+    },
+    {
+      "id": 1,
+      "comparison_enabled": true,
+      "measured_wall_sec": 7.917606873001205,
+      "period_overruns": 101,
+      "comparison_rows": 161,
+      "comparison_numeric_rows": 20,
+      "comparison_reason_counts": {
+        "comparison_pin_requested": 1,
+        "colour_contour_reaches_roi_edge": 60,
+        "possible_self_body_occlusion": 80,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 20
+      }
+    },
+    {
+      "id": 2,
+      "comparison_enabled": true,
+      "measured_wall_sec": 8.044113359996118,
+      "period_overruns": 100,
+      "comparison_rows": 161,
+      "comparison_numeric_rows": 20,
+      "comparison_reason_counts": {
+        "comparison_pin_requested": 1,
+        "colour_contour_reaches_roi_edge": 60,
+        "possible_self_body_occlusion": 80,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 20
+      }
+    },
+    {
+      "id": 3,
+      "comparison_enabled": false,
+      "measured_wall_sec": 5.39818883400585,
+      "period_overruns": 1,
+      "comparison_rows": 0,
+      "comparison_numeric_rows": 0,
+      "comparison_reason_counts": {}
+    }
+  ],
+  "performance_decision": "30fps_not_met_with_comparison_ON_in_this_saved_image_sample",
+  "cause": "not_isolated_CPU_thread_GIL_memory_contention_or_duplicate_work_are_hypotheses",
+  "summary_completion_is_NOT_a_30fps_or_live_latency_pass": true,
+  "remote_paths_opened": false,
+  "archive_sha256": "565acb11d97634919bb407acf385ed6fea1b98e6fc9cb2c3155012054f162a17",
+  "audit_source_sha256": "8c58ffd66387bf7aca04d2dcdda5c5a17b30d778c3edeb57d7eedc04884ba03d",
+  "supplied_files_sha256": {
+    "block_00_off/primary_frames.jsonl": "a9f16c11f08f2b706d10e898b7f5bbeca4f15eea23d4ba49433e4594997c6214",
+    "block_00_off/setup.jsonl": "f7c67619c35e026e8b351853a08c32e21e7522d3f55819b3971a8c61108aaeb4",
+    "block_01_on/comparison/comparison_frames.jsonl": "03b136924eac75b65362b3554d7c0d1d719c7b17de3b134a4b92438aa821351c",
+    "block_01_on/comparison/comparison_status.json": "75013128f9b4916dd483ff988eb815c431d6526953ef2635f319f75c0c215207",
+    "block_01_on/comparison/decoded_8b16cd766a414477b8ff17a2e8110fc9_f000001.json": "4134049ccb7accccc148735cbe2382757afc3acad717367ba2470db8dd627851",
+    "block_01_on/comparison/decoded_8b16cd766a414477b8ff17a2e8110fc9_f000001.png": "0e9a4b5a0085d0e6eaf670e07f5bc3498e3d3865ae8be8f2ed9059872653b698",
+    "block_01_on/comparison/reference.json": "7911261598d0a443b6d59044ddc213754ddba9e7085b13e0192343c39b6b64d2",
+    "block_01_on/comparison/request.json": "61a50b032911102b751ca0967857f2b6d71643cb4bd0af32a4e62d13f981502b",
+    "block_01_on/primary_frames.jsonl": "3ed6f5ab4069d5038900563fec58ee9a94b162c6c20d78264321aacd13b80fa1",
+    "block_01_on/setup.jsonl": "9fed0fcc703cb611be7d7f89606064bd967cb41e613d39c7f09e00bd01864cc4",
+    "block_02_on/comparison/comparison_frames.jsonl": "7ad716e7f804a16744646d49c798d7fa6e18d660c8aa56dba9527e5f56cc02b2",
+    "block_02_on/comparison/comparison_status.json": "5b017f31ea169f9015654f68d6ddef2e1c2eec995594b58690da16977737f783",
+    "block_02_on/comparison/decoded_8681030159924421ac86d26f2fddb787_f000001.json": "e2afbbc100b766f1e3ea74d9a0f084f77e99b61983a0aec854e624b89c93600e",
+    "block_02_on/comparison/decoded_8681030159924421ac86d26f2fddb787_f000001.png": "0e9a4b5a0085d0e6eaf670e07f5bc3498e3d3865ae8be8f2ed9059872653b698",
+    "block_02_on/comparison/reference.json": "b80e7b43fcb952b16446afbccd5c2cdc9740f1591d47197fafc0f2ea218ac855",
+    "block_02_on/comparison/request.json": "de6a6272f18cc0248f931242f4c83200f7d8762eb400ee7e243c6614ffcfb0a3",
+    "block_02_on/primary_frames.jsonl": "1150ed3d9753c9d50934907f11dd79f361b5dd73594179286a6175bdae973e8c",
+    "block_02_on/setup.jsonl": "cb1bca5cfcb24b85c9c77679fa9def4377db3186c1806c5b4057d0fdd26c2d19",
+    "block_03_off/primary_frames.jsonl": "6359a428194f35d8249348035f6f33599451b86e82f8d999a7f572b68b824017",
+    "block_03_off/setup.jsonl": "2f96ec5e1df92dcf5413863d51798f020f79522283dd9b82a6a56f25acf317ce",
+    "model/ultralytics_config/Ultralytics/Arial.ttf": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22",
+    "model/ultralytics_config/Ultralytics/settings.json": "5bb65aabe8c7ffc784ffd78e1a82e9fe93f287286a2d397b30e67c485e33793f",
+    "model/ultralytics_config/matplotlib/fontlist-v390.json": "92f7078708df4776d769fb15bba3d2b22a1caecceac3d844574ec6938a45815d",
+    "summary.json": "7a31d5653b75d9a07d3ab5646a58074cdb7f05c344a5243579b7873b500bb21c",
+    "warmup.jsonl": "b4bbd400f50078e2e5ab76dd5d55e1a8299d18478565e99251bcb01910a723f6"
+  }
+}

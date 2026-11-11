@@ -2,6 +2,26 @@
 
 更新日: **2026-11-11（JST）**。対象リポジトリ: `RICHO-theta`。
 
+## 11/11後続：比較の同一フレーム二重抽出を削減、GPU速度の再確認待ち
+
+[最新手順・根拠](Experimental_results/2026-11-11/guarded_compute_reuse_r01/README.md)。比較関数で元画素から独立に得た現在観測をbaseline距離の再現にも使い、比較側だけの上側補完抽出を2回→1回に削減した。主ログ観測や前フレームの再利用ではない。`MotionRangeEngine.measure` にper-call observerを追加し、通常主測距は既存defaultを維持。frame順序・500ms鮮度・box選択・幾何・主行との再現照合、参照pin/load/失効、自己領域棄却は残す。主表示・操縦・ROS・FFBへの比較接続なし。
+
+このPCの8画像CPUカーネル測定ではP50 103.88→61.78ms、P95 127.41→78.57ms、観測呼出し16→8回。GPU PCでの改善量・30fps達成ではない。新候補の8ケース完全一致を確認し、runtime接続後の関連276テストを再実行して全成功。GPU提出比較320行（数値40行）を新runtime＋模擬時計で全て再現。実子／pipe／比較threadの元8画像再生も主8/8一致・比較1.142471541888944m・別session拒否・元画素不変・正常終了。正式記録は同フォルダprofile_r02、checks_runtime_r01、gpu_rows_replay_r01、pipe_replay_r01。
+
+次はGPU PCへ今回の6ファイル限定 `recordings/2026-11-11/guarded_compute_reuse_update_r01.patch`＋manifestを反映し、既存CUDA試験を新しい出力先 `recordings/2026-11-11/guarded_cuda_gpu_r02` で実行してもらう。既に反映済みなら重ねてパッチを適用しない。カメラ／matunuc／ROS／走行／画面録画は不要。旧r01は保持し、コード変更後の速度・主判定一致・比較鮮度を再確認する。未変更試験の無意味な繰返しではない。
+
+今回実CUDA・機体の起動、commit/push・日報作成なし。前回監査と資料の未commit変更を保持。GPU提出監査の「runtime変更なし」は監査当時の記録で、今回の比較側変更と区別する。既存古いhash固定監査を変更後ソースでそのまま再実行して一致すると案内しない。
+
+## 11/11後続：実CUDA再推論を照合、比較ONは約20件/秒で負荷対策が先
+
+[最新のGPU監査](Experimental_results/2026-11-11/guarded_cuda_gpu_audit_r01/README.md)。ユーザーが `guarded_cuda_gpu_r01.tar.xz` を提出。開始HEAD `84173b3`（1111v2）、clean。主640行、setup4、warmup8、比較322行と両pin画像を直接照合。元入力25／依存24のSHA再確認、新しい検出枠による異なる8入力のCPU幾何を全主行・比較結果へ照合。OFF/ONの320組は検出枠・主判定とも一致。主640行は保留標本なので全て保留、比較数値40行は元14922を反復した1.142471541888944mだけ。40独立実測ではない。両比較writer正常終了、slot上書き／tap失敗なし。実CUDAはGPU提出記録で確認、このPCでモデルを起動したわけではない。
+
+**性能合格ではない。** 主処理P50/P95はOFF22.69/27.07ms、ON45.69/67.23ms。測定blockの件数/秒はOFF29.58、ON20.05。33.33ms超過は3/320対201/320。最後のOFFで戻るが、GIL／OpenCV thread／CPU等の原因分離は未了。tap単体はP95約0.033msで、比較の仕事量・同一プロセス資源共有を先に監査する必要がある。元画像を変えたり主判定を緩めたりしない。
+
+次は**追加撮影ではなく保存画像で比較側の負荷内訳・重複計算を調べ、対策候補を検証**。今すぐmatunucや静止カメラを要求しない。今回と同じ未変更GPU試験の再実行やパッチ再適用も不要。対策後にGPU再検証、その後現在カメラの静止負荷確認。以下の「実CUDA待ち」「次は初めてカメラ」は準備時点の履歴で、この性能結果を優先する。
+
+監査の新規9テスト成功、rawは `recordings/2026-11-11/guarded_cuda_gpu_intake_r01/`、根拠JSON／CSVは上記成果物results_r01。運転runtime・主表示／ROS／FFB／制御・環境の変更なし、今回commit/push・日報作成なし。
+
 ## 11/11後続：保存画像の実CUDA再推論試験を準備（GPU実行待ち）
 
 [最新手順](Experimental_results/2026-11-11/guarded_cuda_replay_r01/README.md)。本日はこのPC＋GPU PCのみ、matunuc使用不可。GPUの保存枠再生は完了しており再実行不要。次は新規standaloneの `cuda_replay.py` で保存native8枚を毎回YOLOへ通す。既存CUDA専用predictor／主測距engine／比較workerを使用し、運転runtimeの変更なし。OFF→ON→ON→OFF各160回、warmup8＋setup4は別記録、上限30回/秒。元画素は変更しない。新しい再生IDのみ除外して座標／confidence／主判定を対応比較する。

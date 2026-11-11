@@ -1,0 +1,4606 @@
+{
+  "schema": "offline_guarded_compute_reuse_profile_v1",
+  "state": "pass",
+  "cpu_only": true,
+  "correctness": [
+    {
+      "original_frame": 6861,
+      "equal": true,
+      "proposal_available": false,
+      "proposal_range_m": null,
+      "reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "original_frame": 14203,
+      "equal": true,
+      "proposal_available": false,
+      "proposal_range_m": null,
+      "reason": "possible_self_body_occlusion"
+    },
+    {
+      "original_frame": 14267,
+      "equal": true,
+      "proposal_available": false,
+      "proposal_range_m": null,
+      "reason": "possible_self_body_occlusion"
+    },
+    {
+      "original_frame": 14297,
+      "equal": true,
+      "proposal_available": false,
+      "proposal_range_m": null,
+      "reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "original_frame": 14329,
+      "equal": true,
+      "proposal_available": false,
+      "proposal_range_m": null,
+      "reason": "possible_self_body_occlusion"
+    },
+    {
+      "original_frame": 14382,
+      "equal": true,
+      "proposal_available": false,
+      "proposal_range_m": null,
+      "reason": "possible_self_body_occlusion"
+    },
+    {
+      "original_frame": 14604,
+      "equal": true,
+      "proposal_available": false,
+      "proposal_range_m": null,
+      "reason": "colour_contour_reaches_roi_edge"
+    },
+    {
+      "original_frame": 14922,
+      "equal": true,
+      "proposal_available": true,
+      "proposal_range_m": 1.142471541888944,
+      "reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    }
+  ],
+  "profiles": {
+    "legacy": {
+      "total_sec": 1.0031069610000005,
+      "functions": [
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-11/guarded_compute_reuse_r01/profile_compute.py",
+          "line": 37,
+          "function": "run_case",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 0.000662667,
+          "cumulative_sec": 1.003344891
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-11/guarded_compute_reuse_r01/compute.py",
+          "line": 22,
+          "function": "evaluate_offline_frame",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 0.001311517,
+          "cumulative_sec": 1.002682224
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_upper_support_candidate.py",
+          "line": 80,
+          "function": "observe_upper_completion",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.008589169,
+          "cumulative_sec": 0.589603691
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_guarded_lower_edge_shadow.py",
+          "line": 25,
+          "function": "compare_guarded_lower_edge",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 0.00043466200000000005,
+          "cumulative_sec": 0.564859923
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_support_completion_candidate.py",
+          "line": 67,
+          "function": "observe_lateral_completion",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.010257909,
+          "cumulative_sec": 0.44006435800000004
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_bbox_boundary_shadow.py",
+          "line": 32,
+          "function": "compare_boundary_observations",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 0.000548842,
+          "cumulative_sec": 0.41832118900000004
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 135,
+          "function": "measure",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.000789304,
+          "cumulative_sec": 0.39707130900000004
+        },
+        {
+          "file": "/usr/lib/python3.10/copy.py",
+          "line": 128,
+          "function": "deepcopy",
+          "primitive_calls": 605,
+          "calls": 135384,
+          "own_sec": 0.17163862000000002,
+          "cumulative_sec": 0.35562922900000005
+        },
+        {
+          "file": "/usr/lib/python3.10/copy.py",
+          "line": 227,
+          "function": "_deepcopy_dict",
+          "primitive_calls": 200,
+          "calls": 3064,
+          "own_sec": 0.015844586,
+          "cumulative_sec": 0.35388978400000004
+        },
+        {
+          "file": "/usr/lib/python3.10/copy.py",
+          "line": 201,
+          "function": "_deepcopy_list",
+          "primitive_calls": 672,
+          "calls": 32835,
+          "own_sec": 0.065709771,
+          "cumulative_sec": 0.328114112
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py",
+          "line": 58,
+          "function": "unproject",
+          "primitive_calls": 97,
+          "calls": 97,
+          "own_sec": 0.047812655,
+          "cumulative_sec": 0.272839812
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_support_completion_candidate.py",
+          "line": 20,
+          "function": "_context",
+          "primitive_calls": 40,
+          "calls": 40,
+          "own_sec": 0.006712537,
+          "cumulative_sec": 0.19337718
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py",
+          "line": 44,
+          "function": "radial",
+          "primitive_calls": 6305,
+          "calls": 6305,
+          "own_sec": 0.013759807,
+          "cumulative_sec": 0.181020535
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.sum>",
+          "primitive_calls": 6326,
+          "calls": 6326,
+          "own_sec": 0.038353805000000005,
+          "cumulative_sec": 0.165522745
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py",
+          "line": 46,
+          "function": "<genexpr>",
+          "primitive_calls": 31525,
+          "calls": 31525,
+          "own_sec": 0.127117728,
+          "cumulative_sec": 0.127117728
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_upper_support_candidate.py",
+          "line": 31,
+          "function": "_upper_context",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.002633364,
+          "cumulative_sec": 0.10307758
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_support_completion_candidate.py",
+          "line": 112,
+          "function": "<setcomp>",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 0.102628858,
+          "cumulative_sec": 0.102628858
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_support_completion_candidate.py",
+          "line": 113,
+          "function": "<setcomp>",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 0.08594433500000001,
+          "cumulative_sec": 0.08594433500000001
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 79,
+          "function": "select_front_boxes",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 0.000314346,
+          "cumulative_sec": 0.06855725600000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.implement_array_function>",
+          "primitive_calls": 14322,
+          "calls": 14922,
+          "own_sec": 0.027314608,
+          "cumulative_sec": 0.058745780000000004
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 48,
+          "function": "compare_self_body",
+          "primitive_calls": 13,
+          "calls": 13,
+          "own_sec": 0.00025930100000000003,
+          "cumulative_sec": 0.049737366000000005
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_bbox_boundary_shadow.py",
+          "line": 36,
+          "function": "<dictcomp>",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 0.000126229,
+          "cumulative_sec": 0.048015824000000006
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_colour_support_candidate.py",
+          "line": 38,
+          "function": "observe_separated_support",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.0007747650000000001,
+          "cumulative_sec": 0.047624150000000004
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 132,
+          "function": "support_from_colour_mask",
+          "primitive_calls": 72,
+          "calls": 72,
+          "own_sec": 0.0038389640000000003,
+          "cumulative_sec": 0.043111681000000006
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_upper_support_candidate.py",
+          "line": 23,
+          "function": "_lower_support",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.00011560900000000001,
+          "cumulative_sec": 0.042674128000000006
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_upper_support_candidate.py",
+          "line": 27,
+          "function": "<listcomp>",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.036987115,
+          "cumulative_sec": 0.040331714000000005
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "where",
+          "primitive_calls": 12416,
+          "calls": 12416,
+          "own_sec": 0.009777963,
+          "cumulative_sec": 0.034072968
+        },
+        {
+          "file": "/usr/lib/python3.10/copy.py",
+          "line": 243,
+          "function": "_keep_alive",
+          "primitive_calls": 35899,
+          "calls": 35899,
+          "own_sec": 0.021399575,
+          "cumulative_sec": 0.029748191
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'get' of 'dict' objects>",
+          "primitive_calls": 271977,
+          "calls": 271977,
+          "own_sec": 0.029705481000000002,
+          "cumulative_sec": 0.029705481000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.id>",
+          "primitive_calls": 207382,
+          "calls": 207382,
+          "own_sec": 0.023418893000000003,
+          "cumulative_sec": 0.023418893000000003
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 182,
+          "function": "<listcomp>",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 0.013429622,
+          "cumulative_sec": 0.016974764
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'append' of 'list' objects>",
+          "primitive_calls": 134243,
+          "calls": 134243,
+          "own_sec": 0.015744658,
+          "cumulative_sec": 0.015744658
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 121,
+          "function": "__init__",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.000226839,
+          "cumulative_sec": 0.014932829000000002
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 26,
+          "function": "parse_motion_profile",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.001036685,
+          "cumulative_sec": 0.012073734000000001
+        },
+        {
+          "file": "/usr/lib/python3.10/copy.py",
+          "line": 182,
+          "function": "_deepcopy_atomic",
+          "primitive_calls": 99485,
+          "calls": 99485,
+          "own_sec": 0.012041919,
+          "cumulative_sec": 0.012041919
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "primitive_calls": 2596,
+          "calls": 2596,
+          "own_sec": 0.009351132,
+          "cumulative_sec": 0.009351132
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<cvtColor>",
+          "primitive_calls": 72,
+          "calls": 72,
+          "own_sec": 0.008681547000000001,
+          "cumulative_sec": 0.008681547000000001
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 67,
+          "function": "checked_current_support",
+          "primitive_calls": 27,
+          "calls": 27,
+          "own_sec": 0.0012179880000000001,
+          "cumulative_sec": 0.007978172
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.any>",
+          "primitive_calls": 278,
+          "calls": 278,
+          "own_sec": 0.0007592310000000001,
+          "cumulative_sec": 0.007740541
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<findContours>",
+          "primitive_calls": 128,
+          "calls": 128,
+          "own_sec": 0.006875631,
+          "cumulative_sec": 0.006875631
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "nonzero",
+          "primitive_calls": 56,
+          "calls": 56,
+          "own_sec": 0.000122022,
+          "cumulative_sec": 0.006455879
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 1892,
+          "function": "nonzero",
+          "primitive_calls": 56,
+          "calls": 56,
+          "own_sec": 9.423500000000001e-05,
+          "cumulative_sec": 0.006236897000000001
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 51,
+          "function": "_wrapfunc",
+          "primitive_calls": 56,
+          "calls": 56,
+          "own_sec": 0.000134417,
+          "cumulative_sec": 0.006142662
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "unique",
+          "primitive_calls": 96,
+          "calls": 96,
+          "own_sec": 0.000204546,
+          "cumulative_sec": 0.006012882000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'nonzero' of 'numpy.ndarray' objects>",
+          "primitive_calls": 56,
+          "calls": 56,
+          "own_sec": 0.005963422,
+          "cumulative_sec": 0.005963422
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 189,
+          "function": "<genexpr>",
+          "primitive_calls": 692,
+          "calls": 692,
+          "own_sec": 0.000621371,
+          "cumulative_sec": 0.005949781
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.min>",
+          "primitive_calls": 41,
+          "calls": 41,
+          "own_sec": 0.000956247,
+          "cumulative_sec": 0.005714511
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/arraysetops.py",
+          "line": 138,
+          "function": "unique",
+          "primitive_calls": 96,
+          "calls": 96,
+          "own_sec": 0.000405598,
+          "cumulative_sec": 0.005561075
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "array_equal",
+          "primitive_calls": 668,
+          "calls": 668,
+          "own_sec": 0.000568906,
+          "cumulative_sec": 0.0053284100000000004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.asarray>",
+          "primitive_calls": 8829,
+          "calls": 8829,
+          "own_sec": 0.005162565,
+          "cumulative_sec": 0.005162565
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/arraysetops.py",
+          "line": 323,
+          "function": "_unique1d",
+          "primitive_calls": 96,
+          "calls": 96,
+          "own_sec": 0.002001152,
+          "cumulative_sec": 0.0049775620000000005
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 187,
+          "function": "<lambda>",
+          "primitive_calls": 1972,
+          "calls": 1972,
+          "own_sec": 0.004476235,
+          "cumulative_sec": 0.004758264
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<connectedComponents>",
+          "primitive_calls": 56,
+          "calls": 56,
+          "own_sec": 0.004429883,
+          "cumulative_sec": 0.004429883
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'all' of 'numpy.ndarray' objects>",
+          "primitive_calls": 921,
+          "calls": 921,
+          "own_sec": 0.000660926,
+          "cumulative_sec": 0.004336115000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<inRange>",
+          "primitive_calls": 160,
+          "calls": 160,
+          "own_sec": 0.0042711220000000005,
+          "cumulative_sec": 0.0042711220000000005
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'max' of 'numpy.ndarray' objects>",
+          "primitive_calls": 1062,
+          "calls": 1062,
+          "own_sec": 0.000627151,
+          "cumulative_sec": 0.0042617
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 2407,
+          "function": "array_equal",
+          "primitive_calls": 668,
+          "calls": 668,
+          "own_sec": 0.0015396440000000002,
+          "cumulative_sec": 0.004162604
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "any",
+          "primitive_calls": 272,
+          "calls": 272,
+          "own_sec": 0.000389995,
+          "cumulative_sec": 0.004121185
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_support_quality.py",
+          "line": 32,
+          "function": "__post_init__",
+          "primitive_calls": 27,
+          "calls": 27,
+          "own_sec": 0.000507941,
+          "cumulative_sec": 0.004013035
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_methods.py",
+          "line": 61,
+          "function": "_all",
+          "primitive_calls": 993,
+          "calls": 993,
+          "own_sec": 0.0006449590000000001,
+          "cumulative_sec": 0.003924318
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.max>",
+          "primitive_calls": 2038,
+          "calls": 2038,
+          "own_sec": 0.0038059920000000002,
+          "cumulative_sec": 0.0038059920000000002
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "isclose",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 8.2231e-05,
+          "cumulative_sec": 0.0037922040000000004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method _hashlib.openssl_sha256>",
+          "primitive_calls": 72,
+          "calls": 72,
+          "own_sec": 0.0037015940000000003,
+          "cumulative_sec": 0.0037015940000000003
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_methods.py",
+          "line": 39,
+          "function": "_amax",
+          "primitive_calls": 1062,
+          "calls": 1062,
+          "own_sec": 0.0005300530000000001,
+          "cumulative_sec": 0.0036345490000000004
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 2278,
+          "function": "isclose",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 0.000305512,
+          "cumulative_sec": 0.0035431470000000004
+        },
+        {
+          "file": "/usr/lib/python3.10/dataclasses.py",
+          "line": 1217,
+          "function": "asdict",
+          "primitive_calls": 27,
+          "calls": 27,
+          "own_sec": 7.2532e-05,
+          "cumulative_sec": 0.003336739
+        },
+        {
+          "file": "/usr/lib/python3.10/dataclasses.py",
+          "line": 1241,
+          "function": "_asdict_inner",
+          "primitive_calls": 27,
+          "calls": 432,
+          "own_sec": 0.0012889610000000001,
+          "cumulative_sec": 0.0032134940000000003
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 69,
+          "function": "_wrapreduction",
+          "primitive_calls": 356,
+          "calls": 356,
+          "own_sec": 0.001038059,
+          "cumulative_sec": 0.0030934210000000003
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "norm",
+          "primitive_calls": 133,
+          "calls": 133,
+          "own_sec": 0.00028928900000000003,
+          "cumulative_sec": 0.003059875
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 2333,
+          "function": "any",
+          "primitive_calls": 272,
+          "calls": 272,
+          "own_sec": 0.0005339040000000001,
+          "cumulative_sec": 0.002797524
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "column_stack",
+          "primitive_calls": 56,
+          "calls": 56,
+          "own_sec": 0.000111805,
+          "cumulative_sec": 0.0026145910000000003
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.sorted>",
+          "primitive_calls": 128,
+          "calls": 128,
+          "own_sec": 0.000811945,
+          "cumulative_sec": 0.002552126
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/linalg/linalg.py",
+          "line": 2342,
+          "function": "norm",
+          "primitive_calls": 133,
+          "calls": 133,
+          "own_sec": 0.0015116530000000002,
+          "cumulative_sec": 0.002496552
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/multiarray.py",
+          "line": 345,
+          "function": "where",
+          "primitive_calls": 12416,
+          "calls": 12416,
+          "own_sec": 0.002347782,
+          "cumulative_sec": 0.002347782
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 15,
+          "function": "checked_reference",
+          "primitive_calls": 13,
+          "calls": 13,
+          "own_sec": 0.000293689,
+          "cumulative_sec": 0.0023166050000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'sort' of 'numpy.ndarray' objects>",
+          "primitive_calls": 96,
+          "calls": 96,
+          "own_sec": 0.0023128930000000003,
+          "cumulative_sec": 0.0023128930000000003
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "iscomplexobj",
+          "primitive_calls": 109,
+          "calls": 109,
+          "own_sec": 0.000229678,
+          "cumulative_sec": 0.002293119
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "median",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 5.0536000000000005e-05,
+          "cumulative_sec": 0.0022801510000000002
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/shape_base.py",
+          "line": 612,
+          "function": "column_stack",
+          "primitive_calls": 56,
+          "calls": 56,
+          "own_sec": 0.000536799,
+          "cumulative_sec": 0.0021945700000000003
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/function_base.py",
+          "line": 3774,
+          "function": "median",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 9.0612e-05,
+          "cumulative_sec": 0.0021794360000000003
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/function_base.py",
+          "line": 3692,
+          "function": "_ureduce",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 0.00013536600000000002,
+          "cumulative_sec": 0.002088824
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/function_base.py",
+          "line": 3860,
+          "function": "_median",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 0.00036324800000000004,
+          "cumulative_sec": 0.001934652
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_observation.py",
+          "line": 24,
+          "function": "checked_bbox",
+          "primitive_calls": 151,
+          "calls": 151,
+          "own_sec": 0.0008749900000000001,
+          "cumulative_sec": 0.001928903
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 2359,
+          "function": "within_tol",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 0.000535602,
+          "cumulative_sec": 0.00191193
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/type_check.py",
+          "line": 303,
+          "function": "iscomplexobj",
+          "primitive_calls": 109,
+          "calls": 109,
+          "own_sec": 0.0007786020000000001,
+          "cumulative_sec": 0.001812613
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "ones_like",
+          "primitive_calls": 97,
+          "calls": 97,
+          "own_sec": 0.00015590300000000001,
+          "cumulative_sec": 0.001521526
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "concatenate",
+          "primitive_calls": 56,
+          "calls": 56,
+          "own_sec": 0.00012412300000000002,
+          "cumulative_sec": 0.001455097
+        },
+        {
+          "file": "/usr/lib/python3.10/json/__init__.py",
+          "line": 299,
+          "function": "loads",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.000167965,
+          "cumulative_sec": 0.0014171070000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'min' of 'numpy.ndarray' objects>",
+          "primitive_calls": 136,
+          "calls": 136,
+          "own_sec": 0.00017283,
+          "cumulative_sec": 0.001389751
+        },
+        {
+          "file": "/usr/lib/python3.10/json/__init__.py",
+          "line": 183,
+          "function": "dumps",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 5.2609000000000004e-05,
+          "cumulative_sec": 0.001310387
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "all",
+          "primitive_calls": 84,
+          "calls": 84,
+          "own_sec": 0.000125324,
+          "cumulative_sec": 0.0012785680000000001
+        },
+        {
+          "file": "/usr/lib/python3.10/json/encoder.py",
+          "line": 182,
+          "function": "encode",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.000105321,
+          "cumulative_sec": 0.001257778
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "copyto",
+          "primitive_calls": 291,
+          "calls": 291,
+          "own_sec": 0.00043445800000000003,
+          "cumulative_sec": 0.001234572
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 219,
+          "function": "ones_like",
+          "primitive_calls": 97,
+          "calls": 97,
+          "own_sec": 0.000333616,
+          "cumulative_sec": 0.0012205990000000002
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_methods.py",
+          "line": 43,
+          "function": "_amin",
+          "primitive_calls": 136,
+          "calls": 136,
+          "own_sec": 0.000139925,
+          "cumulative_sec": 0.0012169210000000001
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "full_like",
+          "primitive_calls": 97,
+          "calls": 97,
+          "own_sec": 0.000128323,
+          "cumulative_sec": 0.001215885
+        },
+        {
+          "file": "/usr/lib/python3.10/json/encoder.py",
+          "line": 204,
+          "function": "iterencode",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.001131885,
+          "cumulative_sec": 0.001131885
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<contourArea>",
+          "primitive_calls": 938,
+          "calls": 938,
+          "own_sec": 0.0011081630000000001,
+          "cumulative_sec": 0.0011081630000000001
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 290,
+          "function": "full",
+          "primitive_calls": 97,
+          "calls": 97,
+          "own_sec": 0.000356418,
+          "cumulative_sec": 0.0011033850000000001
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 358,
+          "function": "full_like",
+          "primitive_calls": 97,
+          "calls": 97,
+          "own_sec": 0.00026496500000000004,
+          "cumulative_sec": 0.000983718
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 2432,
+          "function": "all",
+          "primitive_calls": 84,
+          "calls": 84,
+          "own_sec": 0.00015095400000000002,
+          "cumulative_sec": 0.000980755
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 166,
+          "function": "<genexpr>",
+          "primitive_calls": 160,
+          "calls": 160,
+          "own_sec": 0.000366717,
+          "cumulative_sec": 0.0009236260000000001
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "empty_like",
+          "primitive_calls": 194,
+          "calls": 194,
+          "own_sec": 0.00037835200000000004,
+          "cumulative_sec": 0.0009050670000000001
+        },
+        {
+          "file": "/usr/lib/python3.10/json/decoder.py",
+          "line": 332,
+          "function": "decode",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 9.8004e-05,
+          "cumulative_sec": 0.0008764780000000001
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "mean",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 5.4701000000000004e-05,
+          "cumulative_sec": 0.0008643660000000001
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 3345,
+          "function": "mean",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 0.00010751200000000001,
+          "cumulative_sec": 0.0007570410000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.all>",
+          "primitive_calls": 151,
+          "calls": 151,
+          "own_sec": 0.00021673500000000002,
+          "cumulative_sec": 0.00068847
+        },
+        {
+          "file": "/usr/lib/python3.10/json/decoder.py",
+          "line": 343,
+          "function": "raw_decode",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.000671578,
+          "cumulative_sec": 0.000671578
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_methods.py",
+          "line": 164,
+          "function": "_mean",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 0.000270696,
+          "cumulative_sec": 0.000649529
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_support_completion_candidate.py",
+          "line": 49,
+          "function": "<genexpr>",
+          "primitive_calls": 96,
+          "calls": 96,
+          "own_sec": 0.00023231100000000002,
+          "cumulative_sec": 0.0006216840000000001
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "count_nonzero",
+          "primitive_calls": 129,
+          "calls": 129,
+          "own_sec": 0.00017987500000000002,
+          "cumulative_sec": 0.000617838
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_ufunc_config.py",
+          "line": 33,
+          "function": "seterr",
+          "primitive_calls": 72,
+          "calls": 72,
+          "own_sec": 0.000255517,
+          "cumulative_sec": 0.000586604
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'items' of 'dict' objects>",
+          "primitive_calls": 3469,
+          "calls": 3469,
+          "own_sec": 0.000575393,
+          "cumulative_sec": 0.000575393
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 90,
+          "function": "<listcomp>",
+          "primitive_calls": 5,
+          "calls": 5,
+          "own_sec": 0.00011432900000000001,
+          "cumulative_sec": 0.000521546
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.isinstance>",
+          "primitive_calls": 2489,
+          "calls": 2489,
+          "own_sec": 0.0005209170000000001,
+          "cumulative_sec": 0.0005209170000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'flatten' of 'numpy.ndarray' objects>",
+          "primitive_calls": 120,
+          "calls": 120,
+          "own_sec": 0.0004974140000000001,
+          "cumulative_sec": 0.0004974140000000001
+        },
+        {
+          "file": "/usr/lib/python3.10/dataclasses.py",
+          "line": 1205,
+          "function": "_is_dataclass_instance",
+          "primitive_calls": 459,
+          "calls": 459,
+          "own_sec": 0.00020220900000000002,
+          "cumulative_sec": 0.00047972900000000003
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_observation.py",
+          "line": 31,
+          "function": "<genexpr>",
+          "primitive_calls": 755,
+          "calls": 755,
+          "own_sec": 0.00036944500000000004,
+          "cumulative_sec": 0.00047173500000000004
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_ufunc_config.py",
+          "line": 430,
+          "function": "__enter__",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 9.233700000000001e-05,
+          "cumulative_sec": 0.00046031500000000004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'update' of 'dict' objects>",
+          "primitive_calls": 182,
+          "calls": 182,
+          "own_sec": 0.00045581800000000003,
+          "cumulative_sec": 0.00045581800000000003
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'astype' of 'numpy.ndarray' objects>",
+          "primitive_calls": 68,
+          "calls": 68,
+          "own_sec": 0.000427687,
+          "cumulative_sec": 0.000427687
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 95,
+          "function": "horizontal_range",
+          "primitive_calls": 2,
+          "calls": 2,
+          "own_sec": 4.4204000000000006e-05,
+          "cumulative_sec": 0.00042081100000000005
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 41,
+          "function": "_edge_y",
+          "primitive_calls": 326,
+          "calls": 326,
+          "own_sec": 0.000415923,
+          "cumulative_sec": 0.000415923
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'all' of 'numpy.generic' objects>",
+          "primitive_calls": 72,
+          "calls": 72,
+          "own_sec": 0.000166002,
+          "cumulative_sec": 0.000415131
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "diff",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 3.2228000000000004e-05,
+          "cumulative_sec": 0.00038315500000000004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.hasattr>",
+          "primitive_calls": 539,
+          "calls": 539,
+          "own_sec": 0.000372252,
+          "cumulative_sec": 0.000372252
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "partition",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 5.9151e-05,
+          "cumulative_sec": 0.000372091
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.abs>",
+          "primitive_calls": 2044,
+          "calls": 2044,
+          "own_sec": 0.00037172400000000003,
+          "cumulative_sec": 0.00037172400000000003
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_observation.py",
+          "line": 27,
+          "function": "<genexpr>",
+          "primitive_calls": 755,
+          "calls": 755,
+          "own_sec": 0.000365443,
+          "cumulative_sec": 0.000365443
+        },
+        {
+          "file": "/usr/lib/python3.10/dataclasses.py",
+          "line": 1187,
+          "function": "fields",
+          "primitive_calls": 27,
+          "calls": 27,
+          "own_sec": 0.00020247600000000002,
+          "cumulative_sec": 0.000363941
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numerictypes.py",
+          "line": 356,
+          "function": "issubdtype",
+          "primitive_calls": 48,
+          "calls": 48,
+          "own_sec": 0.000139934,
+          "cumulative_sec": 0.00033092800000000003
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.empty>",
+          "primitive_calls": 193,
+          "calls": 193,
+          "own_sec": 0.000317383,
+          "cumulative_sec": 0.000317383
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/function_base.py",
+          "line": 1320,
+          "function": "diff",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 0.00028268600000000004,
+          "cumulative_sec": 0.00031087700000000004
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-11/guarded_compute_reuse_r01/compute.py",
+          "line": 51,
+          "function": "<genexpr>",
+          "primitive_calls": 128,
+          "calls": 128,
+          "own_sec": 0.00026840500000000004,
+          "cumulative_sec": 0.000309374
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 70,
+          "function": "<dictcomp>",
+          "primitive_calls": 356,
+          "calls": 356,
+          "own_sec": 0.00030891800000000004,
+          "cumulative_sec": 0.00030891800000000004
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 70,
+          "function": "checked_target_roi",
+          "primitive_calls": 40,
+          "calls": 40,
+          "own_sec": 0.000139342,
+          "cumulative_sec": 0.00030368800000000004
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_ufunc_config.py",
+          "line": 435,
+          "function": "__exit__",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 6.5802e-05,
+          "cumulative_sec": 0.00028442800000000004
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 432,
+          "function": "count_nonzero",
+          "primitive_calls": 129,
+          "calls": 129,
+          "own_sec": 0.000143757,
+          "cumulative_sec": 0.00028147400000000004
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 675,
+          "function": "partition",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 7.670600000000001e-05,
+          "cumulative_sec": 0.000268407
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/theta_rtc_frames.py",
+          "line": 35,
+          "function": "native_frame",
+          "primitive_calls": 80,
+          "calls": 80,
+          "own_sec": 0.00023823600000000001,
+          "cumulative_sec": 0.00025313
+        },
+        {
+          "file": "<string>",
+          "line": 2,
+          "function": "__init__",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 8.458700000000001e-05,
+          "cumulative_sec": 0.00025127
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'hexdigest' of '_hashlib.HASH' objects>",
+          "primitive_calls": 72,
+          "calls": 72,
+          "own_sec": 0.000247332,
+          "cumulative_sec": 0.000247332
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_bbox_boundary_shadow.py",
+          "line": 19,
+          "function": "boundary_contains",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 7.7902e-05,
+          "cumulative_sec": 0.000240468
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_colour_support_candidate.py",
+          "line": 62,
+          "function": "<dictcomp>",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 9.225100000000001e-05,
+          "cumulative_sec": 0.000237287
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.len>",
+          "primitive_calls": 823,
+          "calls": 823,
+          "own_sec": 0.00023189300000000002,
+          "cumulative_sec": 0.00023189300000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'tolist' of 'numpy.ndarray' objects>",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 0.000229272,
+          "cumulative_sec": 0.000229272
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method math.isfinite>",
+          "primitive_calls": 1208,
+          "calls": 1208,
+          "own_sec": 0.000229234,
+          "cumulative_sec": 0.000229234
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/shape_base.py",
+          "line": 608,
+          "function": "_column_stack_dispatcher",
+          "primitive_calls": 56,
+          "calls": 56,
+          "own_sec": 9.0569e-05,
+          "cumulative_sec": 0.000228358
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.next>",
+          "primitive_calls": 73,
+          "calls": 73,
+          "own_sec": 5.3248e-05,
+          "cumulative_sec": 0.000215378
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<boundingRect>",
+          "primitive_calls": 72,
+          "calls": 72,
+          "own_sec": 0.000215114,
+          "cumulative_sec": 0.000215114
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.getattr>",
+          "primitive_calls": 758,
+          "calls": 758,
+          "own_sec": 0.00021356600000000002,
+          "cumulative_sec": 0.00021356600000000002
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_ufunc_config.py",
+          "line": 132,
+          "function": "geterr",
+          "primitive_calls": 72,
+          "calls": 72,
+          "own_sec": 0.000195889,
+          "cumulative_sec": 0.000210048
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 40,
+          "function": "<genexpr>",
+          "primitive_calls": 1040,
+          "calls": 1040,
+          "own_sec": 0.00020804500000000002,
+          "cumulative_sec": 0.00020804500000000002
+        },
+        {
+          "file": "/usr/lib/python3.10/re.py",
+          "line": 192,
+          "function": "fullmatch",
+          "primitive_calls": 26,
+          "calls": 26,
+          "own_sec": 5.8318000000000006e-05,
+          "cumulative_sec": 0.000206211
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_upper_support_candidate.py",
+          "line": 62,
+          "function": "<genexpr>",
+          "primitive_calls": 32,
+          "calls": 32,
+          "own_sec": 7.756600000000001e-05,
+          "cumulative_sec": 0.00019487100000000003
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.issubclass>",
+          "primitive_calls": 446,
+          "calls": 446,
+          "own_sec": 0.000183088,
+          "cumulative_sec": 0.000183088
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numerictypes.py",
+          "line": 282,
+          "function": "issubclass_",
+          "primitive_calls": 96,
+          "calls": 96,
+          "own_sec": 0.000118763,
+          "cumulative_sec": 0.00018298200000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'tobytes' of 'numpy.ndarray' objects>",
+          "primitive_calls": 56,
+          "calls": 56,
+          "own_sec": 0.00018145500000000002,
+          "cumulative_sec": 0.00018145500000000002
+        },
+        {
+          "file": "/usr/lib/python3.10/contextlib.py",
+          "line": 279,
+          "function": "helper",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 5.4311e-05,
+          "cumulative_sec": 0.000177302
+        },
+        {
+          "file": "/usr/lib/python3.10/json/decoder.py",
+          "line": 284,
+          "function": "__init__",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.000176595,
+          "cumulative_sec": 0.000176595
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_methods.py",
+          "line": 67,
+          "function": "_count_reduce_items",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 0.000145312,
+          "cumulative_sec": 0.00017568100000000001
+        },
+        {
+          "file": "/usr/lib/python3.10/contextlib.py",
+          "line": 139,
+          "function": "__exit__",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 6.9342e-05,
+          "cumulative_sec": 0.00017365700000000002
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_colour_support_candidate.py",
+          "line": 27,
+          "function": "__post_init__",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 6.1803e-05,
+          "cumulative_sec": 0.00016668300000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.asanyarray>",
+          "primitive_calls": 532,
+          "calls": 532,
+          "own_sec": 0.000166224,
+          "cumulative_sec": 0.000166224
+        },
+        {
+          "file": "/usr/lib/python3.10/json/__init__.py",
+          "line": 244,
+          "function": "detect_encoding",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.000106272,
+          "cumulative_sec": 0.000162239
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_ufunc_config.py",
+          "line": 452,
+          "function": "_no_nep50_warning",
+          "primitive_calls": 72,
+          "calls": 72,
+          "own_sec": 7.3553e-05,
+          "cumulative_sec": 0.000160771
+        },
+        {
+          "file": "/usr/lib/python3.10/contextlib.py",
+          "line": 130,
+          "function": "__enter__",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 4.8968e-05,
+          "cumulative_sec": 0.000157822
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'partition' of 'numpy.ndarray' objects>",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 0.000155703,
+          "cumulative_sec": 0.000155703
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'dot' of 'numpy.ndarray' objects>",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 0.000155553,
+          "cumulative_sec": 0.000155553
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 2403,
+          "function": "_array_equal_dispatcher",
+          "primitive_calls": 668,
+          "calls": 668,
+          "own_sec": 0.00014727500000000002,
+          "cumulative_sec": 0.00014727500000000002
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/arraysetops.py",
+          "line": 125,
+          "function": "_unpack_tuple",
+          "primitive_calls": 96,
+          "calls": 96,
+          "own_sec": 0.00012140600000000001,
+          "cumulative_sec": 0.000146753
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "result_type",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 5.0060000000000005e-05,
+          "cumulative_sec": 0.00014400100000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.array>",
+          "primitive_calls": 112,
+          "calls": 112,
+          "own_sec": 0.00014369600000000001,
+          "cumulative_sec": 0.00014369600000000001
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/shape_base.py",
+          "line": 207,
+          "function": "_arrays_for_stack_dispatcher",
+          "primitive_calls": 56,
+          "calls": 56,
+          "own_sec": 6.7063e-05,
+          "cumulative_sec": 0.000137789
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.count_nonzero>",
+          "primitive_calls": 129,
+          "calls": 129,
+          "own_sec": 0.000137717,
+          "cumulative_sec": 0.000137717
+        },
+        {
+          "file": "/usr/lib/python3.10/dataclasses.py",
+          "line": 1202,
+          "function": "<genexpr>",
+          "primitive_calls": 432,
+          "calls": 432,
+          "own_sec": 0.000132947,
+          "cumulative_sec": 0.000132947
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_guarded_lower_edge_shadow.py",
+          "line": 14,
+          "function": "lower_half_pixel_only",
+          "primitive_calls": 5,
+          "calls": 5,
+          "own_sec": 3.4108e-05,
+          "cumulative_sec": 0.000129383
+        },
+        {
+          "file": "/usr/lib/python3.10/contextlib.py",
+          "line": 102,
+          "function": "__init__",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 9.691200000000001e-05,
+          "cumulative_sec": 0.000122991
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 2328,
+          "function": "_any_dispatcher",
+          "primitive_calls": 272,
+          "calls": 272,
+          "own_sec": 9.6056e-05,
+          "cumulative_sec": 9.6056e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.zeros>",
+          "primitive_calls": 97,
+          "calls": 97,
+          "own_sec": 9.491500000000001e-05,
+          "cumulative_sec": 9.491500000000001e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_support_completion_candidate.py",
+          "line": 28,
+          "function": "<listcomp>",
+          "primitive_calls": 40,
+          "calls": 40,
+          "own_sec": 9.0105e-05,
+          "cumulative_sec": 9.0105e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 88,
+          "function": "<genexpr>",
+          "primitive_calls": 326,
+          "calls": 326,
+          "own_sec": 8.9782e-05,
+          "cumulative_sec": 8.9782e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/multiarray.py",
+          "line": 1079,
+          "function": "copyto",
+          "primitive_calls": 291,
+          "calls": 291,
+          "own_sec": 8.9052e-05,
+          "cumulative_sec": 8.9052e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/theta_rtc_frames.py",
+          "line": 40,
+          "function": "finite_time",
+          "primitive_calls": 32,
+          "calls": 32,
+          "own_sec": 6.0601000000000005e-05,
+          "cumulative_sec": 8.7835e-05
+        },
+        {
+          "file": "/usr/lib/python3.10/re.py",
+          "line": 288,
+          "function": "_compile",
+          "primitive_calls": 26,
+          "calls": 26,
+          "own_sec": 5.7696000000000005e-05,
+          "cumulative_sec": 8.6902e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.seterrobj>",
+          "primitive_calls": 72,
+          "calls": 72,
+          "own_sec": 8.6643e-05,
+          "cumulative_sec": 8.6643e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 73,
+          "function": "<genexpr>",
+          "primitive_calls": 200,
+          "calls": 200,
+          "own_sec": 8.3126e-05,
+          "cumulative_sec": 8.3126e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method math.ceil>",
+          "primitive_calls": 200,
+          "calls": 200,
+          "own_sec": 8.1252e-05,
+          "cumulative_sec": 8.1252e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'match' of 're.Pattern' objects>",
+          "primitive_calls": 32,
+          "calls": 32,
+          "own_sec": 7.968000000000001e-05,
+          "cumulative_sec": 7.968000000000001e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_colour_support_candidate.py",
+          "line": 30,
+          "function": "<genexpr>",
+          "primitive_calls": 80,
+          "calls": 80,
+          "own_sec": 6.972800000000001e-05,
+          "cumulative_sec": 7.701700000000001e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'conj' of 'numpy.ndarray' objects>",
+          "primitive_calls": 97,
+          "calls": 97,
+          "own_sec": 7.571800000000001e-05,
+          "cumulative_sec": 7.571800000000001e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 34,
+          "function": "<genexpr>",
+          "primitive_calls": 234,
+          "calls": 234,
+          "own_sec": 7.0888e-05,
+          "cumulative_sec": 7.0888e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method math.floor>",
+          "primitive_calls": 188,
+          "calls": 188,
+          "own_sec": 6.42e-05,
+          "cumulative_sec": 6.42e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 34,
+          "function": "<genexpr>",
+          "primitive_calls": 96,
+          "calls": 96,
+          "own_sec": 5.3086000000000006e-05,
+          "cumulative_sec": 6.3908e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'fullmatch' of 're.Pattern' objects>",
+          "primitive_calls": 26,
+          "calls": 26,
+          "own_sec": 6.0991000000000006e-05,
+          "cumulative_sec": 6.0991000000000006e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/multiarray.py",
+          "line": 84,
+          "function": "empty_like",
+          "primitive_calls": 194,
+          "calls": 194,
+          "own_sec": 5.7530000000000007e-05,
+          "cumulative_sec": 5.7530000000000007e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/type_check.py",
+          "line": 206,
+          "function": "_is_type_dispatcher",
+          "primitive_calls": 109,
+          "calls": 109,
+          "own_sec": 5.3468000000000004e-05,
+          "cumulative_sec": 5.3468000000000004e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 93,
+          "function": "<genexpr>",
+          "primitive_calls": 326,
+          "calls": 326,
+          "own_sec": 5.1212000000000004e-05,
+          "cumulative_sec": 5.1212000000000004e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 112,
+          "function": "revoke_range",
+          "primitive_calls": 15,
+          "calls": 15,
+          "own_sec": 2.6221000000000002e-05,
+          "cumulative_sec": 5.0115000000000004e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/linalg/linalg.py",
+          "line": 2338,
+          "function": "_norm_dispatcher",
+          "primitive_calls": 133,
+          "calls": 133,
+          "own_sec": 4.9676000000000003e-05,
+          "cumulative_sec": 4.9676000000000003e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.geterrobj>",
+          "primitive_calls": 144,
+          "calls": 144,
+          "own_sec": 4.8555000000000005e-05,
+          "cumulative_sec": 4.8555000000000005e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 25,
+          "function": "<genexpr>",
+          "primitive_calls": 65,
+          "calls": 65,
+          "own_sec": 3.4406e-05,
+          "cumulative_sec": 4.4861e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'startswith' of 'bytes' objects>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "own_sec": 4.4838e-05,
+          "cumulative_sec": 4.4838e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reset' of '_contextvars.ContextVar' objects>",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 4.3865e-05,
+          "cumulative_sec": 4.3865e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'set' of '_contextvars.ContextVar' objects>",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 4.3353e-05,
+          "cumulative_sec": 4.3353e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 428,
+          "function": "_count_nonzero_dispatcher",
+          "primitive_calls": 129,
+          "calls": 129,
+          "own_sec": 4.1660000000000004e-05,
+          "cumulative_sec": 4.1660000000000004e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/arraysetops.py",
+          "line": 133,
+          "function": "_unique_dispatcher",
+          "primitive_calls": 96,
+          "calls": 96,
+          "own_sec": 4.1314000000000005e-05,
+          "cumulative_sec": 4.1314000000000005e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'ravel' of 'numpy.ndarray' objects>",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 4.0002e-05,
+          "cumulative_sec": 4.0002e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 215,
+          "function": "_ones_like_dispatcher",
+          "primitive_calls": 97,
+          "calls": 97,
+          "own_sec": 3.7384e-05,
+          "cumulative_sec": 3.7384e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/linalg/linalg.py",
+          "line": 117,
+          "function": "isComplexType",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 2.8669000000000003e-05,
+          "cumulative_sec": 3.6916000000000004e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 149,
+          "function": "diagnostics",
+          "primitive_calls": 72,
+          "calls": 72,
+          "own_sec": 3.6397000000000004e-05,
+          "cumulative_sec": 3.6397000000000004e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'values' of 'dict' objects>",
+          "primitive_calls": 67,
+          "calls": 67,
+          "own_sec": 3.6025e-05,
+          "cumulative_sec": 3.6025e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/multiarray.py",
+          "line": 152,
+          "function": "concatenate",
+          "primitive_calls": 56,
+          "calls": 56,
+          "own_sec": 3.5566000000000005e-05,
+          "cumulative_sec": 3.5566000000000005e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-11/guarded_compute_reuse_r01/compute.py",
+          "line": 31,
+          "function": "<genexpr>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "own_sec": 2.5377e-05,
+          "cumulative_sec": 3.3328000000000003e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_ufunc_config.py",
+          "line": 426,
+          "function": "__init__",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 3.3109000000000004e-05,
+          "cumulative_sec": 3.3109000000000004e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_upper_support_candidate.py",
+          "line": 39,
+          "function": "<listcomp>",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 3.1449e-05,
+          "cumulative_sec": 3.1449e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 164,
+          "function": "<listcomp>",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 3.0183000000000002e-05,
+          "cumulative_sec": 3.0183000000000002e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 2427,
+          "function": "_all_dispatcher",
+          "primitive_calls": 84,
+          "calls": 84,
+          "own_sec": 2.7643000000000003e-05,
+          "cumulative_sec": 2.7643000000000003e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_colour_support_candidate.py",
+          "line": 46,
+          "function": "<listcomp>",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 2.7628e-05,
+          "cumulative_sec": 2.7628e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.normalize_axis_index>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "own_sec": 2.7416000000000003e-05,
+          "cumulative_sec": 2.7416000000000003e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 71,
+          "function": "reject",
+          "primitive_calls": 4,
+          "calls": 4,
+          "own_sec": 6.768e-06,
+          "cumulative_sec": 2.6914e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 1888,
+          "function": "_nonzero_dispatcher",
+          "primitive_calls": 56,
+          "calls": 56,
+          "own_sec": 2.5565e-05,
+          "cumulative_sec": 2.5565e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'decode' of 'bytes' objects>",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 2.5481000000000002e-05,
+          "cumulative_sec": 2.5481000000000002e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 354,
+          "function": "_full_like_dispatcher",
+          "primitive_calls": 97,
+          "calls": 97,
+          "own_sec": 2.3864e-05,
+          "cumulative_sec": 2.3864e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'end' of 're.Match' objects>",
+          "primitive_calls": 32,
+          "calls": 32,
+          "own_sec": 2.2746000000000002e-05,
+          "cumulative_sec": 2.2746000000000002e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'encode' of 'str' objects>",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 2.0677000000000002e-05,
+          "cumulative_sec": 2.0677000000000002e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_bbox_boundary_shadow.py",
+          "line": 44,
+          "function": "<genexpr>",
+          "primitive_calls": 30,
+          "calls": 30,
+          "own_sec": 1.6453e-05,
+          "cumulative_sec": 1.8696000000000002e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_bbox_boundary_shadow.py",
+          "line": 24,
+          "function": "<genexpr>",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 1.6496000000000003e-05,
+          "cumulative_sec": 1.6496000000000003e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 67,
+          "function": "<genexpr>",
+          "primitive_calls": 25,
+          "calls": 25,
+          "own_sec": 1.4075000000000002e-05,
+          "cumulative_sec": 1.6125000000000002e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 2274,
+          "function": "_isclose_dispatcher",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 1.5501e-05,
+          "cumulative_sec": 1.5501e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 132,
+          "function": "reset",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 1.391e-05,
+          "cumulative_sec": 1.391e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_bbox_boundary_shadow.py",
+          "line": 77,
+          "function": "<dictcomp>",
+          "primitive_calls": 11,
+          "calls": 11,
+          "own_sec": 1.3593e-05,
+          "cumulative_sec": 1.3593e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/multiarray.py",
+          "line": 668,
+          "function": "result_type",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 1.2515000000000001e-05,
+          "cumulative_sec": 1.2515000000000001e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/function_base.py",
+          "line": 3769,
+          "function": "_median_dispatcher",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 1.2362000000000001e-05,
+          "cumulative_sec": 1.2362000000000001e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 3340,
+          "function": "_mean_dispatcher",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 1.1549e-05,
+          "cumulative_sec": 1.1549e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 671,
+          "function": "_partition_dispatcher",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 1.0081e-05,
+          "cumulative_sec": 1.0081e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_guarded_lower_edge_shadow.py",
+          "line": 18,
+          "function": "<genexpr>",
+          "primitive_calls": 15,
+          "calls": 15,
+          "own_sec": 8.183000000000001e-06,
+          "cumulative_sec": 8.183000000000001e-06
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/function_base.py",
+          "line": 1316,
+          "function": "_diff_dispatcher",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 7.863e-06,
+          "cumulative_sec": 7.863e-06
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'strip' of 'str' objects>",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 7.497e-06,
+          "cumulative_sec": 7.497e-06
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-11/guarded_compute_reuse_r01/compute.py",
+          "line": 59,
+          "function": "<lambda>",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 6.012e-06,
+          "cumulative_sec": 6.012e-06
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'join' of 'str' objects>",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 5.054e-06,
+          "cumulative_sec": 5.054e-06
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_upper_support_candidate.py",
+          "line": 103,
+          "function": "<genexpr>",
+          "primitive_calls": 4,
+          "calls": 4,
+          "own_sec": 3.113e-06,
+          "cumulative_sec": 3.113e-06
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 184,
+          "function": "<genexpr>",
+          "primitive_calls": 2,
+          "calls": 2,
+          "own_sec": 1.7130000000000002e-06,
+          "cumulative_sec": 1.7130000000000002e-06
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'disable' of '_lsprof.Profiler' objects>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "own_sec": 8.56e-07,
+          "cumulative_sec": 8.56e-07
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method math.sqrt>",
+          "primitive_calls": 2,
+          "calls": 2,
+          "own_sec": 8.550000000000001e-07,
+          "cumulative_sec": 8.550000000000001e-07
+        }
+      ],
+      "upper_observer_calls": 16
+    },
+    "shared": {
+      "total_sec": 0.7641939629999998,
+      "functions": [
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-11/guarded_compute_reuse_r01/profile_compute.py",
+          "line": 37,
+          "function": "run_case",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 0.000673876,
+          "cumulative_sec": 0.764501979
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-11/guarded_compute_reuse_r01/compute.py",
+          "line": 22,
+          "function": "evaluate_offline_frame",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 0.0011486250000000001,
+          "cumulative_sec": 0.763828103
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_guarded_lower_edge_shadow.py",
+          "line": 25,
+          "function": "compare_guarded_lower_edge",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 0.000582154,
+          "cumulative_sec": 0.6200848200000001
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_bbox_boundary_shadow.py",
+          "line": 32,
+          "function": "compare_boundary_observations",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 0.000751729,
+          "cumulative_sec": 0.46088725900000005
+        },
+        {
+          "file": "/usr/lib/python3.10/copy.py",
+          "line": 128,
+          "function": "deepcopy",
+          "primitive_calls": 589,
+          "calls": 128156,
+          "own_sec": 0.172796906,
+          "cumulative_sec": 0.35705485200000003
+        },
+        {
+          "file": "/usr/lib/python3.10/copy.py",
+          "line": 227,
+          "function": "_deepcopy_dict",
+          "primitive_calls": 184,
+          "calls": 2888,
+          "own_sec": 0.015654925,
+          "cumulative_sec": 0.355325893
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_upper_support_candidate.py",
+          "line": 80,
+          "function": "observe_upper_completion",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 0.004338016,
+          "cumulative_sec": 0.331520101
+        },
+        {
+          "file": "/usr/lib/python3.10/copy.py",
+          "line": 201,
+          "function": "_deepcopy_list",
+          "primitive_calls": 640,
+          "calls": 31111,
+          "own_sec": 0.06650446900000001,
+          "cumulative_sec": 0.33072212
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_support_completion_candidate.py",
+          "line": 67,
+          "function": "observe_lateral_completion",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 0.0052377710000000004,
+          "cumulative_sec": 0.25670090900000003
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py",
+          "line": 58,
+          "function": "unproject",
+          "primitive_calls": 61,
+          "calls": 61,
+          "own_sec": 0.030801185000000002,
+          "cumulative_sec": 0.17615861100000002
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py",
+          "line": 44,
+          "function": "radial",
+          "primitive_calls": 3965,
+          "calls": 3965,
+          "own_sec": 0.008793139,
+          "cumulative_sec": 0.11696181200000001
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_support_completion_candidate.py",
+          "line": 20,
+          "function": "_context",
+          "primitive_calls": 20,
+          "calls": 20,
+          "own_sec": 0.003544002,
+          "cumulative_sec": 0.108440294
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.sum>",
+          "primitive_calls": 3978,
+          "calls": 3978,
+          "own_sec": 0.024543560000000002,
+          "cumulative_sec": 0.107048875
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 135,
+          "function": "measure",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.000667885,
+          "cumulative_sec": 0.10482936200000001
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/angular_fisheye_geometry.py",
+          "line": 46,
+          "function": "<genexpr>",
+          "primitive_calls": 19825,
+          "calls": 19825,
+          "own_sec": 0.08245840800000001,
+          "cumulative_sec": 0.08245840800000001
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 79,
+          "function": "select_front_boxes",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 0.00031990400000000003,
+          "cumulative_sec": 0.06644280500000001
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_support_completion_candidate.py",
+          "line": 112,
+          "function": "<setcomp>",
+          "primitive_calls": 6,
+          "calls": 6,
+          "own_sec": 0.064138711,
+          "cumulative_sec": 0.064138711
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 48,
+          "function": "compare_self_body",
+          "primitive_calls": 13,
+          "calls": 13,
+          "own_sec": 0.00032955800000000003,
+          "cumulative_sec": 0.055787397
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_support_completion_candidate.py",
+          "line": 113,
+          "function": "<setcomp>",
+          "primitive_calls": 6,
+          "calls": 6,
+          "own_sec": 0.054137279,
+          "cumulative_sec": 0.054137279
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_upper_support_candidate.py",
+          "line": 31,
+          "function": "_upper_context",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 0.0014836410000000002,
+          "cumulative_sec": 0.051628415000000004
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_bbox_boundary_shadow.py",
+          "line": 36,
+          "function": "<dictcomp>",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 0.000216626,
+          "cumulative_sec": 0.048296791000000006
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.implement_array_function>",
+          "primitive_calls": 8920,
+          "calls": 9324,
+          "own_sec": 0.017519096,
+          "cumulative_sec": 0.037881647000000004
+        },
+        {
+          "file": "/usr/lib/python3.10/copy.py",
+          "line": 243,
+          "function": "_keep_alive",
+          "primitive_calls": 33999,
+          "calls": 33999,
+          "own_sec": 0.021407752000000002,
+          "cumulative_sec": 0.029759017000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'get' of 'dict' objects>",
+          "primitive_calls": 257497,
+          "calls": 257497,
+          "own_sec": 0.029588469000000003,
+          "cumulative_sec": 0.029588469000000003
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 132,
+          "function": "support_from_colour_mask",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 0.002260597,
+          "cumulative_sec": 0.025634171
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_colour_support_candidate.py",
+          "line": 38,
+          "function": "observe_separated_support",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 0.00038624600000000003,
+          "cumulative_sec": 0.02462723
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.id>",
+          "primitive_calls": 196338,
+          "calls": 196338,
+          "own_sec": 0.023361445,
+          "cumulative_sec": 0.023361445
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "where",
+          "primitive_calls": 7808,
+          "calls": 7808,
+          "own_sec": 0.006268616,
+          "cumulative_sec": 0.021886445
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_upper_support_candidate.py",
+          "line": 23,
+          "function": "_lower_support",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 6.6117e-05,
+          "cumulative_sec": 0.021257463
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_upper_support_candidate.py",
+          "line": 27,
+          "function": "<listcomp>",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 0.018355464000000002,
+          "cumulative_sec": 0.020032339
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'append' of 'list' objects>",
+          "primitive_calls": 127099,
+          "calls": 127099,
+          "own_sec": 0.015773127,
+          "cumulative_sec": 0.015773127
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 121,
+          "function": "__init__",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.00023225400000000002,
+          "cumulative_sec": 0.014111704000000001
+        },
+        {
+          "file": "/usr/lib/python3.10/copy.py",
+          "line": 182,
+          "function": "_deepcopy_atomic",
+          "primitive_calls": 94157,
+          "calls": 94157,
+          "own_sec": 0.011832204,
+          "cumulative_sec": 0.011832204
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 26,
+          "function": "parse_motion_profile",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.000945437,
+          "cumulative_sec": 0.011226187
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 182,
+          "function": "<listcomp>",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 0.007739583,
+          "cumulative_sec": 0.009854661
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 67,
+          "function": "checked_current_support",
+          "primitive_calls": 27,
+          "calls": 27,
+          "own_sec": 0.0013708980000000002,
+          "cumulative_sec": 0.008894573000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "primitive_calls": 1431,
+          "calls": 1431,
+          "own_sec": 0.0055433950000000004,
+          "cumulative_sec": 0.0055433950000000004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.any>",
+          "primitive_calls": 245,
+          "calls": 245,
+          "own_sec": 0.000687905,
+          "cumulative_sec": 0.005376443000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<cvtColor>",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 0.004662248,
+          "cumulative_sec": 0.004662248
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_support_quality.py",
+          "line": 32,
+          "function": "__post_init__",
+          "primitive_calls": 27,
+          "calls": 27,
+          "own_sec": 0.0005660750000000001,
+          "cumulative_sec": 0.004423036
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<findContours>",
+          "primitive_calls": 64,
+          "calls": 64,
+          "own_sec": 0.0037694020000000003,
+          "cumulative_sec": 0.0037694020000000003
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.asarray>",
+          "primitive_calls": 5331,
+          "calls": 5331,
+          "own_sec": 0.0037143030000000004,
+          "cumulative_sec": 0.0037143030000000004
+        },
+        {
+          "file": "/usr/lib/python3.10/dataclasses.py",
+          "line": 1217,
+          "function": "asdict",
+          "primitive_calls": 27,
+          "calls": 27,
+          "own_sec": 9.9469e-05,
+          "cumulative_sec": 0.0036752850000000004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.min>",
+          "primitive_calls": 23,
+          "calls": 23,
+          "own_sec": 0.000592981,
+          "cumulative_sec": 0.0036079750000000002
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "isclose",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 8.440100000000001e-05,
+          "cumulative_sec": 0.003572305
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 189,
+          "function": "<genexpr>",
+          "primitive_calls": 346,
+          "calls": 346,
+          "own_sec": 0.00035732900000000003,
+          "cumulative_sec": 0.003519042
+        },
+        {
+          "file": "/usr/lib/python3.10/dataclasses.py",
+          "line": 1241,
+          "function": "_asdict_inner",
+          "primitive_calls": 27,
+          "calls": 432,
+          "own_sec": 0.0013544050000000001,
+          "cumulative_sec": 0.00350648
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 2278,
+          "function": "isclose",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 0.00029273200000000003,
+          "cumulative_sec": 0.003337482
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "nonzero",
+          "primitive_calls": 28,
+          "calls": 28,
+          "own_sec": 6.3273e-05,
+          "cumulative_sec": 0.003335541
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "unique",
+          "primitive_calls": 48,
+          "calls": 48,
+          "own_sec": 0.000121483,
+          "cumulative_sec": 0.00328173
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 1892,
+          "function": "nonzero",
+          "primitive_calls": 28,
+          "calls": 28,
+          "own_sec": 5.4954e-05,
+          "cumulative_sec": 0.0032173550000000003
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 51,
+          "function": "_wrapfunc",
+          "primitive_calls": 28,
+          "calls": 28,
+          "own_sec": 8.057500000000001e-05,
+          "cumulative_sec": 0.003162401
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "array_equal",
+          "primitive_calls": 334,
+          "calls": 334,
+          "own_sec": 0.000331336,
+          "cumulative_sec": 0.003161713
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'nonzero' of 'numpy.ndarray' objects>",
+          "primitive_calls": 28,
+          "calls": 28,
+          "own_sec": 0.0030569440000000002,
+          "cumulative_sec": 0.0030569440000000002
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 187,
+          "function": "<lambda>",
+          "primitive_calls": 986,
+          "calls": 986,
+          "own_sec": 0.0028348970000000003,
+          "cumulative_sec": 0.003014994
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/arraysetops.py",
+          "line": 138,
+          "function": "unique",
+          "primitive_calls": 48,
+          "calls": 48,
+          "own_sec": 0.00024021400000000001,
+          "cumulative_sec": 0.003013183
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'all' of 'numpy.ndarray' objects>",
+          "primitive_calls": 515,
+          "calls": 515,
+          "own_sec": 0.00044717400000000005,
+          "cumulative_sec": 0.0029414740000000003
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_methods.py",
+          "line": 61,
+          "function": "_all",
+          "primitive_calls": 587,
+          "calls": 587,
+          "own_sec": 0.000411995,
+          "cumulative_sec": 0.002722575
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/arraysetops.py",
+          "line": 323,
+          "function": "_unique1d",
+          "primitive_calls": 48,
+          "calls": 48,
+          "own_sec": 0.001090471,
+          "cumulative_sec": 0.00267272
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "any",
+          "primitive_calls": 160,
+          "calls": 160,
+          "own_sec": 0.000238246,
+          "cumulative_sec": 0.0025121120000000004
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 2407,
+          "function": "array_equal",
+          "primitive_calls": 334,
+          "calls": 334,
+          "own_sec": 0.000923933,
+          "cumulative_sec": 0.002489292
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<connectedComponents>",
+          "primitive_calls": 28,
+          "calls": 28,
+          "own_sec": 0.00240924,
+          "cumulative_sec": 0.00240924
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 15,
+          "function": "checked_reference",
+          "primitive_calls": 13,
+          "calls": 13,
+          "own_sec": 0.000310703,
+          "cumulative_sec": 0.002357647
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.max>",
+          "primitive_calls": 1026,
+          "calls": 1026,
+          "own_sec": 0.002353543,
+          "cumulative_sec": 0.002353543
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<inRange>",
+          "primitive_calls": 80,
+          "calls": 80,
+          "own_sec": 0.0023266000000000003,
+          "cumulative_sec": 0.0023266000000000003
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 69,
+          "function": "_wrapreduction",
+          "primitive_calls": 244,
+          "calls": 244,
+          "own_sec": 0.0007297740000000001,
+          "cumulative_sec": 0.002168202
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "norm",
+          "primitive_calls": 97,
+          "calls": 97,
+          "own_sec": 0.000210337,
+          "cumulative_sec": 0.002166706
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'max' of 'numpy.ndarray' objects>",
+          "primitive_calls": 531,
+          "calls": 531,
+          "own_sec": 0.000323879,
+          "cumulative_sec": 0.002129881
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method _hashlib.openssl_sha256>",
+          "primitive_calls": 44,
+          "calls": 44,
+          "own_sec": 0.002035598,
+          "cumulative_sec": 0.002035598
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_methods.py",
+          "line": 39,
+          "function": "_amax",
+          "primitive_calls": 531,
+          "calls": 531,
+          "own_sec": 0.00027167,
+          "cumulative_sec": 0.0018060020000000001
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 2359,
+          "function": "within_tol",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 0.000495646,
+          "cumulative_sec": 0.001795132
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/linalg/linalg.py",
+          "line": 2342,
+          "function": "norm",
+          "primitive_calls": 97,
+          "calls": 97,
+          "own_sec": 0.001076424,
+          "cumulative_sec": 0.0017736520000000001
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "iscomplexobj",
+          "primitive_calls": 73,
+          "calls": 73,
+          "own_sec": 0.00016655,
+          "cumulative_sec": 0.0017629420000000002
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 2333,
+          "function": "any",
+          "primitive_calls": 160,
+          "calls": 160,
+          "own_sec": 0.00034455300000000005,
+          "cumulative_sec": 0.001729365
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "median",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 3.7584000000000005e-05,
+          "cumulative_sec": 0.0016324830000000001
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/function_base.py",
+          "line": 3774,
+          "function": "median",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 0.000187016,
+          "cumulative_sec": 0.0015599090000000002
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/multiarray.py",
+          "line": 345,
+          "function": "where",
+          "primitive_calls": 7808,
+          "calls": 7808,
+          "own_sec": 0.001486647,
+          "cumulative_sec": 0.001486647
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "column_stack",
+          "primitive_calls": 28,
+          "calls": 28,
+          "own_sec": 5.2199000000000006e-05,
+          "cumulative_sec": 0.00141725
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/type_check.py",
+          "line": 303,
+          "function": "iscomplexobj",
+          "primitive_calls": 73,
+          "calls": 73,
+          "own_sec": 0.0005457740000000001,
+          "cumulative_sec": 0.0014111660000000002
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/function_base.py",
+          "line": 3692,
+          "function": "_ureduce",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 9.647300000000001e-05,
+          "cumulative_sec": 0.001372893
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.sorted>",
+          "primitive_calls": 64,
+          "calls": 64,
+          "own_sec": 0.00044196100000000005,
+          "cumulative_sec": 0.001369882
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_observation.py",
+          "line": 24,
+          "function": "checked_bbox",
+          "primitive_calls": 99,
+          "calls": 99,
+          "own_sec": 0.000617262,
+          "cumulative_sec": 0.001344778
+        },
+        {
+          "file": "/usr/lib/python3.10/json/__init__.py",
+          "line": 183,
+          "function": "dumps",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 5.5665e-05,
+          "cumulative_sec": 0.001342855
+        },
+        {
+          "file": "/usr/lib/python3.10/json/encoder.py",
+          "line": 182,
+          "function": "encode",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.00011395,
+          "cumulative_sec": 0.0012871900000000001
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/function_base.py",
+          "line": 3860,
+          "function": "_median",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 0.00024408300000000003,
+          "cumulative_sec": 0.001262274
+        },
+        {
+          "file": "/usr/lib/python3.10/json/__init__.py",
+          "line": 299,
+          "function": "loads",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.000145562,
+          "cumulative_sec": 0.001221559
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'sort' of 'numpy.ndarray' objects>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "own_sec": 0.0012162030000000001,
+          "cumulative_sec": 0.0012162030000000001
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "all",
+          "primitive_calls": 84,
+          "calls": 84,
+          "own_sec": 0.00011311800000000001,
+          "cumulative_sec": 0.001204236
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/shape_base.py",
+          "line": 612,
+          "function": "column_stack",
+          "primitive_calls": 28,
+          "calls": 28,
+          "own_sec": 0.000297543,
+          "cumulative_sec": 0.001198697
+        },
+        {
+          "file": "/usr/lib/python3.10/json/encoder.py",
+          "line": 204,
+          "function": "iterencode",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.001150772,
+          "cumulative_sec": 0.001150772
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "ones_like",
+          "primitive_calls": 61,
+          "calls": 61,
+          "own_sec": 0.00010261800000000001,
+          "cumulative_sec": 0.0010502480000000002
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 2432,
+          "function": "all",
+          "primitive_calls": 84,
+          "calls": 84,
+          "own_sec": 0.000148001,
+          "cumulative_sec": 0.0009313910000000001
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 219,
+          "function": "ones_like",
+          "primitive_calls": 61,
+          "calls": 61,
+          "own_sec": 0.00025700800000000003,
+          "cumulative_sec": 0.000851396
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "copyto",
+          "primitive_calls": 183,
+          "calls": 183,
+          "own_sec": 0.00029067000000000003,
+          "cumulative_sec": 0.000818722
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "full_like",
+          "primitive_calls": 61,
+          "calls": 61,
+          "own_sec": 9.396500000000001e-05,
+          "cumulative_sec": 0.00080407
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "concatenate",
+          "primitive_calls": 28,
+          "calls": 28,
+          "own_sec": 6.689e-05,
+          "cumulative_sec": 0.0007906460000000001
+        },
+        {
+          "file": "/usr/lib/python3.10/json/decoder.py",
+          "line": 332,
+          "function": "decode",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 8.7837e-05,
+          "cumulative_sec": 0.000742729
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 290,
+          "function": "full",
+          "primitive_calls": 61,
+          "calls": 61,
+          "own_sec": 0.00023538600000000003,
+          "cumulative_sec": 0.0007410660000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'min' of 'numpy.ndarray' objects>",
+          "primitive_calls": 68,
+          "calls": 68,
+          "own_sec": 9.8912e-05,
+          "cumulative_sec": 0.000708781
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 358,
+          "function": "full_like",
+          "primitive_calls": 61,
+          "calls": 61,
+          "own_sec": 0.000174983,
+          "cumulative_sec": 0.000634922
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_methods.py",
+          "line": 43,
+          "function": "_amin",
+          "primitive_calls": 68,
+          "calls": 68,
+          "own_sec": 7.5343e-05,
+          "cumulative_sec": 0.0006098690000000001
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "empty_like",
+          "primitive_calls": 122,
+          "calls": 122,
+          "own_sec": 0.000250406,
+          "cumulative_sec": 0.000601896
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<contourArea>",
+          "primitive_calls": 469,
+          "calls": 469,
+          "own_sec": 0.0005933160000000001,
+          "cumulative_sec": 0.0005933160000000001
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 90,
+          "function": "<listcomp>",
+          "primitive_calls": 5,
+          "calls": 5,
+          "own_sec": 0.00012936500000000002,
+          "cumulative_sec": 0.000589461
+        },
+        {
+          "file": "/usr/lib/python3.10/json/decoder.py",
+          "line": 343,
+          "function": "raw_decode",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.0005711840000000001,
+          "cumulative_sec": 0.0005711840000000001
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_ufunc_config.py",
+          "line": 33,
+          "function": "seterr",
+          "primitive_calls": 72,
+          "calls": 72,
+          "own_sec": 0.000251976,
+          "cumulative_sec": 0.0005688760000000001
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "mean",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 3.7163e-05,
+          "cumulative_sec": 0.0005620320000000001
+        },
+        {
+          "file": "/usr/lib/python3.10/dataclasses.py",
+          "line": 1205,
+          "function": "_is_dataclass_instance",
+          "primitive_calls": 459,
+          "calls": 459,
+          "own_sec": 0.000232408,
+          "cumulative_sec": 0.000559694
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'items' of 'dict' objects>",
+          "primitive_calls": 3173,
+          "calls": 3173,
+          "own_sec": 0.0005382410000000001,
+          "cumulative_sec": 0.0005382410000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.isinstance>",
+          "primitive_calls": 2333,
+          "calls": 2333,
+          "own_sec": 0.00050162,
+          "cumulative_sec": 0.00050162
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 166,
+          "function": "<genexpr>",
+          "primitive_calls": 80,
+          "calls": 80,
+          "own_sec": 0.000185927,
+          "cumulative_sec": 0.000496855
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 3345,
+          "function": "mean",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 7.492600000000001e-05,
+          "cumulative_sec": 0.0004899230000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.all>",
+          "primitive_calls": 99,
+          "calls": 99,
+          "own_sec": 0.00014014,
+          "cumulative_sec": 0.00046814700000000003
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 41,
+          "function": "_edge_y",
+          "primitive_calls": 326,
+          "calls": 326,
+          "own_sec": 0.00046737000000000005,
+          "cumulative_sec": 0.00046737000000000005
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "diff",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 3.7117000000000004e-05,
+          "cumulative_sec": 0.00046315200000000004
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_ufunc_config.py",
+          "line": 430,
+          "function": "__enter__",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 9.153500000000001e-05,
+          "cumulative_sec": 0.00045961000000000005
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'update' of 'dict' objects>",
+          "primitive_calls": 122,
+          "calls": 122,
+          "own_sec": 0.00045557800000000005,
+          "cumulative_sec": 0.00045557800000000005
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-11/guarded_compute_reuse_r01/compute.py",
+          "line": 51,
+          "function": "<genexpr>",
+          "primitive_calls": 128,
+          "calls": 128,
+          "own_sec": 0.000404141,
+          "cumulative_sec": 0.00045327100000000004
+        },
+        {
+          "file": "/usr/lib/python3.10/dataclasses.py",
+          "line": 1187,
+          "function": "fields",
+          "primitive_calls": 27,
+          "calls": 27,
+          "own_sec": 0.000271023,
+          "cumulative_sec": 0.00044052100000000003
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_methods.py",
+          "line": 164,
+          "function": "_mean",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 0.00018543200000000002,
+          "cumulative_sec": 0.000414997
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 95,
+          "function": "horizontal_range",
+          "primitive_calls": 2,
+          "calls": 2,
+          "own_sec": 4.0187e-05,
+          "cumulative_sec": 0.00040750300000000003
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "count_nonzero",
+          "primitive_calls": 77,
+          "calls": 77,
+          "own_sec": 0.00011830900000000001,
+          "cumulative_sec": 0.000400124
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/function_base.py",
+          "line": 1320,
+          "function": "diff",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 0.000347411,
+          "cumulative_sec": 0.00037960500000000004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.hasattr>",
+          "primitive_calls": 499,
+          "calls": 499,
+          "own_sec": 0.00037922600000000003,
+          "cumulative_sec": 0.00037922600000000003
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'all' of 'numpy.generic' objects>",
+          "primitive_calls": 72,
+          "calls": 72,
+          "own_sec": 0.00015013300000000002,
+          "cumulative_sec": 0.000378408
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_support_completion_candidate.py",
+          "line": 49,
+          "function": "<genexpr>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "own_sec": 0.000135029,
+          "cumulative_sec": 0.000335292
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_observation.py",
+          "line": 31,
+          "function": "<genexpr>",
+          "primitive_calls": 495,
+          "calls": 495,
+          "own_sec": 0.00025359300000000004,
+          "cumulative_sec": 0.000328007
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 70,
+          "function": "checked_target_roi",
+          "primitive_calls": 40,
+          "calls": 40,
+          "own_sec": 0.000152363,
+          "cumulative_sec": 0.000323132
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_bbox_boundary_shadow.py",
+          "line": 19,
+          "function": "boundary_contains",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 9.1817e-05,
+          "cumulative_sec": 0.000300812
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'flatten' of 'numpy.ndarray' objects>",
+          "primitive_calls": 60,
+          "calls": 60,
+          "own_sec": 0.000272668,
+          "cumulative_sec": 0.000272668
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.abs>",
+          "primitive_calls": 1058,
+          "calls": 1058,
+          "own_sec": 0.000268144,
+          "cumulative_sec": 0.000268144
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_observation.py",
+          "line": 27,
+          "function": "<genexpr>",
+          "primitive_calls": 495,
+          "calls": 495,
+          "own_sec": 0.000259369,
+          "cumulative_sec": 0.000259369
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_ufunc_config.py",
+          "line": 435,
+          "function": "__exit__",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 5.7736000000000004e-05,
+          "cumulative_sec": 0.00025853700000000004
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "partition",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 3.753e-05,
+          "cumulative_sec": 0.00025039100000000004
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'astype' of 'numpy.ndarray' objects>",
+          "primitive_calls": 40,
+          "calls": 40,
+          "own_sec": 0.000250265,
+          "cumulative_sec": 0.000250265
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 70,
+          "function": "<dictcomp>",
+          "primitive_calls": 244,
+          "calls": 244,
+          "own_sec": 0.00022886,
+          "cumulative_sec": 0.00022886
+        },
+        {
+          "file": "/usr/lib/python3.10/re.py",
+          "line": 192,
+          "function": "fullmatch",
+          "primitive_calls": 26,
+          "calls": 26,
+          "own_sec": 5.5675000000000005e-05,
+          "cumulative_sec": 0.00021954800000000002
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/theta_rtc_frames.py",
+          "line": 35,
+          "function": "native_frame",
+          "primitive_calls": 56,
+          "calls": 56,
+          "own_sec": 0.000199996,
+          "cumulative_sec": 0.000210251
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method math.isfinite>",
+          "primitive_calls": 968,
+          "calls": 968,
+          "own_sec": 0.000207724,
+          "cumulative_sec": 0.000207724
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.next>",
+          "primitive_calls": 73,
+          "calls": 73,
+          "own_sec": 5.3585e-05,
+          "cumulative_sec": 0.00020394600000000002
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numerictypes.py",
+          "line": 356,
+          "function": "issubdtype",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 8.410000000000001e-05,
+          "cumulative_sec": 0.00020318700000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.empty>",
+          "primitive_calls": 109,
+          "calls": 109,
+          "own_sec": 0.000199022,
+          "cumulative_sec": 0.000199022
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_ufunc_config.py",
+          "line": 132,
+          "function": "geterr",
+          "primitive_calls": 72,
+          "calls": 72,
+          "own_sec": 0.000184203,
+          "cumulative_sec": 0.00019810900000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.getattr>",
+          "primitive_calls": 730,
+          "calls": 730,
+          "own_sec": 0.00019495000000000002,
+          "cumulative_sec": 0.00019495000000000002
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 40,
+          "function": "<genexpr>",
+          "primitive_calls": 1040,
+          "calls": 1040,
+          "own_sec": 0.000192763,
+          "cumulative_sec": 0.000192763
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 675,
+          "function": "partition",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 5.3432000000000006e-05,
+          "cumulative_sec": 0.000182881
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 432,
+          "function": "count_nonzero",
+          "primitive_calls": 77,
+          "calls": 77,
+          "own_sec": 9.0319e-05,
+          "cumulative_sec": 0.00018231900000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.len>",
+          "primitive_calls": 611,
+          "calls": 611,
+          "own_sec": 0.000179476,
+          "cumulative_sec": 0.000179476
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'hexdigest' of '_hashlib.HASH' objects>",
+          "primitive_calls": 44,
+          "calls": 44,
+          "own_sec": 0.00017462800000000002,
+          "cumulative_sec": 0.00017462800000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'tolist' of 'numpy.ndarray' objects>",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 0.00016504,
+          "cumulative_sec": 0.00016504
+        },
+        {
+          "file": "/usr/lib/python3.10/contextlib.py",
+          "line": 139,
+          "function": "__exit__",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 6.650200000000001e-05,
+          "cumulative_sec": 0.00016432
+        },
+        {
+          "file": "/usr/lib/python3.10/contextlib.py",
+          "line": 130,
+          "function": "__enter__",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 4.8336000000000006e-05,
+          "cumulative_sec": 0.000152499
+        },
+        {
+          "file": "/usr/lib/python3.10/json/decoder.py",
+          "line": 284,
+          "function": "__init__",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 0.00015249300000000002,
+          "cumulative_sec": 0.00015249300000000002
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_guarded_lower_edge_shadow.py",
+          "line": 14,
+          "function": "lower_half_pixel_only",
+          "primitive_calls": 5,
+          "calls": 5,
+          "own_sec": 3.4506000000000005e-05,
+          "cumulative_sec": 0.000149125
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_ufunc_config.py",
+          "line": 452,
+          "function": "_no_nep50_warning",
+          "primitive_calls": 72,
+          "calls": 72,
+          "own_sec": 7.0104e-05,
+          "cumulative_sec": 0.000149108
+        },
+        {
+          "file": "/usr/lib/python3.10/contextlib.py",
+          "line": 279,
+          "function": "helper",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 5.2861e-05,
+          "cumulative_sec": 0.000146479
+        },
+        {
+          "file": "/usr/lib/python3.10/json/__init__.py",
+          "line": 244,
+          "function": "detect_encoding",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 9.705500000000001e-05,
+          "cumulative_sec": 0.00014608900000000002
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'dot' of 'numpy.ndarray' objects>",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 0.000144475,
+          "cumulative_sec": 0.000144475
+        },
+        {
+          "file": "/usr/lib/python3.10/dataclasses.py",
+          "line": 1202,
+          "function": "<genexpr>",
+          "primitive_calls": 432,
+          "calls": 432,
+          "own_sec": 0.0001407,
+          "cumulative_sec": 0.0001407
+        },
+        {
+          "file": "<__array_function__ internals>",
+          "line": 177,
+          "function": "result_type",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 4.7297000000000005e-05,
+          "cumulative_sec": 0.000134362
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.issubclass>",
+          "primitive_calls": 290,
+          "calls": 290,
+          "own_sec": 0.00012592000000000001,
+          "cumulative_sec": 0.00012592000000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.asanyarray>",
+          "primitive_calls": 332,
+          "calls": 332,
+          "own_sec": 0.00012562400000000002,
+          "cumulative_sec": 0.00012562400000000002
+        },
+        {
+          "file": "<string>",
+          "line": 2,
+          "function": "__init__",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 3.7513000000000005e-05,
+          "cumulative_sec": 0.000123669
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/shape_base.py",
+          "line": 608,
+          "function": "_column_stack_dispatcher",
+          "primitive_calls": 28,
+          "calls": 28,
+          "own_sec": 4.7695e-05,
+          "cumulative_sec": 0.00012231200000000002
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_colour_support_candidate.py",
+          "line": 62,
+          "function": "<dictcomp>",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 4.6616e-05,
+          "cumulative_sec": 0.00012154
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numerictypes.py",
+          "line": 282,
+          "function": "issubclass_",
+          "primitive_calls": 48,
+          "calls": 48,
+          "own_sec": 7.1171e-05,
+          "cumulative_sec": 0.00011411
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<boundingRect>",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 0.000113844,
+          "cumulative_sec": 0.000113844
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_methods.py",
+          "line": 67,
+          "function": "_count_reduce_items",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 9.047200000000001e-05,
+          "cumulative_sec": 0.00011095500000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'partition' of 'numpy.ndarray' objects>",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 0.00010714200000000001,
+          "cumulative_sec": 0.00010714200000000001
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 88,
+          "function": "<genexpr>",
+          "primitive_calls": 326,
+          "calls": 326,
+          "own_sec": 0.000104771,
+          "cumulative_sec": 0.000104771
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 73,
+          "function": "<genexpr>",
+          "primitive_calls": 200,
+          "calls": 200,
+          "own_sec": 9.8627e-05,
+          "cumulative_sec": 9.8627e-05
+        },
+        {
+          "file": "/usr/lib/python3.10/re.py",
+          "line": 288,
+          "function": "_compile",
+          "primitive_calls": 26,
+          "calls": 26,
+          "own_sec": 6.2667e-05,
+          "cumulative_sec": 9.8459e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_upper_support_candidate.py",
+          "line": 62,
+          "function": "<genexpr>",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 3.8001000000000004e-05,
+          "cumulative_sec": 9.577400000000001e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'tobytes' of 'numpy.ndarray' objects>",
+          "primitive_calls": 28,
+          "calls": 28,
+          "own_sec": 9.408800000000001e-05,
+          "cumulative_sec": 9.408800000000001e-05
+        },
+        {
+          "file": "/usr/lib/python3.10/contextlib.py",
+          "line": 102,
+          "function": "__init__",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 7.4347e-05,
+          "cumulative_sec": 9.361800000000001e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.count_nonzero>",
+          "primitive_calls": 77,
+          "calls": 77,
+          "own_sec": 9.2e-05,
+          "cumulative_sec": 9.2e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_colour_support_candidate.py",
+          "line": 27,
+          "function": "__post_init__",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 2.9113e-05,
+          "cumulative_sec": 8.6156e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/theta_rtc_frames.py",
+          "line": 40,
+          "function": "finite_time",
+          "primitive_calls": 32,
+          "calls": 32,
+          "own_sec": 6.1999e-05,
+          "cumulative_sec": 8.6116e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.seterrobj>",
+          "primitive_calls": 72,
+          "calls": 72,
+          "own_sec": 8.4579e-05,
+          "cumulative_sec": 8.4579e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 2403,
+          "function": "_array_equal_dispatcher",
+          "primitive_calls": 334,
+          "calls": 334,
+          "own_sec": 8.264700000000001e-05,
+          "cumulative_sec": 8.264700000000001e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/arraysetops.py",
+          "line": 125,
+          "function": "_unpack_tuple",
+          "primitive_calls": 48,
+          "calls": 48,
+          "own_sec": 6.75e-05,
+          "cumulative_sec": 8.1969e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.array>",
+          "primitive_calls": 56,
+          "calls": 56,
+          "own_sec": 7.8306e-05,
+          "cumulative_sec": 7.8306e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/shape_base.py",
+          "line": 207,
+          "function": "_arrays_for_stack_dispatcher",
+          "primitive_calls": 28,
+          "calls": 28,
+          "own_sec": 3.6897e-05,
+          "cumulative_sec": 7.461700000000001e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 34,
+          "function": "<genexpr>",
+          "primitive_calls": 234,
+          "calls": 234,
+          "own_sec": 7.309100000000001e-05,
+          "cumulative_sec": 7.309100000000001e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 112,
+          "function": "revoke_range",
+          "primitive_calls": 15,
+          "calls": 15,
+          "own_sec": 4.0242000000000005e-05,
+          "cumulative_sec": 6.743600000000001e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'fullmatch' of 're.Pattern' objects>",
+          "primitive_calls": 26,
+          "calls": 26,
+          "own_sec": 6.541400000000001e-05,
+          "cumulative_sec": 6.541400000000001e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'match' of 're.Pattern' objects>",
+          "primitive_calls": 32,
+          "calls": 32,
+          "own_sec": 6.5354e-05,
+          "cumulative_sec": 6.5354e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/multiarray.py",
+          "line": 1079,
+          "function": "copyto",
+          "primitive_calls": 183,
+          "calls": 183,
+          "own_sec": 6.0243000000000006e-05,
+          "cumulative_sec": 6.0243000000000006e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.zeros>",
+          "primitive_calls": 61,
+          "calls": 61,
+          "own_sec": 6.0182e-05,
+          "cumulative_sec": 6.0182e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 2328,
+          "function": "_any_dispatcher",
+          "primitive_calls": 160,
+          "calls": 160,
+          "own_sec": 5.868600000000001e-05,
+          "cumulative_sec": 5.868600000000001e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 34,
+          "function": "<genexpr>",
+          "primitive_calls": 96,
+          "calls": 96,
+          "own_sec": 4.8347e-05,
+          "cumulative_sec": 5.8663000000000004e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_support_completion_candidate.py",
+          "line": 28,
+          "function": "<listcomp>",
+          "primitive_calls": 20,
+          "calls": 20,
+          "own_sec": 5.0809e-05,
+          "cumulative_sec": 5.0809e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'conj' of 'numpy.ndarray' objects>",
+          "primitive_calls": 61,
+          "calls": 61,
+          "own_sec": 5.0746000000000005e-05,
+          "cumulative_sec": 5.0746000000000005e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method math.ceil>",
+          "primitive_calls": 106,
+          "calls": 106,
+          "own_sec": 4.8264000000000004e-05,
+          "cumulative_sec": 4.8264000000000004e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.geterrobj>",
+          "primitive_calls": 144,
+          "calls": 144,
+          "own_sec": 4.8118e-05,
+          "cumulative_sec": 4.8118e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 93,
+          "function": "<genexpr>",
+          "primitive_calls": 326,
+          "calls": 326,
+          "own_sec": 4.6907e-05,
+          "cumulative_sec": 4.6907e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 25,
+          "function": "<genexpr>",
+          "primitive_calls": 65,
+          "calls": 65,
+          "own_sec": 3.5709e-05,
+          "cumulative_sec": 4.6426000000000006e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_colour_support_candidate.py",
+          "line": 30,
+          "function": "<genexpr>",
+          "primitive_calls": 40,
+          "calls": 40,
+          "own_sec": 3.7207000000000005e-05,
+          "cumulative_sec": 4.0758000000000005e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'set' of '_contextvars.ContextVar' objects>",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 4.0041000000000005e-05,
+          "cumulative_sec": 4.0041000000000005e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'startswith' of 'bytes' objects>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "own_sec": 3.9575e-05,
+          "cumulative_sec": 3.9575e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/multiarray.py",
+          "line": 84,
+          "function": "empty_like",
+          "primitive_calls": 122,
+          "calls": 122,
+          "own_sec": 3.9458e-05,
+          "cumulative_sec": 3.9458e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reset' of '_contextvars.ContextVar' objects>",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 3.8963e-05,
+          "cumulative_sec": 3.8963e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/type_check.py",
+          "line": 206,
+          "function": "_is_type_dispatcher",
+          "primitive_calls": 73,
+          "calls": 73,
+          "own_sec": 3.8606e-05,
+          "cumulative_sec": 3.8606e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'ravel' of 'numpy.ndarray' objects>",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 3.7590000000000004e-05,
+          "cumulative_sec": 3.7590000000000004e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method math.floor>",
+          "primitive_calls": 100,
+          "calls": 100,
+          "own_sec": 3.614e-05,
+          "cumulative_sec": 3.614e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 164,
+          "function": "<listcomp>",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 3.6119000000000004e-05,
+          "cumulative_sec": 3.6119000000000004e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 428,
+          "function": "_count_nonzero_dispatcher",
+          "primitive_calls": 77,
+          "calls": 77,
+          "own_sec": 3.5092e-05,
+          "cumulative_sec": 3.5092e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/linalg/linalg.py",
+          "line": 117,
+          "function": "isComplexType",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 2.761e-05,
+          "cumulative_sec": 3.4578e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 71,
+          "function": "reject",
+          "primitive_calls": 4,
+          "calls": 4,
+          "own_sec": 6.35e-06,
+          "cumulative_sec": 3.4437e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/linalg/linalg.py",
+          "line": 2338,
+          "function": "_norm_dispatcher",
+          "primitive_calls": 97,
+          "calls": 97,
+          "own_sec": 3.4377e-05,
+          "cumulative_sec": 3.4377e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-11/guarded_compute_reuse_r01/compute.py",
+          "line": 31,
+          "function": "<genexpr>",
+          "primitive_calls": 48,
+          "calls": 48,
+          "own_sec": 2.5090000000000002e-05,
+          "cumulative_sec": 3.3334e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/_ufunc_config.py",
+          "line": 426,
+          "function": "__init__",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 2.9994e-05,
+          "cumulative_sec": 2.9994e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'values' of 'dict' objects>",
+          "primitive_calls": 47,
+          "calls": 47,
+          "own_sec": 2.6392e-05,
+          "cumulative_sec": 2.6392e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 2427,
+          "function": "_all_dispatcher",
+          "primitive_calls": 84,
+          "calls": 84,
+          "own_sec": 2.6244e-05,
+          "cumulative_sec": 2.6244e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_bbox_boundary_shadow.py",
+          "line": 44,
+          "function": "<genexpr>",
+          "primitive_calls": 30,
+          "calls": 30,
+          "own_sec": 2.1261000000000002e-05,
+          "cumulative_sec": 2.4215e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'decode' of 'bytes' objects>",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 2.4099e-05,
+          "cumulative_sec": 2.4099e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/arraysetops.py",
+          "line": 133,
+          "function": "_unique_dispatcher",
+          "primitive_calls": 48,
+          "calls": 48,
+          "own_sec": 2.3820000000000002e-05,
+          "cumulative_sec": 2.3820000000000002e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.core._multiarray_umath.normalize_axis_index>",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 2.3224e-05,
+          "cumulative_sec": 2.3224e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 215,
+          "function": "_ones_like_dispatcher",
+          "primitive_calls": 61,
+          "calls": 61,
+          "own_sec": 2.2435e-05,
+          "cumulative_sec": 2.2435e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_bbox_boundary_shadow.py",
+          "line": 24,
+          "function": "<genexpr>",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 2.0412e-05,
+          "cumulative_sec": 2.0412e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-11/guarded_compute_reuse_r01/compute.py",
+          "line": 40,
+          "function": "current_observation",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 1.9734e-05,
+          "cumulative_sec": 1.9734e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/multiarray.py",
+          "line": 152,
+          "function": "concatenate",
+          "primitive_calls": 28,
+          "calls": 28,
+          "own_sec": 1.9431e-05,
+          "cumulative_sec": 1.9431e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_core.py",
+          "line": 149,
+          "function": "diagnostics",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 1.9272e-05,
+          "cumulative_sec": 1.9272e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_self_body_shadow.py",
+          "line": 67,
+          "function": "<genexpr>",
+          "primitive_calls": 25,
+          "calls": 25,
+          "own_sec": 1.6155e-05,
+          "cumulative_sec": 1.8814e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'encode' of 'str' objects>",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 1.8811e-05,
+          "cumulative_sec": 1.8811e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 132,
+          "function": "reset",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 1.6685e-05,
+          "cumulative_sec": 1.6685e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 354,
+          "function": "_full_like_dispatcher",
+          "primitive_calls": 61,
+          "calls": 61,
+          "own_sec": 1.6571e-05,
+          "cumulative_sec": 1.6571e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_upper_support_candidate.py",
+          "line": 39,
+          "function": "<listcomp>",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 1.6168000000000002e-05,
+          "cumulative_sec": 1.6168000000000002e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_bbox_boundary_shadow.py",
+          "line": 77,
+          "function": "<dictcomp>",
+          "primitive_calls": 11,
+          "calls": 11,
+          "own_sec": 1.4851e-05,
+          "cumulative_sec": 1.4851e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_colour_support_candidate.py",
+          "line": 46,
+          "function": "<listcomp>",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 1.4725e-05,
+          "cumulative_sec": 1.4725e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/numeric.py",
+          "line": 2274,
+          "function": "_isclose_dispatcher",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 1.4709000000000001e-05,
+          "cumulative_sec": 1.4709000000000001e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'end' of 're.Match' objects>",
+          "primitive_calls": 32,
+          "calls": 32,
+          "own_sec": 1.3682e-05,
+          "cumulative_sec": 1.3682e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 1888,
+          "function": "_nonzero_dispatcher",
+          "primitive_calls": 28,
+          "calls": 28,
+          "own_sec": 1.3096000000000001e-05,
+          "cumulative_sec": 1.3096000000000001e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/multiarray.py",
+          "line": 668,
+          "function": "result_type",
+          "primitive_calls": 36,
+          "calls": 36,
+          "own_sec": 1.1085000000000001e-05,
+          "cumulative_sec": 1.1085000000000001e-05
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/function_base.py",
+          "line": 1316,
+          "function": "_diff_dispatcher",
+          "primitive_calls": 24,
+          "calls": 24,
+          "own_sec": 1.0375000000000001e-05,
+          "cumulative_sec": 1.0375000000000001e-05
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_guarded_lower_edge_shadow.py",
+          "line": 18,
+          "function": "<genexpr>",
+          "primitive_calls": 15,
+          "calls": 15,
+          "own_sec": 9.221e-06,
+          "cumulative_sec": 9.221e-06
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 3340,
+          "function": "_mean_dispatcher",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 8.783e-06,
+          "cumulative_sec": 8.783e-06
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-11/guarded_compute_reuse_r01/compute.py",
+          "line": 59,
+          "function": "<lambda>",
+          "primitive_calls": 8,
+          "calls": 8,
+          "own_sec": 7.904000000000001e-06,
+          "cumulative_sec": 7.904000000000001e-06
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/lib/function_base.py",
+          "line": 3769,
+          "function": "_median_dispatcher",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 7.4090000000000006e-06,
+          "cumulative_sec": 7.4090000000000006e-06
+        },
+        {
+          "file": "/home/robo25/.local/lib/python3.10/site-packages/numpy/core/fromnumeric.py",
+          "line": 671,
+          "function": "_partition_dispatcher",
+          "primitive_calls": 12,
+          "calls": 12,
+          "own_sec": 6.338e-06,
+          "cumulative_sec": 6.338e-06
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'strip' of 'str' objects>",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 6.289e-06,
+          "cumulative_sec": 6.289e-06
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'join' of 'str' objects>",
+          "primitive_calls": 16,
+          "calls": 16,
+          "own_sec": 4.768e-06,
+          "cumulative_sec": 4.768e-06
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_motion_range.py",
+          "line": 184,
+          "function": "<genexpr>",
+          "primitive_calls": 2,
+          "calls": 2,
+          "own_sec": 1.923e-06,
+          "cumulative_sec": 1.923e-06
+        },
+        {
+          "file": "/home/robo25/theta_ws/RICHO-theta/src/cone_upper_support_candidate.py",
+          "line": 103,
+          "function": "<genexpr>",
+          "primitive_calls": 2,
+          "calls": 2,
+          "own_sec": 1.777e-06,
+          "cumulative_sec": 1.777e-06
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'disable' of '_lsprof.Profiler' objects>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "own_sec": 1.1040000000000001e-06,
+          "cumulative_sec": 1.1040000000000001e-06
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method math.sqrt>",
+          "primitive_calls": 2,
+          "calls": 2,
+          "own_sec": 8.410000000000001e-07,
+          "cumulative_sec": 8.410000000000001e-07
+        }
+      ],
+      "upper_observer_calls": 8
+    }
+  },
+  "blocks": [
+    {
+      "id": 0,
+      "shared": false,
+      "wall_ms": {
+        "count": 64,
+        "min": 29.741592006757855,
+        "max": 135.92555999639444,
+        "p50": 103.8191549887415,
+        "p95": 127.40771300741471
+      }
+    },
+    {
+      "id": 1,
+      "shared": true,
+      "wall_ms": {
+        "count": 64,
+        "min": 19.171824998920783,
+        "max": 83.7064960214775,
+        "p50": 61.85681201168336,
+        "p95": 78.56527998228557
+      }
+    },
+    {
+      "id": 2,
+      "shared": true,
+      "wall_ms": {
+        "count": 64,
+        "min": 19.644682994112372,
+        "max": 80.54985600756481,
+        "p50": 61.49262699182145,
+        "p95": 77.13165099266917
+      }
+    },
+    {
+      "id": 3,
+      "shared": false,
+      "wall_ms": {
+        "count": 64,
+        "min": 28.42747201793827,
+        "max": 137.18675202107988,
+        "p50": 104.00472997571342,
+        "p95": 126.8669799901545
+      }
+    }
+  ],
+  "groups": {
+    "legacy": {
+      "count": 128,
+      "min": 28.42747201793827,
+      "max": 137.18675202107988,
+      "p50": 103.88417402282357,
+      "p95": 127.40771300741471
+    },
+    "shared": {
+      "count": 128,
+      "min": 19.171824998920783,
+      "max": 83.7064960214775,
+      "p50": 61.782993987435475,
+      "p95": 78.56527998228557
+    }
+  },
+  "shared_vs_legacy_p50_ratio": 0.5947296069742213,
+  "cycles": 8,
+  "block_order": [
+    "legacy",
+    "shared",
+    "shared",
+    "legacy"
+  ],
+  "all_original_inputs_unchanged": true,
+  "input_sha256": {
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/driver_motion_live_20261110_171250/motion_distance_frames.jsonl": "eacc20f9c14ff760448f0a6f934e1dd5d121be8435317bf0e23a9d7a58238f65",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/driver_motion_live_20261110_171250/motion_engine_summary.json": "7d4a4db1fbc7e7b300361927d90f90f7e26b975a3a7942479e842834c24a4319",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/driver_motion_live_20261110_171250/motion_profile_used.json": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/evidence_index.jsonl": "df441c1b437ef502e20acf5fdd77700da62b9a9df34184845f444995d6006448",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/evidence_status.json": "e36549bdf3fae4b31975235282d8b381dc33755937f8484314cb63a3987f42da",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-11-10/self_body_boundary_shadow_r01/reference.json": "21dc739e66de3b12db9fe5bd760c7635e73bc57b04e6039bdbc29b97437a3584",
+    "/home/robo25/theta_ws/RICHO-theta/src/cone_distance_diagnostic_config.json": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "/home/robo25/theta_ws/RICHO-theta/Experimental_results/2026-10-21/angular_metric_validation_r01/results_r01/floor_transform_candidate.json": "3b741f20ac22148e4f9f154940690d62c199467caa02037612e6aed90d55c465",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f006861.png": "be450f38486cfd7407b4257935cfdd6ef400b2397811e63b3780c9089b3614d6",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f006861.json": "66a8a63a665b1ece18dcd94718f7c25056ee5caa3882ab091d70752ad753065b",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014203.png": "eb554d5e73b12b3167323fd3e94b3cc72edb26a458e76c424fe861cfc615f0ef",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014203.json": "4b438b485e970643a0afd6f7c5d52ab6b1ee01e49bcc3b591a5e9e0cbe966732",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014267.png": "174c6afd5b66dd09fe7ae0be8a3aea72405989a5ec840489fe10df64daa6e65c",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014267.json": "14612708d198000cac1e2a0e700d0aa1ae7e737d56cad656ee76db197d22ea3e",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014297.png": "776c046e2ca3364b4dcb347a2099db7f7e90b3e9ce4514dc1e73e864f28bcad9",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014297.json": "218921c3c39f5f993310ea3310ae9d60b7b73f2801fd4732eb28ecd4bbb56f47",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014329.png": "54e66552e5ca771e73c761f807ba38fc5c8bcecf4028f52e339a2b18d39b45aa",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014329.json": "83cc0a23725d397076a26b296a663322ebeff3bde1180e6e80276f97a70911f1",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014382.png": "8cbc9de7b3333e7fb2a248ab44c8690b9adda0ed1645ceb8af018e2771eb1642",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014382.json": "d801f704039d1469348409209e44fc0aa92b3c65e02702e053c240e1462f8ea5",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014604.png": "0e9a4b5a0085d0e6eaf670e07f5bc3498e3d3865ae8be8f2ed9059872653b698",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014604.json": "1c753a36284810109dd820864ea7842c3b2597a38106b390044a298b60863dc8",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014922.png": "f72f92be99e4e420f2ea9f9c6cd32f3a82c8e5f2eae7d8974515429cfd7e0a38",
+    "/home/robo25/theta_ws/RICHO-theta/recordings/2026-11-10/driver_motion_171250_intake_r01/motion_withheld_20261110_171250/decoded_4c34c8c3d6d44949afb2e921e819e563_f014922.json": "b6bf47ed1295eeeeb76bda93a808be899ab32f437bb1c85fc9d4f5a8dca2c092"
+  },
+  "incoming_primary_sha256": "a9f16c11f08f2b706d10e898b7f5bbeca4f15eea23d4ba49433e4594997c6214",
+  "source_sha256": {
+    "Experimental_results/2026-11-11/guarded_compute_reuse_r01/profile_compute.py": "c1cab19bd44e4d95bd65a8e8e8869ebb7e6d625becc14f2a37633b956f69c306",
+    "Experimental_results/2026-11-11/guarded_compute_reuse_r01/compute.py": "86035e2a9007689bcf7e421511e1e9f093f6c9a1b3a5c27a59183f5770fdeeb9"
+  },
+  "camera_started": false,
+  "cuda_started": false,
+  "runtime_modified": false,
+  "gpu_performance_verified": false,
+  "reference_lifecycle_verified": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}
