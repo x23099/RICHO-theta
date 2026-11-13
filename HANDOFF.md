@@ -2,6 +2,30 @@
 
 更新日: **2026-11-13（JST）**。対象リポジトリ: `RICHO-theta`。
 
+## 11/13後続：比較併用の低速直進手順を準備。まず新接続のpin提出まで
+
+ユーザーが次段階の継続を依頼。[新しい走行確認手順](Experimental_results/2026-11-13/guarded_motion_live_r01/README.md) を用意した。前回静止r02は終了済みなので、主 `Experimental_results/2026-11-13/driver_guarded_motion_r01`、比較 `recordings/2026-11-13/guarded_motion_r01`、既存evidence `recordings/2026-11-13/guarded_motion_evidence_r01` の新3保存先を使う。static監査の未commit変更を保持。runtime・操縦経路・閾値・profile・環境変更なし。
+
+**最初は停止状態で受信→送信→pin→PNG／同名JSON／status3点をコピー提出まで。新参照を用意しload成功を確認する前に走行しない。** 古いreferenceのsession書換え転用・旧パッチ再適用はしない。今回はload後の走行終了まで1接続を維持する。対象は赤1本、他コーンは最初から外し、取付後のカメラを終了まで動かさない。
+
+load成功後だけ、現地監視下・従来最低速・短距離の直進と停止を、短い画面録画（映像＋主距離欄session/frame）と合わせて実施する予定。初回に旋回・後退・段差・接触・意図的遮蔽は要求しない。数値を制御・停止判断に使わない。録画は前回の一時値に対応する場面証拠のためで、native画素や独立実測の代替とはしない。
+
+既存bounded evidenceを40組／128MiB／1秒で明示ONにするが、保存対象はcolour_contour_reaches_roi_edge保留だけ。数値の一時変動を自動保存する機能ではないことを明記した。終了後に主／比較／evidence3フォルダ＋画面録画を提出してもらう。7 shell例のbash構文と実motion CLI parserを確認しただけで、こちらから実UI／ROS／モデル／機体は起動していない。日報・commit/pushも未依頼。
+
+## 11/13後続：静止r02の全提出物は完備、終盤30秒901件一致。過渡値8件は別課題
+
+[最新の全実行監査](Experimental_results/2026-11-13/guarded_static_live_audit_r02/README.md)。提出guarded_static_r02_full.tar.xzは主／比較2フォルダの必要15ファイルが揃い、追加提出不要。開始HEAD `41f9a8b`、clean。session 9e961a39b4f54b0395eb140f52625755、主／bridge各29,101行が全対応一致、比較29,100行も元主行へ対応一致。pin330の元PNG／復号画素／sidecar／status／主JSONL完全行SHA、発行referenceとのバイト一致、profile／config・記録重みSHA・記録9コードSHAを照合。実測や全未保存画素を独立再計算したものではない。
+
+参照有効は15858から13,293行、主／比較とも数値4,174で全同値（救済・棄却0）。多数の複数候補待ちを含む全体保留率85.41%を対象1本の失敗率と解釈しない。終端から固定30秒はframe28266〜29166の901行で、主／比較数値901／901・全同値・保留0、約30.005件/秒。主age P50/P95/最大13.57／17.81／27.60ms、比較service P95=4.99ms、受信〜比較完了P95=21.79ms・最大32.46ms。終盤主33.33ms超過0/901。露光〜表示・操縦込み総遅延や独立精度の認定ではない。
+
+主／I/O・比較writerは正常終了。child_exitcode=-15はSIGTERM、強制killなし・worker_error/shutdown_error=null、終了待ち約63.34ms。比較offered29,101／processed29,100、終了待ちslot1件破棄と整合、比較slot上書き／tap失敗0。主入力tap_lock_drops=7は別。初回約1016msは主保留＋bridge退役1件であり、全区間の最大を終盤の最大と混同しない。
+
+**未解決の過渡値：参照後に2m超の数値8件（最大3.5897m）。** 24971〜24976、26817、26829で主／比較双方に出ている。selected_colourはいずれもred、支持点y349〜369／355などへ上がり、終盤のy381と異なる。各瞬間の元画像・独立実測がなく、遮蔽・対象移動等の原因や誤りを断定しない。抽出CSV／診断は上記transients_r01。終盤の安定だけで全場面完成とせず、今回閾値や平滑化を追加していない。
+
+静止の現カメラ→受信→実YOLO→主／別比較→参照load→終了は今回の条件で成立。同じログの再送・再静止試験・旧パッチ適用は不要。残るのは毎回取り外すカメラの取付／床profile整合と実測誤差、過渡支持点品質、比較ONの走行時更新・負荷。次の走行は現地監視・低速・診断値非制御の別試験として準備し、まだこちらから走行指示・実機駆動・主表示／ROS／FFB接続をしていない。
+
+rawはrecordings/2026-11-13/guarded_static_full_intake_r02。根拠は上記results_r01/audit.json／paired_timing.csv／transients_r01。新監査＋既存parser関連18テスト成功、runtime／環境変更・実CUDA／カメラ／ROS起動・日報／commit/pushなし。
+
 ## 11/13後続：新r02の稼働中pin3点を確認、現在画像の参照を生成。次は同接続でload
 
 [現在のload手順・根拠](Experimental_results/2026-11-13/guarded_static_reference_r02/README.md)。提出1113r02.tar.xzは内部名も1113r02だが、PNG／同名JSON／statusの必要3点が揃っており問題なし。開始HEAD `22d6f39`、clean。session 9e961a39b4f54b0395eb140f52625755、pin330、コピー時latest2794／state=pinned／writer_done=false／error=null。PNG・復号BGR SHA・pin全情報一致、記録9コードSHAも一致。コピー時から現在までの接続継続やwitness残存までは保証しない。

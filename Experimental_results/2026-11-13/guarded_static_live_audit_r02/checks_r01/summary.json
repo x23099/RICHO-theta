@@ -1,0 +1,17 @@
+{
+  "state": "pass",
+  "tests_run": 18,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "source_sha256": {
+    "Experimental_results/2026-11-13/guarded_static_live_audit_r02/check.py": "d38ff7f35d0f5cae12f6534068f50aa8bc1d3f5fbabbcd2eb22c0fee47b1c224",
+    "Experimental_results/2026-11-13/guarded_static_live_audit_r02/review.py": "8d79498fbdf2771d9ce5e2982956e7eaa57ee196a00ed9df39cbcdf0b84665fa",
+    "src/report_driver_motion_logs.py": "58e876a45ac9e4b8380da0a5cde9df7f11d6073e0d1f4eb75c1525a00e949427",
+    "tests/test_guarded_static_full_audit.py": "211dd9c39d1bf7ba6315b4ef9aaca34439cf86c10c8c30319576002cb7d6444f",
+    "tests/test_report_driver_motion_logs.py": "ab7eb56e0fb25bb14738d5616de86b24a7059a5ad3aec7900b6feb36a4ba3431"
+  },
+  "local_camera_started": false,
+  "local_cuda_started": false,
+  "local_vehicle_operation": false
+}

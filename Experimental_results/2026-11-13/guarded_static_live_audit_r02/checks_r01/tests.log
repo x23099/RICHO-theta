@@ -1,0 +1,23 @@
+test_authority_or_future_reference_rejected (test_guarded_static_full_audit.StaticFullAuditTests) ... ok
+test_causality_staleness_and_negative_service_rejected (test_guarded_static_full_audit.StaticFullAuditTests) ... ok
+test_identity_and_original_value_tamper_rejected (test_guarded_static_full_audit.StaticFullAuditTests) ... ok
+test_matching_numeric_pair_and_age (test_guarded_static_full_audit.StaticFullAuditTests) ... ok
+test_missing_or_unsafe_archive_rejected_before_target_creation (test_guarded_static_full_audit.StaticFullAuditTests) ... ok
+test_numeric_without_scope_or_baseline_rejected (test_guarded_static_full_audit.StaticFullAuditTests) ... ok
+test_paired_aggregation_keeps_numeric_and_withheld_separate (test_guarded_static_full_audit.StaticFullAuditTests) ... ok
+test_bad_types_numbers_flags_and_timing_rejected (test_report_driver_motion_logs.MotionLogReportTests) ... ok
+test_counts_not_gui_time_and_no_false_accuracy (test_report_driver_motion_logs.MotionLogReportTests) ... ok
+test_duplicate_and_wrong_pair_rejected (test_report_driver_motion_logs.MotionLogReportTests) ... ok
+test_missing_bridge_event_is_not_silently_counted_as_accepted (test_report_driver_motion_logs.MotionLogReportTests) ... ok
+test_nonincreasing_times_and_profile_change_rejected (test_report_driver_motion_logs.MotionLogReportTests) ... ok
+test_percentiles_nearest_rank_and_empty (test_report_driver_motion_logs.MotionLogReportTests) ... ok
+test_reader_rejects_truncation_duplicates_nonfinite_and_empty (test_report_driver_motion_logs.MotionLogReportTests) ... ok
+test_report_does_not_overwrite_or_modify_inputs (test_report_driver_motion_logs.MotionLogReportTests) ... ok
+test_scalar_projection_keeps_same_input_hash_and_still_checks_nested_json (test_report_driver_motion_logs.MotionLogReportTests) ... ok
+test_session_clocks_are_not_merged (test_report_driver_motion_logs.MotionLogReportTests) ... ok
+test_withheld_value_and_nonboolean_acceptance_rejected (test_report_driver_motion_logs.MotionLogReportTests) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.032s
+
+OK

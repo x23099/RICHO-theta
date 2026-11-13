@@ -1,0 +1,447 @@
+{
+  "schema": "guarded_static_live_full_audit_v1",
+  "state": "pass",
+  "required_files_complete": true,
+  "session": "9e961a39b4f54b0395eb140f52625755",
+  "pin_frame": 330,
+  "main": {
+    "session": "9e961a39b4f54b0395eb140f52625755",
+    "profile_sha256": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "processed_frames": 29101,
+    "inference_sources": {
+      "live_cuda_yolo": 29101
+    },
+    "numeric_results": 4245,
+    "processed_withheld_fraction": 0.8541287240988282,
+    "withheld_reasons": {
+      "frame_processing_too_old": 1,
+      "ambiguous_front_cones": 24749,
+      "ambiguous_upper_body_colour": 10,
+      "no_candidate": 63,
+      "colour_contour_reaches_roi_edge": 26,
+      "insufficient_upper_body_colour_evidence": 4,
+      "ambiguous_competing_colour_contours": 1,
+      "grazing_or_outside_range": 2
+    },
+    "completion_span_sec": 971.3132548580002,
+    "processed_result_interval_hz": 29.95943878502331,
+    "completion_gap_ms": {
+      "count": 29100,
+      "min": 7.917726999949082,
+      "max": 235.11573099995076,
+      "p50": 33.98710500005109,
+      "p95": 45.85925999981555
+    },
+    "bridge_events": 29101,
+    "bridge_accepted": 29100,
+    "bridge_retired": 1,
+    "bridge_accepted_numeric": 4245,
+    "frames_without_bridge_event": 0,
+    "distance_m": {
+      "count": 4245,
+      "min": 1.6332152244479197,
+      "max": 3.5897078232130686,
+      "p50": 1.6910524093129615,
+      "p95": 1.6927677373115548
+    },
+    "timing_ms": {
+      "frame_age_ms": {
+        "count": 29101,
+        "min": 7.720883999809303,
+        "max": 1016.4058289997229,
+        "p50": 12.69954500003223,
+        "p95": 16.977993999717
+      },
+      "predict_ms": {
+        "count": 29101,
+        "min": 5.918218999795499,
+        "max": 1006.6305300001659,
+        "p50": 7.120552999822394,
+        "p95": 9.907943999678537
+      },
+      "support_geometry_ms": {
+        "count": 29101,
+        "min": 0.024795000172161963,
+        "max": 7.811447999756638,
+        "p50": 0.18467199970473303,
+        "p95": 1.6520490003131272
+      }
+    }
+  },
+  "comparison_rows": 29100,
+  "comparison_reason_counts": {
+    "comparison_input_stale": 294,
+    "comparison_pin_requested": 15513,
+    "comparison_waiting_for_post_activation_frame": 2,
+    "ambiguous_front_cones": 9011,
+    "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 4174,
+    "ambiguous_upper_body_colour": 10,
+    "no_candidate": 63,
+    "colour_contour_reaches_roi_edge": 26,
+    "insufficient_upper_body_colour_evidence": 4,
+    "ambiguous_competing_colour_contours": 1,
+    "grazing_or_outside_range": 2
+  },
+  "first_reference_frame": 15858,
+  "first_reference_source_sec": 2606.232394616,
+  "phases": {
+    "pre_reference": {
+      "rows": 15807,
+      "first_frame": 32,
+      "last_frame": 15857,
+      "source_span_sec": 527.642193491,
+      "paired_interval_hz": 29.95590609504508,
+      "original_numeric": 71,
+      "comparison_numeric": 0,
+      "original_reason_counts": {
+        "ambiguous_front_cones": 15736,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 71
+      },
+      "comparison_reason_counts": {
+        "comparison_input_stale": 294,
+        "comparison_pin_requested": 15513
+      },
+      "both_numeric": 0,
+      "both_numeric_exact_equal": 0,
+      "original_withheld_comparison_numeric": 0,
+      "original_numeric_comparison_withheld": 71,
+      "main_age_ms": {
+        "count": 15807,
+        "min": 8.136514999932842,
+        "max": 29.591151000204263,
+        "p50": 12.543676999939635,
+        "p95": 16.8226189998677
+      },
+      "comparison_service_ms": {
+        "count": 15807,
+        "min": 0.004589000127452891,
+        "max": 0.2616690003378608,
+        "p50": 0.012540000170702115,
+        "p95": 0.020250000034138793
+      },
+      "comparison_age_ms": {
+        "count": 15807,
+        "min": 8.4868879998794,
+        "max": 73.20103100028064,
+        "p50": 12.964441000349325,
+        "p95": 17.24783000008756
+      },
+      "main_over_33p33ms": 0,
+      "main_numeric_range_m": {
+        "count": 71,
+        "min": 1.6332152244479197,
+        "max": 1.6945407609350978,
+        "p50": 1.6919028780584353,
+        "p95": 1.6936470200054436
+      },
+      "comparison_numeric_range_m": {
+        "count": 0,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "max": null
+      }
+    },
+    "active_reference": {
+      "rows": 13293,
+      "first_frame": 15858,
+      "last_frame": 29166,
+      "source_span_sec": 443.64100692700003,
+      "paired_interval_hz": 29.961161823318925,
+      "original_numeric": 4174,
+      "comparison_numeric": 4174,
+      "original_reason_counts": {
+        "ambiguous_front_cones": 9013,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 4174,
+        "ambiguous_upper_body_colour": 10,
+        "no_candidate": 63,
+        "colour_contour_reaches_roi_edge": 26,
+        "insufficient_upper_body_colour_evidence": 4,
+        "ambiguous_competing_colour_contours": 1,
+        "grazing_or_outside_range": 2
+      },
+      "comparison_reason_counts": {
+        "comparison_waiting_for_post_activation_frame": 2,
+        "ambiguous_front_cones": 9011,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 4174,
+        "ambiguous_upper_body_colour": 10,
+        "no_candidate": 63,
+        "colour_contour_reaches_roi_edge": 26,
+        "insufficient_upper_body_colour_evidence": 4,
+        "ambiguous_competing_colour_contours": 1,
+        "grazing_or_outside_range": 2
+      },
+      "both_numeric": 4174,
+      "both_numeric_exact_equal": 4174,
+      "original_withheld_comparison_numeric": 0,
+      "original_numeric_comparison_withheld": 0,
+      "main_age_ms": {
+        "count": 13293,
+        "min": 7.720883999809303,
+        "max": 33.49708900032056,
+        "p50": 12.876552999841806,
+        "p95": 17.12196300013602
+      },
+      "comparison_service_ms": {
+        "count": 13293,
+        "min": 0.008686999990459299,
+        "max": 12.00850499981243,
+        "p50": 0.24980100033644703,
+        "p95": 4.036775999793463
+      },
+      "comparison_age_ms": {
+        "count": 13293,
+        "min": 8.16993199987337,
+        "max": 40.314893999948254,
+        "p50": 14.189815999998245,
+        "p95": 20.00158000009833
+      },
+      "main_over_33p33ms": 1,
+      "main_numeric_range_m": {
+        "count": 4174,
+        "min": 1.6348146683644984,
+        "max": 3.5897078232130686,
+        "p50": 1.6910524093129615,
+        "p95": 1.6927677373115548
+      },
+      "comparison_numeric_range_m": {
+        "count": 4174,
+        "min": 1.6348146683644984,
+        "max": 3.5897078232130686,
+        "p50": 1.6910524093129615,
+        "p95": 1.6927677373115548
+      }
+    },
+    "active_single_candidate": {
+      "rows": 4217,
+      "first_frame": 24177,
+      "last_frame": 29166,
+      "source_span_sec": 166.29370243599988,
+      "paired_interval_hz": 25.352733977539398,
+      "original_numeric": 4174,
+      "comparison_numeric": 4174,
+      "original_reason_counts": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 4174,
+        "ambiguous_upper_body_colour": 10,
+        "colour_contour_reaches_roi_edge": 26,
+        "insufficient_upper_body_colour_evidence": 4,
+        "ambiguous_competing_colour_contours": 1,
+        "grazing_or_outside_range": 2
+      },
+      "comparison_reason_counts": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 4174,
+        "ambiguous_upper_body_colour": 10,
+        "colour_contour_reaches_roi_edge": 26,
+        "insufficient_upper_body_colour_evidence": 4,
+        "ambiguous_competing_colour_contours": 1,
+        "grazing_or_outside_range": 2
+      },
+      "both_numeric": 4174,
+      "both_numeric_exact_equal": 4174,
+      "original_withheld_comparison_numeric": 0,
+      "original_numeric_comparison_withheld": 0,
+      "main_age_ms": {
+        "count": 4217,
+        "min": 9.517829999822425,
+        "max": 33.49708900032056,
+        "p50": 13.647610999669268,
+        "p95": 18.15899300027013
+      },
+      "comparison_service_ms": {
+        "count": 4217,
+        "min": 0.5596820001301239,
+        "max": 12.00850499981243,
+        "p50": 2.856793999853835,
+        "p95": 4.96879699994679
+      },
+      "comparison_age_ms": {
+        "count": 4217,
+        "min": 12.013552999633248,
+        "max": 40.314893999948254,
+        "p50": 17.245116000140115,
+        "p95": 22.207227000308194
+      },
+      "main_over_33p33ms": 1,
+      "main_numeric_range_m": {
+        "count": 4174,
+        "min": 1.6348146683644984,
+        "max": 3.5897078232130686,
+        "p50": 1.6910524093129615,
+        "p95": 1.6927677373115548
+      },
+      "comparison_numeric_range_m": {
+        "count": 4174,
+        "min": 1.6348146683644984,
+        "max": 3.5897078232130686,
+        "p50": 1.6910524093129615,
+        "p95": 1.6927677373115548
+      }
+    },
+    "final_30_seconds": {
+      "rows": 901,
+      "first_frame": 28266,
+      "last_frame": 29166,
+      "source_span_sec": 29.995226612999886,
+      "paired_interval_hz": 30.004774146628428,
+      "original_numeric": 901,
+      "comparison_numeric": 901,
+      "original_reason_counts": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 901
+      },
+      "comparison_reason_counts": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 901
+      },
+      "both_numeric": 901,
+      "both_numeric_exact_equal": 901,
+      "original_withheld_comparison_numeric": 0,
+      "original_numeric_comparison_withheld": 0,
+      "main_age_ms": {
+        "count": 901,
+        "min": 9.567367000272498,
+        "max": 27.604959000200324,
+        "p50": 13.567419000082737,
+        "p95": 17.80571500012229
+      },
+      "comparison_service_ms": {
+        "count": 901,
+        "min": 2.2571350000362145,
+        "max": 8.046436999848083,
+        "p50": 2.863271000023815,
+        "p95": 4.990841000108048
+      },
+      "comparison_age_ms": {
+        "count": 901,
+        "min": 12.704194999969332,
+        "max": 32.458920999943075,
+        "p50": 17.185239999889745,
+        "p95": 21.786411999983102
+      },
+      "main_over_33p33ms": 0,
+      "main_numeric_range_m": {
+        "count": 901,
+        "min": 1.690216300003567,
+        "max": 1.6919028780584353,
+        "p50": 1.690216300003567,
+        "p95": 1.6910524093129615
+      },
+      "comparison_numeric_range_m": {
+        "count": 901,
+        "min": 1.690216300003567,
+        "max": 1.6919028780584353,
+        "p50": 1.690216300003567,
+        "p95": 1.6910524093129615
+      }
+    }
+  },
+  "pin_exact_primary_line_and_pixels_verified": true,
+  "issued_reference_exact_bytes_verified": true,
+  "recorded_code_files_rehashed": 9,
+  "checkpoint_file_supplied": false,
+  "shutdown": {
+    "primary": {
+      "schema": "driver_motion_bridge_summary_v1",
+      "sent": 29101,
+      "returned": 29101,
+      "retired_results": 1,
+      "tap_lock_drops": 7,
+      "max_publish_ms": 0.41945499970097444,
+      "worker_error": null,
+      "child_exitcode": -15,
+      "io_thread_stopped": true,
+      "child_stopped": true,
+      "shutdown_complete": true,
+      "shutdown_reason": "complete",
+      "forced_worker_kill": false,
+      "shutdown_error": null,
+      "shutdown_wait_ms": 63.33795399996234,
+      "image_files_written": null,
+      "guarded_comparison_requested": true,
+      "guarded_comparison_status_file": "/home/hsr/yopi_ws/RICHO-theta/recordings/2026-11-13/guarded_static_r02/comparison_status.json",
+      "withheld_evidence_requested": false,
+      "withheld_evidence_status_file": null,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false,
+      "distance_published_to_ros": false,
+      "control_channel_modified": false,
+      "metric": "horizontal_camera_foot_range_m_NOT_base_link_or_contact"
+    },
+    "comparison": {
+      "state": "closed",
+      "writer_done": true,
+      "shutdown_complete": true,
+      "error": null,
+      "offered": 29101,
+      "processed": 29100,
+      "latest_slot_overwrites": 0,
+      "tap_busy_drops": 0
+    }
+  },
+  "engine_metadata": {
+    "schema": "driver_motion_engine_v1",
+    "profile_sha256": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "weights_sha256": "3a6e124adb15c16efd7d22c853406066371f48873c82f1d3cfc445b22ae5997b",
+    "config_sha256": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+      "index": 0,
+      "torch_version": "2.7.1+cu118",
+      "torch_cuda_version": "11.8"
+    },
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "published_to_ros": false,
+    "mount_or_floor_tilt_compensated": false,
+    "metric": "horizontal_camera_foot_range_m_NOT_base_link_or_contact",
+    "guarded_comparison": {
+      "requested": true,
+      "worker_started": true,
+      "directory": "/home/hsr/yopi_ws/RICHO-theta/recordings/2026-11-13/guarded_static_r02",
+      "main_display_modified": false,
+      "controlling_distance": false
+    },
+    "withheld_evidence": {
+      "requested": false,
+      "recorder_started": false,
+      "directory": null,
+      "target_reason": "colour_contour_reaches_roi_edge",
+      "max_frames": 40,
+      "max_png_and_sidecar_bytes": 134217728,
+      "interval_sec": 1.0
+    }
+  },
+  "main_input_sources": {
+    "driver_native_receive_tap_NOT_remapped_view": 29101
+  },
+  "event_sha256": "e75eca5e1f18bb12d481b9593a91d12df183675874c15a06dfc1f0a285f0ccca",
+  "physical_metric_verified": false,
+  "gui_latency_verified": false,
+  "end_to_end_camera_latency_verified": false,
+  "all_live_frame_pixels_independently_recomputed": false,
+  "frame_selection_scope_does_NOT_monitor_full_image": true,
+  "current_mount_repeatability_verified": false,
+  "local_camera_started": false,
+  "local_cuda_started": false,
+  "vehicle_operated_locally": false,
+  "archive_sha256": "c54ab39ff38815b7ece6f1e7dddd3f54e4342aa806f5fd22f39a61ad9425006e",
+  "supplied_files_sha256": {
+    "primary/motion_bridge_events.jsonl": "e75eca5e1f18bb12d481b9593a91d12df183675874c15a06dfc1f0a285f0ccca",
+    "primary/motion_profile_used.json": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "primary/motion_engine_summary.json": "b428b8e599efa064eb4e73e578b2b2de47fa2e802e5d23c8fef2decb4dba6309",
+    "primary/ultralytics_config/matplotlib/fontlist-v390.json": "d2ef3e8c58a434f24d4b716cbce858cff935abc3b022d3bb2b0a7e8e81db63fe",
+    "primary/ultralytics_config/Ultralytics/Arial.ttf": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22",
+    "primary/ultralytics_config/Ultralytics/settings.json": "f21cf3e8a1d6e05a7c269bdfa464a8451545fd92b33e8ee2e2ef3b131fd14d0a",
+    "primary/driver_motion_summary.json": "30c9fe0d066dc2a6b01d9030cb3fa4d910685cad7df10e0e2a295bb64ca96860",
+    "primary/motion_worker_stderr.log": "a93586ada9472b60255cbe5aafcc32b5cd58f8abcb37f836aaf7bcff72cd7844",
+    "primary/motion_distance_frames.jsonl": "8e4ae53e4cfc2cb8cfbc0cf34675ffef1dd77492da775c51924f791f7e28b72e",
+    "comparison/comparison_frames.jsonl": "0082ac989b7170c1c11e0ba37af4c3fb160c311af6b44149e0f2cdaf5940dcc3",
+    "comparison/decoded_9e961a39b4f54b0395eb140f52625755_f000330.png": "ad3b05f660523c8ef1196c85bd3a4c5a02463e40643dd7c513d753cf763d90d2",
+    "comparison/decoded_9e961a39b4f54b0395eb140f52625755_f000330.json": "664872386c7dea780b3424400639ae9b48e685ea0738706c9154444280497752",
+    "comparison/request.json": "1b4b13b41871586edfe5887674866473dd100bb710fd5e21b1d8f9fa42990368",
+    "comparison/comparison_status.json": "b50b52749b91355f2acbb1d968c6e340b1296db79a8717ea3e0261c7f78e8ddc",
+    "comparison/reference.json": "52918acea70f20e8e58875ce81d745d585cb53da20235128dc820ed0f686eecb"
+  },
+  "source_sha256": {
+    "Experimental_results/2026-11-13/guarded_static_live_audit_r02/review.py": "8d79498fbdf2771d9ce5e2982956e7eaa57ee196a00ed9df39cbcdf0b84665fa",
+    "src/report_driver_motion_logs.py": "58e876a45ac9e4b8380da0a5cde9df7f11d6073e0d1f4eb75c1525a00e949427"
+  }
+}
