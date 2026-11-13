@@ -33,7 +33,10 @@ from frame_timing import (
 )
 from collision_risk import (
     CollisionRiskHysteresis,
+    SteeringGradientFilter,
     assess_path_collision,
+    evaluate_candidate_steering,
+    gradient_to_direction,
     predict_unicycle_path,
 )
 from obstacle_tracking import (
@@ -140,6 +143,28 @@ VEHICLE_PROFILES = {
         "label": "Custom vehicle",
     },
 }
+
+
+def remap_command_angular(linear_mps, angular_radps, prediction_time=3.5):
+    """Map a commanded yaw rate to the yaw rate used by the display path.
+
+    This is the same nonlinear mapping used by ``predict_path_points``.  It is
+    module-level so the gradient path factory and the offline replay tools can
+    share it without duplicating the formula.
+    """
+    abs_cmd_w = abs(float(angular_radps))
+    if abs_cmd_w <= 1e-4:
+        return 0.0
+    target_yaw_deg = 90.0 * ((abs_cmd_w / 0.8) ** (1.0 / 0.60))
+    target_yaw_deg = min(360.0, target_yaw_deg)
+    target_yaw_rad = math.radians(target_yaw_deg)
+    w_base = target_yaw_rad / float(prediction_time)
+    v_ref = 0.8
+    return math.copysign(
+        w_base * (abs(float(linear_mps)) / v_ref),
+        float(angular_radps),
+    )
+
 
 class MockCapture:
     """
@@ -745,6 +770,16 @@ class CalibrationWindow(QWidget):
         self.last_prediction_angular_radps = 0.0
         self.last_prediction_source = "none"
         self.collision_risk_hysteresis = self.create_collision_risk_hysteresis()
+        self.steering_gradient_filter = SteeringGradientFilter(
+            ema_alpha=self.params.get(
+                "collision_ffb_gradient_ema_alpha", 0.25
+            ),
+            deadband=self.params.get(
+                "collision_ffb_gradient_deadband", 0.1
+            ),
+        )
+        self.last_steering_gradient = None
+        self._last_steering_gradient_error = ""
         self.blue_obstacle_tracker = self.create_blue_obstacle_tracker()
         self.blue_observation_gate = self.create_blue_observation_gate()
         self.blue_ttc_estimator = self.create_blue_ttc_estimator()
@@ -848,6 +883,13 @@ class CalibrationWindow(QWidget):
             "collision_ffb_unknown_pulse_duration_sec": 0.1,
             "collision_ffb_unknown_rearm_valid_sec": 0.5,
             "collision_ffb_challenge_recovery_sec": 0.1,
+            "collision_ffb_direction_enabled": 0,
+            "collision_ffb_gradient_delta_radps": 0.15,
+            "collision_ffb_gradient_g_scale": 1.0,
+            "collision_ffb_gradient_ema_alpha": 0.25,
+            "collision_ffb_gradient_deadband": 0.1,
+            "collision_ffb_gradient_prediction_time_sec": 3.5,
+            "collision_ffb_gradient_step_sec": 0.05,
             "enable_ai": 0,
             "yolo_model": "yolov8s.pt"
         }
@@ -966,17 +1008,41 @@ class CalibrationWindow(QWidget):
             self.last_blue_collision is not None
             and self.last_blue_collision.get("measurement_valid", False)
         )
+        gradient = getattr(self, "last_steering_gradient", None)
+        direction = (
+            int(gradient.get("direction", 0))
+            if gradient is not None
+            else 0
+        )
         if self.collision_ffb_publisher is None:
             self.last_collision_ffb_publish = empty_publish_record(
                 enabled=False, risk_level=risk_level
             )
+            if gradient is not None:
+                self.last_collision_ffb_publish[
+                    "collision_ffb_direction"
+                ] = direction
         else:
             self.last_collision_ffb_publish = (
                 self.collision_ffb_publisher.publish_risk(
                     risk_level,
                     measurement_valid=measurement_valid,
+                    direction=direction,
                 )
             )
+        if gradient is not None:
+            self.last_collision_ffb_publish.update({
+                "collision_ffb_gradient_raw": gradient.get(
+                    "gradient_raw", 0.0
+                ),
+                "collision_ffb_gradient_normalized": gradient.get(
+                    "gradient_normalized", 0.0
+                ),
+                "collision_ffb_gradient_filtered": gradient.get(
+                    "gradient_filtered", 0.0
+                ),
+                "collision_ffb_gradient_reason": gradient.get("reason", ""),
+            })
         return dict(self.last_collision_ffb_publish)
 
     def create_blue_obstacle_tracker(self):
@@ -2412,17 +2478,7 @@ class CalibrationWindow(QWidget):
             return []
 
         if angular_source == "cmd":
-            abs_cmd_w = abs(w)
-            if abs_cmd_w > 1e-4:
-                target_yaw_deg = 90.0 * ((abs_cmd_w / 0.8) ** (1.0 / 0.60))
-                target_yaw_deg = min(360.0, target_yaw_deg)
-                target_yaw_rad = math.radians(target_yaw_deg)
-                
-                w_base = target_yaw_rad / prediction_time
-                v_ref = 0.8
-                w = math.copysign(w_base * (v_abs / v_ref), w)
-            else:
-                w = 0.0
+            w = remap_command_angular(v, w, prediction_time)
         self.last_prediction_speed_mps = v
         self.last_prediction_angular_radps = w
         self.last_prediction_source = (
@@ -2438,6 +2494,84 @@ class CalibrationWindow(QWidget):
             max_prediction_time_sec=15.0,
             max_abs_yaw_deg=100.0,
         )
+
+    def gradient_path_factory(self, linear_mps, angular_radps):
+        """Build a path for one candidate effective yaw rate.
+
+        The display path already applies the command-to-yaw remap, so the
+        gradient candidates perturb the effective yaw directly.  Applying the
+        remap again here would compress small commands and hide the gradient
+        at low speed.
+        """
+        prediction_time = float(
+            self.params.get(
+                "collision_ffb_gradient_prediction_time_sec", 3.5
+            )
+        )
+        dt = float(
+            self.params.get("collision_ffb_gradient_step_sec", 0.05)
+        )
+        return predict_unicycle_path(
+            linear_mps,
+            angular_radps,
+            prediction_time_sec=prediction_time,
+            step_sec=dt,
+            min_distance_m=1.5,
+            max_prediction_time_sec=15.0,
+            max_abs_yaw_deg=100.0,
+        )
+
+    def update_steering_gradient(self, risk_level, measurement_valid):
+        """Update the steering-risk gradient for the current frame."""
+        enabled = self.params.get(
+            "collision_ffb_direction_enabled", 0
+        ) == 1
+        if not enabled or self.last_blue_track is None:
+            self.steering_gradient_filter.reset()
+            self.last_steering_gradient = None
+            return None
+        try:
+            result = evaluate_candidate_steering(
+                self.last_prediction_speed_mps,
+                self.last_prediction_angular_radps,
+                obstacle_forward_m=self.last_blue_track["z_m"],
+                obstacle_left_m=-self.last_blue_track["x_m"],
+                vehicle_width_m=self.params.get("car_width", 0.354),
+                delta_radps=self.params.get(
+                    "collision_ffb_gradient_delta_radps", 0.15
+                ),
+                path_factory=self.gradient_path_factory,
+                safety_margin_m=self.params.get(
+                    "blue_collision_safety_margin_m", 0.10
+                ),
+                g_scale=self.params.get(
+                    "collision_ffb_gradient_g_scale", 1.0
+                ),
+                risk_level=risk_level,
+            )
+        except (TypeError, ValueError) as error:
+            message = f"{type(error).__name__}: {error}"
+            if message != self._last_steering_gradient_error:
+                print(f"[WARN] Steering gradient unavailable: {message}")
+                self._last_steering_gradient_error = message
+            self.steering_gradient_filter.reset()
+            self.last_steering_gradient = None
+            return None
+        self._last_steering_gradient_error = ""
+        filtered = self.steering_gradient_filter.update(
+            result["gradient_normalized"],
+            risk_level=risk_level,
+            valid=bool(result["valid"] and measurement_valid),
+        )
+        result["gradient_filtered"] = filtered
+        result["direction"] = gradient_to_direction(
+            filtered,
+            threshold=self.params.get(
+                "collision_ffb_gradient_deadband", 0.1
+            ),
+        )
+        self.last_steering_gradient = result
+        return result
 
     def update_keyboard_input(self):
         """
@@ -2560,8 +2694,14 @@ class CalibrationWindow(QWidget):
                     "path_eta_sec": None,
                 }
             self.last_blue_collision.update(state)
+            self.update_steering_gradient(
+                self.last_blue_collision.get("risk_level", "CLEAR"),
+                measurement_valid,
+            )
         else:
             self.collision_risk_hysteresis.reset()
+            self.steering_gradient_filter.reset()
+            self.last_steering_gradient = None
         if len(points) < 2:
             return
 

@@ -193,7 +193,19 @@ def replay_rows(
             )
         for row in rows:
             sent = time.monotonic()
-            record = bridge.publish_risk(row["collision_risk_level"])
+            raw_direction = row.get("collision_ffb_direction", 0)
+            try:
+                direction = (
+                    int(raw_direction)
+                    if str(raw_direction).strip()
+                    else 0
+                )
+            except (TypeError, ValueError):
+                direction = 0
+            record = bridge.publish_risk(
+                row["collision_risk_level"],
+                direction=direction,
+            )
             record.update({
                 "source_frame": int(row["frame"]),
                 "source_time_sec": float(row["time_sec"]),

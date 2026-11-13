@@ -75,6 +75,13 @@
     "collision_ffb_warning_magnitude": 0.25,
     "collision_ffb_critical_magnitude": 0.4,
     "collision_ffb_unknown_magnitude": 0.15,
+    "collision_ffb_direction_enabled": 0,
+    "collision_ffb_gradient_delta_radps": 0.15,
+    "collision_ffb_gradient_g_scale": 1.0,
+    "collision_ffb_gradient_ema_alpha": 0.25,
+    "collision_ffb_gradient_deadband": 0.1,
+    "collision_ffb_gradient_prediction_time_sec": 3.5,
+    "collision_ffb_gradient_step_sec": 0.05,
     "enable_ai": 1,
     "yolo_model": "yolov8n.pt"
 }
