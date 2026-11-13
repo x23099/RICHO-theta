@@ -136,6 +136,7 @@ class ReplayStatusCollector(Node):
             "requested_magnitude": float(message.requested_magnitude),
             "applied_magnitude": float(message.applied_magnitude),
             "pattern": int(message.pattern),
+            "direction": int(message.direction),
             "reason": str(message.reason),
             "fault": 1 if message.fault else 0,
         })
