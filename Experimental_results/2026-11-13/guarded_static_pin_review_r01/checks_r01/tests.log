@@ -1,0 +1,14 @@
+test_bad_tar_paths_links_and_duplicates_rejected (test_guarded_static_pin_intake.StaticPinIntakeTests) ... ok
+test_changed_png_rejected (test_guarded_static_pin_intake.StaticPinIntakeTests) ... ok
+test_changed_sidecar_rejected (test_guarded_static_pin_intake.StaticPinIntakeTests) ... ok
+test_extra_archive_payload_rejected (test_guarded_static_pin_intake.StaticPinIntakeTests) ... ok
+test_incomplete_log_rejected (test_guarded_static_pin_intake.StaticPinIntakeTests) ... ok
+test_matching_closed_pin_is_valid_evidence_but_not_active_reference (test_guarded_static_pin_intake.StaticPinIntakeTests) ... ok
+test_pin_and_log_frame_mismatch_rejected (test_guarded_static_pin_intake.StaticPinIntakeTests) ... ok
+test_source_hash_mismatch_rejected (test_guarded_static_pin_intake.StaticPinIntakeTests) ... ok
+test_status_control_authority_rejected (test_guarded_static_pin_intake.StaticPinIntakeTests) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.175s
+
+OK

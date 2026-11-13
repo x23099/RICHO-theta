@@ -2,6 +2,16 @@
 
 更新日: **2026-11-13（JST）**。対象リポジトリ: `RICHO-theta`。
 
+## 11/13後続：r01 pin画像は有効。ただし転送のため受信終了、次は新r02と3ファイルコピー
+
+[提出監査](Experimental_results/2026-11-13/guarded_static_pin_review_r01/README.md)、[再開手順](Experimental_results/2026-11-13/guarded_static_pin_review_r01/restart_r02.md)。開始HEAD `0fb7377`、clean。提出guarded_static_r01.tar.xzの元PNG／復号画素／pin JSON／statusが一致。session ab3878cba91c4394a84fb907835ae3b2、pin1484。記録9コードSHA一致、比較6,857行は全て参照未load、主数値206行は比較ログ側の記録だけで主ログは未提出。state=closed／writer_done・shutdown_complete=true／error=null。ユーザーはファイル更新が続くため転送前に受信を停止したと説明した。古いpinを再開後の接続でloadしない。
+
+**重要な取付条件：ユーザーはカメラの電源操作のため毎回取り外しており、基本の場所は同じだが100%一致とは言えない。** 今回の天板境界は中央y447で旧参照y458より約10〜11px上に見える。原因や姿勢変化量は断定しないが、録画間の床姿勢／高さの再現を検証済み扱いしない。現在画像の天板境界は自己遮蔽棄却用で、床法線・高さ・測距精度を補正するものではない。新校正一式や床マーカー撮影は今は要求しない。既存profileの距離は取付仮定を含む未検証の診断値として扱い、走行／制御採用とは分ける。
+
+元画像の局所境界x270〜380をreviewed_boundary.csvへ記録したが、終了済みsessionのload用reference.jsonは作らない。次は主出力と比較保存先の両方を新r02にし、停止状態で通常受信→送信→pin。新PNG／同名JSON／statusの3点をいったん別フォルダへ**コピー**し、そのコピーを圧縮して提出。更新中ログ／元フォルダ全体は途中提出に含めない。受信・送信を維持し、新画像確認後に現sessionの参照を作る。接続断／失効時は報告。主表示・ROS・FFB・機体の操作変更なし。
+
+生提出5ファイルはrecordings/2026-11-13/guarded_static_intake_r01へ無変更保存。結果は上記results_r01/audit.json。新intake9テスト成功、元画像の加工・実CUDA／カメラ起動・runtime変更・日報／commit/pushなし。
+
 ## 11/13再開：カメラ／実機使用可能。まず静止映像と現在sessionのpin
 
 ユーザーから本日はカメラ等を使用可能との連絡。[本日用の静止手順](Experimental_results/2026-11-13/guarded_static_live_r01/README.md)を準備した。開始HEAD `793428d`、clean。runtime・環境変更や成功済み再生の繰返しはせず、主保存先を `Experimental_results/2026-11-13/driver_guarded_static_r01`、比較を `recordings/2026-11-13/guarded_static_r01` とする。フォルダが既存なら新しいsuffixを全端末で揃える。

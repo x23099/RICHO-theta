@@ -1,0 +1,57 @@
+{
+  "schema": "guarded_static_pin_archive_review_v1",
+  "state": "pass",
+  "session": "ab3878cba91c4394a84fb907835ae3b2",
+  "pin_frame": 1484,
+  "image_file": "decoded_ab3878cba91c4394a84fb907835ae3b2_f001484.png",
+  "pin_png_and_pixels_verified": true,
+  "pin_sidecar_and_status_equal": true,
+  "source_files_local_rehashed": 9,
+  "comparison_rows": 6857,
+  "reason_counts": {
+    "comparison_input_stale": 1438,
+    "comparison_pin_requested": 5419
+  },
+  "original_numeric_rows_reported": 206,
+  "comparison_numeric_rows": 0,
+  "comparison_service_ms": {
+    "count": 6857,
+    "min": 0.004123999929106503,
+    "max": 0.08329499996762024,
+    "p50": 0.013224999975136598,
+    "p95": 0.01987700011341076
+  },
+  "receiver_to_comparison_age_ms": {
+    "count": 6857,
+    "min": 8.45796800001608,
+    "max": 64.86948899998879,
+    "p50": 12.650028000052771,
+    "p95": 16.65468900000633
+  },
+  "comparison_source_span_sec": 228.9572696140001,
+  "offered": 6858,
+  "processed": 6857,
+  "latest_slot_overwrites": 0,
+  "tap_busy_drops": 0,
+  "worker_closed": true,
+  "old_pin_loadable_after_restart": false,
+  "live_reference_load_verified": false,
+  "original_main_log_supplied": false,
+  "exact_main_log_line_sha_independently_verified": false,
+  "raw_source_log_line_sha_recorded": "aac3d1c70df04ae1b1a96c5d152fc881fda87e3139d98464d3aeaf5b84b653dd",
+  "current_geometry_accuracy_or_mount_verified": false,
+  "local_camera_started": false,
+  "local_cuda_started": false,
+  "NOT_post_load_comparison_performance_or_end_to_end_latency_validation": true,
+  "archive_sha256": "aed29b40d97468261d3728fdbc1c8e45e205eaf0c78ece640d219725a6ea1e5d",
+  "source_sha256": {
+    "Experimental_results/2026-11-13/guarded_static_pin_review_r01/intake.py": "11f91dd7df99130dd18538eed83fcdb37726d57ee982bfaea1ac8638e2908c23"
+  },
+  "supplied_files_sha256": {
+    "comparison_frames.jsonl": "8400ac27a8b38c06b56ab4a30ee97c346bf96de3885b09a5a1dd428a9dd8b69f",
+    "decoded_ab3878cba91c4394a84fb907835ae3b2_f001484.png": "f4e5ed640f5ddd45ac25c6a39049f59e3e75ad80e8dbd7845f9b62a52f29dcd8",
+    "request.json": "5fc62e1914120157feae0ace1ede46ef7ff3353ca22a7cecc6f782abe61bcefd",
+    "decoded_ab3878cba91c4394a84fb907835ae3b2_f001484.json": "3cc2b6df7cb9f1853025364554da29d6223e54971767fe66f3f53ac0590a74f7",
+    "comparison_status.json": "627c883146c4baec63f366d2478348344fb968a63659ecd98c0d18fe02ae8728"
+  }
+}
