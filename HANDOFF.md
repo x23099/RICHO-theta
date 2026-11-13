@@ -1,6 +1,14 @@
 # コーン測距・FFB開発 引き継ぎ資料
 
-更新日: **2026-11-11（JST）**。対象リポジトリ: `RICHO-theta`。
+更新日: **2026-11-13（JST）**。対象リポジトリ: `RICHO-theta`。
+
+## 11/13再開：カメラ／実機使用可能。まず静止映像と現在sessionのpin
+
+ユーザーから本日はカメラ等を使用可能との連絡。[本日用の静止手順](Experimental_results/2026-11-13/guarded_static_live_r01/README.md)を準備した。開始HEAD `793428d`、clean。runtime・環境変更や成功済み再生の繰返しはせず、主保存先を `Experimental_results/2026-11-13/driver_guarded_static_r01`、比較を `recordings/2026-11-13/guarded_static_r01` とする。フォルダが既存なら新しいsuffixを全端末で揃える。
+
+GPU PCの通常運転UI環境で受信→matunucでmotion-native送信→停止状態で映像・主更新を確認→別端末からpin→元PNG／同名JSON／statusの3点提出が最初。まだ走行・画面録画・床マーカー・距離再測定・loadは求めない。受信／送信は同接続を継続し、こちらで現在画像から天板境界参照を用意してからloadする。過去参照のsession書換え転用はしない。カメラ取付位置・角度が前回から変わった場合は先に確認する。
+
+GPU r04の反映・保存画像負荷確認は完了済み。旧パッチ再適用・Pullのやり直しは不要。IP／deviceは前回値なので本日の実際の値を優先する。本日こちらから実カメラ／ROS／機体を起動したわけではなく、日報・commit/pushもまだ行っていない。
 
 ## 11/11終業：日報・Git保存、次回はカメラが使える日の静止確認
 
