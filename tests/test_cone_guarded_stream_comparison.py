@@ -171,6 +171,24 @@ class StreamComparisonTests(unittest.TestCase):
         self.assertFalse(row['comparison_distance_available'])
         self.assertEqual(row['reason'], 'comparison_input_gap')
 
+    def test_gap_after_pin_before_first_load_erases_witness(self):
+        frame=self.frame();self.admit(frame)
+        self.stream.pin_reference_frame(frame)
+        row=self.next_result(2,11.)
+        self.assertEqual(row['reason'],'comparison_input_gap')
+        with self.assertRaisesRegex(ValueError,'not explicitly pinned'):
+            self.stream.activate(self.reference,self.png)
+
+    def test_gap_on_pin_frame_before_pin_can_leave_same_reason_with_valid_witness(self):
+        self.admit(self.frame())
+        frame=self.frame(2,11.);self.admit(frame)
+        self.assertEqual(self.stream.reason,'comparison_input_gap')
+        self.stream.pin_reference_frame(frame)
+        self.assertEqual(self.stream.reason,'comparison_input_gap')
+        ref=dict(self.reference,source_frame=2)
+        self.stream.activate(ref,self.png)
+        self.assertIsNotNone(self.stream.verified_reference_snapshot())
+
     def test_explicit_disconnect_does_not_reuse_reference(self):
         self.activate();self.next_result()
         self.stream.invalidate('disconnected')

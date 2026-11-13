@@ -44,15 +44,16 @@ def check(payload):
     return report
 
 
-def main():
+def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--archive',type=Path,required=True)
+    parser.add_argument('--archive-prefix',default='1113body')
     parser.add_argument('--intake-dir',type=Path,required=True)
     parser.add_argument('--output-dir',type=Path,required=True)
-    args=parser.parse_args()
+    args=parser.parse_args(argv)
     pin.require(not args.intake_dir.exists() and not args.output_dir.exists(),'new output paths required')
     pin.require(args.archive.stat().st_size<=5*1024*1024,'bounded archive required')
-    payload=pin.read_archive(args.archive,'1113body');report=check(payload)
+    payload=pin.read_archive(args.archive,args.archive_prefix);report=check(payload)
     report.update(archive_sha256=pin.sha(pin.read_regular(args.archive,5*1024*1024)),
         supplied_files_sha256={name:pin.sha(blob) for name,blob in payload.items()},
         source_sha256={str(p.relative_to(ROOT)):pin.sha(p.read_bytes()) for p in (Path(__file__),Path(pin.__file__))})

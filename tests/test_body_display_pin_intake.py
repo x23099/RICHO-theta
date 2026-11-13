@@ -1,7 +1,12 @@
 """Four-file pin intake: synthetic PNG and metadata, no live/GPU/control."""
 import importlib.util
+import io
 import json
 from pathlib import Path
+import tarfile
+import tempfile
+import subprocess
+import sys
 import unittest
 
 import test_guarded_current_pin_intake as prior
@@ -59,6 +64,44 @@ class BodyPinIntakeTests(unittest.TestCase):
         data=self.fixture();e=json.loads(data['motion_engine_summary.json']);e['profile_sha256']='0'*64
         data['motion_engine_summary.json']=json.dumps(e).encode()
         with self.assertRaisesRegex(ValueError,'profile SHA mismatch'):intake.check(data)
+
+    def test_known_gap_is_flagged_even_when_four_file_integrity_passes(self):
+        data=self.fixture();s=json.loads(data['comparison_status.json']);s['latest']['reason']='comparison_input_gap'
+        data['comparison_status.json']=json.dumps(s).encode()
+        result=intake.check(data)
+        self.assertTrue(result['snapshot_requires_repin'])
+        self.assertTrue(result['display_guard_enabled'])
+
+    def test_four_file_cli_explicit_archive_prefix(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);path=root/'input.tar.xz'
+            with tarfile.open(path,'w:xz') as archive:
+                for name,blob in self.fixture().items():
+                    info=tarfile.TarInfo('body_guard_occlusion_pin_submit_r01/'+name);info.size=len(blob)
+                    archive.addfile(info,io.BytesIO(blob))
+            with self.assertRaisesRegex(ValueError,'unsafe archive name'):
+                intake.main(['--archive',str(path),'--intake-dir',str(root/'wrong_raw'),'--output-dir',str(root/'wrong_out')])
+            self.assertFalse((root/'wrong_raw').exists())
+            intake.main(['--archive',str(path),'--archive-prefix','body_guard_occlusion_pin_submit_r01',
+                '--intake-dir',str(root/'raw'),'--output-dir',str(root/'out')])
+            report=json.loads((root/'out/audit.json').read_bytes())
+            self.assertFalse(report['snapshot_requires_repin'])
+            self.assertEqual(len(report['supplied_files_sha256']),4)
+
+    def test_reference_builder_checks_current_status_even_without_new_audit_flag(self):
+        data=self.fixture();s=json.loads(data['comparison_status.json']);s['latest']['reason']='comparison_input_gap'
+        data['comparison_status.json']=json.dumps(s).encode()
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);raw=root/'raw';raw.mkdir()
+            for name,blob in data.items():(raw/name).write_bytes(blob)
+            audit=dict(supplied_files_sha256={name:intake.pin.sha(blob) for name,blob in data.items()},
+                       pin_files_sha256={name:intake.pin.sha(blob) for name,blob in data.items() if name!='motion_engine_summary.json'})
+            (root/'audit.json').write_text(json.dumps(audit))
+            result=subprocess.run([sys.executable,str(ROOT/'Experimental_results/2026-11-13/guarded_static_reference_r02/build_reference.py'),
+                '--input-dir',str(raw),'--audit',str(root/'audit.json'),'--output-dir',str(root/'out')],capture_output=True,text=True)
+            self.assertNotEqual(result.returncode,0)
+            self.assertIn('pin witness continuity not established',result.stderr)
+            self.assertFalse((root/'out/reference.json').exists())
 
 
 if __name__=='__main__':unittest.main()

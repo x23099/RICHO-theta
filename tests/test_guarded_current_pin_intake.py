@@ -35,6 +35,17 @@ class CurrentPinTests(unittest.TestCase):
         data['comparison_status.json']=json.dumps(s).encode()
         with self.assertRaisesRegex(ValueError,'running pinned status'):intake.check(data)
 
+    def test_pinned_label_does_not_establish_witness_continuity(self):
+        for reason in ('comparison_input_gap','comparison_input_stale','comparison_invalid_input','unexpected_reason'):
+            data=self.fixture();s=json.loads(data['comparison_status.json']);s['latest']['reason']=reason
+            data['comparison_status.json']=json.dumps(s).encode()
+            result=intake.check(data)
+            with self.subTest(reason=reason):
+                self.assertTrue(result['snapshot_requires_repin'])
+                self.assertEqual(result['snapshot_latest_reason'],reason)
+        result=intake.check(self.fixture())
+        self.assertFalse(result['snapshot_requires_repin'])
+
     def test_repin_count_is_bounded_and_latest_request_still_required(self):
         for count in (2,8):
             data=self.fixture();s=json.loads(data['comparison_status.json']);s['snapshots_saved']=count

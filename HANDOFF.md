@@ -2,6 +2,46 @@
 
 更新日: **2026-11-13（JST）**。対象リポジトリ: `RICHO-theta`。
 
+## 11/13終業：日報・代表4点を作成。push完了後の続きはユーザー指定の11/14分
+
+[11/13日報](Daily_reports/2026-11-13_daily_report.md)と日報索引を作成。本日既存commit・未commit差分・3回の主要実機監査を整理し、別系列FFB/replay実装と今回の非制御測距を区別した。[代表4点](Experimental_results/2026-11-13/report_assets/README.md)は数値推移図SVG＋無加工1920×1200の遮蔽前／遮蔽保留／復帰画面PNG。元画面／図へバイト一致、入力と出力SHA・PTSをmanifestへ保存。生録画・全ログはGit対象外。
+
+終業の対象9テストファイルは108件成功、代表4点と日報関連45リンクを確認。根拠はreport_assets/checks_r01/summary.json・tests.log。日報本文の200／60／44等は各段階の過去記録で、重複スイートを独立件数へ合算しない。ユーザー依頼によりこの研究分と日報を通常commit・origin/mainへpushする。結果はGit履歴と終了報告を参照。
+
+**そのpush完了後に11/14作業扱いで続ける**というユーザーの明示指定。時計や既存11/13の実験日時を書き換えず、新成果物をExperimental_results/2026-11-14へ保存する。次は実機不要の運用条件・再開手順整理。走行診断表示・自己遮蔽保留・復帰は今回の条件で確認済みで、同じ実験を繰り返さない。実機操作・新撮影・ROS／FFB接続を勝手に開始しない。
+
+## 11/13最新：走行中の表示ゲート・遮蔽保留・復帰を実画面＋全ログで確認完了
+
+[全監査と図](Experimental_results/2026-11-13/body_display_occlusion_live_audit_r01/README.md)。body_guard_occlusion_r01_full_r02.tar.xzの18ファイルと20:27:27開始の約60.290秒画面録画を受領。予定は車体停止・コーン移動だったが、ユーザー確認で実際は車体の前進・後退。走行試験として記録し、停止車体でのコーン移動実績とはしない。独立オドメトリ・実測誤差は未検証。
+
+録画の直接読取りframe49664〜51472、1,787件／source幅60.275秒。遮蔽前887件は元数値・表示許可887、遮蔽区間50558〜50935の373件は自己遮蔽372＋元ROI端保留1で表示数値0、復帰後527件は元数値・表示許可527。表示数値1,414は全件元値と同じ・bridge受理、元保留からの救済0。元主値約0.682〜0.731mが残る近接区間でも新表示側で棄却できた。今回の走行診断表示・自己遮蔽保留・復帰の確認は完了。同じ実験の追加撮影・やり直しは不要。
+
+25原解像度画面を確認し、数値17点のsession/frame・3桁丸め・body-review gen1がログと一致。保留6点はUIにframe表示がないため完全同frame証明とせず、数値anchorのPTS対応観測幅58.15ms内の候補ログが同じ保留であることを確認。別アプリで隠れる2点はGUI成功件数から除外。未保存画素・全GUI描画・総遅延の証明ではない。
+
+録画対応区間の主age P95/最大19.21/32.89ms、表示レビュー完了age19.76/33.26ms、主完了→レビュー完了P50/P95/最大0.42/0.60/1.54ms。約29.63件/秒、source gap最大86.83ms、範囲内sequence欠け22で常時30fps保証ではない。全体主／レビュー／bridge各52,645・比較52,642行一致、参照有効支持列13,039件の再評価もclear12,667／遮蔽372で一致。pin1677・17327の元PNG/BGR/sidecar/完全主元行SHA、発行参照バイト、記録重複除外12コードとprofile/config・記録重みSHA一致。
+
+主sent52,646/returned52,645は終了未返却1、bridge退役は初回1。比較offered52,645/processed52,642は上書き2＋終了未処理1。主／I/O・比較writer正常終了、エラー・強制killなし、child=-15はSIGTERM、終了待ち56.39ms。rawはrecordings/2026-11-13/body_display_occlusion_full_intake_r01（18原本＋webm＋無加工の画面抽出＋全timing CSV）。Git側はresults_r01/audit.json・screen_audit.json・録画対応screen_window.csv・数値図SVG・再現コード／読取表。新7＋既存関連44テスト成功。
+
+静止監査に明示run引数と比較CSV列を追加して再利用。今回主ログ232MBに対して主256MiB／計512MiBの明示上限を設定し、18ファイル安全取込を検証。runtime・閾値・校正・GPU環境は変更せず実機操作なし。次は確認済み構成の運用条件・再開手順整理。既定OFF・非制御／非ROS／非FFBを維持し、物理精度・床接地・取付再現・傾斜補償・接触距離は未認定。日報・commit/pushは今回未依頼。
+
+## 11/13最新：遮蔽試験の再pin17327を受領、新参照作成。次はコピー→SHA照合→load
+
+[新参照とload手順](Experimental_results/2026-11-13/body_display_reference_occlusion_repin_r01/README.md)。body_guard_occlusion_repin_r01.tar.xzの4点は完備。session24e1146277d043fa8c01d36e2ebe0651／pin17327／コピー時latest30613、pinned・saved2・writer_done=false・error=null、最新reason=comparison_pin_requested。前回のinput_gapは今回statusに出ておらず、コピー時の継続不確実フラグfalse。PNG/BGR/sidecar/status一致、表示ゲートON、記録9＋7コード（重複除外12）とprofile/config・記録重みSHA一致。元主JSONL完全行SHAは終了後に照合する。
+
+現在PNGから境界x270〜380／中央y450付近を新規に読み、x300〜340のテープ部分は隣接境界から補間。旧pin361の境界流用ではない。現在session/frame/PNGに結んだreference.jsonを生成。SHAは2b75af07233ad001628e3be8277a8e0c90818acad2c78a56b24067fee5032f87。GPUのrecordings/2026-11-13/body_guard_occlusion_r01/reference.jsonへファイルコピーし、SHA一致時だけload1回→statusと画面下部を提出。新ファイル未pushなのでPullだけでは届かない。まだコーン移動・録画・走行・新pin・再起動・Lキーは不要。
+
+同接続でactive／reference_frame17327／scope=trueと数値＋body-review genを確認後、既存の車体停止・コーン移動による遮蔽→復帰の録画手順へ進む。load失敗なら連打せず出力共有し、session書換えはしない。コピー後から現在までのwitness保持は保証せず実loadで確認。rawはrecordings/2026-11-13/body_display_occlusion_repin_intake_r01、根拠は上記results_r01/audit.json・reference_validation.json・reviewed_boundary.csv。既存intakeと生成器を再利用、前段階60テスト成功を再利用し、今回実入力と生成物のSHA結合を確認。runtime・閾値・校正・環境変更や実機操作なし、物理精度・床接地未認定、日報・commit/push未依頼。
+
+## 11/13最新：遮蔽試験pin1677の4点は完備。ただしinput_gapで継続不確実、次は再pin
+
+[判断と再pin手順](Experimental_results/2026-11-13/body_display_reference_occlusion_r01/README.md)。body_guard_occlusion_pin_r01.tar.xzを受領。session24e1146277d043fa8c01d36e2ebe0651／pin1677／latest2945、pinned・writer_done=false・error=null・saved1。PNG/BGR/sidecar/status一致、表示ゲートON、記録9＋7コード（重複除外12）・profile/config・記録重みSHA一致。原画像を確認したが境界CSV・reference.jsonは発行していない。初回results_r01はファイル整合性のみ、最終判断assessment_r02/audit.jsonはrequires_repin。
+
+latest.reason=comparison_input_gap。gap後のwitness消去があり、state=pinnedだけではload可能といえない。ただしworker順序admit→pinなので、同じpin frameでgapが先だった場合にはreason=input_gapでもwitnessが残り得る。**この4点だけでpin後の失効と断定しない。** gapの発生frame・原因は主／比較全ログ未提出で不明。先行commentaryの断定は訂正済み。継続を確立できないため保守的に同接続で1回再pinし、最新reason=pin_requestedを確認する方針。
+
+現地は停止・送受信維持、コーン／カメラを動かさず、manage_guarded_comparisonで同body_guard_occlusion_r01へpin→数秒後status。再gap/staleなら連打せずstatus共有して原因確認へ。新pinは1677より後・同session・saved2を想定。元フォルダに旧pinも残るためワイルドカードで全部コピーせず、手順のPythonでstatusが指す最新PNG／JSON＋status原本＋engine summaryだけをbody_guard_occlusion_repin_r01.tar.xzへ新規圧縮して提出。新参照前のload・録画・コーン接近・走行は不要。
+
+rawはrecordings/2026-11-13/body_display_occlusion_pin_intake_r01。ローカル4点intakeにprefix指定、共通intakeにreason／継続不確実フラグ、生成器に発行拒否を追加。GPU runtime・閾値・校正・環境は変更せず、新パッチ不要。合成のgap前後両順序・生成拒否・prefix・再提出手順を含む関連60テスト成功。実機操作・日報・commit/pushなし。
+
 ## 11/13最新：表示ゲートの遮蔽・復帰確認手順を準備。新pin4点提出まで
 
 [新手順](Experimental_results/2026-11-13/body_display_occlusion_live_r01/README.md)。静止全体監査完了後、ユーザーが継続を依頼。まず車体停止・コーン移動で「見える位置の数値→台座遮蔽時の保留→復帰」を確認する手順を作成。機体走行は要求しない。新保存先は主driver_body_guard_occlusion_r01、比較body_guard_occlusion_r01。前回GPUで確認済みのbody表示ゲートONを使うだけで、runtime・閾値・校正・GPU環境の変更や旧パッチ再適用なし。

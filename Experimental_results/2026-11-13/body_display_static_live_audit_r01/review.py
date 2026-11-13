@@ -130,7 +130,8 @@ def phase_stats(frames, reviews, comparisons, accepted):
         comparison_age_ms=distribution([1000*(r['completed_time_sec']-r['source_time_sec']) for r in comps]))
 
 
-def analyze(directory):
+def analyze(directory, *, pin_stem=PIN, reference_folder='body_display_reference_static_r01',
+            pin_intake_folder='body_display_pin_intake_r01', request_count=2, pending_sent=0):
     import cv2
     import numpy as np
     primary, comparison = directory/'primary', directory/'comparison'
@@ -142,16 +143,16 @@ def analyze(directory):
     require(status['state'] == 'closed' and status['writer_done'] is True
             and status['shutdown_complete'] is True and status['error'] is None, 'comparison not normally closed')
     require(all(status[k] is False for k in (*FLAGS, 'main_display_modified')), 'status authority changed')
-    require(pin == j(comparison/(PIN+'.json')) and pin['image_file'] == PIN+'.png'
+    require(pin == j(comparison/(pin_stem+'.json')) and pin['image_file'] == pin_stem+'.png'
             and pin['image_modified'] is False, 'pin metadata mismatch')
     require(pin['session'] == reference['session'] and pin['frame'] == reference['source_frame'], 'reference/pin mismatch')
-    issued = ROOT/'Experimental_results/2026-11-13/body_display_reference_static_r01/reference.json'
+    issued = ROOT/'Experimental_results/2026-11-13'/reference_folder/'reference.json'
     require(file_sha(comparison/'reference.json') == file_sha(issued), 'not analyst-issued reference bytes')
-    prior = ROOT/'recordings/2026-11-13/body_display_pin_intake_r01'
-    for name in (PIN+'.png', PIN+'.json'):
+    prior = ROOT/'recordings/2026-11-13'/pin_intake_folder
+    for name in (pin_stem+'.png', pin_stem+'.json'):
         require(file_sha(comparison/name) == file_sha(prior/name), 'pin differs from initial verified intake')
     require(file_sha(primary/'motion_engine_summary.json') == file_sha(prior/'motion_engine_summary.json'), 'engine differs from initial intake')
-    png = read_regular(comparison/(PIN+'.png'), 4*1024*1024)
+    png = read_regular(comparison/(pin_stem+'.png'), 4*1024*1024)
     require(hashlib.sha256(png).hexdigest() == pin['png_sha256'] == reference['source_png_sha256']
             and struct.unpack('>II', png[16:24]) == (1280, 720), 'PNG binding mismatch')
     image = cv2.imdecode(np.frombuffer(png, np.uint8), cv2.IMREAD_COLOR)
@@ -188,7 +189,8 @@ def analyze(directory):
     report, accepted = summarize(frames, events)
     require(len(report['sessions']) == 1 and report['sessions'][0]['session'] == pin['session'], 'main session mismatch')
     reviews, _ = read_jsonl(primary/'motion_display_reviews.jsonl')
-    require(len(frames) == len(reviews) == len(events) == bridge['returned'] == bridge['sent'], 'primary/review/bridge counts differ')
+    require(len(frames) == len(reviews) == len(events) == bridge['returned']
+            and bridge['sent']-bridge['returned'] == pending_sent, 'primary/review/bridge counts differ')
     require(sum(not a for a in accepted.values()) == bridge['retired_results'], 'bridge retirement differs')
     by_key = {(r['session'], r['frame']): r for r in frames}
     event_by_key = {(r['result']['session'], r['result']['frame']): r for r in events}
@@ -220,7 +222,14 @@ def analyze(directory):
     require(active, 'no active reference results')
     request = j(comparison/'request.json')
     require(request == dict(schema='driver_guarded_request_v1', request_id=status['request_id'], action='load')
-            and status['request_count'] == 2 and status['request_action'] == 'load', 'request mismatch')
+            and status['request_count'] == request_count and status['request_action'] == 'load', 'request mismatch')
+    for timing in timings:
+        comp=comp_by_key.get((timing['session'],timing['frame']))
+        timing.update(comparison_available=comp['comparison_distance_available'] if comp else None,
+            comparison_range_m=comp['comparison_range_m'] if comp else None,
+            comparison_reason=comp['reason'] if comp else None,
+            comparison_service_ms=comp['comparison_service_ms'] if comp else None,
+            comparison_age_ms=1000*(comp['completed_time_sec']-comp['source_time_sec']) if comp else None)
     # Independently re-evaluate logged current support against the issued local
     # body boundary. This does NOT rerun YOLO or verify unsaved frame pixels.
     geometry_count, geometry_reasons = 0, Counter()

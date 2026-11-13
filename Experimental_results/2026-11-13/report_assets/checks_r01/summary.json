@@ -1,0 +1,41 @@
+{
+  "state": "pass",
+  "command": [
+    "/home/robo25/theta-env/bin/python3",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_guarded_current_pin_intake.py",
+    "tests/test_body_display_pin_intake.py",
+    "tests/test_cone_guarded_stream_comparison.py",
+    "tests/test_body_display_occlusion_repin.py",
+    "tests/test_body_display_occlusion_procedure.py",
+    "tests/test_body_display_occlusion_audit.py",
+    "tests/test_body_display_static_live_audit.py",
+    "tests/test_driver_body_display_guard.py",
+    "tests/test_report_driver_motion_logs.py"
+  ],
+  "pytest_disable_plugin_autoload": true,
+  "returncode": 0,
+  "tests_passed": 108,
+  "representative_assets_verified": 4,
+  "checked_report_links": 45,
+  "log_sha256": "7121983a4be9bc407a1d3c447e96ec28b34d20977c6ae38f7ddebbd85bb9825e",
+  "basis_head": "42cc8b8aa2ea65e0d170d1fcfd3e65d45777a705",
+  "source_sha256": {
+    "Experimental_results/2026-11-13/report_assets/check_report.py": "ea72ab48e61fb12fd84c60c6e21ed6bea9206dd3d2cdd00c07a208ed09d089e5",
+    "Experimental_results/2026-11-13/report_assets/build_assets.py": "fe298c4c361cdc7b8c79b51d7a4322b52999f4d9138492a84eb4076d6e26332a",
+    "Experimental_results/2026-11-13/report_assets/manifest.json": "946a2d3ff676b431ebebe03d60a0fd8879b96fd5a1ea895b36ebd5a0f0b5e02a",
+    "Daily_reports/2026-11-13_daily_report.md": "f4743fa5befe636c8dccf38e694552c503b4c7a61cde4f3a7a83557b9b5696cf",
+    "tests/test_guarded_current_pin_intake.py": "ff92b95dbfc035ff550e1166febcffca88a641d602914f408ea153171de28527",
+    "tests/test_body_display_pin_intake.py": "2935eb208b4bcf94da1dce83090454c60693ed656f9c8b5141759c0892439506",
+    "tests/test_cone_guarded_stream_comparison.py": "de2589eaabc3a22fafba37eaf9bfab921fee78f67a7579597688335a9018be16",
+    "tests/test_body_display_occlusion_repin.py": "97f36494f5229392ef0a11443b5e8716dd05f50768f7ca7532d876d8c8d37ef9",
+    "tests/test_body_display_occlusion_procedure.py": "9a9f9b0d541a7c84c7cde897767ccafb0ef7908b491bb4ef53e9fe21030a37c8",
+    "tests/test_body_display_occlusion_audit.py": "8d9ae03ea7045cc0a48a1ee1bd740049ef017723ac454ae041e19b149451484b",
+    "tests/test_body_display_static_live_audit.py": "12bfe38ffd2dcc592e9129e6599653fa23c3c64485d3cd5ef9b3b3d26fbbb1a6",
+    "tests/test_driver_body_display_guard.py": "5cb7bf0934d48de8a51c501395f3d0bf6f239440f716dd6620e989ade14f9d11",
+    "tests/test_report_driver_motion_logs.py": "ab7eb56e0fb25bb14738d5616de86b24a7059a5ad3aec7900b6feb36a4ba3431"
+  },
+  "live_camera_cuda_ros_or_vehicle_started": false
+}

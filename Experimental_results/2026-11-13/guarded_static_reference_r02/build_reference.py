@@ -25,11 +25,15 @@ def main():
     audit_path=(args.audit or base/'results_r01/audit.json').resolve()
     boundary_path=(args.boundary_csv or base/'reviewed_boundary.csv').resolve()
     audit=json.loads(audit_path.read_bytes())
+    intake.require(audit.get('snapshot_requires_repin') is not True,
+        'pin witness continuity not established in submitted status; new explicit pin required')
     payload={name:intake.read_regular(args.input_dir/name,4*1024*1024) for name in audit['supplied_files_sha256']}
     for name,digest in audit['supplied_files_sha256'].items():
         intake.require(intake.sha(payload[name])==digest,'verified pin intake changed')
     pin_names=audit.get('pin_files_sha256',audit['supplied_files_sha256'])
     snapshot=intake.check({name:payload[name] for name in pin_names})
+    intake.require(snapshot['snapshot_requires_repin'] is False,
+        'pin witness continuity not established in submitted status; new explicit pin required')
     points=[[int(row['x_native']),int(row['y_native'])] for row in csv.DictReader(boundary_path.open())]
     reference=checked_reference(dict(schema='offline_self_body_boundary_v1',session=snapshot['session'],
         image_size=[1280,720],layout='dual_fisheye_front_left_unremapped',source_frame=snapshot['source_frame'],

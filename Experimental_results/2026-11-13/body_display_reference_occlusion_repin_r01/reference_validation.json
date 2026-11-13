@@ -1,0 +1,31 @@
+{
+  "state": "pass",
+  "session": "24e1146277d043fa8c01d36e2ebe0651",
+  "source_frame": 17327,
+  "reference_sha256": "2b75af07233ad001628e3be8277a8e0c90818acad2c78a56b24067fee5032f87",
+  "pin_png_sha256": "513d210173afaafc5d35589251d4e56259aa16969502bff8f9df7e78f7c0664f",
+  "pin_pixels_sha256": "d5c0a0102b0225cceb8e988dba6c84a8ef1037ee741a35e15ac72fba4758f698",
+  "boundary_scope_native_x": [
+    270,
+    380
+  ],
+  "source_sha256": {
+    "Experimental_results/2026-11-13/guarded_static_reference_r02/build_reference.py": "cd8a7a5f176b5baeaddff6dcc90a95605411a473182f0281fb47710c0a9fe7b8",
+    "Experimental_results/2026-11-13/guarded_static_reference_r02/intake.py": "0e55fb9e38e49fe3b3e47adf6ca1f83a3d6ca2bca6c11e29508a4710f01eaf3e",
+    "Experimental_results/2026-11-13/body_display_reference_occlusion_repin_r01/reviewed_boundary.csv": "a227de466a070f489925ea85d76e856569939cba075e991e31021dc2d67cef0b",
+    "Experimental_results/2026-11-13/body_display_reference_occlusion_repin_r01/results_r01/audit.json": "86cb5f91df9a8569db247d9ca82fbf05d4b41f08721f3cac5aff444a5b68e268"
+  },
+  "submitted_file_sha256": {
+    "decoded_24e1146277d043fa8c01d36e2ebe0651_f017327.json": "63dca2e43cd0bf72dd924f3b6aca59d6adef51a0b837b59cb26c5c92f92519f1",
+    "motion_engine_summary.json": "686c6ae4cc259c780616cc67b185fef11f404f4fad97a1fcecab4fb4443ff85e",
+    "decoded_24e1146277d043fa8c01d36e2ebe0651_f017327.png": "513d210173afaafc5d35589251d4e56259aa16969502bff8f9df7e78f7c0664f",
+    "comparison_status.json": "4da366def688c365a882f8ce9f256bf00fd2e349352be177efeaeb6b07967164"
+  },
+  "checked_reference_schema": true,
+  "current_png_reviewed": true,
+  "remote_load_performed": false,
+  "remote_witness_still_valid_NOT_verified": true,
+  "floor_pose_or_metric_verified": false,
+  "local_camera_started": false,
+  "local_cuda_started": false
+}

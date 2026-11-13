@@ -80,6 +80,12 @@ def check(payload):
     return dict(state='pass',session=pin['session'],source_frame=pin['frame'],image_file=stem+'.png',
         source_png_sha256=pin['png_sha256'],decoded_bgr_sha256=pin['decoded_bgr_sha256'],
         source_files_local_rehashed=len(source_hashes),snapshot_state=status['state'],snapshot_latest_frame=latest['frame'],
+        snapshot_latest_reason=latest['reason'],
+        # The state label records the last request, not witness survival. A gap
+        # can occur before or after _pin in the same admission iteration; these
+        # copied files cannot establish that ordering. Conservatively repin.
+        snapshot_requires_repin=latest['reason']!='comparison_pin_requested',
+        snapshot_witness_continuity_uncertain=latest['reason']!='comparison_pin_requested',
         snapshot_saved_pin_count=status['snapshots_saved'],
         snapshot_worker_running=True,snapshot_pin_to_latest_sec=latest['source_time_sec']-pin['source_time_sec'],
         remote_worker_still_running_now_NOT_verified=True,witness_survival_until_load_NOT_verified=True,
