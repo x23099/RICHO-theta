@@ -1,0 +1,415 @@
+{
+  "schema": "guarded_motion_screen_audit_v1",
+  "state": "pass",
+  "session": "24aad0a8d31d46eeb33ef252b0d18475",
+  "native_screen_anchors": 25,
+  "all_anchors_match_rounded_primary": true,
+  "screen_minus_source_offset_variation_sec": 0.05385171200032346,
+  "phases": {
+    "screen_scope": {
+      "selection": {
+        "phase": "screen_scope",
+        "first_frame": "44063",
+        "last_frame": "45275",
+        "approx_video_start_sec": "0",
+        "approx_video_end_sec": "40.4",
+        "interpretation": "all visible scope excluding earlier test"
+      },
+      "rows": 1186,
+      "first_frame": 44063,
+      "last_frame": 45275,
+      "source_span_sec": 40.416441282999585,
+      "result_interval_hz": 29.31975113054914,
+      "all_reference_active": true,
+      "bridge_accepted": 1186,
+      "main_numeric": 1178,
+      "comparison_numeric": 911,
+      "both_numeric": 911,
+      "both_numeric_exact_equal": 911,
+      "main_reasons": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 1178,
+        "colour_contour_reaches_roi_edge": 8
+      },
+      "comparison_reasons": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 911,
+        "colour_contour_reaches_roi_edge": 8,
+        "possible_self_body_occlusion": 267
+      },
+      "main_range_m": {
+        "count": 1178,
+        "min": 0.6512263291268006,
+        "max": 1.4403184415308186,
+        "p50": 1.144991259783498,
+        "p95": 1.4395869175006766
+      },
+      "main_age_ms": {
+        "count": 1186,
+        "min": 9.859882999990077,
+        "max": 43.665596000209916,
+        "p50": 14.40723900032026,
+        "p95": 20.897195000543434
+      },
+      "comparison_service_ms": {
+        "count": 1186,
+        "min": 1.8688879999899655,
+        "max": 24.788845000330184,
+        "p50": 2.841128000000026,
+        "p95": 5.021641999519488
+      },
+      "comparison_age_ms": {
+        "count": 1186,
+        "min": 12.921519999508746,
+        "max": 69.04909800050518,
+        "p50": 17.929091000041808,
+        "p95": 24.839921000420873
+      },
+      "main_over_33p33ms": 1,
+      "source_gap_ms": {
+        "count": 1185,
+        "min": 0.7316100000025472,
+        "max": 174.85802600003808,
+        "p50": 33.12188600011723,
+        "p95": 54.26262599939946
+      },
+      "source_sequence_ids_without_paired_result": 27
+    },
+    "initial_stopped_core": {
+      "selection": {
+        "phase": "initial_stopped_core",
+        "first_frame": "44063",
+        "last_frame": "44122",
+        "approx_video_start_sec": "0",
+        "approx_video_end_sec": "2",
+        "interpretation": "short initial stop only not 10 seconds"
+      },
+      "rows": 58,
+      "first_frame": 44063,
+      "last_frame": 44122,
+      "source_span_sec": 1.980418952999571,
+      "result_interval_hz": 28.781788779423152,
+      "all_reference_active": true,
+      "bridge_accepted": 58,
+      "main_numeric": 58,
+      "comparison_numeric": 58,
+      "both_numeric": 58,
+      "both_numeric_exact_equal": 58,
+      "main_reasons": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 58
+      },
+      "comparison_reasons": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 58
+      },
+      "main_range_m": {
+        "count": 58,
+        "min": 1.4381630262879688,
+        "max": 1.4403184415308186,
+        "p50": 1.4395869175006766,
+        "p95": 1.4395869175006766
+      },
+      "main_age_ms": {
+        "count": 58,
+        "min": 9.859882999990077,
+        "max": 21.411296999758633,
+        "p50": 14.231149999432091,
+        "p95": 19.657173000268813
+      },
+      "comparison_service_ms": {
+        "count": 58,
+        "min": 2.329451000150584,
+        "max": 5.2120260006631725,
+        "p50": 2.6700430007622344,
+        "p95": 4.1926819994841935
+      },
+      "comparison_age_ms": {
+        "count": 58,
+        "min": 13.22591900043335,
+        "max": 25.151119999463845,
+        "p50": 17.49563199973636,
+        "p95": 23.67779700034589
+      },
+      "main_over_33p33ms": 0,
+      "source_gap_ms": {
+        "count": 57,
+        "min": 5.482776999997441,
+        "max": 81.48103700023057,
+        "p50": 34.44824100006372,
+        "p95": 61.51170200064371
+      },
+      "source_sequence_ids_without_paired_result": 2
+    },
+    "approach_with_boundary": {
+      "selection": {
+        "phase": "approach_with_boundary",
+        "first_frame": "44123",
+        "last_frame": "44482",
+        "approx_video_start_sec": "2",
+        "approx_video_end_sec": "14",
+        "interpretation": "includes uncertain start and stop boundaries"
+      },
+      "rows": 352,
+      "first_frame": 44123,
+      "last_frame": 44482,
+      "source_span_sec": 11.964974503000121,
+      "result_interval_hz": 29.335624569194824,
+      "all_reference_active": true,
+      "bridge_accepted": 352,
+      "main_numeric": 346,
+      "comparison_numeric": 270,
+      "both_numeric": 270,
+      "both_numeric_exact_equal": 270,
+      "main_reasons": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 346,
+        "colour_contour_reaches_roi_edge": 6
+      },
+      "comparison_reasons": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 270,
+        "colour_contour_reaches_roi_edge": 6,
+        "possible_self_body_occlusion": 76
+      },
+      "main_range_m": {
+        "count": 346,
+        "min": 0.6512263291268006,
+        "max": 1.4395869175006766,
+        "p50": 0.9832593289138355,
+        "p95": 1.3956341003156023
+      },
+      "main_age_ms": {
+        "count": 352,
+        "min": 10.402484999758599,
+        "max": 43.665596000209916,
+        "p50": 14.336385000206064,
+        "p95": 20.42314099981013
+      },
+      "comparison_service_ms": {
+        "count": 352,
+        "min": 1.8688879999899655,
+        "max": 24.788845000330184,
+        "p50": 2.8766280001946143,
+        "p95": 5.0564460007080925
+      },
+      "comparison_age_ms": {
+        "count": 352,
+        "min": 13.445870999930776,
+        "max": 69.04909800050518,
+        "p50": 17.951734000234865,
+        "p95": 24.179077999178844
+      },
+      "main_over_33p33ms": 1,
+      "source_gap_ms": {
+        "count": 351,
+        "min": 2.1423600001071463,
+        "max": 108.56982899986178,
+        "p50": 33.04954700070084,
+        "p95": 55.607132000659476
+      },
+      "source_sequence_ids_without_paired_result": 8
+    },
+    "near_stopped_core": {
+      "selection": {
+        "phase": "near_stopped_core",
+        "first_frame": "44483",
+        "last_frame": "44662",
+        "approx_video_start_sec": "14",
+        "approx_video_end_sec": "20",
+        "interpretation": "visible base hidden behind platform no independent distance"
+      },
+      "rows": 177,
+      "first_frame": 44483,
+      "last_frame": 44662,
+      "source_span_sec": 5.954503095000291,
+      "result_interval_hz": 29.557462174766304,
+      "all_reference_active": true,
+      "bridge_accepted": 177,
+      "main_numeric": 177,
+      "comparison_numeric": 0,
+      "both_numeric": 0,
+      "both_numeric_exact_equal": 0,
+      "main_reasons": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 177
+      },
+      "comparison_reasons": {
+        "possible_self_body_occlusion": 177
+      },
+      "main_range_m": {
+        "count": 177,
+        "min": 0.6519017040668075,
+        "max": 0.654181880474705,
+        "p50": 0.6526193666781873,
+        "p95": 0.6533793960290837
+      },
+      "main_age_ms": {
+        "count": 177,
+        "min": 10.482738000064273,
+        "max": 25.140071000350872,
+        "p50": 14.660609000202385,
+        "p95": 20.276702000046498
+      },
+      "comparison_service_ms": {
+        "count": 177,
+        "min": 2.1761920006611035,
+        "max": 7.65252099972713,
+        "p50": 2.58935100009694,
+        "p95": 4.855756999859295
+      },
+      "comparison_age_ms": {
+        "count": 177,
+        "min": 13.622082999972918,
+        "max": 28.493703000094683,
+        "p50": 17.963286999474803,
+        "p95": 23.323905000324885
+      },
+      "main_over_33p33ms": 0,
+      "source_gap_ms": {
+        "count": 176,
+        "min": 3.255106999858981,
+        "max": 85.08140499998262,
+        "p50": 33.12306200041348,
+        "p95": 50.84406799960561
+      },
+      "source_sequence_ids_without_paired_result": 3
+    },
+    "recede_with_boundary": {
+      "selection": {
+        "phase": "recede_with_boundary",
+        "first_frame": "44663",
+        "last_frame": "44962",
+        "approx_video_start_sec": "20",
+        "approx_video_end_sec": "30",
+        "interpretation": "includes uncertain start and stop boundaries"
+      },
+      "rows": 293,
+      "first_frame": 44663,
+      "last_frame": 44962,
+      "source_span_sec": 9.963528868999674,
+      "result_interval_hz": 29.30688552612348,
+      "all_reference_active": true,
+      "bridge_accepted": 293,
+      "main_numeric": 291,
+      "comparison_numeric": 277,
+      "both_numeric": 277,
+      "both_numeric_exact_equal": 277,
+      "main_reasons": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 291,
+        "colour_contour_reaches_roi_edge": 2
+      },
+      "comparison_reasons": {
+        "possible_self_body_occlusion": 14,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 277,
+        "colour_contour_reaches_roi_edge": 2
+      },
+      "main_range_m": {
+        "count": 291,
+        "min": 0.6519017040668075,
+        "max": 1.4381630262879688,
+        "p50": 1.0329067396589082,
+        "p95": 1.4374705981599076
+      },
+      "main_age_ms": {
+        "count": 293,
+        "min": 10.115787000358978,
+        "max": 30.581409000660642,
+        "p50": 14.389042999937374,
+        "p95": 20.567624000250362
+      },
+      "comparison_service_ms": {
+        "count": 293,
+        "min": 1.9262940004409757,
+        "max": 8.28478899984475,
+        "p50": 3.011540999978024,
+        "p95": 5.534473999432521
+      },
+      "comparison_age_ms": {
+        "count": 293,
+        "min": 13.171532999876945,
+        "max": 34.37482400022418,
+        "p50": 17.93272499980958,
+        "p95": 25.552975999744376
+      },
+      "main_over_33p33ms": 0,
+      "source_gap_ms": {
+        "count": 292,
+        "min": 4.904778000309307,
+        "max": 93.92248299991479,
+        "p50": 33.06655500000488,
+        "p95": 53.30923699966661
+      },
+      "source_sequence_ids_without_paired_result": 7
+    },
+    "final_stopped_core": {
+      "selection": {
+        "phase": "final_stopped_core",
+        "first_frame": "44963",
+        "last_frame": "45275",
+        "approx_video_start_sec": "30",
+        "approx_video_end_sec": "40.4",
+        "interpretation": "visible final stop"
+      },
+      "rows": 306,
+      "first_frame": 44963,
+      "last_frame": 45275,
+      "source_span_sec": 10.40691273900029,
+      "result_interval_hz": 29.307442817023077,
+      "all_reference_active": true,
+      "bridge_accepted": 306,
+      "main_numeric": 306,
+      "comparison_numeric": 306,
+      "both_numeric": 306,
+      "both_numeric_exact_equal": 306,
+      "main_reasons": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 306
+      },
+      "comparison_reasons": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 306
+      },
+      "main_range_m": {
+        "count": 306,
+        "min": 1.4381630262879688,
+        "max": 1.4395869175006766,
+        "p50": 1.4381630262879688,
+        "p95": 1.4395869175006766
+      },
+      "main_age_ms": {
+        "count": 306,
+        "min": 10.17950599998585,
+        "max": 32.398098000157916,
+        "p50": 14.363681999384426,
+        "p95": 21.868626000468794
+      },
+      "comparison_service_ms": {
+        "count": 306,
+        "min": 2.293917999850237,
+        "max": 7.548953999503283,
+        "p50": 2.7729160001399578,
+        "p95": 5.0119859997721505
+      },
+      "comparison_age_ms": {
+        "count": 306,
+        "min": 12.921519999508746,
+        "max": 35.04419999990205,
+        "p50": 17.989828999816382,
+        "p95": 25.804331000472303
+      },
+      "main_over_33p33ms": 0,
+      "source_gap_ms": {
+        "count": 305,
+        "min": 0.7316100000025472,
+        "max": 174.85802600003808,
+        "p50": 33.12188600011723,
+        "p95": 54.08641699978034
+      },
+      "source_sequence_ids_without_paired_result": 7
+    }
+  },
+  "prior_test_excluded_from_screen_phases": true,
+  "boundary_times_approximate": true,
+  "independent_motion_odometry_supplied": false,
+  "screen_not_native_camera_pixels": true,
+  "physical_accuracy_verified": false,
+  "end_to_end_latency_verified": false,
+  "source_sha256": {
+    "Experimental_results/2026-11-13/guarded_motion_live_audit_r02/screen_audit.py": "e107e1edde32ec4e657eda14908fbc9b3956013a78c27bf6da0f23c78b627470",
+    "Experimental_results/2026-11-13/guarded_motion_live_audit_r02/screen_readings.csv": "bda5092d554a61250cef5fe19ef21ee42c42652cf627fa7d43896a0b6467fd2f",
+    "Experimental_results/2026-11-13/guarded_motion_live_audit_r02/phases.csv": "f68ae1da1aaea26d069e18bff9879571733bc86b363557302de1f9e9481fb900",
+    "Experimental_results/2026-11-13/guarded_motion_live_audit_r02/results_r01/paired_timing.csv": "fff8a0fcd44c092ba50fd443d4f819c6db2b2eb1151567b225c606b437f89117"
+  }
+}

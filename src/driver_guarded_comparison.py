@@ -57,6 +57,8 @@ class GuardedComparisonWorker:
         self.lock = threading.Lock()
         self.wake, self.stop = threading.Event(), threading.Event()
         self.pending = self.ingress = self.latest = None
+        self._display_reference = None
+        self._display_verified_source = None
         self.offered = self.dropped = self.busy_drops = self.processed = 0
         self.saved = self.log_bytes = self.request_count = 0
         self.last_request = 0
@@ -120,6 +122,20 @@ class GuardedComparisonWorker:
     def _clear(self):
         with self.lock:
             self.latest = None
+            self._display_reference = self._display_verified_source = None
+
+    def display_reference_snapshot(self):
+        """Nonblocking small reference copy; never exposes an async distance."""
+        if not self.lock.acquire(blocking=False):return None
+        try:
+            now=self.clock()
+            ref=self._display_reference
+            if (self.stop.is_set() or self.error or self.info['state']!='active' or ref is None
+                    or self.ingress is None or self.ingress[0]!=ref['reference']['session']
+                    or self._display_verified_source is None
+                    or not 0<=now-self._display_verified_source<=.5 or not 0<=now-self.ingress[2]<=.5):return None
+            return copy.deepcopy(ref)
+        finally:self.lock.release()
 
     def _status(self, *, done=False):
         value = self.snapshot()
@@ -180,6 +196,10 @@ class GuardedComparisonWorker:
                 name = f"decoded_{ref['session']}_f{ref['source_frame']:06d}.png"
                 png = bounded_regular_bytes(self.directory/name, 4*1024*1024)
                 stream.activate(ref, png)
+                verified=stream.verified_reference_snapshot()
+                with self.lock:
+                    self._display_reference=verified
+                    self._display_verified_source=verified['verified_source_time_sec']
                 self._state('active')
             except Exception as error:
                 stream.invalidate('comparison_reference_load_failed')
@@ -265,6 +285,11 @@ class GuardedComparisonWorker:
                             self._clear();self._state('pin_rejected', detail=str(error)[:300])
                         self._status()
                     row = stream.compare(frame, original.get('selected_detector_boxes') or [], original)
+                    with self.lock:
+                        if row['reference_scope_verified']:
+                            self._display_verified_source=frame.received_at
+                        else:
+                            self._display_reference=self._display_verified_source=None
                     if self.info['state'] == 'active' and row['reference_scope_verified'] is not True:
                         self._state('invalidated', detail=row['reason'])
                     row['result_kind'] = 'async_current_frame_comparison_NOT_main_display'

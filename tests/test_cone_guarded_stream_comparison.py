@@ -258,7 +258,12 @@ class StreamComparisonTests(unittest.TestCase):
         self.assertFalse(row['main_display_modified'])
         for name in ('driver_motion_process.py', 'driver_motion_bridge.py', 'cone_motion_range.py',
                      'run_cone_motion_live.py', 'cone_motion_worker.py'):
-            self.assertNotIn('cone_guarded_stream_comparison', (ROOT / 'src' / name).read_text())
+            # A provenance filename string is not a runtime import.
+            import ast
+            tree=ast.parse((ROOT/'src'/name).read_text())
+            imported=[alias.name for node in ast.walk(tree) if isinstance(node,ast.Import) for alias in node.names]
+            imported += [node.module or '' for node in ast.walk(tree) if isinstance(node,ast.ImportFrom)]
+            self.assertNotIn('cone_guarded_stream_comparison',imported)
 
 
 if __name__ == '__main__':

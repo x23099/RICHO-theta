@@ -1,0 +1,29 @@
+{
+  "state": "pass",
+  "session": "24aad0a8d31d46eeb33ef252b0d18475",
+  "source_frame": 18497,
+  "image_file": "decoded_24aad0a8d31d46eeb33ef252b0d18475_f018497.png",
+  "source_png_sha256": "84ea7dfa1393a122f3d77bef0729e7594752ce0f27b819ab0dea0796313380c0",
+  "decoded_bgr_sha256": "60be95b09e7124a1e2ffbcdd0e00634fe074feedb713f0cc166a7ffe275def1e",
+  "source_files_local_rehashed": 9,
+  "snapshot_state": "pinned",
+  "snapshot_latest_frame": 20232,
+  "snapshot_saved_pin_count": 2,
+  "snapshot_worker_running": true,
+  "snapshot_pin_to_latest_sec": 57.82346014099949,
+  "remote_worker_still_running_now_NOT_verified": true,
+  "witness_survival_until_load_NOT_verified": true,
+  "primary_and_comparison_logs_supplied": false,
+  "physical_metric_verified": false,
+  "local_camera_started": false,
+  "local_cuda_started": false,
+  "archive_sha256": "f130841d0436528f3941e9de89fc09b22e1ec9d427d6412ce0a13579fc124205",
+  "supplied_files_sha256": {
+    "comparison_status.json": "8b5ceb0334fbb04db8fc7722ff39463b436fc2fa40b71956df387adf178812ae",
+    "decoded_24aad0a8d31d46eeb33ef252b0d18475_f018497.json": "828724fc56dc975fcf55d2625fd62552d29518272960cf42447b004be50c3c16",
+    "decoded_24aad0a8d31d46eeb33ef252b0d18475_f018497.png": "84ea7dfa1393a122f3d77bef0729e7594752ce0f27b819ab0dea0796313380c0"
+  },
+  "source_sha256": {
+    "Experimental_results/2026-11-13/guarded_static_reference_r02/intake.py": "a67943d5de46b1283d1a97c41c3dac555cab6727e7a7afb0feeabcac2758fe61"
+  }
+}

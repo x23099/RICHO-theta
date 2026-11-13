@@ -155,6 +155,17 @@ class GuardedStreamComparison:
             reference_scope_verified=self._reference is not None,
             reference_used_posthoc=False, main_display_modified=False, **FLAGS)
 
+    def verified_reference_snapshot(self):
+        """Serialized owner only: export an already pin/PNG-verified reference.
+
+        This contains no comparison number and grants no floor/control authority.
+        """
+        self._fresh(self._clock())
+        if self._reference is None:return None
+        return dict(reference=copy.deepcopy(self._reference),generation=self._generation,
+            activation_frame=self._activation_frame,activated_at=self._activated_at,
+            verified_source_time_sec=self._current[2])
+
     def compare(self, frame, boxes, original):
         """Compute a separate row; input result/boxes/pixels are never modified."""
         row = self._row(frame, original)

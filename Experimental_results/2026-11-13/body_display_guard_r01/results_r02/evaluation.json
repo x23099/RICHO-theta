@@ -1,0 +1,45 @@
+{
+  "schema": "body_display_guard_offline_evaluation_v1",
+  "state": "pass",
+  "reference_session": "24aad0a8d31d46eeb33ef252b0d18475",
+  "reference_frame": 18497,
+  "first_frame": 44063,
+  "last_frame": 45275,
+  "rows": 1186,
+  "original_numeric": 1178,
+  "display_numeric": 911,
+  "display_reasons": {
+    "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 911,
+    "colour_contour_reaches_roi_edge": 8,
+    "possible_self_body_occlusion": 267
+  },
+  "near_rows": 177,
+  "near_all_withheld": true,
+  "original_withheld_preserved": 8,
+  "clear_original_values_exactly_preserved": true,
+  "raw_log_bytes_unchanged": true,
+  "local_gate_service_ms": {
+    "count": 1186,
+    "min": 0.01805601641535759,
+    "max": 5.206017987802625,
+    "p50": 0.46942400513216853,
+    "p95": 0.852749974001199
+  },
+  "activation_time_proxy": "first recorded active comparison completion, NOT actual live load time",
+  "offline_posthoc_only": true,
+  "new_live_display_recorded": false,
+  "real_cuda_replayed": false,
+  "new_images_extracted": false,
+  "physical_metric_verified": false,
+  "controlling_distance": false,
+  "usable_for_ffb": false,
+  "source_sha256": {
+    "Experimental_results/2026-11-13/body_display_guard_r01/evaluate.py": "8557d714a385d7f04a2d8f3914c972432005324689d6d2eb84d196c5fb828fb6",
+    "src/driver_body_display_guard.py": "f1c2b09d9d07cdfebae337465e1559f9dbbb92f2c7e2625b42b5fb74d8bb4f9a",
+    "src/cone_self_body_shadow.py": "52f5d3fdd5a900cb6e47a100ada9ae2fb7bcc44aa1d2da26af4b63d6221d19bf",
+    "src/cone_motion_range.py": "49b70509e66b32745fcf43e5c6e2d8621ff1d8da95cd42072e3ee93721d17fa7",
+    "Experimental_results/2026-11-13/guarded_motion_live_audit_r02/results_r01/paired_timing.csv": "fff8a0fcd44c092ba50fd443d4f819c6db2b2eb1151567b225c606b437f89117",
+    "recordings/2026-11-13/guarded_motion_full_intake_r02/logs/comparison/reference.json": "01c6f8eb5938eb010599df186a0bc3f90f599ac28184524e9f7c97a863a6577e",
+    "recordings/2026-11-13/guarded_motion_full_intake_r02/logs/primary/motion_distance_frames.jsonl": "9fe50c3934d2a97657d0425ef0ac3684133ba4b0099cd8c3605b37ebf288922e"
+  }
+}

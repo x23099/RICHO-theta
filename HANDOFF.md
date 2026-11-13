@@ -2,6 +2,54 @@
 
 更新日: **2026-11-13（JST）**。対象リポジトリ: `RICHO-theta`。
 
+## 11/13後続：自己遮蔽時の表示専用ゲートを実装。ローカル200テスト・既存1,186件評価済み、GPU未反映
+
+[最新実装・結果](Experimental_results/2026-11-13/body_display_guard_r01/README.md)、[反映後の停止確認手順](Experimental_results/2026-11-13/body_display_guard_r01/live_check.md)。ユーザーの継続依頼で、主測距・元ログは保ち、表示のみ現在支持列の自己遮蔽棄却を適用する明示opt-inを追加した。`--motion-body-display-guard`（子は`--body-display-guard`）は既定OFF、比較dir必須。旧コマンドでは表示は変わらない。今回の変更はまだcommit/pushせずGPU PC未反映なので、Pullだけでは届かない。
+
+driver_body_display_guard.pyを新規追加、既存stream/workerからpin/PNG検証済み参照コピーだけをnonblockingで取得し、現在の主support_observationへ既存compare_self_bodyを適用。非同期比較数値・half-pixel救済は使わず、数値変更・平滑化なし。GPU子で別motion_display_reviews.jsonlと任意IPCレビューを生成、bridgeは同session/frame/source時刻・元数値と権限falseを確認して元値かWITHHELDを表示。参照未load/失効/競合/古い入力/別session等では元数値へ戻さず保留。新機能がない旧worker応答もON時は拒否。操縦・ROS・FFB・送信のコードは変更していない。
+
+元r02録画区間44063〜45275の1,186件を既存supportログからオフライン評価。元数値1,178→表示数値911（元値と全同値）、自己遮蔽267件保留、元ROI端保留8件維持、近接停止177/177件保留。最終根拠results_r02/evaluation.json/CSV。ゲート単体ローカルCPU P50/P95/最大0.47/0.85/5.21ms、実GPU追加負荷ではない。元ログSHA不変。過去参照が有効だった区間の後解析で、新表示が実機で動いた証拠や精度認定ではない。
+
+新19＋関連200テスト成功：合成画像・memory pipe・実ローカル子processで保留→遮蔽保留→正常数値復帰、元主ログ/IPC数値不変、失効・不正IPC・ロック競合・gap/世代棄却、既定OFF・操縦AST不変等。2件の旧モジュール名文字列検査を実ImportのAST検査へ精密化し、直接import禁止は維持。実カメラ／ROS／実YOLO/CUDAは起動していない。
+
+次は新規1＋変更4のsrcと関連テストをGPUへ反映後、カメラなし単体確認→新保存先driver_body_guard_static_r01/body_guard_static_r01で停止確認。新モード未loadのWITHHELDは正常。現在pin3点を同接続維持で提出し、新参照SHA照合→load→表示復帰を確認する。今は追加走行・追加録画不要。実UI/pin/load・GPU負荷・物理精度・取付/床姿勢は未確認。過去実験のコードSHAを新コードに書換えない。日報・commit/pushは今回未依頼。
+
+## 11/13後続：走行r02の録画・全ログを監査。走行時更新を確認、近接主表示が残課題
+
+[最新監査](Experimental_results/2026-11-13/guarded_motion_live_audit_r02/README.md)。guarded_motion_r02_full.tar.xzの39ファイル＋約40.426秒の画面録画を受領。原本はrecordings/2026-11-13/guarded_motion_full_intake_r02。ユーザー申告の録画前試走は保持して評価から除外し、録画session24aad0a8d31d46eeb33ef252b0d18475／frame44063〜45275だけを固定。25点の原解像度画面を目視し、表示frameと主距離3桁丸めが全点でbridge受理済み主ログに一致した。実動作は短い初期停止→接近→近接停止→離脱→約10秒停止。境界は目視概略で独立オドメトリではない。
+
+録画対応40.416秒は主／比較1,186件、全件参照有効・bridge受理、約29.32件/秒。主数値1,178／ROI端保留8、比較数値911／自己遮蔽保留267／ROI端保留8。両方数値911件は完全同値。主age P95/最大20.90/43.67ms、比較service P95=5.02ms、比較age P95/最大24.84/69.05ms。主33.33ms超過1件、source gap最大174.86ms、sequence ID27個には主／比較共通で結果がない。常時30fps・露光〜表示遅延・全GUI描画や独立精度とは別。
+
+**近接時は主が約0.65mを出し続ける一方、別比較はpossible_self_body_occlusionで保留。** 録画14〜20秒は主数値177件／比較保留177件。画面でも台座が天板に隠れ、主支持点y455付近が天板境界へ達する。主数値の小さい揺れを精度良好と認定しない。比較はログ専用なので主表示にはまだ棄却が反映されていない。次は追加撮影ではなく既存証拠で主出力の自己遮蔽保留方針・回帰検証を検討。主への反映は別実装判断、今回runtime・閾値・平滑化・ROS・FFBを変更していない。
+
+全体主45,530／bridge45,530／比較45,527行が整合。pin1062・18497の原PNG/BGR/sidecar/主元行SHA、発行参照バイト一致、記録9コードSHA・profile/config・記録重みSHA照合。参照generation2はframe30258から有効。主sent45,531/returned45,530で終了未返却1、比較offered45,530/processed45,527は上書き2＋終了未処理1と整合。主child0・強制killなし・errorなし、主／I/O・比較・evidence正常終了。evidence10組すべて元行まで一致、録画内は44302・44793のみ。比較救済1件43801など録画前の結果を今回成功に混ぜない。
+
+根拠はresults_r01/audit.json（全体）、screen_audit.json（録画内）、screen_window.csv、screen_anchors.csv・図。カメラ／画面画像は加工せず、図はログ数値だけ。新7＋既存関連を含む50テスト成功。追加提出不要。物理精度・動的床姿勢・取付再現・制御採用は未検証。日報・commit/pushは今回未依頼。
+
+## 11/13後続：r02 load失敗後の再pin18497を確認。新参照をSHA照合してload
+
+[最新参照・手順](Experimental_results/2026-11-13/guarded_motion_reference_r02_repin/README.md)。r02で旧r01参照からframe516 PNGを探してload失敗し、内部witnessもinvalidateされた。その後正しいframe1062参照を入れてもwitness不在で拒否。明示再pinを依頼し、1113motionr02_1.tar.xzを受領した。session24aad0a8d31d46eeb33ef252b0d18475は維持、最新pin18497／copies時latest20232／pinned・snapshots_saved=2・error=null。PNG/BGR/sidecar/status一致、記録9コードSHA一致。主元行SHAは主ログ未提出で未照合。
+
+現在のframe18497画像を独立に読取り、x270〜380／中央y455付近の天板境界から新referenceを生成。旧frame1062参照ではない。同名ファイル混同を避けるためGPU PCのrecordings/2026-11-13/guarded_motion_r02/reference.jsonへコピー後、生成物SHAを照合してからload→status提出する。停止・同接続継続、今は走行・再起動・再pinしない。失敗したらload連打せず出力共有。active確認後に画面録画中表示を確認して短距離低速直進へ。
+
+原本はrecordings/2026-11-13/guarded_motion_repin_intake_r02。ローカルintakeのsaved数を整数1〜8へ拡張し、最新pin/requestの厳密一致は維持。関連19テスト成功。runtime・主表示・ROS・FFB・GPU環境変更なし。現在までのwitness残存・remote load/走行・床接地/物理精度は未確認。日報・commit/push未依頼。
+
+## 11/13後続：録画忘れの再試行r02。新pin確認、次はr02のload→status提出
+
+ユーザーはr01で走行したが画面録画を忘れたと申告。r01ログは保持し、3保存先をr02へ揃えて再試行する。[r02参照・再試行手順](Experimental_results/2026-11-13/guarded_motion_reference_r02/README.md)。1113motionr02.tar.xzはpin原本3点完備。session24aad0a8d31d46eeb33ef252b0d18475／pin1062、コピー時pinned・latest2926・writer_done=false・error=null。PNG/BGR/sidecar/statusのpin一致、記録9コードSHA一致。主元行SHAは主ログ未提出で未照合。原本はrecordings/2026-11-13/guarded_motion_pin_intake_r02。
+
+現在画像から天板境界x270〜380／中央y455付近を新規に読み、同session/frame/PNG SHAのreference.jsonを生成。黄色テープ部分は補間、目安2px。r01より約4px下に見えるが床姿勢や取付変化量を断定しない。距離校正ではない。既存検証器を再利用しruntime変更なし。
+
+GPU PCのrecordings/2026-11-13/guarded_motion_r02/reference.jsonへファイルコピーし、同接続・停止状態でload→statusを提出。active照合後に**画面録画開始・録画中表示を確認**して停止→短距離最低速直進→停止を行う。旧r01参照転用・再pin・Lキーは不要。新参照は未pushなのでPullのみでは届かない。現在までの接続/witness残存・load成功・走行結果は未確認。こちらから実機操作・日報・commit/pushなし。
+
+## 11/13後続：走行確認用pinを受領、新参照生成。次は停止のままload→status提出
+
+[現在参照・load手順](Experimental_results/2026-11-13/guarded_motion_reference_r01/README.md)。1113motionr01.tar.xzは必要3点完備、session f50fc9ecb85144518676084c4d001ec8／pin516。コピー時pinned・latest2708・writer_done=false・error=null。元PNG／復号BGR／sidecar／status一致、記録9コードSHA一致。主JSONL未提出なのでpin元行SHAの実照合は終了後。原本はrecordings/2026-11-13/guarded_motion_pin_intake_r01へ無加工保存。
+
+現在PNGから局所天板境界x270〜380・中央y451付近を新規に読み、同session/frame/PNG SHAに結んだreference.jsonを生成。黄色テープ部分は隣接点間補間、目安2px。床姿勢・高さ・距離精度や取付再現の校正ではない。既存intakeの明示prefix指定と生成器audit/CSV指定を追加しただけでruntime・主表示・ROS・FFB変更なし。
+
+GPU PCのrecordings/2026-11-13/guarded_motion_r01/reference.jsonへ**ファイルコピー**し、同接続・停止状態でload→status出力を提出する。未pushなのでPullだけでは届かない。現在接続/witness残存は未保証、load失敗時は出力共有。新pin・再起動・旧参照書換え・Lキーは不要。active照合後に走行手順5〜6へ進む。こちらから実機操作・日報・commit/pushは行っていない。
+
 ## 11/13後続：比較併用の低速直進手順を準備。まず新接続のpin提出まで
 
 ユーザーが次段階の継続を依頼。[新しい走行確認手順](Experimental_results/2026-11-13/guarded_motion_live_r01/README.md) を用意した。前回静止r02は終了済みなので、主 `Experimental_results/2026-11-13/driver_guarded_motion_r01`、比較 `recordings/2026-11-13/guarded_motion_r01`、既存evidence `recordings/2026-11-13/guarded_motion_evidence_r01` の新3保存先を使う。static監査の未commit変更を保持。runtime・操縦経路・閾値・profile・環境変更なし。

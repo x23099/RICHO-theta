@@ -35,6 +35,20 @@ class CurrentPinTests(unittest.TestCase):
         data['comparison_status.json']=json.dumps(s).encode()
         with self.assertRaisesRegex(ValueError,'running pinned status'):intake.check(data)
 
+    def test_repin_count_is_bounded_and_latest_request_still_required(self):
+        for count in (2,8):
+            data=self.fixture();s=json.loads(data['comparison_status.json']);s['snapshots_saved']=count
+            data['comparison_status.json']=json.dumps(s).encode()
+            self.assertEqual(intake.check(data)['snapshot_saved_pin_count'],count)
+        s['request_id']+=1;data['comparison_status.json']=json.dumps(s).encode()
+        with self.assertRaisesRegex(ValueError,'pin request mismatch'):intake.check(data)
+
+    def test_invalid_pin_counts_rejected(self):
+        for count in (0,9,True,2.0):
+            data=self.fixture();s=json.loads(data['comparison_status.json']);s['snapshots_saved']=count
+            data['comparison_status.json']=json.dumps(s).encode()
+            with self.subTest(count=count),self.assertRaisesRegex(ValueError,'pin request mismatch'):intake.check(data)
+
     def test_wrong_session_latest_rejected(self):
         data=self.fixture();s=json.loads(data['comparison_status.json']);s['latest']['session']='b'*32
         data['comparison_status.json']=json.dumps(s).encode()
@@ -65,6 +79,16 @@ class CurrentPinTests(unittest.TestCase):
                         else:item.size=2
                         archive.addfile(item,None if link else io.BytesIO(b'{}'))
                 with self.subTest(names=names,link=link),self.assertRaises(ValueError):intake.read_archive(path)
+
+    def test_explicit_archive_prefix_and_default_isolation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'input.tar.xz'
+            with tarfile.open(path,'w:xz') as archive:
+                item=tarfile.TarInfo('1113motionr01/a.json');item.size=2
+                archive.addfile(item,io.BytesIO(b'{}'))
+            self.assertEqual(intake.read_archive(path,'1113motionr01'),{'a.json':b'{}'})
+            with self.assertRaisesRegex(ValueError,'unsafe archive name'):intake.read_archive(path)
+            with self.assertRaisesRegex(ValueError,'invalid archive prefix'):intake.read_archive(path,'../1113motionr01')
 
 
 if __name__=='__main__':unittest.main()

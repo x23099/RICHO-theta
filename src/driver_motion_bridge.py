@@ -8,6 +8,7 @@ import threading
 import time
 
 from driver_motion_protocol import checked_result, profile_matches, read_message, write_frame
+from driver_body_display_guard import checked_display_review
 from theta_rtc_frames import NativeFrame, finite_time, native_frame
 
 _SHUTDOWN_GRACE_SEC = 2.
@@ -27,6 +28,8 @@ def add_motion_arguments(parser):
     group.add_argument("--motion-experimental-rigid-mount",action="store_true")
     group.add_argument("--motion-comparison-dir",type=Path,
         help="OFF by default; separate comparison log + explicit pin/load requests under recordings/")
+    group.add_argument('--motion-body-display-guard',action='store_true',
+        help='OFF by default; withhold display on current-support body review failure; requires comparison')
     from driver_withheld_evidence import add_evidence_arguments
     add_evidence_arguments(group, prefix="motion-")
 
@@ -35,11 +38,14 @@ def bridge_from_args(args):
     from driver_withheld_evidence import EvidenceLimits, evidence_path, limits_from_args
     evidence_dir = args.motion_withheld_evidence_dir
     comparison_dir = getattr(args, "motion_comparison_dir", None)
+    display_guard = getattr(args,'motion_body_display_guard',False)
     limits = limits_from_args(args, prefix="motion_")
     if not args.motion_distance:
-        if evidence_dir is not None or limits != EvidenceLimits() or comparison_dir is not None:
+        if evidence_dir is not None or limits != EvidenceLimits() or comparison_dir is not None or display_guard:
             raise ValueError("withheld evidence requires --motion-distance")
         return None
+    if display_guard and comparison_dir is None:
+        raise ValueError('body display guard requires --motion-comparison-dir')
     if evidence_dir is None and limits != EvidenceLimits():
         raise ValueError("evidence limits require --motion-withheld-evidence-dir")
     if not args.motion_experimental_rigid_mount:
@@ -82,12 +88,14 @@ def bridge_from_args(args):
         command.extend(["--target-roi",*map(str,args.motion_target_roi)])
     if comparison_dir is not None:
         command.extend(["--comparison-dir",str(comparison_dir)])
+    if display_guard:command.append('--body-display-guard')
     if evidence_dir is not None:
         command.extend(["--withheld-evidence-dir", str(evidence_dir),
             "--withheld-evidence-max-frames", str(limits.max_frames),
             "--withheld-evidence-max-mib", str(limits.max_bytes//(1024*1024)),
             "--withheld-evidence-interval-sec", str(limits.interval_sec)])
-    return DriverMotionBridge(command,args.motion_output_dir,evidence_dir=evidence_dir,comparison_dir=comparison_dir)
+    return DriverMotionBridge(command,args.motion_output_dir,evidence_dir=evidence_dir,comparison_dir=comparison_dir,
+        body_display_guard=display_guard)
 
 
 class DriverMotionBridge:
@@ -97,7 +105,9 @@ class DriverMotionBridge:
     mutable capture buffer. UI remapping/annotation must continue to use copies.
     No image copy, file write, GPU call or pipe I/O occurs in publish().
     """
-    def __init__(self,command,output_dir,*,clock=time.monotonic,evidence_dir=None,comparison_dir=None):
+    def __init__(self,command,output_dir,*,clock=time.monotonic,evidence_dir=None,comparison_dir=None,body_display_guard=False):
+        if type(body_display_guard) is not bool:raise ValueError('explicit bool body display guard required')
+        self.body_display_guard=body_display_guard;self.display_review=None
         self.command,self.output_dir,self.clock=list(command),Path(output_dir),clock
         self.evidence_dir=Path(evidence_dir) if evidence_dir is not None else None
         self.comparison_dir=Path(comparison_dir) if comparison_dir is not None else None
@@ -124,6 +134,7 @@ class DriverMotionBridge:
             self.used_sessions.add(session)
             self.session=session;self.sequence=0;self.last_media=self.last_received=None
             self.latest=self.result=None;self.valid_source=profile_matches(profile)
+            self.display_review=None
             self.reason="waiting_for_native_frame" if self.valid_source else "motion_native_sender_profile_missing_or_mismatch"
 
     def end(self,session,reason="driver_video_disconnected"):
@@ -179,6 +190,13 @@ class DriverMotionBridge:
                     if value["session"] != self.session:reason="motion_session_changed"
                     elif not 0 <= now-value["source_time_sec"] <= .5:reason="motion_result_stale"
                     else:
+                        if self.body_display_guard:
+                            try:review=checked_display_review(self.display_review,value)
+                            except (KeyError,TypeError,ValueError):return dict(available=False,reason='display_body_review_unavailable')
+                            if not value['source_time_sec']<=review['completed_time_sec']<=now:
+                                return dict(available=False,reason='display_body_review_stale')
+                            return dict(available=review['display_available'],reason=review['reason'],
+                                result=dict(value),display_review=review,age_ms=1000*(now-value['source_time_sec']))
                         return dict(available=value["distance_available"],reason=value["reason"],
                             result=dict(value),age_ms=1000*(now-value["source_time_sec"]))
             return dict(available=False,reason=reason)
@@ -215,16 +233,22 @@ class DriverMotionBridge:
                         if frame is None:break
                         write_frame(self.process.stdin,frame)
                         inflight=frame;last_key=frame.session,frame.sequence;self.sent+=1
-                    elif message.get("type") == "result" and set(message) == {"type","result"} and inflight is not None:
+                    elif message.get("type") == "result" and set(message) == ({'type','result','display_review'}
+                            if self.body_display_guard else {'type','result'}) and inflight is not None:
                         value=checked_result(message["result"],inflight)
+                        review=None
+                        if self.body_display_guard:
+                            review=checked_display_review(message['display_review'],value)
                         with self.lock:
                             accepted=(not self.stop_event.is_set() and self.valid_source
                                 and value["session"] == self.session
                                 and 0 <= self.clock()-value["source_time_sec"] <= .5)
-                            if accepted:self.result=value
+                            if accepted:self.result=value;self.display_review=review
                             else:self.retired+=1
                         self.returned+=1
-                        events.write(json.dumps(dict(result=value,accepted_current_session_and_age=accepted))+"\n")
+                        event=dict(result=value,accepted_current_session_and_age=accepted)
+                        if self.body_display_guard:event['display_review']=review
+                        events.write(json.dumps(event)+"\n")
                         events.flush();inflight=None
                     elif message.get("type") == "error":
                         raise RuntimeError(str(message.get("error","unknown motion worker failure"))[:1000])
@@ -286,6 +310,9 @@ class DriverMotionBridge:
             physical_metric_verified=False,usable_for_ffb=False,
             distance_published_to_ros=False,control_channel_modified=False,
             metric="horizontal_camera_foot_range_m_NOT_base_link_or_contact")
+        if self.body_display_guard:
+            self.shutdown['body_display_guard']=dict(enabled=True,rejection_only=True,raw_main_measurement_modified=False,
+                reviews_logged_by_child='motion_display_reviews.jsonl',controlling_distance=False,usable_for_ffb=False)
         (self.output_dir/"driver_motion_summary.json").write_text(json.dumps(self.shutdown,indent=2)+"\n")
         return self.shutdown
 
@@ -295,6 +322,8 @@ def panel_text(snapshot):
         result=snapshot["result"]
         value=f"{result['horizontal_camera_foot_range_m']:.3f} m"
         detail=f"source {result['session'][:8]} frame {result['frame']} | receive-age {snapshot['age_ms']:.0f} ms"
+        if snapshot.get('display_review') is not None:
+            detail+=f" | body-review gen {snapshot['display_review']['reference_generation']}"
     else:
         value="WITHHELD";detail=snapshot.get("reason","unknown")[:200]
     return (f"RANGE EXPERIMENT: {value} | camera-foot horizontal, NOT base_link/contact\n"

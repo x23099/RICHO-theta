@@ -1,0 +1,401 @@
+{
+  "schema": "guarded_motion_live_r02_audit_v1",
+  "state": "pass",
+  "session": "24aad0a8d31d46eeb33ef252b0d18475",
+  "pin_frames": [
+    1062,
+    18497
+  ],
+  "main": {
+    "session": "24aad0a8d31d46eeb33ef252b0d18475",
+    "profile_sha256": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "processed_frames": 45530,
+    "inference_sources": {
+      "live_cuda_yolo": 45530
+    },
+    "numeric_results": 41371,
+    "processed_withheld_fraction": 0.09134636503404349,
+    "withheld_reasons": {
+      "frame_processing_too_old": 1,
+      "no_candidate": 4033,
+      "colour_contour_reaches_roi_edge": 24,
+      "ambiguous_upper_body_colour": 54,
+      "insufficient_upper_body_colour_evidence": 28,
+      "grazing_or_outside_range": 13,
+      "support_not_connected_to_body_seed": 4,
+      "base_point_outside_observed_support": 1,
+      "ambiguous_competing_colour_contours": 1
+    },
+    "completion_span_sec": 1521.5835528220005,
+    "processed_result_interval_hz": 29.922116281790622,
+    "completion_gap_ms": {
+      "count": 45529,
+      "min": 7.475313999748323,
+      "max": 180.77086100038287,
+      "p50": 32.999721999658505,
+      "p95": 47.05959100010659
+    },
+    "bridge_events": 45530,
+    "bridge_accepted": 45529,
+    "bridge_retired": 1,
+    "bridge_accepted_numeric": 41371,
+    "frames_without_bridge_event": 0,
+    "distance_m": {
+      "count": 41371,
+      "min": 0.6491946110455478,
+      "max": 3.873867005903374,
+      "p50": 1.4395869175006766,
+      "p95": 1.5302700638440758
+    },
+    "timing_ms": {
+      "frame_age_ms": {
+        "count": 45530,
+        "min": 7.631919000232301,
+        "max": 975.805611999931,
+        "p50": 13.70308900004602,
+        "p95": 18.50192500023695
+      },
+      "predict_ms": {
+        "count": 45530,
+        "min": 5.88302400046814,
+        "max": 967.137532000379,
+        "p50": 7.015523000518442,
+        "p95": 9.768472999894584
+      },
+      "support_geometry_ms": {
+        "count": 45530,
+        "min": 0.026449999495525844,
+        "max": 83.06351000010181,
+        "p50": 1.6280979998555267,
+        "p95": 2.820724999764934
+      }
+    }
+  },
+  "comparison_rows": 45527,
+  "first_active_frame": 30258,
+  "active_reference": {
+    "rows": 15315,
+    "first_frame": 30258,
+    "last_frame": 45676,
+    "source_span_sec": 513.9203211140002,
+    "paired_interval_hz": 29.79839358522462,
+    "original_numeric": 11203,
+    "comparison_numeric": 10372,
+    "original_reason_counts": {
+      "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 11203,
+      "no_candidate": 4005,
+      "colour_contour_reaches_roi_edge": 22,
+      "grazing_or_outside_range": 12,
+      "insufficient_upper_body_colour_evidence": 26,
+      "support_not_connected_to_body_seed": 4,
+      "ambiguous_upper_body_colour": 41,
+      "base_point_outside_observed_support": 1,
+      "ambiguous_competing_colour_contours": 1
+    },
+    "comparison_reason_counts": {
+      "comparison_waiting_for_post_activation_frame": 1,
+      "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 10372,
+      "no_candidate": 4005,
+      "colour_contour_reaches_roi_edge": 21,
+      "grazing_or_outside_range": 12,
+      "insufficient_upper_body_colour_evidence": 26,
+      "support_not_connected_to_body_seed": 4,
+      "ambiguous_upper_body_colour": 41,
+      "base_point_outside_observed_support": 1,
+      "possible_self_body_occlusion": 831,
+      "ambiguous_competing_colour_contours": 1
+    },
+    "both_numeric": 10371,
+    "both_numeric_exact_equal": 10371,
+    "original_withheld_comparison_numeric": 1,
+    "original_numeric_comparison_withheld": 832,
+    "main_age_ms": {
+      "count": 15315,
+      "min": 7.631919000232301,
+      "max": 129.627690000234,
+      "p50": 13.23690000026545,
+      "p95": 18.56303100066725
+    },
+    "comparison_service_ms": {
+      "count": 15315,
+      "min": 0.011623999853327405,
+      "max": 103.6404409996976,
+      "p50": 2.636074000292865,
+      "p95": 4.871969999840076
+    },
+    "comparison_age_ms": {
+      "count": 15315,
+      "min": 8.030679999137647,
+      "max": 150.05057399957877,
+      "p50": 16.411999000411015,
+      "p95": 22.446336999564664
+    },
+    "main_over_33p33ms": 102,
+    "main_numeric_range_m": {
+      "count": 11203,
+      "min": 0.6491946110455478,
+      "max": 3.873867005903374,
+      "p50": 1.4395869175006766,
+      "p95": 1.6945407609350978
+    },
+    "comparison_numeric_range_m": {
+      "count": 10372,
+      "min": 0.6795781724975638,
+      "max": 3.873867005903374,
+      "p50": 1.4395869175006766,
+      "p95": 1.754469257774534
+    }
+  },
+  "comparison_reason_counts": {
+    "comparison_input_stale": 1030,
+    "comparison_pin_requested": 20685,
+    "comparison_reference_load_failed": 8497,
+    "comparison_waiting_for_post_activation_frame": 1,
+    "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 10372,
+    "no_candidate": 4005,
+    "colour_contour_reaches_roi_edge": 21,
+    "grazing_or_outside_range": 12,
+    "insufficient_upper_body_colour_evidence": 26,
+    "support_not_connected_to_body_seed": 4,
+    "ambiguous_upper_body_colour": 41,
+    "base_point_outside_observed_support": 1,
+    "possible_self_body_occlusion": 831,
+    "ambiguous_competing_colour_contours": 1
+  },
+  "shutdown": {
+    "primary": {
+      "schema": "driver_motion_bridge_summary_v1",
+      "sent": 45531,
+      "returned": 45530,
+      "retired_results": 1,
+      "tap_lock_drops": 3,
+      "max_publish_ms": 1.577070999701391,
+      "worker_error": null,
+      "child_exitcode": 0,
+      "io_thread_stopped": true,
+      "child_stopped": true,
+      "shutdown_complete": true,
+      "shutdown_reason": "complete",
+      "forced_worker_kill": false,
+      "shutdown_error": null,
+      "shutdown_wait_ms": 489.7281310004473,
+      "image_files_written": null,
+      "guarded_comparison_requested": true,
+      "guarded_comparison_status_file": "/home/hsr/yopi_ws/RICHO-theta/recordings/2026-11-13/guarded_motion_r02/comparison_status.json",
+      "withheld_evidence_requested": true,
+      "withheld_evidence_status_file": "/home/hsr/yopi_ws/RICHO-theta/recordings/2026-11-13/guarded_motion_evidence_r02/evidence_status.json",
+      "physical_metric_verified": false,
+      "usable_for_ffb": false,
+      "distance_published_to_ros": false,
+      "control_channel_modified": false,
+      "metric": "horizontal_camera_foot_range_m_NOT_base_link_or_contact"
+    },
+    "comparison": {
+      "schema": "driver_guarded_comparison_status_v1",
+      "state": "closed",
+      "request_id": 1794562718523990430,
+      "request_action": "load",
+      "detail": null,
+      "pin": {
+        "schema": "driver_guarded_pin_v1",
+        "request_id": 1794562326495309621,
+        "session": "24aad0a8d31d46eeb33ef252b0d18475",
+        "frame": 18497,
+        "source_time_sec": 6488.569361417,
+        "png_sha256": "84ea7dfa1393a122f3d77bef0729e7594752ce0f27b819ab0dea0796313380c0",
+        "decoded_bgr_sha256": "60be95b09e7124a1e2ffbcdd0e00634fe074feedb713f0cc166a7ffe275def1e",
+        "source_log_line_sha256": "9ffe91159fe6b417869b81db9f2cb67be061dc337d8acc40e0a28f812ab20779",
+        "image_file": "decoded_24aad0a8d31d46eeb33ef252b0d18475_f018497.png",
+        "image_size": [
+          1280,
+          720
+        ],
+        "image_modified": false,
+        "physical_metric_verified": false,
+        "floor_contact_verified": false,
+        "usable_for_ffb": false
+      },
+      "offered": 45530,
+      "latest_slot_overwrites": 2,
+      "tap_busy_drops": 0,
+      "processed": 45527,
+      "snapshots_saved": 2,
+      "log_bytes": 39938639,
+      "request_count": 5,
+      "max_requests": 128,
+      "max_log_bytes": 67108864,
+      "max_snapshots": 8,
+      "error": null,
+      "latest": null,
+      "status_time_sec": 7394.618840539,
+      "ingress": [
+        "24aad0a8d31d46eeb33ef252b0d18475",
+        45676,
+        7394.55438623
+      ],
+      "source_sha256": {
+        "driver_guarded_comparison.py": "d5c26281d7589ea5232f218fade3197f7de113d6bcf01a8d6ada497ecb06b32c",
+        "cone_guarded_stream_comparison.py": "d4d5c4ef7c74083180cf8826e2c12efc7ada8449e5852771e4e0aef5d987cf82",
+        "cone_guarded_lower_edge_shadow.py": "072aa3645755b49b1b16a31b80b168a60af9018ddbf76ec9332a70151495bdb1",
+        "cone_bbox_boundary_shadow.py": "496e1f34d5c3388411546248f8af305e9b4768d0ac8e02261af0917153c9fe10",
+        "cone_self_body_shadow.py": "52f5d3fdd5a900cb6e47a100ada9ae2fb7bcc44aa1d2da26af4b63d6221d19bf",
+        "cone_motion_range.py": "49b70509e66b32745fcf43e5c6e2d8621ff1d8da95cd42072e3ee93721d17fa7",
+        "cone_upper_support_candidate.py": "4fa9e55d5ac5af372ca5d7b8a74d2b60bbcc45d46e1819b22175567087ba1ad3",
+        "cone_support_completion_candidate.py": "41f236a4446b476a2d16d1be372888620ac36ef8a565ab4db8747afa56373f8c",
+        "driver_motion_process.py": "1f9d8dd5b9dc8837a472f509ae602177a4885c93ce4a6971dfc1e91da3a7e4f0"
+      },
+      "main_display_modified": false,
+      "physical_metric_verified": false,
+      "floor_contact_verified": false,
+      "controlling_distance": false,
+      "usable_for_ffb": false,
+      "published_to_ros": false,
+      "writer_done": true,
+      "shutdown_complete": true
+    }
+  },
+  "evidence": {
+    "schema": "driver_withheld_evidence_verification_v1",
+    "verified_pairs": 10,
+    "source_log_checked": true,
+    "source_log_matched_pairs": 10,
+    "capture_shutdown_complete": true,
+    "incomplete_index_tail_ignored": false,
+    "nonindexed_files_NOT_verified": [],
+    "recorder_status": {
+      "schema": "driver_withheld_evidence_status_v1",
+      "enabled": true,
+      "accepted": 10,
+      "saved": 10,
+      "png_and_sidecar_bytes": 8597347,
+      "skipped_interval": 14,
+      "skipped_queue_full": 0,
+      "skipped_quota": 0,
+      "skipped_other_reason": 45506,
+      "skipped_after_encoding_budget": 0,
+      "tap_busy_drops": 0,
+      "error": null,
+      "budget_exhausted": false,
+      "max_frames": 40,
+      "max_png_and_sidecar_bytes": 134217728,
+      "min_interval_sec": 1.0,
+      "target_reason": "colour_contour_reaches_roi_edge",
+      "source": "native_decoded_1280x720_BGR_NOT_remapped",
+      "image_files_written": true,
+      "control_modified": false,
+      "physical_metric_verified": false,
+      "writer_done": true,
+      "shutdown_complete": true
+    },
+    "physical_metric_verified": false,
+    "usable_for_control": false
+  },
+  "engine_metadata": {
+    "schema": "driver_motion_engine_v1",
+    "profile_sha256": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "weights_sha256": "3a6e124adb15c16efd7d22c853406066371f48873c82f1d3cfc445b22ae5997b",
+    "config_sha256": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+      "index": 0,
+      "torch_version": "2.7.1+cu118",
+      "torch_cuda_version": "11.8"
+    },
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "published_to_ros": false,
+    "mount_or_floor_tilt_compensated": false,
+    "metric": "horizontal_camera_foot_range_m_NOT_base_link_or_contact",
+    "guarded_comparison": {
+      "requested": true,
+      "worker_started": true,
+      "directory": "/home/hsr/yopi_ws/RICHO-theta/recordings/2026-11-13/guarded_motion_r02",
+      "main_display_modified": false,
+      "controlling_distance": false
+    },
+    "withheld_evidence": {
+      "requested": true,
+      "recorder_started": true,
+      "directory": "/home/hsr/yopi_ws/RICHO-theta/recordings/2026-11-13/guarded_motion_evidence_r02",
+      "target_reason": "colour_contour_reaches_roi_edge",
+      "max_frames": 40,
+      "max_png_and_sidecar_bytes": 134217728,
+      "interval_sec": 1.0
+    }
+  },
+  "event_sha256": "5acee3e768c30e19b671029423352093cdb1499f654d7cfeb2b4b40baab794b4",
+  "sent_without_return": 1,
+  "comparison_not_processed": 3,
+  "pin_exact_lines_and_pixels_verified": true,
+  "issued_reference_exact_bytes_verified": true,
+  "source_files_rehashed": 9,
+  "physical_accuracy_verified": false,
+  "screen_motion_segments_verified": false,
+  "gui_latency_verified": false,
+  "end_to_end_camera_latency_verified": false,
+  "current_mount_repeatability_verified": false,
+  "local_camera_started": false,
+  "local_cuda_started": false,
+  "vehicle_operated_locally": false,
+  "intake": {
+    "logs": {
+      "archive_sha256": "15d6c88ba527c91cde8c71afc0928a82b076e556f2fa058b0031fd379cc8ed37",
+      "files_sha256": {
+        "primary/motion_bridge_events.jsonl": "5acee3e768c30e19b671029423352093cdb1499f654d7cfeb2b4b40baab794b4",
+        "primary/motion_profile_used.json": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+        "primary/motion_engine_summary.json": "a3ca020fe525a7a4e1ef6c9523e210d8c84731d674ceb5ca43f34f68c0e4ec68",
+        "primary/ultralytics_config/matplotlib/fontlist-v390.json": "7ff32de6970dfc8c8c6591d0e51bc1d592d4abdfec2881e7bae9c6cf6ebc57a4",
+        "primary/ultralytics_config/Ultralytics/Arial.ttf": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22",
+        "primary/ultralytics_config/Ultralytics/settings.json": "f21cf3e8a1d6e05a7c269bdfa464a8451545fd92b33e8ee2e2ef3b131fd14d0a",
+        "primary/driver_motion_summary.json": "1b7bbd4a5f2a4dce801457c135c2de859f67d4f75ee25ee1be0a5aaf43d9746d",
+        "primary/motion_worker_stderr.log": "6bbd4c0ec0535a1a3e42e446293bb7d4cb5f353a9b8ba552b7d15ff0c1193bd7",
+        "primary/motion_distance_frames.jsonl": "9fe50c3934d2a97657d0425ef0ac3684133ba4b0099cd8c3605b37ebf288922e",
+        "comparison/comparison_frames.jsonl": "6b352f475a08e71067d8cdd85c928027ab40f262cd4b4a213d784d35444ab67a",
+        "comparison/decoded_24aad0a8d31d46eeb33ef252b0d18475_f018497.png": "84ea7dfa1393a122f3d77bef0729e7594752ce0f27b819ab0dea0796313380c0",
+        "comparison/request.json": "8bdf3be75ba67049322cc629ecc1cf697aaca64deebd983ec1380c82cb7fce92",
+        "comparison/decoded_24aad0a8d31d46eeb33ef252b0d18475_f001062.png": "1b0a1c83933e597c42f4de2875d6b27e731d9cf0827bf45d4ed3e43bbc384d7d",
+        "comparison/comparison_status.json": "1ae63fa71f522065f3b75a26bc9b53d4ad57081d865929f1b659298290dd838b",
+        "comparison/reference.json": "01c6f8eb5938eb010599df186a0bc3f90f599ac28184524e9f7c97a863a6577e",
+        "comparison/decoded_24aad0a8d31d46eeb33ef252b0d18475_f018497.json": "828724fc56dc975fcf55d2625fd62552d29518272960cf42447b004be50c3c16",
+        "comparison/decoded_24aad0a8d31d46eeb33ef252b0d18475_f001062.json": "9cb16fbb04f245322e82ae3b3fbda164f276d180ef2d48a3dc2c79f8d5c6d98f",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f000324.png": "78da77b91ae881e9eb9766e77b3996540ebc4eb528bc11518431eecb1215e64b",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f042751.json": "90b5c5f1bed0db09d8f33e293ccd5841aa038e889f245d6bfbbb304af456381b",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f037696.png": "17ae1e55225ca083bd58bcac9097f19211fd0abfe52c0163a411f2f51088ae1d",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f042578.png": "bb59fe4b14e44b7d1e4ed5ce23a84d2cef83b5bee6305dc02056cba84d0e7f45",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f043801.json": "8f6dcb9f8d3b9bb8540ac6cc2576f2c2aee18db37fb474a7708053d2d75bc279",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f033473.png": "b0226c8d9927b5d9bdd6d5e627a09ff1ab1026d5c496cf32f6cbcde42e99395c",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f037696.json": "d6241c32ab8f985538dede4ba41fb25d1c44b162d4eb15c6e626147a7cae39ac",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f044793.json": "0097bfaffa69ead8f694a1cd67af6187e321da2d147dee7bba60b72b6e21d44a",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f028980.json": "013071385ace95bf6f0195b599b8409d182c50a73dd529cabac321c879039709",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f042578.json": "824d98888004109729d31c2d1f638b2422d8d8d7247566ad3688c664acaa0f43",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f042751.png": "7911985fa24b1ed5f690ee334f64712aa357448b5881a5126d59d282ebdc2d16",
+        "evidence/evidence_status.json": "66506e8372031c498f0b6b5596a3c31cd6ca49075c45faa39fcb86ae40aba8ce",
+        "evidence/evidence_index.jsonl": "4d217846b6df615419b2d5b32867b1fe4c470a2de0479e9df87c9e13e5390f84",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f000324.json": "51b42ff4ace760ea896beb673ccacf98d6b2346d8a70295293eb3438d404e746",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f028980.png": "1d6aae33fefd99a58ddbe6c01d6b2fe02cb37f8961317b0d9a897cb6c6aac74f",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f044302.png": "2b6603d44dc12402d754134cbecc7972770d482a955de144e6c16263bae4276b",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f044302.json": "30b6c4a80b04faf088b4840f254f923302b202461434c4fe1d919e712563d710",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f043696.json": "3c565792a4f822cde5369c0dfa1983c0c58d7cfaa643209424c1d2385020453c",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f043696.png": "4b102a5c9ab23eb6ba87994ba044467b3978df14f014181044f28efa2f796d1f",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f033473.json": "6d82d7469b2d0807059b6d3b826f8e80a9d78b2ebc7af20c2264a7f19274caab",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f043801.png": "d58a35caf329edaf39dd6fd8ca0def175686d4bde812e70d161ab08260512053",
+        "evidence/decoded_24aad0a8d31d46eeb33ef252b0d18475_f044793.png": "bd6ebf33da1ac1e849a5bb3c277dd2ebc44ec23e8a69e0c0009e10d25d291230"
+      },
+      "total_uncompressed_bytes": 265071269
+    },
+    "video": {
+      "archive_sha256": "4cdfc7b9511815f7f6cf572a698a7a11d4d7df116c96f5631dd684d71b020f27",
+      "files_sha256": {
+        "screen/Screencast from 2026\u5e7411\u670813\u65e5 18\u664246\u520618\u79d2.webm": "199ff544f3364fc353e1ef553538bc4456ba71fd23ac23ba4af5c333dd9e40ab"
+      },
+      "total_uncompressed_bytes": 14985640
+    },
+    "source_sha256": {
+      "Experimental_results/2026-11-13/guarded_motion_live_audit_r02/review.py": "2bb99cfb9cf17ecf5ee487a36236afff1bd903f127201ec9ff60886b5e3adb20"
+    }
+  },
+  "source_sha256": {
+    "Experimental_results/2026-11-13/guarded_motion_live_audit_r02/review.py": "bd317e4778df84d6ffd6361e7088688369f50a3878d884853ad7f52cef071b81",
+    "Experimental_results/2026-11-13/guarded_static_live_audit_r02/review.py": "8d79498fbdf2771d9ce5e2982956e7eaa57ee196a00ed9df39cbcdf0b84665fa"
+  }
+}

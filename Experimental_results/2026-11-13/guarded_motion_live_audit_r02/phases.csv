@@ -1,0 +1,7 @@
+phase,first_frame,last_frame,approx_video_start_sec,approx_video_end_sec,interpretation
+screen_scope,44063,45275,0,40.4,all visible scope excluding earlier test
+initial_stopped_core,44063,44122,0,2,short initial stop only not 10 seconds
+approach_with_boundary,44123,44482,2,14,includes uncertain start and stop boundaries
+near_stopped_core,44483,44662,14,20,visible base hidden behind platform no independent distance
+recede_with_boundary,44663,44962,20,30,includes uncertain start and stop boundaries
+final_stopped_core,44963,45275,30,40.4,visible final stop

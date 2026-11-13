@@ -20,14 +20,15 @@ def require(value,message):
 def sha(blob):return hashlib.sha256(blob).hexdigest()
 
 
-def read_archive(path):
+def read_archive(path, prefix='1113r02'):
+    require(isinstance(prefix,str) and re.fullmatch('[A-Za-z0-9_]+',prefix),'invalid archive prefix')
     payload={};seen=set();total=0
     with tarfile.open(path,'r:xz') as archive:
         for n,item in enumerate(archive):
             require(n<8,'too many archive entries')
             name=item.name.rstrip('/');p=PurePosixPath(name)
             require(name==str(p) and not p.is_absolute() and '..' not in p.parts and '\\' not in name
-                and p.parts[0]=='1113r02' and len(p.parts)<=2,'unsafe archive name')
+                and p.parts[0]==prefix and len(p.parts)<=2,'unsafe archive name')
             require(name not in seen,'duplicate archive entry');seen.add(name)
             require(item.isdir() or item.isfile(),'links/special files rejected')
             if item.isdir():require(len(p.parts)==1,'unexpected directory');continue
@@ -63,7 +64,8 @@ def check(payload):
     require(all(pin[k] is False for k in ('physical_metric_verified','floor_contact_verified','usable_for_ffb'))
         and all(status[k] is False for k in ('physical_metric_verified','floor_contact_verified','controlling_distance',
             'usable_for_ffb','published_to_ros','main_display_modified')),'authority flags changed')
-    require(status['request_action']=='pin' and status['request_id']==pin['request_id'] and status['snapshots_saved']==1,'pin request mismatch')
+    require(status['request_action']=='pin' and status['request_id']==pin['request_id']
+        and type(status['snapshots_saved']) is int and 1<=status['snapshots_saved']<=8,'pin request mismatch')
     latest=status['latest']
     require(latest['session']==pin['session'] and latest['frame']>pin['frame'] and latest['reference_scope_verified'] is False,
         'post-pin same-session unreferenced snapshot required')
@@ -78,6 +80,7 @@ def check(payload):
     return dict(state='pass',session=pin['session'],source_frame=pin['frame'],image_file=stem+'.png',
         source_png_sha256=pin['png_sha256'],decoded_bgr_sha256=pin['decoded_bgr_sha256'],
         source_files_local_rehashed=len(source_hashes),snapshot_state=status['state'],snapshot_latest_frame=latest['frame'],
+        snapshot_saved_pin_count=status['snapshots_saved'],
         snapshot_worker_running=True,snapshot_pin_to_latest_sec=latest['source_time_sec']-pin['source_time_sec'],
         remote_worker_still_running_now_NOT_verified=True,witness_survival_until_load_NOT_verified=True,
         primary_and_comparison_logs_supplied=False,physical_metric_verified=False,
@@ -87,11 +90,12 @@ def check(payload):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--archive',type=Path,required=True)
+    parser.add_argument('--archive-prefix',default='1113r02')
     parser.add_argument('--intake-dir',type=Path,required=True)
     parser.add_argument('--output-dir',type=Path,required=True)
     args=parser.parse_args();require(not args.intake_dir.exists() and not args.output_dir.exists(),'new output paths required')
     require(args.archive.stat().st_size<=5*1024*1024,'compressed archive exceeds bound')
-    payload=read_archive(args.archive);report=check(payload)
+    payload=read_archive(args.archive,args.archive_prefix);report=check(payload)
     report.update(archive_sha256=sha(read_regular(args.archive,5*1024*1024)),
         supplied_files_sha256={name:sha(blob) for name,blob in payload.items()},
         source_sha256={str(Path(__file__).relative_to(ROOT)):sha(Path(__file__).read_bytes())})

@@ -1,0 +1,28 @@
+{
+  "state": "pass",
+  "session": "f50fc9ecb85144518676084c4d001ec8",
+  "source_frame": 516,
+  "image_file": "decoded_f50fc9ecb85144518676084c4d001ec8_f000516.png",
+  "source_png_sha256": "c5b684dce1349fb25892616bd384a904af5db6b171b7374b40d8e34a9c6e0add",
+  "decoded_bgr_sha256": "4e2aae2b968b7a58bc2908075b4f26fdb3414272917050a308b8e3704157d8ec",
+  "source_files_local_rehashed": 9,
+  "snapshot_state": "pinned",
+  "snapshot_latest_frame": 2708,
+  "snapshot_worker_running": true,
+  "snapshot_pin_to_latest_sec": 73.05697999100084,
+  "remote_worker_still_running_now_NOT_verified": true,
+  "witness_survival_until_load_NOT_verified": true,
+  "primary_and_comparison_logs_supplied": false,
+  "physical_metric_verified": false,
+  "local_camera_started": false,
+  "local_cuda_started": false,
+  "archive_sha256": "3710c102b2b213cf6d5124b6d548bc3e5b38e0ff6a78cfec78679a2e5bd67184",
+  "supplied_files_sha256": {
+    "comparison_status.json": "fd8fcb7f9ca4c28556288b8a34d88c577e37841ab226950762386aa485960ba4",
+    "decoded_f50fc9ecb85144518676084c4d001ec8_f000516.json": "49fdf1d4340109f7f96216cfb412153392ccddca5faa5800d252d06a3c73752b",
+    "decoded_f50fc9ecb85144518676084c4d001ec8_f000516.png": "c5b684dce1349fb25892616bd384a904af5db6b171b7374b40d8e34a9c6e0add"
+  },
+  "source_sha256": {
+    "Experimental_results/2026-11-13/guarded_static_reference_r02/intake.py": "2e81e38d1cb4de4fa1cc36ba1831dbd7d3decd6cabd9dd3f486b3fe085372a0f"
+  }
+}

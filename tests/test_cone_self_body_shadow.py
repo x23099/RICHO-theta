@@ -132,7 +132,11 @@ class SelfBodyTests(unittest.TestCase):
     def test_no_import_from_live_entry_points(self):
         for name in ("driver_motion_process.py", "driver_motion_bridge.py", "cone_motion_range.py",
                      "run_cone_motion_live.py"):
-            self.assertNotIn("cone_self_body_shadow", (ROOT / "src" / name).read_text())
+            import ast
+            tree=ast.parse((ROOT/'src'/name).read_text())
+            imported=[alias.name for node in ast.walk(tree) if isinstance(node,ast.Import) for alias in node.names]
+            imported += [node.module or '' for node in ast.walk(tree) if isinstance(node,ast.ImportFrom)]
+            self.assertNotIn('cone_self_body_shadow',imported)
 
 
 if __name__ == "__main__":

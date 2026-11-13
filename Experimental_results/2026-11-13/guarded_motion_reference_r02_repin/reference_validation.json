@@ -1,0 +1,30 @@
+{
+  "state": "pass",
+  "session": "24aad0a8d31d46eeb33ef252b0d18475",
+  "source_frame": 18497,
+  "reference_sha256": "01c6f8eb5938eb010599df186a0bc3f90f599ac28184524e9f7c97a863a6577e",
+  "pin_png_sha256": "84ea7dfa1393a122f3d77bef0729e7594752ce0f27b819ab0dea0796313380c0",
+  "pin_pixels_sha256": "60be95b09e7124a1e2ffbcdd0e00634fe074feedb713f0cc166a7ffe275def1e",
+  "boundary_scope_native_x": [
+    270,
+    380
+  ],
+  "source_sha256": {
+    "Experimental_results/2026-11-13/guarded_static_reference_r02/build_reference.py": "f9147ab4bb4e0a73ae075b849883a3a264c39119d931738bc01f2fa3164eb74a",
+    "Experimental_results/2026-11-13/guarded_static_reference_r02/intake.py": "a67943d5de46b1283d1a97c41c3dac555cab6727e7a7afb0feeabcac2758fe61",
+    "Experimental_results/2026-11-13/guarded_motion_reference_r02_repin/reviewed_boundary.csv": "0b28d0e43863bec1e900af56b0eff2008df3cc3a91a2053e4ea4e7ec80e813be",
+    "Experimental_results/2026-11-13/guarded_motion_reference_r02_repin/results_r01/audit.json": "5ec2abd588c62e5049ba5578ab7c711e81651b63376b98c4a073ab0843c5bf1f"
+  },
+  "submitted_file_sha256": {
+    "comparison_status.json": "8b5ceb0334fbb04db8fc7722ff39463b436fc2fa40b71956df387adf178812ae",
+    "decoded_24aad0a8d31d46eeb33ef252b0d18475_f018497.json": "828724fc56dc975fcf55d2625fd62552d29518272960cf42447b004be50c3c16",
+    "decoded_24aad0a8d31d46eeb33ef252b0d18475_f018497.png": "84ea7dfa1393a122f3d77bef0729e7594752ce0f27b819ab0dea0796313380c0"
+  },
+  "checked_reference_schema": true,
+  "current_png_reviewed": true,
+  "remote_load_performed": false,
+  "remote_witness_still_valid_NOT_verified": true,
+  "floor_pose_or_metric_verified": false,
+  "local_camera_started": false,
+  "local_cuda_started": false
+}

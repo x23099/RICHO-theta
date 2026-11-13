@@ -1,6 +1,6 @@
 """GPU subprocess for driver frame tap. No ROS, Qt, camera or RTC listener."""
 import argparse
-from contextlib import redirect_stdout
+from contextlib import redirect_stdout, nullcontext
 import json
 from pathlib import Path
 import sys
@@ -9,9 +9,10 @@ import time
 from driver_motion_protocol import compact_result, read_frame, write_message
 
 
-def serve(engine, predictor, input_stream, output_stream, log_path, *, clock=time.monotonic, evidence=None, comparison=None):
+def serve(engine, predictor, input_stream, output_stream, log_path, *, clock=time.monotonic, evidence=None, comparison=None, display_guard=None):
     processed = available = 0
-    with Path(log_path).open("x") as log:
+    reviews=Path(log_path).with_name('motion_display_reviews.jsonl').open('x') if display_guard is not None else nullcontext(None)
+    with Path(log_path).open("x") as log, reviews as display_log:
         while True:
             write_message(output_stream,dict(type="request"))
             try:
@@ -35,13 +36,25 @@ def serve(engine, predictor, input_stream, output_stream, log_path, *, clock=tim
                 revoke_range(result,"frame_processing_too_old")
             result_line=json.dumps(result,allow_nan=False)+"\n"
             log.write(result_line);log.flush()
-            write_message(output_stream,dict(type="result",result=compact_result(result)))
+            if display_guard is None:
+                write_message(output_stream,dict(type="result",result=compact_result(result)))
             if comparison is not None:
                 try:
                     comparison.offer(frame,result_line)
                 except Exception as error:
                     print("[WARNING] comparison disabled; main distance continues: "+str(error),file=sys.stderr)
                     comparison=None
+            if display_guard is not None:
+                capability=comparison.display_reference_snapshot() if comparison is not None else None
+                review=display_guard.review(result,capability,clock())
+                # Include all display-review cost in freshness, without editing the raw result.
+                done=clock()
+                if done-frame.received_at>.5:
+                    review.update(display_available=False,display_range_m=None,reason='display_body_review_stale',
+                        body_review_reason='display_body_review_stale')
+                review['completed_time_sec']=done
+                display_log.write(json.dumps(review,allow_nan=False)+'\n');display_log.flush()
+                write_message(output_stream,dict(type='result',result=compact_result(result),display_review=review))
             if evidence is not None:
                 try:
                     evidence.offer(frame,result,result_line)
@@ -68,6 +81,7 @@ def main(argv=None):
     parser.add_argument("--target-roi",type=int,nargs=4)
     parser.add_argument("--experimental-rigid-mount",action="store_true",required=True)
     parser.add_argument("--comparison-dir",type=Path,help="OFF by default; new recordings/ comparison directory")
+    parser.add_argument('--body-display-guard',action='store_true',help='OFF by default; current-support rejection-only display gate; requires comparison')
     add_evidence_arguments(parser)
     args=parser.parse_args(argv)
     # Keep stdout exclusively for IPC, including during model setup/predict.
@@ -84,6 +98,8 @@ def main(argv=None):
     try:
         with redirect_stdout(sys.stderr):
             limits=limits_from_args(args)
+            if args.body_display_guard and args.comparison_dir is None:
+                raise ValueError('body display guard requires --comparison-dir')
             if args.withheld_evidence_dir is None and limits != EvidenceLimits():
                 raise ValueError("evidence limits require --withheld-evidence-dir")
             directory=evidence_path(args.withheld_evidence_dir) if args.withheld_evidence_dir is not None else None
@@ -125,14 +141,25 @@ def main(argv=None):
             summary["guarded_comparison"]=dict(requested=comparison_directory is not None,
                 worker_started=comparison is not None,directory=str(comparison_directory) if comparison_directory else None,
                 main_display_modified=False,controlling_distance=False)
+            if args.body_display_guard:
+                summary['body_display_guard']=dict(enabled=True,raw_main_result_modified=False,display_rejection_only=True,
+                    reference_source='same_stream_explicit_pin_load',controlling_distance=False,usable_for_ffb=False,
+                    code_sha256={name:digest(Path(__file__).with_name(name)) for name in
+                        ('driver_body_display_guard.py','cone_self_body_shadow.py','driver_motion_process.py',
+                         'driver_motion_bridge.py','driver_motion_protocol.py','driver_guarded_comparison.py',
+                         'cone_guarded_stream_comparison.py')})
             summary["withheld_evidence"]=dict(requested=directory is not None,
                 recorder_started=evidence is not None, directory=str(directory) if directory else None,
                 target_reason="colour_contour_reaches_roi_edge", max_frames=limits.max_frames,
                 max_png_and_sidecar_bytes=limits.max_bytes, interval_sec=limits.interval_sec)
             (args.output_dir/"motion_engine_summary.json").write_text(json.dumps(summary,indent=2)+"\n")
             (args.output_dir/"motion_profile_used.json").write_text(json.dumps(profile,indent=2)+"\n")
+            display_guard=None
+            if args.body_display_guard:
+                from driver_body_display_guard import BodyDisplayGuard
+                display_guard=BodyDisplayGuard()
             serve(engine,predictor,sys.stdin.buffer,output,args.output_dir/"motion_distance_frames.jsonl",
-                evidence=evidence,comparison=comparison)
+                evidence=evidence,comparison=comparison,display_guard=display_guard)
     except EvidenceShutdown:
         return 0
     except Exception as error:
