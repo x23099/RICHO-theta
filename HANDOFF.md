@@ -2,6 +2,42 @@
 
 更新日: **2026-11-13（JST）**。対象リポジトリ: `RICHO-theta`。
 
+## 11/13最新：表示ゲートの遮蔽・復帰確認手順を準備。新pin4点提出まで
+
+[新手順](Experimental_results/2026-11-13/body_display_occlusion_live_r01/README.md)。静止全体監査完了後、ユーザーが継続を依頼。まず車体停止・コーン移動で「見える位置の数値→台座遮蔽時の保留→復帰」を確認する手順を作成。機体走行は要求しない。新保存先は主driver_body_guard_occlusion_r01、比較body_guard_occlusion_r01。前回GPUで確認済みのbody表示ゲートONを使うだけで、runtime・閾値・校正・GPU環境の変更や旧パッチ再適用なし。
+
+**今の現地作業は、新受信／送信→停止状態でpin1回→PNG／同名JSON／status／engine summary4点をコピー圧縮して提出まで。** コピー先はrecordings/2026-11-13/body_guard_occlusion_pin_submit_r01、提出archiveはDownloads/body_guard_occlusion_pin_r01.tar.xz。稼働中ログ全体の圧縮や転送目的の受信停止は不要。こちらで新画像確認→現在session/pin対応参照作成→SHA付き専用load手順を提示する。終了済みpin361参照を流用しない。
+
+load成功と数値復帰を確認した後だけ録画中表示を確認してA〜C各約5秒を記録予定。コーンは床上、手を離れた区間で確認し、車体接触・持ち上げ・カメラ操作はしない。可能な範囲で台座が隠れなければ無理をしない。no_candidate／ROI端等の保留は自己遮蔽ゲート成功に数えず、同frameの元主・レビュー・bridge・画面で切替を監査する。終了後は主／比較全ログarchive＋画面録画。数値は非制御／非ROS／非FFB、床接地・物理精度未認定を維持。
+
+手順のシェル構文・実motion引数parser・送信引数AST・ダミー4点のコピー圧縮を確認。こちらからUI／実カメラ／CUDA／ROS・実機は起動していない。既存未commit変更を保持し、日報・commit/pushは今回未依頼。
+
+## 11/13最新：表示ゲートONの静止全ログを監査完了。次は遮蔽時の表示保留・復帰
+
+[全実行監査](Experimental_results/2026-11-13/body_display_static_live_audit_r01/README.md)。body_guard_static_r01_full.tar.xzは必要16ファイル完備、追加提出不要。session e011664e9b994ce1b070439efa875b6a／pin361。主・表示レビュー・bridge各28,369行が全件対応し、別比較28,367行も元主へ一致。発行参照バイト・元PNG/BGR/sidecar/status・pin完全元行SHA・profile/config・記録重みSHA・重複除外12コードSHAを照合。参照済み表示3,711件は保存された支持列から天板判定を再計算して全件clearに一致。全未保存画素／YOLOの再計算や独立精度認定ではない。
+
+比較の参照有効化開始frame24754〜28485／約124.405秒は3,732件。元数値3,713→表示許可3,711、全件元値と完全同値＋bridge受理、救済0。開始2件だけ未取得／not_current保留、24756から数値許可し同種保留の再発なし。元測距のambiguous_upper_body_colour19件（28276〜28294）は表示・比較も保留し、その後復帰。possible_self_body_occlusionは0なので新主表示の実遮蔽棄却は未確認。終盤固定30秒900件は数値881／元保留19、表示のみ保留0。全体の長い未load待機を有効化後の失敗率へ混ぜない。
+
+有効化後の主age P95/最大18.29/45.36ms、表示レビュー完了age18.73/45.98ms、主完了→レビュー完了の経過P50/P95/最大0.40/0.55/1.22ms。終盤30秒のレビュー完了age P95/最大18.61/26.11ms、処理間隔約30件/秒。これは関数専有CPU時間・露光〜GUI総遅延・全描画回数ではない。数値範囲1.4375〜1.4442mも独立実測誤差ではない。
+
+主／I/O・比較writerは正常終了、エラー／強制killなし、child=-15はSIGTERM。主sent=returned28,369、初回古い入力のbridge退役1。比較offered28,369／processed28,367は上書き1＋終了未処理1と整合。rawはrecordings/2026-11-13/body_display_static_full_intake_r01。根拠は上記results_r01/audit.json／display_timing.csv。新7＋既存関連37テスト成功。
+
+今回の静止確認は完了。次は新ゲートONで「遮蔽のない数値→台座遮蔽でWITHHELD→見える位置で復帰」の実画面とログの確認。最初は車体停止・コーン移動の方法を検討し、まだ走行を要求していない。受信終了済みなので再開時は新保存先・新pin・現在画像に結んだ新参照を使い、終了済みpin361参照を流用しない。物理精度・床接地・取付再現・動的床姿勢は未認定、診断値の非制御／非ROS／非FFBを維持。runtime・GPU環境変更や実機操作なし。既存未commit変更を保持、日報・commit/pushは今回未依頼。
+
+## 11/13後続：body静止4点完備・表示ゲートONを確認。現在pin361参照を生成、次はSHA照合load
+
+[最新参照と手順](Experimental_results/2026-11-13/body_display_reference_static_r01/README.md)。1113body.tar.xzのPNG／同名JSON／status／engine summary4点を受領。session e011664e9b994ce1b070439efa875b6a／pin361、コピー時latest8944・pinned・error=null・writer_done=false。PNG/BGR/sidecar/status一致、比較9コード＋表示7コードの記録SHAがローカル一致（重複除き12ファイル）。summaryでbody_display_guard.enabled=trueを確認し、GPU側新モードの反映と有効化が記録上確認できた。実GUI・連続レビュー・新負荷はまだ未確認。
+
+現在PNGから天板境界x270〜380／中央y455付近を再読し、同session/frame/PNG SHAの新reference.jsonを生成。GPUのrecordings/2026-11-13/body_guard_static_r01/reference.jsonへコピー、SHA f93f4bd8e0c40fb4b6ee9e1fa3695520adc241d26c093ffca6e51334727a20d4を照合してから同接続load→statusと画面下部表示を提出。停止・送受信継続、今は走行・新pin・再起動不要。原本4点はrecordings/2026-11-13/body_display_pin_intake_r01。元行SHAは主ログ未提出で未照合。参照は未push。今回runtime変更・実機操作・日報・commit/pushなし。
+
+4点intakeは既存3点checkを維持し、summaryを別検証。生成器は全4点SHA確認後、明示pin3点へ既存checkを適用するよう拡張。25関連テスト成功。物理精度・床接地・取付再現は認定していない。pin画像コーンはROI右寄りなので現在sceneの保留を無理に解除しない。
+
+## 11/13後続：GPU側停止確認のpin361取得。元画像と新モードsummaryの提出待ち
+
+[statusメモ](Experimental_results/2026-11-13/body_display_guard_r01/static_pin_status_note.md)。ユーザーからbody_guard_static_r01のstatus貼付けを受領。session e011664e9b994ce1b070439efa875b6a／pin361／latest1297、pinned・error=null・writer_done=false、参照generation0の未load。原主値約1.438868mは記録されているが表示可否の認定ではない。変更対象3コード（worker/stream/process）の記録SHAは現在ローカルに一致し、それらのGPU反映と整合する。表示ゲートONとbridge/新ヘルパー反映はstatusだけでは不明。
+
+次は現在PNG・同名JSON・statusの原本3点に加え、主出力driver_body_guard_static_r01/motion_engine_summary.jsonもコピー提出してもらう。現在画像とコード・enabled確認後に同接続用参照を作成する。送受信・停止維持、旧参照load・再pin・再起動・走行は不要。現時点では新UI・実GPU負荷・物理精度未確認。今回開始時worktreeはcleanで先行変更は既にGitへ保存されているが、こちらから新たなcommit/pushはしていない。
+
 ## 11/13後続：自己遮蔽時の表示専用ゲートを実装。ローカル200テスト・既存1,186件評価済み、GPU未反映
 
 [最新実装・結果](Experimental_results/2026-11-13/body_display_guard_r01/README.md)、[反映後の停止確認手順](Experimental_results/2026-11-13/body_display_guard_r01/live_check.md)。ユーザーの継続依頼で、主測距・元ログは保ち、表示のみ現在支持列の自己遮蔽棄却を適用する明示opt-inを追加した。`--motion-body-display-guard`（子は`--body-display-guard`）は既定OFF、比較dir必須。旧コマンドでは表示は変わらない。今回の変更はまだcommit/pushせずGPU PC未反映なので、Pullだけでは届かない。

@@ -1,0 +1,101 @@
+{
+  "state": "pass",
+  "session": "e011664e9b994ce1b070439efa875b6a",
+  "source_frame": 361,
+  "image_file": "decoded_e011664e9b994ce1b070439efa875b6a_f000361.png",
+  "source_png_sha256": "6e6a75523a7ba040d36229a003d87479ab38da698a785944072bf24a04012d28",
+  "decoded_bgr_sha256": "3ea66bca7faefb35894ec2cd48b6972c31e8dc15f371ab617c4a4f863c050615",
+  "source_files_local_rehashed": 9,
+  "snapshot_state": "pinned",
+  "snapshot_latest_frame": 8944,
+  "snapshot_saved_pin_count": 1,
+  "snapshot_worker_running": true,
+  "snapshot_pin_to_latest_sec": 286.1243439359987,
+  "remote_worker_still_running_now_NOT_verified": true,
+  "witness_survival_until_load_NOT_verified": true,
+  "primary_and_comparison_logs_supplied": false,
+  "physical_metric_verified": false,
+  "local_camera_started": false,
+  "local_cuda_started": false,
+  "pin_files_sha256": {
+    "comparison_status.json": "b9ba37870ea8db5a5f8b0adb5802c57f05c5110f1f12809dc6f4a60217364dbb",
+    "decoded_e011664e9b994ce1b070439efa875b6a_f000361.json": "86ff67d9387ddcca40f4d26430da7febef4658f44a4a5b5ceb34e97a988cead0",
+    "decoded_e011664e9b994ce1b070439efa875b6a_f000361.png": "6e6a75523a7ba040d36229a003d87479ab38da698a785944072bf24a04012d28"
+  },
+  "display_guard_enabled": true,
+  "display_guard_code_files_rehashed": 7,
+  "display_gate_code_sha256": {
+    "driver_body_display_guard.py": "f1c2b09d9d07cdfebae337465e1559f9dbbb92f2c7e2625b42b5fb74d8bb4f9a",
+    "cone_self_body_shadow.py": "52f5d3fdd5a900cb6e47a100ada9ae2fb7bcc44aa1d2da26af4b63d6221d19bf",
+    "driver_motion_process.py": "55269e2006c61de651a4be3939897a8ee035949b0c825d9d098b64673a153ac9",
+    "driver_motion_bridge.py": "724153e25a86ac1e15b52e37e54e8d44ffd7e9fe90661e8126b709bf4b8c5202",
+    "driver_motion_protocol.py": "8f9ed011643eea75be54a741fdaa595646c7dc66d3277a1e3327f14256bc94dd",
+    "driver_guarded_comparison.py": "facaf454c4604b31a4042e4198db86fe0015f1a4318acd326b46d9dba607a40c",
+    "cone_guarded_stream_comparison.py": "4332cd848ecb7e8bafddd68ed3f38c68a4b6035a6516f2bbb6aff42df2beb2f6"
+  },
+  "engine_summary": {
+    "schema": "driver_motion_engine_v1",
+    "profile_sha256": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "weights_sha256": "3a6e124adb15c16efd7d22c853406066371f48873c82f1d3cfc445b22ae5997b",
+    "config_sha256": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+      "index": 0,
+      "torch_version": "2.7.1+cu118",
+      "torch_cuda_version": "11.8"
+    },
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "published_to_ros": false,
+    "mount_or_floor_tilt_compensated": false,
+    "metric": "horizontal_camera_foot_range_m_NOT_base_link_or_contact",
+    "guarded_comparison": {
+      "requested": true,
+      "worker_started": true,
+      "directory": "/home/hsr/yopi_ws/RICHO-theta/recordings/2026-11-13/body_guard_static_r01",
+      "main_display_modified": false,
+      "controlling_distance": false
+    },
+    "body_display_guard": {
+      "enabled": true,
+      "raw_main_result_modified": false,
+      "display_rejection_only": true,
+      "reference_source": "same_stream_explicit_pin_load",
+      "controlling_distance": false,
+      "usable_for_ffb": false,
+      "code_sha256": {
+        "driver_body_display_guard.py": "f1c2b09d9d07cdfebae337465e1559f9dbbb92f2c7e2625b42b5fb74d8bb4f9a",
+        "cone_self_body_shadow.py": "52f5d3fdd5a900cb6e47a100ada9ae2fb7bcc44aa1d2da26af4b63d6221d19bf",
+        "driver_motion_process.py": "55269e2006c61de651a4be3939897a8ee035949b0c825d9d098b64673a153ac9",
+        "driver_motion_bridge.py": "724153e25a86ac1e15b52e37e54e8d44ffd7e9fe90661e8126b709bf4b8c5202",
+        "driver_motion_protocol.py": "8f9ed011643eea75be54a741fdaa595646c7dc66d3277a1e3327f14256bc94dd",
+        "driver_guarded_comparison.py": "facaf454c4604b31a4042e4198db86fe0015f1a4318acd326b46d9dba607a40c",
+        "cone_guarded_stream_comparison.py": "4332cd848ecb7e8bafddd68ed3f38c68a4b6035a6516f2bbb6aff42df2beb2f6"
+      }
+    },
+    "withheld_evidence": {
+      "requested": false,
+      "recorder_started": false,
+      "directory": null,
+      "target_reason": "colour_contour_reaches_roi_edge",
+      "max_frames": 40,
+      "max_png_and_sidecar_bytes": 134217728,
+      "interval_sec": 1.0
+    }
+  },
+  "display_guard_gui_output_NOT_verified": true,
+  "exact_primary_pin_line_NOT_supplied": true,
+  "remote_witness_still_valid_NOT_verified": true,
+  "checkpoint_file_independently_rehashed": false,
+  "archive_sha256": "b87e277f27bd81536e30b10d4d2cbb8582d3f4bd914ac8b7bc56caf0a702cd6b",
+  "supplied_files_sha256": {
+    "comparison_status.json": "b9ba37870ea8db5a5f8b0adb5802c57f05c5110f1f12809dc6f4a60217364dbb",
+    "decoded_e011664e9b994ce1b070439efa875b6a_f000361.json": "86ff67d9387ddcca40f4d26430da7febef4658f44a4a5b5ceb34e97a988cead0",
+    "decoded_e011664e9b994ce1b070439efa875b6a_f000361.png": "6e6a75523a7ba040d36229a003d87479ab38da698a785944072bf24a04012d28",
+    "motion_engine_summary.json": "588972ffca9cd4c0d23b0086bcf4fdad969f88142cd3cebfccba4c2862fbbd14"
+  },
+  "source_sha256": {
+    "Experimental_results/2026-11-13/body_display_reference_static_r01/intake.py": "4af77f7d102c35d034c8bfa14616fafc19694dc2824433dd4a662534bee759fb",
+    "Experimental_results/2026-11-13/guarded_static_reference_r02/intake.py": "a67943d5de46b1283d1a97c41c3dac555cab6727e7a7afb0feeabcac2758fe61"
+  }
+}

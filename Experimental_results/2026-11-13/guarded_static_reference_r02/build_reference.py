@@ -28,7 +28,8 @@ def main():
     payload={name:intake.read_regular(args.input_dir/name,4*1024*1024) for name in audit['supplied_files_sha256']}
     for name,digest in audit['supplied_files_sha256'].items():
         intake.require(intake.sha(payload[name])==digest,'verified pin intake changed')
-    snapshot=intake.check(payload)
+    pin_names=audit.get('pin_files_sha256',audit['supplied_files_sha256'])
+    snapshot=intake.check({name:payload[name] for name in pin_names})
     points=[[int(row['x_native']),int(row['y_native'])] for row in csv.DictReader(boundary_path.open())]
     reference=checked_reference(dict(schema='offline_self_body_boundary_v1',session=snapshot['session'],
         image_size=[1280,720],layout='dual_fisheye_front_left_unremapped',source_frame=snapshot['source_frame'],

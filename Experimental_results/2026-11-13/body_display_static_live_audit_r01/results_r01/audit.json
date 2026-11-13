@@ -1,0 +1,568 @@
+{
+  "schema": "body_display_static_full_audit_v1",
+  "state": "pass",
+  "required_files_complete": true,
+  "session": "e011664e9b994ce1b070439efa875b6a",
+  "pin_frame": 361,
+  "first_reference_frame": 24754,
+  "main": {
+    "session": "e011664e9b994ce1b070439efa875b6a",
+    "profile_sha256": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "processed_frames": 28369,
+    "inference_sources": {
+      "live_cuda_yolo": 28369
+    },
+    "numeric_results": 28169,
+    "processed_withheld_fraction": 0.007049948887870563,
+    "withheld_reasons": {
+      "frame_processing_too_old": 1,
+      "no_candidate": 42,
+      "insufficient_upper_body_colour_evidence": 8,
+      "ambiguous_competing_colour_contours": 1,
+      "ambiguous_upper_body_colour": 137,
+      "colour_contour_reaches_roi_edge": 11
+    },
+    "completion_span_sec": 948.5854372860013,
+    "processed_result_interval_hz": 29.90558244406926,
+    "completion_gap_ms": {
+      "count": 28368,
+      "min": 8.43056899975636,
+      "max": 480.3303460012103,
+      "p50": 32.9540389993781,
+      "p95": 47.261853998861625
+    },
+    "bridge_events": 28369,
+    "bridge_accepted": 28368,
+    "bridge_retired": 1,
+    "bridge_accepted_numeric": 28169,
+    "frames_without_bridge_event": 0,
+    "distance_m": {
+      "count": 28169,
+      "min": 1.357275500176186,
+      "max": 1.7938468730974908,
+      "p50": 1.4395869175006766,
+      "p95": 1.4410630611053303
+    },
+    "timing_ms": {
+      "frame_age_ms": {
+        "count": 28369,
+        "min": 8.359135999853606,
+        "max": 939.2551819983055,
+        "p50": 13.898823000999982,
+        "p95": 18.537673000537325
+      },
+      "predict_ms": {
+        "count": 28369,
+        "min": 6.145716999526485,
+        "max": 933.1168469998374,
+        "p50": 7.013586000539362,
+        "p95": 9.779735000847722
+      },
+      "support_geometry_ms": {
+        "count": 28369,
+        "min": 0.03539400131558068,
+        "max": 85.91912500014587,
+        "p50": 1.6312059997289907,
+        "p95": 3.149866999592632
+      }
+    }
+  },
+  "phases": {
+    "all": {
+      "rows": 28369,
+      "first_frame": 1,
+      "last_frame": 28485,
+      "source_span_sec": 949.513729025999,
+      "processed_interval_hz": 29.876345262642584,
+      "original_numeric": 28169,
+      "display_permitted": 3711,
+      "permitted_and_bridge_accepted": 3711,
+      "original_numeric_display_withheld": 24458,
+      "original_withheld_display_numeric": 0,
+      "permitted_exact_original": 3711,
+      "original_reason_counts": {
+        "frame_processing_too_old": 1,
+        "no_candidate": 42,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 28169,
+        "insufficient_upper_body_colour_evidence": 8,
+        "ambiguous_competing_colour_contours": 1,
+        "ambiguous_upper_body_colour": 137,
+        "colour_contour_reaches_roi_edge": 11
+      },
+      "display_reason_counts": {
+        "display_body_review_stale": 1,
+        "no_candidate": 42,
+        "display_body_reference_unavailable": 24457,
+        "insufficient_upper_body_colour_evidence": 8,
+        "ambiguous_competing_colour_contours": 1,
+        "ambiguous_upper_body_colour": 137,
+        "colour_contour_reaches_roi_edge": 11,
+        "display_body_reference_not_current": 1,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 3711
+      },
+      "body_review_reason_counts": {
+        "display_body_review_stale": 1,
+        "original_withheld": 199,
+        "display_body_reference_unavailable": 24457,
+        "display_body_reference_not_current": 1,
+        "clear_of_reviewed_local_body_boundary_NOT_floor_contact": 3711
+      },
+      "reference_bound": 3711,
+      "main_age_ms": {
+        "count": 28369,
+        "min": 8.359135999853606,
+        "max": 939.2551819983055,
+        "p50": 13.898823000999982,
+        "p95": 18.537673000537325
+      },
+      "review_completion_age_ms": {
+        "count": 28369,
+        "min": 8.459426999252173,
+        "max": 939.392392998343,
+        "p50": 14.100233000135631,
+        "p95": 18.769763000818784
+      },
+      "raw_completion_to_review_completion_ms": {
+        "count": 28369,
+        "min": 0.08805200013739523,
+        "max": 3.3093959991674637,
+        "p50": 0.16874699940672144,
+        "p95": 0.41517699901305605
+      },
+      "review_age_over_33p33ms": 9,
+      "review_age_over_500ms": 1,
+      "display_numeric_range_m": {
+        "count": 3711,
+        "min": 1.4374705981599076,
+        "max": 1.4441732068117485,
+        "p50": 1.4388684561739264,
+        "p95": 1.4403184415308186
+      },
+      "comparison_rows": 28367,
+      "comparison_numeric": 3711,
+      "comparison_reason_counts": {
+        "comparison_input_stale": 331,
+        "comparison_pin_requested": 24304,
+        "comparison_waiting_for_post_activation_frame": 2,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 3711,
+        "ambiguous_upper_body_colour": 19
+      },
+      "comparison_service_ms": {
+        "count": 28367,
+        "min": 0.0049390000640414655,
+        "max": 10.404738999568508,
+        "p50": 0.012992999472771771,
+        "p95": 3.1499050001002615
+      },
+      "comparison_age_ms": {
+        "count": 28367,
+        "min": 8.672871999806375,
+        "max": 96.72428300109459,
+        "p50": 14.835509999102214,
+        "p95": 20.059448999745655
+      }
+    },
+    "pre_reference": {
+      "rows": 24637,
+      "first_frame": 1,
+      "last_frame": 24753,
+      "source_span_sec": 825.0834622089988,
+      "processed_interval_hz": 29.858797477338783,
+      "original_numeric": 24456,
+      "display_permitted": 0,
+      "permitted_and_bridge_accepted": 0,
+      "original_numeric_display_withheld": 24456,
+      "original_withheld_display_numeric": 0,
+      "permitted_exact_original": 0,
+      "original_reason_counts": {
+        "frame_processing_too_old": 1,
+        "no_candidate": 42,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 24456,
+        "insufficient_upper_body_colour_evidence": 8,
+        "ambiguous_competing_colour_contours": 1,
+        "ambiguous_upper_body_colour": 118,
+        "colour_contour_reaches_roi_edge": 11
+      },
+      "display_reason_counts": {
+        "display_body_review_stale": 1,
+        "no_candidate": 42,
+        "display_body_reference_unavailable": 24456,
+        "insufficient_upper_body_colour_evidence": 8,
+        "ambiguous_competing_colour_contours": 1,
+        "ambiguous_upper_body_colour": 118,
+        "colour_contour_reaches_roi_edge": 11
+      },
+      "body_review_reason_counts": {
+        "display_body_review_stale": 1,
+        "original_withheld": 180,
+        "display_body_reference_unavailable": 24456
+      },
+      "reference_bound": 0,
+      "main_age_ms": {
+        "count": 24637,
+        "min": 8.359135999853606,
+        "max": 939.2551819983055,
+        "p50": 13.926746998549788,
+        "p95": 18.579786001282628
+      },
+      "review_completion_age_ms": {
+        "count": 24637,
+        "min": 8.459426999252173,
+        "max": 939.392392998343,
+        "p50": 14.097252998908516,
+        "p95": 18.783469999107183
+      },
+      "raw_completion_to_review_completion_ms": {
+        "count": 24637,
+        "min": 0.08805200013739523,
+        "max": 3.3093959991674637,
+        "p50": 0.16614899868727662,
+        "p95": 0.23142000100051519
+      },
+      "review_age_over_33p33ms": 6,
+      "review_age_over_500ms": 1,
+      "display_numeric_range_m": {
+        "count": 0,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "comparison_rows": 24635,
+      "comparison_numeric": 0,
+      "comparison_reason_counts": {
+        "comparison_input_stale": 331,
+        "comparison_pin_requested": 24304
+      },
+      "comparison_service_ms": {
+        "count": 24635,
+        "min": 0.0049390000640414655,
+        "max": 0.11107899990747683,
+        "p50": 0.012180000339867547,
+        "p95": 0.019265999071649276
+      },
+      "comparison_age_ms": {
+        "count": 24635,
+        "min": 8.672871999806375,
+        "max": 96.72428300109459,
+        "p50": 14.452061999691068,
+        "p95": 19.14301899887505
+      }
+    },
+    "post_load": {
+      "rows": 3732,
+      "first_frame": 24754,
+      "last_frame": 28485,
+      "source_span_sec": 124.40451337900049,
+      "processed_interval_hz": 29.990873310467798,
+      "original_numeric": 3713,
+      "display_permitted": 3711,
+      "permitted_and_bridge_accepted": 3711,
+      "original_numeric_display_withheld": 2,
+      "original_withheld_display_numeric": 0,
+      "permitted_exact_original": 3711,
+      "original_reason_counts": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 3713,
+        "ambiguous_upper_body_colour": 19
+      },
+      "display_reason_counts": {
+        "display_body_reference_unavailable": 1,
+        "display_body_reference_not_current": 1,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 3711,
+        "ambiguous_upper_body_colour": 19
+      },
+      "body_review_reason_counts": {
+        "display_body_reference_unavailable": 1,
+        "display_body_reference_not_current": 1,
+        "clear_of_reviewed_local_body_boundary_NOT_floor_contact": 3711,
+        "original_withheld": 19
+      },
+      "reference_bound": 3711,
+      "main_age_ms": {
+        "count": 3732,
+        "min": 9.610737000912195,
+        "max": 45.35501200007275,
+        "p50": 13.701564999792026,
+        "p95": 18.29016000010597
+      },
+      "review_completion_age_ms": {
+        "count": 3732,
+        "min": 9.780853999473038,
+        "max": 45.982245001141564,
+        "p50": 14.106123000601656,
+        "p95": 18.7321970006451
+      },
+      "raw_completion_to_review_completion_ms": {
+        "count": 3732,
+        "min": 0.13153999861970078,
+        "max": 1.222938000864815,
+        "p50": 0.4039979994558962,
+        "p95": 0.5458310006360989
+      },
+      "review_age_over_33p33ms": 3,
+      "review_age_over_500ms": 0,
+      "display_numeric_range_m": {
+        "count": 3711,
+        "min": 1.4374705981599076,
+        "max": 1.4441732068117485,
+        "p50": 1.4388684561739264,
+        "p95": 1.4403184415308186
+      },
+      "comparison_rows": 3732,
+      "comparison_numeric": 3711,
+      "comparison_reason_counts": {
+        "comparison_waiting_for_post_activation_frame": 2,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 3711,
+        "ambiguous_upper_body_colour": 19
+      },
+      "comparison_service_ms": {
+        "count": 3732,
+        "min": 0.008053000783547759,
+        "max": 10.404738999568508,
+        "p50": 2.905510000346112,
+        "p95": 5.146985999090248
+      },
+      "comparison_age_ms": {
+        "count": 3732,
+        "min": 10.59194700064836,
+        "max": 71.45636600034777,
+        "p50": 17.647478000071715,
+        "p95": 22.93096999892441
+      }
+    },
+    "final_30_seconds": {
+      "rows": 900,
+      "first_frame": 27586,
+      "last_frame": 28485,
+      "source_span_sec": 29.96643461900021,
+      "processed_interval_hz": 30.000232307582873,
+      "original_numeric": 881,
+      "display_permitted": 881,
+      "permitted_and_bridge_accepted": 881,
+      "original_numeric_display_withheld": 0,
+      "original_withheld_display_numeric": 0,
+      "permitted_exact_original": 881,
+      "original_reason_counts": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 881,
+        "ambiguous_upper_body_colour": 19
+      },
+      "display_reason_counts": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 881,
+        "ambiguous_upper_body_colour": 19
+      },
+      "body_review_reason_counts": {
+        "clear_of_reviewed_local_body_boundary_NOT_floor_contact": 881,
+        "original_withheld": 19
+      },
+      "reference_bound": 881,
+      "main_age_ms": {
+        "count": 900,
+        "min": 9.610737000912195,
+        "max": 25.228067999705672,
+        "p50": 13.712325000597048,
+        "p95": 18.195784999988973
+      },
+      "review_completion_age_ms": {
+        "count": 900,
+        "min": 9.780853999473038,
+        "max": 26.111680001122295,
+        "p50": 14.121942998826853,
+        "p95": 18.607657999382354
+      },
+      "raw_completion_to_review_completion_ms": {
+        "count": 900,
+        "min": 0.13153999861970078,
+        "max": 1.044949000061024,
+        "p50": 0.40625200017530005,
+        "p95": 0.5182170007174136
+      },
+      "review_age_over_33p33ms": 0,
+      "review_age_over_500ms": 0,
+      "display_numeric_range_m": {
+        "count": 881,
+        "min": 1.4374705981599076,
+        "max": 1.4441732068117485,
+        "p50": 1.4395869175006766,
+        "p95": 1.4403184415308186
+      },
+      "comparison_rows": 900,
+      "comparison_numeric": 881,
+      "comparison_reason_counts": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 881,
+        "ambiguous_upper_body_colour": 19
+      },
+      "comparison_service_ms": {
+        "count": 900,
+        "min": 0.5735369995818473,
+        "max": 10.11007900160621,
+        "p50": 2.845209000952309,
+        "p95": 5.045697000241489
+      },
+      "comparison_age_ms": {
+        "count": 900,
+        "min": 10.59194700064836,
+        "max": 31.21645299870579,
+        "p50": 17.61037500000384,
+        "p95": 22.477894000985543
+      }
+    }
+  },
+  "display_reviews": 28369,
+  "exact_bridge_review_copies": 28369,
+  "geometry_replayed_from_logged_support": 3711,
+  "geometry_reason_counts": {
+    "clear_of_reviewed_local_body_boundary_NOT_floor_contact": 3711
+  },
+  "first_bound_display_frame": 24756,
+  "source_code_files_rehashed": 12,
+  "source_code_sha256": {
+    "driver_guarded_comparison.py": "facaf454c4604b31a4042e4198db86fe0015f1a4318acd326b46d9dba607a40c",
+    "cone_guarded_stream_comparison.py": "4332cd848ecb7e8bafddd68ed3f38c68a4b6035a6516f2bbb6aff42df2beb2f6",
+    "cone_guarded_lower_edge_shadow.py": "072aa3645755b49b1b16a31b80b168a60af9018ddbf76ec9332a70151495bdb1",
+    "cone_bbox_boundary_shadow.py": "496e1f34d5c3388411546248f8af305e9b4768d0ac8e02261af0917153c9fe10",
+    "cone_self_body_shadow.py": "52f5d3fdd5a900cb6e47a100ada9ae2fb7bcc44aa1d2da26af4b63d6221d19bf",
+    "cone_motion_range.py": "49b70509e66b32745fcf43e5c6e2d8621ff1d8da95cd42072e3ee93721d17fa7",
+    "cone_upper_support_candidate.py": "4fa9e55d5ac5af372ca5d7b8a74d2b60bbcc45d46e1819b22175567087ba1ad3",
+    "cone_support_completion_candidate.py": "41f236a4446b476a2d16d1be372888620ac36ef8a565ab4db8747afa56373f8c",
+    "driver_motion_process.py": "55269e2006c61de651a4be3939897a8ee035949b0c825d9d098b64673a153ac9",
+    "driver_body_display_guard.py": "f1c2b09d9d07cdfebae337465e1559f9dbbb92f2c7e2625b42b5fb74d8bb4f9a",
+    "driver_motion_bridge.py": "724153e25a86ac1e15b52e37e54e8d44ffd7e9fe90661e8126b709bf4b8c5202",
+    "driver_motion_protocol.py": "8f9ed011643eea75be54a741fdaa595646c7dc66d3277a1e3327f14256bc94dd"
+  },
+  "issued_reference_sha256": "f93f4bd8e0c40fb4b6ee9e1fa3695520adc241d26c093ffca6e51334727a20d4",
+  "pin_exact_primary_line_and_native_pixels_verified": true,
+  "checkpoint_file_supplied": false,
+  "engine_metadata": {
+    "schema": "driver_motion_engine_v1",
+    "profile_sha256": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "weights_sha256": "3a6e124adb15c16efd7d22c853406066371f48873c82f1d3cfc445b22ae5997b",
+    "config_sha256": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+      "index": 0,
+      "torch_version": "2.7.1+cu118",
+      "torch_cuda_version": "11.8"
+    },
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "published_to_ros": false,
+    "mount_or_floor_tilt_compensated": false,
+    "metric": "horizontal_camera_foot_range_m_NOT_base_link_or_contact",
+    "guarded_comparison": {
+      "requested": true,
+      "worker_started": true,
+      "directory": "/home/hsr/yopi_ws/RICHO-theta/recordings/2026-11-13/body_guard_static_r01",
+      "main_display_modified": false,
+      "controlling_distance": false
+    },
+    "body_display_guard": {
+      "enabled": true,
+      "raw_main_result_modified": false,
+      "display_rejection_only": true,
+      "reference_source": "same_stream_explicit_pin_load",
+      "controlling_distance": false,
+      "usable_for_ffb": false,
+      "code_sha256": {
+        "driver_body_display_guard.py": "f1c2b09d9d07cdfebae337465e1559f9dbbb92f2c7e2625b42b5fb74d8bb4f9a",
+        "cone_self_body_shadow.py": "52f5d3fdd5a900cb6e47a100ada9ae2fb7bcc44aa1d2da26af4b63d6221d19bf",
+        "driver_motion_process.py": "55269e2006c61de651a4be3939897a8ee035949b0c825d9d098b64673a153ac9",
+        "driver_motion_bridge.py": "724153e25a86ac1e15b52e37e54e8d44ffd7e9fe90661e8126b709bf4b8c5202",
+        "driver_motion_protocol.py": "8f9ed011643eea75be54a741fdaa595646c7dc66d3277a1e3327f14256bc94dd",
+        "driver_guarded_comparison.py": "facaf454c4604b31a4042e4198db86fe0015f1a4318acd326b46d9dba607a40c",
+        "cone_guarded_stream_comparison.py": "4332cd848ecb7e8bafddd68ed3f38c68a4b6035a6516f2bbb6aff42df2beb2f6"
+      }
+    },
+    "withheld_evidence": {
+      "requested": false,
+      "recorder_started": false,
+      "directory": null,
+      "target_reason": "colour_contour_reaches_roi_edge",
+      "max_frames": 40,
+      "max_png_and_sidecar_bytes": 134217728,
+      "interval_sec": 1.0
+    }
+  },
+  "shutdown": {
+    "primary": {
+      "schema": "driver_motion_bridge_summary_v1",
+      "sent": 28369,
+      "returned": 28369,
+      "retired_results": 1,
+      "tap_lock_drops": 3,
+      "max_publish_ms": 0.28220999956829473,
+      "worker_error": null,
+      "child_exitcode": -15,
+      "io_thread_stopped": true,
+      "child_stopped": true,
+      "shutdown_complete": true,
+      "shutdown_reason": "complete",
+      "forced_worker_kill": false,
+      "shutdown_error": null,
+      "shutdown_wait_ms": 63.52746399898024,
+      "image_files_written": null,
+      "guarded_comparison_requested": true,
+      "guarded_comparison_status_file": "/home/hsr/yopi_ws/RICHO-theta/recordings/2026-11-13/body_guard_static_r01/comparison_status.json",
+      "withheld_evidence_requested": false,
+      "withheld_evidence_status_file": null,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false,
+      "distance_published_to_ros": false,
+      "control_channel_modified": false,
+      "metric": "horizontal_camera_foot_range_m_NOT_base_link_or_contact",
+      "body_display_guard": {
+        "enabled": true,
+        "rejection_only": true,
+        "raw_main_measurement_modified": false,
+        "reviews_logged_by_child": "motion_display_reviews.jsonl",
+        "controlling_distance": false,
+        "usable_for_ffb": false
+      }
+    },
+    "comparison": {
+      "state": "closed",
+      "writer_done": true,
+      "shutdown_complete": true,
+      "error": null,
+      "offered": 28369,
+      "processed": 28367,
+      "latest_slot_overwrites": 1,
+      "tap_busy_drops": 0
+    },
+    "comparison_unprocessed": 2
+  },
+  "limits": {
+    "gui_draw_count_or_latency_verified": false,
+    "physical_metric_verified": false,
+    "floor_contact_verified": false,
+    "mount_repeatability_verified": false,
+    "actual_motion_verified": false,
+    "all_live_frame_pixels_independently_recomputed": false,
+    "supports_only_not_unsaved_images": true,
+    "local_camera_cuda_ros_or_vehicle_started": false
+  },
+  "archive_sha256": "d50419ecbfd9edfb7e097504e1d3eb215f4554e1805575fac96c19e34a5472bb",
+  "supplied_files_sha256": {
+    "primary/motion_bridge_events.jsonl": "86a686a2be17ab98ed868e1c9fa2f14746db77e05d248ea4584a17a4fab77043",
+    "primary/motion_profile_used.json": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "primary/motion_display_reviews.jsonl": "a0a729f89d9442963939de21c16043987a39d7818a65e17caf11145485b3fa17",
+    "primary/motion_engine_summary.json": "588972ffca9cd4c0d23b0086bcf4fdad969f88142cd3cebfccba4c2862fbbd14",
+    "primary/ultralytics_config/matplotlib/fontlist-v390.json": "0726fd7f55a110a0a2f02e3284f68f31732a4b093af4d2fd1d5fe122d8e9a814",
+    "primary/ultralytics_config/Ultralytics/Arial.ttf": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22",
+    "primary/ultralytics_config/Ultralytics/settings.json": "f21cf3e8a1d6e05a7c269bdfa464a8451545fd92b33e8ee2e2ef3b131fd14d0a",
+    "primary/driver_motion_summary.json": "20e78c59fc091a158c6e7957dfd3eb1ceaa5ed9380b04771d43c86c8c6053c3d",
+    "primary/motion_worker_stderr.log": "3ceabc520d273f9c47c9542553611e5412a003c7edb9fb8e061eb3c07e9c1b41",
+    "primary/motion_distance_frames.jsonl": "c03d8adc32c25d7cc66eb7a2042e18613f97fa2c1bb6d5c6c0465892d3a86b14",
+    "comparison/comparison_frames.jsonl": "b5ad2e4cbac350259c1c1c5cea78ac1f0451f6217c8fea9926561975d9f7ead8",
+    "comparison/decoded_e011664e9b994ce1b070439efa875b6a_f000361.json": "86ff67d9387ddcca40f4d26430da7febef4658f44a4a5b5ceb34e97a988cead0",
+    "comparison/request.json": "f0d540911b5ed8d49a2126cb2723c1fe155c1caf3f1238b3c65918572f5b963c",
+    "comparison/comparison_status.json": "e7feab1d11c002589c917362928c346051a26df20694ab0ef0ea9bebbf4305fb",
+    "comparison/reference.json": "f93f4bd8e0c40fb4b6ee9e1fa3695520adc241d26c093ffca6e51334727a20d4",
+    "comparison/decoded_e011664e9b994ce1b070439efa875b6a_f000361.png": "6e6a75523a7ba040d36229a003d87479ab38da698a785944072bf24a04012d28"
+  },
+  "audit_code_sha256": {
+    "Experimental_results/2026-11-13/body_display_static_live_audit_r01/review.py": "a86a9567fa44ea2b67d576f273a1eeef0a63066730f8165765797374aee6a042",
+    "Experimental_results/2026-11-13/guarded_static_live_audit_r02/review.py": "8d79498fbdf2771d9ce5e2982956e7eaa57ee196a00ed9df39cbcdf0b84665fa",
+    "src/report_driver_motion_logs.py": "58e876a45ac9e4b8380da0a5cde9df7f11d6073e0d1f4eb75c1525a00e949427",
+    "src/verify_driver_withheld_evidence.py": "276ce2b3f04993fc3e142dad8655bd7786b42aed336ad2bc619522e26b88734f"
+  }
+}

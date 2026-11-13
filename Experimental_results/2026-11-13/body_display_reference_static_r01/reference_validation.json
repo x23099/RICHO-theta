@@ -1,0 +1,31 @@
+{
+  "state": "pass",
+  "session": "e011664e9b994ce1b070439efa875b6a",
+  "source_frame": 361,
+  "reference_sha256": "f93f4bd8e0c40fb4b6ee9e1fa3695520adc241d26c093ffca6e51334727a20d4",
+  "pin_png_sha256": "6e6a75523a7ba040d36229a003d87479ab38da698a785944072bf24a04012d28",
+  "pin_pixels_sha256": "3ea66bca7faefb35894ec2cd48b6972c31e8dc15f371ab617c4a4f863c050615",
+  "boundary_scope_native_x": [
+    270,
+    380
+  ],
+  "source_sha256": {
+    "Experimental_results/2026-11-13/guarded_static_reference_r02/build_reference.py": "1eed9abb3b3097af8a9402bdc66acb98e8b502198a2cb604217b877a04f4cba1",
+    "Experimental_results/2026-11-13/guarded_static_reference_r02/intake.py": "a67943d5de46b1283d1a97c41c3dac555cab6727e7a7afb0feeabcac2758fe61",
+    "Experimental_results/2026-11-13/body_display_reference_static_r01/reviewed_boundary.csv": "0b28d0e43863bec1e900af56b0eff2008df3cc3a91a2053e4ea4e7ec80e813be",
+    "Experimental_results/2026-11-13/body_display_reference_static_r01/results_r01/audit.json": "eca4a0f068953acbbb71371fb3c35423e35325d34d95b4ee28f2f98f0e1ff7df"
+  },
+  "submitted_file_sha256": {
+    "comparison_status.json": "b9ba37870ea8db5a5f8b0adb5802c57f05c5110f1f12809dc6f4a60217364dbb",
+    "decoded_e011664e9b994ce1b070439efa875b6a_f000361.json": "86ff67d9387ddcca40f4d26430da7febef4658f44a4a5b5ceb34e97a988cead0",
+    "decoded_e011664e9b994ce1b070439efa875b6a_f000361.png": "6e6a75523a7ba040d36229a003d87479ab38da698a785944072bf24a04012d28",
+    "motion_engine_summary.json": "588972ffca9cd4c0d23b0086bcf4fdad969f88142cd3cebfccba4c2862fbbd14"
+  },
+  "checked_reference_schema": true,
+  "current_png_reviewed": true,
+  "remote_load_performed": false,
+  "remote_witness_still_valid_NOT_verified": true,
+  "floor_pose_or_metric_verified": false,
+  "local_camera_started": false,
+  "local_cuda_started": false
+}
