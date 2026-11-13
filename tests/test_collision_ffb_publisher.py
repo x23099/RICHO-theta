@@ -685,6 +685,44 @@ class CollisionFfbPublisherTest(unittest.TestCase):
         self.assertEqual(message.pattern, 1)
         self.assertTrue(message.active)
         self.assertEqual(message.normalized_magnitude, 0.25)
+        self.assertEqual(message.direction, 0)
+
+    def test_publish_populates_direction(self):
+        ros_api = _RosApi()
+        bridge = _bridge(ros_api)
+
+        record = bridge.publish_risk("WARNING", direction=-1)
+
+        self.assertEqual(record["collision_ffb_direction"], -1)
+        self.assertEqual(ros_api.publisher.messages[-1].direction, -1)
+
+    def test_inactive_publish_zeroes_direction(self):
+        ros_api = _RosApi()
+        bridge = _bridge(ros_api)
+
+        record = bridge.publish_risk("CLEAR", direction=-1)
+
+        self.assertEqual(record["collision_ffb_direction"], 0)
+        self.assertEqual(ros_api.publisher.messages[-1].direction, 0)
+
+    def test_unknown_pulse_zeroes_direction(self):
+        ros_api = _RosApi()
+        bridge = _bridge(ros_api)
+
+        record = bridge.publish_risk("UNKNOWN", direction=1)
+
+        self.assertEqual(record["collision_ffb_direction"], 0)
+        self.assertEqual(ros_api.publisher.messages[-1].direction, 0)
+
+    def test_invalid_direction_is_rejected(self):
+        ros_api = _RosApi()
+        bridge = _bridge(ros_api)
+
+        for direction in (2, -2, 1.5, True):
+            with self.assertRaises(ValueError):
+                bridge.publish_risk("WARNING", direction=direction)
+
+        self.assertEqual(ros_api.publisher.messages, [])
 
     def test_close_publishes_clear_and_releases_only_owned_runtime(self):
         ros_api = _RosApi(initially_ok=False)
@@ -699,6 +737,7 @@ class CollisionFfbPublisherTest(unittest.TestCase):
         final_message = ros_api.publisher.messages[-1]
         self.assertEqual(final_message.risk_level, RISK_LEVEL_VALUES["CLEAR"])
         self.assertFalse(final_message.active)
+        self.assertEqual(final_message.direction, 0)
 
     def test_publish_error_is_recorded_without_crashing_live_loop(self):
         bridge = _bridge(_RosApi(fail_publish=True))

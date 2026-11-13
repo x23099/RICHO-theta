@@ -14,7 +14,14 @@ from collision_ffb_relay import (  # noqa: E402
 )
 
 
-def _intent(*, stamp=10.0, source="bird_eye", active=True, magnitude=0.25):
+def _intent(
+    *,
+    stamp=10.0,
+    source="bird_eye",
+    active=True,
+    magnitude=0.25,
+    direction=0,
+):
     sec = int(stamp)
     nanosec = int(round((stamp - sec) * 1_000_000_000))
     return SimpleNamespace(
@@ -27,6 +34,7 @@ def _intent(*, stamp=10.0, source="bird_eye", active=True, magnitude=0.25):
         pattern=1 if active else 0,
         active=active,
         normalized_magnitude=magnitude,
+        direction=direction,
         reason="test",
     )
 
@@ -44,6 +52,7 @@ class _Command:
         self.pattern = 0
         self.active = False
         self.normalized_magnitude = 0.0
+        self.direction = 0
         self.reason = ""
         self.receiver_session_id = 0
         self.receiver_token = 0
@@ -273,6 +282,36 @@ class CollisionFfbRelayGateTest(unittest.TestCase):
             malformed_clear.reason, "inactive_intent_has_magnitude"
         )
 
+    def test_rejects_invalid_intent_direction(self):
+        gate = CollisionFfbRelayGate(challenge_stable_sec=0.0)
+        gate.receive_challenge(_challenge(), 20.0)
+
+        for direction in (-2, 2, 1.5, True):
+            decision = gate.authorize(
+                _intent(direction=direction),
+                now_ros_sec=10.0,
+                now_monotonic=20.01,
+            )
+            self.assertFalse(decision.accepted)
+            self.assertEqual(
+                decision.reason, "invalid_intent_direction"
+            )
+
+    def test_rejects_inactive_intent_with_direction(self):
+        gate = CollisionFfbRelayGate(challenge_stable_sec=0.0)
+        gate.receive_challenge(_challenge(), 20.0)
+
+        decision = gate.authorize(
+            _intent(active=False, magnitude=0.0, direction=1),
+            now_ros_sec=10.0,
+            now_monotonic=20.01,
+        )
+
+        self.assertFalse(decision.accepted)
+        self.assertEqual(
+            decision.reason, "inactive_intent_has_direction"
+        )
+
 
 class CollisionFfbRelayRosTest(unittest.TestCase):
     def test_forwards_authorized_intent_with_receiver_token(self):
@@ -311,6 +350,37 @@ class CollisionFfbRelayRosTest(unittest.TestCase):
         self.assertGreaterEqual(diagnostic["challenge_stable_age_sec"], 0.01)
         self.assertEqual(diagnostic["challenge_stream_timeout_sec"], 0.06)
         self.assertEqual(diagnostic["challenge_stream_restart_count"], 1)
+        relay.close()
+
+    def test_forwards_direction_with_authorized_intent(self):
+        ros_api = _RosApi()
+        monotonic_values = iter((20.0, 20.01, 20.02))
+        relay = CollisionFfbRelay(
+            ros_api=ros_api,
+            command_type=_Command,
+            challenge_type=_Challenge,
+            diagnostic_type=_String,
+            qos_profile="qos",
+            challenge_stable_sec=0.01,
+            monotonic_clock=lambda: next(monotonic_values),
+        )
+
+        ros_api.node.subscriptions["/collision/ffb_challenge"](_challenge())
+        ros_api.node.subscriptions["/collision/ffb_challenge"](
+            _challenge(token=10)
+        )
+        ros_api.node.subscriptions["/collision/ffb_intent"](
+            _intent(direction=-1)
+        )
+
+        commands = ros_api.node.publishers["/collision/ffb_command"].messages
+        diagnostics = ros_api.node.publishers[
+            "/collision/ffb_relay_diagnostics"
+        ].messages
+        self.assertEqual(len(commands), 1)
+        self.assertEqual(commands[0].direction, -1)
+        diagnostic = json.loads(diagnostics[0].data)
+        self.assertEqual(diagnostic["intent_direction"], -1)
         relay.close()
 
     def test_rejected_intent_publishes_nothing(self):

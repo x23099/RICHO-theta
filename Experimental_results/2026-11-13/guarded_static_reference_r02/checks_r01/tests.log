@@ -1,0 +1,12 @@
+test_closed_snapshot_rejected (test_guarded_current_pin_intake.CurrentPinTests) ... ok
+test_extra_mutable_log_rejected (test_guarded_current_pin_intake.CurrentPinTests) ... ok
+test_matching_running_snapshot_has_no_claim_of_current_remote_state (test_guarded_current_pin_intake.CurrentPinTests) ... ok
+test_mismatching_sidecar_rejected (test_guarded_current_pin_intake.CurrentPinTests) ... ok
+test_stale_snapshot_at_copy_time_rejected (test_guarded_current_pin_intake.CurrentPinTests) ... ok
+test_unsafe_tar_and_duplicate_rejected (test_guarded_current_pin_intake.CurrentPinTests) ... ok
+test_wrong_session_latest_rejected (test_guarded_current_pin_intake.CurrentPinTests) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.183s
+
+OK

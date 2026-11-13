@@ -2,6 +2,16 @@
 
 更新日: **2026-11-13（JST）**。対象リポジトリ: `RICHO-theta`。
 
+## 11/13後続：新r02の稼働中pin3点を確認、現在画像の参照を生成。次は同接続でload
+
+[現在のload手順・根拠](Experimental_results/2026-11-13/guarded_static_reference_r02/README.md)。提出1113r02.tar.xzは内部名も1113r02だが、PNG／同名JSON／statusの必要3点が揃っており問題なし。開始HEAD `22d6f39`、clean。session 9e961a39b4f54b0395eb140f52625755、pin330、コピー時latest2794／state=pinned／writer_done=false／error=null。PNG・復号BGR SHA・pin全情報一致、記録9コードSHAも一致。コピー時から現在までの接続継続やwitness残存までは保証しない。
+
+**この画像を新規に確認して境界x270〜380、中央y450付近を読み直し、同session／frame330／PNG SHA対応のreference.jsonを生成した。** 旧sessionの書換え流用ではない。黄色テープが境界の明暗を隠す部分は隣接点間補間。原画像は無加工。床姿勢・高さ・距離精度・取付再現を校正したものではなく、カメラを毎回取り外す未検証条件は維持。
+
+次はこのPCの `Experimental_results/2026-11-13/guarded_static_reference_r02/reference.json` をGPU PCの `recordings/2026-11-13/guarded_static_r02/reference.json` へコピーし、同接続のままmanage_guarded_comparison.py load→status。新pin・再起動・Lキー・旧パッチ適用は今は不要。まずstatus出力を提出してもらう。active確認後は静止20〜30秒の主更新／比較／保留／鮮度を確認し、終了後に主出力と比較の両フォルダを提出。load_rejected／失効時は出力を共有し、session書換えや無条件の再pinをしない。
+
+raw3点はrecordings/2026-11-13/guarded_static_intake_r02、根拠は上記results_r01/audit.json／reference_validation.json／reviewed_boundary.csv。新3点intake7テスト成功。実workerでのload・現地負荷・物理精度はまだ未確認。runtime／環境変更・実機操作・日報／commit/pushなし。生成した参照は未pushなので、GPUにはファイルコピーで渡す。
+
 ## 11/13後続：r01 pin画像は有効。ただし転送のため受信終了、次は新r02と3ファイルコピー
 
 [提出監査](Experimental_results/2026-11-13/guarded_static_pin_review_r01/README.md)、[再開手順](Experimental_results/2026-11-13/guarded_static_pin_review_r01/restart_r02.md)。開始HEAD `0fb7377`、clean。提出guarded_static_r01.tar.xzの元PNG／復号画素／pin JSON／statusが一致。session ab3878cba91c4394a84fb907835ae3b2、pin1484。記録9コードSHA一致、比較6,857行は全て参照未load、主数値206行は比較ログ側の記録だけで主ログは未提出。state=closed／writer_done・shutdown_complete=true／error=null。ユーザーはファイル更新が続くため転送前に受信を停止したと説明した。古いpinを再開後の接続でloadしない。

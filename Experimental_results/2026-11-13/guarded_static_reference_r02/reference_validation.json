@@ -1,0 +1,30 @@
+{
+  "state": "pass",
+  "session": "9e961a39b4f54b0395eb140f52625755",
+  "source_frame": 330,
+  "reference_sha256": "52918acea70f20e8e58875ce81d745d585cb53da20235128dc820ed0f686eecb",
+  "pin_png_sha256": "ad3b05f660523c8ef1196c85bd3a4c5a02463e40643dd7c513d753cf763d90d2",
+  "pin_pixels_sha256": "d873f31c40bd9debd1dc7044b2259a968a288e2ceacca32261b731de102dba88",
+  "boundary_scope_native_x": [
+    270,
+    380
+  ],
+  "source_sha256": {
+    "Experimental_results/2026-11-13/guarded_static_reference_r02/build_reference.py": "5eb7013fc9cc2c5daf11f2f01d860cb3478dfebda7f5dea63db495d7c740abb4",
+    "Experimental_results/2026-11-13/guarded_static_reference_r02/intake.py": "33d83cf9d0ce02b472267337abc714573bf45bf7c05aee167da720570878b76b",
+    "Experimental_results/2026-11-13/guarded_static_reference_r02/reviewed_boundary.csv": "a0e0d1a96b6dc50103f4903310d3d448651743e408c135b02965c5658869b22a",
+    "Experimental_results/2026-11-13/guarded_static_reference_r02/results_r01/audit.json": "737478ff558c2c159b8493e9a60bbaf9308bf49eb05551b40f1a9b0cbc1766ca"
+  },
+  "submitted_file_sha256": {
+    "comparison_status.json": "3f51a7798cec9c53ee7ab9b905b01a15b59d385366f890d25e1c230911c513c2",
+    "decoded_9e961a39b4f54b0395eb140f52625755_f000330.json": "664872386c7dea780b3424400639ae9b48e685ea0738706c9154444280497752",
+    "decoded_9e961a39b4f54b0395eb140f52625755_f000330.png": "ad3b05f660523c8ef1196c85bd3a4c5a02463e40643dd7c513d753cf763d90d2"
+  },
+  "checked_reference_schema": true,
+  "current_png_reviewed": true,
+  "remote_load_performed": false,
+  "remote_witness_still_valid_NOT_verified": true,
+  "floor_pose_or_metric_verified": false,
+  "local_camera_started": false,
+  "local_cuda_started": false
+}

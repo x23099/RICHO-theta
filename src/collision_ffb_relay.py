@@ -53,6 +53,7 @@ class RelayDecision:
     challenge_previous_gap_sec: float | None = None
     challenge_received_count: int = 0
     challenge_stream_restart_count: int = 0
+    direction: int = 0
 
 
 class CollisionFfbRelayGate:
@@ -194,6 +195,34 @@ class CollisionFfbRelayGate:
                 intent_age_sec=intent_age_sec,
             )
 
+        raw_direction = getattr(intent, "direction", 0)
+        if isinstance(raw_direction, bool):
+            return RelayDecision(
+                False,
+                "invalid_intent_direction",
+                intent_age_sec=intent_age_sec,
+            )
+        try:
+            direction = int(raw_direction)
+        except (TypeError, ValueError):
+            return RelayDecision(
+                False,
+                "invalid_intent_direction",
+                intent_age_sec=intent_age_sec,
+            )
+        if direction != raw_direction or direction not in (-1, 0, 1):
+            return RelayDecision(
+                False,
+                "invalid_intent_direction",
+                intent_age_sec=intent_age_sec,
+            )
+        if (not bool(intent.active)) and direction != 0:
+            return RelayDecision(
+                False,
+                "inactive_intent_has_direction",
+                intent_age_sec=intent_age_sec,
+            )
+
         challenge = self.latest_challenge
         if challenge is None:
             return RelayDecision(
@@ -262,6 +291,7 @@ class CollisionFfbRelayGate:
             intent_age_sec=intent_age_sec,
             challenge_age_sec=challenge_age_sec,
             challenge_stable_age_sec=challenge_stable_age_sec,
+            direction=direction,
             **decision_context,
         )
 
@@ -373,12 +403,17 @@ class CollisionFfbRelay:
 
     def _publish_diagnostic(self, intent, decision, outcome) -> None:
         """Publish one machine-readable record for every intent disposition."""
+        try:
+            intent_direction = int(getattr(intent, "direction", 0))
+        except (TypeError, ValueError):
+            intent_direction = 0
         payload = {
             "schema_version": 1,
             "relay_ros_time_sec": self._now_ros_sec(),
             "intent_sequence": int(getattr(intent, "sequence", 0)),
             "intent_source": str(getattr(intent, "source", "")),
             "intent_active": bool(getattr(intent, "active", False)),
+            "intent_direction": intent_direction,
             "accepted": bool(decision.accepted and outcome == "forwarded"),
             "outcome": str(outcome),
             "reason": str(decision.reason),
@@ -437,6 +472,7 @@ class CollisionFfbRelay:
         message.pattern = int(intent.pattern)
         message.active = bool(intent.active)
         message.normalized_magnitude = float(intent.normalized_magnitude)
+        message.direction = int(decision.direction)
         message.reason = str(intent.reason)
         message.receiver_session_id = decision.receiver_session_id
         message.receiver_token = decision.receiver_token

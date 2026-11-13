@@ -1,0 +1,18 @@
+{
+  "state": "pass",
+  "tests_run": 7,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "source_sha256": {
+    "Experimental_results/2026-11-13/guarded_static_reference_r02/check.py": "c0cae9eaf14075484d4e406323a8940ae38392f2d31b443998055be57cfca5b4",
+    "Experimental_results/2026-11-13/guarded_static_reference_r02/intake.py": "33d83cf9d0ce02b472267337abc714573bf45bf7c05aee167da720570878b76b",
+    "Experimental_results/2026-11-13/guarded_static_reference_r02/build_reference.py": "5eb7013fc9cc2c5daf11f2f01d860cb3478dfebda7f5dea63db495d7c740abb4",
+    "tests/test_guarded_current_pin_intake.py": "c2f5521bcf166cca318218849ffc120cb1615b8debfa4f017b1aaf8e35535e3b",
+    "tests/test_guarded_static_pin_intake.py": "e608211456bc5b6fbb2d885de620af5ab7881d3fca250ae3ea60941c55a6fc1b",
+    "Experimental_results/2026-11-13/guarded_static_pin_review_r01/intake.py": "11f91dd7df99130dd18538eed83fcdb37726d57ee982bfaea1ac8638e2908c23"
+  },
+  "local_camera_started": false,
+  "local_cuda_started": false,
+  "remote_load_performed": false
+}

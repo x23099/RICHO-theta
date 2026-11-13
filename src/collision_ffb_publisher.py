@@ -19,6 +19,7 @@ FFB_RECORDING_FIELDS = (
     "collision_ffb_active",
     "collision_ffb_requested_magnitude",
     "collision_ffb_pattern",
+    "collision_ffb_direction",
     "collision_ffb_reason",
     "collision_ffb_publish_error",
     "collision_ffb_challenge_received_count",
@@ -85,6 +86,7 @@ def empty_publish_record(*, enabled=False, risk_level=""):
         "collision_ffb_active": 0,
         "collision_ffb_requested_magnitude": 0.0,
         "collision_ffb_pattern": "off",
+        "collision_ffb_direction": 0,
         "collision_ffb_reason": "publisher_not_run",
         "collision_ffb_publish_error": "",
         "collision_ffb_challenge_received_count": "",
@@ -577,12 +579,33 @@ class CollisionFfbPublisherBridge:
             "collision_ffb_challenge_token": token,
         }
 
-    def publish_risk(self, risk_level, *, measurement_valid=None):
+    def publish_risk(
+        self,
+        risk_level,
+        *,
+        measurement_valid=None,
+        direction=0,
+    ):
         """Map and publish one risk state, returning its recording fields."""
         if self._closed:
             raise RuntimeError("collision FFB publisher is closed")
         if self.sequence > UINT64_MAX:
             raise RuntimeError("collision FFB sequence exhausted uint64 range")
+        raw_direction = direction
+        if isinstance(raw_direction, bool):
+            raise ValueError(
+                "collision FFB direction must be -1, 0, or +1"
+            )
+        try:
+            direction = int(raw_direction)
+        except (TypeError, ValueError) as error:
+            raise ValueError(
+                "collision FFB direction must be -1, 0, or +1"
+            ) from error
+        if direction != raw_direction or direction not in (-1, 0, 1):
+            raise ValueError(
+                "collision FFB direction must be -1, 0, or +1"
+            )
 
         challenge = None
         challenge_error = ""
@@ -663,6 +686,13 @@ class CollisionFfbPublisherBridge:
                 measurement_valid=measurement_valid,
             )
         payload = virtual_command_payload(virtual_command)
+        directional_pattern = payload["pattern_name"] in {
+            "steady",
+            "steady_hold",
+        }
+        effective_direction = (
+            direction if payload["active"] and directional_pattern else 0
+        )
         sequence = self.sequence
         self.sequence += 1
         record = {
@@ -675,6 +705,7 @@ class CollisionFfbPublisherBridge:
                 "normalized_magnitude"
             ],
             "collision_ffb_pattern": payload["pattern_name"],
+            "collision_ffb_direction": effective_direction,
             "collision_ffb_reason": payload["reason"],
             "collision_ffb_publish_error": "",
             "collision_ffb_challenge_received_count": "",
@@ -690,6 +721,7 @@ class CollisionFfbPublisherBridge:
                 record.update(
                     collision_ffb_active=0,
                     collision_ffb_requested_magnitude=0.0,
+                    collision_ffb_direction=0,
                     collision_ffb_reason="challenge_unavailable",
                     collision_ffb_publish_error=challenge_error,
                 )
@@ -704,6 +736,7 @@ class CollisionFfbPublisherBridge:
             message.pattern = payload["pattern"]
             message.active = payload["active"]
             message.normalized_magnitude = payload["normalized_magnitude"]
+            message.direction = effective_direction
             message.reason = payload["reason"]
             if self.freshness_mode == "challenge":
                 message.receiver_session_id = challenge[0]
