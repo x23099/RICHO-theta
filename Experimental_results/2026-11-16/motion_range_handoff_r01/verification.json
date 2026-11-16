@@ -1,0 +1,30 @@
+{
+  "work_date": "2026-11-16",
+  "state": "pass",
+  "official_result": "results_r02/audit.json",
+  "goal_document": "RESEARCH_GOAL.md",
+  "goal_source_sha256": "331dbab8c3879f443f49202334de5517df204820f113f8fab5cb8cfd175088ab",
+  "samples_roundtripped": 51202,
+  "numeric_exactly_preserved": 19297,
+  "withheld_remains_null": 31905,
+  "matched_screenshot_points": 3,
+  "additional_delay_501ms_all_withheld": true,
+  "tests": {
+    "command": "env PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /home/robo25/theta-env/bin/python3 -m pytest -q tests/test_driver_motion_handoff.py tests/test_driver_body_display_guard.py tests/test_driver_motion_bridge.py tests/test_driver_motion_integration.py tests/test_body_display_range_audit.py",
+    "passed": 90,
+    "failed": 0,
+    "new_handoff_tests": 21,
+    "reported_seconds": 5.02,
+    "earlier_suites_overlap": true
+  },
+  "old_live_measurement_or_display_gates_changed": false,
+  "historical_observation_retimed_as_live": false,
+  "vehicle_xy_or_object_track_invented": false,
+  "ROS_delivery_verified": false,
+  "risk_gradient_computed": false,
+  "G923_or_vehicle_started": false,
+  "source_images_profiles_or_original_goal_plan_modified": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}

@@ -1,0 +1,28 @@
+{
+  "work_date": "2026-11-16",
+  "state": "pass",
+  "official_result": "results_r01/audit.json",
+  "same_identity_source_and_handoff_samples": 51202,
+  "conditional_optical_vectors": 19297,
+  "withheld_remains_without_geometry": 31905,
+  "vector_length_matches_source_tolerance_m": 1e-12,
+  "numerical_tolerance_is_not_physical_accuracy": true,
+  "tests": {
+    "command": "env PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /home/robo25/theta-env/bin/python3 -m pytest -q tests/test_driver_motion_spatial.py tests/test_driver_motion_handoff.py tests/test_angular_fisheye_geometry.py tests/test_cone_motion_range.py tests/test_range_sensitivity.py",
+    "passed": 82,
+    "failed": 0,
+    "new_spatial_tests": 10,
+    "reported_seconds": 0.86,
+    "previous_31_and_90_test_suites_overlap": true
+  },
+  "source_images_profiles_and_original_logs_modified": false,
+  "live_runtime_modified": false,
+  "vehicle_xy_reconstructed": false,
+  "real_motion_time_alignment_verified": false,
+  "gradient_computed": false,
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "published_to_ros": false,
+  "usable_for_ffb": false,
+  "G923_or_vehicle_started": false
+}

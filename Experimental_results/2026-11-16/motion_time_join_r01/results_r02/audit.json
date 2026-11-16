@@ -1,0 +1,86 @@
+{
+  "schema": "offline_motion_time_join_audit_v1",
+  "state": "pass",
+  "work_date": "2026-11-16",
+  "real_input": {
+    "session": "e52bb32f03d6488ebf37d769f46ec37a",
+    "counts": {
+      "samples": 51202,
+      "range_numeric": 19297,
+      "range_withheld": 31905,
+      "paired": 0
+    },
+    "reasons": {
+      "range_withheld": 31905,
+      "motion_not_received": 19297
+    },
+    "motion_records_supplied": 0,
+    "clock_binding_supplied": false,
+    "matched_screenshot_points": [
+      {
+        "frame": 34957,
+        "distance_m": 1.0051490635900895,
+        "before_m": 1.0051490635900895,
+        "measured_motion": null,
+        "pair_available": false
+      },
+      {
+        "frame": 45469,
+        "distance_m": 1.4802135948782225,
+        "before_m": 1.4802135948782225,
+        "measured_motion": null,
+        "pair_available": false
+      },
+      {
+        "frame": 46432,
+        "distance_m": 1.9595656445966836,
+        "before_m": 1.9595656445966836,
+        "measured_motion": null,
+        "pair_available": false
+      }
+    ]
+  },
+  "synthetic": {
+    "cases": 20,
+    "passed": 20,
+    "available_pairs": 3,
+    "motion_log_records": 19,
+    "scenarios_are_independent": true,
+    "clock_evidence_kind": "synthetic_fixture_only"
+  },
+  "policy": {
+    "max_skew_sec": 0.05,
+    "max_motion_age_sec": 0.1,
+    "max_clock_error_sec": 0.005
+  },
+  "policy_is_test_only_NOT_adopted_FFB_timing": true,
+  "source_audit": {
+    "path": "Experimental_results/2026-11-16/motion_range_handoff_r01/results_r02/audit.json",
+    "sha256": "eef3370e041c0a46039435fb46064c0099b0b641fc08b3872f55e3812b9bfda7"
+  },
+  "source_samples_sha256": "2e752a875cb4025bb5966413a4b02d071a6bcc247b2fb2462c5af17ff6419b7c",
+  "reference_sha256": "60ebc44adee96cf21195fefb61dc4d988033e157971c764025e8a783f8d3edde",
+  "code_sha256": {
+    "Experimental_results/2026-11-16/motion_time_join_r01/replay.py": "1559381e92d8c12efd3331a51156235031c35680f8f5786b23786f47ad71aa4b",
+    "src/driver_motion_time_join.py": "80b148ee379e45c6a2332858d75fe4507cc6553d9fbfc98cd097a60cc5adf130",
+    "src/driver_motion_handoff.py": "c7147b2617b765e15a4c4b93b24c49b5494beb86a135d2167311ab76f3aecce9",
+    "src/webrtc_stream.py": "b7a1914f26d2285c3a959038c8b310505e626e9594ee7f67e0e1ce2f85d80899",
+    "src/webrtc_receive_ui.py": "d7706cf2d19abe7a027cc12c7e86aa255dde25b50aaaae939fe771fe079c96d2"
+  },
+  "artifacts_sha256": {
+    "Experimental_results/2026-11-16/motion_time_join_r01/results_r02/synthetic_motion_records.jsonl": "c00d165f355e38b852da4012bf68792b4e62121dc669d21553c9bfc098ec0d82",
+    "Experimental_results/2026-11-16/motion_time_join_r01/results_r02/synthetic_cases.jsonl": "7ecce679667fc7026e7eea7b3a99d200b7624ae92e07f636207366438288b81c",
+    "Experimental_results/2026-11-16/motion_time_join_r01/results_r02/synthetic_cases.csv": "ffbf4509823b23627a3c058a1d89620971ccf29ee228d80bc955def533fab074",
+    "recordings/2026-11-16/motion_time_join_r02/missing_motion_pairs.jsonl": "6144c6155d50a6df1f9e51e24fce1224c3f052ab192de09f1fefa29def46421a"
+  },
+  "live_sources_unchanged": true,
+  "exposure_time_alignment_verified": false,
+  "real_motion_time_alignment_verified": false,
+  "clock_alignment_independently_verified": false,
+  "vehicle_xy_generated": false,
+  "gradient_computed": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false,
+  "G923_or_vehicle_started": false
+}

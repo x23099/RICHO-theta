@@ -1,0 +1,4 @@
+frame,reported_measured_m,screenshot_range_m,before_m,after_m,same_value,distance_clock
+34957,1.0,1.005,1.0051490635900895,1.0051490635900895,True,recorded_receiver_monotonic
+45469,1.5,1.48,1.4802135948782225,1.4802135948782225,True,recorded_receiver_monotonic
+46432,2.0,1.96,1.9595656445966836,1.9595656445966836,True,recorded_receiver_monotonic

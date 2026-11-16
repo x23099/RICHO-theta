@@ -1,0 +1,32 @@
+{
+  "work_date": "2026-11-16",
+  "state": "pass",
+  "official_result": "results_r02/audit.json",
+  "synthetic_scenarios_passed": 20,
+  "synthetic_pairs_forward_reverse_measured_stop": 3,
+  "synthetic_scenarios_without_pair": 17,
+  "synthetic_motion_records_roundtripped": 19,
+  "real_range_samples_replayed": 51202,
+  "real_numeric_ranges_preserved": 19297,
+  "real_withheld_ranges_preserved": 31905,
+  "real_motion_records_supplied": 0,
+  "real_pairs_generated": 0,
+  "tests": {
+    "command": "env PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /home/robo25/theta-env/bin/python3 -m pytest -q tests/test_driver_motion_time_join.py tests/test_driver_motion_handoff.py tests/test_driver_motion_spatial.py tests/test_driver_body_display_guard.py tests/test_driver_motion_bridge.py tests/test_driver_motion_integration.py tests/test_body_display_range_audit.py",
+    "passed": 127,
+    "failed": 0,
+    "new_time_join_tests": 27,
+    "reported_seconds": 5.26,
+    "previous_suites_overlap": true
+  },
+  "test_timing_policy_is_adopted_for_real_FFB": false,
+  "live_telemetry_or_control_sources_modified": false,
+  "source_images_profiles_logs_modified": false,
+  "real_motion_or_exposure_alignment_verified": false,
+  "vehicle_xy_generated": false,
+  "gradient_computed": false,
+  "physical_metric_verified": false,
+  "published_to_ros": false,
+  "usable_for_ffb": false,
+  "G923_or_vehicle_started": false
+}

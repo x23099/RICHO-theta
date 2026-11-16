@@ -162,8 +162,7 @@ class DriverControlInvarianceTests(unittest.TestCase):
         "ThetaDriverUI.keyPressEvent":"dcee23294d585d3a048218413db9348141ae0400f192459193a0f5f55e355e96",
         "ThetaDriverUI.keyReleaseEvent":"778bfe6a1ed9db82b8ecafacad668dec911c948f006d717e1d37cbfbaffd8cdc",
         "WebRTCServerThread.send_control_data":"266812c042fc67f3e6c9973f39cca1e9fb337fca97ad0eef6f6fe252b1201022",
-        "WebRTCServerThread._async_send":"03eb247019af06dcdd62add2bad05ceb83fd2251c632105caae8cf421c7eb536",
-        "WebRTCServerThread.handle_offer.on_datachannel":"6a44e5f46d15d79fb93f2a3bb6e949615d59310509c8b0de9071e61bffc1482f"}
+        "WebRTCServerThread._async_send":"03eb247019af06dcdd62add2bad05ceb83fd2251c632105caae8cf421c7eb536"}
     SENDER={
         "TelemetryNode":"b3da15ed1c0a4a4c8ddc301968607df569adef3a339cc9e5a04c7cfba6705cc2",
         "CameraVideoTrack":"310ffb3114a92417478e346b6395b5659fd431621b27e3193a037172aa44e6f9",
@@ -183,6 +182,26 @@ class DriverControlInvarianceTests(unittest.TestCase):
 
     def test_sender_control_publish_and_legacy_camera_unchanged(self):
         self.assert_hashes("src/webrtc_stream.py",self.SENDER)
+
+    def test_telemetry_handler_only_adds_optional_passive_observation(self):
+        node=selected_node((ROOT/'src/webrtc_receive_ui.py').read_text(),
+                           'WebRTCServerThread','handle_offer','on_datachannel')
+        # Remove ONLY the exact new timestamp capture and observer call, then
+        # compare the original callback to its frozen pre-instrumentation hash.
+        snippets = [
+            'telemetry_received_at = time.monotonic() if self.telemetry_recorder is not None else None',
+            'if self.telemetry_recorder is not None:\n    self._observe_telemetry("offer", motion_session, data, telemetry_received_at)']
+        allowed={ast.dump(ast.parse(s).body[0],include_attributes=False) for s in snippets}
+        removed=[]
+        class StripObserver(ast.NodeTransformer):
+            def generic_visit(self,item):
+                if ast.dump(item,include_attributes=False) in allowed:
+                    removed.append(item);return None
+                return super().generic_visit(item)
+        stripped=StripObserver().visit(node)
+        self.assertEqual(len(removed),2)
+        actual=hashlib.sha256(ast.dump(stripped,include_attributes=False).encode()).hexdigest()
+        self.assertEqual(actual,'6a44e5f46d15d79fb93f2a3bb6e949615d59310509c8b0de9071e61bffc1482f')
 
     def test_legacy_shell_commands_are_byte_identical_after_opt_in_branches(self):
         for name,marker,sha in (

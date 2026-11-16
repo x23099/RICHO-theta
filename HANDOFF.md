@@ -2,6 +2,48 @@
 
 最新作業枠: **2026-11-16**。対象リポジトリ: `RICHO-theta`。過去の実験日時は変更していない。
 
+## 11/16最新：受信側の任意telemetry記録を実装（GPU未反映）
+
+ユーザーへ「ファイル記録は動作の必須条件ではなく検証補助」と説明後、受信処理への記録実装を明示依頼された。[実装・使用手順](Experimental_results/2026-11-16/receiver_telemetry_recording_r01/README.md)。新driver_telemetry_recording.pyとUI受信callback/起動終了/CLIのみ変更。既定OFF、`--telemetry-record-dir`でrecordings配下の未使用directoryを指定。callbackは固定5スカラー抽出＋有界queue nonblocking投入、専用threadでJSON/ディスク保存。最大16MiB/10万件/queue128既定、欠落counter・記録だけの失敗停止・最大2秒close/不完全終了警告・排他作成。
+
+現senderは未変更。受信速度/ヨー/送信wall時刻は記録するが、元clock/stamp/frame/measurement_validは不明null、鮮度未認定。旧telemetryを実測/同期/FFBへ自動昇格せず、offline_motion_record/joinerとも別schema。接続sessionを測距と共有し、再接続/旧peer遅着は原sessionのまま保持。process内時計IDは同期証明やOS boot IDではない。
+
+fake peerで実callbackを実行し、25通知/25telemetry＋開始終了4＝29events、2session、drop0、19,418bytes、正常closeを保存。通常合成の最大投入0.166ms未満は実機性能保証ではない。新記録22＋新AST1を含む関連170テスト成功。遅いwriterでqueue満杯でも100/100 UI通知、disk error/broken observerでもcontrol通知維持、無効値/既存非上書き/有限close等を確認。最初のfake video試験は実呼出しが渡すsession引数を省略していたため修正し、productionへ架空ID補完を追加していない。旧callbackは正確な観測2箇所だけを除くと従来固定AST hash一致、操縦/ROS/keyboard/sender hash不変。旧測距/表示計算12ソースも全byte不変。
+
+集計receiver_telemetry_recording_r01/results_r01、合成生ログrecordings/2026-11-16/receiver_telemetry_recording_synthetic_r01。GPU未反映・未commit/未push。反映後、既存受信コマンドへ `--telemetry-record-dir recordings/2026-11-16/received_telemetry_r01` を追加可能（既存名なら新名）。ローカルで実ROS/カメラ/ネットワーク/機体/G923は起動せず、実記録・負荷・露光/運動同期は未確認。記録確認自体のために追加撮影/実測/走行/録画を要求しない。日報・Git pushは今回未依頼。
+
+## 11/16後続：時刻・有効性付き運動レコードと距離の受信時計基準結合を実装
+
+[保存・結合処理と結果](Experimental_results/2026-11-16/motion_time_join_r01/README.md)。新driver_motion_time_join.pyはオフライン専用で実行UI/telemetry/ROS/FFBへ未接続。元整数ns時刻/元時計/受信時計/frame/受信時刻/記録時刻/有効性/符号付きv・ωを保存。未受信nullと実測0を区別、指令値/旧telemetryを実測認定しない。MotionLogは排他的新規作成・件数/容量/行長制限、readerは重複キー/NaN/途中行等を拒否。
+
+時計対応はアンカー・適用区間・誤差上限・根拠IDを明示し、区間全体で過去性/鮮度/ずれを判定。無効更新で旧候補破棄、元stamp/受信/記録/sequenceの重複逆行拒否、時計巻戻り/非有限/巨大整数で値失効。未来nearest/補間/zero fillなし。対応先は映像受信時刻で露光同時刻ではない。clock宣言やSHAは独立した実時計認定ではなく全出力non-controllingを維持。
+
+正式results_r02：合成20/20ケース（正逆走・実測0で3組生成、不足/指令/時計/期限等17保留）、合成19レコード保存往復同一。実保存51,202件で距離19,297/保留31,905を維持、実運動レコード0なので結合0・運動値nullを確認。既知3画面距離も同一。新27＋関連計127テスト成功（先行56/82/90と重複）。r01は初版成功履歴で正式版ではない。raw派生はrecordings/2026-11-16/motion_time_join_r02。
+
+試験ずれ50ms/運動年齢100ms/clock誤差5msは合成呼出し値で実機採用やFFB要件達成ではない。次は元odometry時刻/frame/受信済み状態のmetadata収集と受信側受動記録を実通信へ接続する実装段階（未実装）。callbackへ同期ディスクI/Oを持ち込まない。実機操作・追加撮影・GPU反映は今回不要。元測距12ソース/telemetry/UI/操縦/FFB/profile/原画像/生ログ不変。車体XY・勾配・ROS送信・実FFBは未生成/未起動。日報・commit/pushは今回未依頼。
+
+## 11/16後続：保存許可点のカメラ基準床面ベクトルを復元。次は運動情報の保存・結合形式
+
+[空間入力の監査](Experimental_results/2026-11-16/motion_spatial_inputs_r01/README.md)。ユーザーの「すすめてください」で、目標資料の作業範囲2（空間/運動の結合条件整理）へ進んだ。RESEARCH_GOAL.mdの「今回の依頼は1まで」は直前依頼時点の範囲記録であり、この後続依頼では2のオフライン検討まで実施。ROS送信・実機操作・FFB出力は引き続き含めない。
+
+正式全ログ16ファイルとhandoff r02をSHAで結び、主結果/受け渡し51,202件のsession/frame/受信時刻/profile一致を確認。表示許可19,297件の元支持画素から、仮定床面の直下点→支持点ベクトルを光学座標で復元。長さは全件元距離と1e-12m以内（最大差1.333e-15m未満、物理精度ではない）。保留31,905件の位置はnull。新10＋関連計82テスト成功（先行90や31と重複あり）。生派生JSONLはrecordings/2026-11-16/motion_spatial_inputs_r01、正式集計results_r01。
+
+新driver_motion_spatial.pyはオフライン専用で既存実行系へ未接続。光学座標の水平ベクトルは車体XYではない。床法線は車体yawを決めず、原点も異なる。現在取付の車体↔光学変換・時刻/有効性付き実測v/ω・車幅/障害物点の意味が必要。既存の紙座標変換、UI表示用pitch/offset、bird_eye既定幅を今回値へ無断採用していない。
+
+今回提出構造化ログに運動/元ROS時刻/車体変換の該当フィールドなし。現地に別rosbagがないという意味ではない。現在のtelemetryはodom v/ωを送るが元header時刻/受信済み/元測定鮮度を保持せず、送信wall timestampと測距の受信monotonicは別時計。指令値優先のUI予測も実測入力とは別。次は時刻・有効性付き運動レコードの保存/結合形式をローカルで準備し、合成で欠落/期限/時計不明を検証できる。既存距離確認の再撮影・GPU反映は今回不要。既存12計算ソース/profile/画像/操縦/FFB不変。日報・commit/pushは今回未依頼。
+
+## 11/16最新：最終目標を抵抗型リスク勾配FFBへ更新、保存ログの距離受け渡しを検証
+
+**最終目標の入口は[RESEARCH_GOAL.md](RESEARCH_GOAL.md)。** ユーザー指定のFFB_feedback_control/docs/2026-10-21_risk_gradient_ffb_plan.mdを全文確認。差動2輪遠隔操縦でωに対するリスク感度をG923の危険側抵抗へ写像し、安全側への誘導トルクを出さず手動権を保持する。距離計算は接近情報／リスクの入力という中間段階で、最終目標を単なる距離表示や接近通知だけへ縮めない。外部原本は未変更、読取りSHA331dbab8c3879f443f49202334de5517df204820f113f8fab5cb8cfd175088ab。原本のPhase1〜4実装／synthetic dry-run済み記載は今回の実機認定ではない。
+
+ユーザーがこのPCでpush・GPUでpull済みと申告し、GPU端末で新panel_textの日本語出力を確認済み。下記の過去「UI未push／GPU未反映」は当時の履歴。開始時mainはorigin/mainと一致・clean、HEAD4dc26e3（1116v2）。実際の運転画面の新レイアウトは未確認だが、そのためだけの再走行・撮影は要求しない。
+
+[保存ログの受け渡し結果](Experimental_results/2026-11-16/motion_range_handoff_r01/README.md)。新driver_motion_handoff.pyはオフライン専用で既存実行系へ未接続。元結果／表示レビュー／bridge受理から距離・保留・元受信monotonic時刻・session/frame・参照識別をJSON化し、独立受信側でschema・明示session／参照・順序・期限を検証。無効／例外／時計異常では保持値を消し、zero fill／旧値保持／比較値救済なし。0.5秒は測距用の受信時刻基準で、FFB指令100ms／challenge条件と混同しない。
+
+正式r02：51,202件JSON往復、数値19,297全件元値同一、距離なし31,905全件null。既知3画面の値・frame・元時刻を保持。遅延+100msで数値19,297、+400msで19,296、+501msで0。最後の値の期限切れクリアも確認。新21＋関連計90テスト成功。全sampleはrecordings/2026-11-16/motion_range_handoff_replay_r02、集計はmotion_range_handoff_r01/results_r02。r01は初版の成功記録で現在版の正式結果ではない。
+
+スカラー距離から車体XY・追跡ID・TTC・左右勾配・力覚指令は生成していない。次は車体基準の障害物位置と同時刻の車速／ヨー入力の対応を整理する段階。ユーザーの今回承認は保存ログ検証までで、ROS送信・G923実出力・hardware arm変更は含まない。追加実機・撮影・GPU反映不要。旧計算／表示判定12ソース・profile・画像・操縦・既存FFBを変更せず、日報・commit/push未依頼。
+
 ## 11/16最新：対象範囲・保留理由の日本語UI説明を実装。GPU PCは未反映
 
 [表示例・反映手順](Experimental_results/2026-11-16/motion_panel_guidance_r01/README.md)。driver_motion_presentation.pyを新設し、UIラベル初期化／更新だけで呼ぶ。既存bridge.panel_textの元数値・frame・age・body-review世代・英語コード／注意文を維持し、日本語の実ROI・状態理由・非制御注意を追加。no_candidateを範囲外と断定せず、自己遮蔽も可能性として説明。QLabel PlainText固定。ROIは起動引数、未指定を中央へ暗黙固定しない。映像への枠描画は今回なし。

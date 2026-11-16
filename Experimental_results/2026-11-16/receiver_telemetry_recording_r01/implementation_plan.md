@@ -1,0 +1,12 @@
+# 受信処理への任意telemetry記録機能
+
+2026-11-16。複雑・複数ファイルの変更。ユーザーが受信処理への記録実装を明示依頼。既存WebRTC受信callback・session生成・UI起動終了・固定AST回帰試験を確認した。
+
+1. 既定OFFの受信側観測器を追加。現senderや操縦/ROS送信は変更しない。新しいsource metadataを仮定せず、旧telemetryの速度・ヨー等の有限スカラーと送信wall時刻を限定保存する。元計測時計/時刻・frame・有効性/鮮度は不明/null。実測停止の認定やFFB入力への昇格はしない。
+2. 各offerのsessionを既存測距と共通にし、受信process内monotonic時計識別をmetadataへ保存。telemetryの受信時刻はJSON解析前に取得する。元計測/露光時刻ではない。再接続と旧peerの遅着は別sessionで保存し、新sessionへ付け替えない。
+3. callbackは固定個数スカラーの抽出と有界queueへのnonblocking投入のみ。JSON化・mkdir/open/flush等は別writer thread。queue満杯/lock競合/容量上限/書込み失敗を数え、記録だけ停止/破棄し映像・制御・測距へ例外を漏らさない。
+4. 専用の未使用recordings配下directoryを指定するCLI。排他作成、最大件数/容量/queue長、終了時の有限待機と不完全終了表示を実装。既存結果へ追記/上書きしない。
+5. fake peerを使い既定OFF、通常、legacy、再接続・旧peer遅着、壊れた観測器、遅い/壊れたwriterでもUI通知と操縦channelが維持されることを検証。旧on_datachannelの固定ASTは観測追加だけを除いた形で旧hashと比較し、baselineを単に更新して回避しない。
+6. ローカル合成ログと関連テストを根拠付きで保存。実カメラ/GPU/ROS/WebRTCサーバ/FFBは起動しない。GPUへの実反映・実記録は未確認と明記し、既存受信コマンドに追加する引数だけを案内する。
+
+前段のoffline_motion_recordはreplay_only固定なのでライブ受信記録へ流用しない。新記録は別のdriver_received_telemetry_v1として、将来のoffline adapterで元時刻不明なら不採用にする。記録は任意の検証補助で、距離表示/G923通知を動かす必須機能ではない。

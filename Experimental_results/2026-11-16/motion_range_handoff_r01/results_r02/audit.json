@@ -1,0 +1,139 @@
+{
+  "schema": "offline_motion_range_handoff_audit_v1",
+  "state": "pass",
+  "session": "e52bb32f03d6488ebf37d769f46ec37a",
+  "counts": {
+    "samples": 51202,
+    "input_verified": 51201,
+    "numeric": 19297,
+    "withheld": 31905
+  },
+  "received_reason_counts": {
+    "handoff_sample_stale": 1,
+    "no_candidate": 31143,
+    "grazing_or_outside_range": 12,
+    "display_body_reference_unavailable": 31,
+    "colour_contour_reaches_roi_edge": 74,
+    "insufficient_upper_body_colour_evidence": 597,
+    "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 19297,
+    "possible_self_body_occlusion": 22,
+    "base_point_outside_observed_support": 2,
+    "ambiguous_front_cones": 4,
+    "ambiguous_competing_colour_contours": 3,
+    "ambiguous_upper_body_colour": 11,
+    "self_body_reference_does_not_cover_support": 5
+  },
+  "source_display_reason_counts": {
+    "display_body_review_stale": 1,
+    "no_candidate": 31143,
+    "grazing_or_outside_range": 12,
+    "display_body_reference_unavailable": 31,
+    "colour_contour_reaches_roi_edge": 74,
+    "insufficient_upper_body_colour_evidence": 597,
+    "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 19297,
+    "possible_self_body_occlusion": 22,
+    "base_point_outside_observed_support": 2,
+    "ambiguous_front_cones": 4,
+    "ambiguous_competing_colour_contours": 3,
+    "ambiguous_upper_body_colour": 11,
+    "self_body_reference_does_not_cover_support": 5
+  },
+  "matched_screenshot_points": [
+    {
+      "frame": 34957,
+      "reported_measured_m": 1.0,
+      "screenshot_range_m": 1.005,
+      "before_m": 1.0051490635900895,
+      "after_m": 1.0051490635900895,
+      "same_value": true,
+      "distance_clock": "recorded_receiver_monotonic"
+    },
+    {
+      "frame": 45469,
+      "reported_measured_m": 1.5,
+      "screenshot_range_m": 1.48,
+      "before_m": 1.4802135948782225,
+      "after_m": 1.4802135948782225,
+      "same_value": true,
+      "distance_clock": "recorded_receiver_monotonic"
+    },
+    {
+      "frame": 46432,
+      "reported_measured_m": 2.0,
+      "screenshot_range_m": 1.96,
+      "before_m": 1.9595656445966836,
+      "after_m": 1.9595656445966836,
+      "same_value": true,
+      "distance_clock": "recorded_receiver_monotonic"
+    }
+  ],
+  "delivery_delay_stress": [
+    {
+      "additional_delay_sec": 0.1,
+      "numeric": 19297,
+      "withheld": 31905
+    },
+    {
+      "additional_delay_sec": 0.4,
+      "numeric": 19296,
+      "withheld": 31906
+    },
+    {
+      "additional_delay_sec": 0.501,
+      "numeric": 0,
+      "withheld": 51202
+    }
+  ],
+  "final_snapshot_after_timeout": {
+    "range_available": false,
+    "distance_m": null,
+    "reason": "handoff_sample_stale",
+    "session": "e52bb32f03d6488ebf37d769f46ec37a",
+    "replay_only": true,
+    "frame": null,
+    "source_time_sec": null,
+    "age_sec": null,
+    "clock_basis": "recorded_receiver_monotonic_NOT_ROS_or_wall_time",
+    "reference_generation": null,
+    "reference_frame": null,
+    "reference_png_sha256": null,
+    "metric": "horizontal_camera_foot_range_m_NOT_base_link_or_contact",
+    "vehicle_xy_m": null,
+    "object_id": null,
+    "physical_metric_verified": false,
+    "floor_contact_verified": false,
+    "controlling_distance": false,
+    "usable_for_ffb": false,
+    "published_to_ros": false,
+    "target_association_verified": false,
+    "steering_gradient_available": false,
+    "ffb_command_generated": false
+  },
+  "samples": {
+    "path": "recordings/2026-11-16/motion_range_handoff_replay_r02/handoff_samples.jsonl",
+    "sha256": "2e752a875cb4025bb5966413a4b02d071a6bcc247b2fb2462c5af17ff6419b7c"
+  },
+  "source_bridge_sha256": "66732f78f1aa79c2d197e1759fe5fb8e0a2dfcb6add49413c56d541e58eef9e6",
+  "input_and_code_sha256": {
+    "Experimental_results/2026-11-16/motion_range_handoff_r01/replay.py": "830d41c4c22c085692adbfff187081e903ca6b0f21d4aae4b5147a0e88798da2",
+    "src/driver_motion_handoff.py": "c7147b2617b765e15a4c4b93b24c49b5494beb86a135d2167311ab76f3aecce9",
+    "src/driver_motion_protocol.py": "8f9ed011643eea75be54a741fdaa595646c7dc66d3277a1e3327f14256bc94dd",
+    "src/driver_body_display_guard.py": "f1c2b09d9d07cdfebae337465e1559f9dbbb92f2c7e2625b42b5fb74d8bb4f9a",
+    "RESEARCH_GOAL.md": "28384f2d8423285ce03b218b927624ecdcb3d4d91f06358cc0180b005748ef91",
+    "Experimental_results/2026-11-16/body_display_range_audit_r01/results_r01/audit.json": "fdbfd5c2c32492d5b9a27c10f08f3c2b2a7ee76ce870c4f1940c5a56b3750684"
+  },
+  "goal_source": {
+    "path": "/home/robo25/FFB_feedback_control/FFB_feedback_control/docs/2026-10-21_risk_gradient_ffb_plan.md",
+    "sha256": "331dbab8c3879f443f49202334de5517df204820f113f8fab5cb8cfd175088ab"
+  },
+  "evaluation_clock": "recorded review completion; NOT current wall/ROS time",
+  "current_live_delivery_or_ROS_verified": false,
+  "vehicle_coordinates_available": false,
+  "temporal_target_association_verified": false,
+  "steering_gradient_computed": false,
+  "source_profiles_or_measurements_modified": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false,
+  "g923_or_vehicle_started": false
+}

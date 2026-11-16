@@ -2002,7 +2002,7 @@ class ReceiveSignals(QObject):
     latency_updated = Signal(float, float, str)
 
 class WebRTCServerThread(threading.Thread):
-    def __init__(self, signals, motion=None):
+    def __init__(self, signals, motion=None, telemetry_recorder=None):
         super().__init__(daemon=True)
         self.signals = signals
         self.loop = None
@@ -2011,6 +2011,19 @@ class WebRTCServerThread(threading.Thread):
         self.frame_lock = threading.Lock()
         self.control_channel = None
         self.motion = motion
+        self.telemetry_recorder = telemetry_recorder
+
+    def _observe_telemetry(self, method, *args):
+        if self.telemetry_recorder is not None:
+            try:
+                return getattr(self.telemetry_recorder, method)(*args)
+            except Exception as error:
+                logger.error("Optional telemetry recorder disabled: %s", error)
+                try:
+                    self.telemetry_recorder.request_stop()
+                except Exception:
+                    pass
+                self.telemetry_recorder = None
 
     def _observe_motion(self, method, *args):
         if self.motion is not None:
@@ -2059,7 +2072,9 @@ class WebRTCServerThread(threading.Thread):
         offer = RTCSessionDescription(sdp=params["sdp"], type=params["type"])
         self.pc = RTCPeerConnection()
         peer = self.pc
-        motion_session = uuid.uuid4().hex if self.motion is not None else None
+        motion_session = uuid.uuid4().hex if self.motion is not None or self.telemetry_recorder is not None else None
+        if self.telemetry_recorder is not None:
+            self._observe_telemetry("lifecycle", motion_session, "peer_begin", time.monotonic())
         if motion_session is not None:
             self._observe_motion("begin", motion_session, params.get("motion_native_profile"))
 
@@ -2067,6 +2082,7 @@ class WebRTCServerThread(threading.Thread):
             async def motion_connection_state():
                 if peer.connectionState in ("closed", "failed", "disconnected"):
                     self._observe_motion("end", motion_session)
+                    self._observe_telemetry("lifecycle", motion_session, "peer_"+peer.connectionState, time.monotonic())
 
         @self.pc.on("track")
         def on_track(track):
@@ -2081,7 +2097,10 @@ class WebRTCServerThread(threading.Thread):
                 @channel.on("message")
                 def on_message(message):
                     try:
+                        telemetry_received_at = time.monotonic() if self.telemetry_recorder is not None else None
                         data = json.loads(message)
+                        if self.telemetry_recorder is not None:
+                            self._observe_telemetry("offer", motion_session, data, telemetry_received_at)
                         self.signals.telemetry_received.emit(data)
                     except Exception as e:
                         logger.error(f"Failed to parse telemetry DataChannel: {e}")
@@ -2127,12 +2146,14 @@ class WebRTCServerThread(threading.Thread):
         finally:
             if motion_session is not None:
                 self._observe_motion("end", motion_session, "driver_video_track_ended")
+                self._observe_telemetry("lifecycle", motion_session, "video_track_ended", time.monotonic())
 
 class ThetaDriverUI(QWidget):
     def __init__(self, args):
         super().__init__()
         self.args = args
         self.motion = getattr(args, "motion_controller", None)
+        self.telemetry_recorder = getattr(args, "telemetry_recorder", None)
         self.start_time = time.time()
         
         # Keyboard steering controller simulation (WASD)
@@ -2207,7 +2228,15 @@ class ThetaDriverUI(QWidget):
         self.signals = ReceiveSignals()
         self.signals.telemetry_received.connect(self.update_telemetry)
         
-        self.server_thread = WebRTCServerThread(self.signals, motion=self.motion)
+        if self.telemetry_recorder is not None:
+            try:
+                self.telemetry_recorder.start()
+            except Exception as error:
+                logger.error("Telemetry recorder startup failed; driver continues: %s", error)
+                self.telemetry_recorder.request_stop()
+                self.telemetry_recorder = None
+        self.server_thread = WebRTCServerThread(self.signals, motion=self.motion,
+                                                telemetry_recorder=self.telemetry_recorder)
         self.server_thread.start()
 
         # 映像表示更新用の定周期タイマー (24FPS = 約41ms)
@@ -2652,6 +2681,8 @@ class ThetaDriverUI(QWidget):
             self.process_keyboard_control()
 
     def closeEvent(self, event):
+        if self.telemetry_recorder is not None:
+            self.telemetry_recorder.request_stop()  # Disk drain runs outside the UI/RTC callback.
         if self.motion is not None:
             self.motion.request_stop()  # Only this inference subprocess; NOT a robot stop.
         if hasattr(self, "input_timer"):
@@ -2707,9 +2738,12 @@ def main():
     parser.add_argument("--minimap-image-offset-y", type=float, default=0.0)
 
     from driver_motion_bridge import add_motion_arguments, bridge_from_args
+    from driver_telemetry_recording import add_recording_arguments, recorder_from_args
     add_motion_arguments(parser)
+    add_recording_arguments(parser)
     args = parser.parse_args()
     args.motion_controller = bridge_from_args(args)  # Validate opt-in before ROS startup.
+    args.telemetry_recorder = recorder_from_args(args)  # OFF by default; no files/threads here.
 
     app = QApplication(sys.argv)
     
@@ -2740,6 +2774,13 @@ def main():
     try:
         sys.exit(app.exec())
     finally:
+        if args.telemetry_recorder is not None:
+            try:
+                telemetry_status = args.telemetry_recorder.close()
+                if not telemetry_status['shutdown_complete'] or telemetry_status['error'] is not None:
+                    logger.warning("Telemetry recording incomplete: %s", telemetry_status)
+            except Exception as error:
+                logger.error("Telemetry recorder shutdown incomplete: %s", error)
         if args.motion_controller is not None:
             try:
                 args.motion_controller.close()
