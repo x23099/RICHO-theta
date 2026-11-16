@@ -1,0 +1,5 @@
+statistic,read_bracket_us,telemetry_samples,meaning
+minimum,47.061,1177,sender_read_interval_NOT_cross_PC_accuracy
+median,102.126,1177,sender_read_interval_NOT_cross_PC_accuracy
+p95,165.56740000000005,1177,sender_read_interval_NOT_cross_PC_accuracy
+maximum,287.649,1177,sender_read_interval_NOT_cross_PC_accuracy

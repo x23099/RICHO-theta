@@ -2,6 +2,26 @@
 
 最新作業枠: **2026-11-16**。対象リポジトリ: `RICHO-theta`。過去の実験日時は変更していない。
 
+## 11/16最新：PC間時計対応の必須化を撤回、送信元フレーム・運動対応部品を実装
+
+ユーザーが以前の時計問題を指摘。9/17の約51〜58ms差によるFFB拒否と、9/24のchallenge方式PC間/G923成功を確認し、PC間時計同期/換算を必須に戻さない方針へ変更した。下記の過去「次はPC間時計対応」は当時の予定で、現在は中止。保存済み時計観測は診断資料として保持し、原本やfalseflagを書き換えない。challengeは指令期限用で、元画像/odom鮮度を自動認定しない。
+
+[部品・試験・次の境界](Experimental_results/2026-11-16/sender_frame_motion_r01/README.md)。新src/driver_frame_motion.pyのSenderFrameMotionは既存の厳密odom snapshotの有界履歴から、同sender monotonicの画像read-return以前の最新観測callbackだけを候補とする。過去callbackの無効/反復/逆転/期限/frame不一致を飛び越えて旧値で救済せず、欠落/drop/競合で履歴失効、異sender/時計逆行/不正identityはinstance退役。0実測・符号・元整数stamp・元snapshot時刻を保存。capacity/時間制限は明示呼出し値、試験4件/100ms/200msを実機基準へ採用しない。全認定/control/FFB/ROSflag false、receiver_media_pts null。露光/元計測時刻への同期や実年齢証明ではない。
+
+新30を含む関連174試験成功、正式results_r01。実aiortc1.14.0 TimestampMapperで先頭欠落後PTS0が別captureへ移ることとwrapを確認、実VP8でframe.opaqueの任意identityが消えることも確認。元測距/表示12ソースSHA一致。既存のsender/receiver/capture/odom/relay/publisherは一切変更せず、新部品はruntime未接続。PC間時計対応のコード/新交換は作っていない。
+
+次はsource bundleと受信実画像の厳密な識別・配送方式を、欠落/再接続込みでローカル検証して決める。送受信連番、到着順、先頭PTS0、近いreceive時刻だけで結合しない。旧clock-binding必須offline joinerの条件を緩めて流用しない。現時点のGPU反映/追加撮影/同じ停止記録/走行は不要。新部品の呼出し点と実画像照合は未実装で、走行測距/G923接続完了と報告しない。日報・commit・push・実機起動は未実施。
+
+## 11/16最新：sender ROS時計bracketの実記録確認完了、次はPC間時計対応
+
+[正式監査](Experimental_results/2026-11-16/sender_ros_clock_live_audit_r01/README.md)。received_sender_clock_20261116_r01.tar.xz（SHA07cdbd52ca87b33a33f5eabba9bf09d21a59c9da57b6caa8a5d4e0b2ac89488e）の通常3原本完備。peer_begin1＋v3telemetry1177＝1178events、50.329734秒/23.3659Hz。receiver4コードSHA現版一致。queued=written1178、2,895,788bytes、queue/lock/drop/受理後破棄0、sequence1〜1178連続、closed/errornull/donetrue。offered1180/rejected2の末尾理由は未記録で断定しない。
+
+全1177clockはsampled、ROS_TIME/use_sim_timefalse/activefalse、同sender13c3ef90fd6a41e7a283b7195abd6604のodomとID/時計ID一致、同messageのodom snapshot→clock read順序整合。clocksequence1〜1177、generation全1、first1/advanced1176、逆行/設定変化/読出し異常なし。odom全受信/元stamp進行、v/ω全0、twistbase_footprint/poseodom。clock読出し幅P95/最大.165567/.287649ms、受信間隔最大58.617648ms、受信→writer最大4.081418ms（disk完了/通信遅延ではない）。一定offset仮定の区間交差は幅46,064nsで非空だが真clock精度やdrift/header時計認定でなくbinding生成なし。
+
+この新項目の実ROS→JSON→受信→保存確認は完了。次は両PC時計の対応区間を採る実装。今回PC間4timestampを新実装したわけではなく、片道ログからoffsetを作らない。同じ停止記録の再提出/走行/撮影は不要、ユーザーの追加操作は次の実装後に提示。同時刻距離結合/現取付車体TF/車幅/点の意味/FFBは未認定のまま。
+
+formalresults_r02、rawsender_ros_clock_live_intake_r02、r01は因果検査追加前の同提出成功履歴。新監査10を含む関連84テスト成功。runtime変更なし、252成功は再利用。開始時worktreecleanで前回分は既にユーザー側commit済み。こちらから実機起動・Git外部操作・日報作成はしていない。
+
 ## 11/16最新：sender ROS時計のmonotonic bracketを実装、両PC未反映
 
 [実装/検証/反映後手順](Experimental_results/2026-11-16/sender_ros_clock_bracket_r01/README.md)。ユーザー「すすめてください」で、driver元stamp起源の貼付確認後の第一段階を実装。新src/driver_sender_clock_observation.py（ROS依存なし）、TelemetryNodeのoptional getter/辞書key1、receiver記録v3のみ。node ROS nowをinteger monotonic_nsの前後で挟み、clock type/use_sim_time/ROSactive・試行sequence・generation・ROS前進/反復/逆行/0・設定変化・読出し幅/差区間を記録。元odom metadataと同sender ID、元stampとは別で、header時計/センサ取得時刻の一致を認定しない。

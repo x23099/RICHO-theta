@@ -1,0 +1,66 @@
+{
+  "schema": "sender_frame_motion_local_audit_v1",
+  "state": "pass",
+  "synthetic_only": true,
+  "test_count": 30,
+  "failed": 0,
+  "skipped": 0,
+  "example_cases": 4,
+  "old_distance_display_sources_unchanged": 12,
+  "source_sha256": {
+    "src/driver_frame_motion.py": "1001cffe8d6440cc1c46ee530569c4588b70f7c2fe969477d7cc2995a4a406b9",
+    "src/driver_odometry_observation.py": "9b735b23845b0a3aa67a2310534782d53e428d187d9eb5dadfa2a8d58e7686a8",
+    "src/theta_rtc_diagnostic.py": "83813ed1c22188cc30f1afca6ab3ee75e2329f0c46d4adb020235e3a569d391e",
+    "src/webrtc_stream.py": "7178ea2a105367083f2f13d67ecda9ad08e4923149cc29e99499ff0406eef37d",
+    "src/webrtc_receive_ui.py": "6976f68c5b9465eac0e0eef215b74337b3eef0eda39aa384210fdb18b51b8e70",
+    "src/collision_ffb_relay.py": "572fa0324c8b6737dca3a27b41d18b1382334b9002447ec5ce495cadc33245c3",
+    "src/collision_ffb_publisher.py": "84f06a49af8ddfb49f88bcc2cd5123a5db0574d9ffb5aee8e8ed8fc9e9e87984",
+    "tests/test_driver_frame_motion.py": "02afc3c0bcb5dfe2179a06c58d3eb789d5d65d590a1022082cc6d6d9171eaca0",
+    "tests/test_driver_motion_integration.py": "a4d3248d1cff441c7116df1baa292b12130025da8ad7bb7cc5a8a63cc1a9c90a",
+    "Experimental_results/2026-11-16/sender_frame_motion_r01/check.py": "f7e8a71b89b61d987070bbd8efd9b9153c30db716e28722c1b1a35c23c6a123f"
+  },
+  "library_versions": {
+    "aiortc": "1.14.0",
+    "av": "16.1.0",
+    "numpy": "1.24.4"
+  },
+  "library_source_sha256": {
+    "aiortc.rtcrtpreceiver": "49f8007bfcf070d619b26d4c1a42679af70cf6b4f676de4f82f9a45b36fe2edd",
+    "aiortc.rtcrtpsender": "f90cef75d1f58cbe415ff4329e340bf1425ca8664020e4cb83cb45f06c33c36b",
+    "aiortc.codecs.vpx": "c88488063022e113ba1b87ff5c5a53c2a60bbb6470baeeb4f84796eeac1522ae"
+  },
+  "rtp_rebasing": {
+    "sender_media_pts": [
+      0,
+      3000,
+      6000
+    ],
+    "synthetic_rtp_origin": 4294966296,
+    "synthetic_rtp_timestamps": [
+      4294966296,
+      2000,
+      5000
+    ],
+    "normal_receiver_pts": [
+      0,
+      3000,
+      6000
+    ],
+    "first_capture_lost_receiver_pts": [
+      0,
+      3000
+    ],
+    "first_receiver_pts_zero_does_not_identify_first_sender_capture": true
+  },
+  "runtime_wiring_changed": false,
+  "live_camera_or_ROS_started": false,
+  "network_started": false,
+  "operating_system_clock_changed": false,
+  "receiver_frame_identity_verified": false,
+  "exposure_time_verified": false,
+  "header_clock_relation_verified": false,
+  "source_freshness_verified": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}

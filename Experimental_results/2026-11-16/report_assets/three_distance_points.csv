@@ -1,0 +1,4 @@
+session,frame,reference_frame,body_review_generation,reported_floor_range_m,displayed_range_m,signed_difference_m,signed_difference_percent,receive_age_ms,evidence,measurement_uncertainty_m
+e52bb32f03d6488ebf37d769f46ec37a,34957,5186,1,1.000,1.005,0.005,0.5,16,user_report_and_attached_ui_screenshot,unknown
+e52bb32f03d6488ebf37d769f46ec37a,45469,5186,1,1.500,1.480,-0.020,-1.3333333333333333,32,user_report_and_attached_ui_screenshot,unknown
+e52bb32f03d6488ebf37d769f46ec37a,46432,5186,1,2.000,1.960,-0.040,-2.0,48,user_report_and_attached_ui_screenshot,unknown

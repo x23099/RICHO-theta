@@ -1,0 +1,205 @@
+{
+  "schema": "sender_ros_clock_live_audit_v1",
+  "state": "recording_verified",
+  "compatibility_projection_for_common_envelope_only": true,
+  "original_metadata": {
+    "schema": "driver_telemetry_recording_metadata_v1",
+    "receiver_clock_id": "receiver-process/8cc2ba7b04d84ba19abdbd668e2b8c02",
+    "clock_basis": "time.monotonic_in_receiver_process_shared_with_native_video_receive",
+    "source_time_basis": "unknown_NOT_sender_wall_timestamp",
+    "versioned_source_motion_metadata_supported": true,
+    "values_are_received_not_verified_measurements": true,
+    "supported_odometry_schema": "driver_odometry_observation_v1",
+    "supported_sender_clock_schema": "driver_sender_ros_clock_observation_v1",
+    "record_schemas": [
+      "driver_received_telemetry_v1",
+      "driver_received_telemetry_v2",
+      "driver_received_telemetry_v3"
+    ],
+    "image_or_arbitrary_message_saved": false,
+    "physical_metric_verified": false,
+    "controlling_distance": false,
+    "usable_for_ffb": false,
+    "published_to_ros": false,
+    "source_sha256": {
+      "driver_telemetry_recording.py": "629d29d7de422148df0c694b9adfafb030167280c01b67298500aaa8968e491d",
+      "webrtc_receive_ui.py": "6976f68c5b9465eac0e0eef215b74337b3eef0eda39aa384210fdb18b51b8e70",
+      "driver_odometry_observation.py": "9b735b23845b0a3aa67a2310534782d53e428d187d9eb5dadfa2a8d58e7686a8",
+      "driver_sender_clock_observation.py": "c6e8e89bf6bb4542f929a5f4e0ea4b92dfdd7ab4322f3e4f977d6a8e5b1d61cd"
+    }
+  },
+  "original_summary": {
+    "schema": "driver_telemetry_recording_summary_v1",
+    "state": "closed",
+    "error": null,
+    "receiver_clock_id": "receiver-process/8cc2ba7b04d84ba19abdbd668e2b8c02",
+    "offered": 1180,
+    "queued": 1178,
+    "queue_drops": 0,
+    "busy_drops": 0,
+    "rejected": 2,
+    "written": 1178,
+    "log_bytes": 2895788,
+    "discarded_pending": 0,
+    "pending": 0,
+    "in_flight": 0,
+    "max_records": 100000,
+    "max_bytes": 16777216,
+    "queue_capacity": 128,
+    "max_offer_ms": 0.22288800028036349,
+    "stop_requested": true,
+    "writer_done": true,
+    "shutdown_complete": true,
+    "source_time_or_validity_inferred": false,
+    "control_channel_modified": false,
+    "distance_computation_modified": false,
+    "physical_metric_verified": false,
+    "controlling_distance": false,
+    "usable_for_ffb": false,
+    "published_to_ros": false
+  },
+  "telemetry_records": 1177,
+  "recorded_events": 1178,
+  "event_counts": {
+    "peer_begin": 1,
+    "telemetry": 1177
+  },
+  "sessions": [
+    "122bb71ea3ae44cb8e38c21534c8edf1"
+  ],
+  "telemetry_observation_span_sec": 50.32973448099801,
+  "average_telemetry_hz": 23.36590908191655,
+  "receive_interval_ms": {
+    "count": 1176,
+    "minimum": 25.308894000772852,
+    "median": 42.75718700046127,
+    "mean": 42.79739326615477,
+    "p95": 45.97416349952255,
+    "maximum": 58.61764799919911
+  },
+  "receive_to_writer_timestamp_ms": {
+    "count": 1178,
+    "minimum": 0.15995200010365807,
+    "median": 0.29710800117754843,
+    "mean": 0.3503831128273768,
+    "p95": 0.6119872519775524,
+    "maximum": 4.081417999259429
+  },
+  "recorded_sequence_bounds": [
+    1,
+    1178
+  ],
+  "internal_sequence_gaps": [],
+  "trailing_unrecorded_offer_count": 2,
+  "rejection_cause_established": false,
+  "writer_timestamp_is_not_disk_completion_or_network_latency": true,
+  "clock_status_counts": {
+    "sampled": 1177
+  },
+  "ros_time_status_counts": {
+    "first": 1,
+    "advanced": 1176
+  },
+  "clock_generation_counts": {
+    "1": 1177
+  },
+  "configuration_change_observations": 0,
+  "clock_configurations": [
+    "('ROS_TIME', False, False)"
+  ],
+  "sender_ids": [
+    "13c3ef90fd6a41e7a283b7195abd6604"
+  ],
+  "sender_clock_ids": [
+    "sender-process/13c3ef90fd6a41e7a283b7195abd6604"
+  ],
+  "sampled_clock_records": 1177,
+  "sender_scope_matches": 1177,
+  "sampled_clock_after_odom_snapshot_order_checked": true,
+  "clock_sample_sequence_bounds": [
+    1,
+    1177
+  ],
+  "bracket_width_us": {
+    "count": 1177,
+    "minimum": 47.061,
+    "median": 102.126,
+    "mean": 108.93601614273577,
+    "p95": 165.56740000000005,
+    "maximum": 287.649
+  },
+  "odometry_callback_received_counts": {
+    "True": 1177
+  },
+  "odometry_stamp_status_counts": {
+    "advanced": 1177
+  },
+  "sampled_header_stamp_steps": {
+    "advanced": 1176
+  },
+  "motion_frame_pairs": [
+    "('base_footprint', 'odom')"
+  ],
+  "observed_linear_mps": {
+    "count": 1177,
+    "minimum": 0.0,
+    "median": 0.0,
+    "mean": 0.0,
+    "p95": 0.0,
+    "maximum": 0.0
+  },
+  "observed_angular_radps": {
+    "count": 1177,
+    "minimum": 0.0,
+    "median": 0.0,
+    "mean": 0.0,
+    "p95": 0.0,
+    "maximum": 0.0
+  },
+  "sender_callback_age_sec": {
+    "count": 1177,
+    "minimum": 0.00039324799945461564,
+    "median": 0.00956225800109678,
+    "mean": 0.009632084455437586,
+    "p95": 0.01842817220021971,
+    "maximum": 0.020707270999992033
+  },
+  "ROS_now_minus_header_numeric_difference_ms_NOT_proven_transport_delay": {
+    "count": 1177,
+    "minimum": 1.331717,
+    "median": 10.73229,
+    "mean": 10.829414857264231,
+    "p95": 19.5630052,
+    "maximum": 21.817868
+  },
+  "conditional_constant_offset_intersections_by_sender": {
+    "13c3ef90fd6a41e7a283b7195abd6604/1": {
+      "lower_ns": 1794806106166096880,
+      "upper_ns": 1794806106166142944,
+      "nonempty": true,
+      "constant_relative_rate_assumed_NOT_verified": true,
+      "adopted_binding": false
+    }
+  },
+  "driver_header_clock_independently_matched": false,
+  "receiver_clock_binding_verified": false,
+  "source_freshness_verified": false,
+  "exposure_alignment_verified": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false,
+  "archive_sha256": "07cdbd52ca87b33a33f5eabba9bf09d21a59c9da57b6caa8a5d4e0b2ac89488e",
+  "supplied_files_sha256": {
+    "telemetry_recording_summary.json": "da5d9eb24f36eb9a2646f626a196b81cb4f2a4f93c9e69f45f47206694070555",
+    "telemetry_recording_metadata.json": "3145ccb2f49633f5bfd66e39308a777c0f6676b5023b4635718463f0a9d7139e",
+    "received_telemetry.jsonl": "1b5be4fa61416361854e93f129fb96fee123bd78804e44f458c73283b36f34ec"
+  },
+  "review_code_sha256": "17a147fa3884a61a0a02ac8201ac817d63271a207d94b6b06531c70916a7b853",
+  "raw_intake": "recordings/2026-11-16/sender_ros_clock_live_intake_r02",
+  "validation_dependency_sha256": {
+    "Experimental_results/2026-11-16/odometry_metadata_live_audit_r01/review.py": "f240a1d8004d7aebcec0f7ad8dbbb73cfab2fc73613366b0763e1471b99a9384",
+    "Experimental_results/2026-11-16/receiver_telemetry_live_audit_r01/review.py": "f4354c4d203ed5f4f6b21cc6c4f84af26fd5f77484452b26c0c3251af83ff524",
+    "src/driver_sender_clock_observation.py": "c6e8e89bf6bb4542f929a5f4e0ea4b92dfdd7ab4322f3e4f977d6a8e5b1d61cd",
+    "src/driver_odometry_observation.py": "9b735b23845b0a3aa67a2310534782d53e428d187d9eb5dadfa2a8d58e7686a8"
+  }
+}

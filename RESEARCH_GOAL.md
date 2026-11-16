@@ -26,7 +26,13 @@
 
 1. 保存ログで距離・有効／保留・元時刻・session/frameの受け渡しを検証する。
 2. その後、車体座標・対象対応・運動情報との結合条件を設計する。現在の測距値を無条件に既存の有効トラックへ昇格しない。
-3. ROS接続・FFB dry-run・G923実出力は段階を分ける。今回の依頼は1までで、ROS送信やG923出力の起動は含まない。
+3. ROS接続・FFB dry-run・G923実出力は段階を分ける。後続依頼で2のオフライン実装・検証へ進んでいるが、ROS送信やG923出力の起動は含まない。
+
+### 11/16後続：PC間時計同期を必須にしない
+
+ユーザーの指摘を受け、9/17の時計差によるFFB拒否と9/24のchallenge方式PC間/G923確認を再確認した。FFB指令期限は既存の受信側monotonic/challenge方式を活用し、PC間時計同期・時刻換算を出力の必須条件に戻さない。時計観測の原本は診断用途として保持する。
+
+画像とodomの対応はこれと分離し、送信PC内の共通時計でread-return以前の観測callbackを対応づけ、画像識別情報とともに渡す方向へ変更。[送信元部品](Experimental_results/2026-11-16/sender_frame_motion_r01/README.md)は実装・ローカル検証済みでruntime未接続。受信実画像との厳密な識別、元観測鮮度、車体変換は未解決。challengeの成功だけでこれらを認定せず、受信時刻が近いだけで画像と運動を同時刻扱いしない。
 
 当面の `physical_metric_verified=false`、`floor_contact_verified=false`、`controlling_distance=false`、`usable_for_ffb=false` は維持する。最終目標の更新は、現在値の物理精度や出力権限を自動認定することではない。
 

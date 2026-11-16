@@ -1,5 +1,7 @@
 # 送信nodeのROS時計読出しをmonotonicで挟んで記録
 
+後続の実提出で全1,177telemetryの時計観測・odomとの同sender対応・保存を確認済み。[実機記録の正式監査](../sender_ros_clock_live_audit_r01/README.md)。以下の未反映/未確認表記は実装時点の履歴。再度同じ停止記録を要求するものではない。
+
 2026-11-16。**送信PC内のROS時計読出し区間をtelemetry経由で保存する実装と模擬検証を完了**。[計画](implementation_plan.md)、[正式模擬結果](results_r01/audit.json)、[17ケース](results_r01/cases.json)、[検証記録](verification.json)。ローカル未commit/未push、両PCへ未反映、実ROSでは未確認。
 
 これはPC間同期の完成ではない。今回は「送信nodeのROS nowと送信monotonic」を観測できるようにする第一段階。Kobuki nodeのheader時計との関係、送信/受信PC間対応、drift/精度の上限、センサ取得/露光同期は未認定。

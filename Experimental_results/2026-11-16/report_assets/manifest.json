@@ -1,0 +1,22 @@
+{
+  "work_date": "2026-11-16",
+  "camera_image_byte_identical": true,
+  "camera_session": "e52bb32f03d6488ebf37d769f46ec37a",
+  "camera_frame": 5186,
+  "camera_image_is_reference_pin_NOT_three_measured_points": true,
+  "input_sha256": {
+    "recordings/2026-11-16/body_display_full_intake_r02/comparison/decoded_e52bb32f03d6488ebf37d769f46ec37a_f005186.png": "7b6e0361b53e52b5e6337f07d0c46719d421b79edb013f43e65d22e25fc0fc89",
+    "Experimental_results/2026-11-16/body_display_range_audit_r01/results_r01/audit.json": "fdbfd5c2c32492d5b9a27c10f08f3c2b2a7ee76ce870c4f1940c5a56b3750684",
+    "Experimental_results/2026-11-16/body_display_range_check_r01/observations.csv": "7e02070c2c099c35fa4b9e92990effc47e15f29a99b58198834f495ca069c52d",
+    "Experimental_results/2026-11-16/sender_ros_clock_live_audit_r01/results_r02/audit.json": "98705acb28479486108dac1c82232d9b691db4c2b784172016939a5383fb1f52",
+    "Experimental_results/2026-11-16/report_assets/build_assets.py": "fe0630502e410cab97da4ae1d74d2b6beacd4c8943912ec03f01b4aa1bf6cefc"
+  },
+  "output_sha256": {
+    "decoded_e52bb32f03d6488ebf37d769f46ec37a_f005186.png": "7b6e0361b53e52b5e6337f07d0c46719d421b79edb013f43e65d22e25fc0fc89",
+    "three_distance_points.csv": "7e02070c2c099c35fa4b9e92990effc47e15f29a99b58198834f495ca069c52d",
+    "three_distance_difference.png": "78c17b0f42858d1c01aad4cc7af2aca5afaca10a7ee2054826a166ad0dcdcefa",
+    "clock_read_bracket.csv": "dfdb98dde08090662d85e7ce36255a4ca3bdcd217966789d9da56aecd0f180b8",
+    "clock_read_bracket.png": "3edb9928430c70182cbca17f674631a62d0428908483b88c159eb0a90ee36817"
+  },
+  "physical_accuracy_or_clock_sync_certified": false
+}

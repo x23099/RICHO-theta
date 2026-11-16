@@ -1,0 +1,35 @@
+test_rtp_rebases_first_received_timestamp_including_wrap (test_driver_frame_motion.ActualCodecIdentityTests) ... ok
+test_vp8_round_trip_does_not_carry_arbitrary_frame_identity (test_driver_frame_motion.ActualCodecIdentityTests) ... ok
+test_bounded_history_does_not_guess_an_evicted_past (test_driver_frame_motion.FrameMotionTests) ... ok
+test_busy_observer_clears_history_until_a_new_callback (test_driver_frame_motion.FrameMotionTests) ... ok
+test_callback_sequence_reversal_and_identity_change_retire (test_driver_frame_motion.FrameMotionTests) ... ok
+test_dropped_callback_blocks_old_value_until_new_callback (test_driver_frame_motion.FrameMotionTests) ... ok
+test_explicit_bounded_policies_required (test_driver_frame_motion.FrameMotionTests) ... ok
+test_foreign_sender_and_bad_metadata_retire_stream (test_driver_frame_motion.FrameMotionTests) ... ok
+test_forward_reverse_and_yaw_signs_preserved (test_driver_frame_motion.FrameMotionTests) ... ok
+test_frame_gaps_are_allowed_without_filling_missing_captures (test_driver_frame_motion.FrameMotionTests) ... ok
+test_frame_regression_retires_and_new_stream_is_independent (test_driver_frame_motion.FrameMotionTests) ... ok
+test_future_callback_does_not_replace_past_sample (test_driver_frame_motion.FrameMotionTests) ... ok
+test_future_invalid_callback_does_not_rewrite_past (test_driver_frame_motion.FrameMotionTests) ... ok
+test_future_only_is_withheld (test_driver_frame_motion.FrameMotionTests) ... ok
+test_image_wait_is_not_odometry_measurement_age (test_driver_frame_motion.FrameMotionTests) ... ok
+test_input_and_output_ownership (test_driver_frame_motion.FrameMotionTests) ... ok
+test_invalid_frame_does_not_block_or_leave_old_sample_reusable (test_driver_frame_motion.FrameMotionTests) ... ok
+test_invalid_latest_past_callback_is_barrier (test_driver_frame_motion.FrameMotionTests) ... ok
+test_nonblocking_lock_contention_does_not_return_a_cached_pair (test_driver_frame_motion.FrameMotionTests) ... ok
+test_odometry_state_reset_is_not_a_new_stream (test_driver_frame_motion.FrameMotionTests) ... ok
+test_progress_age_policy_is_explicit (test_driver_frame_motion.FrameMotionTests) ... ok
+test_received_stop_is_zero_but_unreceived_is_null (test_driver_frame_motion.FrameMotionTests) ... ok
+test_receiver_and_wall_clocks_are_not_inputs (test_driver_frame_motion.FrameMotionTests) ... ok
+test_repeated_source_stamp_with_recent_callback_is_withheld (test_driver_frame_motion.FrameMotionTests) ... ok
+test_reversed_source_stamp_is_barrier (test_driver_frame_motion.FrameMotionTests) ... ok
+test_skipped_callbacks_prevent_guessing_during_an_unobserved_gap (test_driver_frame_motion.FrameMotionTests) ... ok
+test_snapshot_order_reversal_retires_stream (test_driver_frame_motion.FrameMotionTests) ... ok
+test_snapshots_cannot_rejuvenate_callback_age (test_driver_frame_motion.FrameMotionTests) ... ok
+test_stale_callback_has_no_valid_old_value_rescue (test_driver_frame_motion.FrameMotionTests) ... ok
+test_wrong_motion_frame_is_not_silently_relabelled (test_driver_frame_motion.FrameMotionTests) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.264s
+
+OK
