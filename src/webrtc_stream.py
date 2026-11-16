@@ -51,6 +51,12 @@ class TelemetryNode(Node):
         except Exception:
             self._odom_observer = None
         self._odometry_metadata_failed = self._odom_observer is None
+        try:
+            from driver_sender_clock_observation import SenderClockObserver
+            self._sender_clock_observer = SenderClockObserver(
+                sender_id=self._odom_observer.sender_id, read_clock=self._read_sender_clock)
+        except Exception:
+            self._sender_clock_observer = None
         
         # 購読設定
         self.create_subscription(Odometry, odom_topic, self.odom_callback, 10)
@@ -103,6 +109,23 @@ class TelemetryNode(Node):
     def mode_callback(self, msg):
         self.mode_text = msg.data
 
+    def _read_sender_clock(self):
+        clock = self.get_clock()
+        before = (clock.clock_type.name, self.get_parameter("use_sim_time").value,
+                  clock.ros_time_is_active if clock.clock_type.name == "ROS_TIME" else None)
+        now = clock.now().nanoseconds
+        after = (clock.clock_type.name, self.get_parameter("use_sim_time").value,
+                 clock.ros_time_is_active if clock.clock_type.name == "ROS_TIME" else None)
+        if before != after:
+            raise ValueError("sender clock configuration changed during read")
+        return dict(ros_now_ns=now, clock_type=before[0], use_sim_time=before[1], ros_time_active=before[2])
+
+    def _sender_clock_metadata(self):
+        try:
+            return self._sender_clock_observer.snapshot()
+        except Exception:
+            return None
+
     def page_callback(self, msg):
         pass
 
@@ -144,6 +167,7 @@ class TelemetryNode(Node):
             "imu_yaw_rate": self.imu_yaw_rate,
             "has_imu": self.has_imu,
             "odometry_observation": self._odometry_metadata(),
+            "sender_clock_observation": self._sender_clock_metadata(),
             "pedal_throttle": self.pedal_throttle,
             "pedal_brake": self.pedal_brake
         }

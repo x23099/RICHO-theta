@@ -2,6 +2,70 @@
 
 最新作業枠: **2026-11-16**。対象リポジトリ: `RICHO-theta`。過去の実験日時は変更していない。
 
+## 11/16最新：sender ROS時計のmonotonic bracketを実装、両PC未反映
+
+[実装/検証/反映後手順](Experimental_results/2026-11-16/sender_ros_clock_bracket_r01/README.md)。ユーザー「すすめてください」で、driver元stamp起源の貼付確認後の第一段階を実装。新src/driver_sender_clock_observation.py（ROS依存なし）、TelemetryNodeのoptional getter/辞書key1、receiver記録v3のみ。node ROS nowをinteger monotonic_nsの前後で挟み、clock type/use_sim_time/ROSactive・試行sequence・generation・ROS前進/反復/逆行/0・設定変化・読出し幅/差区間を記録。元odom metadataと同sender ID、元stampとは別で、header時計/センサ取得時刻の一致を認定しない。
+
+読出し異常/競合/monotonic異常は新clock値を全nullとし旧区間を再利用しない。ROS逆行/設定変化等はgenerationを分けるが、前進jump全件や途中の設定変化を完全検知するわけではない。最悪読出し時間・実通信負荷・drift上限未認定。PC間4timestamp交換はまだ追加していない。
+
+新clock keyありはv3 envelope、旧senderはv1/v2維持。厳密schema・整数ns・方程式・flags検査、未知/不正/odom sender ID不一致はclock null＋理由。既存有界queueを使いcallback disk IOなし。metadataにreceiver4コードSHA。source_clock_id/measurement_valid等はnull、全FFB/clock/header/freshness認定false。旧offline adapter/監査はv3未対応なので自動投入しない。既存原本/過去SHAは書換えない。
+
+実sender getter→JSON→実receiver callback→保存をfake ROS/peerで17/17、v3 15＋v2 1＋v1 1、開始終了込み19events/drop/reject0。新20を含む関連252テスト成功、元距離/表示12ソースbyte不変。TelemetryNode固定ASTは正確なmetadata9追加（旧odom5＋clock4）だけを除き旧baseline一致、操縦/camera/spin/keyboard/ROS/control hash維持。構文確認3ファイル成功。formalresults_r01、rawsender_ros_clock_bracket_synthetic_r01。
+
+未commit/push・実ROS未確認。次は今回分をmatsunucとGPUPC双方へ反映後、GPUPC新保存先received_sender_clock_r01で通常送受信の短時間停止記録（新項目初回確認）。receiverを先に起動→通常sender再接続、コーン/走行/画面録画不要、受信正常終了とsummary確認後received_sender_clock_20261116_r01.tar.xz提出。反映前に旧patch再適用や新記録だけ始めない。runtime起動・実機操作・外部Git操作・時計設定変更は今回未実施、日報/push未依頼。
+
+## 11/16最新：Kobuki stamp生成経路を貼付grepから確認。上部再送不要
+
+[元stampの根拠](Experimental_results/2026-11-16/spacetime_evidence_r01/kobuki_stamp_source_evidence.json)。ユーザーは端末上部が切れた295行のテキストを提出したが、kobuki_ros.cpp593でnodeget_clocknow→Odometry::update引数、odometry.cpp87でrclcppTime now受取→104でodom_quat_time_=now→138でheader.stamp代入→kobuki_ros.cpp598でpublish、が全て含まれていた。元テキストはrecordings/2026-11-16/kobuki_stamp_source_intake_r01/terminal_excerpt.txt、SHA201fcc9ba30c9aa9f597fc78e5e9638491148ad0def15833c6518f179242ab8b。再表示・再提出は不要。
+
+貼付ソースのstampはdriver更新時のROSノード時計で、firmwareのセンサ取得時刻そのものではない。use_sim_time双方falseと併せて起源は狭まったが、全文SHA/現在binary一致/時刻補正・TimeSourceは未確認、時計同期/センサ取得/露光同期を認定しない。過去r03のnullclockやfalseflagを上書きしない。次はROS nowをsender monotonicで挟む観測とsender/receiver時計対応区間保存の実装段階。まだruntimeへ新実装していない。ユーザーの現時点の追加操作不要。本文・JSON保存のみでruntime/時計設定/driver/操縦/ROS/FFB変更なし、83テスト成功は再利用、日報/push未依頼。
+
+## 11/16最新：ROS時計設定のユーザー出力を確認。次は既知Kobukiソースのstamp生成行
+
+[設定結果と読み取りコマンド](Experimental_results/2026-11-16/spacetime_evidence_r01/README.md)。ユーザー貼付でmatsunucのkobuki/送信ノードuse_sim_time双方false、/clock Unknown topic。user_report JSONに由来を明示し保存。設定を変える必要はない。r03期間全体の設定/元stamp生成元/PC間同期の証明にはしない。
+
+8/18既存ODOM診断メモを調べ、当時のdriver実体は/home/matunuc/kobuki_ws/install/kobuki_node/lib/kobuki_node/kobuki_ros_node、ソースはkobuki_ws/src/turtlebot2_ros2/kobuki_ros/kobuki_node/srcと判明。過去のwheelbase/use_imu_heading修正と停止/前進/左右旋回のodom検証は再利用し、今回の停止0を理由に実機走行試験をやり直させない。ただし元stamp生成行/現在binary一致は未記録。次は既知kobuki_ros.cpp/odometry.cppのheader.stamp/now/clock/odom更新publish周辺をrgで読み取る。上流別版/Gazebo/ROS1実装を実機証拠と混同しない。外部検索は当該根拠を与えなかったため採用なし。runtime/時計設定/ROS/操縦変更なし、新テスト不要、83テスト成功はコード不変で再利用。日報・push未依頼。
+
+## 11/16最新：時計と現取付座標の接続根拠を整理。次はROS時計設定の読み取り
+
+[正式監査・方式比較・次の3コマンド](Experimental_results/2026-11-16/spacetime_evidence_r01/README.md)。ユーザー「すすめてください」でr03全2045観測の経過差を集計。元stamp/ sender callback/snapshot/receiver経過は87.164885501/87.164924483/87.158089766/87.160979457秒。元stamp−callbackの相対経過差−15.394〜.403ms、receiver−snapshot経過差−.271〜62.251ms。時計誤差/通信遅延上限ではない。一定相対歩度でもoffset593.462465584秒なら条件付きd0〜62.522ms、offsetを.1秒小さくしてもd100〜162.522msで同じ片道ログを説明できるため、真offset/上限は決めない。
+
+4timestamp区間をoffline合成検証、非対称経路で中点を真値へ固定しない。実交換・clock bindingなし。将来は元ROS時計/有効性の確認→ROS nowのmonotonic bracket→sender/receiver交換または外部根拠＋誤差/ドリフト/適用区間→同sessionの距離運動結合が必要。ROS2公式Clock and Time/REP103/RFC5905を参照。OS同期設定・control channelを変更しない。
+
+既存光学ベクトル原本SHAと19,297条件付き/31,905保留を再利用、車体XY新規0。10/19診断TFはmeasured/base false、10/21紙fitは独立物理変換false、11/9同frame診断はhandedness保留/selectednullで現取付TFへ自動採用しない。R(q-hu)+tと直下点t-hRuの原点差を合成検証、反射/非剛体/床向き不一致を拒否。合成yaw転記ミスは初回auditで拒否し正式結果保存前に修正・全再実行。新10含む関連83テスト成功。
+
+次はmatsunucで通常kobuki/映像送信中に `ros2 param get /kobuki use_sim_time`、`ros2 param get /theta_driver_telemetry_node use_sim_time`、`ros2 topic info /clock` の出力を得る。時計設定変更・走行・新撮影・同じ停止記録再提出は不要。base_footprintに対する現光学原点の前後左右/高さ/向きと測量根拠・session、車幅/点の意味も未確定。左右言葉の定義は前進方向基準で確認済みなので再質問しない。runtime/ROS/FFB変更・起動なし、日報/commit/push未依頼。
+
+## 11/16最新：r03受信事実のoffline運動形式への受け渡しを実装・検証
+
+ユーザー「作業が止まってしまっているので再開してください」で、r03受信監査後の保存形式受け渡しまで進行。[結果と境界](Experimental_results/2026-11-16/received_motion_handoff_r01/README.md)。新adapter/checkは実験directoryだけに配置。r03原本3SHAを正式受信監査へ照合し2,045telemetryを既存offline_measured_motion_record_v1へ変換、MotionLog/read_motion_records往復全一致。元整数ns stamp/base_footprint/v・ω0/sequence/session/受信時計/時刻を保持。構造validをmeasurement_validへ昇格せずnull、source_clock_idもnull。元観測/age/pose frame/複数保留理由/元行SHAをwrapperへ保存。旧UIの初期0は測定値へ補完しない。
+
+実r03全2,045件に測定有効性未認定/元時計不明/時計対応なしの3理由（同一行の重複診断）。以前の距離51,202件は別sessione52bb32f、r03は4852ed17なので結合試行0/実ペア0。合成では未認定の新入力で旧join候補が失効し距離だけ維持することを確認。新adapter10を含む関連145テスト成功（過去suiteと重複）。formalresults_r01、rawrecordings/2026-11-16/received_motion_handoff_r01。runtime/ROS/FFB/測距変更・実機起動なし。
+
+次は元ROS時計とsender/receiver時計の対応根拠・誤差・運動有効性、現取付車体↔光学変換の整理。実機で同時計・同sessionの結合を確認する必要が生じた段階で手順提示。疎通用の同じ停止記録/走行/撮影をすぐ繰り返させない。新adapterは実行UIへ未接続、FFB/物理/時計認定false。日報・commit/push未依頼。
+
+## 11/16最新：r03でodom受信・元stamp進行・保存を確認。疎通段階は完了
+
+[正式結果と次の段階](Experimental_results/2026-11-16/odometry_metadata_received_audit_r01/README.md)。received_telemetry_odom_20261116_r03.tar.xz、SHA50619c1e1fb3b241ae7fe2d25c18746f0ebb17d5fd268703de0d5ab5ed55d5d2、通常3原本完備。peer_begin1＋telemetry2045＝2046events、87.160979秒/23.4509Hz、3,163,824bytes。offered=queued=written2046、queue/lock/drop/reject/破棄0、sequence1〜2046連続、正常closed/errornull/donetrue。
+
+全2045でcallback_received=true/構造validtrue/statusadvanced。保存観測間2044区間すべて元stampとcallback sequenceが進行、callback sequence8→4385、元stamp1794822450209981778→1794822537374867279、twist base_footprint/pose odom、受信したv/ω全0。初期0ではなく受信メッセージの0として区別できた。sender callback ageP95/最大18.225/25.648msは元計測の輸送遅延ではない。受信間隔最大104.180ms、FFB100ms達成とはしない。receiver3コードSHA一致、sender全sourceSHA未提供。単一session4852ed17f96f41cfbd13aa38d0ba6592/sender486c49b1306c4367a76ff576283882ef。
+
+r02未受信からの解消原因は未特定（間のCLIはユーザー貼付でkobuki配信/CLI受信あり）。同じ疎通確認の再撮影/走行/再記録は不要。次は新metadata→offline運動形式への受け渡しと時計対応不明時の保留の検証。今回telemetryだけで距離ログなし、以前の距離とは別session/時計なので結合しない。時計対応/車体変換/実運動精度/距離との対応/FFBは未認定のまま。
+
+正式results_r01、rawodometry_metadata_received_intake_r01。offline監査にprefix引数と観測間進行/age集計を追加、監査新3を含む関連63テスト成功。runtime/ROS/FFB/測距変更なし、実機起動なし、日報・commit/push未依頼。
+
+## 11/16最新：r02実記録は成功。送信側odom未受信が判明、次はROS読み取り診断
+
+[全件監査と次の3コマンド](Experimental_results/2026-11-16/odometry_metadata_live_audit_r01/README.md)。received_telemetry_odom_20261116_r02.tar.xzの3原本完備、SHA4ff43fd8b39d1859efb793935dd682ea10aee0b5871681fe55ac2492c91bc0fd。peer_begin1＋telemetry3222＝3223events、137.235720秒/23.4706Hz、4,676,786bytes。queued=written3223、queue/lock/drop/受理後破棄0、sequence1〜3223連続、closed/errornull/done/shutdowntrue。offered3225/rejected2の末尾理由は不明。受信間隔最大300.761ms、記録投入最大.2665msはFFB性能認定でない。
+
+全3222telemetryに厳密v2観測が保存され、全件callback_received=false/sequence0/statusnot_received、元stamp/frame/入れ子v・ωnull、observer drops0。従来UIの全0は未受信初期値で実測停止ではない。receiver3コードSHA一致、sender新metadata伝達は確認できたがsender全sourceSHAは未提供。単一session080bcb3591ae4c498cea187ad48b857a、sendercef46aab5c824dc8adfe6765743eec13。次は通常映像送信中にmatsunucの同じROS環境でnode list、node info /theta_driver_telemetry_node、topic list -tの出力を得る。topic/配信元/ROS環境/QoS/spinのどれが原因かは未確定。追加走行/撮影/再記録/driver起動をまだ要求しない。
+
+正式results_r03、rawodometry_metadata_live_intake_r03（r02も同じ提出物で保存）。新offline監査9を含む関連60テスト成功。共通envelopeはコピー上だけv1へ投影して既存厳密監査器を再利用、原本/原summaryは維持。runtime・ROS・FFB変更/起動なし、日報・commit/push未依頼。
+
+## 11/16最新：元odometry実提出は空ログ。まずGPUPC元フォルダを確認
+
+[提出確認と次のコマンド](Experimental_results/2026-11-16/odometry_metadata_live_audit_r01/README.md)。received_telemetry_odom_20261116_r01.tar.xz（788bytes、SHA d62a08d9afe84b9659890ba29c18198105dd8188e5bdde7cdc2813c8ef8c1ffa）はmetadata1058bytes＋JSONL0bytesのみ、終了summaryなし。受信側3コードの記録SHAは現版一致だが、sender反映・接続・元odom受信/進行・正常終了は未確認。空ログの原因は断定しない。原archive/展開原本はrecordings/2026-11-16/odometry_metadata_live_intake_r01へ保持。再撮影/走行/再記録を直ちに要求せず、GPUPCでUI通常終了後のls/wc/summary出力を確認する。runtime変更なし、既存200テストを再利用。日報・Git push未依頼。
+
 ## 11/16最新：元odometry metadataを送受信する実装完了（両PC未反映）
 
 [実装・検証・反映後手順](Experimental_results/2026-11-16/odometry_metadata_r01/README.md)。ユーザー「進んでください」で、実ログの全0を初期0/受信0に区別する段階を実装。新driver_odometry_observation.py、webrtc_stream.pyの任意sidecarと辞書1項目、driver_telemetry_recording.pyの対応schema保存だけを変更。旧UI値/操縦publish/topic/camera/頻度/距離/FFBは変更なし。

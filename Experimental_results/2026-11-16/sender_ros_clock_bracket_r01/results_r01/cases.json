@@ -1,0 +1,138 @@
+[
+  {
+    "case": "initial_odom_unreceived_clock_sampled",
+    "schema": "driver_received_telemetry_v3",
+    "status": "sampled",
+    "ros_time_status": "first",
+    "clock_generation": 1,
+    "passed": true
+  },
+  {
+    "case": "received_stop",
+    "schema": "driver_received_telemetry_v3",
+    "status": "sampled",
+    "ros_time_status": "advanced",
+    "clock_generation": 1,
+    "passed": true
+  },
+  {
+    "case": "forward",
+    "schema": "driver_received_telemetry_v3",
+    "status": "sampled",
+    "ros_time_status": "advanced",
+    "clock_generation": 1,
+    "passed": true
+  },
+  {
+    "case": "reverse_and_repeated_ros_now",
+    "schema": "driver_received_telemetry_v3",
+    "status": "sampled",
+    "ros_time_status": "repeated",
+    "clock_generation": 1,
+    "passed": true
+  },
+  {
+    "case": "ROS_reversal",
+    "schema": "driver_received_telemetry_v3",
+    "status": "sampled",
+    "ros_time_status": "reversed",
+    "clock_generation": 2,
+    "passed": true
+  },
+  {
+    "case": "uninitialized_ROS_zero",
+    "schema": "driver_received_telemetry_v3",
+    "status": "sampled",
+    "ros_time_status": "zero",
+    "clock_generation": 3,
+    "passed": true
+  },
+  {
+    "case": "clock_configuration_change",
+    "schema": "driver_received_telemetry_v3",
+    "status": "sampled",
+    "ros_time_status": "first",
+    "clock_generation": 4,
+    "passed": true
+  },
+  {
+    "case": "reader_failure_no_cached_clock",
+    "schema": "driver_received_telemetry_v3",
+    "status": "sampling_error",
+    "ros_time_status": null,
+    "clock_generation": 5,
+    "passed": true
+  },
+  {
+    "case": "recovery_new_generation",
+    "schema": "driver_received_telemetry_v3",
+    "status": "sampled",
+    "ros_time_status": "first",
+    "clock_generation": 5,
+    "passed": true
+  },
+  {
+    "case": "clock_observer_busy",
+    "schema": "driver_received_telemetry_v3",
+    "status": "observer_busy",
+    "ros_time_status": null,
+    "clock_generation": 5,
+    "passed": true
+  },
+  {
+    "case": "reversed_monotonic",
+    "schema": "driver_received_telemetry_v3",
+    "status": "monotonic_invalid",
+    "ros_time_status": null,
+    "clock_generation": 6,
+    "passed": true
+  },
+  {
+    "case": "post_invalid_recovery",
+    "schema": "driver_received_telemetry_v3",
+    "status": "sampled",
+    "ros_time_status": "first",
+    "clock_generation": 6,
+    "passed": true
+  },
+  {
+    "case": "invalid_clock_metadata",
+    "schema": "driver_received_telemetry_v3",
+    "status": null,
+    "ros_time_status": null,
+    "clock_generation": null,
+    "passed": true
+  },
+  {
+    "case": "unknown_clock_schema",
+    "schema": "driver_received_telemetry_v3",
+    "status": null,
+    "ros_time_status": null,
+    "clock_generation": null,
+    "passed": true
+  },
+  {
+    "case": "foreign_sender_clock",
+    "schema": "driver_received_telemetry_v3",
+    "status": null,
+    "ros_time_status": null,
+    "clock_generation": null,
+    "passed": true
+  },
+  {
+    "case": "legacy_v2_without_clock",
+    "schema": "driver_received_telemetry_v2",
+    "status": null,
+    "ros_time_status": null,
+    "clock_generation": null,
+    "passed": true
+  },
+  {
+    "case": "legacy_v1_without_odometry",
+    "schema": "driver_received_telemetry_v1",
+    "status": null,
+    "ros_time_status": null,
+    "clock_generation": null,
+    "passed": true
+  }
+]

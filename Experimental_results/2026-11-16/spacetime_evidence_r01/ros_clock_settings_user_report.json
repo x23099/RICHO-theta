@@ -1,0 +1,29 @@
+{
+  "schema": "ros_clock_settings_user_report_v1",
+  "date": "2026-11-16",
+  "evidence_kind": "user_pasted_terminal_output_NOT_original_log_archive",
+  "host_prompt": "matunuc@matunuc-NUC13ANHi5",
+  "working_directory_prompt": "~/ffb",
+  "reported_results": [
+    {
+      "command": "ros2 param get /kobuki use_sim_time",
+      "output": "Boolean value is: False",
+      "value": false
+    },
+    {
+      "command": "ros2 param get /theta_driver_telemetry_node use_sim_time",
+      "output": "Boolean value is: False",
+      "value": false
+    },
+    {
+      "command": "ros2 topic info /clock",
+      "output": "Unknown topic ‘/clock’",
+      "clock_topic_visible": false
+    }
+  ],
+  "odometry_header_stamp_generation_source_verified": false,
+  "sender_receiver_clock_alignment_verified": false,
+  "runtime_or_OS_clock_settings_changed": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}

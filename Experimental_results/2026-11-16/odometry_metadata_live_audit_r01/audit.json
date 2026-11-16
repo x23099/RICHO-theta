@@ -1,0 +1,34 @@
+{
+  "schema": "odometry_metadata_live_submission_inventory_v1",
+  "state": "insufficient_submission",
+  "archive": "received_telemetry_odom_20261116_r01.tar.xz",
+  "archive_sha256": "d62a08d9afe84b9659890ba29c18198105dd8188e5bdde7cdc2813c8ef8c1ffa",
+  "raw_intake": "recordings/2026-11-16/odometry_metadata_live_intake_r01",
+  "members": [
+    {
+      "path": "received_telemetry_odom_r01/telemetry_recording_metadata.json",
+      "bytes": 1058,
+      "sha256": "6da4bd6652cdcca80572e7c0d3fbc2cd07cf3b62c8cb64d8ed2c7fec26269ee4"
+    },
+    {
+      "path": "received_telemetry_odom_r01/received_telemetry.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "summary_present": false,
+  "recorded_events_in_submission": 0,
+  "receiver_recording_sources_match_local": {
+    "driver_telemetry_recording.py": true,
+    "webrtc_receive_ui.py": true,
+    "driver_odometry_observation.py": true
+  },
+  "receiver_clock_id": "receiver-process/ba2b80dbaa714b16a9899abf313b7f3a",
+  "sender_source_verified": false,
+  "real_odometry_callback_or_stamp_progress_verified": false,
+  "cause_of_empty_log": "unknown",
+  "original_GPU_directory_checked": false,
+  "runtime_changed": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}

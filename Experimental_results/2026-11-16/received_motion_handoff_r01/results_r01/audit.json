@@ -1,0 +1,51 @@
+{
+  "schema": "offline_received_motion_handoff_audit_v1",
+  "state": "pass",
+  "source_received_audit": "Experimental_results/2026-11-16/odometry_metadata_received_audit_r01/results_r01/audit.json",
+  "source_received_audit_sha256": "ea5582e64a878ae3fb7c6f54faeb514ae67235af746703f4a3cf3e4d2cd97e6b",
+  "input_raw_sha256": {
+    "telemetry_recording_summary.json": "0b8e7d9c3f2ce134ce6780cb51cd3d5dd1d56490ef65709d4f7bcb7955a58ead",
+    "telemetry_recording_metadata.json": "b4ddc72458a97da244b327f9d554eb44f3182c6b300cb1310eab38cb4712127e",
+    "received_telemetry.jsonl": "4c9dea090e851d6fae99ba86ad65122ea01b05ce357e43682cc150180b58d237"
+  },
+  "received_session": "4852ed17f96f41cfbd13aa38d0ba6592",
+  "receiver_clock_id": "receiver-process/dc5c953f531a473697cec72b2c044ff3",
+  "source_archive_sha256": "50619c1e1fb3b241ae7fe2d25c18746f0ebb17d5fd268703de0d5ab5ed55d5d2",
+  "input_events": 2046,
+  "normalized_motion_records": 2045,
+  "roundtrip_equal": true,
+  "hold_reason_counts": {
+    "measurement_validity_unverified": 2045,
+    "original_clock_identity_unknown": 2045,
+    "clock_mapping_missing": 2045
+  },
+  "observed_values_preserved": true,
+  "source_integer_stamp_preserved": true,
+  "frame_preserved": true,
+  "measurement_validity_inferred": false,
+  "source_clock_identity_inferred": false,
+  "observed_zero_records": 2045,
+  "historical_range_session": "e52bb32f03d6488ebf37d769f46ec37a",
+  "historical_range_records": 51202,
+  "historical_range_audit_sha256": "eef3370e041c0a46039435fb46064c0099b0b641fc08b3872f55e3812b9bfda7",
+  "real_range_motion_join_attempts": 0,
+  "real_range_motion_pairs": 0,
+  "separate_session_reason": "different_recorded_sessions_NOT_joined",
+  "code_sha256": {
+    "Experimental_results/2026-11-16/received_motion_handoff_r01/check.py": "fdb2a11752e5e16c75cbf5006f547a4b10e12d189e7f99e07e442eddd0c23a71",
+    "Experimental_results/2026-11-16/received_motion_handoff_r01/adapter.py": "7fc017c6d1f83448b8b678542c7fe922dd3bfcc13e72038348b29507234f7c0a",
+    "src/driver_motion_time_join.py": "80b148ee379e45c6a2332858d75fe4507cc6553d9fbfc98cd097a60cc5adf130",
+    "tests/test_received_motion_handoff.py": "5e92d85528b814b09ace506909d4241bace5ea5d88414a85d27d72f8aaa8f508"
+  },
+  "derived_raw_sha256": {
+    "recordings/2026-11-16/received_motion_handoff_r01/normalized_motion.jsonl": "ba1fa8b8dafcb5e771cb2058b82d496a2126b0cff3faf17a7bdced2bbdf5935d",
+    "recordings/2026-11-16/received_motion_handoff_r01/handoff.jsonl": "a5d18d14a355f2acb8bb87063f95ff17d833f8a14774eb52498ac981d7a9de35"
+  },
+  "runtime_changed": false,
+  "runtime_or_ROS_or_G923_started": false,
+  "clock_alignment_verified": false,
+  "vehicle_transform_verified": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}

@@ -15,6 +15,7 @@ import time
 import uuid
 
 from driver_odometry_observation import SCHEMA as ODOM_SCHEMA, decode_observation
+from driver_sender_clock_observation import SCHEMA as CLOCK_SCHEMA, decode_clock_observation
 
 ROOT = Path(__file__).resolve().parents[1]
 NUMBERS = {'linear_x': 'linear_mps', 'angular_z': 'angular_radps',
@@ -122,6 +123,13 @@ class TelemetryRecorder:
                 observation, state = decode_observation(data['odometry_observation'])
                 record.update(schema='driver_received_telemetry_v2', odometry_metadata_state=state,
                               odometry_observation=observation)
+            if kind == 'telemetry' and 'sender_clock_observation' in data:
+                clock, state = decode_clock_observation(data['sender_clock_observation'])
+                observed = record.get('odometry_observation')
+                if clock is not None and observed is not None and clock['sender_id'] != observed['sender_id']:
+                    clock, state = None, 'sender_clock_scope_mismatch'
+                record.update(schema='driver_received_telemetry_v3', sender_clock_metadata_state=state,
+                              sender_clock_observation=clock)
             try:
                 self.queue.put_nowait(record)
             except queue.Full:
@@ -172,11 +180,14 @@ class TelemetryRecorder:
                 source_time_basis='unknown_NOT_sender_wall_timestamp',
                 versioned_source_motion_metadata_supported=True, values_are_received_not_verified_measurements=True,
                 supported_odometry_schema=ODOM_SCHEMA,
-                record_schemas=['driver_received_telemetry_v1', 'driver_received_telemetry_v2'],
+                supported_sender_clock_schema=CLOCK_SCHEMA,
+                record_schemas=['driver_received_telemetry_v1', 'driver_received_telemetry_v2',
+                                'driver_received_telemetry_v3'],
                 image_or_arbitrary_message_saved=False, **FALSE_FLAGS)
             metadata['source_sha256'] = {name: hashlib.sha256((ROOT/'src'/name).read_bytes()).hexdigest()
                                         for name in ('driver_telemetry_recording.py', 'webrtc_receive_ui.py',
-                                                     'driver_odometry_observation.py')}
+                                                     'driver_odometry_observation.py',
+                                                     'driver_sender_clock_observation.py')}
             with (self.directory/'telemetry_recording_metadata.json').open('x') as stream:
                 json.dump(metadata, stream, indent=2); stream.write('\n')
             with (self.directory/'received_telemetry.jsonl').open('xb') as stream:

@@ -188,7 +188,19 @@ class DriverControlInvarianceTests(unittest.TestCase):
             'try:\n    from driver_odometry_observation import OdometryObserver\n    self._odom_observer = OdometryObserver()\nexcept Exception:\n    self._odom_observer = None',
             'self._odometry_metadata_failed = self._odom_observer is None',
             'try:\n    if self._odom_observer is not None:\n        self._odom_observer.observe(msg)\nexcept Exception:\n    self._odometry_metadata_failed = True',
-            'def _odometry_metadata(self):\n    if self._odometry_metadata_failed:\n        return None\n    try:\n        return self._odom_observer.snapshot()\n    except Exception:\n        return None']
+            'def _odometry_metadata(self):\n    if self._odometry_metadata_failed:\n        return None\n    try:\n        return self._odom_observer.snapshot()\n    except Exception:\n        return None',
+            'try:\n    from driver_sender_clock_observation import SenderClockObserver\n    self._sender_clock_observer = SenderClockObserver(sender_id=self._odom_observer.sender_id, read_clock=self._read_sender_clock)\nexcept Exception:\n    self._sender_clock_observer = None',
+            '''def _read_sender_clock(self):
+    clock = self.get_clock()
+    before = (clock.clock_type.name, self.get_parameter("use_sim_time").value,
+              clock.ros_time_is_active if clock.clock_type.name == "ROS_TIME" else None)
+    now = clock.now().nanoseconds
+    after = (clock.clock_type.name, self.get_parameter("use_sim_time").value,
+             clock.ros_time_is_active if clock.clock_type.name == "ROS_TIME" else None)
+    if before != after:
+        raise ValueError("sender clock configuration changed during read")
+    return dict(ros_now_ns=now, clock_type=before[0], use_sim_time=before[1], ros_time_active=before[2])''',
+            'def _sender_clock_metadata(self):\n    try:\n        return self._sender_clock_observer.snapshot()\n    except Exception:\n        return None']
         allowed={ast.dump(ast.parse(s).body[0],include_attributes=False) for s in snippets}
         removed=[]
         class StripMetadata(ast.NodeTransformer):
@@ -199,8 +211,10 @@ class DriverControlInvarianceTests(unittest.TestCase):
             def visit_Dict(self,item):
                 pairs=[]
                 for key,value in zip(item.keys,item.values):
-                    if isinstance(key,ast.Constant) and key.value=='odometry_observation':
-                        expected=ast.parse('self._odometry_metadata()',mode='eval').body
+                    getters={'odometry_observation':'self._odometry_metadata()',
+                             'sender_clock_observation':'self._sender_clock_metadata()'}
+                    if isinstance(key,ast.Constant) and key.value in getters:
+                        expected=ast.parse(getters[key.value],mode='eval').body
                         if ast.dump(value,include_attributes=False)!=ast.dump(expected,include_attributes=False):
                             raise AssertionError('metadata value changed unexpectedly')
                         removed.append(key)
@@ -208,7 +222,7 @@ class DriverControlInvarianceTests(unittest.TestCase):
                 item.keys=[k for k,v in pairs];item.values=[v for k,v in pairs]
                 return self.generic_visit(item)
         stripped=StripMetadata().visit(node)
-        self.assertEqual(len(removed),5)
+        self.assertEqual(len(removed),9)
         actual=hashlib.sha256(ast.dump(stripped,include_attributes=False).encode()).hexdigest()
         self.assertEqual(actual,'b3da15ed1c0a4a4c8ddc301968607df569adef3a339cc9e5a04c7cfba6705cc2')
 

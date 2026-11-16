@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-16",
+  "state": "pass",
+  "formal_fake_pipeline_audit": "results_r01/audit.json",
+  "synthetic_pipeline_cases": 17,
+  "synthetic_pipeline_passed": 17,
+  "synthetic_recorded_events": 19,
+  "tests": {
+    "passed": 252,
+    "failed": 0,
+    "reported_seconds": 8.55,
+    "new_clock_tests": 20,
+    "command": "env PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /home/robo25/theta-env/bin/python3 -m pytest -q tests/test_driver_sender_clock_observation.py tests/test_driver_odometry_observation.py tests/test_driver_telemetry_recording.py tests/test_driver_motion_integration.py tests/test_driver_motion_shutdown.py tests/test_driver_motion_presentation.py tests/test_driver_motion_time_join.py tests/test_driver_motion_handoff.py tests/test_driver_motion_spatial.py tests/test_driver_body_display_guard.py tests/test_driver_motion_bridge.py tests/test_body_display_range_audit.py tests/test_receiver_telemetry_live_audit.py tests/test_odometry_metadata_live_audit.py tests/test_received_motion_handoff.py tests/test_spacetime_evidence.py"
+  },
+  "py_compile_passed": [
+    "src/driver_sender_clock_observation.py",
+    "src/driver_telemetry_recording.py",
+    "src/webrtc_stream.py"
+  ],
+  "sender_AST_original_baseline_preserved_except_exact_metadata_additions": true,
+  "old_measurement_display_sources_unchanged": 12,
+  "driver_clock_origin_or_sensor_acquisition_verified": false,
+  "real_ROS_getter_tested": false,
+  "deployment_verified": false,
+  "sender_receiver_clock_binding_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}

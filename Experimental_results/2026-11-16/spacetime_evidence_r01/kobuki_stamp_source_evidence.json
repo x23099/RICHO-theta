@@ -1,0 +1,47 @@
+{
+  "schema": "kobuki_odometry_stamp_source_excerpt_evidence_v1",
+  "date": "2026-11-16",
+  "evidence_kind": "user_supplied_partial_grep_output_NOT_full_source_or_binary",
+  "raw_excerpt": "recordings/2026-11-16/kobuki_stamp_source_intake_r01/terminal_excerpt.txt",
+  "raw_sha256": "201fcc9ba30c9aa9f597fc78e5e9638491148ad0def15833c6518f179242ab8b",
+  "excerpt_line_count": 295,
+  "top_of_output_truncated": true,
+  "required_stamp_dataflow_present": true,
+  "source_directory_reported": "/home/matunuc/kobuki_ws/src/turtlebot2_ros2/kobuki_ros/kobuki_node/src",
+  "dataflow": [
+    {
+      "file": "kobuki_ros.cpp",
+      "line": 593,
+      "fact": "odometry_->update receives this->get_clock()->now()"
+    },
+    {
+      "file": "odometry.cpp",
+      "line": 87,
+      "fact": "Odometry::update accepts const rclcpp::Time & now"
+    },
+    {
+      "file": "odometry.cpp",
+      "line": 104,
+      "fact": "odom_quat_time_ = now"
+    },
+    {
+      "file": "odometry.cpp",
+      "line": 138,
+      "fact": "odom->header.stamp = odom_quat_time_"
+    },
+    {
+      "file": "kobuki_ros.cpp",
+      "line": 598,
+      "fact": "odom_publisher_->publish(std::move(odometry_->getOdometry()))"
+    }
+  ],
+  "stamp_semantics_in_shown_source": "driver_node_ROS_clock_at_odometry_update_NOT_firmware_measurement_timestamp",
+  "full_source_SHA_available": false,
+  "running_binary_matches_shown_source_verified": false,
+  "sensor_acquisition_time_known": false,
+  "driver_node_clock_to_sender_monotonic_binding_verified": false,
+  "sender_receiver_clock_alignment_verified": false,
+  "runtime_or_clock_settings_changed": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}
