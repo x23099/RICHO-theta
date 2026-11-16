@@ -1,0 +1,131 @@
+{
+  "synthetic_only": true,
+  "cases": [
+    {
+      "case": "not_received",
+      "record_schema": "driver_received_telemetry_v2",
+      "metadata_state": "versioned_odometry_observation",
+      "stamp_status": "not_received",
+      "callback_received": false,
+      "sample_fields_valid": false,
+      "passed": true
+    },
+    {
+      "case": "received_zero",
+      "record_schema": "driver_received_telemetry_v2",
+      "metadata_state": "versioned_odometry_observation",
+      "stamp_status": "first",
+      "callback_received": true,
+      "sample_fields_valid": true,
+      "passed": true
+    },
+    {
+      "case": "forward",
+      "record_schema": "driver_received_telemetry_v2",
+      "metadata_state": "versioned_odometry_observation",
+      "stamp_status": "advanced",
+      "callback_received": true,
+      "sample_fields_valid": true,
+      "passed": true
+    },
+    {
+      "case": "reverse",
+      "record_schema": "driver_received_telemetry_v2",
+      "metadata_state": "versioned_odometry_observation",
+      "stamp_status": "advanced",
+      "callback_received": true,
+      "sample_fields_valid": true,
+      "passed": true
+    },
+    {
+      "case": "no_callback_for_two_seconds",
+      "record_schema": "driver_received_telemetry_v2",
+      "metadata_state": "versioned_odometry_observation",
+      "stamp_status": "advanced",
+      "callback_received": true,
+      "sample_fields_valid": true,
+      "passed": true
+    },
+    {
+      "case": "same_stamp_new_callback",
+      "record_schema": "driver_received_telemetry_v2",
+      "metadata_state": "versioned_odometry_observation",
+      "stamp_status": "repeated",
+      "callback_received": true,
+      "sample_fields_valid": true,
+      "passed": true
+    },
+    {
+      "case": "reversed_header_stamp",
+      "record_schema": "driver_received_telemetry_v2",
+      "metadata_state": "versioned_odometry_observation",
+      "stamp_status": "reversed",
+      "callback_received": true,
+      "sample_fields_valid": true,
+      "passed": true
+    },
+    {
+      "case": "unset_zero_header",
+      "record_schema": "driver_received_telemetry_v2",
+      "metadata_state": "versioned_odometry_observation",
+      "stamp_status": "missing",
+      "callback_received": true,
+      "sample_fields_valid": false,
+      "passed": true
+    },
+    {
+      "case": "observer_busy",
+      "record_schema": "driver_received_telemetry_v2",
+      "metadata_state": "versioned_odometry_observation",
+      "stamp_status": "observer_busy",
+      "callback_received": null,
+      "sample_fields_valid": false,
+      "passed": true
+    },
+    {
+      "case": "invalid_sender_monotonic",
+      "record_schema": "driver_received_telemetry_v2",
+      "metadata_state": "versioned_odometry_observation",
+      "stamp_status": "clock_invalid",
+      "callback_received": null,
+      "sample_fields_valid": false,
+      "passed": true
+    },
+    {
+      "case": "legacy_sender_no_metadata",
+      "record_schema": "driver_received_telemetry_v1",
+      "metadata_state": "legacy_sender",
+      "stamp_status": null,
+      "callback_received": null,
+      "sample_fields_valid": null,
+      "passed": true
+    },
+    {
+      "case": "unknown_schema",
+      "record_schema": "driver_received_telemetry_v2",
+      "metadata_state": "unsupported_odometry_schema",
+      "stamp_status": null,
+      "callback_received": null,
+      "sample_fields_valid": null,
+      "passed": true
+    },
+    {
+      "case": "invalid_metadata",
+      "record_schema": "driver_received_telemetry_v2",
+      "metadata_state": "invalid_odometry_metadata",
+      "stamp_status": null,
+      "callback_received": null,
+      "sample_fields_valid": null,
+      "passed": true
+    },
+    {
+      "case": "observer_exception_legacy_values_continue",
+      "record_schema": "driver_received_telemetry_v2",
+      "metadata_state": "invalid_odometry_metadata",
+      "stamp_status": null,
+      "callback_received": null,
+      "sample_fields_valid": null,
+      "passed": true
+    }
+  ]
+}

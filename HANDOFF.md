@@ -2,6 +2,36 @@
 
 最新作業枠: **2026-11-16**。対象リポジトリ: `RICHO-theta`。過去の実験日時は変更していない。
 
+## 11/16最新：元odometry metadataを送受信する実装完了（両PC未反映）
+
+[実装・検証・反映後手順](Experimental_results/2026-11-16/odometry_metadata_r01/README.md)。ユーザー「進んでください」で、実ログの全0を初期0/受信0に区別する段階を実装。新driver_odometry_observation.py、webrtc_stream.pyの任意sidecarと辞書1項目、driver_telemetry_recording.pyの対応schema保存だけを変更。旧UI値/操縦publish/topic/camera/頻度/距離/FFBは変更なし。
+
+元header stamp整数ns、twistのchild_frame_idとpose header.frame_id、同じcallbackのv/ω、callback受信有無/順序・sender monotonic時刻/経過、stamp最大値の進行/反復/逆行/経過を保持。sample_fields_validは構造検査のみで物理/鮮度認定ではない。observer初期化/観測/読出し異常はmetadataだけ不採用、競合は待たず明示。ROS header時計は不明のままで、sender/receiver時計へ勝手に対応させない。全FFB/鮮度/clock認定false。
+
+新sender metadataがあればreceiverはv2 envelopeへ厳密検査/独立コピーして保存。旧senderはv1維持、未知版/不正metadataは理由付きnull。旧トップレベル数値はそのまま、新coherent観測は入れ子のみ。旧measurement_valid等はnullで、offline joinerへ未接続。旧ログのSHA/内容を更新して新metadata付きとは扱わない。
+
+正式results_r02のfake ROS callback→sender JSON→実receiver callback→保存14/14成功、v2 13＋v1 1、開始終了込み16events/drop0。新観測20＋新AST1を含む関連200テスト成功（先行63/170等と重複）。TelemetryNode固定ASTは正確なmetadata追加5箇所を除くと旧hash一致、sender control/camera/spin/receiver keyboard/ROS/control hash維持。測距/表示計算12ソース全byte不変。r01は初期化例外防御前の成功履歴。合成rawはrecordings/2026-11-16/odometry_metadata_synthetic_r02。
+
+この変更はまだローカル未commit/未push、GPUPCとmatsunuc双方への新反映が必要。前回の「GPU反映済み」はこのmetadata追加前の記録機能の版。双方に反映できた後、停止状態の短時間通常送受信で新保存先received_telemetry_odom_r01へ記録し、同名archive received_telemetry_odom_20261116_r01.tar.xzで提出する手順を準備済み。追加撮影/コーン移動/走行/画面録画は不要。実ROS/カメラ/ネットワーク/GPU/機体/G923起動、外部反映、日報、Git pushは今回実施していない。
+
+## 11/16最新：GPUの実telemetry記録を受領、記録疎通確認は完了
+
+[実ログ全件監査](Experimental_results/2026-11-16/receiver_telemetry_live_audit_r01/README.md)。received_telemetry_20261116_r01.tar.xzの3ファイル完備。session22d50ca3b78c41c0b0517b82e5300c4e、単一receiver時計、peer_begin1＋telemetry2,208＝2,209events、約93.772秒・23.536Hz。stateclosed/errornull/donetrue、queued=written2209、1,480,656bytes一致、queue/lock/drop/受理後破棄0、sequence1〜2209連続。GPU記録metadataのUI/recorder sourceSHAは現ローカルと一致。
+
+offered2210/rejected1で末尾番号2210が未保存。正常stop後のpeer終了callback経路と整合するが理由/event未記録なので断定しない。終了eventの保存はなし。受理済み範囲の欠落や記録機能失敗とせず未確定の末尾拒否として残す。受信→writer時刻P95 .615ms/最大5.636ms（ディスク完了/通信遅延でない）、投入最大.1801ms（callback全体でない）。受信間隔最大369.78msの原因/FFB100ms鮮度は未認定。
+
+全telemetryのv/ω/speed/IMUyawは0、無効値0件。ただし元clock/stamp/frame/measurement_validは全nullなので、実測停止と未受信初期0は区別不能。次はsenderの元odometry時刻/frame/受信済み状態等のmetadataと受信側対応schemaの実装段階（まだ未実装）。同じ撮影/記録の再提出や追加走行は不要。時計対応・現取付車体変換等は後続の結合前に必要。
+
+正式results_r02、元bytes保管recordings/2026-11-16/receiver_telemetry_live_intake_r02。r01は初回成功履歴で原本も保持。新監査9＋記録22＝31テスト成功、runtime170は未変更SHA一致で再利用。runtime/操縦/sender/FFB/profile/原本変更なし、実距離同期/露光同期/推論併走負荷/画面滑らかさ/勾配/FFB未検証。この解析では実機/ROS/GPU/FFBを新たに起動せず、日報・commit/push未依頼。
+
+## 11/16最新：ユーザー申告でGPU反映済み。次は停止状態の短時間telemetry記録
+
+ユーザー「GPUPCに反映しました。次に進めてください」。開始時HEADc9534a2（1116v3）、worktree clean。前段の未commit/未push記載は当時の履歴。実GPUのファイルSHAや実記録は未検証。
+
+[反映後の疎通確認](Experimental_results/2026-11-16/receiver_telemetry_recording_r01/README.md)を先頭に追記。既存受信を通常終了し、同じROS/Qt端末で `THETA_UI_NO_VENV=1 python3 src/webrtc_receive_ui.py --cam-width 1280 --cam-height 720 --telemetry-record-dir recordings/2026-11-16/received_telemetry_r01`。今回は記録だけの独立確認でmotion-distance/推論/参照を起動しないため距離欄は出ない。通常native送信へ接続して10〜20秒、機体停止・操作なし・録画なしでUI正常終了→summary確認→3ファイルをarchiveで提出。旧受信終了で送信接続が切れていれば従来の送信コマンドで再接続。既存directory/archiveは新しいr名を全箇所で統一し、削除/上書きしない。
+
+runtime変更なし、170テスト成功は再利用。起動コマンドの実parser、記録ON/測距OFF、既存CLIの引数転送不要、圧縮の構文をローカル非起動検証する。まだ実記録/実通信負荷/同期/勾配/FFBの確認ではない。追加コード反映不要、日報・commit/push未依頼。
+
 ## 11/16最新：受信側の任意telemetry記録を実装（GPU未反映）
 
 ユーザーへ「ファイル記録は動作の必須条件ではなく検証補助」と説明後、受信処理への記録実装を明示依頼された。[実装・使用手順](Experimental_results/2026-11-16/receiver_telemetry_recording_r01/README.md)。新driver_telemetry_recording.pyとUI受信callback/起動終了/CLIのみ変更。既定OFF、`--telemetry-record-dir`でrecordings配下の未使用directoryを指定。callbackは固定5スカラー抽出＋有界queue nonblocking投入、専用threadでJSON/ディスク保存。最大16MiB/10万件/queue128既定、欠落counter・記録だけの失敗停止・最大2秒close/不完全終了警告・排他作成。

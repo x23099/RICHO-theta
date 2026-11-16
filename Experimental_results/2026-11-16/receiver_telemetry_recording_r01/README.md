@@ -1,6 +1,30 @@
 # 受信telemetryの任意記録機能
 
-2026-11-16。ユーザーの明示依頼により、**受信処理へ既定OFFの受動記録を実装**。記録は比較・不具合解析の補助で、距離表示やG923接近通知の必須条件ではない。現在ローカル実装済み。GPUへの反映・実機受信は未確認、commit/pushも未実施。
+2026-11-16。ユーザーの明示依頼により、**受信処理へ既定OFFの受動記録を実装**。記録は比較・不具合解析の補助で、距離表示やG923接近通知の必須条件ではない。後続依頼でユーザーからGPU反映済みの申告を受領。開始時のローカルHEADはc9534a2（1116v3）、worktree clean。その後[GPUの実受信記録を全件監査](../receiver_telemetry_live_audit_r01/README.md)し、telemetry2,208件・約93.77秒・受理後の記録欠落なし・正常終了・runtime SHA一致を確認済み（末尾拒否1件は原因未確定）。以下の確認手順は実施済み。旧「未commit/未push」は実装完了時点の状態。
+
+## GPU反映後の次の確認：記録だけを10〜20秒
+
+今回の確認は記録の疎通だけで、測距推論・参照load・pin・新しい距離校正は起動しない。追加走行・コーン移動・画面録画は不要。通常受信で使っていたROS/Qt環境のGPU端末を使い、既存受信UIが開いていれば通常終了する。受信を二重起動しない。
+
+```bash
+cd /home/hsr/yopi_ws/RICHO-theta
+THETA_UI_NO_VENV=1 python3 src/webrtc_receive_ui.py \
+  --cam-width 1280 --cam-height 720 \
+  --telemetry-record-dir recordings/2026-11-16/received_telemetry_r01
+```
+
+これは受信UIだけを起動する完全なコマンド。`--motion-distance`を付けていないため距離欄が出ないのは正常。既存の測距/guardを改造・解除するのではなく、それらを起動しない独立した記録疎通の確認。通常のnative1280x720送信を接続し、映像を確認して10〜20秒待つ。送信側が前の受信終了で切れていれば、従来の送信コマンドで接続し直す。こちらからIPやdeviceを推測して別設定に変更しない。
+
+機体は停止のまま、ハンドル/ペダル/WASDは操作しない。受信UIを×または受信端末のCtrl+Cで通常終了してから、同じGPUリポジトリの端末で確認・圧縮する。
+
+```bash
+python3 -m json.tool recordings/2026-11-16/received_telemetry_r01/telemetry_recording_summary.json
+test ! -e /home/hsr/Downloads/received_telemetry_20261116_r01.tar.xz && tar -cJf /home/hsr/Downloads/received_telemetry_20261116_r01.tar.xz -C recordings/2026-11-16 received_telemetry_r01
+```
+
+生成したarchiveを提出する。summaryが正常でもtelemetry0件の場合は受信確認未完了なので、中身とsession/event_kindをこちらで確認する。受信値0を実測停止と認定したり、この試験を測距との同時刻性検証に数えたりしない。
+
+既存directory/archive名がある場合は削除・上書きせず、上記全箇所のr01を新しいr02等へ統一する。起動失敗、summary不在、圧縮できない場合は、その端末出力を共有する。引数を追加しただけなので、この手順のための追加コード反映や旧patch適用は不要。
 
 ## 実装
 

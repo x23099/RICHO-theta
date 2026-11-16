@@ -1,0 +1,32 @@
+{
+  "work_date": "2026-11-16",
+  "state": "pass",
+  "official_result": "results_r02/audit.json",
+  "submitted_archive_sha256": "e8c1a867d7574888b574fa9373b709969f3ae506f010f33b0bc50b4527c67b24",
+  "files_complete": 3,
+  "real_telemetry_records": 2208,
+  "real_recorded_events": 2209,
+  "single_session_and_clock": true,
+  "runtime_source_sha256_matches": true,
+  "accepted_records_all_saved": true,
+  "tail_rejected_offers": 1,
+  "tail_rejection_cause_established": false,
+  "tests": {
+    "command": "env PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /home/robo25/theta-env/bin/python3 -m pytest -q tests/test_receiver_telemetry_live_audit.py tests/test_driver_telemetry_recording.py",
+    "passed": 31,
+    "failed": 0,
+    "new_review_tests": 9,
+    "reported_seconds": 0.76,
+    "prior_runtime_170_pass_reused": true,
+    "test_counts_overlap": true
+  },
+  "received_zero_is_verified_stationary_odometry": false,
+  "original_motion_sample_freshness_known": false,
+  "exposure_or_range_motion_alignment_verified": false,
+  "GPU_inference_coexecution_load_verified": false,
+  "original_evidence_or_runtime_modified": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false,
+  "G923_or_vehicle_started_by_this_review": false
+}

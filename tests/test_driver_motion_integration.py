@@ -164,7 +164,6 @@ class DriverControlInvarianceTests(unittest.TestCase):
         "WebRTCServerThread.send_control_data":"266812c042fc67f3e6c9973f39cca1e9fb337fca97ad0eef6f6fe252b1201022",
         "WebRTCServerThread._async_send":"03eb247019af06dcdd62add2bad05ceb83fd2251c632105caae8cf421c7eb536"}
     SENDER={
-        "TelemetryNode":"b3da15ed1c0a4a4c8ddc301968607df569adef3a339cc9e5a04c7cfba6705cc2",
         "CameraVideoTrack":"310ffb3114a92417478e346b6395b5659fd431621b27e3193a037172aa44e6f9",
         "ros2_spin_thread":"4ce28feb3ed8ff1de7784659c092dd1b35362a503b07761be75a03c200ca1028",
         "_run_driver.on_control_message":"433772682e6e1c869358542ff1dba4136a9ddc6c7ed96618784ab079804cb064"}
@@ -182,6 +181,36 @@ class DriverControlInvarianceTests(unittest.TestCase):
 
     def test_sender_control_publish_and_legacy_camera_unchanged(self):
         self.assert_hashes("src/webrtc_stream.py",self.SENDER)
+
+    def test_sender_node_only_adds_observation_metadata(self):
+        node=selected_node((ROOT/'src/webrtc_stream.py').read_text(),'TelemetryNode')
+        snippets = [
+            'try:\n    from driver_odometry_observation import OdometryObserver\n    self._odom_observer = OdometryObserver()\nexcept Exception:\n    self._odom_observer = None',
+            'self._odometry_metadata_failed = self._odom_observer is None',
+            'try:\n    if self._odom_observer is not None:\n        self._odom_observer.observe(msg)\nexcept Exception:\n    self._odometry_metadata_failed = True',
+            'def _odometry_metadata(self):\n    if self._odometry_metadata_failed:\n        return None\n    try:\n        return self._odom_observer.snapshot()\n    except Exception:\n        return None']
+        allowed={ast.dump(ast.parse(s).body[0],include_attributes=False) for s in snippets}
+        removed=[]
+        class StripMetadata(ast.NodeTransformer):
+            def generic_visit(self,item):
+                if ast.dump(item,include_attributes=False) in allowed:
+                    removed.append(item);return None
+                return super().generic_visit(item)
+            def visit_Dict(self,item):
+                pairs=[]
+                for key,value in zip(item.keys,item.values):
+                    if isinstance(key,ast.Constant) and key.value=='odometry_observation':
+                        expected=ast.parse('self._odometry_metadata()',mode='eval').body
+                        if ast.dump(value,include_attributes=False)!=ast.dump(expected,include_attributes=False):
+                            raise AssertionError('metadata value changed unexpectedly')
+                        removed.append(key)
+                    else:pairs.append((key,value))
+                item.keys=[k for k,v in pairs];item.values=[v for k,v in pairs]
+                return self.generic_visit(item)
+        stripped=StripMetadata().visit(node)
+        self.assertEqual(len(removed),5)
+        actual=hashlib.sha256(ast.dump(stripped,include_attributes=False).encode()).hexdigest()
+        self.assertEqual(actual,'b3da15ed1c0a4a4c8ddc301968607df569adef3a339cc9e5a04c7cfba6705cc2')
 
     def test_telemetry_handler_only_adds_optional_passive_observation(self):
         node=selected_node((ROOT/'src/webrtc_receive_ui.py').read_text(),

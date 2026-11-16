@@ -1,0 +1,106 @@
+{
+  "schema": "odometry_metadata_fake_pipeline_audit_v1",
+  "state": "pass",
+  "synthetic_only": true,
+  "actual_sender_and_receiver_callback_bodies_executed": true,
+  "cases": 14,
+  "passed": 14,
+  "record_schema_counts": {
+    "driver_received_telemetry_v2": 13,
+    "driver_received_telemetry_v1": 1
+  },
+  "source_stamp_status_counts": {
+    "not_received": 1,
+    "first": 1,
+    "advanced": 3,
+    "repeated": 1,
+    "reversed": 1,
+    "missing": 1,
+    "observer_busy": 1,
+    "clock_invalid": 1
+  },
+  "metadata_state_counts": {
+    "versioned_odometry_observation": 10,
+    "legacy_sender": 1,
+    "unsupported_odometry_schema": 1,
+    "invalid_odometry_metadata": 2
+  },
+  "original_UI_telemetry_and_control_preserved": true,
+  "initial_vs_received_zero_distinguished": true,
+  "repeated_stamp_not_renewed_by_callback": true,
+  "summary": {
+    "schema": "driver_telemetry_recording_summary_v1",
+    "state": "closed",
+    "error": null,
+    "receiver_clock_id": "receiver-process/2eea09699ad44bf5a49e8c47a6d7237e",
+    "offered": 16,
+    "queued": 16,
+    "queue_drops": 0,
+    "busy_drops": 0,
+    "rejected": 0,
+    "written": 16,
+    "log_bytes": 18758,
+    "discarded_pending": 0,
+    "pending": 0,
+    "in_flight": 0,
+    "max_records": 100,
+    "max_bytes": 131072,
+    "queue_capacity": 64,
+    "max_offer_ms": 0.17848692368716002,
+    "stop_requested": true,
+    "writer_done": true,
+    "shutdown_complete": true,
+    "source_time_or_validity_inferred": false,
+    "control_channel_modified": false,
+    "distance_computation_modified": false,
+    "physical_metric_verified": false,
+    "controlling_distance": false,
+    "usable_for_ffb": false,
+    "published_to_ros": false
+  },
+  "receiver_metadata": {
+    "schema": "driver_telemetry_recording_metadata_v1",
+    "receiver_clock_id": "receiver-process/2eea09699ad44bf5a49e8c47a6d7237e",
+    "clock_basis": "time.monotonic_in_receiver_process_shared_with_native_video_receive",
+    "source_time_basis": "unknown_NOT_sender_wall_timestamp",
+    "versioned_source_motion_metadata_supported": true,
+    "values_are_received_not_verified_measurements": true,
+    "supported_odometry_schema": "driver_odometry_observation_v1",
+    "record_schemas": [
+      "driver_received_telemetry_v1",
+      "driver_received_telemetry_v2"
+    ],
+    "image_or_arbitrary_message_saved": false,
+    "physical_metric_verified": false,
+    "controlling_distance": false,
+    "usable_for_ffb": false,
+    "published_to_ros": false,
+    "source_sha256": {
+      "driver_telemetry_recording.py": "471ac644f38c5c505874ce6f2f1e69df4e139b609ff32e8239b85e772bb2b8bd",
+      "webrtc_receive_ui.py": "6976f68c5b9465eac0e0eef215b74337b3eef0eda39aa384210fdb18b51b8e70",
+      "driver_odometry_observation.py": "9b735b23845b0a3aa67a2310534782d53e428d187d9eb5dadfa2a8d58e7686a8"
+    }
+  },
+  "code_sha256": {
+    "src/webrtc_stream.py": "742dc5f1ec07670322dcf503afe0ff8a394bdb766f90499a934a2dfcaaa2051e",
+    "src/driver_odometry_observation.py": "9b735b23845b0a3aa67a2310534782d53e428d187d9eb5dadfa2a8d58e7686a8",
+    "src/driver_telemetry_recording.py": "471ac644f38c5c505874ce6f2f1e69df4e139b609ff32e8239b85e772bb2b8bd",
+    "src/webrtc_receive_ui.py": "6976f68c5b9465eac0e0eef215b74337b3eef0eda39aa384210fdb18b51b8e70",
+    "Experimental_results/2026-11-16/odometry_metadata_r01/check.py": "1be427b93fb3e23f2e500662798bf680b09c76ceae7ad3c1c3e38d57e961d8c2",
+    "tests/test_driver_odometry_observation.py": "5fc1d8495e858c174d07fa8dd08629f31f97bcc929f6575f4861f03d521ce941",
+    "tests/test_driver_motion_integration.py": "e121378a9c42261e74419753ce5198e7b42d1507d29a534cec96acf875722c10"
+  },
+  "artifacts_sha256": {
+    "recordings/2026-11-16/odometry_metadata_synthetic_r02/telemetry_recording_summary.json": "9976ad3dfedec37ce8da9e102916c452cabde35b930fa82ebb08bf14d8de679b",
+    "recordings/2026-11-16/odometry_metadata_synthetic_r02/received_telemetry.jsonl": "97963a2603e727968b54aea7045080c7d18d6a6b56f23363b7a377a14896ad72",
+    "recordings/2026-11-16/odometry_metadata_synthetic_r02/telemetry_recording_metadata.json": "469e041b492231f56c417cc31e8add273afe819d8ca0d314d9afb4d945a9657d"
+  },
+  "old_measurement_computation_files_unchanged": 12,
+  "actual_deployment_or_real_ROS_verified": false,
+  "header_clock_relation_verified": false,
+  "exposure_or_range_motion_alignment_verified": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false,
+  "G923_or_vehicle_started": false
+}

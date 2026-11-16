@@ -14,6 +14,8 @@ import threading
 import time
 import uuid
 
+from driver_odometry_observation import SCHEMA as ODOM_SCHEMA, decode_observation
+
 ROOT = Path(__file__).resolve().parents[1]
 NUMBERS = {'linear_x': 'linear_mps', 'angular_z': 'angular_radps',
            'speed_mps': 'speed_mps', 'imu_yaw_rate': 'imu_yaw_rate_radps',
@@ -116,6 +118,10 @@ class TelemetryRecorder:
                 source_clock_id=None, source_stamp_ns=None, motion_frame_id=None,
                 measurement_valid=None, source_freshness_verified=False,
                 invalid_fields=invalid, **values, **FALSE_FLAGS)
+            if kind == 'telemetry' and 'odometry_observation' in data:
+                observation, state = decode_observation(data['odometry_observation'])
+                record.update(schema='driver_received_telemetry_v2', odometry_metadata_state=state,
+                              odometry_observation=observation)
             try:
                 self.queue.put_nowait(record)
             except queue.Full:
@@ -164,10 +170,13 @@ class TelemetryRecorder:
             metadata = dict(schema='driver_telemetry_recording_metadata_v1', receiver_clock_id=self.clock_id,
                 clock_basis='time.monotonic_in_receiver_process_shared_with_native_video_receive',
                 source_time_basis='unknown_NOT_sender_wall_timestamp',
-                versioned_source_motion_metadata_supported=False, values_are_received_not_verified_measurements=True,
+                versioned_source_motion_metadata_supported=True, values_are_received_not_verified_measurements=True,
+                supported_odometry_schema=ODOM_SCHEMA,
+                record_schemas=['driver_received_telemetry_v1', 'driver_received_telemetry_v2'],
                 image_or_arbitrary_message_saved=False, **FALSE_FLAGS)
             metadata['source_sha256'] = {name: hashlib.sha256((ROOT/'src'/name).read_bytes()).hexdigest()
-                                        for name in ('driver_telemetry_recording.py', 'webrtc_receive_ui.py')}
+                                        for name in ('driver_telemetry_recording.py', 'webrtc_receive_ui.py',
+                                                     'driver_odometry_observation.py')}
             with (self.directory/'telemetry_recording_metadata.json').open('x') as stream:
                 json.dump(metadata, stream, indent=2); stream.write('\n')
             with (self.directory/'received_telemetry.jsonl').open('xb') as stream:

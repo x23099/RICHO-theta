@@ -1,0 +1,31 @@
+{
+  "work_date": "2026-11-16",
+  "state": "pass",
+  "official_result": "results_r02/audit.json",
+  "synthetic_sender_JSON_receiver_record_cases": 14,
+  "synthetic_cases_passed": 14,
+  "synthetic_recorded_events": 16,
+  "synthetic_v2_telemetry_records": 13,
+  "synthetic_legacy_v1_records": 1,
+  "initial_and_received_zero_distinguished": true,
+  "repeated_header_stamp_does_not_renew_progress_age": true,
+  "tests": {
+    "command": "env PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /home/robo25/theta-env/bin/python3 -m pytest -q tests/test_driver_odometry_observation.py tests/test_driver_telemetry_recording.py tests/test_driver_motion_integration.py tests/test_receiver_telemetry_live_audit.py tests/test_driver_motion_shutdown.py tests/test_driver_motion_presentation.py tests/test_driver_motion_time_join.py tests/test_driver_motion_handoff.py tests/test_driver_motion_spatial.py tests/test_driver_body_display_guard.py tests/test_driver_motion_bridge.py tests/test_body_display_range_audit.py",
+    "passed": 200,
+    "failed": 0,
+    "reported_seconds": 8.49,
+    "new_observation_tests": 20,
+    "new_exact_sender_observation_only_AST_test": 1,
+    "previous_suites_overlap": true
+  },
+  "existing_sender_node_AST_preserved_except_exact_metadata_additions": true,
+  "existing_measurement_computation_sources_unchanged": 12,
+  "legacy_UI_values_and_control_unchanged": true,
+  "deployment_to_either_PC_verified": false,
+  "ROS_message_clock_relation_verified": false,
+  "physical_metric_or_actual_motion_freshness_verified": false,
+  "exposure_or_range_motion_alignment_verified": false,
+  "ROS_or_G923_or_robot_started": false,
+  "published_to_ros": false,
+  "usable_for_ffb": false
+}

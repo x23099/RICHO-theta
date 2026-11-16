@@ -45,6 +45,12 @@ class TelemetryNode(Node):
         self.pedal_throttle = 0.0
         self.pedal_brake = 0.0
         self.has_imu = False
+        try:
+            from driver_odometry_observation import OdometryObserver
+            self._odom_observer = OdometryObserver()
+        except Exception:
+            self._odom_observer = None
+        self._odometry_metadata_failed = self._odom_observer is None
         
         # 購読設定
         self.create_subscription(Odometry, odom_topic, self.odom_callback, 10)
@@ -80,6 +86,19 @@ class TelemetryNode(Node):
         self.speed_mps = math.sqrt(msg.twist.twist.linear.x**2 + msg.twist.twist.linear.y**2)
         self.linear_x = msg.twist.twist.linear.x
         self.angular_z = msg.twist.twist.angular.z
+        try:
+            if self._odom_observer is not None:
+                self._odom_observer.observe(msg)
+        except Exception:
+            self._odometry_metadata_failed = True
+
+    def _odometry_metadata(self):
+        if self._odometry_metadata_failed:
+            return None
+        try:
+            return self._odom_observer.snapshot()
+        except Exception:
+            return None
 
     def mode_callback(self, msg):
         self.mode_text = msg.data
@@ -124,6 +143,7 @@ class TelemetryNode(Node):
             "imu_lateral_g": self.imu_lateral_g,
             "imu_yaw_rate": self.imu_yaw_rate,
             "has_imu": self.has_imu,
+            "odometry_observation": self._odometry_metadata(),
             "pedal_throttle": self.pedal_throttle,
             "pedal_brake": self.pedal_brake
         }
