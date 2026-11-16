@@ -1,0 +1,47 @@
+{
+  "state": "pass",
+  "anchor_context": [
+    {
+      "frame": 34957,
+      "session": "e52bb32f03d6488ebf37d769f46ec37a",
+      "half_window_sec": 0.5,
+      "rows": 31,
+      "numeric_rows": 31,
+      "min_m": 1.0039399648604908,
+      "max_m": 1.0051490635900895,
+      "reasons": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 31
+      },
+      "stationary_or_measured_interval_verified": false
+    },
+    {
+      "frame": 45469,
+      "session": "e52bb32f03d6488ebf37d769f46ec37a",
+      "half_window_sec": 0.5,
+      "rows": 30,
+      "numeric_rows": 30,
+      "min_m": 1.4802135948782225,
+      "max_m": 1.4802135948782225,
+      "reasons": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 30
+      },
+      "stationary_or_measured_interval_verified": false
+    },
+    {
+      "frame": 46432,
+      "session": "e52bb32f03d6488ebf37d769f46ec37a",
+      "half_window_sec": 0.5,
+      "rows": 30,
+      "numeric_rows": 30,
+      "min_m": 1.9574617934817193,
+      "max_m": 1.9595656445966836,
+      "reasons": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 30
+      },
+      "stationary_or_measured_interval_verified": false
+    }
+  ],
+  "audit_sha256": "fdbfd5c2c32492d5b9a27c10f08f3c2b2a7ee76ce870c4f1940c5a56b3750684",
+  "timing_sha256": "5de62f0be8062525cb9b36a793e050970c6af07b63ffa043fcbb38aa3c9fb3c5",
+  "code_sha256": "5fc8731d7844029c8e49c6239c110b27fe42d952de5498b2cbabfc46e624d200"
+}

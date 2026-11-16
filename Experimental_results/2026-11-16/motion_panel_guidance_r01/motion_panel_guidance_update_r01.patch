@@ -1,0 +1,102 @@
+diff --git a/src/webrtc_receive_ui.py b/src/webrtc_receive_ui.py
+--- a/src/webrtc_receive_ui.py
++++ b/src/webrtc_receive_ui.py
+@@ -2299,7 +2299,10 @@
+             outer = QVBoxLayout()
+             outer.setContentsMargins(0, 0, 0, 0)
+             outer.addLayout(layout)
+-            self.motion_label = QLabel("RANGE EXPERIMENT: WITHHELD | waiting for native sender")
++            from driver_motion_presentation import panel_text
++            self.motion_label = QLabel(panel_text(
++                self.motion.snapshot(), target_roi=getattr(self.args, "motion_target_roi", None)))
++            self.motion_label.setTextFormat(Qt.PlainText)
+             self.motion_label.setStyleSheet("color: #ffdd55; font-size: 13px; padding: 8px;")
+             self.motion_label.setWordWrap(True)
+             outer.addWidget(self.motion_label)
+@@ -2579,9 +2582,10 @@
+ 
+     def update_frame(self):
+         if self.motion is not None:
+-            from driver_motion_bridge import panel_text
++            from driver_motion_presentation import panel_text
+             try:
+-                self.motion_label.setText(panel_text(self.motion.snapshot()))
++                self.motion_label.setText(panel_text(self.motion.snapshot(),
++                    target_roi=getattr(getattr(self, "args", None), "motion_target_roi", None)))
+             except Exception as error:
+                 self.motion_label.setText("RANGE WITHHELD: " + str(error)[:200])
+         # WebRTCスレッドから最新の画像フレームをスレッドセーフに取得する
+diff --git a/src/driver_motion_presentation.py b/src/driver_motion_presentation.py
+new file mode 100644
+--- /dev/null
++++ b/src/driver_motion_presentation.py
+@@ -0,0 +1,69 @@
++"""Read-only Japanese guidance for the existing diagnostic range panel.
++
++No inference, geometry, reference loading or control decisions. Original English
++value/source/reason text is retained through the unchanged bridge formatter.
++"""
++from driver_motion_bridge import panel_text as original_panel_text
++
++
++_REASONS = {
++    'no_candidate': '対象範囲内でコーン候補を取得できていません。位置・見え方を確認してください。',
++    'ambiguous_front_cones': '対象範囲内に複数の候補があるため、対象を1本に決められません。',
++    'possible_self_body_occlusion': '台座付近が車体境界に重なる可能性があるため、距離表示を保留しています。',
++    'self_body_reference_does_not_cover_support': '支持点が確認済みの車体境界参照の範囲外にあるため、表示を保留しています。',
++    'colour_contour_reaches_roi_edge': '色の領域が解析枠の端に達しており、支持点を確定できません。',
++    'base_point_outside_observed_support': '基準点と観測した支持領域が一致しないため、表示を保留しています。',
++    'insufficient_upper_body_colour_evidence': 'コーン上部の色情報が不足し、支持点を確定できません。',
++    'ambiguous_upper_body_colour': 'コーン上部の色情報が曖昧なため、支持点を確定できません。',
++    'ambiguous_competing_colour_contours': '複数の色領域のどれを使うか決められないため、表示を保留しています。',
++    'grazing_or_outside_range': '床との交差条件または設定された距離範囲を満たしていません。',
++    'display_body_reference_unavailable': '現在の接続用の車体境界参照が未読込み、または利用できない状態です。',
++    'display_body_reference_not_current': '車体境界参照が現在の入力に対して有効ではありません。参照の状態を確認してください。',
++    'display_body_reference_session_mismatch': '車体境界参照が現在の接続に対応していません。参照の状態を確認してください。',
++    'display_body_review_unavailable': '現在フレームの車体境界判定を取得できていないため、表示を保留しています。',
++    'display_body_review_stale': '車体境界判定が古いため、現在の結果を待っています。古い距離は表示しません。',
++    'display_body_support_mismatch': '測距と車体境界判定の支持点が一致していないため、表示を保留しています。',
++    'display_body_review_invalid': '車体境界判定を検証できないため、表示を保留しています。',
++    'display_body_review_incomplete': '車体境界判定が完了していないため、表示を保留しています。',
++    'waiting_for_motion_native_sender': '測距用の元魚眼映像の接続を待っています。',
++    'waiting_for_native_frame': '測距用の元魚眼フレームを待っています。',
++    'waiting_for_current_motion_range': '現在フレームの距離結果を待っています。',
++    'motion_native_sender_profile_missing_or_mismatch': '送信映像が測距用の元魚眼形式と一致していません。',
++    'motion_input_stale': '入力映像が古いため、新しいフレームを待っています。古い距離は表示しません。',
++    'motion_result_stale': '距離結果が古いため、現在の結果を待っています。古い距離は表示しません。',
++    'frame_processing_too_old': '処理したフレームが古いため、距離を表示していません。',
++    'motion_session_changed': '映像の接続が切り替わったため、現在の結果を待っています。',
++    'motion_tap_busy': '測距結果を取得中です。現在の結果を待っています。',
++    'motion_tap_stopped': '測距受信は終了しています。',
++    'motion_worker_exited': '測距処理が終了したため、距離を表示していません。',
++    'driver_video_disconnected': '映像の接続が切れたため、距離を表示していません。',
++    'driver_video_track_ended': '映像の受信が終了したため、距離を表示していません。',
++}
++
++
++def scope_text(target_roi):
++    if target_roi is None:
++        return '対象: 前方魚眼の有効校正範囲の候補1本（ROI指定なし）。表示映像全体・後方の測距ではありません。'
++    if (not isinstance(target_roi, (list, tuple)) or len(target_roi) != 4
++            or any(type(v) is not int for v in target_roi)
++            or not 0 <= target_roi[0] < target_roi[2] <= 640
++            or not 0 <= target_roi[1] < target_roi[3] <= 720):
++        raise ValueError('explicit native front ROI required for display guidance')
++    x1, y1, x2, y2 = target_roi
++    return ('対象: 前方魚眼の指定範囲内に検出枠の中心がある候補1本のみ。画面全体の測距ではありません。'
++            f' native ROI x={x1}..{x2}, y={y1}..{y2}（元魚眼1280x720座標）')
++
++
++def reason_text(reason):
++    if isinstance(reason, str) and reason.startswith('motion_worker_failed:'):
++        return '測距処理でエラーが発生したため、距離を表示していません。詳細コードを確認してください。'
++    return _REASONS.get(reason, '判定理由の詳細は上記のコードを確認してください。')
++
++
++def panel_text(snapshot, *, target_roi=None):
++    """Only format an already reviewed snapshot; never change its availability."""
++    original = original_panel_text(snapshot)
++    explanation = ('表示中: 元の距離値を表示しています。接地・精度の認定ではありません。'
++                   if snapshot.get('available') else '保留理由: '+reason_text(snapshot.get('reason', 'unknown')))
++    return (original+'\n'+scope_text(target_roi)+'\n'+explanation
++            +'\n注意: カメラ直下基準の水平距離です。車体までの空き距離ではなく、操縦・FFBには使用しません。')

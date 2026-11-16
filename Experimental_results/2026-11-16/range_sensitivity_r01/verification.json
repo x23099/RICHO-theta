@@ -1,0 +1,27 @@
+{
+  "work_date": "2026-11-16",
+  "state": "pass",
+  "scenario_count": 27,
+  "verified_baseline_points": 3,
+  "geometric_reproduction_absolute_tolerance_m": 1e-12,
+  "recorded_primary_value_equals_prior_audit_exactly": true,
+  "full_primary_log_sha_verified": true,
+  "profile_camera_config_and_audit_bindings_verified": true,
+  "tests": {
+    "command": "env PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /home/robo25/theta-env/bin/python3 -m pytest -q tests/test_range_sensitivity.py tests/test_body_display_range_audit.py tests/test_cone_motion_range.py tests/test_driver_body_display_guard.py",
+    "passed": 69,
+    "failed": 0,
+    "new_sensitivity_tests": 10,
+    "reported_seconds": 2.27,
+    "earlier_suites_overlap": true
+  },
+  "first_attempt_note": "Exact comparison was mistakenly applied to recomputed geometry versus audited value, despite the separate 1e-12 m numerical tolerance. Corrected to require exact equality of recorded raw versus audit, with tolerance only for geometric recomputation. No output files were written by the failed attempt. Roundoff regression test added.",
+  "scenarios_are_hypotheses_not_measured_errors": true,
+  "actual_mount_height_or_tilt_measured": false,
+  "correction_fitted": false,
+  "runtime_profile_thresholds_or_source_images_changed": false,
+  "independent_physical_accuracy_certified": false,
+  "local_camera_cuda_ros_or_vehicle_started": false,
+  "published_to_ros": false,
+  "usable_for_ffb": false
+}

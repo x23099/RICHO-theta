@@ -1,0 +1,104 @@
+{
+  "state": "pass",
+  "session": "e52bb32f03d6488ebf37d769f46ec37a",
+  "source_frame": 5186,
+  "image_file": "decoded_e52bb32f03d6488ebf37d769f46ec37a_f005186.png",
+  "source_png_sha256": "7b6e0361b53e52b5e6337f07d0c46719d421b79edb013f43e65d22e25fc0fc89",
+  "decoded_bgr_sha256": "38d4b5890ab5b4a796e38b9dfd1a25602f8a04ad7e3d3c114f81652683d61e6e",
+  "source_files_local_rehashed": 9,
+  "snapshot_state": "pinned",
+  "snapshot_latest_frame": 9191,
+  "snapshot_latest_reason": "comparison_pin_requested",
+  "snapshot_requires_repin": false,
+  "snapshot_witness_continuity_uncertain": false,
+  "snapshot_saved_pin_count": 1,
+  "snapshot_worker_running": true,
+  "snapshot_pin_to_latest_sec": 133.47813563,
+  "remote_worker_still_running_now_NOT_verified": true,
+  "witness_survival_until_load_NOT_verified": true,
+  "primary_and_comparison_logs_supplied": false,
+  "physical_metric_verified": false,
+  "local_camera_started": false,
+  "local_cuda_started": false,
+  "pin_files_sha256": {
+    "comparison_status.json": "9cfe4292e86b8daccf2814ce86571999cefce7ed8187612a58446baa29be096b",
+    "decoded_e52bb32f03d6488ebf37d769f46ec37a_f005186.json": "065b49d08b9a265551ff365e13f398c49fc05b86e999d639a4a332ee3de84c1b",
+    "decoded_e52bb32f03d6488ebf37d769f46ec37a_f005186.png": "7b6e0361b53e52b5e6337f07d0c46719d421b79edb013f43e65d22e25fc0fc89"
+  },
+  "display_guard_enabled": true,
+  "display_guard_code_files_rehashed": 7,
+  "display_gate_code_sha256": {
+    "driver_body_display_guard.py": "f1c2b09d9d07cdfebae337465e1559f9dbbb92f2c7e2625b42b5fb74d8bb4f9a",
+    "cone_self_body_shadow.py": "52f5d3fdd5a900cb6e47a100ada9ae2fb7bcc44aa1d2da26af4b63d6221d19bf",
+    "driver_motion_process.py": "55269e2006c61de651a4be3939897a8ee035949b0c825d9d098b64673a153ac9",
+    "driver_motion_bridge.py": "724153e25a86ac1e15b52e37e54e8d44ffd7e9fe90661e8126b709bf4b8c5202",
+    "driver_motion_protocol.py": "8f9ed011643eea75be54a741fdaa595646c7dc66d3277a1e3327f14256bc94dd",
+    "driver_guarded_comparison.py": "facaf454c4604b31a4042e4198db86fe0015f1a4318acd326b46d9dba607a40c",
+    "cone_guarded_stream_comparison.py": "4332cd848ecb7e8bafddd68ed3f38c68a4b6035a6516f2bbb6aff42df2beb2f6"
+  },
+  "engine_summary": {
+    "schema": "driver_motion_engine_v1",
+    "profile_sha256": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "weights_sha256": "3a6e124adb15c16efd7d22c853406066371f48873c82f1d3cfc445b22ae5997b",
+    "config_sha256": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+      "index": 0,
+      "torch_version": "2.7.1+cu118",
+      "torch_cuda_version": "11.8"
+    },
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "published_to_ros": false,
+    "mount_or_floor_tilt_compensated": false,
+    "metric": "horizontal_camera_foot_range_m_NOT_base_link_or_contact",
+    "guarded_comparison": {
+      "requested": true,
+      "worker_started": true,
+      "directory": "/home/hsr/yopi_ws/RICHO-theta/recordings/2026-11-16/body_guard_live_r01",
+      "main_display_modified": false,
+      "controlling_distance": false
+    },
+    "body_display_guard": {
+      "enabled": true,
+      "raw_main_result_modified": false,
+      "display_rejection_only": true,
+      "reference_source": "same_stream_explicit_pin_load",
+      "controlling_distance": false,
+      "usable_for_ffb": false,
+      "code_sha256": {
+        "driver_body_display_guard.py": "f1c2b09d9d07cdfebae337465e1559f9dbbb92f2c7e2625b42b5fb74d8bb4f9a",
+        "cone_self_body_shadow.py": "52f5d3fdd5a900cb6e47a100ada9ae2fb7bcc44aa1d2da26af4b63d6221d19bf",
+        "driver_motion_process.py": "55269e2006c61de651a4be3939897a8ee035949b0c825d9d098b64673a153ac9",
+        "driver_motion_bridge.py": "724153e25a86ac1e15b52e37e54e8d44ffd7e9fe90661e8126b709bf4b8c5202",
+        "driver_motion_protocol.py": "8f9ed011643eea75be54a741fdaa595646c7dc66d3277a1e3327f14256bc94dd",
+        "driver_guarded_comparison.py": "facaf454c4604b31a4042e4198db86fe0015f1a4318acd326b46d9dba607a40c",
+        "cone_guarded_stream_comparison.py": "4332cd848ecb7e8bafddd68ed3f38c68a4b6035a6516f2bbb6aff42df2beb2f6"
+      }
+    },
+    "withheld_evidence": {
+      "requested": false,
+      "recorder_started": false,
+      "directory": null,
+      "target_reason": "colour_contour_reaches_roi_edge",
+      "max_frames": 40,
+      "max_png_and_sidecar_bytes": 134217728,
+      "interval_sec": 1.0
+    }
+  },
+  "display_guard_gui_output_NOT_verified": true,
+  "exact_primary_pin_line_NOT_supplied": true,
+  "remote_witness_still_valid_NOT_verified": true,
+  "checkpoint_file_independently_rehashed": false,
+  "archive_sha256": "07453348b775b0485f0613ba3d664b371a7107d67d845307521ef25a31632f71",
+  "supplied_files_sha256": {
+    "comparison_status.json": "9cfe4292e86b8daccf2814ce86571999cefce7ed8187612a58446baa29be096b",
+    "decoded_e52bb32f03d6488ebf37d769f46ec37a_f005186.json": "065b49d08b9a265551ff365e13f398c49fc05b86e999d639a4a332ee3de84c1b",
+    "decoded_e52bb32f03d6488ebf37d769f46ec37a_f005186.png": "7b6e0361b53e52b5e6337f07d0c46719d421b79edb013f43e65d22e25fc0fc89",
+    "motion_engine_summary.json": "dd0d2dc8b6d4451d178694df458cac0bb833bbad8c5db7adad871e659090b546"
+  },
+  "source_sha256": {
+    "Experimental_results/2026-11-13/body_display_reference_static_r01/intake.py": "a015eff7d51b44cb97e3e5cc4cf03a9ab33924fb3bcfde1080bae75488198ca6",
+    "Experimental_results/2026-11-13/guarded_static_reference_r02/intake.py": "0e55fb9e38e49fe3b3e47adf6ca1f83a3d6ca2bca6c11e29508a4710f01eaf3e"
+  }
+}

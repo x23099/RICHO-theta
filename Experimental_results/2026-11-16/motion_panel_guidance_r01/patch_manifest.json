@@ -1,0 +1,17 @@
+{
+  "schema": "ui_only_motion_guidance_patch_v1",
+  "base_commit": "811e455ef77fb85217d5b50b7bf847cdc326404f",
+  "patch_sha256": "86dbd43a0188690adbc48c21ef924daac1762fb75f95f7cf76351adf6c7c4b7c",
+  "files": {
+    "src/webrtc_receive_ui.py": {
+      "before_sha256": "8d4165df3bb45eaf61f737ce758b936bd2f992a93d99ce82e26e037e0bc50590",
+      "after_sha256": "d7706cf2d19abe7a027cc12c7e86aa255dde25b50aaaae939fe771fe079c96d2"
+    },
+    "src/driver_motion_presentation.py": {
+      "before_sha256": null,
+      "after_sha256": "8bca84f04f80a8df68cea10aefa1332271dabfc627b0cbdb780e528ba2c19462"
+    }
+  },
+  "bridge_geometry_guard_protocol_profile_or_control_changed": false,
+  "pushed_or_remote_applied": false
+}

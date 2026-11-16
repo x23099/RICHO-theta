@@ -1,0 +1,687 @@
+{
+  "schema": "body_display_three_distance_closed_audit_v1",
+  "state": "pass",
+  "required_files_complete": true,
+  "session": "e52bb32f03d6488ebf37d769f46ec37a",
+  "pin_frame": 5186,
+  "first_reference_frame": 24323,
+  "main": {
+    "session": "e52bb32f03d6488ebf37d769f46ec37a",
+    "profile_sha256": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "processed_frames": 51202,
+    "inference_sources": {
+      "live_cuda_yolo": 51202
+    },
+    "numeric_results": 19355,
+    "processed_withheld_fraction": 0.6219874223663138,
+    "withheld_reasons": {
+      "frame_processing_too_old": 1,
+      "no_candidate": 31143,
+      "grazing_or_outside_range": 12,
+      "colour_contour_reaches_roi_edge": 74,
+      "insufficient_upper_body_colour_evidence": 597,
+      "base_point_outside_observed_support": 2,
+      "ambiguous_front_cones": 4,
+      "ambiguous_competing_colour_contours": 3,
+      "ambiguous_upper_body_colour": 11
+    },
+    "completion_span_sec": 1715.494202028,
+    "processed_result_interval_hz": 29.846209879037705,
+    "completion_gap_ms": {
+      "count": 51201,
+      "min": 7.226694000110001,
+      "max": 488.12062099977993,
+      "p50": 33.49216600008731,
+      "p95": 45.17569199992977
+    },
+    "bridge_events": 51202,
+    "bridge_accepted": 51201,
+    "bridge_retired": 1,
+    "bridge_accepted_numeric": 19355,
+    "frames_without_bridge_event": 0,
+    "distance_m": {
+      "count": 19355,
+      "min": 0.68986650689623,
+      "max": 3.8272881500163485,
+      "p50": 1.0051490635900895,
+      "p95": 1.958505718688826
+    },
+    "timing_ms": {
+      "frame_age_ms": {
+        "count": 51202,
+        "min": 7.595532999857824,
+        "max": 1369.670787999894,
+        "p50": 12.80455999994956,
+        "p95": 17.53655700008494
+      },
+      "predict_ms": {
+        "count": 51202,
+        "min": 5.766788000073575,
+        "max": 1363.2339810001213,
+        "p50": 6.9828729999699135,
+        "p95": 9.710564999750204
+      },
+      "support_geometry_ms": {
+        "count": 51202,
+        "min": 0.0269479999133182,
+        "max": 23.607751999861648,
+        "p50": 0.05026700000598794,
+        "p95": 2.025229000082618
+      }
+    }
+  },
+  "phases": {
+    "all": {
+      "rows": 51202,
+      "first_frame": 2,
+      "last_frame": 51503,
+      "source_span_sec": 1716.8491891089998,
+      "processed_interval_hz": 29.822654386185192,
+      "original_numeric": 19355,
+      "display_permitted": 19297,
+      "permitted_and_bridge_accepted": 19297,
+      "original_numeric_display_withheld": 58,
+      "original_withheld_display_numeric": 0,
+      "permitted_exact_original": 19297,
+      "original_reason_counts": {
+        "frame_processing_too_old": 1,
+        "no_candidate": 31143,
+        "grazing_or_outside_range": 12,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 19355,
+        "colour_contour_reaches_roi_edge": 74,
+        "insufficient_upper_body_colour_evidence": 597,
+        "base_point_outside_observed_support": 2,
+        "ambiguous_front_cones": 4,
+        "ambiguous_competing_colour_contours": 3,
+        "ambiguous_upper_body_colour": 11
+      },
+      "display_reason_counts": {
+        "display_body_review_stale": 1,
+        "no_candidate": 31143,
+        "grazing_or_outside_range": 12,
+        "display_body_reference_unavailable": 31,
+        "colour_contour_reaches_roi_edge": 74,
+        "insufficient_upper_body_colour_evidence": 597,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 19297,
+        "possible_self_body_occlusion": 22,
+        "base_point_outside_observed_support": 2,
+        "ambiguous_front_cones": 4,
+        "ambiguous_competing_colour_contours": 3,
+        "ambiguous_upper_body_colour": 11,
+        "self_body_reference_does_not_cover_support": 5
+      },
+      "body_review_reason_counts": {
+        "display_body_review_stale": 1,
+        "original_withheld": 31846,
+        "display_body_reference_unavailable": 31,
+        "clear_of_reviewed_local_body_boundary_NOT_floor_contact": 19297,
+        "possible_self_body_occlusion": 22,
+        "self_body_reference_does_not_cover_support": 5
+      },
+      "reference_bound": 19324,
+      "main_age_ms": {
+        "count": 51202,
+        "min": 7.595532999857824,
+        "max": 1369.670787999894,
+        "p50": 12.80455999994956,
+        "p95": 17.53655700008494
+      },
+      "review_completion_age_ms": {
+        "count": 51202,
+        "min": 7.676005999883273,
+        "max": 1369.7933509999984,
+        "p50": 13.026752999849123,
+        "p95": 17.854883999916638
+      },
+      "raw_completion_to_review_completion_ms": {
+        "count": 51202,
+        "min": 0.06870199990771653,
+        "max": 1.9204230002287659,
+        "p50": 0.13388199977271142,
+        "p95": 0.452514000244264
+      },
+      "review_age_over_33p33ms": 49,
+      "review_age_over_500ms": 1,
+      "display_numeric_range_m": {
+        "count": 19297,
+        "min": 0.7371558005891353,
+        "max": 3.580432768313023,
+        "p50": 1.0051490635900895,
+        "p95": 1.958505718688826
+      },
+      "comparison_rows": 51200,
+      "comparison_numeric": 19298,
+      "comparison_reason_counts": {
+        "comparison_input_stale": 5094,
+        "comparison_pin_requested": 19033,
+        "comparison_waiting_for_post_activation_frame": 1,
+        "insufficient_upper_body_colour_evidence": 245,
+        "no_candidate": 7404,
+        "grazing_or_outside_range": 5,
+        "colour_contour_reaches_roi_edge": 72,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 19298,
+        "possible_self_body_occlusion": 22,
+        "base_point_outside_observed_support": 2,
+        "self_body_reference_does_not_cover_support": 6,
+        "ambiguous_front_cones": 4,
+        "ambiguous_competing_colour_contours": 3,
+        "ambiguous_upper_body_colour": 11
+      },
+      "comparison_service_ms": {
+        "count": 51200,
+        "min": 0.004542999931800296,
+        "max": 95.71341500031849,
+        "p50": 0.02964000032079639,
+        "p95": 4.234882999753609
+      },
+      "comparison_age_ms": {
+        "count": 51200,
+        "min": 7.906297999852541,
+        "max": 120.90412999987166,
+        "p50": 14.195556999993642,
+        "p95": 21.169876999920234
+      }
+    },
+    "pre_reference": {
+      "rows": 24129,
+      "first_frame": 2,
+      "last_frame": 24322,
+      "source_span_sec": 810.7684619930001,
+      "processed_interval_hz": 29.75942100743469,
+      "original_numeric": 31,
+      "display_permitted": 0,
+      "permitted_and_bridge_accepted": 0,
+      "original_numeric_display_withheld": 31,
+      "original_withheld_display_numeric": 0,
+      "permitted_exact_original": 0,
+      "original_reason_counts": {
+        "frame_processing_too_old": 1,
+        "no_candidate": 23739,
+        "grazing_or_outside_range": 6,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 31,
+        "colour_contour_reaches_roi_edge": 1,
+        "insufficient_upper_body_colour_evidence": 351
+      },
+      "display_reason_counts": {
+        "display_body_review_stale": 1,
+        "no_candidate": 23739,
+        "grazing_or_outside_range": 6,
+        "display_body_reference_unavailable": 31,
+        "colour_contour_reaches_roi_edge": 1,
+        "insufficient_upper_body_colour_evidence": 351
+      },
+      "body_review_reason_counts": {
+        "display_body_review_stale": 1,
+        "original_withheld": 24097,
+        "display_body_reference_unavailable": 31
+      },
+      "reference_bound": 0,
+      "main_age_ms": {
+        "count": 24129,
+        "min": 7.595532999857824,
+        "max": 1369.670787999894,
+        "p50": 12.134763000176463,
+        "p95": 16.22435800004496
+      },
+      "review_completion_age_ms": {
+        "count": 24129,
+        "min": 7.676005999883273,
+        "max": 1369.7933509999984,
+        "p50": 12.244488999840542,
+        "p95": 16.343849999884696
+      },
+      "raw_completion_to_review_completion_ms": {
+        "count": 24129,
+        "min": 0.06870199990771653,
+        "max": 0.9249329998510802,
+        "p50": 0.10653399999682733,
+        "p95": 0.14947799991205102
+      },
+      "review_age_over_33p33ms": 1,
+      "review_age_over_500ms": 1,
+      "display_numeric_range_m": {
+        "count": 0,
+        "min": null,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "comparison_rows": 24127,
+      "comparison_numeric": 0,
+      "comparison_reason_counts": {
+        "comparison_input_stale": 5094,
+        "comparison_pin_requested": 19033
+      },
+      "comparison_service_ms": {
+        "count": 24127,
+        "min": 0.004542999931800296,
+        "max": 0.23495800019190938,
+        "p50": 0.011804999985542963,
+        "p95": 0.01779100011845003
+      },
+      "comparison_age_ms": {
+        "count": 24127,
+        "min": 7.906297999852541,
+        "max": 70.03266300012001,
+        "p50": 12.513795999893773,
+        "p95": 16.610990000117454
+      }
+    },
+    "post_load": {
+      "rows": 27073,
+      "first_frame": 24323,
+      "last_frame": 51503,
+      "source_span_sec": 906.054438831,
+      "processed_interval_hz": 29.878999362255264,
+      "original_numeric": 19324,
+      "display_permitted": 19297,
+      "permitted_and_bridge_accepted": 19297,
+      "original_numeric_display_withheld": 27,
+      "original_withheld_display_numeric": 0,
+      "permitted_exact_original": 19297,
+      "original_reason_counts": {
+        "insufficient_upper_body_colour_evidence": 246,
+        "no_candidate": 7404,
+        "grazing_or_outside_range": 6,
+        "colour_contour_reaches_roi_edge": 73,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 19324,
+        "base_point_outside_observed_support": 2,
+        "ambiguous_front_cones": 4,
+        "ambiguous_competing_colour_contours": 3,
+        "ambiguous_upper_body_colour": 11
+      },
+      "display_reason_counts": {
+        "insufficient_upper_body_colour_evidence": 246,
+        "no_candidate": 7404,
+        "grazing_or_outside_range": 6,
+        "colour_contour_reaches_roi_edge": 73,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 19297,
+        "possible_self_body_occlusion": 22,
+        "base_point_outside_observed_support": 2,
+        "ambiguous_front_cones": 4,
+        "ambiguous_competing_colour_contours": 3,
+        "ambiguous_upper_body_colour": 11,
+        "self_body_reference_does_not_cover_support": 5
+      },
+      "body_review_reason_counts": {
+        "original_withheld": 7749,
+        "clear_of_reviewed_local_body_boundary_NOT_floor_contact": 19297,
+        "possible_self_body_occlusion": 22,
+        "self_body_reference_does_not_cover_support": 5
+      },
+      "reference_bound": 19324,
+      "main_age_ms": {
+        "count": 27073,
+        "min": 7.754210999792122,
+        "max": 107.65123400005905,
+        "p50": 13.398027999755868,
+        "p95": 18.580871000267507
+      },
+      "review_completion_age_ms": {
+        "count": 27073,
+        "min": 7.87047599988,
+        "max": 108.0639719998544,
+        "p50": 13.715122000121482,
+        "p95": 18.99754300029599
+      },
+      "raw_completion_to_review_completion_ms": {
+        "count": 27073,
+        "min": 0.09293499988416443,
+        "max": 1.9204230002287659,
+        "p50": 0.3811199999290693,
+        "p95": 0.5064639999545761
+      },
+      "review_age_over_33p33ms": 48,
+      "review_age_over_500ms": 0,
+      "display_numeric_range_m": {
+        "count": 19297,
+        "min": 0.7371558005891353,
+        "max": 3.580432768313023,
+        "p50": 1.0051490635900895,
+        "p95": 1.958505718688826
+      },
+      "comparison_rows": 27073,
+      "comparison_numeric": 19298,
+      "comparison_reason_counts": {
+        "comparison_waiting_for_post_activation_frame": 1,
+        "insufficient_upper_body_colour_evidence": 245,
+        "no_candidate": 7404,
+        "grazing_or_outside_range": 5,
+        "colour_contour_reaches_roi_edge": 72,
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 19298,
+        "possible_self_body_occlusion": 22,
+        "base_point_outside_observed_support": 2,
+        "self_body_reference_does_not_cover_support": 6,
+        "ambiguous_front_cones": 4,
+        "ambiguous_competing_colour_contours": 3,
+        "ambiguous_upper_body_colour": 11
+      },
+      "comparison_service_ms": {
+        "count": 27073,
+        "min": 0.008038000032684067,
+        "max": 95.71341500031849,
+        "p50": 2.7918380001210608,
+        "p95": 4.824819000077696
+      },
+      "comparison_age_ms": {
+        "count": 27073,
+        "min": 8.117872999719111,
+        "max": 120.90412999987166,
+        "p50": 16.746610999689437,
+        "p95": 22.848535999855812
+      }
+    },
+    "final_30_seconds": {
+      "rows": 898,
+      "first_frame": 50604,
+      "last_frame": 51503,
+      "source_span_sec": 29.962714379999852,
+      "processed_interval_hz": 29.93720757818753,
+      "original_numeric": 898,
+      "display_permitted": 898,
+      "permitted_and_bridge_accepted": 898,
+      "original_numeric_display_withheld": 0,
+      "original_withheld_display_numeric": 0,
+      "permitted_exact_original": 898,
+      "original_reason_counts": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 898
+      },
+      "display_reason_counts": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 898
+      },
+      "body_review_reason_counts": {
+        "clear_of_reviewed_local_body_boundary_NOT_floor_contact": 898
+      },
+      "reference_bound": 898,
+      "main_age_ms": {
+        "count": 898,
+        "min": 10.138983000160806,
+        "max": 26.390467999590328,
+        "p50": 13.847498999894015,
+        "p95": 17.83911899974555
+      },
+      "review_completion_age_ms": {
+        "count": 898,
+        "min": 10.5290800001967,
+        "max": 27.25673499980985,
+        "p50": 14.24743600000511,
+        "p95": 18.295930000022054
+      },
+      "raw_completion_to_review_completion_ms": {
+        "count": 898,
+        "min": 0.32439999995403923,
+        "max": 0.8662670002195227,
+        "p50": 0.40527999999540043,
+        "p95": 0.495821999720647
+      },
+      "review_age_over_33p33ms": 0,
+      "review_age_over_500ms": 0,
+      "display_numeric_range_m": {
+        "count": 898,
+        "min": 1.0024815587990699,
+        "max": 1.0039399648604908,
+        "p50": 1.0031888367910913,
+        "p95": 1.0039399648604908
+      },
+      "comparison_rows": 898,
+      "comparison_numeric": 898,
+      "comparison_reason_counts": {
+        "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT": 898
+      },
+      "comparison_service_ms": {
+        "count": 898,
+        "min": 2.5168540000777284,
+        "max": 9.322593999968376,
+        "p50": 3.0040689998713788,
+        "p95": 4.603240999585978
+      },
+      "comparison_age_ms": {
+        "count": 898,
+        "min": 13.490073999946617,
+        "max": 30.71225299981961,
+        "p50": 17.800132000047597,
+        "p95": 22.616941999785922
+      }
+    }
+  },
+  "display_reviews": 51202,
+  "exact_bridge_review_copies": 51202,
+  "geometry_replayed_from_logged_support": 19324,
+  "geometry_reason_counts": {
+    "clear_of_reviewed_local_body_boundary_NOT_floor_contact": 19297,
+    "possible_self_body_occlusion": 22,
+    "self_body_reference_does_not_cover_support": 5
+  },
+  "first_bound_display_frame": 26696,
+  "source_code_files_rehashed": 12,
+  "source_code_sha256": {
+    "driver_guarded_comparison.py": "facaf454c4604b31a4042e4198db86fe0015f1a4318acd326b46d9dba607a40c",
+    "cone_guarded_stream_comparison.py": "4332cd848ecb7e8bafddd68ed3f38c68a4b6035a6516f2bbb6aff42df2beb2f6",
+    "cone_guarded_lower_edge_shadow.py": "072aa3645755b49b1b16a31b80b168a60af9018ddbf76ec9332a70151495bdb1",
+    "cone_bbox_boundary_shadow.py": "496e1f34d5c3388411546248f8af305e9b4768d0ac8e02261af0917153c9fe10",
+    "cone_self_body_shadow.py": "52f5d3fdd5a900cb6e47a100ada9ae2fb7bcc44aa1d2da26af4b63d6221d19bf",
+    "cone_motion_range.py": "49b70509e66b32745fcf43e5c6e2d8621ff1d8da95cd42072e3ee93721d17fa7",
+    "cone_upper_support_candidate.py": "4fa9e55d5ac5af372ca5d7b8a74d2b60bbcc45d46e1819b22175567087ba1ad3",
+    "cone_support_completion_candidate.py": "41f236a4446b476a2d16d1be372888620ac36ef8a565ab4db8747afa56373f8c",
+    "driver_motion_process.py": "55269e2006c61de651a4be3939897a8ee035949b0c825d9d098b64673a153ac9",
+    "driver_body_display_guard.py": "f1c2b09d9d07cdfebae337465e1559f9dbbb92f2c7e2625b42b5fb74d8bb4f9a",
+    "driver_motion_bridge.py": "724153e25a86ac1e15b52e37e54e8d44ffd7e9fe90661e8126b709bf4b8c5202",
+    "driver_motion_protocol.py": "8f9ed011643eea75be54a741fdaa595646c7dc66d3277a1e3327f14256bc94dd"
+  },
+  "issued_reference_sha256": "60ebc44adee96cf21195fefb61dc4d988033e157971c764025e8a783f8d3edde",
+  "pin_exact_primary_line_and_native_pixels_verified": true,
+  "checkpoint_file_supplied": false,
+  "engine_metadata": {
+    "schema": "driver_motion_engine_v1",
+    "profile_sha256": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "weights_sha256": "3a6e124adb15c16efd7d22c853406066371f48873c82f1d3cfc445b22ae5997b",
+    "config_sha256": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+      "index": 0,
+      "torch_version": "2.7.1+cu118",
+      "torch_cuda_version": "11.8"
+    },
+    "physical_metric_verified": false,
+    "usable_for_ffb": false,
+    "published_to_ros": false,
+    "mount_or_floor_tilt_compensated": false,
+    "metric": "horizontal_camera_foot_range_m_NOT_base_link_or_contact",
+    "guarded_comparison": {
+      "requested": true,
+      "worker_started": true,
+      "directory": "/home/hsr/yopi_ws/RICHO-theta/recordings/2026-11-16/body_guard_live_r01",
+      "main_display_modified": false,
+      "controlling_distance": false
+    },
+    "body_display_guard": {
+      "enabled": true,
+      "raw_main_result_modified": false,
+      "display_rejection_only": true,
+      "reference_source": "same_stream_explicit_pin_load",
+      "controlling_distance": false,
+      "usable_for_ffb": false,
+      "code_sha256": {
+        "driver_body_display_guard.py": "f1c2b09d9d07cdfebae337465e1559f9dbbb92f2c7e2625b42b5fb74d8bb4f9a",
+        "cone_self_body_shadow.py": "52f5d3fdd5a900cb6e47a100ada9ae2fb7bcc44aa1d2da26af4b63d6221d19bf",
+        "driver_motion_process.py": "55269e2006c61de651a4be3939897a8ee035949b0c825d9d098b64673a153ac9",
+        "driver_motion_bridge.py": "724153e25a86ac1e15b52e37e54e8d44ffd7e9fe90661e8126b709bf4b8c5202",
+        "driver_motion_protocol.py": "8f9ed011643eea75be54a741fdaa595646c7dc66d3277a1e3327f14256bc94dd",
+        "driver_guarded_comparison.py": "facaf454c4604b31a4042e4198db86fe0015f1a4318acd326b46d9dba607a40c",
+        "cone_guarded_stream_comparison.py": "4332cd848ecb7e8bafddd68ed3f38c68a4b6035a6516f2bbb6aff42df2beb2f6"
+      }
+    },
+    "withheld_evidence": {
+      "requested": false,
+      "recorder_started": false,
+      "directory": null,
+      "target_reason": "colour_contour_reaches_roi_edge",
+      "max_frames": 40,
+      "max_png_and_sidecar_bytes": 134217728,
+      "interval_sec": 1.0
+    }
+  },
+  "shutdown": {
+    "primary": {
+      "schema": "driver_motion_bridge_summary_v1",
+      "sent": 51203,
+      "returned": 51202,
+      "retired_results": 1,
+      "tap_lock_drops": 6,
+      "max_publish_ms": 0.6450220002989226,
+      "worker_error": null,
+      "child_exitcode": 0,
+      "io_thread_stopped": true,
+      "child_stopped": true,
+      "shutdown_complete": true,
+      "shutdown_reason": "complete",
+      "forced_worker_kill": false,
+      "shutdown_error": null,
+      "shutdown_wait_ms": 664.902661999804,
+      "image_files_written": null,
+      "guarded_comparison_requested": true,
+      "guarded_comparison_status_file": "/home/hsr/yopi_ws/RICHO-theta/recordings/2026-11-16/body_guard_live_r01/comparison_status.json",
+      "withheld_evidence_requested": false,
+      "withheld_evidence_status_file": null,
+      "physical_metric_verified": false,
+      "usable_for_ffb": false,
+      "distance_published_to_ros": false,
+      "control_channel_modified": false,
+      "metric": "horizontal_camera_foot_range_m_NOT_base_link_or_contact",
+      "body_display_guard": {
+        "enabled": true,
+        "rejection_only": true,
+        "raw_main_measurement_modified": false,
+        "reviews_logged_by_child": "motion_display_reviews.jsonl",
+        "controlling_distance": false,
+        "usable_for_ffb": false
+      }
+    },
+    "comparison": {
+      "state": "closed",
+      "writer_done": true,
+      "shutdown_complete": true,
+      "error": null,
+      "offered": 51202,
+      "processed": 51200,
+      "latest_slot_overwrites": 1,
+      "tap_busy_drops": 0
+    },
+    "comparison_unprocessed": 2
+  },
+  "limits": {
+    "gui_draw_count_or_latency_verified": false,
+    "physical_metric_verified": false,
+    "floor_contact_verified": false,
+    "mount_repeatability_verified": false,
+    "actual_motion_verified": false,
+    "all_live_frame_pixels_independently_recomputed": false,
+    "supports_only_not_unsaved_images": true,
+    "local_camera_cuda_ros_or_vehicle_started": false,
+    "measured_stationary_intervals_verified": false,
+    "measurement_uncertainty_known": false,
+    "independent_metric_accuracy_certified": false,
+    "all_screenshot_original_files_supplied": false,
+    "all_screenshot_draws_verified": false
+  },
+  "archive_sha256": "ccddce15457948846335dac47ef6b1eb25604408651743b0b9e03c29ca13a5c4",
+  "supplied_files_sha256": {
+    "primary/driver_motion_summary.json": "e857a709493cc79942ad010de4a04b3c0b3a60905385821cfb1120caaf5ee79e",
+    "primary/motion_bridge_events.jsonl": "66732f78f1aa79c2d197e1759fe5fb8e0a2dfcb6add49413c56d541e58eef9e6",
+    "primary/motion_display_reviews.jsonl": "fa6aa62f2a32ffd3d79993862321c2a7e251128d3af8b1ac78b4a58e51710361",
+    "primary/motion_distance_frames.jsonl": "a2fe7f3984d9a1f81498a15607958b60cdc4ce5c6ae00a8de51111ff2064dcca",
+    "primary/motion_engine_summary.json": "dd0d2dc8b6d4451d178694df458cac0bb833bbad8c5db7adad871e659090b546",
+    "primary/motion_profile_used.json": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "primary/motion_worker_stderr.log": "f5cd5a7c96a82745ceae03ba58e28b10f2c6f899c1d817b777af32826081c3c0",
+    "primary/ultralytics_config/Ultralytics/Arial.ttf": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22",
+    "primary/ultralytics_config/Ultralytics/settings.json": "ecf0e6dd1a6610d602ed0249d82760480314a8d6df239015fc543ad7c3ae723d",
+    "primary/ultralytics_config/matplotlib/fontlist-v390.json": "fe3ec8e649dc51a2ee3df929bfcd3f41193f1ab82c6945c12a81c0e2d4a47b76",
+    "comparison/comparison_frames.jsonl": "e8a06c4caa82ff567084707b141a1ec80d05d190734fba04abc922e36fe29339",
+    "comparison/comparison_status.json": "6a08e5bd2904b8d64e80ea05d9180d9b6433a0500377ce322cff09204a7da25f",
+    "comparison/decoded_e52bb32f03d6488ebf37d769f46ec37a_f005186.json": "065b49d08b9a265551ff365e13f398c49fc05b86e999d639a4a332ee3de84c1b",
+    "comparison/decoded_e52bb32f03d6488ebf37d769f46ec37a_f005186.png": "7b6e0361b53e52b5e6337f07d0c46719d421b79edb013f43e65d22e25fc0fc89",
+    "comparison/reference.json": "60ebc44adee96cf21195fefb61dc4d988033e157971c764025e8a783f8d3edde",
+    "comparison/request.json": "4d3e144a99affd7334ede46687a8412e93342e00eed47930b74248aa25ce7749"
+  },
+  "all_submitted_bytes_unchanged": true,
+  "reported_points": [
+    {
+      "frame": 34957,
+      "session": "e52bb32f03d6488ebf37d769f46ec37a",
+      "source_time_sec": 2411.510156207,
+      "reference_generation": 1,
+      "reported_measured_m": 1.0,
+      "screenshot_range_m": 1.005,
+      "logged_raw_range_m": 1.0051490635900895,
+      "logged_display_range_m": 1.0051490635900895,
+      "rounded_screen_value_matches": true,
+      "displayed_minus_reported_m": 0.005,
+      "measurement_uncertainty_m": null,
+      "screenshot_original_file_supplied": false,
+      "source": "user_report_and_conversation_screenshot",
+      "raw_age_ms": 12.464291000014782,
+      "review_completion_age_ms": 12.828043999888905,
+      "raw_to_review_ms": 0.3637529998741229,
+      "comparison_range_m": 1.0051490635900895,
+      "original_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+      "display_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "frame": 45469,
+      "session": "e52bb32f03d6488ebf37d769f46ec37a",
+      "source_time_sec": 2761.934271151,
+      "reference_generation": 1,
+      "reported_measured_m": 1.5,
+      "screenshot_range_m": 1.48,
+      "logged_raw_range_m": 1.4802135948782225,
+      "logged_display_range_m": 1.4802135948782225,
+      "rounded_screen_value_matches": true,
+      "displayed_minus_reported_m": -0.02,
+      "measurement_uncertainty_m": null,
+      "screenshot_original_file_supplied": false,
+      "source": "user_report_and_conversation_screenshot",
+      "raw_age_ms": 10.811202000240883,
+      "review_completion_age_ms": 11.174125000252388,
+      "raw_to_review_ms": 0.3629230000115058,
+      "comparison_range_m": 1.4802135948782225,
+      "original_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+      "display_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    },
+    {
+      "frame": 46432,
+      "session": "e52bb32f03d6488ebf37d769f46ec37a",
+      "source_time_sec": 2794.038692481,
+      "reference_generation": 1,
+      "reported_measured_m": 2.0,
+      "screenshot_range_m": 1.96,
+      "logged_raw_range_m": 1.9595656445966836,
+      "logged_display_range_m": 1.9595656445966836,
+      "rounded_screen_value_matches": true,
+      "displayed_minus_reported_m": -0.04,
+      "measurement_uncertainty_m": null,
+      "screenshot_original_file_supplied": false,
+      "source": "user_report_and_conversation_screenshot",
+      "raw_age_ms": 13.771607999842672,
+      "review_completion_age_ms": 14.131696999811538,
+      "raw_to_review_ms": 0.3600889999688661,
+      "comparison_range_m": 1.9595656445966836,
+      "original_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+      "display_reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT"
+    }
+  ],
+  "screenshot_observations_sha256": "7e02070c2c099c35fa4b9e92990effc47e15f29a99b58198834f495ca069c52d",
+  "sampled_max_absolute_displayed_difference_m": 0.04,
+  "comparison_final_pending": 1,
+  "complete_timing_csv": {
+    "path": "recordings/2026-11-16/body_display_full_intake_r02/derived/display_timing.csv",
+    "sha256": "5de62f0be8062525cb9b36a793e050970c6af07b63ffa043fcbb38aa3c9fb3c5"
+  },
+  "audit_code_sha256": {
+    "Experimental_results/2026-11-16/body_display_range_audit_r01/review.py": "eece5899261be52f8f982746ae1d94a2f2c086476c9b9765566973bbf4c37273",
+    "Experimental_results/2026-11-13/body_display_occlusion_live_audit_r01/review.py": "73386c29c215d6517f50fe2a295a42e9604255853397a03bc1ea32c9addd4ae4",
+    "Experimental_results/2026-11-13/body_display_static_live_audit_r01/review.py": "0077a0e7d760f105dd24f7b746d3f59515fa9c7610aeb6692d953f9825cc0185",
+    "Experimental_results/2026-11-13/guarded_static_live_audit_r02/review.py": "8d79498fbdf2771d9ce5e2982956e7eaa57ee196a00ed9df39cbcdf0b84665fa",
+    "src/report_driver_motion_logs.py": "58e876a45ac9e4b8380da0a5cde9df7f11d6073e0d1f4eb75c1525a00e949427",
+    "src/verify_driver_withheld_evidence.py": "276ce2b3f04993fc3e142dad8655bd7786b42aed336ad2bc619522e26b88734f"
+  }
+}

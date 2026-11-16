@@ -1,0 +1,55 @@
+{
+  "schema": "offline_self_body_boundary_v1",
+  "session": "e52bb32f03d6488ebf37d769f46ec37a",
+  "image_size": [
+    1280,
+    720
+  ],
+  "layout": "dual_fisheye_front_left_unremapped",
+  "source_frame": 5186,
+  "source_png_sha256": "7b6e0361b53e52b5e6337f07d0c46719d421b79edb013f43e65d22e25fc0fc89",
+  "boundary_xy": [
+    [
+      270,
+      446
+    ],
+    [
+      280,
+      447
+    ],
+    [
+      290,
+      447
+    ],
+    [
+      300,
+      448
+    ],
+    [
+      310,
+      448
+    ],
+    [
+      350,
+      446
+    ],
+    [
+      360,
+      445
+    ],
+    [
+      370,
+      444
+    ],
+    [
+      380,
+      443
+    ]
+  ],
+  "source": "analyst_read_current_pinned_native_platform_edge_NOT_automatic_detection",
+  "reading_uncertainty_px": 2,
+  "independent_physical_measurement": false,
+  "cross_session_mount_verified": false,
+  "live_authorized": false,
+  "floor_contact_verified": false
+}

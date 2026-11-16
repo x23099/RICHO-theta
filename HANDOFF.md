@@ -1,6 +1,52 @@
 # コーン測距・FFB開発 引き継ぎ資料
 
-最新作業枠: **2026-11-14（ユーザー指定扱い）**。対象リポジトリ: `RICHO-theta`。実時計・11/13の実験日時は変更していない。
+最新作業枠: **2026-11-16**。対象リポジトリ: `RICHO-theta`。過去の実験日時は変更していない。
+
+## 11/16最新：対象範囲・保留理由の日本語UI説明を実装。GPU PCは未反映
+
+[表示例・反映手順](Experimental_results/2026-11-16/motion_panel_guidance_r01/README.md)。driver_motion_presentation.pyを新設し、UIラベル初期化／更新だけで呼ぶ。既存bridge.panel_textの元数値・frame・age・body-review世代・英語コード／注意文を維持し、日本語の実ROI・状態理由・非制御注意を追加。no_candidateを範囲外と断定せず、自己遮蔽も可能性として説明。QLabel PlainText固定。ROIは起動引数、未指定を中央へ暗黙固定しない。映像への枠描画は今回なし。
+
+新12＋関連計71テスト成功。fake peer・制御/ROS/keyboard/sender AST不変・古い数値の非表示・入力非変更を確認。合成Qtラベル3点をoffscreen描画し日本語・折返し・高さを確認（実機画面ではない）。先行実機監査の計算/参照/guard/bridge/protocol等12ソースは全バイト不変。runtime変更はUIと新説明moduleのみで、距離計算・profile・しきい値・採否・制御変更なし。
+
+GPUへは未反映・未push。2ファイルのmotion_panel_guidance_update_r01.patchを作成、SHA 86dbd43a0188690adbc48c21ef924daac1762fb75f95f7cf76351adf6c7c4b7c。Downloadsへコピーし、READMEのSHA→reverse check済み判定→正方向check成功時だけ適用する分岐を使う。正逆check・二重適用拒否は隔離fixtureで検証済み。GPUは受信停止のまま、日本語端末出力の確認だけ可能。追加撮影・測定・走行・録画や終了済みr01の受信再開は不要。実GPUフォント・全運転画面配置は未確認。日報・commit/push未依頼。
+
+## 11/16後続：保存3支持点の感度を計算し、診断表示の利用範囲を整理
+
+[感度と利用条件](Experimental_results/2026-11-16/range_sensitivity_r01/README.md)。追加実機を使わず、正式全ログのSHA／保存profile／カメラ／設定へ結んだ3点の距離を再計算。ログと1e-12m以内で一致（最大丸め差4.45e-16mで物理精度ではない）。支持点x/y各±1px・高さ±1cm・対象方向の床法線±1度の一因子計27ケースをCSV/JSON保存。2m地点はy1px約3.90cm／高さ1cm約3.40cm／法線1度最大約13.42cmの影響。これは仮定感度であり今回の差の原因・実際の取付誤差・信頼区間ではない。法線回転は対象ごとの光線平面で、車体pitch/rollの実測ではない。新10＋関連計69テスト成功、先行67等と重複あり。
+
+利用判断を「条件付きの前方中央・赤コーン1本の運転者向け診断表示」と明文化。11/13の走行機能・11/16の3画面確認を未確認へ戻さず、全距離精度・接触距離・傾斜補償・制御認定とは分ける。現行ソフト出力0.2〜4mを実測確認済み範囲と混同しない。次に優先するソフト改善は対象範囲と保留理由の分かりやすい表示で、採否や距離を変えない。今回UI変更はまだなし。runtime・profile・しきい値・画像・ROS/FFB変更なし。追加実機・撮影・受信再開不要、日報・commit/push未依頼。
+
+## 11/16最新：全ログ監査完了。3画面の値・参照・正常終了が一致
+
+[正式監査](Experimental_results/2026-11-16/body_display_range_audit_r01/README.md)。body_guard_full_20261116_r01.tar.xzは16点完備。主／表示レビュー／bridge各51,202件・比較51,200件を照合し、pin5186の完全主元行SHA・PNG/BGR・初回4点・発行参照バイト・12コードSHAとprofile/config・記録重みSHAが一致。主／比較正常終了・child0・エラー／強制killなし。sent-returned差1、比較未処理差2=上書き1＋終了未処理1を確認。
+
+画面frame34957／45469／46432に元主値・表示許可・bridge受理・別比較が対応し、画面1.005／1.480／1.960mと3桁丸め一致。申告実測1／1.5／2mとの差+0.5／-2／-4cm。各画面±0.5秒の31／30／30件に数値途切れなし（1.003940〜1.005149／1.480214同値／1.957462〜1.959566m）。短文脈は実測に対応する静止区間全体の証明ではなく、常時±4cm・独立精度は未認定。
+
+load後27,073件：元数値19,324→表示19,297、追加保留27=自己遮蔽22＋参照範囲外5、元保留救済0。全許可元値同一・bridge受理、全19,324支持列の判定再計算一致。レビュー完了age P95/最大19.00/108.06ms、主完了からレビュー追加経過P95/最大0.51/1.92msで露光〜GUI総遅延ではない。非同期比較と主表示は別経路。
+
+原本・全timingはrecordings/2026-11-16/body_display_full_intake_r02、正式JSONはbody_display_range_audit_r01/results_r01。初回raw r01はパス記録の不整合で集計JSON発行に失敗した途中成果で、削除せず保持。パスresolve修正後r02へ新規取込し成功。既存監査へ参照・pin原本の明示パス引数だけ追加、旧既定と検証は維持。今回の現地3地点確認は完了、追加撮影・再測定・走行不要。runtime・校正・しきい値・制御変更なし、日報・commit/push未依頼。
+
+## 11/16最新：1／1.5／2mの画面3点が揃った。次は通常終了・closed圧縮提出
+
+[3地点記録と圧縮手順](Experimental_results/2026-11-16/body_display_range_check_r01/README.md)。同session・参照pin5186／世代1で、申告実測1.000→画面1.005m（frame34957）、1.500→1.480m（45469）、2.000→1.960m（46432）。差は+0.5／-2／-4cm、今回3点の絶対差最大4cm。申告実測の不確かさ・時系列変動未確認で、常時±4cm・全範囲精度・制御利用を認定しない。画面3点と計算値をobservations.csvへ保存、校正へ合わせ込まない。
+
+現地の追加測定・走行・録画・再pin・再loadは不要。受信を通常終了して端末へ戻り、既存11/14pack_submission.pyのclosedモードに本日主driver_body_guard_live_r01／比較body_guard_live_r01を指定し、Downloads/body_guard_full_20261116_r01.tar.xzとして提出。拒否されたらエラー共有、削除・強制終了・受信やり直しで強行しない。同名archive時は出力名だけ変更。受領後、3画面の正確なframeと主／レビュー／bridge・pin元行SHA・参照バイト・終了状態を監査する。実測に対応する静止区間を未確定のまま周辺全ログを精度評価へ混ぜない。日報・commit/push未依頼。
+
+## 11/16後続：参照active・主画面の数値復帰を確認。実測1mに対し表示1.005m
+
+[観測記録](Experimental_results/2026-11-16/body_display_range_check_r01/README.md)。ユーザー貼付statusで同sessionのstate=active／reference_frame5186／generation1／scope=true／error=nullを確認。frame24780のno_candidateは元主も候補なしであり参照load失敗ではない。会話添付画面では候補なしと数値0.955m（frame28079）をそれぞれ確認した。異なるframeを同時刻として扱わない。
+
+ユーザー申告で、カメラ直下の床点から台座手前辺中央までの床面直線距離1.000m、表示1.005m。添付画面も同session／frame34957／body-review gen1／receive-age16msで1.005mを確認。申告実測との差+5mm（+0.5%）をCSV保存。ただし1点・1時点、実測不確かさ未申告で、5mm精度・全範囲精度は認定しない。主全ログとスクリーンショットのローカル原本は未提出。次は機体・カメラ固定のまま、置ける範囲でコーンだけ1.5m／2mへ移して同一基準の実測・表示・変動を対応させる。走行・再pin・再load・再起動・録画は不要。runtime・校正・閾値変更なし、日報・commit/push未依頼。
+
+## 11/16再開：現在pin5186の参照作成。次はファイルコピー・SHA照合・load
+
+ユーザー申告で全機材使用可・GPU反映済み。開始時mainはorigin/mainと一致しclean、11/14扱いの運用helper等はcommit 811e455に含まれていた。以下の古い「未commit／未反映」記述は当時の履歴であり、現在の状態ではない。11/14はユーザーの実機作業なし。本日、受信・pin・圧縮手順の保存先を11/16へ統一した（pack_submission.py自体の場所は11/14のまま）。
+
+[本日の参照と次の手順](Experimental_results/2026-11-16/body_display_reference_r01/README.md)。body_guard_pin_20261116_r01.tar.xzの4点は完備。session e52bb32f03d6488ebf37d769f46ec37a／pin5186／コピー時latest9191、pinned・reason=comparison_pin_requested・error=null・writer_done=false。PNG/BGR/sidecar/status一致、表示ゲートON、比較9＋表示7（重複除く12）コードとprofile/config・記録重みSHAがローカル一致。元主JSONL未提出のため完全元行SHAは後日照合。
+
+今回の元PNGから天板境界x270〜380・中央y448付近を新規に読取り、新しいreference.jsonを発行。SHAは60ebc44adee96cf21195fefb61dc4d988033e157971c764025e8a783f8d3edde。GPUのrecordings/2026-11-16/body_guard_live_r01/reference.jsonへコピーし、SHA一致時だけ同接続load1回→statusと画面下部を共有する。今回の参照は未push。送受信・停止維持、再pin・再起動・Lキー・走行・録画はまだ不要。
+
+元画像のコーンはROI x270〜350より左寄りで、コピー時元距離もunavailable。参照activeと数値表示を分けて確認し、必要ならload後にコーンだけを画像x310付近へ調整する。ROI拡張・保留解除で救済しない。現在までのwitness保持・load成功・GUI・物理精度は未確認。参照は自己遮蔽棄却専用で距離校正ではない。11/13の走行確認をやり直す必要はない。rawはrecordings/2026-11-16/body_display_pin_intake_r01。runtime・校正・環境・制御変更なし、日報・commit/push未依頼。
 
 ## 11/14開始：11/13日報をpush完了後、実機不要の運用手順・提出補助を整備
 

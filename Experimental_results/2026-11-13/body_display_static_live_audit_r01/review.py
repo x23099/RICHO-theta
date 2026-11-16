@@ -131,7 +131,8 @@ def phase_stats(frames, reviews, comparisons, accepted):
 
 
 def analyze(directory, *, pin_stem=PIN, reference_folder='body_display_reference_static_r01',
-            pin_intake_folder='body_display_pin_intake_r01', request_count=2, pending_sent=0):
+            pin_intake_folder='body_display_pin_intake_r01', request_count=2, pending_sent=0,
+            issued_reference_path=None, prior_pin_directory=None):
     import cv2
     import numpy as np
     primary, comparison = directory/'primary', directory/'comparison'
@@ -146,9 +147,11 @@ def analyze(directory, *, pin_stem=PIN, reference_folder='body_display_reference
     require(pin == j(comparison/(pin_stem+'.json')) and pin['image_file'] == pin_stem+'.png'
             and pin['image_modified'] is False, 'pin metadata mismatch')
     require(pin['session'] == reference['session'] and pin['frame'] == reference['source_frame'], 'reference/pin mismatch')
-    issued = ROOT/'Experimental_results/2026-11-13'/reference_folder/'reference.json'
+    issued = (Path(issued_reference_path) if issued_reference_path is not None else
+              ROOT/'Experimental_results/2026-11-13'/reference_folder/'reference.json')
     require(file_sha(comparison/'reference.json') == file_sha(issued), 'not analyst-issued reference bytes')
-    prior = ROOT/'recordings/2026-11-13'/pin_intake_folder
+    prior = (Path(prior_pin_directory) if prior_pin_directory is not None else
+             ROOT/'recordings/2026-11-13'/pin_intake_folder)
     for name in (pin_stem+'.png', pin_stem+'.json'):
         require(file_sha(comparison/name) == file_sha(prior/name), 'pin differs from initial verified intake')
     require(file_sha(primary/'motion_engine_summary.json') == file_sha(prior/'motion_engine_summary.json'), 'engine differs from initial intake')

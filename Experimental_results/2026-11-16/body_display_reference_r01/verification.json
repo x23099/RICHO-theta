@@ -1,0 +1,28 @@
+{
+  "work_date": "2026-11-16",
+  "state": "pass",
+  "session": "e52bb32f03d6488ebf37d769f46ec37a",
+  "pin_frame": 5186,
+  "four_file_intake_passed": true,
+  "reference_validation_passed": true,
+  "reference_sha256": "60ebc44adee96cf21195fefb61dc4d988033e157971c764025e8a783f8d3edde",
+  "boundary_readings_native_pixel_samples_matched": 18,
+  "tests": {
+    "command": "env PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /home/robo25/theta-env/bin/python3 -m pytest -q tests/test_body_display_pin_intake.py tests/test_guarded_current_pin_intake.py",
+    "passed": 29,
+    "failed": 0,
+    "reported_seconds": 1.28,
+    "first_attempt_collection_not_started": "External anyio pytest plugin could not import _pytest.scope; rerun with plugin autoload disabled. No environment changes."
+  },
+  "runtime_code_changed": false,
+  "metric_calibration_changed": false,
+  "source_images_modified": false,
+  "primary_source_log_line_independently_verified": false,
+  "remote_reference_loaded": false,
+  "remote_witness_currently_verified": false,
+  "physical_metric_verified": false,
+  "local_camera_started": false,
+  "local_cuda_started": false,
+  "published_to_ros": false,
+  "usable_for_ffb": false
+}

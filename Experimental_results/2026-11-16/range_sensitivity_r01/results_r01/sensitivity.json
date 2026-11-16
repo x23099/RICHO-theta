@@ -1,0 +1,89 @@
+{
+  "schema": "offline_rigid_range_sensitivity_v1",
+  "state": "pass",
+  "session": "e52bb32f03d6488ebf37d769f46ec37a",
+  "primary_model": {
+    "id": "ippe_0",
+    "up_optical": [
+      -0.023902399089715066,
+      -0.9997041620762414,
+      0.004501515877554066
+    ],
+    "height_m": 0.5767672744708221,
+    "native_rmse_px": 0.10584493788665551,
+    "solution_index": 0
+  },
+  "points": [
+    {
+      "frame": 34957,
+      "support_pixel": [
+        311,
+        417
+      ],
+      "reported_measured_m": 1.0,
+      "baseline_range_m": 1.0051490635900897,
+      "baseline_reproduces_log_abs_tolerance_m": 1e-12,
+      "baseline_numerical_difference_m": 2.220446049250313e-16,
+      "baseline_exact_primary_line_sha256": "872e6ec3593cb4bed88060f818f464ccdeee91bce4672bec1eafafb6b6fe696e",
+      "max_abs_x_one_pixel_effect_m": 0.0004250596755039915,
+      "max_abs_y_one_pixel_effect_m": 0.012612234121992305,
+      "max_abs_height_one_cm_effect_m": 0.017427290140764606,
+      "max_abs_normal_one_deg_effect_m": 0.04191873476630592,
+      "hypothetical_effects_not_measurement_uncertainties": true
+    },
+    {
+      "frame": 45469,
+      "support_pixel": [
+        313,
+        389
+      ],
+      "reported_measured_m": 1.5,
+      "baseline_range_m": 1.480213594878222,
+      "baseline_reproduces_log_abs_tolerance_m": 1e-12,
+      "baseline_numerical_difference_m": -4.440892098500626e-16,
+      "baseline_exact_primary_line_sha256": "b33d6cb7d6293d5519799560aa26c165c50d1836e928e2bbea66e0b42c6098df",
+      "max_abs_x_one_pixel_effect_m": 0.0006708145157281464,
+      "max_abs_y_one_pixel_effect_m": 0.02362376036110514,
+      "max_abs_height_one_cm_effect_m": 0.02566396639331381,
+      "max_abs_normal_one_deg_effect_m": 0.07995792069731311,
+      "hypothetical_effects_not_measurement_uncertainties": true
+    },
+    {
+      "frame": 46432,
+      "support_pixel": [
+        311,
+        373
+      ],
+      "reported_measured_m": 2.0,
+      "baseline_range_m": 1.9595656445966831,
+      "baseline_reproduces_log_abs_tolerance_m": 1e-12,
+      "baseline_numerical_difference_m": -4.440892098500626e-16,
+      "baseline_exact_primary_line_sha256": "e4253f903e02c497e679b0e08f8c6531ed618cdc443549c7addbb39a058f9f43",
+      "max_abs_x_one_pixel_effect_m": 0.0010759625535723405,
+      "max_abs_y_one_pixel_effect_m": 0.039038138085443874,
+      "max_abs_height_one_cm_effect_m": 0.0339749797072757,
+      "max_abs_normal_one_deg_effect_m": 0.13423746260946556,
+      "hypothetical_effects_not_measurement_uncertainties": true
+    }
+  ],
+  "scenario_count": 27,
+  "input_and_code_sha256": {
+    "Experimental_results/2026-11-16/range_sensitivity_r01/analyze.py": "31379fb3d4e620cdff3229e919e528062e92028899bd16a3e61993757f07d046",
+    "Experimental_results/2026-11-16/body_display_range_audit_r01/results_r01/audit.json": "fdbfd5c2c32492d5b9a27c10f08f3c2b2a7ee76ce870c4f1940c5a56b3750684",
+    "src/cone_distance_diagnostic_config.json": "8c614e0fc79da54a8d3bc5afb6108242ca67072e45821006a7ae2216e29a01c0",
+    "Experimental_results/2026-10-21/front_fisheye_solver_audit_r01/angular_results_r01/angular_diagnostic_candidate.json": "e3dede6d229bd2facfba2039f8ba541fba4563bb15a11eb44ef0f896e055da42",
+    "recordings/2026-11-16/body_display_full_intake_r02/primary/motion_profile_used.json": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+    "src/cone_motion_range.py": "49b70509e66b32745fcf43e5c6e2d8621ff1d8da95cd42072e3ee93721d17fa7",
+    "src/angular_fisheye_geometry.py": "b1821d609986a9436cca747517cf7d6cb6e293bf10d031ecddedbea4837bb1ff"
+  },
+  "full_main_sha256": "a2fe7f3984d9a1f81498a15607958b60cdc4ce5c6ae00a8de51111ff2064dcca",
+  "scenarios_are_one_factor_counterfactuals": true,
+  "normal_rotation_is_per_target_ray_plane_NOT_vehicle_pitch_or_roll": true,
+  "actual_mount_height_or_tilt_error_measured": false,
+  "correction_fitted": false,
+  "runtime_or_profile_changed": false,
+  "independent_accuracy_certified": false,
+  "local_camera_cuda_ros_or_vehicle_started": false,
+  "usable_for_ffb": false,
+  "scenarios_sha256": "def656752042ba01b94444a3eed5b608db76188bc08cdcbbd584349685463272"
+}

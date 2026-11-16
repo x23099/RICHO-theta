@@ -2299,7 +2299,10 @@ class ThetaDriverUI(QWidget):
             outer = QVBoxLayout()
             outer.setContentsMargins(0, 0, 0, 0)
             outer.addLayout(layout)
-            self.motion_label = QLabel("RANGE EXPERIMENT: WITHHELD | waiting for native sender")
+            from driver_motion_presentation import panel_text
+            self.motion_label = QLabel(panel_text(
+                self.motion.snapshot(), target_roi=getattr(self.args, "motion_target_roi", None)))
+            self.motion_label.setTextFormat(Qt.PlainText)
             self.motion_label.setStyleSheet("color: #ffdd55; font-size: 13px; padding: 8px;")
             self.motion_label.setWordWrap(True)
             outer.addWidget(self.motion_label)
@@ -2579,9 +2582,10 @@ class ThetaDriverUI(QWidget):
 
     def update_frame(self):
         if self.motion is not None:
-            from driver_motion_bridge import panel_text
+            from driver_motion_presentation import panel_text
             try:
-                self.motion_label.setText(panel_text(self.motion.snapshot()))
+                self.motion_label.setText(panel_text(self.motion.snapshot(),
+                    target_roi=getattr(getattr(self, "args", None), "motion_target_roi", None)))
             except Exception as error:
                 self.motion_label.setText("RANGE WITHHELD: " + str(error)[:200])
         # WebRTCスレッドから最新の画像フレームをスレッドセーフに取得する

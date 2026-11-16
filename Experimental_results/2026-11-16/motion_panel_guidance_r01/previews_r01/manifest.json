@@ -1,0 +1,49 @@
+{
+  "schema": "synthetic_motion_label_preview_v1",
+  "state": "pass",
+  "previews": {
+    "numeric": {
+      "file": "numeric.png",
+      "sha256": "cfb0e3dd5fd7397e2d9842465dfdf9a59d2b69eef1ac54ca5adcbc4b08808a75",
+      "width": 1650,
+      "height": 220,
+      "text": "RANGE EXPERIMENT: 1.234 m | camera-foot horizontal, NOT base_link/contact\nsource aaaaaaaa frame 123 | receive-age 25 ms | body-review gen 1\nFixed mount + planar floor assumed; no tilt compensation. Distance NOT used for control/FFB.\n対象: 前方魚眼の指定範囲内に検出枠の中心がある候補1本のみ。画面全体の測距ではありません。 native ROI x=270..350, y=0..720（元魚眼1280x720座標）\n表示中: 元の距離値を表示しています。接地・精度の認定ではありません。\n注意: カメラ直下基準の水平距離です。車体までの空き距離ではなく、操縦・FFBには使用しません。",
+      "label_width": 1628,
+      "label_height": 121,
+      "required_height": 121,
+      "plain_text": true,
+      "source": "synthetic_fixture_NOT_camera_or_live_UI"
+    },
+    "no_candidate": {
+      "file": "no_candidate.png",
+      "sha256": "7707d2d0787e9b52c22534ae36f7e19e99eba1c372e76fb21b02687a2270d28d",
+      "width": 1650,
+      "height": 220,
+      "text": "RANGE EXPERIMENT: WITHHELD | camera-foot horizontal, NOT base_link/contact\nno_candidate\nFixed mount + planar floor assumed; no tilt compensation. Distance NOT used for control/FFB.\n対象: 前方魚眼の指定範囲内に検出枠の中心がある候補1本のみ。画面全体の測距ではありません。 native ROI x=270..350, y=0..720（元魚眼1280x720座標）\n保留理由: 対象範囲内でコーン候補を取得できていません。位置・見え方を確認してください。\n注意: カメラ直下基準の水平距離です。車体までの空き距離ではなく、操縦・FFBには使用しません。",
+      "label_width": 1628,
+      "label_height": 121,
+      "required_height": 121,
+      "plain_text": true,
+      "source": "synthetic_fixture_NOT_camera_or_live_UI"
+    },
+    "self_body_occlusion": {
+      "file": "self_body_occlusion.png",
+      "sha256": "f58b343ad0b89b2ff3e49fe854f73efe565f65e6f20424f5837bb421e5235b0f",
+      "width": 1650,
+      "height": 220,
+      "text": "RANGE EXPERIMENT: WITHHELD | camera-foot horizontal, NOT base_link/contact\npossible_self_body_occlusion\nFixed mount + planar floor assumed; no tilt compensation. Distance NOT used for control/FFB.\n対象: 前方魚眼の指定範囲内に検出枠の中心がある候補1本のみ。画面全体の測距ではありません。 native ROI x=270..350, y=0..720（元魚眼1280x720座標）\n保留理由: 台座付近が車体境界に重なる可能性があるため、距離表示を保留しています。\n注意: カメラ直下基準の水平距離です。車体までの空き距離ではなく、操縦・FFBには使用しません。",
+      "label_width": 1628,
+      "label_height": 121,
+      "required_height": 121,
+      "plain_text": true,
+      "source": "synthetic_fixture_NOT_camera_or_live_UI"
+    }
+  },
+  "code_sha256": {
+    "Experimental_results/2026-11-16/motion_panel_guidance_r01/preview.py": "d900ac46263101dcdfa0569f2e1dd85e7b3b1cc833a4c94e989058d03f38a95d",
+    "src/driver_motion_presentation.py": "8bca84f04f80a8df68cea10aefa1332271dabfc627b0cbdb780e528ba2c19462",
+    "src/webrtc_receive_ui.py": "d7706cf2d19abe7a027cc12c7e86aa255dde25b50aaaae939fe771fe079c96d2"
+  },
+  "local_camera_ros_network_or_vehicle_started": false,
+  "full_driver_ui_started": false
+}

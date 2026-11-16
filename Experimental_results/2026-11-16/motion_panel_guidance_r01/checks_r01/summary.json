@@ -1,0 +1,38 @@
+{
+  "state": "pass",
+  "tests": [
+    "tests/test_driver_motion_presentation.py",
+    "tests/test_driver_motion_integration.py",
+    "tests/test_driver_body_display_guard.py",
+    "tests/test_driver_motion_bridge.py"
+  ],
+  "test_command": [
+    "/home/robo25/theta-env/bin/python3",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_driver_motion_presentation.py",
+    "tests/test_driver_motion_integration.py",
+    "tests/test_driver_body_display_guard.py",
+    "tests/test_driver_motion_bridge.py"
+  ],
+  "pytest_output": ".......................................................................  [100%]\n71 passed in 5.26s",
+  "isolated_patch_forward_and_reverse_check_passed": true,
+  "repeated_forward_application_rejected": true,
+  "protected_live_audit_code_files_unchanged": 12,
+  "patch_sha256": "86dbd43a0188690adbc48c21ef924daac1762fb75f95f7cf76351adf6c7c4b7c",
+  "previews_verified": 3,
+  "source_sha256": {
+    "Experimental_results/2026-11-16/motion_panel_guidance_r01/check.py": "86c2f416cea73cdd13f6a405b010cfd08c7d01f92d8b51894932c056e1a5c535",
+    "Experimental_results/2026-11-16/motion_panel_guidance_r01/preview.py": "d900ac46263101dcdfa0569f2e1dd85e7b3b1cc833a4c94e989058d03f38a95d",
+    "Experimental_results/2026-11-16/motion_panel_guidance_r01/build_patch.py": "bfa8b54bc758a69adc88444e36b5a5e0174e4c5361be972d5b51822f2eaaab61",
+    "src/driver_motion_presentation.py": "8bca84f04f80a8df68cea10aefa1332271dabfc627b0cbdb780e528ba2c19462",
+    "src/webrtc_receive_ui.py": "d7706cf2d19abe7a027cc12c7e86aa255dde25b50aaaae939fe771fe079c96d2",
+    "tests/test_driver_motion_presentation.py": "73e692962a567032113fd3e732aa181f4468c9c87452a07ec1e5aa48fb226d20"
+  },
+  "preview_is_synthetic_only": true,
+  "live_driver_ui_or_gpu_not_verified": true,
+  "camera_ros_rtc_network_or_vehicle_started": false,
+  "gpu_pc_applied": false,
+  "profile_thresholds_or_control_changed": false
+}

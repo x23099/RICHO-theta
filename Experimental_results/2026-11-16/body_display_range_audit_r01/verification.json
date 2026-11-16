@@ -1,0 +1,30 @@
+{
+  "work_date": "2026-11-16",
+  "state": "pass",
+  "closed_full_run_audit": "results_r01/audit.json",
+  "anchor_context": "results_r01/anchor_context.json",
+  "official_intake_directory": "recordings/2026-11-16/body_display_full_intake_r02",
+  "first_attempt_note": "r01 preserved original files and passed log matching, but relative/absolute derived path recording failed before audit JSON publication. Normalized all CLI paths with resolve, then used new intake r02 and completed successfully. No original files deleted or overwritten.",
+  "tests": {
+    "command": "env PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /home/robo25/theta-env/bin/python3 -m pytest -q tests/test_body_display_range_audit.py tests/test_body_display_static_live_audit.py tests/test_body_display_occlusion_audit.py tests/test_body_display_pin_intake.py tests/test_guarded_current_pin_intake.py tests/test_guarded_display_submission_pack.py",
+    "passed": 67,
+    "failed": 0,
+    "reported_seconds": 1.89,
+    "new_range_audit_tests": 10,
+    "earlier_test_runs_overlap_this_suite": true
+  },
+  "runtime_code_changed": false,
+  "offline_shared_auditor_changed": "Optional explicit issued_reference_path and prior_pin_directory; original defaults and verification retained.",
+  "metric_calibration_changed": false,
+  "source_images_modified": false,
+  "screenshots_exact_logged_frame_and_rounded_value_matched": 3,
+  "full_run_files": 16,
+  "primary_display_review_bridge_rows_each": 51202,
+  "comparison_rows": 51200,
+  "pin_exact_primary_line_and_native_pixels_verified": true,
+  "physical_metric_accuracy_certified": false,
+  "measured_stationary_intervals_verified": false,
+  "local_camera_cuda_ros_or_vehicle_started": false,
+  "published_to_ros": false,
+  "usable_for_ffb": false
+}
