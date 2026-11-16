@@ -1,0 +1,28 @@
+{
+  "state": "pass",
+  "work_date": "2026-11-14",
+  "work_date_explicitly_designated_by_user": true,
+  "calendar_or_20261113_experiment_timestamps_changed": false,
+  "basis_head": "0ecfad2540c955ace62dd6b368971ecde6f86b08",
+  "preceding_20261113_push_verified_commit": "0ecfad2540c955ace62dd6b368971ecde6f86b08",
+  "command": [
+    "/home/robo25/theta-env/bin/python3",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_guarded_display_submission_pack.py"
+  ],
+  "pytest_disable_plugin_autoload": true,
+  "returncode": 0,
+  "source_sha256": {
+    "Experimental_results/2026-11-14/guarded_display_operations_r01/pack_submission.py": "943384a9201769664ce9791c15636265b222943d0fc7ab9c6128de2134aa1fdd",
+    "Experimental_results/2026-11-14/guarded_display_operations_r01/README.md": "7870619a351b3caf8ba7f70d369a2885ead9048833b0a840f3fab95556da90b5",
+    "Experimental_results/2026-11-14/guarded_display_operations_r01/check.py": "ab8a07aebf4548604c751850b453fb7dbaf5791a32e8d3b29285945729c7e3d7",
+    "tests/test_guarded_display_submission_pack.py": "121a8189b4016bdd06a5d1ec82197822a651921be37871487165bcf3a5f4a51e"
+  },
+  "test_log_sha256": "55f29b0e6289d01e6941edc44bdd96b475f25c3a3fe0be3fa05037f0cd9f24c2",
+  "camera_cuda_ros_gpu_pc_or_sender_used": false,
+  "live_pin_load_or_control_request_sent": false,
+  "runtime_or_calibration_changed": false,
+  "new_20261114_commit_or_push_performed": false
+}

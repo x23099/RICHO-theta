@@ -1,6 +1,18 @@
 # コーン測距・FFB開発 引き継ぎ資料
 
-更新日: **2026-11-13（JST）**。対象リポジトリ: `RICHO-theta`。
+最新作業枠: **2026-11-14（ユーザー指定扱い）**。対象リポジトリ: `RICHO-theta`。実時計・11/13の実験日時は変更していない。
+
+## 11/14開始：11/13日報をpush完了後、実機不要の運用手順・提出補助を整備
+
+11/13分はcommit **0ecfad2540c955ace62dd6b368971ecde6f86b08** としてorigin/mainへpush完了し、git ls-remoteでも一致を確認。push直後のworktreeはclean。11/13の日報・代表4点・最終走行監査とローカルhelperの変更を通常commitした。生録画・全ログ・重み・venvは追加していない。
+
+その完了後、ユーザー指定に基づき [11/14分の運用・再開手順](Experimental_results/2026-11-14/guarded_display_operations_r01/README.md) とpack_submission.pyを作成した。現在pinのPNG／JSON／status原本／engine summary4点だけを選ぶpinモード、主／比較とも正常終了確認後だけ圧縮するclosedモードを用意。旧pinの一括混入・更新中ログの提出・同名archiveの上書きを防止する。新しいarchive名を選ぶだけで再圧縮でき、元データ削除・再pin・受信やり直しは要求しない。
+
+GPUローカルの鮮度・sidecar／PNG SHA・native寸法・非制御flags・主出力と比較dirの対応を確認。元PNG復号BGR／主完全行SHAは解析側の役割として維持。fullはregular file・ファイル名集合・件数32・主256MiB／全512MiB・圧縮中の変化・symlinkを制限。一時コピーからatomic非上書き発行し、削除はhelper自身の一時コピーだけ。カメラ／ROS／モデルをimportせず、pin／load／操縦要求を送らない。
+
+新日付の手順は11/14の新保存先を例示し、8つのBash構文と実motion引数parserで保存先一致を確認する。ダミーメタデータだけで検証し、実機・GPU PC・matunucは使っていない。測距・操縦runtime／閾値／校正変更なし。11/13に確認済みの走行診断表示・遮蔽保留・復帰を再撮影必須へ戻さない。
+
+**11/14分はローカル未commit／未push。GPU PCへ新helperは未反映。** 11/14終業依頼はまだなく、日報も作成しない。検証記録はguarded_display_operations_r01/checks_r01を参照。次は実機を使う必要が生じたときに新接続の現在pinから再開するか、別の未解決課題を選ぶ段階。距離を使うROS／FFB・自動停止や無人遠隔走行へ勝手に広げない。
 
 ## 11/13終業：日報・代表4点を作成。push完了後の続きはユーザー指定の11/14分
 
