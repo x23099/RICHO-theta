@@ -1,0 +1,28 @@
+test_bad_update_clears_cache_and_only_a_new_valid_sequence_recovers (test_driver_frame_packet.FramePacketTests) ... ok
+test_candidate_temporal_and_motion_values_must_reproduce (test_driver_frame_packet.FramePacketTests) ... ok
+test_candidate_validator_roundtrip_and_no_authority_promotion (test_driver_frame_packet.FramePacketTests) ... ok
+test_close_prevents_revival (test_driver_frame_packet.FramePacketTests) ... ok
+test_declared_sizes_are_bounded_before_decode (test_driver_frame_packet.FramePacketTests) ... ok
+test_duplicate_and_nonfinite_json_rejected_even_with_valid_digest (test_driver_frame_packet.FramePacketTests) ... ok
+test_first_capture_loss_does_not_relabel_second_as_first (test_driver_frame_packet.FramePacketTests) ... ok
+test_header_identity_types_and_authority_are_strict (test_driver_frame_packet.FramePacketTests) ... ok
+test_keyframe_dimensions_visibility_and_reference_rejected_before_codec (test_driver_frame_packet.FramePacketTests) ... ok
+test_middle_loss_needs_no_prior_codec_reference (test_driver_frame_packet.FramePacketTests) ... ok
+test_mismatched_metadata_or_payload_cannot_use_original_digest (test_driver_frame_packet.FramePacketTests) ... ok
+test_native_shape_and_media_span_limits (test_driver_frame_packet.FramePacketTests) ... ok
+test_no_wall_clock_or_clock_binding_read (test_driver_frame_packet.FramePacketTests) ... ok
+test_real_codec_roundtrip_preserves_candidate_and_native_shape (test_driver_frame_packet.FramePacketTests) ... ok
+test_receiver_age_expiration_does_not_measure_cross_pc_delay (test_driver_frame_packet.FramePacketTests) ... ok
+test_receiver_clock_reversal_retires_instance (test_driver_frame_packet.FramePacketTests) ... ok
+test_reconnect_requires_new_receiver_scope (test_driver_frame_packet.FramePacketTests) ... ok
+test_replay_and_reordered_packets_clear_old_pair (test_driver_frame_packet.FramePacketTests) ... ok
+test_snapshot_does_not_expose_mutable_internal_state (test_driver_frame_packet.FramePacketTests) ... ok
+test_source_pixels_and_metadata_are_not_modified_by_encode (test_driver_frame_packet.FramePacketTests) ... ok
+test_truncation_extra_bytes_and_corruption_rejected (test_driver_frame_packet.FramePacketTests) ... ok
+test_withheld_candidate_cannot_carry_old_motion_or_unknown_reason (test_driver_frame_packet.FramePacketTests) ... ok
+test_withheld_motion_can_have_an_image_but_no_old_velocity (test_driver_frame_packet.FramePacketTests) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.494s
+
+OK

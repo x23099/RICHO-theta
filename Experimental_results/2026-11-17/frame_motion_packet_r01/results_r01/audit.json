@@ -1,0 +1,100 @@
+{
+  "schema": "frame_motion_packet_local_audit_v1",
+  "work_date": "2026-11-17",
+  "executed_utc": "2026-11-16T11:24:28.036284+00:00",
+  "work_date_label_is_not_clock_adjustment": true,
+  "state": "pass",
+  "packet_tests": 23,
+  "skipped": 0,
+  "failed": 0,
+  "source_image_sha256": "7b6e0361b53e52b5e6337f07d0c46719d421b79edb013f43e65d22e25fc0fc89",
+  "source_image_session": "e52bb32f03d6488ebf37d769f46ec37a",
+  "source_image_frame": 5186,
+  "original_source_file_unchanged": true,
+  "source_pixels_not_modified": true,
+  "synthetic_motion_metadata_NOT_actual_image_odometry_pairing": true,
+  "encoded_or_decoded_camera_images_saved": false,
+  "timing_host": "local_analysis_PC_NOT_matunuc_or_GPU",
+  "iterations": 5,
+  "metrics": {
+    "packet_bytes": {
+      "count": 5,
+      "minimum": 101924,
+      "median": 101927,
+      "maximum": 101960
+    },
+    "vp8_payload_bytes": {
+      "count": 5,
+      "minimum": 99903,
+      "median": 99903,
+      "maximum": 99903
+    },
+    "png_bytes": {
+      "count": 5,
+      "minimum": 1021907,
+      "median": 1021907,
+      "maximum": 1021907
+    },
+    "packet_encode_ms": {
+      "count": 5,
+      "minimum": 24.686779,
+      "median": 26.414757,
+      "maximum": 27.389441
+    },
+    "packet_decode_and_copy_ms": {
+      "count": 5,
+      "minimum": 14.220705,
+      "median": 14.534878,
+      "maximum": 15.437087
+    },
+    "png_encode_ms": {
+      "count": 5,
+      "minimum": 36.257317,
+      "median": 37.322652,
+      "maximum": 40.949829
+    },
+    "decoded_mean_absolute_pixel_difference": {
+      "count": 5,
+      "minimum": 1.816490162037037,
+      "median": 1.816490162037037,
+      "maximum": 1.816490162037037
+    }
+  },
+  "nominal_30fps_estimates_NOT_actual_network_measurements": {
+    "vp8_packet_mbps": 24.46248,
+    "png_payload_mbps": 245.25768,
+    "raw_bgr_mbps": 663.552
+  },
+  "old_runtime_sources_unchanged": [
+    "src/driver_frame_motion.py",
+    "src/driver_odometry_observation.py",
+    "src/theta_rtc_diagnostic.py",
+    "src/webrtc_stream.py",
+    "src/webrtc_receive_ui.py",
+    "src/collision_ffb_relay.py",
+    "src/collision_ffb_publisher.py"
+  ],
+  "old_distance_display_sources_unchanged": 12,
+  "source_code_sha256": {
+    "src/driver_frame_packet.py": "1f00773a871b36d7739445c0b1ae87b9ab03a40dfd6cbf5b4e9e68946720f8d8",
+    "src/driver_frame_motion.py": "1001cffe8d6440cc1c46ee530569c4588b70f7c2fe969477d7cc2995a4a406b9",
+    "tests/test_driver_frame_packet.py": "1a0c8f9a8b9d8f48fffc114136a38b207aa56e8d57ca3fd199bc2dd0ff00345e",
+    "Experimental_results/2026-11-17/frame_motion_packet_r01/check.py": "8f76724093165a651c30bd25cce706fde359b7ad5a6dba35d659b4ab0d18cd2c"
+  },
+  "library_versions": {
+    "av": "16.1.0",
+    "numpy": "1.24.4"
+  },
+  "packet_is_authentication": false,
+  "original_RTP_received_frame_matched": false,
+  "network_started": false,
+  "live_camera_or_ROS_started": false,
+  "clock_binding_created": false,
+  "runtime_wiring_changed": false,
+  "live_transport_adopted": false,
+  "source_freshness_verified": false,
+  "exposure_time_verified": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}

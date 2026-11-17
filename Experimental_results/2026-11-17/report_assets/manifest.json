@@ -1,0 +1,18 @@
+{
+  "work_date": "2026-11-17",
+  "representative_figures": 2,
+  "new_camera_images": false,
+  "input_sha256": {
+    "Experimental_results/2026-11-17/frame_motion_packet_r01/results_r01/audit.json": "48a4a34c3156f0ff364b0188265195677854305eaffe8153a548838c33eb9d94",
+    "Experimental_results/2026-11-17/frame_motion_packet_r01/results_r01/codec_samples.csv": "96e6dce0a5f89563f243ac1d1d691bf42afb2599bfa6e564bd06c504ae272975",
+    "Experimental_results/2026-11-17/report_assets/build_assets.py": "33f115a9b76527211335e3a424cf92b0ffd1d461c68702d4fea0dcc30a6b4966"
+  },
+  "output_sha256": {
+    "codec_samples.csv": "96e6dce0a5f89563f243ac1d1d691bf42afb2599bfa6e564bd06c504ae272975",
+    "comparison.csv": "2818c0292a18080737a84f489e42a69c11d0feab09e220692f88b191398470f4",
+    "packet_size.png": "21f0ea798dfa353b5dac4ded569199b57319bbdc6323ba90f5c3e56f1ea4adfd",
+    "codec_time.png": "576266a05c89eb460de0631b687b5eec4e7b976aa5da861d1db34b0ed383576d"
+  },
+  "source_motion_is_synthetic": true,
+  "live_adoption_or_performance_certified": false
+}

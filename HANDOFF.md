@@ -1,6 +1,28 @@
 # コーン測距・FFB開発 引き継ぎ資料
 
-最新作業枠: **2026-11-16**。対象リポジトリ: `RICHO-theta`。過去の実験日時は変更していない。
+最新作業枠: **ユーザー指定の2026-11-18扱い**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
+
+## 11/18扱い最新：11/17日報作成後、有界fragment/再構成/最新待機を実装
+
+ユーザー「11/17終了・日報、Gitは自分でpush、その後11/18扱いで進める」を依頼。先にDaily_reports/2026-11-17_daily_report.mdと索引・代表図2点（codecサイズ/時間、CSV/script/SHA付き）を作成・リンク/SHA確認。197成功等は同一コードの既存成功結果を再利用。当日扱いの実験UTCが11/16だったことを明記して改変せず、11/18分を日報へ混ぜない。こちらでは今回commit/push/pullを一切していない。開始/現HEADはc05ff48。
+
+その後[11/18有界flow](Experimental_results/2026-11-18/frame_packet_flow_r01/README.md)へ進行。新src/driver_frame_packet_flow.pyはheader88bytes/明示1,024〜16,384bytes上限のfragmentとworker用再構成、sender進行中1＋最新待機1を実装。最初の片からの期限を完成/重複で延長せず、旧seq・scope混入・conflict・破損を拒否、completedは一度だけ渡す。新組で旧途中/未消費complete失効。最新入力で進行中を毎回中断せず待機のみ置換し、source capture age/指定buffer上限でhand-off制御。実send成功ではなく、投入済transport bytesの取消もできない。単一worker owner契約でthread-safeではない。
+
+新27を含む関連224試験成功（3.93秒）、正式results_r01。実VP8packetの逆順分割/再構成/decodeも確認。元11/16 pin画像は不変、運動は合成。20Hz20組の論理queueで32Mbps20完成、8Mbps11完成/9待機置換、1Mbps0完成/14置換/6期限切れ、32Mbps1片欠落で19完成（frame5採用なし）。上限message16,384/logicalqueue32,768/実保持sender203,898・receiver101,969bytes、close後0。これは実通信/CPUを測った性能ではなく、他traffic/codec時間/SCTP内部queueや再送を含まない。全鮮度/物理/FFB/ROS認定false。
+
+次はmax-message-size交渉・callback外worker所有権・実send失敗/終了をfake peerで接続検証し、その後実負荷を確認してライブ採否を決める。既存RTC/ROS/操縦/capture/距離/FFBへ今回接続なし、前日のpacket/source実装と旧距離/表示12SHA不変。現在の追加撮影/走行/GPU反映/時計設定/G923試験不要。新日報と11/17・11/18成果はローカル未commit/未pushのままユーザーに委ねる。
+
+## 11/17扱い最新：11/16日報push完了後、画像・運動一体packetをローカル試作
+
+ユーザー「作業を終え日報/push、その後11/17扱いで進行」を依頼。11/16日報・代表資料3点・clock実記録監査・sender-frame部品・目標/方針変更をcommit c05ff4881c6c1ca3a128bdb7a673e1c444c62d2e、origin/mainへpush成功。push直後HEAD=origin/main、worktreecleanを確認。日報Daily_reports/2026-11-16_daily_report.md、索引更新。pin5186画像は元PNGとSHA同一、3地点差とclockbracket統計図はCSV/manifest付き。raw/重み/外部FFBrepoはpush対象外。
+
+その完了後、[11/17一体packet試作](Experimental_results/2026-11-17/frame_motion_packet_r01/README.md)へ着手。新src/driver_frame_packet.pyは画像VP8 keyframeと元candidateを一つの長さ/全体SHA付きpacketに束ねる。厳密JSON/元候補再検査、native寸法/可視keyframe、別sender/stream/重複/逆順/途中破損/入替え拒否、失敗時旧pairクリア、受信内ageのみを実装。時計同期/換算/RTP先頭PTS推測なし。SHAは認証ではなく、callerが元から誤った画像/metadataを束ねた場合の保証でもない。
+
+新23を含む関連197試験成功（3.39秒）、正式results_r01。初回1失敗はimmutableなPyAV C拡張属性へmockするtestの誤りで、module属性mockへ修正しproduction gateを弱めず再実行成功。元保存pin1枚＋合成運動fixture（実画像の実odomでない）を5回処理し、packet中央値101,927bytes/encode26.415ms/decodecopy14.535ms。PNG比較1,021,907bytes/encode37.323ms。30fps単純量24.46/245.26Mbpsは実通信性能ではない。元画像file/画素不変、圧縮/復号画像再保存なし。
+
+これは既存RTP受信画像へmetadataを貼る方式でなく、新しい認識入力packet候補のoffline試作。ライブ採用未決定、RTC/ROS/実機/FFB未接続、全認定flag false。前日のsender-frame部品とsender/receiver/capture/odom/FFB source不変、旧距離/表示12SHA一致。今回11/17分は未commit/未push（11/16pushとは分離）。
+
+次は有界の分割/再構成、欠落/期限/再接続/バックプレッシャー時の最新優先破棄と、追加encode/帯域が既存操縦映像へ与える負荷をローカル検証。約100KBpacketをそのまま単一DataChannelで送れると仮定しない。圧縮/復号をRTC callbackへ置かず、実取得点とGPU入力接続は方式決定後。PC間時計対応へ戻さない。現時点のGPU反映/撮影/走行/再記録不要、車体TF/車幅/点の意味は別の未確定事項。
 
 ## 11/16最新：PC間時計対応の必須化を撤回、送信元フレーム・運動対応部品を実装
 

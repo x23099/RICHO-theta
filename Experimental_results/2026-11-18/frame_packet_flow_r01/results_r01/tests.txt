@@ -1,0 +1,32 @@
+test_backpressure_leaves_fragment_index_and_queue_bounded (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_bad_new_offer_clears_previous_data (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_channel_unavailable_discards_unsent_data (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_complete_packet_uses_initial_not_completion_deadline (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_conflicting_duplicate_retires_that_sequence (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_duplicate_does_not_extend_initial_deadline (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_expired_offer_does_not_rescue_old_pending (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_explicit_limits_and_fragment_indices (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_first_frame_and_middle_frame_loss_do_not_relabel_later_packet (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_foreign_scope_ignored_and_new_receiver_rejects_old_stream (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_fragment_caps_and_byte_exact_roundtrip (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_full_digest_failure_rejected (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_inconsistent_packet_identity_rejected (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_invalid_buffer_metadata_clears_data (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_malformed_sizes_indexes_and_body_lengths_allocate_nothing (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_missing_fragment_times_out_and_same_sequence_cannot_revive (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_new_offer_replaces_pending_after_active_handoff_without_reordering (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_new_packet_invalidates_old_completed_pair (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_newer_packet_supersedes_old_incomplete_and_old_chunks_do_not_mix (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_pending_does_not_interrupt_progressing_packet (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_real_reassembly_to_independent_codec (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_receiver_clock_origin_does_not_have_to_match_sender (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_receiver_clock_reversal_and_close_prevent_revival (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_sender_clock_reverse_wrong_time_or_send_failure_closes (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_source_sender_one_active_and_one_latest_pending (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_stalled_active_expires_then_latest_pending_is_sent (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+test_wrapper_sequence_must_match_inner_source (test_driver_frame_packet_flow.PacketFlowTests) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.222s
+
+OK
