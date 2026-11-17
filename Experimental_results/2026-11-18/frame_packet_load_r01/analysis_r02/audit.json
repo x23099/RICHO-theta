@@ -1,0 +1,426 @@
+{
+  "schema": "frame_packet_load_csv_recheck_v1",
+  "state": "pass",
+  "executed_utc": "2026-11-17T15:34:13.867906+00:00",
+  "source_files_sha256": {
+    "Experimental_results/2026-11-18/frame_packet_load_r01/results_r01/audit.json": "197234f17b1cef336e4d5822c3ce4131512a4bf47ac1ef9a312fed31b7be81e8",
+    "Experimental_results/2026-11-18/frame_packet_load_r01/results_r01/samples.csv": "c27a8664eefef9794e8bf5a5a58e796d414a288e93e71febb02431b4df5786cd",
+    "Experimental_results/2026-11-18/frame_packet_load_r01/results_r01/events.csv": "225c2621a8fc8ff08c4c90fe324edf38fc2485ae8196c140e08bc6b7ba81cd3c",
+    "Experimental_results/2026-11-18/frame_packet_load_r01/results_r01/trial_progress.jsonl": "1a8fbca28e4ac83a70a3d4b67160641b1f231e6ca609634d6f81b4e0425300b7"
+  },
+  "source_code_sha256": {
+    "Experimental_results/2026-11-18/frame_packet_load_r01/report.py": "f4b6e97bf90b935c0e9e622c1f56d42d9cdf0801ebad4d6adb59aa45e7fe3a6e"
+  },
+  "trials": 16,
+  "sample_rows": 1977,
+  "event_rows": 1010,
+  "profiles": [
+    {
+      "workload": "static_repeat",
+      "packet_hz": 0,
+      "repetitions": 2,
+      "video_encoded": 178,
+      "video_encode_ms": {
+        "count": 178,
+        "minimum": 7.566250045783818,
+        "median": 16.793683520518243,
+        "p95": 23.813712043920532,
+        "maximum": 81.05599600821733
+      },
+      "video_admission_to_finish_ms": {
+        "count": 178,
+        "minimum": 7.848187000490725,
+        "median": 17.49909302452579,
+        "p95": 24.519643915118653,
+        "maximum": 81.53228310402483
+      },
+      "packet_offered": 0,
+      "packet_completed": 0,
+      "packet_missing": 0,
+      "packet_encode_ms": {
+        "count": 0,
+        "minimum": null,
+        "median": null,
+        "p95": null,
+        "maximum": null
+      },
+      "packet_admission_to_fake_send_ms": {
+        "count": 0,
+        "minimum": null,
+        "median": null,
+        "p95": null,
+        "maximum": null
+      },
+      "packet_completion_gap_ms": {
+        "count": 0,
+        "minimum": null,
+        "median": null,
+        "p95": null,
+        "maximum": null
+      },
+      "video_payload_mbps": 1.283212,
+      "packet_encoded_mbps": 0.0,
+      "process_cpu_cores": 0.7346662719578327,
+      "timer_ticks_skipped": 0,
+      "video_pending_replaced": 2,
+      "video_expired_before_encode": 0
+    },
+    {
+      "workload": "static_repeat",
+      "packet_hz": 5,
+      "repetitions": 2,
+      "video_encoded": 180,
+      "video_encode_ms": {
+        "count": 180,
+        "minimum": 7.359576993621886,
+        "median": 15.875225013587624,
+        "p95": 25.38953148759901,
+        "maximum": 33.459978993050754
+      },
+      "video_admission_to_finish_ms": {
+        "count": 180,
+        "minimum": 7.645866950042546,
+        "median": 16.31340349558741,
+        "p95": 26.287952717393633,
+        "maximum": 34.84883590135723
+      },
+      "packet_offered": 30,
+      "packet_completed": 30,
+      "packet_missing": 0,
+      "packet_encode_ms": {
+        "count": 30,
+        "minimum": 27.67478604800999,
+        "median": 42.39263798808679,
+        "p95": 56.318295060191296,
+        "maximum": 57.979839970357716
+      },
+      "packet_admission_to_fake_send_ms": {
+        "count": 30,
+        "minimum": 30.82504798658192,
+        "median": 47.78250853996724,
+        "p95": 61.26902606920339,
+        "maximum": 61.337706982158124
+      },
+      "packet_completion_gap_ms": {
+        "count": 28,
+        "minimum": 170.35335290711373,
+        "median": 200.74910146649927,
+        "p95": 225.28171193553135,
+        "maximum": 228.90147008001804
+      },
+      "video_payload_mbps": 1.2771226666666669,
+      "packet_encoded_mbps": 4.081124,
+      "process_cpu_cores": 1.0015794501336162,
+      "timer_ticks_skipped": 0,
+      "video_pending_replaced": 0,
+      "video_expired_before_encode": 0
+    },
+    {
+      "workload": "static_repeat",
+      "packet_hz": 10,
+      "repetitions": 2,
+      "video_encoded": 179,
+      "video_encode_ms": {
+        "count": 179,
+        "minimum": 7.207331946119666,
+        "median": 15.899319085292518,
+        "p95": 28.069805447012186,
+        "maximum": 64.13518404588103
+      },
+      "video_admission_to_finish_ms": {
+        "count": 179,
+        "minimum": 7.468612981028855,
+        "median": 16.468096058815718,
+        "p95": 31.060162943322183,
+        "maximum": 80.59737295843661
+      },
+      "packet_offered": 60,
+      "packet_completed": 59,
+      "packet_missing": 1,
+      "packet_encode_ms": {
+        "count": 60,
+        "minimum": 27.029666933231056,
+        "median": 45.284769497811794,
+        "p95": 59.172903030412215,
+        "maximum": 102.87739802151918
+      },
+      "packet_admission_to_fake_send_ms": {
+        "count": 59,
+        "minimum": 30.317433993332088,
+        "median": 48.51428896654397,
+        "p95": 65.19373222254214,
+        "maximum": 83.01249903161079
+      },
+      "packet_completion_gap_ms": {
+        "count": 57,
+        "minimum": 73.90377903357148,
+        "median": 97.93190995696932,
+        "p95": 127.37053979653865,
+        "maximum": 186.11359398346394
+      },
+      "video_payload_mbps": 1.2542013333333333,
+      "packet_encoded_mbps": 8.16224,
+      "process_cpu_cores": 1.317972260925407,
+      "timer_ticks_skipped": 0,
+      "video_pending_replaced": 1,
+      "video_expired_before_encode": 0
+    },
+    {
+      "workload": "static_repeat",
+      "packet_hz": 30,
+      "repetitions": 2,
+      "video_encoded": 180,
+      "video_encode_ms": {
+        "count": 180,
+        "minimum": 8.83719907142222,
+        "median": 13.222935958765447,
+        "p95": 17.725142365088683,
+        "maximum": 20.346685079857707
+      },
+      "video_admission_to_finish_ms": {
+        "count": 180,
+        "minimum": 9.370520012453198,
+        "median": 13.899810495786369,
+        "p95": 18.474158673780035,
+        "maximum": 20.946867065504193
+      },
+      "packet_offered": 180,
+      "packet_completed": 83,
+      "packet_missing": 97,
+      "packet_encode_ms": {
+        "count": 180,
+        "minimum": 25.600441033020616,
+        "median": 29.325512470677495,
+        "p95": 35.2958059811499,
+        "maximum": 38.63154805731028
+      },
+      "packet_admission_to_fake_send_ms": {
+        "count": 83,
+        "minimum": 28.368782019242644,
+        "median": 30.521655920892954,
+        "p95": 32.449691521469504,
+        "maximum": 36.274263984523714
+      },
+      "packet_completion_gap_ms": {
+        "count": 81,
+        "minimum": 29.556678025983274,
+        "median": 34.33713293634355,
+        "p95": 201.10672491136938,
+        "maximum": 566.0327520454302
+      },
+      "video_payload_mbps": 1.2771226666666669,
+      "packet_encoded_mbps": 24.486712,
+      "process_cpu_cores": 1.8493812112089958,
+      "timer_ticks_skipped": 0,
+      "video_pending_replaced": 0,
+      "video_expired_before_encode": 0
+    },
+    {
+      "workload": "discontinuous_cycle",
+      "packet_hz": 0,
+      "repetitions": 2,
+      "video_encoded": 180,
+      "video_encode_ms": {
+        "count": 180,
+        "minimum": 8.09894793201238,
+        "median": 18.095135514158756,
+        "p95": 31.934213486965735,
+        "maximum": 36.41902795061469
+      },
+      "video_admission_to_finish_ms": {
+        "count": 180,
+        "minimum": 8.504124940373003,
+        "median": 18.638643494341522,
+        "p95": 32.51981927896849,
+        "maximum": 37.20048500690609
+      },
+      "packet_offered": 0,
+      "packet_completed": 0,
+      "packet_missing": 0,
+      "packet_encode_ms": {
+        "count": 0,
+        "minimum": null,
+        "median": null,
+        "p95": null,
+        "maximum": null
+      },
+      "packet_admission_to_fake_send_ms": {
+        "count": 0,
+        "minimum": null,
+        "median": null,
+        "p95": null,
+        "maximum": null
+      },
+      "packet_completion_gap_ms": {
+        "count": 0,
+        "minimum": null,
+        "median": null,
+        "p95": null,
+        "maximum": null
+      },
+      "video_payload_mbps": 2.1497866666666665,
+      "packet_encoded_mbps": 0.0,
+      "process_cpu_cores": 0.9653236629283468,
+      "timer_ticks_skipped": 0,
+      "video_pending_replaced": 0,
+      "video_expired_before_encode": 0
+    },
+    {
+      "workload": "discontinuous_cycle",
+      "packet_hz": 5,
+      "repetitions": 2,
+      "video_encoded": 180,
+      "video_encode_ms": {
+        "count": 180,
+        "minimum": 8.526431047357619,
+        "median": 19.00471147382632,
+        "p95": 32.10887900204397,
+        "maximum": 40.89190799277276
+      },
+      "video_admission_to_finish_ms": {
+        "count": 180,
+        "minimum": 8.997136959806085,
+        "median": 19.774054002482444,
+        "p95": 32.63898623408749,
+        "maximum": 42.012335965409875
+      },
+      "packet_offered": 30,
+      "packet_completed": 30,
+      "packet_missing": 0,
+      "packet_encode_ms": {
+        "count": 30,
+        "minimum": 29.073579935356975,
+        "median": 35.57803697185591,
+        "p95": 50.231141439871855,
+        "maximum": 52.99677699804306
+      },
+      "packet_admission_to_fake_send_ms": {
+        "count": 30,
+        "minimum": 32.365289982408285,
+        "median": 39.431942510418594,
+        "p95": 55.80802454496733,
+        "maximum": 60.31348602846265
+      },
+      "packet_completion_gap_ms": {
+        "count": 28,
+        "minimum": 179.2401480488479,
+        "median": 200.48052701167762,
+        "p95": 214.64790537720546,
+        "maximum": 217.12442697025836
+      },
+      "video_payload_mbps": 2.1497866666666665,
+      "packet_encoded_mbps": 4.040169333333333,
+      "process_cpu_cores": 1.233848296001044,
+      "timer_ticks_skipped": 0,
+      "video_pending_replaced": 0,
+      "video_expired_before_encode": 0
+    },
+    {
+      "workload": "discontinuous_cycle",
+      "packet_hz": 10,
+      "repetitions": 2,
+      "video_encoded": 180,
+      "video_encode_ms": {
+        "count": 180,
+        "minimum": 7.7895509311929345,
+        "median": 18.49032804602757,
+        "p95": 37.06137153785674,
+        "maximum": 48.25273994356394
+      },
+      "video_admission_to_finish_ms": {
+        "count": 180,
+        "minimum": 8.161003002896905,
+        "median": 19.82249045977369,
+        "p95": 38.17513435496947,
+        "maximum": 49.49719598516822
+      },
+      "packet_offered": 60,
+      "packet_completed": 60,
+      "packet_missing": 0,
+      "packet_encode_ms": {
+        "count": 60,
+        "minimum": 26.499279076233506,
+        "median": 38.8539825216867,
+        "p95": 53.19299210095778,
+        "maximum": 57.04798398073763
+      },
+      "packet_admission_to_fake_send_ms": {
+        "count": 60,
+        "minimum": 30.72543698363006,
+        "median": 43.82148402510211,
+        "p95": 58.64659989019856,
+        "maximum": 62.5133509747684
+      },
+      "packet_completion_gap_ms": {
+        "count": 58,
+        "minimum": 73.36318702436984,
+        "median": 102.3384824511595,
+        "p95": 120.77325051650405,
+        "maximum": 125.11781195644289
+      },
+      "video_payload_mbps": 2.1497866666666665,
+      "packet_encoded_mbps": 7.891672,
+      "process_cpu_cores": 1.5570323055940682,
+      "timer_ticks_skipped": 0,
+      "video_pending_replaced": 0,
+      "video_expired_before_encode": 0
+    },
+    {
+      "workload": "discontinuous_cycle",
+      "packet_hz": 30,
+      "repetitions": 2,
+      "video_encoded": 180,
+      "video_encode_ms": {
+        "count": 180,
+        "minimum": 8.959965081885457,
+        "median": 17.713138076942414,
+        "p95": 24.223971844185144,
+        "maximum": 28.45468302257359
+      },
+      "video_admission_to_finish_ms": {
+        "count": 180,
+        "minimum": 9.705465054139495,
+        "median": 18.728975497651845,
+        "p95": 25.090218911645934,
+        "maximum": 29.706432949751616
+      },
+      "packet_offered": 180,
+      "packet_completed": 64,
+      "packet_missing": 116,
+      "packet_encode_ms": {
+        "count": 180,
+        "minimum": 25.76150605455041,
+        "median": 30.192282516509295,
+        "p95": 34.724313335027546,
+        "maximum": 37.81654802151024
+      },
+      "packet_admission_to_fake_send_ms": {
+        "count": 64,
+        "minimum": 28.403107076883316,
+        "median": 30.558810045477003,
+        "p95": 32.406631123740226,
+        "maximum": 36.52459196746349
+      },
+      "packet_completion_gap_ms": {
+        "count": 62,
+        "minimum": 30.233294935896993,
+        "median": 34.96720106340945,
+        "p95": 261.84563837596204,
+        "maximum": 297.5692980689928
+      },
+      "video_payload_mbps": 2.1497866666666665,
+      "packet_encoded_mbps": 23.693862666666668,
+      "process_cpu_cores": 2.130130108019387,
+      "timer_ticks_skipped": 0,
+      "video_pending_replaced": 0,
+      "video_expired_before_encode": 0
+    }
+  ],
+  "source_images_unchanged": 4,
+  "actual_network_measured": false,
+  "live_transport_adopted": false,
+  "source_freshness_verified": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}

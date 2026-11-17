@@ -315,6 +315,18 @@ async def _run_driver(args):
         )
 
     pc = RTCPeerConnection()
+    packet_binding=None
+    if getattr(args,'frame_motion_packets',False):
+        from driver_frame_packet_runtime import PacketSource,SenderPacketBinding
+        packet_source=None
+        try:
+            packet_source=PacketSource(args.frame_packet_hz)
+            packet_subscription=telemetry_node.create_subscription(Odometry,args.odom_topic,packet_source.observe_odom,10)
+            packet_binding=SenderPacketBinding(pc,args._motion_capture_reader,packet_source)
+            args._frame_packet_binding=packet_binding
+        except Exception as error:
+            if packet_source is not None:packet_source.closed=True
+            logger.warning('Optional packet setup failed; video/control continue: %s',error)
     
     from aiortc import RTCRtpSender
     transceiver = pc.addTransceiver(video_track, direction="sendonly")
@@ -391,6 +403,8 @@ async def _run_driver(args):
     if getattr(args, "motion_native", False):
         from driver_motion_protocol import PROFILE as MOTION_NATIVE_PROFILE
         payload["motion_native_profile"] = dict(MOTION_NATIVE_PROFILE)
+    if packet_binding is not None:
+        payload['frame_motion_profile']=packet_binding.profile
 
     async with aiohttp.ClientSession() as session:
         try:
@@ -402,6 +416,8 @@ async def _run_driver(args):
                 logger.info("Received SDP Answer")
                 answer = RTCSessionDescription(sdp=answer_data["sdp"], type=answer_data["type"])
                 await pc.setRemoteDescription(answer)
+                if packet_binding is not None and not packet_binding.activate(answer_data.get('frame_motion_ack')):
+                    logger.warning('Optional packet input withheld; video/control continue: %s',packet_binding.error)
                 logger.info("WebRTC Session connected successfully!")
 
                 # Set sender parameters (maxBitrate)
@@ -437,6 +453,8 @@ async def _run_driver(args):
         pass
     finally:
         logger.info("Shutting down stream node...")
+        if packet_binding is not None:
+            await packet_binding.close()
         await pc.close()
         telemetry_node.destroy_node()
         rclpy.shutdown()
@@ -458,6 +476,8 @@ if __name__ == "__main__":
     parser.add_argument("--mock-camera", action="store_true")
     parser.add_argument("--motion-native", action="store_true",
         help="opt-in real 1280x720 fresh native video; existing ROS/control channels are unchanged")
+    from driver_frame_packet_runtime import add_sender_arguments
+    add_sender_arguments(parser)
     
     # ROS 2 Topics
     parser.add_argument("--odom-topic", default="/odom")

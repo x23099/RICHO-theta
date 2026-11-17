@@ -218,12 +218,28 @@ class LatestPacketSender:
         return True
 
     def offer(self, wire, *, now):
+        try:
+            plan = fragment_plan(wire, message_bytes=self.message_bytes)
+        except (ValueError, TypeError, KeyError, OverflowError):
+            self.counts['offered'] += 1
+            self._tick(now)
+            self.counts['invalid'] += 1
+            self._clear()
+            return False
+        return self._offer_prepared(plan, now=now)
+
+    def _offer_prepared(self, plan, *, now):
+        """Internal worker handoff only; never accept caller-created plans.
+
+        The channel adapter constructs this immutable plan using fragment_plan
+        in its codec worker. Avoid JSON/hash/codec work on the RTC owner.
+        """
         self.counts['offered'] += 1
         if not self._tick(now):
             return False
         try:
-            plan = fragment_plan(wire, message_bytes=self.message_bytes)
-            if ((plan.sender_id, plan.stream_id) != (self.sender_id, self.stream_id)
+            if (type(plan) is not FragmentPlan or plan.message_bytes != self.message_bytes
+                    or (plan.sender_id, plan.stream_id) != (self.sender_id, self.stream_id)
                     or plan.sequence <= self.high_sequence or now < plan.associated_at_sec):
                 raise ValueError('matching ordered source packet in the same sender clock required')
             self.high_sequence = plan.sequence

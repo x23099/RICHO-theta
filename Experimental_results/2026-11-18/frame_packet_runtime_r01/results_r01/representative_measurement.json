@@ -1,0 +1,145 @@
+{
+  "schema": "cone_motion_range_v1",
+  "session": "e24c087205cb46f0b1046e0f1649bcbb",
+  "frame": 723,
+  "media_time_sec": 0.0,
+  "source_time_sec": 731520.55860981,
+  "completed_time_sec": 731520.580056398,
+  "frame_age_ms": 21.44658798351884,
+  "frame_age_limit_ms": 500.0,
+  "profile_sha256": "17a287159fcec644c373141cdbef893aa19dfced782dcf32d20b5f12dc91954e",
+  "profile_source": {
+    "image_sha256": "973e19b6ee85c0702056426d83a07e86f503755a76ab635099f3a869287bd4f1",
+    "image_file": "decoded_159c37ad534a4ac0b96ca69791713567_f038231.png",
+    "session": "159c37ad534a4ac0b96ca69791713567",
+    "frame": 38231,
+    "points_sha256": "95f2414dcc124dab2987cc795acf68fcbc95f4f5237663724bb8bf302d6166c7",
+    "E_used": false
+  },
+  "primary_model": "ippe_0",
+  "distance_available": true,
+  "horizontal_camera_foot_range_m": 1.235993393205725,
+  "models": [
+    {
+      "id": "ippe_0",
+      "range_available": true,
+      "horizontal_camera_foot_range_m": 1.235993393205725,
+      "reason": "unverified_rigid_mount_range"
+    },
+    {
+      "id": "ippe_1",
+      "range_available": true,
+      "horizontal_camera_foot_range_m": 1.1171239162501774,
+      "reason": "unverified_rigid_mount_range"
+    }
+  ],
+  "support_pixel": [
+    320,
+    401
+  ],
+  "target_roi_native_xyxy": null,
+  "front_candidates": 1,
+  "reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+  "static_scene_required": false,
+  "temporal_target_association_verified": false,
+  "cross_session_mount_verified": false,
+  "mount_or_floor_tilt_compensated": false,
+  "assumed_rigid_mount_locally_planar_floor": true,
+  "physical_metric_verified": false,
+  "floor_contact_verified": false,
+  "controlling_distance": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false,
+  "selected_detector_boxes": [
+    {
+      "x1": 290.0,
+      "y1": 300.0,
+      "x2": 350.0,
+      "y2": 440.0,
+      "confidence": 0.95,
+      "class_id": 0.0
+    }
+  ],
+  "support_observation": {
+    "point": [
+      320,
+      401
+    ],
+    "support": [
+      [
+        312,
+        401
+      ],
+      [
+        313,
+        401
+      ],
+      [
+        314,
+        401
+      ],
+      [
+        315,
+        401
+      ],
+      [
+        316,
+        401
+      ],
+      [
+        317,
+        401
+      ],
+      [
+        318,
+        401
+      ],
+      [
+        319,
+        401
+      ],
+      [
+        320,
+        401
+      ],
+      [
+        321,
+        401
+      ],
+      [
+        322,
+        401
+      ],
+      [
+        323,
+        401
+      ],
+      [
+        324,
+        401
+      ],
+      [
+        325,
+        401
+      ],
+      [
+        326,
+        401
+      ],
+      [
+        327,
+        401
+      ],
+      [
+        328,
+        401
+      ]
+    ],
+    "reason": "synthetic_support"
+  },
+  "support_reason": "current_image_support_only_NOT_contact_or_temporal_association",
+  "predict_ms": 0.014261109754443169,
+  "support_geometry_ms": 4.0091018890962005,
+  "inference_source": "injected_predictor_NOT_live_cuda",
+  "input_source": "independent_frame_motion_packet_NOT_RTP"
+}

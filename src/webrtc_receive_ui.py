@@ -2012,6 +2012,7 @@ class WebRTCServerThread(threading.Thread):
         self.control_channel = None
         self.motion = motion
         self.telemetry_recorder = telemetry_recorder
+        self.packet_binding = None
 
     def _observe_telemetry(self, method, *args):
         if self.telemetry_recorder is not None:
@@ -2072,15 +2073,32 @@ class WebRTCServerThread(threading.Thread):
         offer = RTCSessionDescription(sdp=params["sdp"], type=params["type"])
         self.pc = RTCPeerConnection()
         peer = self.pc
+        packet_binding=None
+        if getattr(self.motion,'packet_input',False):
+            from driver_frame_packet_runtime import ReceiverPacketBinding
+            if self.packet_binding is not None:self.packet_binding.request_stop('packet_peer_replaced')
+            self.packet_binding=None
+            try:
+                packet_binding=ReceiverPacketBinding(peer,self.motion,params.get('frame_motion_profile'),
+                    params.get('motion_native_profile'))
+                self.packet_binding=packet_binding
+            except Exception as error:
+                logger.warning('Packet measurement withheld; driver connection continues: %s',error)
         motion_session = uuid.uuid4().hex if self.motion is not None or self.telemetry_recorder is not None else None
+        if packet_binding is not None:motion_session=packet_binding.profile['stream_id']
         if self.telemetry_recorder is not None:
             self._observe_telemetry("lifecycle", motion_session, "peer_begin", time.monotonic())
         if motion_session is not None:
-            self._observe_motion("begin", motion_session, params.get("motion_native_profile"))
+            if packet_binding is not None:
+                motion_session=packet_binding.profile['stream_id']
+            else:
+                self._observe_motion("begin", motion_session,
+                    None if getattr(self.motion,'packet_input',False) else params.get("motion_native_profile"))
 
             @peer.on("connectionstatechange")
             async def motion_connection_state():
                 if peer.connectionState in ("closed", "failed", "disconnected"):
+                    if packet_binding is not None:packet_binding.request_stop('packet_peer_'+peer.connectionState)
                     self._observe_motion("end", motion_session)
                     self._observe_telemetry("lifecycle", motion_session, "peer_"+peer.connectionState, time.monotonic())
 
@@ -2108,12 +2126,19 @@ class WebRTCServerThread(threading.Thread):
                 self.control_channel = channel
                 logger.info("DataChannel 'control' bound successfully")
 
-        await self.pc.setRemoteDescription(offer)
-        answer = await self.pc.createAnswer()
-        await self.pc.setLocalDescription(answer)
+        if packet_binding is not None:
+            peer.on('datachannel')(packet_binding.attach)
+
+        await peer.setRemoteDescription(offer)
+        answer = await peer.createAnswer()
+        await peer.setLocalDescription(answer)
+        response=dict(sdp=peer.localDescription.sdp,type=peer.localDescription.type)
+        if packet_binding is not None:
+            try:response['frame_motion_ack']=packet_binding.configure()
+            except Exception as error:packet_binding.request_stop('packet_config_failed: '+str(error))
         return web.Response(
             content_type="application/json",
-            text=json.dumps({"sdp": self.pc.localDescription.sdp, "type": self.pc.localDescription.type})
+            text=json.dumps(response)
         )
 
     async def process_video(self, track, motion_session=None):
@@ -2127,7 +2152,7 @@ class WebRTCServerThread(threading.Thread):
                     img = frame.to_ndarray(format="bgr24")
                     with self.frame_lock:
                         self.latest_frame = img
-                    if self.motion is not None and motion_session is not None:
+                    if self.motion is not None and motion_session is not None and not getattr(self.motion,'packet_input',False):
                         # Owned decoded image is never annotated; UI uses a copy.
                         img.flags.writeable = False
                         self._observe_motion("publish", motion_session, img, frame.time, received_at)
@@ -2774,6 +2799,8 @@ def main():
     try:
         sys.exit(app.exec())
     finally:
+        packet_binding=getattr(window.server_thread,'packet_binding',None)
+        if packet_binding is not None:packet_binding.close()
         if args.telemetry_recorder is not None:
             try:
                 telemetry_status = args.telemetry_recorder.close()

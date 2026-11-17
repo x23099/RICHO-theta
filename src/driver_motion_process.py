@@ -9,7 +9,7 @@ import time
 from driver_motion_protocol import compact_result, read_frame, write_message
 
 
-def serve(engine, predictor, input_stream, output_stream, log_path, *, clock=time.monotonic, evidence=None, comparison=None, display_guard=None):
+def serve(engine, predictor, input_stream, output_stream, log_path, *, clock=time.monotonic, evidence=None, comparison=None, display_guard=None, packet_input=False):
     processed = available = 0
     reviews=Path(log_path).with_name('motion_display_reviews.jsonl').open('x') if display_guard is not None else nullcontext(None)
     with Path(log_path).open("x") as log, reviews as display_log:
@@ -20,7 +20,8 @@ def serve(engine, predictor, input_stream, output_stream, log_path, *, clock=tim
             except EOFError:
                 return dict(processed=processed,range_available_frames=available)
             started = clock()
-            if 0 <= started-frame.received_at <= engine.settings["frame_max_age_sec"]:
+            age_limit=min(.2,engine.settings['frame_max_age_sec']) if packet_input else engine.settings['frame_max_age_sec']
+            if 0 <= started-frame.received_at <= age_limit:
                 boxes = predictor(frame)
             else:
                 boxes = []  # Engine revokes stale input, no wasted inference.
@@ -30,8 +31,8 @@ def serve(engine, predictor, input_stream, output_stream, log_path, *, clock=tim
             result.update(completed_time_sec=finished,frame_age_ms=1000*(finished-frame.received_at),
                 predict_ms=1000*(inferred-started),support_geometry_ms=1000*(finished-inferred),
                 inference_source=getattr(predictor,"inference_source","injected_predictor_NOT_live_cuda"),
-                input_source="driver_native_receive_tap_NOT_remapped_view")
-            if finished-frame.received_at > engine.settings["frame_max_age_sec"]:
+                input_source=("independent_frame_motion_packet_NOT_RTP" if packet_input else "driver_native_receive_tap_NOT_remapped_view"))
+            if not 0 <= finished-frame.received_at <= age_limit:
                 from cone_motion_range import revoke_range
                 revoke_range(result,"frame_processing_too_old")
             result_line=json.dumps(result,allow_nan=False)+"\n"
@@ -80,6 +81,7 @@ def main(argv=None):
     parser.add_argument("--device",type=int,default=0)
     parser.add_argument("--target-roi",type=int,nargs=4)
     parser.add_argument("--experimental-rigid-mount",action="store_true",required=True)
+    parser.add_argument('--packet-input',action='store_true',help='internal opt-in packet identity/200ms receive age; NOT source freshness')
     parser.add_argument("--comparison-dir",type=Path,help="OFF by default; new recordings/ comparison directory")
     parser.add_argument('--body-display-guard',action='store_true',help='OFF by default; current-support rejection-only display gate; requires comparison')
     add_evidence_arguments(parser)
@@ -121,6 +123,12 @@ def main(argv=None):
                 gpu=predictor.gpu,physical_metric_verified=False,usable_for_ffb=False,
                 published_to_ros=False,mount_or_floor_tilt_compensated=False,
                 metric="horizontal_camera_foot_range_m_NOT_base_link_or_contact")
+            if args.packet_input:
+                summary['packet_input']=dict(enabled=True,source_identity='sender_stream_and_capture_sequence',
+                    original_RTP_frame_matched=False,receive_age_limit_sec=.2,source_freshness_verified=False,
+                    code_sha256={name:digest(Path(__file__).with_name(name)) for name in
+                        ('driver_frame_packet_runtime.py','driver_frame_motion.py','driver_frame_packet.py',
+                         'driver_frame_packet_flow.py','driver_frame_packet_channel.py')})
             if directory is not None:
                 try:
                     evidence=WithheldEvidenceRecorder(directory,args.output_dir/"motion_distance_frames.jsonl",limits)
@@ -159,7 +167,7 @@ def main(argv=None):
                 from driver_body_display_guard import BodyDisplayGuard
                 display_guard=BodyDisplayGuard()
             serve(engine,predictor,sys.stdin.buffer,output,args.output_dir/"motion_distance_frames.jsonl",
-                evidence=evidence,comparison=comparison,display_guard=display_guard)
+                evidence=evidence,comparison=comparison,display_guard=display_guard,packet_input=args.packet_input)
     except EvidenceShutdown:
         return 0
     except Exception as error:

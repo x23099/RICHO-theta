@@ -2,6 +2,46 @@
 
 最新作業枠: **ユーザー指定の2026-11-18扱い**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
 
+## 11/18最新：既定offのpacket測距入力を実runtimeへ接続、397試験成功
+
+ユーザー「進めてください」で[opt-in runtime接続](Experimental_results/2026-11-18/frame_packet_runtime_r01/README.md)を実装。新src/driver_frame_packet_runtime.pyはsenderの既存native reader共有＋追加の観測専用odom subscription＋全callback履歴、独立source/stream、5/10Hz、厳密HTTP offer/ackとapplied SDPのMID/cap一致、独立unordered/no-retry channel1本を束ねる。`--frame-motion-packets`既定off、motion-native必須。receiverは`--motion-input packet`を明示した場合だけ測距入力をpacketへ切替え、表示RTP/telemetry/controlは維持。通常は`rtp`のまま。片側だけ/不一致/再利用streamでは測距保留、RTPへfallbackしない。
+
+PacketMotionBridgeが従来GPU process/pipe1本を再利用し、元stream/capture sequenceをNativeFrameへ保持。inflight1組のcandidate/SHAだけを同identityで返った結果へ結合しmotion_bridge_events.jsonlへ保存。child rawログはpacket入力marker、summaryはmode/200ms/code SHA。受信初片からの200msをdecode/pipe/inference前後/受理/表示まで延長せず適用。sender側read-return200msとは別窓でありnetwork/元鮮度を認定しない。panelに独立packetと表示RTPが同一frame未認定である旨を追記。全物理/接地/元鮮度/FFB/ROS権限false。
+
+正式results_r02で新22を含む関連**397成功、0失敗/skip、12.52秒**。実codec＋actual receiver offer handler＋実local pipe＋既存MotionRangeEngine（predictor/支持点/画像/odomは合成）、元723番とv=-.2/ω=+.1のcandidateが一致し期限内受理true。代表結合JSONとraw認識JSONを保存。実network/camera/ROS/CUDA/G923は未起動、距離1.23599mは合成値で実測精度ではない。旧peer遅延disconnect/旧inflightが新scopeへ混ざらない、重複channel/ack/型偽装で測距だけ無効、CLIで余分なmodel/pipeを作らない等を確認。
+
+今回既存5source（webrtc_stream、receive_ui、driver_motion_camera、bridge、process）へ意図したopt-in差分あり。過去の「runtime byte不変」は前段履歴で今回へ流用しない。before/afterは新監査へ保存し過去SHA不変。操縦関数/TelemetryNode/keyboard/legacy cameraの固定AST一致。旧12componentのbridge/process2は意図した変更、幾何/支持点/body guard/IPCなど10はSHA一致。前段packet/fragment/worker、odom/clock/telemetry/FFBは未変更。初期fixtureのbase_linkをbase_footprintへ直し、async executor終了待ちを自試験中断後に有限done pollへ変更。production gate/FFB停止要件を緩めず全再実行。results_r01はCLI試験追加前の396成功履歴。
+
+sender終了は既存worker doneの有限poll（新executorなし）、receiver finite join、GPU childは従来grace/forceを再利用。停止未完了を成功と偽らない。Git操作/日報/実機操作なし、先行未commit成果を保全。次はGPUPC環境で保存native画像をpacket再圧縮→YOLO/色支持点/測距へ通し、採否/数値/負荷を比較してから双方の実通信手順を提示。追加撮影/走行はまだ不要。PC別手順や実保存先を決める前にlive起動しない。車体TF/車幅/点の意味とrisk-gradient/FFBは別gate、PC間時計対応必須へ戻さない。
+
+## 11/18最新：保存画像の実encode併走負荷を測定、追加30Hzを見送り
+
+ユーザー「進めましょう」により[保存画像load比較](Experimental_results/2026-11-18/frame_packet_load_r01/README.md)を実施。解析PC8 logical CPU、aiortc1.14/PyAV16.1、native BGR1280×720/30Hzの持続Vp8Encoder（比較用target1.5Mbps固定）と、前段実FramePacketChannelSenderの独立keyframe encodeを併走。fake sink即時drain、実peer/socket/ROS/camera/G923/受信decode/YOLO/操縦負荷なし。既存runtime/private RTP等は未変更。
+
+11/16 pin5186＋11/13同sessionの保存evidence28980/37696/44793の4原本を既存監査SHAへ照合。file/画素不変、画像加工/再保存なし。static_repeat1枚反復とdiscontinuous_cycle4枚切替（実連続走行ではない）、追加0/5/10/30Hz、warmup0.5秒＋測定3秒、逆順を含む2反復の16試行。replay admission時刻/odom/seqは合成で実画像の観測ではない。source/物理/FFB/ROS flags false。
+
+正式results_r01のencode1,977行・offer/send1,010行とprogressを保存、analysis_r02で完了間隔も含め全再集計整合。static: video178/180/179/180、packet5Hz30/30、10Hz59/60、30Hz83/180。切替: video全180、packet30/30・60/60・64/180。5Hz合計60/60、10Hz119/120、30Hz147/360。10Hz生成packet7.892〜8.162Mbps、30Hz23.694〜24.487Mbps（ネットワーク測定でなく、送れないencodeも含む）。CPUcore相当static0/5/10/30Hz=.735/1.002/1.318/1.849、切替=.965/1.234/1.557/2.130。
+
+30Hzの損失は通信でなく現在のlatest-only完了公開policy。成功分P95が短くても遅い仕事を落とした選別バイアスで改善とはしない。10Hz破棄1件はstatic反復1 seq28、encode102.877ms中にseq31がoffer。期限/buffer待ちではない。videoのbaseline置換2件もあり追加encodeだけに全欠落原因を帰さない。完成間隔最大static5/10/30Hz228.90/186.11/566.03ms、切替217.12/125.12/297.57ms。5Hzの名目200msもありFFB期限達成とはしない。
+
+新12含む関連270成功/0失敗/skip0、4.38秒、verification_r01。前段src/channel/既存8runtimeと保存codec/source SHA不変。先行の実験assert（streaming PTS1tick丸め）とcv2 distribution metadata採取エラーは実験器だけ修正し全16試行を再実行、sourcepacketの厳密gateは緩めていない。analysis_r01は完了間隔追加前の履歴。今回日報/commit/push/pullなし、前段未commitを保全して今回もローカルのみ。
+
+判断: 現方式の追加30Hzを実接続候補から外し、次の比較を10Hz上限候補/5Hz低負荷比較へ絞る（ライブdefault/FFB rate承認ではない）。次はsender capture/odom履歴・接続scope・receiver認識入力へ既定offのopt-in接続を設計し、入口が準備できてからmatunuc/GPUPC実負荷確認手順を提示。現在の追加撮影/走行/GPUPC操作不要。車体TF/車幅/点と元鮮度/FFBは別gate、PC間時計同期必須へ戻さない。
+
+## 11/18最新：独立channelのworker・上限・終了をfake接続で検証
+
+ユーザー「まだ進めてください」により、[独立packet channel接続部](Experimental_results/2026-11-18/frame_packet_channel_r01/README.md)を実装。開始時worktree clean、HEADはユーザー側commit **33feb17（1118v1）**で、以下の以前の日報/packet/flowの未commit記述は当時の履歴。今回はcommit/push/pullや日報作成なし。
+
+新src/driver_frame_packet_channel.pyは明示remote SDP MID/local能力から保守的にmessage上限を算出（省略64KiB、0は無制限でもapp16KiB上限）。独立unordered/maxRetransmits0の明示channel objectを要求し、producer外コピー/検査→専用encode worker→owner pump/send、受信callback非待機有界inbox→専用再構成/decode worker→一回消費を実装。既存flowはworker準備済みplanの内部入口だけ追加し、従来wire検査を維持。callbackでcodec/SHA/JSON/画像copy/disk IOなし。
+
+overflow/lock競合/codec異常はinstance退役、send例外/閉鎖は当該独立channelだけclose。queue待ちとdecodeを初片期限へ含め、処理時刻とarrival時刻を交互にassemblerへ入れない。closeは有限joinで、hung codecは停止未完了falseとし、daemonの遅延結果を公開せず終了後解放。強制停止/sandboxやハード実時間保証ではない。
+
+正式results_r01で**新34を含む258成功/0失敗/skip0、4.26秒**。実thread/VP8 codec＋fake channel、clock10.05秒系→700,000秒系で候補/符号/保留維持、owner/最新待機/入力copy、上限/不正SDP、実public aiortc capability、失敗/詰まり/期限/finite close/再接続等を確認。実peer/socket/ROS/カメラ/G923起動なし、既存8 runtime sourceと距離/表示12 source、11/17 packet/source保存SHA不変。新flow SHAは新監査へ保存し過去結果を書き換えない。今回は合成画像/運動のみ、カメラ画像加工なし、全鮮度/物理/FFB/ROS認定false。
+
+これは実offer/answerやruntime入口の接続完了ではない。明示MID/channel/sender/streamと同じfragment上限を両端へ束ねる入口はまだなく、labelは一意性/認証ではない。bufferedAmountは他traffic/SCTP全体の遅延保証でもない。
+
+次は既存video encodeと追加packet encodeを保存画像で併走してCPU/処理時間/生成bytes/置換を計測し、rate/方式を選ぶ。その後にcapture/odom履歴・接続scope・GPU認識入力へのopt-in接続。実負荷前に共存可能と断定しない。現時点のGPUPC反映/追加撮影/走行/時計設定/G923試験不要。車体TF/車幅/障害物点とrisk-gradient/抵抗FFBは別gate。今回追加分のみローカル未commit/未push。
+
 ## 11/18扱い最新：11/17日報作成後、有界fragment/再構成/最新待機を実装
 
 ユーザー「11/17終了・日報、Gitは自分でpush、その後11/18扱いで進める」を依頼。先にDaily_reports/2026-11-17_daily_report.mdと索引・代表図2点（codecサイズ/時間、CSV/script/SHA付き）を作成・リンク/SHA確認。197成功等は同一コードの既存成功結果を再利用。当日扱いの実験UTCが11/16だったことを明記して改変せず、11/18分を日報へ混ぜない。こちらでは今回commit/push/pullを一切していない。開始/現HEADはc05ff48。

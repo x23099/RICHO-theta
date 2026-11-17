@@ -18,6 +18,8 @@ _SHUTDOWN_FORCE_SEC = 1.
 def add_motion_arguments(parser):
     group=parser.add_argument_group("experimental non-controlling motion range")
     group.add_argument("--motion-distance",action="store_true")
+    group.add_argument('--motion-input',choices=('rtp','packet'),default='rtp',
+        help='experimental packet input requires matching sender opt-in; never falls back to RTP')
     group.add_argument("--motion-python",type=Path,help="GPU Python; independent of the ROS/Qt UI Python")
     group.add_argument("--motion-weights",type=Path)
     group.add_argument("--motion-profile",type=Path)
@@ -41,6 +43,8 @@ def bridge_from_args(args):
     display_guard = getattr(args,'motion_body_display_guard',False)
     limits = limits_from_args(args, prefix="motion_")
     if not args.motion_distance:
+        if getattr(args,'motion_input','rtp')!='rtp':
+            raise ValueError('--motion-input packet requires --motion-distance')
         if evidence_dir is not None or limits != EvidenceLimits() or comparison_dir is not None or display_guard:
             raise ValueError("withheld evidence requires --motion-distance")
         return None
@@ -94,7 +98,12 @@ def bridge_from_args(args):
             "--withheld-evidence-max-frames", str(limits.max_frames),
             "--withheld-evidence-max-mib", str(limits.max_bytes//(1024*1024)),
             "--withheld-evidence-interval-sec", str(limits.interval_sec)])
-    return DriverMotionBridge(command,args.motion_output_dir,evidence_dir=evidence_dir,comparison_dir=comparison_dir,
+    bridge_class=DriverMotionBridge
+    if getattr(args,'motion_input','rtp')=='packet':
+        from driver_frame_packet_runtime import PacketMotionBridge
+        bridge_class=PacketMotionBridge
+        command.append('--packet-input')
+    return bridge_class(command,args.motion_output_dir,evidence_dir=evidence_dir,comparison_dir=comparison_dir,
         body_display_guard=display_guard)
 
 
@@ -240,13 +249,11 @@ class DriverMotionBridge:
                         if self.body_display_guard:
                             review=checked_display_review(message['display_review'],value)
                         with self.lock:
-                            accepted=(not self.stop_event.is_set() and self.valid_source
-                                and value["session"] == self.session
-                                and 0 <= self.clock()-value["source_time_sec"] <= .5)
+                            accepted=self._accept_result(value)
                             if accepted:self.result=value;self.display_review=review
                             else:self.retired+=1
                         self.returned+=1
-                        event=dict(result=value,accepted_current_session_and_age=accepted)
+                        event=self._result_event(value,accepted)
                         if self.body_display_guard:event['display_review']=review
                         events.write(json.dumps(event)+"\n")
                         events.flush();inflight=None
@@ -264,6 +271,13 @@ class DriverMotionBridge:
                 except subprocess.TimeoutExpired:
                     self.process.kill();self.process.wait(timeout=1.)
                 self.process.stdin.close();self.process.stdout.close()
+
+    def _accept_result(self,value):
+        return (not self.stop_event.is_set() and self.valid_source
+            and value['session']==self.session and 0 <= self.clock()-value['source_time_sec'] <= .5)
+
+    def _result_event(self,value,accepted):
+        return dict(result=value,accepted_current_session_and_age=accepted)
 
     def request_stop(self):
         self.stop_event.set()
@@ -326,5 +340,8 @@ def panel_text(snapshot):
             detail+=f" | body-review gen {snapshot['display_review']['reference_generation']}"
     else:
         value="WITHHELD";detail=snapshot.get("reason","unknown")[:200]
-    return (f"RANGE EXPERIMENT: {value} | camera-foot horizontal, NOT base_link/contact\n"
+    text=(f"RANGE EXPERIMENT: {value} | camera-foot horizontal, NOT base_link/contact\n"
         +detail+"\nFixed mount + planar floor assumed; no tilt compensation. Distance NOT used for control/FFB.")
+    if snapshot.get('input_source')=='independent_packet_NOT_displayed_RTP':
+        text+='\n測距入力: 独立packetの画像・元capture番号。表示中のRTPフレームとの一致は未認定です。'
+    return text
