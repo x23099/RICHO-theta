@@ -2,7 +2,17 @@
 
 最新作業枠: **ユーザー指定の2026-11-18扱い**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
 
-## 11/18最新：両PCの回線情報を受領、iperf3導入承認・映像なし5Mbps試験を準備
+## 11/18最新：映像なし5Mbps実通信を確認、欠損0・受信区間集計4.979Mbps
+
+開始HEAD6387ff6/clean。提出submission_matsunuc.tar.xz/client SHA5d9f9ae1ad55767c9a66d22825357223f87bfc44e4165f43bb7b40b4c0244d25、submission_gpu_2.tar.xz/server SHAc43d438b7d16bb9f9de90bb392c02e4cf312f341d43b2cd3d1a775963f980abf。[実測報告](Experimental_results/2026-11-18/network_coexistence_r01/udp_idle5_report_r01.md)、正式udp_idle5_audit_r02/udp_idle5_verification_r01、原archive/JSON4点×2はrecordings/2026-11-18/network_udp_idle5_intake_r02。r01は初回監査を保持しr02を正式採用。source原本を加工せず、両IP/UDP port5208/ephemeral port/cookie/実test_start/要求rate/別serverとclient埋込みserver完全一致を確認。cookieは認証ではない。iperf3.9導入済み、明示peer routeのdev/prefsrcも一致。
+
+単一UDP1200bytes/目標5Mbps/10秒・映像なし申告。送信6,249,600bytes/10.000106秒/4.999627Mbps、受信11区間合計6,249,600bytes/10.042234秒/4.978653Mbps、payload換算5208datagrams、報告packets5208/lost0/0%、最後のjitter0.296691ms。受信end.sumとend.streams.udpのbytes/rateは0だが区間bytes/packet合計は整合する。iperf3.9公式sourceのUDP JSONがsender totalsを使う箇所と整合する表示問題として原値保持、受信率は独立した受信区間のみから再集計。client送信率へ置換しない。時刻対応を使わず、送受経過差42msやjitterを一方向遅延/元鮮度へ読み替えない。最大容量・通常映像共存・PNG/SCTP適格・FFBは未承認。
+
+新audit_udp.py/verify_udp.py/13test、旧340を含む353成功/失敗skip0/15.91秒。原archive/原JSON/hashと全集計再現、旧probe/collect/全前段source SHA不変。こちらで新iperf通信・listener・install・Git・実機・ROS/FFB操作なし。
+
+次は [通常映像あり・同じ5Mbps/10秒](Experimental_results/2026-11-18/network_coexistence_r01/udp_video5_r01.md)。実機側コード不変なので新Git反映・再install不要。普段の映像送受信を起動して更新を確認し機体は停止、GPUPC server→45秒以内にmatsunuc client。condition=normal-video、output各network_udp_gpu_video5_r01/network_udp_camera_video5_r01。両submission.tar.xzと「映像の停止/大きな乱れ：あり/なし」の目視メモを受領して比較する。画面録画/走行/追加撮影/コーン合わせ不要。異常時はCtrl+Cで中止、25/50Mbpsへ一括増量しない。
+
+## 11/18前段：両PCの回線情報を受領、iperf3導入承認・映像なし5Mbps試験を準備
 
 開始HEAD138c04b/clean、ユーザーが前段をcommit済み。submission.tar.xz(camera)とsubmission_gpu.tar.xz(gpu)を[監査](Experimental_results/2026-11-18/network_coexistence_r01/submission_report_r01.md)、原archive/JSONはrecordings/2026-11-18/network_inventory_intake_r01へ保存。camera=150.89.169.207/wlo1、gpu=150.89.169.96/wlp46s0f0、双方150.89.169.0/24・gateway150.89.169.1、iperf3未導入。明示peer route/疎通/容量/AP等は未確認。Docker down interfaceを選ばず、同subnetを疎通や容量の証明にしない。
 
