@@ -2,6 +2,30 @@
 
 最新作業枠: **ユーザー指定の2026-11-18扱い**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
 
+## 11/18最新：GPU再圧縮r02受領、双方10/10数値・差約3.0cm、採用時receiver段階最大17.271ms
+
+[最新報告](Experimental_results/2026-11-18/frame_packet_gpu_recompression_r01/submission_report_r02.md)、正式gpu_r02_audit_r01。packet_recompression_gpu_20261118_r02.tar.xz SHA ec639c64f215514c315c02e601c40d5a89ab4154e38309f66fc69c5679d72b93、原archive/JSON3点はrecordings/2026-11-18/packet_recompression_gpu_r02_intake_r01へ保持。画像5186/weights/config/profile/runner/src14SHA一致、6warmup除外/ABBA5反復/20測定10対、全行/対/summary再集計一致。packet wire/candidate/bytes/推論画素と既存ROIでの全measurementも再現した。
+
+今回はGPUPCでROI200..280を明示して実際に測定し、元/packetとも10/10数値。元1.1892693049m→packet1.1590857906m、差-0.0301835143m、支持点[232,409]→[232,411]で全対同一。variant内検出/距離は各1種類、採否/理由変更0。r01の事後診断に一致するが、今回は事後ROI変更で作った値ではない。1枚追加再圧縮の前後差であり絶対精度や全域3cm以内保証ではない。
+
+CUDA同期predict中央値元6.693/packet6.704ms、支持点・幾何1.797/1.774ms、packet復号/検証/copy7.453ms。receiver段階合計中央値元8.513/packet15.980ms、最大8.898/17.271ms。100/200ms超過双方0。encode中央値18.947ms、encode+receiver中央値35.021/最大41.900ms。PyTorch allocator peak allocated60,697,088/reserved98,566,144bytes双方同一。候補なし早期returnではなく支持点・幾何まで通った予備負荷確認ができた。実network/queue/IPC/表示/運転映像共存、機体側encode、5/10Hz pacing、end-to-end期限は未測定。全物理/接地/元鮮度/制御/FFB/ROS flags false。
+
+提出監査のr02対応は明示--protocolでroot/ROIを分離し旧r01条件維持。新2を含む関連165成功/失敗skip0/4.88秒、verification_r03。既存src/runner/画像/過去manifest不変、前回未commit成果保全。Git操作/日報/実機起動なし。
+
+**同じ1枚のr03再実行は不要。** 次は距離・位置/保留状態の違う既存保存画像へ比較を広げる。既存4画像のGPUPC所在と対象ROIを先に確認し、暗黙の範囲拡大や都合のよい入力選択をしない。その後、既定off実通信経路で通常映像との共存負荷へ進む。追加撮影/走行やlive/FFB採用はまだ指示しない。以下r01/r02再試験の指示は履歴で、今回の結果を優先する。
+
+## 11/18最新：GPU再圧縮r01受領、ROI案内ずれを特定。保存検出の事後差は約3.0cm
+
+[提出解析](Experimental_results/2026-11-18/frame_packet_gpu_recompression_r01/submission_report_r01.md)。packet_recompression_gpu_20261118_r01.tar.xz SHA ba4fe5a6b64742a53be07f7b9283458ed377bee9200b4f1cfcfd9f15778257ec。原本とJSON3点をrecordings/2026-11-18/packet_recompression_gpu_intake_r02に保持。正式submission_audit_r02（r01は数値overflow拒否追加前）。GPUは実CUDA/codec完走、6warmup除外・20測定・10対、code/config/profile/weights/PNGと各pair/summary再集計一致。しかし元/packetとも全10件no_candidate、数値距離対0。raw検出はあるが中心x=239.340/239.306が案内したROI270..350の外だった。ユーザー撮影/操作不備ではなく、こちらの試験ROI指定が不適切だった。
+
+実CUDA同期predict中央値元6.694ms/packet6.582ms、packet decode/validate/copy7.465ms、receiver段階中央値元6.749/packet14.059ms、packet最大17.554ms。encode中央値16.959ms、encode+receiver中央値31.047ms。PyTorch peak allocated60,697,088/reserved98,566,144bytes両方同一。候補なし早期returnで支持点/距離を処理していないため、採用時の負荷や実通信/5・10Hz期限を確認済みとしない。
+
+保存された**実GPU bbox**と同一の推論画素を再現できたので、追加YOLO/撮影なしで事後距離を計算。全10packet wire SHA/candidate/bytes/decodedpixel一致、元画素も一致。明示posthoc ROI200..280で全10対同一、支持点[232,409]→[232,411]、元1.1892693049m→packet1.1590857906m、差-0.0301835143m（約-3.0cm）。提出measurementを改変した実測値ではなく事後幾何。絶対誤差、全域精度、補正ROIでのGPU全処理時間の結果ではない。物理/接地/元鮮度/制御/FFB/ROS false。
+
+新audit_submission.pyと新8テスト、準備checkerの監査追加だけ。新8を含む関連163成功/失敗skip0/4.67秒、verification_r02。既存src/runner/画像/過去manifest不変。開始時HEAD22687a7/cleanで前回準備はユーザー側commit済み。Git操作/日報/実機起動なし。
+
+次は**同じGPUPC反映済みrunner**で `--target-roi 200 0 280 720` を足し、output recordings/2026-11-18/packet_recompression_gpu_r02、archive /home/hsr/Downloads/packet_recompression_gpu_20261118_r02.tar.xzへ同画像試験。ROI補正後の支持点・距離まで実際に走った負荷を確認するためで、同条件の無意味な再実行ではない。新Git反映/追加撮影/走行/送受信/画面録画は不要。[r02手順](Experimental_results/2026-11-18/frame_packet_gpu_recompression_r01/README.md)。実通信採用/FFB接続にはまだ進めない。
+
 ## 11/18最新：GPUPCのCUDA復旧、保存画像packet再圧縮のGPU比較runnerを準備
 
 ユーザー報告でGPUPC HEAD39e1e67（1118v2）、PyTorch2.7.1+cu118/PyAV16.1.0/OpenCV5.0.0、weights `/home/hsr/Downloads/cone_distance_v03.pt` と `recordings/2026-11-16/body_guard_live_r01/decoded_e52bb32f03d6488ebf37d769f46ec37a_f005186.png` の所在を確認。最初CUDA unknown errorで利用不能だったが、nvidia-smiはRTX4070/driver535.309.01を認識、CUDA_VISIBLE_DEVICES/NVIDIA_VISIBLE_DEVICES未設定、/dev/nvidia*も存在。GPUPC再起動後CUDA True/RTX4070 Laptop GPU/tensor計算1.0へ回復した。原因を特定したとせず、依存/driver再導入・module reset・時計設定変更なし。以上はユーザー端末報告で、こちらからGPUPCを操作していない。

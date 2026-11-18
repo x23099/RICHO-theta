@@ -42,7 +42,8 @@ def run(output):
             shape=list(image.shape), packet_bytes=value['packet_bytes'],
             packet_sha256=value['packet_sha256'], packet_candidate=value['packet_candidate']))
     probe.assert_originals(jobs)
-    tests = ['tests/test_frame_packet_gpu_recompression.py', 'tests/test_driver_frame_packet.py',
+    tests = ['tests/test_frame_packet_gpu_recompression.py', 'tests/test_frame_packet_gpu_submission_audit.py',
+        'tests/test_driver_frame_packet.py',
         'tests/test_driver_frame_motion.py', 'tests/test_cone_motion_range.py',
         'tests/test_driver_frame_packet_runtime.py', 'tests/test_driver_frame_packet_channel.py']
     command = [sys.executable, '-m', 'pytest', '-q'] + tests
@@ -55,7 +56,8 @@ def run(output):
     match = re.search(r'(\d+) passed in ([0-9.]+)s', log)
     if result.returncode or match is None or 'skipped' in log:
         raise ValueError('all preparation tests must pass: '+log)
-    code = [HERE/'run.py', Path(__file__), ROOT/'tests/test_frame_packet_gpu_recompression.py']
+    code = [HERE/'run.py', HERE/'audit_submission.py', Path(__file__),
+            ROOT/'tests/test_frame_packet_gpu_recompression.py', ROOT/'tests/test_frame_packet_gpu_submission_audit.py']
     for path in code:
         ast.parse(path.read_bytes())
     probe.assert_originals(jobs)

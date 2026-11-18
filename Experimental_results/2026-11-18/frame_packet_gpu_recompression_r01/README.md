@@ -1,5 +1,9 @@
 # GPUPC：保存画像のpacket再圧縮・測距比較（予備試験）
 
+**r02提出の解析まで完了。[最新結果報告](submission_report_r02.md)。ROI補正後は双方10/10で数値距離、前後差約3.0cm。packetの支持点・幾何を含むreceiver段階は中央値15.980ms/最大17.271ms。同じ画像の再実行は不要。次は別の既存保存画像へ比較を広げ、その後に実通信の共存負荷を確認する。追加撮影/走行はまだ不要。**
+
+r01のROI案内不一致と事後診断は[前回結果](submission_report_r01.md)に保持。下記のr01/r02 GPUコマンドは実施済み履歴であり、今すぐ繰り返す指示ではない。
+
 カメラ・matsunuc・映像送受信・走行・画面録画・G923は使わない。確認済みの保存native PNGを指定し、元画像と現行VP8 packet再圧縮後へ同じ既存CUDA YOLO/支持点/距離処理を適用する。**実機や既存runtimeの起動手順ではない。**
 
 [実装計画](implementation_plan.md)、[実験runner](run.py)、[回帰試験](../../../tests/test_frame_packet_gpu_recompression.py)。今回srcは変更しない。Git commit/push/pullはユーザー操作に委ねる。
@@ -16,6 +20,8 @@ ls -l Experimental_results/2026-11-18/frame_packet_gpu_recompression_r01/run.py
 ```
 
 ## GPUPC実行コマンド
+
+以下は実施済みr01の履歴。再実行しない。現在の次の操作は後述r02。
 
 下は所在確認済みの11/16 pin 5186だけを使う最初の予備試験。1枚で6 warmup＋20測定、10対比較。通常は短時間だが、CUDA初期化やmodel初回起動を含む所要時間を事前保証しない。実行中は追加の学習/YOLO/受信処理を起動しない。
 
@@ -65,3 +71,53 @@ env OPENBLAS_NUM_THREADS=1 /home/robo25/theta-env/bin/python3 Experimental_resul
 ```
 
 この解析PC用検証をGPUPCで実行する必要はない。GPUPCでは上のrun.pyを使う。
+
+## 次のGPUPC操作：r02対象範囲を補正した同画像試験
+
+**実施・解析済みの履歴。同じ条件の再実行は不要。** [r02正式監査](gpu_r02_audit_r01/audit.json)、[結果](submission_report_r02.md)。
+
+r01はCUDA/codec完走だが、候補がROI外だったため採用時の支持点・距離処理時間は未測定。保存GPU bboxとpacket/復号画素SHA全一致からの事後計算では、元画像1.189269m→packet1.159086m、差約3.0cm。これは追加再圧縮の前後差で、絶対精度やライブ採用を認定しない。
+
+次は同じ画像の対象中心を含むROIを**明示**する。runtime既定や校正は変更しない。runnerはGPUPC反映済みのものから不変であり、**このr02実行のためのGit再反映・追加撮影・走行・画面録画は不要**。
+
+```bash
+cd /home/hsr/yopi_ws/RICHO-theta
+./yolo-env/bin/python3 Experimental_results/2026-11-18/frame_packet_gpu_recompression_r01/run.py \
+  --image recordings/2026-11-16/body_guard_live_r01/decoded_e52bb32f03d6488ebf37d769f46ec37a_f005186.png \
+  --weights /home/hsr/Downloads/cone_distance_v03.pt \
+  --target-roi 200 0 280 720 \
+  --experimental-rigid-mount \
+  --output-dir recordings/2026-11-18/packet_recompression_gpu_r02 \
+  --archive /home/hsr/Downloads/packet_recompression_gpu_20261118_r02.tar.xz
+```
+
+`state: complete` 後、Downloadsの `packet_recompression_gpu_20261118_r02.tar.xz` を提出する。成功を予告して古いsummaryを更新しない。r02でも保留なら保存ログの理由を確認する。旧r01の出力・archiveは保持する。
+
+提出監査の再現（解析PCのみ、既存intake/resultと異なる新規先が必要）：
+
+```bash
+cd /home/robo25/theta_ws/RICHO-theta
+/home/robo25/theta-env/bin/python3 Experimental_results/2026-11-18/frame_packet_gpu_recompression_r01/audit_submission.py \
+  --archive /home/robo25/Downloads/packet_recompression_gpu_20261118_r01.tar.xz \
+  --source-image recordings/2026-11-16/body_display_full_intake_r02/comparison/decoded_e52bb32f03d6488ebf37d769f46ec37a_f005186.png \
+  --intake-dir recordings/2026-11-18/packet_recompression_gpu_intake_r03 \
+  --output-dir Experimental_results/2026-11-18/frame_packet_gpu_recompression_r01/submission_audit_r03
+```
+
+監査は原JSON3点のSHA・全20行/10対/summaryを再計算し、全code/weights設定の来歴と各packet wire/推論画素の一致を確認する。アーカイブの汎用展開や同梱文書の指示実行はしない。新8を含む関連163成功/失敗skip0/4.67秒、正式は[verification_r02](verification_r02/audit.json)。verification_r01の155成功は監査テスト追加前の履歴で、GPU結果ではない。
+
+### r02提出監査の再現（解析PCのみ）
+
+既存監査結果を上書きせず新規先を指定する。r01の旧条件を緩めず、`--protocol r02`でarchive root/ROIを明示する。
+
+```bash
+cd /home/robo25/theta_ws/RICHO-theta
+/home/robo25/theta-env/bin/python3 Experimental_results/2026-11-18/frame_packet_gpu_recompression_r01/audit_submission.py \
+  --protocol r02 \
+  --archive /home/robo25/Downloads/packet_recompression_gpu_20261118_r02.tar.xz \
+  --source-image recordings/2026-11-16/body_display_full_intake_r02/comparison/decoded_e52bb32f03d6488ebf37d769f46ec37a_f005186.png \
+  --intake-dir recordings/2026-11-18/packet_recompression_gpu_r02_intake_r02 \
+  --output-dir Experimental_results/2026-11-18/frame_packet_gpu_recompression_r01/gpu_r02_audit_r02
+```
+
+同じROIの全measurementを再現し、提出GPU値の距離差・時間・採否集計を確認する。ROIを後から変えた診断ではない。監査のr02対応新2を含む関連165成功/失敗skip0/4.88秒、最新ローカル検証は[verification_r03](verification_r03/audit.json)。これは検証コードの試験結果で、実GPU結果とは別。
