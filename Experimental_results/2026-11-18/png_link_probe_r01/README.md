@@ -96,7 +96,11 @@ cat /home/matunuc/theta_ws/recordings/2026-11-18/png_link_probe_camera_r01/sende
 
 ## ローカル検証（実通信なし）
 
-[verification_r02/audit.json](verification_r02/audit.json)、[テスト出力](verification_r02/tests.txt)：**372 passed / 0 failed / 0 skipped（16.54秒）**。probe本体8件と監査5件を含む。実RTC接続・カメラ・ROS/G923は起動していない。probeは既定offで、ディレクトリ未指定なら従来経路と同一。`verification_r01`はflushの排他を入れる前の記録として残し、**r02を正式採用**する。
+[verification_r03/audit.json](verification_r03/audit.json)、[テスト出力](verification_r03/tests.txt)：**372 passed / 0 failed / 0 skipped（16.74秒）**。probe本体8件と監査5件を含む。実RTC接続・カメラ・ROS/G923は起動していない。probeは既定offで、ディレクトリ未指定なら従来経路と同一。r01/r02は監査スクリプト修正前の履歴として残し、**r03を正式採用**する。
+
+## 実測結果（r01）
+
+[transport_report_r01.md](transport_report_r01.md)：296 frameを渡して296 frame完成・296 frame到達（ratio 1.0）。ただしPNGは約128 KB/frame、payload上限4.54 Mbpsで、**40.49 Mbps級の共存は未検証**。代表シーンでの再試験が必要。
 
 **注意：** この段階で`src/webrtc_stream.py`と`src/webrtc_receive_ui.py`を既定offのまま変更したため、`network_coexistence_r01/verify_udp*.py`のfrozen source検査は現在のtreeでは停止する。保存済みUDP監査・検証JSONは変更していない。
 

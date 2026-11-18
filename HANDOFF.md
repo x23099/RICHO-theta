@@ -16,6 +16,16 @@
 
 次はユーザーが両PCへ反映し、機体停止・通常映像ありで30秒のprobe試験（5 Hz）。`sender_probe.json`と`receiver_probe.json`を受領し、frame到達率・gaps・期限落ちを監査してPNG live採用の可否ではなく「実経路で何が落ちるか」を確定する。測距精度・元鮮度・ROS/FFB適格は引き続き未承認。
 
+## 11/18最新（続き）：transport probe r02受領、296/296/296でframe欠損0。ただし約128KB/frameで4.54Mbps上限、40Mbps級は未検証
+
+sender_probe.json（SHA b48e1a95…）、receiver_probe.json（e8d5dcbd…）を[監査](Experimental_results/2026-11-18/png_link_probe_r01/transport_audit_r01/audit.json)し、原JSONはrecordings/2026-11-18/png_link_probe_intake_r01。sender channel`activated=true`、receiver`configured=true`、profileのsender_id/stream_id/rate_hz一致。sender elapsed66.737秒、offered303、expired7、handed_off296、fragments2,311、held_for_buffer1,409、peak_retained125,757B。受信completed296/delivered296/published296、replaced4、expired0、duplicates/invalid/conflicts0。latency（初片到着→publish）min2.62/mean36.24/max114.66ms。**frame_completion_ratio=frame_publication_ratio=1.000。**
+
+ただしfragments/frame7.81×message上限16,384B＝payload上限37,863,424B（**4.539Mbps**）で、296frameでは約128KB/frame。オフライン基準の約1,012KB/frameの約1/8であり、**40.49Mbps級の共存は試せていない**。実効4.435〜4.464Hzで5Hz未満。frame offer4.54Hzの原因（capture間隔/odom対応）は未測定。`sequence_gaps=1,695`はcapture_sequenceの間引きによる正常でpacket lossではない（監査で`..._are_not_packet_loss=true`）。受信側`closed=false`（close前コピー、周期flush時点）だが送受296一致。replaced4の機序は未確定。映像fps/片方向遅延/測距精度/ROS/FFBは未測定。
+
+監査スクリプト修正後に[verification_r03](ExperimentalResults/2026-11-18/png_link_probe_r01/verification_r03/audit.json) **372 passed/16.74秒**。r01/r02は履歴。[報告](ExperimentalResults/2026-11-18/png_link_probe_r01/transport_report_r01.md)。
+
+次は**オフラインで約1MB/frameだった代表シーン**（コーンが見えるテクスチャのある構図）で同じ30秒probeを再実行し、payload上限が約40Mbpsに近づいた状態でframe到達率を読む。今回の結果だけでPNG live採用や40Mbps共存を認定しない。
+
 ## 11/18前段：50Mbps r02は欠損0.290%・3〜4秒へ移動、6〜7秒の周期性は棄却。合成UDP増量は終了
 
 開始HEADfb3c0e3/clean（本段は未commit）。ユーザーがA案（50 Mbps r02を1回）を選択。submission_50_matsunuc/clientとsubmission_50_gpu/serverを受領。[比較報告](Experimental_results/2026-11-18/network_coexistence_r01/udp_video50_report_r02.md)、正式udp_video50_audit_r02/udp_video50_verification_r02、原archive/JSONはrecordings/2026-11-18/network_udp_video50_intake_r02。IP/UDP port5208/ephemeral port/cookie/実test_start/要求rate/別serverと埋込みserver完全一致、両側returncode0・stderr空。前回r01とはcookie・時刻が異なる別試験。

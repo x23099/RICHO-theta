@@ -57,6 +57,10 @@ def paired(sender, receiver):
     messages = number(sent.get('messages_sent', 0))
     require(handed_off > 0 and chunks > 0, 'sender handed off no frames')
     require(messages <= chunks or chunks == 0, 'fragment messages exceed generated fragments')
+    sender_elapsed = number(sender.get('elapsed_sec', 0))
+    first, last = counters.get('first_published_at_sec'), counters.get('last_published_at_sec')
+    span = number(last - first) if type(first) in (int, float) and type(last) in (int, float) else 0
+    cap = sender['profile'].get('message_cap')
     return dict(
         schema='frame_packet_transport_pair_v1',
         state='transport_pair_verified_NOT_fps_or_ffb',
@@ -70,15 +74,22 @@ def paired(sender, receiver):
         frames_handed_off=handed_off,
         fragments_generated=chunks,
         fragments_sent=messages,
+        fragments_per_frame=(chunks / handed_off),
+        message_cap_bytes=cap,
+        payload_bytes_upper_bound=(chunks * cap if type(cap) is int else None),
+        sender_effective_hz=(handed_off / sender_elapsed if sender_elapsed else None),
+        receiver_observed_span_sec=span,
+        receiver_published_hz=(published / span if span else None),
         receiver_frames_completed=completed,
         receiver_frames_delivered=delivered,
         receiver_frames_published=published,
-        receiver_fragments_replaced=number(assembler.get('replaced', 0)),
-        receiver_fragments_expired=number(assembler.get('expired', 0)),
+        receiver_packets_replaced_before_completion=number(assembler.get('replaced', 0)),
+        receiver_frames_expired=number(assembler.get('expired', 0)),
         receiver_duplicates=number(assembler.get('duplicates', 0)),
         receiver_invalid=number(assembler.get('invalid', 0)),
         receiver_conflicts=number(assembler.get('conflicts', 0)),
-        receiver_sequence_gaps=number(counters.get('sequence_gaps', 0)),
+        receiver_capture_sequence_jumps=number(counters.get('sequence_gaps', 0)),
+        receiver_capture_sequence_jumps_are_not_packet_loss=True,
         receiver_out_of_order=number(counters.get('out_of_order', 0)),
         frame_completion_ratio=(completed / handed_off),
         frame_publication_ratio=(published / handed_off),
