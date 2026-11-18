@@ -2,7 +2,17 @@
 
 最新作業枠: **ユーザー指定の2026-11-18扱い**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
 
-## 11/18最新：映像なし5Mbps実通信を確認、欠損0・受信区間集計4.979Mbps
+## 11/18最新：通常映像あり5Mbpsも欠損0・目視異常なし、次は映像を維持して25Mbps
+
+開始HEADae8b607/clean。submission_matsunuc_3.tar.xz/clientとsubmission_gpu_3.tar.xz/serverを[比較報告](Experimental_results/2026-11-18/network_coexistence_r01/udp_video5_report_r01.md)へ保存。正式udp_video5_audit_r01/udp_video5_verification_r01、原archive/JSONはrecordings/2026-11-18/network_udp_video5_intake_r01。既存audit_udp.py/verify_udp.pyを無変更で使用し、実peer/port/UDP設定/目標rate/source SHA/区間・end count/別serverと埋込みserver一致を確認。前回とcookieが異なり別試験であることも照合。
+
+送信6,249,600bytes/10.000077秒/4.999642Mbps、受信区間合計6,249,600bytes/10.043863秒/4.977846Mbps、5208packets/lost0。前回idle5との差−0.000807Mbps（−0.0162%）、payloadは同一。jitter最終値1.162754ms（前回0.296691ms）だが1回ずつの最終値で、平均/最大/一方向遅延/因果・安定性へ読み替えない。受信end bytes/rate=0は原値保持し区間から再集計。非同期質問にユーザーは「停止・大きな乱れはなかった」と回答、udp_video5_audit_r01/observation.jsonへ記録。独立映像ログ/fps計測ではない。
+
+既存353テスト成功/失敗skip0/15.73秒、原JSON/hash/全集計と旧source SHA不変を再確認。今回production/試験実行器の修正なし、こちらで実通信・install・Git・実機・ROS/FFB操作なし。最大容量/PNG/SCTP/元鮮度/距離精度/制御・FFBは未承認。
+
+次は [通常映像を維持した25Mbps・10秒](Experimental_results/2026-11-18/network_coexistence_r01/udp_video25_r01.md)。新コード反映/再install/撮影/画面録画/走行不要。GPUPC server→45秒以内matsunuc client、rate25・condition normal-video、output network_udp_gpu_video25_r01/network_udp_camera_video25_r01。2archiveと目視あり/なしを受領する。異常時Ctrl+C・増量しない。通常映像共存が目的なので25Mbpsの映像なし条件は異常切り分け時のみ追加し、全on/off条件を一括強制しない。50Mbpsはこの結果確認後に判断。
+
+## 11/18前段：映像なし5Mbps実通信を確認、欠損0・受信区間集計4.979Mbps
 
 開始HEAD6387ff6/clean。提出submission_matsunuc.tar.xz/client SHA5d9f9ae1ad55767c9a66d22825357223f87bfc44e4165f43bb7b40b4c0244d25、submission_gpu_2.tar.xz/server SHAc43d438b7d16bb9f9de90bb392c02e4cf312f341d43b2cd3d1a775963f980abf。[実測報告](Experimental_results/2026-11-18/network_coexistence_r01/udp_idle5_report_r01.md)、正式udp_idle5_audit_r02/udp_idle5_verification_r01、原archive/JSON4点×2はrecordings/2026-11-18/network_udp_idle5_intake_r02。r01は初回監査を保持しr02を正式採用。source原本を加工せず、両IP/UDP port5208/ephemeral port/cookie/実test_start/要求rate/別serverとclient埋込みserver完全一致を確認。cookieは認証ではない。iperf3.9導入済み、明示peer routeのdev/prefsrcも一致。
 

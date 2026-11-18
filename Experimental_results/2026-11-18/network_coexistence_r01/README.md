@@ -1,6 +1,6 @@
 # 実回線・通常映像併用確認 r01
 
-現段階：**映像なし5 Mbps・10秒の実通信結果を受領・確認済み**。[実測結果](udp_idle5_report_r01.md)：受信区間集計4.979 Mbps、送受信量一致・欠損0。次は [通常映像あり・同じ5 Mbpsの実行手順](udp_video5_r01.md) へ進む。実機のprobe/collectコードは不変で追加反映・再install不要。以下のinspectも再実行不要。新規撮影・画面録画・走行・コーン位置合わせ・GPU推論の再実行は不要。
+現段階：**通常映像あり5 Mbps・10秒も受領・確認済み**。[比較結果](udp_video5_report_r01.md)：受信区間集計4.978 Mbps、送受信量一致・欠損0、操作者目視の停止/大きな乱れなし。次は [映像を維持した25 Mbpsの実行手順](udp_video25_r01.md) へ進む。実機のprobe/collectコードは不変で追加反映・再install不要。以下のinspectも再実行不要。新規撮影・画面録画・走行・コーン位置合わせ・GPU推論の再実行は不要。
 
 ## 1. 最初に実行すること（通信負荷なし）
 
@@ -46,7 +46,7 @@ python3 Experimental_results/2026-11-18/network_coexistence_r01/collect.py obser
 
 両PCの住所・経路・iperf3 versionを確認してから、カメラPC→GPUPC方向の単一UDP streamを5→25→50 Mbps、各10秒で有限試験する。通常映像なし／ありを区別し、映像の乱れ・停止があれば増量しない。機体は停止したまま、G923出力は起動しない。5002番の映像offerと別portを使い、exact addressへのbind、one-off server、プロセスtimeoutを指定する。peerを推測したコマンド、無制限負荷、自動探索、daemon、firewall変更は用意しない。
 
-11/18更新：まず5 Mbps・映像なしの [具体的コマンド](udp_trial_r01.md) を準備し、その後ユーザーから実施結果を受領した。[次は通常映像あり同負荷](udp_video5_r01.md)。25/50 Mbpsへ一括実行しない。
+11/18更新：5 Mbpsの映像なし/あり結果を受領済み。[次は通常映像を維持した25 Mbps](udp_video25_r01.md)。同rateの映像なし条件は異常切り分けが必要になった場合に追加し、25/50 Mbpsや全on/off条件を一括実行しない。
 
 この段階の結果でもPNGのlive採用は決まらない。UDPとSCTP/DTLSは異なり、PNG sender実装、NUC encode速度、送信待ち、受信処理、古い画像の破棄を含む実証は別。10 Hzの必要量約80.98 Mbpsに対して50 Mbpsまでの試験は不足し、5 Hz約40.49 Mbpsにも通常映像と実protocol overheadが別に必要。
 
@@ -59,6 +59,8 @@ python3 Experimental_results/2026-11-18/network_coexistence_r01/collect.py obser
 両PC受領後の追加17件を含め [trial_verification_r01/audit.json](trial_verification_r01/audit.json) で **340 passed / 0 failed / 0 skipped（15.92秒）**。実iperf3/通信は未実施、試験手順と失敗時の保存をmock検証した。
 
 実UDP結果受領後は新13件を加え [udp_idle5_verification_r01/audit.json](udp_idle5_verification_r01/audit.json) で **353 passed / 0 failed / 0 skipped（15.91秒）**。元archive/JSON/集計と旧source SHAを再照合した。こちらで追加の実通信は開始していない。
+
+通常映像あり5 Mbpsの新入力についても既存検証器を無変更で使用し、[udp_video5_verification_r01/audit.json](udp_video5_verification_r01/audit.json) で **353 passed / 0 failed / 0 skipped（15.73秒）**。操作者目視申告は別の[観察記録](udp_video5_audit_r01/observation.json)として保存した。
 
 解析PCのread-only inspect試行では、sandboxがkernel netlink問い合わせを拒否し、iperf3も未導入だった。これをエラー情報として保存できたことのみ確認しており、IP/実回線計測の成功やGPUPC/matsunucの状態を示す結果ではない。その後の実機側inventory 2archiveは [監査結果](inventory_audit_r01/audit.json)へ保存し、さらにユーザー実施のUDP結果2archiveも [受領・監査](udp_idle5_report_r01.md)した。
 

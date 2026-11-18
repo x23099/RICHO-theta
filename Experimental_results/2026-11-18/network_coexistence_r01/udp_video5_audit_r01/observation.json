@@ -1,0 +1,16 @@
+{
+  "schema": "normal_video_operator_observation_v1",
+  "work_date": "2026-11-18",
+  "condition": "normal-video",
+  "target_mbps": 5,
+  "requested_test_duration_sec": 10,
+  "question_item": "call_869300defe1748eca6eb96d7ce5c479a/0",
+  "operator_answer": "停止・大きな乱れはなかった",
+  "video_stop_or_major_disturbance_reported": false,
+  "source": "user_reply_in_current_conversation",
+  "independent_video_recording_analyzed": false,
+  "video_fps_measured": false,
+  "capture_to_display_latency_measured": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}
