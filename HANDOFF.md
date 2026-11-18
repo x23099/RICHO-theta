@@ -2,7 +2,33 @@
 
 最新作業枠: **ユーザー指定の2026-11-18扱い**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
 
-## 11/18最新：映像あり50Mbpsは欠損0.219%（6秒以降）・目視異常なし、probe上限に到達
+## 11/18最新：案A＝PNG frame/motion packetの実回線transport probeを既定offで実装、372テスト成功
+
+ユーザーが「今月中に勾配FFBへ本格シフトしたい」ため案Aを選択。合成UDP（25Mbpsまで余裕、50Mbpsで0.2〜0.3%欠損）は足切りに過ぎず、SCTP/DTLS・PNG encode・fragment再構成・期限判定を含む実経路のframe到達率が必要と判断した。
+
+新[src/driver_frame_packet_probe.py]で、既存channelのcounterを読むだけのtransport probeを追加。`ProbeRecorder`は2秒ごとにatomic JSONを書き、`ProbePacketSink`は`ReceiverPacketBinding`のbridge代替としてdecode済みpacketを数えるだけで画像を保持しない。推論・ROS・FFB・表示変更なし。`sender_state`/`receiver_state`は既存の`scheduler.counts`と`assembler.counts`を読む。既定off（probeディレクトリ未指定なら従来と同一経路）。
+
+変更は`src/webrtc_stream.py`（`--frame-packet-probe-dir`、atexit/close）、`src/webrtc_receive_ui.py`（同option、offerに`frame_motion_profile`がある場合のみprobe sinkでbinding）、`src/start_theta_receive_rtc.sh`（`--frame-packet-probe`分岐）。既存の映像・操縦・FFB・推論経路は既定offのまま不変。新[audit_probe.py]でsender/receiver summaryをscope照合してframe到達率を算出（`frames_handed_off`→`completed`→`published`、gaps、replaced/expired、receiver内latency）。[手順](Experimental_results/2026-11-18/png_link_probe_r01/README.md)。
+
+新13テスト（probe 8＋audit 5）。[verification_r02](Experimental_results/2026-11-18/png_link_probe_r01/verification_r02/audit.json)で関連**372 passed/0 failed/0 skipped/16.54秒**（r01はflush排他前の記録、r02を正式採用）。実通信・RTC接続・カメラ・ROS/G923起動はしていない。
+
+**副作用：** `verify_udp.py`/`verify_udp_v2.py`は11/18 pre-probeの`webrtc_stream.py`/`webrtc_receive_ui.py` SHAをfrozenとして検査するため、現在のtreeでは`previous frozen source differs`で停止する。保存済みUDP監査・検証JSONは不変で、再実行には当時のcommitが必要。この旨をnetwork READMEにも記載。
+
+次はユーザーが両PCへ反映し、機体停止・通常映像ありで30秒のprobe試験（5 Hz）。`sender_probe.json`と`receiver_probe.json`を受領し、frame到達率・gaps・期限落ちを監査してPNG live採用の可否ではなく「実経路で何が落ちるか」を確定する。測距精度・元鮮度・ROS/FFB適格は引き続き未承認。
+
+## 11/18前段：50Mbps r02は欠損0.290%・3〜4秒へ移動、6〜7秒の周期性は棄却。合成UDP増量は終了
+
+開始HEADfb3c0e3/clean（本段は未commit）。ユーザーがA案（50 Mbps r02を1回）を選択。submission_50_matsunuc/clientとsubmission_50_gpu/serverを受領。[比較報告](Experimental_results/2026-11-18/network_coexistence_r01/udp_video50_report_r02.md)、正式udp_video50_audit_r02/udp_video50_verification_r02、原archive/JSONはrecordings/2026-11-18/network_udp_video50_intake_r02。IP/UDP port5208/ephemeral port/cookie/実test_start/要求rate/別serverと埋込みserver完全一致、両側returncode0・stderr空。前回r01とはcookie・時刻が異なる別試験。
+
+送信62,494,800bytes/10.000085秒/49.995415Mbps/52,079packets。受信区間合計62,313,600bytes/10.047126秒/49.617054Mbps、欠損151（0.2899%）。区間欠損は0〜1秒0、1〜2秒1、2〜3秒0、3〜4秒140、4〜9秒0、9〜10秒10。最終jitter0.159442ms（区間最大0.2521ms）。payload不一致。
+
+r02は送信側自身が2〜3秒44.624Mbps（4,648packets）、3〜4秒55.383Mbps（5,769packets）とpaceを乱し、受信側2〜3秒3,916／3〜4秒6,496packets（140欠損）と対応。1200B×5,769/sの詰め戻しが受信socket buffer 212,992bytes（約177packets）を超え得るためend-host scheduling起因の可能性が高いが、CPU/割込み未測定で断定しない。r01の6〜7秒91欠損は送信側5,208/s安定区間で起きており機序が異なる可能性。**「約6秒周期」仮説は2runで位置が一致せず棄却。**
+
+操作者は「特に映像の乱れはなかったと思います」と留保付き回答（[観察記録](Experimental_results/2026-11-18/network_coexistence_r01/udp_video50_audit_r02/observation.json)）。独立映像ログ/fpsではない。50Mbpsはprobe.py上限。5Mbps0%・25Mbps0.054%・50Mbps0.22〜0.29%で、実用余裕は25Mbps前後という目安。合成UDPの増量はここで終了し、判断は実PNG/映像経路の試験へ移す。PNG 40.49Mbps＋映像/overheadを0.2〜0.3%欠損で再送/FECなしに届けるのは厳しいが、SCTP/DTLS・実PNG senderの実測ではない。最大容量/元鮮度/距離精度/制御・FFBは未承認。
+
+監査はv1不変のままv2、`end.sum`整合性は不変。r02 **359 passed/0 failed/0 skipped/16.26秒**（r01は16.30秒）。こちらで実通信/install/Git/実機/ROS/FFB操作なし。次段階はユーザーと実PNG/映像経路の試験範囲を決める。5Mbpsの実映像条件は未取得。
+
+## 11/18前段：映像あり50Mbps r01は欠損0.219%（6秒以降）・目視異常なし、probe上限に到達
 
 開始HEAD958be3c/clean（本段の変更は未commit）。submission_5_matsunuc/clientとsubmission_5_gpu/serverを受領。[結果報告](Experimental_results/2026-11-18/network_coexistence_r01/udp_video50_report_r01.md)、正式udp_video50_audit_r01/udp_video50_verification_r01、原archive/JSONはrecordings/2026-11-18/network_udp_video50_intake_r01。IP/UDP port5208/ephemeral port/cookie/実test_start/要求rate/別serverと埋込みserver一致、両側returncode0・stderr空。
 

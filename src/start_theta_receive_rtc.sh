@@ -22,6 +22,26 @@ if [ "${1:-}" = "--motion-distance" ]; then
         --cam-width 1280 --cam-height 720 --motion-distance "$@"
 fi
 
+# Opt-in transport-only PNG packet probe (no inference/ROS/FFB output).
+if [ "${1:-}" = "--frame-packet-probe" ]; then
+    shift
+    PROBE_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    PROBE_DIR="${1:?existing probe output directory required}"
+    shift
+    PROBE_VENV="${PROBE_SCRIPT_DIR}/theta-env/bin/python"
+    if [ -n "${THETA_UI_PYTHON:-}" ]; then
+        PROBE_PYTHON="${THETA_UI_PYTHON}"
+        export THETA_UI_NO_VENV=1
+    elif [ -x "${PROBE_VENV}" ]; then
+        PROBE_PYTHON="${PROBE_VENV}"
+    else
+        PROBE_PYTHON="python3"
+    fi
+    exec "$PROBE_PYTHON" "$PROBE_SCRIPT_DIR/webrtc_receive_ui.py" \
+        --cam-width 1280 --cam-height 720 \
+        --frame-packet-probe-dir "$PROBE_DIR" "$@"
+fi
+
 DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$DIR" || exit 1
 

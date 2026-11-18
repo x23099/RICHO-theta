@@ -2002,7 +2002,7 @@ class ReceiveSignals(QObject):
     latency_updated = Signal(float, float, str)
 
 class WebRTCServerThread(threading.Thread):
-    def __init__(self, signals, motion=None, telemetry_recorder=None):
+    def __init__(self, signals, motion=None, telemetry_recorder=None, packet_probe=None, packet_sink=None):
         super().__init__(daemon=True)
         self.signals = signals
         self.loop = None
@@ -2013,6 +2013,8 @@ class WebRTCServerThread(threading.Thread):
         self.motion = motion
         self.telemetry_recorder = telemetry_recorder
         self.packet_binding = None
+        self.packet_probe = packet_probe
+        self.packet_sink = packet_sink
 
     def _observe_telemetry(self, method, *args):
         if self.telemetry_recorder is not None:
@@ -2074,17 +2076,27 @@ class WebRTCServerThread(threading.Thread):
         self.pc = RTCPeerConnection()
         peer = self.pc
         packet_binding=None
-        if getattr(self.motion,'packet_input',False):
+        sink=self.packet_sink if self.packet_sink is not None else (
+            self.motion if getattr(self.motion,'packet_input',False) else None)
+        profile=params.get('frame_motion_profile')
+        if sink is not None and profile is not None:
             from driver_frame_packet_runtime import ReceiverPacketBinding
+            from driver_frame_packet_probe import receiver_state
             if self.packet_binding is not None:self.packet_binding.request_stop('packet_peer_replaced')
             self.packet_binding=None
             try:
-                packet_binding=ReceiverPacketBinding(peer,self.motion,params.get('frame_motion_profile'),
+                packet_binding=ReceiverPacketBinding(peer,sink,profile,
                     params.get('motion_native_profile'))
                 self.packet_binding=packet_binding
+                if self.packet_probe is not None:
+                    self.packet_probe.set_profile(packet_binding.profile)
+                    self.packet_probe.set_provider(lambda: receiver_state(packet_binding))
             except Exception as error:
                 logger.warning('Packet measurement withheld; driver connection continues: %s',error)
-        motion_session = uuid.uuid4().hex if self.motion is not None or self.telemetry_recorder is not None else None
+        elif self.packet_probe is not None:
+            logger.warning('Transport probe requested but this offer has no frame_motion_profile')
+        motion_session = uuid.uuid4().hex if (self.motion is not None or self.telemetry_recorder is not None
+                                              or self.packet_probe is not None) else None
         if packet_binding is not None:motion_session=packet_binding.profile['stream_id']
         if self.telemetry_recorder is not None:
             self._observe_telemetry("lifecycle", motion_session, "peer_begin", time.monotonic())
@@ -2179,6 +2191,8 @@ class ThetaDriverUI(QWidget):
         self.args = args
         self.motion = getattr(args, "motion_controller", None)
         self.telemetry_recorder = getattr(args, "telemetry_recorder", None)
+        self.packet_probe = getattr(args, "packet_probe", None)
+        self.packet_sink = getattr(args, "packet_sink", None)
         self.start_time = time.time()
         
         # Keyboard steering controller simulation (WASD)
@@ -2261,7 +2275,8 @@ class ThetaDriverUI(QWidget):
                 self.telemetry_recorder.request_stop()
                 self.telemetry_recorder = None
         self.server_thread = WebRTCServerThread(self.signals, motion=self.motion,
-                                                telemetry_recorder=self.telemetry_recorder)
+                                                telemetry_recorder=self.telemetry_recorder,
+                                                packet_probe=self.packet_probe, packet_sink=self.packet_sink)
         self.server_thread.start()
 
         # 映像表示更新用の定周期タイマー (24FPS = 約41ms)
@@ -2761,6 +2776,8 @@ def main():
     parser.add_argument("--minimap-image-zoom", type=float, default=1.0)
     parser.add_argument("--minimap-image-offset-x", type=float, default=0.0)
     parser.add_argument("--minimap-image-offset-y", type=float, default=0.0)
+    parser.add_argument("--frame-packet-probe-dir", default=None,
+        help="OFF by default; transport-only probe summary directory for the PNG packet channel")
 
     from driver_motion_bridge import add_motion_arguments, bridge_from_args
     from driver_telemetry_recording import add_recording_arguments, recorder_from_args
@@ -2769,6 +2786,12 @@ def main():
     args = parser.parse_args()
     args.motion_controller = bridge_from_args(args)  # Validate opt-in before ROS startup.
     args.telemetry_recorder = recorder_from_args(args)  # OFF by default; no files/threads here.
+    args.packet_probe = args.packet_sink = None
+    if args.frame_packet_probe_dir:
+        from driver_frame_packet_probe import ProbePacketSink, ProbeRecorder, probe_directory
+        args.packet_probe = ProbeRecorder(probe_directory(args.frame_packet_probe_dir), 'receiver', None)
+        args.packet_sink = ProbePacketSink(args.packet_probe)
+        logger.info("Transport-only packet probe enabled; no inference/ROS/FFB output")
 
     app = QApplication(sys.argv)
     
@@ -2801,6 +2824,8 @@ def main():
     finally:
         packet_binding=getattr(window.server_thread,'packet_binding',None)
         if packet_binding is not None:packet_binding.close()
+        probe=getattr(args,'packet_probe',None)
+        if probe is not None:probe.close()
         if args.telemetry_recorder is not None:
             try:
                 telemetry_status = args.telemetry_recorder.close()

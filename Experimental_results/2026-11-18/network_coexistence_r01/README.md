@@ -1,6 +1,6 @@
 # 実回線・通常映像併用確認 r01
 
-現段階：**実際の通常映像あり50 Mbps・10秒を受領・確認済み**。[結果](udp_video50_report_r01.md)：送信49.995 Mbps、受信区間集計49.673 Mbps、欠損114/52,079（0.2189%）、6秒以降に偏る。操作者目視の停止/大きな乱れなし。50 Mbpsは`probe.py`の上限で、同一ツールでの増量は不可。次は、同条件r02で6〜7秒の欠損が再現するかの確認（[手順](udp_video50_r01.md)のoutputをr02へ）か、実PNG/映像経路の試験へ移るかの判断。実機のprobe/collectコードは不変で追加反映・再install不要。以下のinspectも再実行不要。新規撮影・画面録画・走行・コーン位置合わせ・GPU推論の再実行は不要。
+現段階：**通常映像あり50 Mbpsを2回取得し、合成UDPの増量試験は終了**。[1回目](udp_video50_report_r01.md)は欠損114/52,079（0.2189%、6〜7秒）、[2回目](udp_video50_report_r02.md)は151/52,079（0.2899%、3〜4秒）。2回目は送信側が2〜3秒に44.6 Mbps、3〜4秒に55.4 Mbpsとpaceを乱し、その詰め戻しで受信側が落とした形。**「6〜7秒に周期的」という仮説は再現せず棄却**。操作者目視の停止/大きな乱れなし（2回目は「思います」の留保付き）。50 Mbpsは`probe.py`の上限であり、同一ツールでの増量は不可。**次は合成UDPではなく、実PNG/映像経路の試験へ移る**。実機のprobe/collectコードは不変で追加反映・再install不要。以下のinspectも再実行不要。新規撮影・画面録画・走行・コーン位置合わせ・GPU推論の再実行は不要。
 
 **11/18訂正：** 以前の「通常映像あり5 Mbps」と「25 Mbps r01」は、映像送信・受信UIを起動しないまま実施されていた（操作者申告）。実際は映像なしであり、[5 Mbps訂正](udp_video5_audit_r01/condition_correction.json)・[25 Mbps訂正](udp_video25_audit_r01/condition_correction.json)に記録した。raw archiveと`audit.json`は書き換えていない。以降の手順には**映像ウィンドウが更新中であることの事前確認**を必須項目として追加した（[50 Mbps手順の0章](udp_video50_r01.md)）。
 
@@ -48,7 +48,7 @@ python3 Experimental_results/2026-11-18/network_coexistence_r01/collect.py obser
 
 両PCの住所・経路・iperf3 versionを確認してから、カメラPC→GPUPC方向の単一UDP streamを5→25→50 Mbps、各10秒で有限試験する。通常映像なし／ありを区別し、映像の乱れ・停止があれば増量しない。機体は停止したまま、G923出力は起動しない。5002番の映像offerと別portを使い、exact addressへのbind、one-off server、プロセスtimeoutを指定する。peerを推測したコマンド、無制限負荷、自動探索、daemon、firewall変更は用意しない。
 
-11/18更新：5 Mbpsの映像なし結果、実際の映像なしだった「映像あり」5 Mbps、映像なし25 Mbps、実際の映像あり25 Mbps、実際の映像あり50 Mbpsを受領済み。50 Mbpsはprobe.pyの上限であり、全rateのon/offを一括実行しない。欠損は25 Mbps映像あり14/26,040（6〜7秒）、50 Mbps映像あり114/52,079（6秒以降）で、いずれも6〜7秒に最大の欠損がある。同条件r02で再現性を確認するか、実PNG/映像経路の試験へ移るかを判断する。
+11/18更新：5 Mbpsの映像なし結果、実際の映像なしだった「映像あり」5 Mbps、映像なし25 Mbps、実際の映像あり25 Mbps、実際の映像あり50 Mbps（2回）を受領済み。50 Mbpsはprobe.pyの上限であり、全rateのon/offを一括実行しない。欠損は25 Mbps映像あり14/26,040（6〜7秒）、50 Mbps r01 114/52,079（6〜7秒）、r02 151/52,079（3〜4秒）。6〜7秒の周期性は再現せず棄却。**合成UDPの増量は終了し、次は実PNG/映像経路の試験へ移る。**
 
 この段階の結果でもPNGのlive採用は決まらない。UDPとSCTP/DTLSは異なり、PNG sender実装、NUC encode速度、送信待ち、受信処理、古い画像の破棄を含む実証は別。10 Hzの必要量約80.98 Mbpsに対して50 Mbpsまでの試験は不足し、5 Hz約40.49 Mbpsにも通常映像と実protocol overheadが別に必要。
 
@@ -64,7 +64,9 @@ python3 Experimental_results/2026-11-18/network_coexistence_r01/collect.py obser
 
 通常映像あり5 Mbpsの新入力についても既存検証器を無変更で使用し、[udp_video5_verification_r01/audit.json](udp_video5_verification_r01/audit.json) で **353 passed / 0 failed / 0 skipped（15.73秒）**。操作者目視申告は別の[観察記録](udp_video5_audit_r01/observation.json)として保存した。ただしこのrunは実際には映像なしだったため、[訂正記録](udp_video5_audit_r01/condition_correction.json)を追加した。
 
-25 Mbpsの2runは、iperf 3.9が受信側per-stream `lost_percent`を0と出力する事象を含む。v1を変更せず[v2](audit_udp_v2.py)を追加し、[新テスト](../../../tests/test_network_udp_audit_v2.py)と合わせて [r02](udp_video25_verification_r02/audit.json) **359 passed / 0 failed / 0 skipped（16.13秒）**、[r01](udp_video25_verification_r01/audit.json) **359 passed（16.11秒）**。`end.sum`の整合性検査は緩めていない。詳細は[比較報告](udp_video25_report_r01.md)。50 Mbpsも同じv2で監査・検証し、[359 passed（16.30秒）](udp_video50_verification_r01/audit.json)、結果は[50 Mbps報告](udp_video50_report_r01.md)。
+25 Mbpsの2runは、iperf 3.9が受信側per-stream `lost_percent`を0と出力する事象を含む。v1を変更せず[v2](audit_udp_v2.py)を追加し、[新テスト](../../../tests/test_network_udp_audit_v2.py)と合わせて [r02](udp_video25_verification_r02/audit.json) **359 passed / 0 failed / 0 skipped（16.13秒）**、[r01](udp_video25_verification_r01/audit.json) **359 passed（16.11秒）**。`end.sum`の整合性検査は緩めていない。詳細は[比較報告](udp_video25_report_r01.md)。50 Mbpsも同じv2で監査・検証し、[r01：359 passed（16.30秒）](udp_video50_verification_r01/audit.json)、[r02：359 passed（16.26秒）](udp_video50_verification_r02/audit.json)。結果は[1回目](udp_video50_report_r01.md)・[2回目](udp_video50_report_r02.md)。
+
+**注意：** 11/18後段の[PNG transport probe](../png_link_probe_r01/README.md)で`src/webrtc_stream.py`と`src/webrtc_receive_ui.py`を既定offのまま変更した。このため`verify_udp.py`/`verify_udp_v2.py`のfrozen source検査は現在のtreeでは`previous frozen source differs`で停止する。保存済みのUDP監査・検証JSONは変更しておらず、再実行には11/18 pre-probeのcommitが必要。probe段階の検証は[png_link_probe_r01/verification_r01](../png_link_probe_r01/verification_r01/audit.json) **372 passed（16.48秒）**。
 
 解析PCのread-only inspect試行では、sandboxがkernel netlink問い合わせを拒否し、iperf3も未導入だった。これをエラー情報として保存できたことのみ確認しており、IP/実回線計測の成功やGPUPC/matsunucの状態を示す結果ではない。その後の実機側inventory 2archiveは [監査結果](inventory_audit_r01/audit.json)へ保存し、さらにユーザー実施のUDP結果2archiveも [受領・監査](udp_idle5_report_r01.md)した。
 

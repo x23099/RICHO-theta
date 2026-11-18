@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import asyncio
+import atexit
 import json
 import logging
 import math
@@ -327,6 +328,16 @@ async def _run_driver(args):
         except Exception as error:
             if packet_source is not None:packet_source.closed=True
             logger.warning('Optional packet setup failed; video/control continue: %s',error)
+
+    if getattr(args,'frame_packet_probe_dir',None):
+        if packet_binding is None:
+            raise ValueError('transport probe requires --frame-motion-packets')
+        from driver_frame_packet_probe import ProbeRecorder, probe_directory, sender_state
+        probe=ProbeRecorder(probe_directory(args.frame_packet_probe_dir),'sender',packet_binding.profile)
+        probe.set_provider(lambda: sender_state(packet_binding))
+        args._frame_packet_probe=probe
+        atexit.register(probe.close)
+        logger.info('Transport-only packet probe enabled; no ROS/inference/FFB output')
     
     from aiortc import RTCRtpSender
     transceiver = pc.addTransceiver(video_track, direction="sendonly")
@@ -455,6 +466,9 @@ async def _run_driver(args):
         logger.info("Shutting down stream node...")
         if packet_binding is not None:
             await packet_binding.close()
+        probe=getattr(args,'_frame_packet_probe',None)
+        if probe is not None:
+            probe.close()
         await pc.close()
         telemetry_node.destroy_node()
         rclpy.shutdown()
@@ -478,6 +492,8 @@ if __name__ == "__main__":
         help="opt-in real 1280x720 fresh native video; existing ROS/control channels are unchanged")
     from driver_frame_packet_runtime import add_sender_arguments
     add_sender_arguments(parser)
+    parser.add_argument("--frame-packet-probe-dir", default=None,
+        help="OFF by default; transport-only probe summary directory for the PNG packet channel")
     
     # ROS 2 Topics
     parser.add_argument("--odom-topic", default="/odom")
