@@ -1,0 +1,7 @@
+rate,actual_condition,target_mbps,sender_mbps,receiver_mbps,sent_bytes,received_bytes,packets,lost,lost_percent,payload_equal,source
+5 Mbps,no-video,5,4.999627,4.978653,6249600,6249600,5208,0,0.0,True,Experimental_results/2026-11-18/network_coexistence_r01/udp_idle5_audit_r02/audit.json
+5 Mbps,no-video (declared normal-video),5,4.999642,4.977846,6249600,6249600,5208,0,0.0,True,Experimental_results/2026-11-18/network_coexistence_r01/udp_video5_audit_r01/audit.json
+25 Mbps,no-video (declared normal-video),25,24.998135,24.855532,31248000,31204800,26040,36,0.138249,False,Experimental_results/2026-11-18/network_coexistence_r01/udp_video25_audit_r01/audit.json
+25 Mbps,normal-video,25,24.99815,24.880214,31248000,31231200,26040,14,0.053763,False,Experimental_results/2026-11-18/network_coexistence_r01/udp_video25_audit_r02/audit.json
+50 Mbps,normal-video,50,49.99547,49.673069,62494800,62358000,52079,114,0.218898,False,Experimental_results/2026-11-18/network_coexistence_r01/udp_video50_audit_r01/audit.json
+50 Mbps,normal-video,50,49.995415,49.617055,62494800,62313600,52079,151,0.289944,False,Experimental_results/2026-11-18/network_coexistence_r01/udp_video50_audit_r02/audit.json

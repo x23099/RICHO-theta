@@ -26,6 +26,8 @@ sender_probe.json（SHA b48e1a95…）、receiver_probe.json（e8d5dcbd…）を
 
 次は**オフラインで約1MB/frameだった代表シーン**（コーンが見えるテクスチャのある構図）で同じ30秒probeを再実行し、payload上限が約40Mbpsに近づいた状態でframe到達率を読む。今回の結果だけでPNG live採用や40Mbps共存を認定しない。
 
+本日分は [Daily_reports/2026-11-18_daily_report.md](Daily_reports/2026-11-18_daily_report.md) にまとめた（代表資料は Experimental_results/2026-11-18/report_assets/）。
+
 ## 11/18前段：50Mbps r02は欠損0.290%・3〜4秒へ移動、6〜7秒の周期性は棄却。合成UDP増量は終了
 
 開始HEADfb3c0e3/clean（本段は未commit）。ユーザーがA案（50 Mbps r02を1回）を選択。submission_50_matsunuc/clientとsubmission_50_gpu/serverを受領。[比較報告](Experimental_results/2026-11-18/network_coexistence_r01/udp_video50_report_r02.md)、正式udp_video50_audit_r02/udp_video50_verification_r02、原archive/JSONはrecordings/2026-11-18/network_udp_video50_intake_r02。IP/UDP port5208/ephemeral port/cookie/実test_start/要求rate/別serverと埋込みserver完全一致、両側returncode0・stderr空。前回r01とはcookie・時刻が異なる別試験。
