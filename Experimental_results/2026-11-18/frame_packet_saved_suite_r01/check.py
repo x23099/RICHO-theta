@@ -52,7 +52,7 @@ def run(output,input_pack):
             raise ValueError('complete synthetic batch required')
         with (output/'synthetic_per_image_summary.json').open('xb') as target:
             target.write(suite.probe.json_bytes(dict(result_kind='synthetic_predictor_NOT_actual_GPU_result',cases=values)))
-    command = old['command'] + ['tests/test_frame_packet_saved_suite.py']
+    command = old['command'] + ['tests/test_frame_packet_saved_suite.py','tests/test_frame_packet_saved_suite_audit.py']
     command[0] = sys.executable
     result = subprocess.run(command,cwd=ROOT,capture_output=True,text=True,timeout=60,
         env=dict(os.environ,OPENBLAS_NUM_THREADS='1',PYTEST_DISABLE_PLUGIN_AUTOLOAD='1'))
@@ -61,7 +61,8 @@ def run(output,input_pack):
     match = re.search(r'(\d+) passed in ([0-9.]+)s',log)
     if result.returncode or match is None or 'skipped' in log:
         raise ValueError('all suite/regression tests required: '+log)
-    files = [HERE/'run_suite.py',Path(__file__),ROOT/'tests/test_frame_packet_saved_suite.py']
+    files = [HERE/'run_suite.py',HERE/'audit_submission.py',Path(__file__),
+             ROOT/'tests/test_frame_packet_saved_suite.py',ROOT/'tests/test_frame_packet_saved_suite_audit.py']
     for path in files:ast.parse(path.read_bytes())
     audit = dict(schema='saved_packet_suite_preparation_audit_v1',state='pass',work_date='2026-11-18',
         input_pack_sha256=suite.probe.digest(input_pack),input_manifest=suite.manifest(),

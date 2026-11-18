@@ -2,6 +2,56 @@
 
 最新作業枠: **ユーザー指定の2026-11-18扱い**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
 
+## 11/18最新：PNG送信pending制限と11条件の連続負荷モデル、276テスト成功
+
+ユーザー「進めてください」。[結果](Experimental_results/2026-11-18/lossless_sender_load_r01/README.md)、正式results_r01/verification_r01。新src/driver_lossless_frame_sender.pyはworker同期PNG検査、1 active + 1 latest pending、sender capture age200ms・channel buffer上限・source order/PTS/scope検査。新入力で進行を毎回中断せず、待機だけ最新へ置換。満杯時も期限破棄、invalid/閉鎖/時計逆行で旧値救済せず。送出済みbytesを取り消せないことを明記。旧VP8/runtime/UI/操縦・前段PNG codec/fragment/原画像はSHA不変、実通信へ未接続。
+
+保存4原画のPNG payloadを循環し5/10Hz×15/30/100Mbpsを4秒入力、1ms仮想tick・buffer32KiB・capture/decode各active1+latest待機1。実scheduler/packet/fragment/復号で元画素一致、候補は合成capture/no-odom。CPUは前段解析PCの画像別中央値を使用（送信79.91〜88.22ms、受信65.56〜71.38ms）。毎回の新画像encode連続実測、GPUPC/送信側計測ではない。受取数は数値測距の件数ではない。
+
+15/30Mbpsでは5Hz0/20、10Hz0/40。100Mbpsは20/20・40/40で受信初片→take最大153ms。100Mbps10Hzの0.6秒停止34/40復帰、127片ごと欠損21/40（19片欠損、部分受理なし）、受信CPU2.5倍0/40（待機16置換/24期限破棄）、送信CPU2倍0/40（capture待機15置換/25出力送信未完）。sender wire最大2,016,257bytes/2slot、decode wire2,049,144bytes/2slot、channel32768bytes以内。
+
+重要：一方向全片500ms遅延でも40/40が受信初片期限内になり、simulation oracle capture→take最大744ms。通常100Mbpsでも最大244ms。両PCの各ローカル200msはend-to-end200msを意味しない。時計同期や元鮮度の認定ではなく、oracleはモデル内だけの診断。source_freshness/物理/接地/制御/FFB/ROS falseを維持し、live採用しない。
+
+新20 sender＋8 model、旧221と旧VP8 flow27を含む276成功/失敗skip0/12.37秒。初回小単色PNGの圧力fixture前提ずれ1失敗は大きい合成PNGに修正しproduction条件不変。原画/前段結果不変、先行未commit成果保全。追加撮影/GPU/実機/ネット/Git操作なし。
+
+次はGPUPC保存画像のPNG経路（encode/検査/fragment/復号/既存CUDA測距）の実測手順を準備し、解析PCモデル値と区別して取得する。その後に実帯域/遅延/運転映像共存の観測専用試験。初片前遅延を含む元鮮度は別検証、PC時計同期必須へ戻さない。現時点のユーザー撮影/走行/操作不要。
+
+## 11/18前段：PNG専用atomic packet/有界fragmentをoffline実装、20/20一致・221テスト成功
+
+ユーザー「進めてもらって問題ないです」を受け、[PNG packet結果](Experimental_results/2026-11-18/lossless_frame_packet_r01/README.md)を作成。正式results_r02/verification_r01。src/driver_lossless_frame_packet.pyとdriver_lossless_frame_fragments.py、新27テストを追加。旧VP8/flow/channel/runtime/UI/操縦/原画像はSHA不変、接続変更なし。PNG別magic/schema、既存checked_candidate共用。native RGB8 IHDR/IDAT/IENDだけ、CRC/deflate出力/PNG末尾/画素SHA/候補媒体PTS検査、payload2MiB/header8KiB/fragment16KiB/初片200msを維持。1packet有界再構成、欠損/重複/改変/入替/oldscope/sequence再生・新packet置換・時計逆行、復号前後/take期限・one-shot/旧値消去を確認。SHAは認証や撮影-運動の物理対応証明ではない。
+
+元GPU4画像×5回20/20で画素/候補/元保存bboxの全支持点・幾何判定一致。新YOLOなし、数値1枚・保留3枚を保存しただけで絶対精度認定なし。候補はoffline合成fixture/no-odomで保存撮影の実運動を復元していない。関連221成功/失敗skip0/8.04秒。原本・過去結果不変、前段未commit成果保全。実機/ネット/GPU/G923/Git操作なし、全source/物理/接地/制御/FFB/ROS false。
+
+解析PC CPU中央値fullpacket1,006,745.5bytes、59..63fragment（中央値62）、fragment込み1,012,201.5bytes。encode検査61.84ms、fragment生成/再構成検査43.18ms、decode検査copy45.54ms、初片からtake67.28/最大94.92ms。fragment段階は初片前の送信側検査も含み、初片後と単純加算しない。5/10Hz単純量40.49/80.98Mbps（SCTP/DTLS/IP/通常映像除外）。仮想15/30Mbpsは転送のみ0/20、100Mbpsは20/20、初片後CPUを保守加算しても100Mbps20/20。回線実測・連続pacing/queue・GPU/送信側期限ではない。results_r01は初片前送信検査まで加算した旧モデル19/20を保持、r02で計測区間を修正し期限は緩和せず。
+
+次はofflineでPNG用の有界sender/backpressure/5・10Hz連続処理の有効率を評価する。旧VP8channelへPNGを偽装して流さない。実帯域とGPUPC/送信側負荷・通常映像共存の計測条件をその後整理。追加撮影・GPUPC操作は現時点不要。live未採用、take後推論/IPC/表示にも同じ初片deadlineを継承する必要がある。
+
+## 11/18前段：可逆圧縮で4枚の元判定維持を確認、PNG試作候補。ただし帯域約10倍
+
+ユーザー「すすめてください」。[比較と判断](Experimental_results/2026-11-18/frame_packet_preservation_r01/README.md)、正式results_r03。GPU実提出4原画像（5186＋28980/37696/44793）で現VP8/PNG既定/PNG level3/zlib level1を5反復、80試行。原PNG/code/元GPU推論画素・保存検出枠を照合し、圧縮復号はメモリ内のみ。新GPU/YOLOや画像保存なし。losslessが元GPU入力と全画素SHA一致した場合だけ元bboxを使用し、既存支持点・幾何を再計算。VP8はpacket側GPU bboxを使用しwire/画素も再現。HSV/ROI/元判定を緩めていない。
+
+可逆3方式は各20/20全画素一致・最終判定維持、保留→数値0。VP8は画素0/20一致、最終判定5/20維持（37696の保留維持）、保留→数値10/20、5186は数値/支持点変化。最終判定は採否/reason/整数支持点/距離/モデル値。補助support_observation一致は別欄、数値末尾差のみ1e-10許容、画素は厳密SHA一致。元数値の絶対精度や接地正解を保証するものではない。
+
+解析PC CPU中央値: VP8 fullpacket98,212bytes/encode34.23/decode15.94ms、PNG既定payload1,005,464bytes/37.79/20.11ms、PNG3=837,660bytes/111.61/21.99ms、zlib1=1,140,940bytes/63.33/15.20ms。時間範囲はVP8 packet検査込みvs候補payloadのみで同等ではなく、GPU/matsunucの速度としない。5Hz単純量VP8=3.93Mbps、PNG既定=40.22、PNG3=33.51、zlib1=45.64。PNG既定10Hz=80.44Mbps、現VP8比約10倍。仮想15/30/100Mbpsの理想直列化536/268/80msで、15/30Mbpsなら転送だけで200ms窓超過。回線実測でなく、実SCTP/DTLS/queue/運転映像共存の認定なし。
+
+次の候補はPNG既定。ただし**まだlossless packet/runtimeは未実装・ライブ未採用**。次は独立offline packetでsource metadata/画素を束ね、サイズ/PNG寸法/破損/codec識別/旧scope/初片200ms/バックプレッシャーを評価する。既存VP8 channelへPNGを黙って流さず、上限や期限・5/10Hzを広げて通さない。現時点の追加撮影/GPU再試験/機体操作不要。
+
+新11を含む関連194成功/失敗skip0/6.75秒、verification_r01。PNG IHDRとzlib出力量/EOF/余剰/未消費データ拒否、native/2MiB上限、wrong-pixelsへのbbox流用拒否、全80行集計、既存runtime SHA不変。results_r01/r02はfloat末尾のhash過小計数・補助観測と最終判定を混同した集計の履歴で、正式r03へ定義明示。過去結果を上書きせずruntime判定不変。先行未commit成果を保全。全source/物理/接地/制御/FFB/ROS false、Git操作/日報/実機起動なし。
+
+## 11/18最新：3画像GPU結果で保留→数値が2枚、圧縮画素による境界判定変化を特定
+
+[最新報告](Experimental_results/2026-11-18/frame_packet_saved_suite_r01/submission_report_r01.md)、submission_audit_r01。packet_recompression_multi_gpu_20261118_r01.tar.xz SHA3823324d6fc12b5855134f00c24621f9003f914a67130c61a5842f671e7a83d0、raw archive/JSON5点はrecordings/2026-11-18/packet_recompression_multi_gpu_intake_r01へ保持。GPU既存recordings/2026-11-13/guarded_motion_evidence_r02で原本が見つかりinputpack不使用。18warmup除外/60測定/30対、全summary/pair/画像別集計、旧runner/suite/src14/weights/config/profile/PNG SHA一致。全30packet wire/candidate/bytes/推論復号画素・元画素と全60支持観測/幾何を再現。新GPU推論・撮影なし。
+
+元画像は3枚ともcolour_contour_reaches_roi_edgeで各10/10保留。packetで28980は10/10数値1.610814531m/支持点[306,384]、37696は10/10保留維持、44793は10/10数値0.983259329m/[305,419]。保留→数値20対、共通数値対0。距離差0/精度改善/真値と解釈しない。以前の5186の3cm差を今回全域の保証に拡大しない。
+
+画像×元/packet bboxを入替える4通り事後診断で、変化2枚は元画像ならどちらのbboxでも保留、packet画像ならどちらでも数値。YOLO枠差より圧縮画素/固定HSV mask変化で説明される。元bbox固定の輪郭診断では28980の左端min x288→289で接触消失、44793のmax y421→419で下端接触消失。37696はmax y387で下端接触維持。元保留が過剰だったかpacket数値が不適切か物理根拠なしで断定せず、改善/安全認定しない。補完経路の追加採用でなく通常色輪郭で受理された。
+
+packet receiver段階中央値/最大msは28980=15.364/16.414、37696=15.143/16.318、44793=15.435/15.770。全30中央値15.303/最大16.414ms、100/200ms超過0。PyTorch allocator peak allocated60,697,088/reserved98,566,144bytes双方同一。実通信/queue/IPC/表示/運転映像共存の時間でなく、処理が短いことと判定安定性は別。全source/物理/接地/FFB/ROS false。
+
+次は**実通信採用を保留し、保存画像だけで輪郭判定/圧縮方式の安定性候補を評価する**。元数値維持・保留維持・新規数値を区別し、HSV/ROIを都合よく変更して今回だけ通さない。追加撮影/同じGPU再試験/環境再導入は不要。その判断後に通常映像と共存する既定off実通信試験へ進む。現在操縦・G923利用を指示しない。
+
+新監査と新8テスト、checker/資料だけを変更、src/旧runner/suite/元画像/過去manifest不変。新8を含む関連183成功/失敗skip0/5.74秒、verification_r03（r02はfixture tuple/listの期待ずれ2失敗履歴、JSON往復fixtureへ修正しproduction条件不変）。開始時HEAD3257016/clean、前回分はユーザー側commit済み。今回Git操作/日報/実機起動なし。
+
 ## 11/18最新：追加の既存3画像をGPUで一括比較する手順を準備
 
 ユーザー「どんどん進めたい」。[一括手順](Experimental_results/2026-11-18/frame_packet_saved_suite_r01/README.md)、新run_suite.pyは完了済み5186を繰返さず、前段でSHA確認済み11/13の28980/37696/44793だけを扱う。元画像をview_imageで確認し、保存bbox中心も検査、3枚ともROI270..350を明示固定。遠方の人/遮蔽2枚と近方1枚で、保留維持/変化も評価対象。1/1.5/2m実測対応と推測しない。GPUの新検出でROIを広げたり保存bboxで救済しない。

@@ -1,0 +1,60 @@
+........................................................................ [ 39%]
+........................................................................ [ 78%]
+...................................FF..                                  [100%]
+=================================== FAILURES ===================================
+___ SavedSuiteAuditTests.test_new_numeric_is_not_called_zero_distance_error ____
+
+self = <test_frame_packet_saved_suite_audit.SavedSuiteAuditTests testMethod=test_new_numeric_is_not_called_zero_distance_error>
+
+    def test_new_numeric_is_not_called_zero_distance_error(self):
+        values=self.fixture(changed=True)
+>       aggregate,by_image=audit.checked_results(values)
+
+tests/test_frame_packet_saved_suite_audit.py:93: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+values = {'pairs.jsonl': [{'absolute_range_delta_m': None, 'both_numeric': False, 'detector_changed': False, 'original_numeric_...20]}], 'images_modified': False, 'physical_metric_verified': False, ...}, 'physical_metric_verified': False, ...}, ...}
+
+    def checked_results(values):
+        summary,rows,pairs = (values[n] for n in ('summary.json','samples.jsonl','pairs.jsonl'))
+        if (summary.get('image_count') != 3 or summary.get('measured_samples') != 60
+                or summary.get('paired_samples') != 30 or summary.get('warmup_calls_excluded') != 18
+                or summary.get('repetitions') != 5 or summary.get('target_roi_native_xyxy') != suite.ROI
+                or len(rows) != 60 or len(pairs) != 30 or any(summary.get(k) is not False for k in probe.FLAGS)):
+            raise ValueError('exact three-image suite protocol required')
+        expected_pairs,by_image = [],[]
+        for case,name in enumerate(suite.NAMES):
+            sha = probe.KNOWN_IMAGES[name]
+            chunk = rows[case*20:(case+1)*20]
+            image_pairs = []
+            for i,row in enumerate(chunk):
+                if (row.get('source_png_sha256') != sha or row.get('sequence') != case*26+i+7
+                        or row.get('variant') != ('original','packet','packet','original')[i%4]
+                        or row.get('cycle') != i//4 or row.get('abba_position') != i%4
+                        or row.get('detector_signature') != probe.detector_signature(row['raw_detector_boxes'])
+                        or row.get('geometry_age_basis') != 'synthetic_zero_age_OFFLINE_NOT_live_freshness'
+                        or row.get('source_freshness_verified') is not False
+                        or row['measurement'].get('target_roi_native_xyxy') != suite.ROI
+                        or any(row.get(k) is not False or row['measurement'].get(k) is not False for k in probe.FLAGS)):
+>                   raise ValueError('suite sample order/identity/authority/signature mismatch')
+E                   ValueError: suite sample order/identity/authority/signature mismatch
+
+Experimental_results/2026-11-18/frame_packet_saved_suite_r01/audit_submission.py:91: ValueError
+_ SavedSuiteAuditTests.test_per_image_tampering_rejected_even_when_global_total_unchanged _
+ValueError: suite sample order/identity/authority/signature mismatch
+
+During handling of the above exception, another exception occurred:
+
+self = <test_frame_packet_saved_suite_audit.SavedSuiteAuditTests testMethod=test_per_image_tampering_rejected_even_when_global_total_unchanged>
+
+    def test_per_image_tampering_rejected_even_when_global_total_unchanged(self):
+        values=self.fixture()
+        values['per_image_summary.json'][0]['groups']['original']['numeric']=1
+>       with self.assertRaisesRegex(ValueError,'aggregate'):audit.checked_results(values)
+E       AssertionError: "aggregate" does not match "suite sample order/identity/authority/signature mismatch"
+
+tests/test_frame_packet_saved_suite_audit.py:103: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_frame_packet_saved_suite_audit.py::SavedSuiteAuditTests::test_new_numeric_is_not_called_zero_distance_error
+FAILED tests/test_frame_packet_saved_suite_audit.py::SavedSuiteAuditTests::test_per_image_tampering_rejected_even_when_global_total_unchanged
+2 failed, 181 passed in 6.06s

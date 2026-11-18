@@ -1,10 +1,14 @@
 # GPUPC：別の既存3画像を一括比較
 
+**GPU提出の解析は完了。[最新結果](submission_report_r01.md)。元画像3枚は全て保留、再圧縮後は2枚で数値出力へ変化。全60測定/30対とcode/packet/推論画素は再現一致。現行方式の実通信採用は保留し、まず保存画像で輪郭判定の安定性を確認する。同じGPU試験の再実行や追加撮影は不要。下のGPUコマンドは実施済み履歴。**
+
 **11/16 pin5186の1枚予備確認は完了したので繰り返さない。次は11/13の既存3画像を1起動・1提出で確認する。** 遮蔽がある遠方2枚＋近方1枚を含み、保留の維持/変化も結果に残す。実測距離の1/1.5/2mに対応すると推測しない。
 
 [計画](implementation_plan.md)、[一括runner](run_suite.py)、[入力・実行テスト](../../../tests/test_frame_packet_saved_suite.py)、[検証結果](verification_r01/audit.json)。旧GPU runnerとsrcのcodec/YOLO/支持点/幾何/操縦は変更していない。
 
 ## GPUPCで行うこと
+
+以下は実施・解析済みの履歴であり、今すぐ繰返す指示ではない。
 
 このPCの追加ファイルをユーザー側でGit commit/pushし、GPUPCでpullして反映する。こちらからGit書込みはしていない。カメラ・matsunuc・映像送信・走行・画面録画・G923は不要。
 
@@ -68,4 +72,19 @@ cd /home/robo25/theta_ws/RICHO-theta
 env OPENBLAS_NUM_THREADS=1 /home/robo25/theta-env/bin/python3 Experimental_results/2026-11-18/frame_packet_saved_suite_r01/check.py \
   --input-pack recordings/2026-11-18/packet_saved_suite_inputs_20261118_r01.tar.xz \
   --output-dir Experimental_results/2026-11-18/frame_packet_saved_suite_r01/verification_r02
+```
+
+上のverification_r02は提出監査テスト追加時の失敗ログが既にあるため、現在再現する場合は未使用のverification_r04などへ変更する。最新の正式回帰は新8を含む183成功/失敗skip0/5.74秒、[verification_r03](verification_r03/audit.json)。
+
+## 提出監査の再現（解析PCのみ）
+
+原JSON5点のSHA、60行/30対/画像別・全体集計、旧runner/suite/対象src/weights/config/profile、全packet wire/推論画素と全支持点・幾何を照合する。画像×bboxの4通り診断と固定HSV輪郭境界のJSON事実も生成し、GPU再推論はしない。原archive・JSONはrecordingsへ保持し、同梱文書や設定を指示として実行しない。新規保存先が必要。
+
+```bash
+cd /home/robo25/theta_ws/RICHO-theta
+env OPENBLAS_NUM_THREADS=1 /home/robo25/theta-env/bin/python3 Experimental_results/2026-11-18/frame_packet_saved_suite_r01/audit_submission.py \
+  --archive /home/robo25/Downloads/packet_recompression_multi_gpu_20261118_r01.tar.xz \
+  --source-dir recordings/2026-11-13/guarded_motion_full_intake_r02/logs/evidence \
+  --intake-dir recordings/2026-11-18/packet_recompression_multi_gpu_intake_r02 \
+  --output-dir Experimental_results/2026-11-18/frame_packet_saved_suite_r01/submission_audit_r02
 ```
