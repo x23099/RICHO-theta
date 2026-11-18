@@ -2,7 +2,21 @@
 
 最新作業枠: **ユーザー指定の2026-11-18扱い**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
 
-## 11/18最新：PNG送信pending制限と11条件の連続負荷モデル、276テスト成功
+## 11/18最新：GPUPCの保存4画像PNG/CUDA一括計測手順を準備、297テスト成功
+
+ユーザー「では準備お願いします」。[実行手順](Experimental_results/2026-11-18/lossless_packet_gpu_r01/README.md)、新run.py/check.py/tests/test_lossless_packet_gpu.py。正式verification_r01/run_manifest.jsonでrunner/旧src/config/profile/weights SHAと4原画/ROIを固定。開始時HEAD894e7b4/clean、前段はユーザーcommit済み。旧runner/PNG codec/fragment/runtime/UI/操縦は不変。
+
+GPUPCで新しい追加分をユーザー側Git経由で反映した後、run.py check --weights /home/hsr/Downloads/cone_distance_v03.pt → READY_NOT_MEASURED/CUDA tensor pass、次にrun。recordings/Experimental_resultsを有界探索し既知4原PNG SHA/native照合、5186だけROI200..280、他3枚270..350。入力/manifest/weights不一致や不足はCUDA/model前に停止。checkは実CUDA tensorまで・モデルなし・outputなし。CPU fallback/パッケージ変更なし。
+
+runは既存モデル1個で元/PNG/PNG/元×5反復×4枚、24warmup除外・80測定40対。毎回実PNG→fragment→有界再構成→実復号/画素一致→既存CUDA/支持点幾何。encode/初片前検査/再構成/decode/copy/CUDA同期/支持点・幾何/実初片→完了を分離。原PNG不変・派生画像保存なし。受理初片200msは不変、復号まで遅ければ失敗、推論後200ms超は診断値に記録し適格false。原画fixture/no-odomで露光や実源鮮度の復元なし、FFB/制御/ROS false。
+
+成功時のoutput=recordings/2026-11-18/lossless_packet_gpu_r01、提出1点=/home/hsr/Downloads/lossless_packet_gpu_20261118_r01.tar.xz。archiveはsummary/samples/pairs/per_image_summary/run_manifestのJSON5点のみ、画像・重み・設定は除外。失敗pack拒否・既存output/archive上書きなし。カメラ/映像送信受信/録画/走行/matsunuc不要。実GPU結果はまだ未取得。
+
+解析PCでは実保存4原画と実PNG/既存幾何＋保存bboxの明示テストpredictorで80測定40対、固定入力の原判定維持を確認。新21含む297成功/失敗skip0/12.70秒。actual_CUDA_inference=falseを明示、synthetic結果と実GPU結果を混同しない。全旧src/元画像/過去manifest不変。Git/ネット/カメラ/GPU/実機操作なし。
+
+次はユーザーがGPUPCで上記2コマンドを実行しarchive提出。返却後にPNG画素/コード/固定ROI/各pair/画像別集計と処理時間を監査し、仮想回線モデルのCPU仮定との差を評価。実回線容量/通常映像共存・元鮮度・接地・車体基準・FFBは別試験。GPUPCのencode時間をmatsunuc側の実測と呼ばない。PC時計同期必須へ戻さない。
+
+## 11/18前段：PNG送信pending制限と11条件の連続負荷モデル、276テスト成功
 
 ユーザー「進めてください」。[結果](Experimental_results/2026-11-18/lossless_sender_load_r01/README.md)、正式results_r01/verification_r01。新src/driver_lossless_frame_sender.pyはworker同期PNG検査、1 active + 1 latest pending、sender capture age200ms・channel buffer上限・source order/PTS/scope検査。新入力で進行を毎回中断せず、待機だけ最新へ置換。満杯時も期限破棄、invalid/閉鎖/時計逆行で旧値救済せず。送出済みbytesを取り消せないことを明記。旧VP8/runtime/UI/操縦・前段PNG codec/fragment/原画像はSHA不変、実通信へ未接続。
 
