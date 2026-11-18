@@ -2,6 +2,18 @@
 
 最新作業枠: **ユーザー指定の2026-11-18扱い**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
 
+## 11/18最新：GPUPCのCUDA復旧、保存画像packet再圧縮のGPU比較runnerを準備
+
+ユーザー報告でGPUPC HEAD39e1e67（1118v2）、PyTorch2.7.1+cu118/PyAV16.1.0/OpenCV5.0.0、weights `/home/hsr/Downloads/cone_distance_v03.pt` と `recordings/2026-11-16/body_guard_live_r01/decoded_e52bb32f03d6488ebf37d769f46ec37a_f005186.png` の所在を確認。最初CUDA unknown errorで利用不能だったが、nvidia-smiはRTX4070/driver535.309.01を認識、CUDA_VISIBLE_DEVICES/NVIDIA_VISIBLE_DEVICES未設定、/dev/nvidia*も存在。GPUPC再起動後CUDA True/RTX4070 Laptop GPU/tensor計算1.0へ回復した。原因を特定したとせず、依存/driver再導入・module reset・時計設定変更なし。以上はユーザー端末報告で、こちらからGPUPCを操作していない。
+
+[GPU比較手順](Experimental_results/2026-11-18/frame_packet_gpu_recompression_r01/README.md)、新run.pyは保存原本と現行packet VP8再圧縮後へ既存YoloConePredictor/observe_upper_completion/MotionRangeEngineを適用するCUDA専用offline試験。既知4PNGを名前/SHA/native寸法で照合、指定画像だけを使い、原本変更/派生画像再保存なし。最初は所在確認済みpin5186の1枚で6warmup＋20測定、ABBA5反復/10対。検出・支持点・採否・理由・距離差・原画像の反復変動、encode/decode/同期込みpredict/幾何時間・CPU時間・PyTorch allocator peakを保存。片方保留を誤差0と扱わない。GPU全体使用率/機体側encode負荷/5Hz・10Hz実pacing/通信期限は測定しない。
+
+幾何は明示offline合成zero-age、packet identity/timeもreplay fixtureでodom未観測null。実測receiver段階時間と100/200ms超過を別集計し、遅い試行の幾何を黙って落とさない。元鮮度/物理/接地/制御/FFB/ROS全false、body-display guard/同接続pin-load/実network/走行は今回対象外。既に受信圧縮済み画像への追加圧縮で、camera原画からの直接packetと同一履歴ではない。1枚の完走を全域の絶対精度やlive採用としない。
+
+新16を含む関連155成功/失敗skip0/4.29秒、verification_r01。実VP8＋実幾何＋合成predictor試験。保存実画像4枚のcodec往復/SHA/寸法/原本不変も別確認。前段runtime code SHA全不変。実CUDA YOLO/精度・負荷結果はまだ未取得。今回変更は実験専用runner/check/README/計画・テスト・この追記のみ、srcと過去manifest不変。日報/Git commit/push/pull・実機起動は行っていない。
+
+次はユーザーがこの追加分をGitでGPUPCへ反映してREADMEのGPU用コマンドを実行。新規 `recordings/2026-11-18/packet_recompression_gpu_r01`、成功時のみ結果archive `/home/hsr/Downloads/packet_recompression_gpu_20261118_r01.tar.xz` を新規作成して提出。既存output/archiveを上書きせず、失敗ならERROR/summaryを確認してからr02で再試行。追加撮影/送受信/走行/画面録画/matsunuc操作は不要。下記「runtime接続直後」の未準備記述より本項を優先する。
+
 ## 11/18最新：既定offのpacket測距入力を実runtimeへ接続、397試験成功
 
 ユーザー「進めてください」で[opt-in runtime接続](Experimental_results/2026-11-18/frame_packet_runtime_r01/README.md)を実装。新src/driver_frame_packet_runtime.pyはsenderの既存native reader共有＋追加の観測専用odom subscription＋全callback履歴、独立source/stream、5/10Hz、厳密HTTP offer/ackとapplied SDPのMID/cap一致、独立unordered/no-retry channel1本を束ねる。`--frame-motion-packets`既定off、motion-native必須。receiverは`--motion-input packet`を明示した場合だけ測距入力をpacketへ切替え、表示RTP/telemetry/controlは維持。通常は`rtp`のまま。片側だけ/不一致/再利用streamでは測距保留、RTPへfallbackしない。
