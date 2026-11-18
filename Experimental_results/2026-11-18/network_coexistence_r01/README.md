@@ -1,6 +1,6 @@
 # 実回線・通常映像併用確認 r01
 
-現段階：**両PCの接続情報採取から開始**。ユーザーは両PC使用可能と回答済み。新規撮影・画面録画・走行・コーン位置合わせ・GPU推論の再実行は、今回の情報採取には不要。
+現段階：**両PCの接続情報は受領・確認済み**。[結果](submission_report_r01.md)。iperf3追加もユーザー承認済みなので、次は [映像なし5 Mbps・10秒の実行手順](udp_trial_r01.md) へ進む。以下のinspectは再実行不要。新規撮影・画面録画・走行・コーン位置合わせ・GPU推論の再実行は不要。
 
 ## 1. 最初に実行すること（通信負荷なし）
 
@@ -42,9 +42,11 @@ python3 Experimental_results/2026-11-18/network_coexistence_r01/collect.py obser
 
 これはinterface全体の送受信量・drop/error差分であり、映像専用bitrate・fps・空き帯域・一方向遅延の測定ではない。他の大容量通信は行わず、別の通信があれば条件メモに残す。両PCの時刻を対応させず、それぞれのmonotonic差分だけを使用する。
 
-## 3. 能動試験の予定（まだ実行しない）
+## 3. 能動試験の予定（実行は別手順）
 
 両PCの住所・経路・iperf3 versionを確認してから、カメラPC→GPUPC方向の単一UDP streamを5→25→50 Mbps、各10秒で有限試験する。通常映像なし／ありを区別し、映像の乱れ・停止があれば増量しない。機体は停止したまま、G923出力は起動しない。5002番の映像offerと別portを使い、exact addressへのbind、one-off server、プロセスtimeoutを指定する。peerを推測したコマンド、無制限負荷、自動探索、daemon、firewall変更は用意しない。
+
+11/18更新：両端IP/interfaceを確認し、まず5 Mbps・映像なしだけの [具体的コマンド](udp_trial_r01.md) を準備した。実通信はまだ未実施。25/50 Mbpsへ一括実行しない。
 
 この段階の結果でもPNGのlive採用は決まらない。UDPとSCTP/DTLSは異なり、PNG sender実装、NUC encode速度、送信待ち、受信処理、古い画像の破棄を含む実証は別。10 Hzの必要量約80.98 Mbpsに対して50 Mbpsまでの試験は不足し、5 Hz約40.49 Mbpsにも通常映像と実protocol overheadが別に必要。
 
@@ -54,7 +56,9 @@ python3 Experimental_results/2026-11-18/network_coexistence_r01/collect.py obser
 
 [verification_r01/audit.json](verification_r01/audit.json)、[テスト出力](verification_r01/tests.txt)：新15件＋旧308件、**323 passed / 0 failed / 0 skipped（15.68秒）**。前段のsource SHAを照合し、既存測距・packet・映像・操縦コードは不変。
 
-解析PCのread-only inspect試行では、sandboxがkernel netlink問い合わせを拒否し、iperf3も未導入だった。これをエラー情報として保存できたことのみ確認しており、IP/実回線計測の成功やGPUPC/matsunucの状態を示す結果ではない。実機側の2archiveは未取得、能動通信試験は未実施。
+両PC受領後の追加17件を含め [trial_verification_r01/audit.json](trial_verification_r01/audit.json) で **340 passed / 0 failed / 0 skipped（15.92秒）**。実iperf3/通信は未実施、試験手順と失敗時の保存をmock検証した。
+
+解析PCのread-only inspect試行では、sandboxがkernel netlink問い合わせを拒否し、iperf3も未導入だった。これをエラー情報として保存できたことのみ確認しており、IP/実回線計測の成功やGPUPC/matsunucの状態を示す結果ではない。その後の実機側2archiveは受領し、[監査結果](inventory_audit_r01/audit.json)へ保存。能動通信試験は未実施。
 
 オフライン再検証（成功済み同条件の反復は不要）：
 

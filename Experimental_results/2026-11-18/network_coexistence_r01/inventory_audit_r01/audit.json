@@ -1,0 +1,29 @@
+{
+  "schema": "network_inventory_submission_audit_v1",
+  "state": "inventory_verified_NOT_network_test",
+  "script_sha256": "8cb09b39636beeeff6cc4006a487ee88304e15571e9428bb46c4f5d12022094e",
+  "roles": {
+    "camera": {
+      "interface": "wlo1",
+      "ipv4": "150.89.169.207",
+      "subnet": "150.89.169.0/24",
+      "iperf3_state": "not_installed",
+      "archive_sha256": "22c11d337618a40f57c36fe68369c6033adf71793df80cb8f72c0a27dc7a28d6",
+      "report_sha256": "a6b1c340a072fc914b96667abdeed5c2b2f5a8f5b648ef95be4e7378ae69a3b6"
+    },
+    "gpu": {
+      "interface": "wlp46s0f0",
+      "ipv4": "150.89.169.96",
+      "subnet": "150.89.169.0/24",
+      "iperf3_state": "not_installed",
+      "archive_sha256": "0ed56a020cc068c612efe7d0b51c45355e5a2f2bfed809079d93c677e494a74c",
+      "report_sha256": "9ac204accbe0bb80298d6d9db645df925f22513e231cda27a3050a42f106bef4"
+    }
+  },
+  "same_subnet": true,
+  "explicit_peer_route_collected": false,
+  "peer_connectivity_verified": false,
+  "available_capacity_measured": false,
+  "usable_for_ffb": false,
+  "active_test_started": false
+}

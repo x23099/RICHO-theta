@@ -2,7 +2,17 @@
 
 最新作業枠: **ユーザー指定の2026-11-18扱い**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
 
-## 11/18最新：実回線・通常映像共存の採取手順を準備、323テスト成功
+## 11/18最新：両PCの回線情報を受領、iperf3導入承認・映像なし5Mbps試験を準備
+
+開始HEAD138c04b/clean、ユーザーが前段をcommit済み。submission.tar.xz(camera)とsubmission_gpu.tar.xz(gpu)を[監査](Experimental_results/2026-11-18/network_coexistence_r01/submission_report_r01.md)、原archive/JSONはrecordings/2026-11-18/network_inventory_intake_r01へ保存。camera=150.89.169.207/wlo1、gpu=150.89.169.96/wlp46s0f0、双方150.89.169.0/24・gateway150.89.169.1、iperf3未導入。明示peer route/疎通/容量/AP等は未確認。Docker down interfaceを選ばず、同subnetを疎通や容量の証明にしない。
+
+ユーザーが両PCへのiperf3追加を明示承認したため、受動観測を強制せず小さい能動試験を先行。[次のコマンド](Experimental_results/2026-11-18/network_coexistence_r01/udp_trial_r01.md)：両PCへ変更反映→sudo apt install --no-install-recommends iperf3（daemon質問はNo）→GPUPC probe.py serverを先に開始→45秒以内にmatsunuc probe.py clientを開始。映像なし・機体停止・G923なし、client→server単一UDP5Mbps/1200bytes/10秒、TCP接続3秒、client全体25秒/server45秒、port5208・exact bind・one-off。カメラrepo=/home/matunuc/theta_ws、src内からは実行しない。各output内submission.tar.xzを提出。既存output拒否、再試行は両側r02。通常映像/25/50Mbps/PNG liveへ一括展開しない。
+
+新probe.pyは各実行前にown IP/interfaceとpeer routeのdev/prefsrcを確認し、不一致は試験前停止。必要iperf helpも確認。確認flagは端点が本人のPCという申告で認証ではない。serverのpeerアクセス制御/負荷上限を実装したとは呼ばず、実接続peer/protocol/duration/受信量は返却ログで監査する。生JSON/stderr/metadata/outcomeを自動pack、timeout/中断も保存し、process完了を帯域合格へ読み替えない。エラーならfirewallを勝手に開けない。
+
+新intake.py/verify_trial.py/17test、正式trial_verification_r01で旧323を含む340成功/失敗skip0/15.92秒、既存source SHA不変。標準tarのmtime PAX拒否を安全な時刻keyだけ許可する修正で解消、再採取不要。全新試験はmockであり実iperf/ネット通信/導入/Git/カメラ/ROS/FFB操作なし。距離/物理/元鮮度/FFB適格は未承認。次はユーザーの映像なし5Mbps結果2archiveを受領する。
+
+## 11/18前段：実回線・通常映像共存の採取手順を準備、323テスト成功
 
 ユーザー「進めましょう」、非同期確認でmatsunuc/GPUPC両方使用可能との回答。[次の実行手順](Experimental_results/2026-11-18/network_coexistence_r01/README.md)、[計画](Experimental_results/2026-11-18/network_coexistence_r01/implementation_plan.md)。新collect.pyはstdlibのみ。最初は両PCでinspectを1回ずつ実行し、各output内submission.tar.xzを提出する。GPUPCは/home/hsr/yopi_ws/RICHO-theta、matsunucは普段src/start_theta_stream_rtc.shを実行するrepo直下。追加撮影/走行/画面録画/推論不要、映像の新規起動も不要。Git反映はユーザー側、こちらでpush/pullなし。
 

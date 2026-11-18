@@ -23,6 +23,10 @@
 
 PC時計の同期は要求しない。受動採取はPC内monotonic差分のみ。時刻対応・capture-to-display遅延・物理距離・接地・制御・FFB・ROS送信の検証は本試験では行わない。
 
+## 11/18 採取結果受領後の更新
+
+両PCのarchiveを受領し、同subnetのup/default interfaceを各1件に絞れた。iperf3は双方未導入だったが、ユーザーから両PCへの追加承認を得た。そのため、受動採取を強制する順序にはせず、まず映像なし5 Mbps・10秒の小さい有限UDP試験へ進める。probe.pyはown IPとpeer routeを各実行直前に確認し、不一致なら送信/listenせず停止する。初回結果確認前に25/50 Mbps・映像あり・PNG liveへ一括展開しない。導入・実通信・firewall変更はこの解析環境から行わない。
+
 ## 検証
 
 外部コマンド、sysfs、clockを模擬したunit testで、採取先の取り違え防止・個人情報最小化・既存出力の保全・カウンタreset・不正入力・archive内容を確認する。解析PCではread-only inspectのみ実行可能。能動ネットワーク試験や既存GPUベンチマークは再実行しない。
