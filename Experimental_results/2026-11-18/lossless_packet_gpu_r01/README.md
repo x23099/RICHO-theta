@@ -1,6 +1,8 @@
 # GPUPC：保存4画像でPNG経路と既存CUDA測距を一括実測
 
-準備完了。解析PCでは新21を含む関連**297テスト成功、失敗・skip 0、12.70秒**。実保存4原画・実PNG・既存幾何とテスト用検出結果で80測定40対を確認した。**GPUPCの実CUDA測定値はまだ未取得**。[準備監査](verification_r01/audit.json)、[固定実行manifest](verification_r01/run_manifest.json)。
+最新: **GPUPC提出r01を受領・監査済み**。[実測報告](submission_report_r01.md)。全40対で画素/判定不変、初片→測距完了中央値49.09ms/最大52.97ms、PNG開始から全体92.09/98.95ms。新11を含む308テスト成功。**同じGPU比較の再試験は不要**。実通信・映像共存・元鮮度/FFBの認定ではない。
+
+以下は実行時に使った再現手順。準備段階では新21を含む関連297成功/失敗skip0/12.70秒、実保存4原画・実PNG・既存幾何＋テスト用検出結果80測定40対を確認した。[準備監査](verification_r01/audit.json)、[固定実行manifest](verification_r01/run_manifest.json)はそのまま保持する。
 
 目的は、前段の解析PC CPU値を使った仮想回線モデルに対し、GPUPCのPNG encode/検査/fragment/復号＋既存CUDA測距の時間と判定を実測すること。実通信・実機・FFBの採用試験ではない。
 

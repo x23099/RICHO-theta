@@ -2,7 +2,29 @@
 
 最新作業枠: **ユーザー指定の2026-11-18扱い**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
 
-## 11/18最新：GPUPCの保存4画像PNG/CUDA一括計測手順を準備、297テスト成功
+## 11/18最新：実回線・通常映像共存の採取手順を準備、323テスト成功
+
+ユーザー「進めましょう」、非同期確認でmatsunuc/GPUPC両方使用可能との回答。[次の実行手順](Experimental_results/2026-11-18/network_coexistence_r01/README.md)、[計画](Experimental_results/2026-11-18/network_coexistence_r01/implementation_plan.md)。新collect.pyはstdlibのみ。最初は両PCでinspectを1回ずつ実行し、各output内submission.tar.xzを提出する。GPUPCは/home/hsr/yopi_ws/RICHO-theta、matsunucは普段src/start_theta_stream_rtc.shを実行するrepo直下。追加撮影/走行/画面録画/推論不要、映像の新規起動も不要。Git反映はユーザー側、こちらでpush/pullなし。
+
+inspectはIPv4/interface/default route/iperf3 version/helpをローカル採取、明示peerがあればroute getのみ。既存launcherの固定IPを流用しない。MAC/SSID/環境変数/プロセス一覧/画像は採取せず、install/sudo/firewall/remote接続/listener/ping/能動負荷/PC時計同期なし。iperf3未導入やnetlink権限エラーを記録し、成功した回線測定へ偽装しない。解析PC smoke_r02ではnetlink permission deniedとiperf3未導入を正しく保存（GPUPCの結果ではない）。roleは操作者申告で機材認証ではない。smoke_r01は修正前でroleをgpuとしたため採用せず、原記録は残す。
+
+optional observeは確定interfaceのmonotonic差分カウンタを1〜60秒、通常30秒受動採取する。全interface量であり映像専用bitrate/fps/空き容量/遅延とは呼ばない。既存output上書き拒否。次に両PCのIP/経路を照合し、有限UDP負荷を映像なし/ありで比較する予定。5→25→50Mbps各10秒・単一stream案であり、まだ能動実行コマンドは確定せず、実通信未実施。50Mbpsでは10Hz必要量80.98Mbpsを検証できず、5Hz40.49Mbpsにも映像/実overhead別。UDPをPNG/SCTP/DTLS実証へ読み替えない。
+
+新15testと旧308を合わせ323成功/失敗skip0/15.68秒、正式network_coexistence_r01/verification_r01。旧codec/runtime/UI/操縦/画像/実験sourceのSHA不変を前段検証manifestから照合。PNG live採用・制御・FFB・ROSは未変更。最初の提出2archiveが届いたら、機体停止のまま実経路に限定した観測試験へ進む。
+
+## 11/18前段：GPUPC PNG結果を受領、全40対不変・受信最大52.97ms、308テスト成功
+
+ユーザー提出lossless_packet_gpu_20261118_r01.tar.xz、SHA95e6c09440360498319e75cb046a3e1e5cb094f76a213ad52116eda3ffdb67e1。[実測報告](Experimental_results/2026-11-18/lossless_packet_gpu_r01/submission_report_r01.md)、正式submission_audit_r01/submission_verification_r01。原archive/JSON5点をrecordings/2026-11-18/lossless_packet_gpu_intake_r01へ保持。開始時HEAD3b8d2d5/clean、前段はユーザーcommit済み。コード/manifest/config/profile/weights/4原PNG SHA一致、24warmup除外/80測定/40対、全pair/画像別/全体統計・false権限・局所時刻算術を再集計一致。
+
+全80推論画素SHAが原画に一致、全40PNG packetのwire SHA/bytes/候補/復号を原画から再現、全80保存GPU bbox＋既存支持点/幾何も再現。candidateはloggerのsort_keysでkey順が変わるため元SenderFrameMotion生成順で復元し、wire差を人為的に作らない。新CUDA/YOLOなし、画像保存/加工なし。5186は元/PNG各10/10数値、支持点[232,409]・1.1892693049mで10対差0。他3画像は元/PNG各10/10 colour_contour_reaches_roi_edge保留。保留→数値/数値→保留/検出/理由/支持点/支持観測変更0。絶対真値誤差0・保留解除・実域精度保証ではない。
+
+RTX4070/PyTorch2.7.1+cu118/OpenCV5.0.0/Ultralytics8.4.175実測。PNG側中央値/最大ms: encode30.90/40.06、送信初片前準備11.25/13.98、再構成検査11.59/13.55、decode検査copy24.85/25.47、CUDA6.54/7.47、支持点幾何1.68/4.22、初片→幾何完了49.09/52.97、encode開始→完了92.09/98.95。初片・全体とも100/200ms超過0。ただし無通信・同じGPUPC内の同期経路、実network/queue/IPC/表示/5・10Hz/運転映像共存なし。PyTorch peak allocated60,697,088/reserved98,566,144bytes元/PNG同一、GPU全体使用量/使用率ではない。
+
+fragment込み中央値1,012,229bytes→5Hz40.49Mbps/10Hz80.98Mbps（実overhead/通常映像別）。仮想15/30/100Mbpsの理想直列化中央値539.86/269.93/80.98ms、初片後処理を加えた200ms内0/40・0/40・40/40。実回線実測ではない。GPUPC encodeをNUCの速度に転用せず、前段500ms初片前遅延の鮮度問題も解消したとしない。全source/物理/接地/制御/FFB/ROS false。
+
+新audit_submission.py/check_submission.py、新11テストを追加、関連308成功/失敗skip0/15.60秒。テストfixture重複keyとhash試験の入力不正化を修正、実験採否/旧source/原画/過去結果不変。Git/ネット/日報/実機操作なし。同じGPU再比較・追加撮影・画面録画は不要。次は実回線容量/遅延・通常映像との共存を観測専用で確認する準備。PNG live採用やG923接続はまだ行わない。
+
+## 11/18前段：GPUPCの保存4画像PNG/CUDA一括計測手順を準備、297テスト成功
 
 ユーザー「では準備お願いします」。[実行手順](Experimental_results/2026-11-18/lossless_packet_gpu_r01/README.md)、新run.py/check.py/tests/test_lossless_packet_gpu.py。正式verification_r01/run_manifest.jsonでrunner/旧src/config/profile/weights SHAと4原画/ROIを固定。開始時HEAD894e7b4/clean、前段はユーザーcommit済み。旧runner/PNG codec/fragment/runtime/UI/操縦は不変。
 
