@@ -2,6 +2,16 @@
 
 最新作業枠: **ユーザー指定の2026-11-18扱い**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
 
+## 11/18最新：追加の既存3画像をGPUで一括比較する手順を準備
+
+ユーザー「どんどん進めたい」。[一括手順](Experimental_results/2026-11-18/frame_packet_saved_suite_r01/README.md)、新run_suite.pyは完了済み5186を繰返さず、前段でSHA確認済み11/13の28980/37696/44793だけを扱う。元画像をview_imageで確認し、保存bbox中心も検査、3枚ともROI270..350を明示固定。遠方の人/遮蔽2枚と近方1枚で、保留維持/変化も評価対象。1/1.5/2m実測対応と推測しない。GPUの新検出でROIを広げたり保存bboxで救済しない。
+
+GPUPCのrecordings/Experimental_resultsから固定名を有界探索し既知SHAだけ使用、足りなければGPU/output作成前に停止。解析PCにbyte同一PNG3枚の入力packも準備済み：recordings/2026-11-18/packet_saved_suite_inputs_20261118_r01.tar.xz、2,563,792bytes、SHA86692750b6130c6a76b6a0a955cdf9e7646efbe4f7b6ec04c956e167d583b512。原本がGPUPCにない場合だけDownloadsへコピーし--input-archiveを指定。原画像Git追加なし、派生画像加工/保存なし、安全なallowlist読出し・一時コピーのみ。
+
+旧run.py SHA00111723…を凍結再利用し、src/codec/YOLO/支持点/幾何/操縦不変。CUDA model1個で3枚、18warmup除外・60測定・30対を1起動で処理。全体summaryに加え画像別summaryとsuite_manifestを追加し、元結果/画像を含めず1archiveへ。途中失敗・集計不足はfailedにして圧縮せず、既存output/archive上書きなし。合成predictorによる実原画/VP8/幾何60測定30対とpack往復を検証、新10を含む関連175成功/失敗skip0/5.03秒、verification_r01。最初1件の空ログfixture期待ずれを修正しproduction条件は維持した。
+
+次は今回の追加分をユーザー側GitでGPUPCへ反映し、READMEのrun_suite.py runを実行。output recordings/2026-11-18/packet_recompression_multi_gpu_r01、archive /home/hsr/Downloads/packet_recompression_multi_gpu_20261118_r01.tar.xz。追加撮影/走行/画面録画/映像送信/matsunuc不要。**実CUDAの3枚比較結果は未取得**。提出を解析後、通常映像との実通信共存へ進む。source/物理/接地/車体TF/FFB/ROSの未認定を保つ。Git操作・日報・実機起動なし、先行未commit成果を保全。
+
 ## 11/18最新：GPU再圧縮r02受領、双方10/10数値・差約3.0cm、採用時receiver段階最大17.271ms
 
 [最新報告](Experimental_results/2026-11-18/frame_packet_gpu_recompression_r01/submission_report_r02.md)、正式gpu_r02_audit_r01。packet_recompression_gpu_20261118_r02.tar.xz SHA ec639c64f215514c315c02e601c40d5a89ab4154e38309f66fc69c5679d72b93、原archive/JSON3点はrecordings/2026-11-18/packet_recompression_gpu_r02_intake_r01へ保持。画像5186/weights/config/profile/runner/src14SHA一致、6warmup除外/ABBA5反復/20測定10対、全行/対/summary再集計一致。packet wire/candidate/bytes/推論画素と既存ROIでの全measurementも再現した。
