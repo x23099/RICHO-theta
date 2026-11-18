@@ -2,7 +2,17 @@
 
 最新作業枠: **ユーザー指定の2026-11-18扱い**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
 
-## 11/18最新：映像未起動の誤条件を訂正、実映像あり25Mbpsは欠損0.054%・目視異常なし、次は50Mbps
+## 11/18最新：映像あり50Mbpsは欠損0.219%（6秒以降）・目視異常なし、probe上限に到達
+
+開始HEAD958be3c/clean（本段の変更は未commit）。submission_5_matsunuc/clientとsubmission_5_gpu/serverを受領。[結果報告](Experimental_results/2026-11-18/network_coexistence_r01/udp_video50_report_r01.md)、正式udp_video50_audit_r01/udp_video50_verification_r01、原archive/JSONはrecordings/2026-11-18/network_udp_video50_intake_r01。IP/UDP port5208/ephemeral port/cookie/実test_start/要求rate/別serverと埋込みserver一致、両側returncode0・stderr空。
+
+送信62,494,800bytes/10.000074秒/49.995470Mbps/52,079packets。受信区間合計62,358,000bytes/10.042947秒/49.673069Mbps、欠損114（0.2189%）。区間欠損は0〜1秒1、1〜6秒0、6〜7秒91（1.751%）、7〜8秒4、8〜9秒3、9〜10秒15。最後のjitter0.081997ms（区間最大0.2041ms）。payload不一致。非同期質問に操作者は「今回も特に映像の乱れは確認できなかった」と回答し[観察記録](Experimental_results/2026-11-18/network_coexistence_r01/udp_video50_audit_r01/observation.json)へ保存。独立映像ログ/fpsではない。
+
+25 Mbps映像ありr02も6〜7秒に14欠損があり、異なるrate・時刻の2runで同じ位置に最大欠損が出た。負荷依存より約6秒周期の背景事象の可能性があるが、1runずつで原因は未特定。50 Mbpsはprobe.pyの上限で、同一ツールでの増量は不可。PNG 1frame約844片・0.2189%独立仮定の算術は約16%生存だが、欠損は集中しており測定ではない。最大容量/PNG/SCTP/元鮮度/距離精度/制御・FFBは未承認。
+
+監査はv1不変のままv2を使用し `end.sum`整合性は不変。50 Mbps **359 passed/0 failed/0 skipped/16.30秒**。次は同条件r02で6〜7秒欠損の再現性を1回確認するか、合成UDPの増量を止めて実PNG/映像経路の試験へ移るかを判断する。5 Mbpsの実映像条件は未取得。こちらで実通信/install/Git/実機/ROS/FFB操作なし。
+
+## 11/18前段：映像未起動の誤条件を訂正、実映像あり25Mbpsは欠損0.054%・目視異常なし、次は50Mbps
 
 開始HEAD958be3c/clean。ユーザーが受信UI・送信を起動せずに試験していたことを確認。5 Mbps video5と25 Mbps r01（提出submission_matsunuc_4/submission_gpu_4）は実際には映像なしだったため、raw archive/`audit.json`を書き換えず[5 Mbps訂正](Experimental_results/2026-11-18/network_coexistence_r01/udp_video5_audit_r01/condition_correction.json)・[25 Mbps訂正](Experimental_results/2026-11-18/network_coexistence_r01/udp_video25_audit_r01/condition_correction.json)を追加し、25 Mbps r01を映像なし基準値へ再分類した。5 Mbpsの「乱れなし」回答は対象がなく無効。
 
