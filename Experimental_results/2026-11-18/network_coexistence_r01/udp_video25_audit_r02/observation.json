@@ -1,0 +1,16 @@
+{
+  "schema": "normal_video_operator_observation_v1",
+  "work_date": "2026-11-18",
+  "condition": "normal-video",
+  "target_mbps": 25,
+  "requested_test_duration_sec": 10,
+  "video_window_confirmed_displaying_reported": true,
+  "operator_answer": "映像を目視で確認し、停止・大きな乱れはなかった",
+  "video_stop_or_major_disturbance_reported": false,
+  "source": "user_reply_in_current_conversation",
+  "independent_video_recording_analyzed": false,
+  "video_fps_measured": false,
+  "capture_to_display_latency_measured": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}

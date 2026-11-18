@@ -1,5 +1,7 @@
 # 通常映像あり5 Mbps・10秒：比較結果（11/18）
 
+> **11/18訂正：この試験時に映像パイプライン（matsunucの送信・GPUPCの受信UI）は起動していなかった。** 実際の条件は映像なしであり、下表の「映像あり」列と目視回答は有効でない。raw archiveと`audit.json`は変更せず、[訂正記録](udp_video5_audit_r01/condition_correction.json)を追加した。実際の映像あり25 Mbpsは[別報告](udp_video25_report_r01.md)を参照。
+
 **5 MbpsのUDP転送は通常映像ありでも成立し、送受信payload一致・欠損0。操作者からも映像の停止/大きな乱れなしとの回答を得た。** この1回の低負荷試験の結果であり、最大容量・定量fps/遅延・PNG/SCTP実到着・FFBの合格ではない。次は [通常映像を維持した25 Mbps・10秒](udp_video25_r01.md)。既存probe.py/collect.pyは不変であり、今回の試験のための新コード反映・再installは不要。
 
 ## 前回との比較

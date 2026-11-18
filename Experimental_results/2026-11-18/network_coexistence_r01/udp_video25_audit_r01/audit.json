@@ -1,0 +1,84 @@
+{
+  "schema": "paired_iperf39_udp_audit_v1",
+  "state": "paired_trial_verified_NOT_capacity_or_video_acceptance",
+  "condition_operator_reported_NOT_verified": "normal-video",
+  "target_mbps": 25,
+  "sender": {
+    "bytes": 31248000,
+    "packets": 26040,
+    "lost_packets": 0,
+    "seconds": 10.000106,
+    "bits_per_second": 24998135.01976879,
+    "interval_count": 10
+  },
+  "receiver_from_intervals": {
+    "bytes": 31204800,
+    "packets": 26040,
+    "lost_packets": 36,
+    "seconds": 10.043575,
+    "bits_per_second": 24855532.01922622,
+    "interval_count": 11
+  },
+  "receiver_payload_datagrams_from_bytes": 26004,
+  "receiver_end_sum_raw": {
+    "start": 0,
+    "end": 10.043575,
+    "seconds": 10.043575,
+    "bytes": 0,
+    "bits_per_second": 0,
+    "jitter_ms": 0.0931698307038091,
+    "lost_packets": 36,
+    "packets": 26040,
+    "lost_percent": 0.1382488479262673,
+    "sender": false
+  },
+  "receiver_stream_raw": {
+    "socket": 5,
+    "start": 0,
+    "end": 10.043575,
+    "seconds": 10.043575,
+    "bytes": 0,
+    "bits_per_second": 0,
+    "jitter_ms": 0.0931698307038091,
+    "lost_packets": 36,
+    "packets": 26040,
+    "lost_percent": 0,
+    "out_of_order": 0,
+    "sender": false
+  },
+  "receiver_stream_loss_percent_unavailable": true,
+  "receiver_summary_byte_discrepancy": true,
+  "receiver_last_reported_jitter_ms": 0.0931698307038091,
+  "sender_and_receiver_payload_bytes_equal": false,
+  "separate_and_embedded_server_output_identical": true,
+  "endpoints_ports_cookie_and_udp_profile_matched": true,
+  "cookies_are_not_authentication": true,
+  "cross_pc_clock_alignment_used": false,
+  "video_fps_or_freezes_measured": false,
+  "maximum_capacity_measured": false,
+  "source_freshness_verified": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "audit_script_sha256": "9fa7158669bba83fce2385221c79059a29fbd445f0cb9e6b0ec4837db4ffafc9",
+  "base_audit_sha256": "ea1afdd6ea59bddd456a597bf2b3763ad36a879330c04e7242e73cccc9458350",
+  "archives": {
+    "client": {
+      "sha256": "b73407e180a464fed92a8cb03334a43c802498187e6d6bde2a20670956796313",
+      "files_sha256": {
+        "metadata.json": "9944a6c69b63402adec85eae056c17568b7d9616ddb23a1b411593be62090dd8",
+        "iperf.json": "72e11cf773a4fa2b79b2e2864ee27fc8b1e67dfe2efa31abb2c48fb915e0d3c4",
+        "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "outcome.json": "c74346368bfda2ab9fdf5b0ca9d511391ff9176bb2ce6a125fcf741ab29cf23c"
+      }
+    },
+    "server": {
+      "sha256": "88c746c670495f07b890bc9c919beff8325a92167f0727cdf7e5e9af06155695",
+      "files_sha256": {
+        "metadata.json": "b353609b90979dd4713785cc242585a7bb09312a5d0e06a32009f13f11f1f1a9",
+        "iperf.json": "f9c7bca5dfa2180b93e2b00e11231cc80a1bee057e5cca26458ec0722d11c9ba",
+        "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "outcome.json": "c74346368bfda2ab9fdf5b0ca9d511391ff9176bb2ce6a125fcf741ab29cf23c"
+      }
+    }
+  }
+}

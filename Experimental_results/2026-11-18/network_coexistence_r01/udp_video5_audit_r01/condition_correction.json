@@ -1,0 +1,16 @@
+{
+  "schema": "udp_condition_correction_v1",
+  "work_date": "2026-11-18",
+  "affects_audit": "udp_video5_audit_r01/audit.json",
+  "declared_condition_operator_reported_NOT_verified": "normal-video",
+  "actual_condition": "no-video",
+  "reason": "この試験時にmatsunucのWebRTC送信とGPUPCの受信UIを起動しておらず、映像トラフィックは存在しなかった。inspect手順の「映像不要」という案内を試験にも適用したとの操作者申告。",
+  "source": "user_reply_in_current_conversation",
+  "raw_archives_unchanged": true,
+  "audit_json_rewritten": false,
+  "reclassified_as": "映像なしの反復試験",
+  "video_fps_measured": false,
+  "capture_to_display_latency_measured": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}

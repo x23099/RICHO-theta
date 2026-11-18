@@ -2,7 +2,19 @@
 
 最新作業枠: **ユーザー指定の2026-11-18扱い**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
 
-## 11/18最新：通常映像あり5Mbpsも欠損0・目視異常なし、次は映像を維持して25Mbps
+## 11/18最新：映像未起動の誤条件を訂正、実映像あり25Mbpsは欠損0.054%・目視異常なし、次は50Mbps
+
+開始HEAD958be3c/clean。ユーザーが受信UI・送信を起動せずに試験していたことを確認。5 Mbps video5と25 Mbps r01（提出submission_matsunuc_4/submission_gpu_4）は実際には映像なしだったため、raw archive/`audit.json`を書き換えず[5 Mbps訂正](Experimental_results/2026-11-18/network_coexistence_r01/udp_video5_audit_r01/condition_correction.json)・[25 Mbps訂正](Experimental_results/2026-11-18/network_coexistence_r01/udp_video25_audit_r01/condition_correction.json)を追加し、25 Mbps r01を映像なし基準値へ再分類した。5 Mbpsの「乱れなし」回答は対象がなく無効。
+
+実際に映像を出した25 Mbps r02を受領・監査。[比較報告](Experimental_results/2026-11-18/network_coexistence_r01/udp_video25_report_r01.md)、正式udp_video25_audit_r02/udp_video25_verification_r02、原archive/JSONはrecordings/2026-11-18/network_udp_video25_intake_r02。送信31,248,000bytes/10.000100秒/24.998150Mbps、受信区間合計31,231,200bytes/10.042100秒/24.880214Mbps、26,040packets中14欠損（0.0538%）。欠損は6〜7秒区間のみ（14/2,609）。映像なしr01は36欠損（0.1382%）が1〜2秒に集中しており、映像ありの方が欠損は少ない。この1回では映像追加による悪化の証拠なし。ただしr01だけから立てた開始過渡仮説はr02の中央欠損で支持されず、散発的欠落として扱う。payloadは不一致、jitter最終0.246536ms、送受時間差を一方向遅延へ読み替えない。操作者は映像ウィンドウを目視し停止/大きな乱れなしと回答（[観察記録](Experimental_results/2026-11-18/network_coexistence_r01/udp_video25_audit_r02/observation.json)）。
+
+iperf 3.9は受信側per-stream `lost_percent`を0と出力する場合がある（`src/iperf_api.c`の`iperf_print_summary`で受信側は`sender_packet_count=sp->peer_packet_count`、未受領時は`packets`のみ受信側countへfallback）。v1は不変のまま`audit_udp_v2.py`/`verify_udp_v2.py`/tests/test_network_udp_audit_v2.pyを追加し、`end.sum`の整合性検査は緩めずに原値を保持してフラグ化。r02 **359 passed/0 failed/0 skipped/16.13秒**、r01 **359/16.11秒**。旧353/340検証と旧source SHAは不変。こちらで実通信・install・Git・実機・ROS/FFB操作なし。
+
+次は [通常映像を維持した50 Mbps・10秒](Experimental_results/2026-11-18/network_coexistence_r01/udp_video50_r01.md)。**0章で映像ウィンドウの更新確認を必須化**（今回の誤条件の再発防止）。GPUPC受信UI→matsunuc送信（受信IP 150.89.169.96を明示、既定の.70は不可）→server→45秒以内にclient。2archiveと目視あり/なし、ウィンドウ確認を提出。異常時Ctrl+C・増量しない。5 Mbpsの実際の映像あり条件は未取得。最大容量/PNG/SCTP/元鮮度/距離精度/制御・FFBは未承認。
+
+## 11/18前段（映像未起動と判明・訂正済み）：5Mbpsを「映像あり」として取得していた
+
+**この節の「通常映像あり」は誤り。実際は映像送信・受信UI未起動で、映像なし条件だった。上の11/18最新節と[訂正記録](Experimental_results/2026-11-18/network_coexistence_r01/udp_video5_audit_r01/condition_correction.json)を優先する。**
 
 開始HEADae8b607/clean。submission_matsunuc_3.tar.xz/clientとsubmission_gpu_3.tar.xz/serverを[比較報告](Experimental_results/2026-11-18/network_coexistence_r01/udp_video5_report_r01.md)へ保存。正式udp_video5_audit_r01/udp_video5_verification_r01、原archive/JSONはrecordings/2026-11-18/network_udp_video5_intake_r01。既存audit_udp.py/verify_udp.pyを無変更で使用し、実peer/port/UDP設定/目標rate/source SHA/区間・end count/別serverと埋込みserver一致を確認。前回とcookieが異なり別試験であることも照合。
 
