@@ -1,8 +1,26 @@
 # コーン測距・FFB開発 引き継ぎ資料
 
-最新作業枠: **ユーザー指定の2026-11-18扱い**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
+最新作業枠: **ユーザー指定の2026-11-20扱い**（11/18の続き）。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
 
-## 11/18最新：案A＝PNG frame/motion packetの実回線transport probeを既定offで実装、372テスト成功
+## 11/20最新：probeはPNGではなくVP8_INTRAだったと訂正、保存4枚の評価で保留gateが2枚反転
+
+ユーザー指摘2点を確認し、いずれもこちらの誤りだった。**(1) 11/18のprobeが流したのはPNGではなくVP8_INTRA。** 実channelの`encode_packet()`がlibvpxでVP8を生成しヘッダも`codec='VP8_INTRA'`（`src/driver_frame_packet.py:107,126`）。PNG側moduleはruntime/channel未接続で、**PNG実transportは未実施**。ディレクトリ名`png_link_probe_r01`は経緯によるもので改名せず訂正バナーで運用。**(2) 40.49 Mbpsを30秒流すには約152 MB必要。** 11/18の「36〜38 MB（約40 Mbps）」は計算誤りで、実測37.86MBは66.7秒合計＝4.54Mbps。日報・transport_report・probe README・report_assets図・probe docstringを訂正し、raw JSON/監査JSONは不変。
+
+案1（VP8経路）の可否を、カメラ・GPU・実機なしで保存サンプルから評価。[analyse.py](Experimental_results/2026-11-20/vp8_packet_assessment_r01/analyse.py)と[評価](Experimental_results/2026-11-20/vp8_packet_assessment_r01/README.md)。入力は11/18提出のsamples.jsonl（5186=ROI200..280、連続3frame=ROI270..350）。結果は4枚で**両方数値1、両方保留1、保留→数値2**。数値同士の差は1例のみ**−0.030184m（1.189269→1.159086）**。packet中央値98,214.5B、PSNR39.45dB、画素差約1.7/255。群内10反復は距離・理由とも一致。
+
+**判断：VP8の実回線transportは成立（296/296、欠損0、約4.5Mbps、5Hz要求に対し実効4.46Hz）だが、保留gateが4枚中2枚で反転するため、そのまま距離入力へ採用しない。** 反転は元画像で`colour_contour_reaches_roi_edge`だったものが約1.7/255の画素差でROI端から外れたためで、**境界条件への感度**。ROI270..350自体が不適切だった可能性も残り、codec起因とROI起因を分離できていない。同じ理由でlossless PNGでも1〜2px差で反転し得るため、**codec以前にgateの頑健化（マージン・時間方向の一致・ヒステリシス）が必要**。PNGの実配線は、ROI検証とgate頑健化の後、VP8で不足する場合に限り着手する。
+
+次（GPUPC使用可能日）：ROIを検証した保存画像で、数値差の分布とgate反転率をN≥30frameで測る。並行してgate頑健化を設計する。カメラ/走行/ROS/G923/FFBは未使用・未認定。
+
+### 11/20追記：反転機序を特定し、0〜8pxの完了bbox許容を既定0で実装
+
+保存contextの再読で機序を特定。**f028980の元画像**は4px contextで成分が左端接触→完了処理が8/16pxで同じsupportと点[307,385]を得たが、元bbox`y2=384.2027`に対し**0.8px下**で`completed_point_outside_original_bbox`拒否。**f044793の元画像**は成分が**下辺**接触で、完了処理は左右のみ対象のため`not_lateral_only_contact`。f037696は元/packetとも下辺接触で反転せず。packet側はbaselineの4px contextで接触が消え数値。つまり一部は**画素差ではなく、bbox連続座標と整数画素の0.8px差**で保留になっている。
+
+パイプライン本体（`src/`と既存GPU runner）は**変更しない**。過去のmanifest・回帰guardを保つため、許容は実験用harness `run_tolerance.py`で**後処理**として与える。元observerが`completion_reason=completed_point_outside_original_bbox`で失敗した場合に限り、既存の画素support・成分・2context一致をすべて通した後の最後のbbox比較だけを指定px緩める。他理由は不変。`tolerance_harness.json`へharness/runner SHAと引数を記録。**許容は距離採用権限ではない**（全flags false維持）。
+
+[比較試験手順](ExperimentalResults/2026-11-20/bbox_tolerance_sweep_r01/README.md)：GPUPCで同一3枚・ROI270..350を`--tolerance-px 0`と`1`で各run。予測はf028980の元画像だけが数値化し、f044793は下辺接触のため変化しない。archive 2点を受領後に監査する。カメラ/走行/ROS/G923は不要。
+
+## 11/18（訂正済み）：案A＝frame/motion packetの実回線transport probeを既定offで実装、372テスト成功
 
 ユーザーが「今月中に勾配FFBへ本格シフトしたい」ため案Aを選択。合成UDP（25Mbpsまで余裕、50Mbpsで0.2〜0.3%欠損）は足切りに過ぎず、SCTP/DTLS・PNG encode・fragment再構成・期限判定を含む実経路のframe到達率が必要と判断した。
 
@@ -14,13 +32,13 @@
 
 **副作用：** `verify_udp.py`/`verify_udp_v2.py`は11/18 pre-probeの`webrtc_stream.py`/`webrtc_receive_ui.py` SHAをfrozenとして検査するため、現在のtreeでは`previous frozen source differs`で停止する。保存済みUDP監査・検証JSONは不変で、再実行には当時のcommitが必要。この旨をnetwork READMEにも記載。
 
-次はユーザーが両PCへ反映し、機体停止・通常映像ありで30秒のprobe試験（5 Hz）。`sender_probe.json`と`receiver_probe.json`を受領し、frame到達率・gaps・期限落ちを監査してPNG live採用の可否ではなく「実経路で何が落ちるか」を確定する。測距精度・元鮮度・ROS/FFB適格は引き続き未承認。
+次はユーザーが両PCへ反映し、機体停止・通常映像ありで30秒のprobe試験（5 Hz）。`sender_probe.json`と`receiver_probe.json`を受領し、frame到達率・gaps・期限落ちを監査する。**11/20訂正：このprobeが測るのは実channelのcodec（VP8_INTRA）で、PNGではない。**測距精度・元鮮度・ROS/FFB適格は引き続き未承認。
 
-## 11/18最新（続き）：transport probe r02受領、296/296/296でframe欠損0。ただし約128KB/frameで4.54Mbps上限、40Mbps級は未検証
+## 11/18（続き・11/20訂正済み）：transport probe受領、296/296/296でframe欠損0。約128KB/frame・4.54Mbps上限（VP8_INTRA）
 
 sender_probe.json（SHA b48e1a95…）、receiver_probe.json（e8d5dcbd…）を[監査](Experimental_results/2026-11-18/png_link_probe_r01/transport_audit_r01/audit.json)し、原JSONはrecordings/2026-11-18/png_link_probe_intake_r01。sender channel`activated=true`、receiver`configured=true`、profileのsender_id/stream_id/rate_hz一致。sender elapsed66.737秒、offered303、expired7、handed_off296、fragments2,311、held_for_buffer1,409、peak_retained125,757B。受信completed296/delivered296/published296、replaced4、expired0、duplicates/invalid/conflicts0。latency（初片到着→publish）min2.62/mean36.24/max114.66ms。**frame_completion_ratio=frame_publication_ratio=1.000。**
 
-ただしfragments/frame7.81×message上限16,384B＝payload上限37,863,424B（**4.539Mbps**）で、296frameでは約128KB/frame。オフライン基準の約1,012KB/frameの約1/8であり、**40.49Mbps級の共存は試せていない**。実効4.435〜4.464Hzで5Hz未満。frame offer4.54Hzの原因（capture間隔/odom対応）は未測定。`sequence_gaps=1,695`はcapture_sequenceの間引きによる正常でpacket lossではない（監査で`..._are_not_packet_loss=true`）。受信側`closed=false`（close前コピー、周期flush時点）だが送受296一致。replaced4の機序は未確定。映像fps/片方向遅延/測距精度/ROS/FFBは未測定。
+ただしfragments/frame7.81×message上限16,384B＝payload上限37,863,424B（**4.539Mbps**）で、296frameでは約128KB/frame。**11/20訂正：これはPNGではなくVP8_INTRAの実測**（VP8の実測94〜101KBと同桁）。PNGの約1MB/frameとは別物で、**PNGの40.49Mbpsは未検証**。実効4.435〜4.464Hzで5Hz未満。frame offer4.54Hzの原因（capture間隔/odom対応）は未測定。`sequence_gaps=1,695`はcapture_sequenceの間引きによる正常でpacket lossではない（監査で`..._are_not_packet_loss=true`）。受信側`closed=false`（close前コピー、周期flush時点）だが送受296一致。replaced4の機序は未確定。映像fps/片方向遅延/測距精度/ROS/FFBは未測定。
 
 監査スクリプト修正後に[verification_r03](ExperimentalResults/2026-11-18/png_link_probe_r01/verification_r03/audit.json) **372 passed/16.74秒**。r01/r02は履歴。[報告](ExperimentalResults/2026-11-18/png_link_probe_r01/transport_report_r01.md)。
 

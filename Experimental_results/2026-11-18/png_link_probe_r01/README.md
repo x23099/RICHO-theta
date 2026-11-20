@@ -1,4 +1,6 @@
-# PNG frame/motion packet の実回線 transport 試験（案A）r01
+# frame/motion packet の実回線 transport 試験（案A）r01
+
+> **11/20訂正：このprobeが測ったのはPNGではなく VP8_INTRA です。** 実channelが`driver_frame_packet.encode_packet()`を使い、`codec='VP8_INTRA'`を生成するためです（`src/driver_frame_packet.py:107,126`）。PNG側のmoduleはruntime/channel未接続で、PNGの実transportは未実施です。ディレクトリ名`png_link_probe_r01`は経緯によるもので、以下の文中の「PNG」は「実channelのcodec（今回VP8_INTRA）」と読み替えてください。詳細は[transport_report_r01.md](transport_report_r01.md)。
 
 ## 目的
 
@@ -100,7 +102,7 @@ cat /home/matunuc/theta_ws/recordings/2026-11-18/png_link_probe_camera_r01/sende
 
 ## 実測結果（r01）
 
-[transport_report_r01.md](transport_report_r01.md)：296 frameを渡して296 frame完成・296 frame到達（ratio 1.0）。ただしPNGは約128 KB/frame、payload上限4.54 Mbpsで、**40.49 Mbps級の共存は未検証**。代表シーンでの再試験が必要。
+[transport_report_r01.md](transport_report_r01.md)：VP8_INTRA packetで296 frameを渡して296 frame完成・296 frame到達（ratio 1.0）。payload上限4.54 Mbpsで、PNGの40.49 Mbpsは未検証（30秒なら約152 MB必要）。
 
 **注意：** この段階で`src/webrtc_stream.py`と`src/webrtc_receive_ui.py`を既定offのまま変更したため、`network_coexistence_r01/verify_udp*.py`のfrozen source検査は現在のtreeでは停止する。保存済みUDP監査・検証JSONは変更していない。
 

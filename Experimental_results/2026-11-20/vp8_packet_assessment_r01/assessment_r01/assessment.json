@@ -1,0 +1,122 @@
+{
+  "schema": "vp8_packet_offline_assessment_v1",
+  "state": "offline_saved_samples_NOT_live_NOT_accuracy",
+  "images": 4,
+  "both_numeric": 1,
+  "gate_changes": 2,
+  "both_withheld": 1,
+  "original_withheld_packet_numeric": 2,
+  "original_numeric_packet_withheld": 0,
+  "range_delta_m": {
+    "count": 1,
+    "minimum": -0.030183514260365474,
+    "maximum": -0.030183514260365474
+  },
+  "median_packet_bytes": 98214.5,
+  "median_psnr_db": 39.44762167735594,
+  "camera_or_gpu_used": false,
+  "rtp_or_live_path_used": false,
+  "network_measured": false,
+  "fps_measured": false,
+  "one_way_delay_measured": false,
+  "absolute_ground_truth_verified": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false,
+  "images_detail": [
+    {
+      "image": "decoded_24aad0a8d31d46eeb33ef252b0d18475_f028980.png",
+      "original": {
+        "samples": 10,
+        "distance_m": null,
+        "reason": "colour_contour_reaches_roi_edge",
+        "median_psnr_db": null,
+        "median_pixel_difference": 0.0,
+        "median_packet_bytes": null
+      },
+      "packet": {
+        "samples": 10,
+        "distance_m": 1.6108145311392728,
+        "reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+        "median_psnr_db": 39.60758247978194,
+        "median_pixel_difference": 1.7012018952546297,
+        "median_packet_bytes": 97170.0
+      },
+      "gate_changed": true,
+      "range_delta_m": null
+    },
+    {
+      "image": "decoded_24aad0a8d31d46eeb33ef252b0d18475_f037696.png",
+      "original": {
+        "samples": 10,
+        "distance_m": null,
+        "reason": "colour_contour_reaches_roi_edge",
+        "median_psnr_db": null,
+        "median_pixel_difference": 0.0,
+        "median_packet_bytes": null
+      },
+      "packet": {
+        "samples": 10,
+        "distance_m": null,
+        "reason": "colour_contour_reaches_roi_edge",
+        "median_psnr_db": 39.287660874929934,
+        "median_pixel_difference": 1.7889612268518518,
+        "median_packet_bytes": 99259.0
+      },
+      "gate_changed": false,
+      "range_delta_m": null
+    },
+    {
+      "image": "decoded_24aad0a8d31d46eeb33ef252b0d18475_f044793.png",
+      "original": {
+        "samples": 10,
+        "distance_m": null,
+        "reason": "colour_contour_reaches_roi_edge",
+        "median_psnr_db": null,
+        "median_pixel_difference": 0.0,
+        "median_packet_bytes": null
+      },
+      "packet": {
+        "samples": 10,
+        "distance_m": 0.9832593289138355,
+        "reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+        "median_psnr_db": 39.734278330164244,
+        "median_pixel_difference": 1.6934653501157408,
+        "median_packet_bytes": 93924.0
+      },
+      "gate_changed": true,
+      "range_delta_m": null
+    },
+    {
+      "image": "decoded_e52bb32f03d6488ebf37d769f46ec37a_f005186.png",
+      "original": {
+        "samples": 10,
+        "distance_m": 1.189269304864688,
+        "reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+        "median_psnr_db": null,
+        "median_pixel_difference": 0.0,
+        "median_packet_bytes": null
+      },
+      "packet": {
+        "samples": 10,
+        "distance_m": 1.1590857906043226,
+        "reason": "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+        "median_psnr_db": 39.09912233660417,
+        "median_pixel_difference": 1.816490162037037,
+        "median_packet_bytes": 101178.0
+      },
+      "gate_changed": false,
+      "range_delta_m": -0.030183514260365474
+    }
+  ],
+  "sources": [
+    {
+      "file": "samples.jsonl",
+      "lines": 20
+    },
+    {
+      "file": "samples.jsonl",
+      "lines": 60
+    }
+  ]
+}

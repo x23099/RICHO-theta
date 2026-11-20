@@ -11,10 +11,11 @@
 
 ## 2. png_transport_probe_r01.csv / .png
 
-- 内容：実SCTP/DTLS経路でのPNG frame到達（handed off / completed / published）と、実際に流れたpayload上限。
+- 内容：実SCTP/DTLS経路での **VP8_INTRA** frame到達（handed off / completed / published）と、実際に流れたpayload上限。
 - 出典：`Experimental_results/2026-11-18/png_link_probe_r01/transport_audit_r01/audit.json`。
 - 右図の「measured upper bound」は `fragments × message_cap ÷ 経過秒` の**上限**。実wire bytesは採取していないため、実際はこれ以下。
-- 「40.49 Mbps」は前段の保存画像PNG（fragment込み約1,012,229 B）を5 Hzで送る場合の必要量で、**今回の実測値ではない**。
+- 「40.49 Mbps」は前段の保存画像PNG（fragment込み約1,012,229 B）を5 Hzで送る場合の必要量で、**今回の経路（VP8_INTRA）の実測値ではない**。30秒なら約152 MB。
+- **11/20訂正：** 図の「PNG frames」は「VP8_INTRA frames」が正しい。実channelの`encode_packet()`がVP8を生成しており、PNGは未接続。
 
 ## 再生成
 

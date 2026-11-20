@@ -88,12 +88,12 @@ def figures(rows, value):
                 [value['frames_handed_off'], value['receiver_frames_completed'],
                  value['receiver_frames_published']], color=['#2b6cb0', '#38a169', '#805ad5'])
     axes[0].set_ylim(0, max(1, value['frames_handed_off']) * 1.15)
-    axes[0].set_title('PNG frames (real SCTP path)')
+    axes[0].set_title('VP8_INTRA frames (real SCTP path)')
     for index, count in enumerate([value['frames_handed_off'], value['receiver_frames_completed'],
                                    value['receiver_frames_published']]):
         axes[0].text(index, count, str(count), ha='center', va='bottom', fontsize=8)
     upper = value['payload_bytes_upper_bound'] * 8 / value['sender_elapsed_sec'] / 1e6
-    axes[1].bar(['measured upper bound', 'PNG 5 Hz target'], [upper, 40.49],
+    axes[1].bar(['measured upper bound', 'PNG 5 Hz target\n(not this path)'], [upper, 40.49],
                 color=['#dd6b20', '#718096'])
     axes[1].set_ylabel('Mbps')
     axes[1].set_title('Payload regime actually exercised')
