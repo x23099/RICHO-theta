@@ -1,0 +1,107 @@
+{
+  "schema": "risk_gradient_range_sensitivity_v1",
+  "state": "offline_geometry_NOT_field_validation",
+  "width_m": 0.354,
+  "speeds": [
+    0.2,
+    0.4,
+    0.8
+  ],
+  "yaws": [
+    -0.5,
+    -0.25,
+    0.0,
+    0.25,
+    0.5
+  ],
+  "forward_m": [
+    1.0,
+    1.5,
+    2.0
+  ],
+  "left_m": [
+    -0.4,
+    -0.2,
+    0.0,
+    0.2,
+    0.4
+  ],
+  "grid_cells": 225,
+  "deltas_m": [
+    0.01,
+    0.0274,
+    0.0302,
+    0.05
+  ],
+  "summary": [
+    {
+      "delta_m": -0.01,
+      "cases": 225,
+      "direction_changes": 0,
+      "level_changes": 2,
+      "max_abs_gradient_change": 0.00921560317275194,
+      "mean_abs_gradient_change": 0.0005981372465997288
+    },
+    {
+      "delta_m": 0.01,
+      "cases": 225,
+      "direction_changes": 4,
+      "level_changes": 6,
+      "max_abs_gradient_change": 1.1862993087636071,
+      "mean_abs_gradient_change": 0.020127165378190922
+    },
+    {
+      "delta_m": -0.0274,
+      "cases": 225,
+      "direction_changes": 0,
+      "level_changes": 2,
+      "max_abs_gradient_change": 0.01768997932443528,
+      "mean_abs_gradient_change": 0.0017298494246934368
+    },
+    {
+      "delta_m": 0.0274,
+      "cases": 225,
+      "direction_changes": 6,
+      "level_changes": 8,
+      "max_abs_gradient_change": 1.1862993087636071,
+      "mean_abs_gradient_change": 0.029129678418251596
+    },
+    {
+      "delta_m": -0.0302,
+      "cases": 225,
+      "direction_changes": 0,
+      "level_changes": 2,
+      "max_abs_gradient_change": 0.019741846571566524,
+      "mean_abs_gradient_change": 0.001896905598652541
+    },
+    {
+      "delta_m": 0.0302,
+      "cases": 225,
+      "direction_changes": 6,
+      "level_changes": 8,
+      "max_abs_gradient_change": 1.1862993087636071,
+      "mean_abs_gradient_change": 0.029240275336779916
+    },
+    {
+      "delta_m": -0.05,
+      "cases": 225,
+      "direction_changes": 2,
+      "level_changes": 6,
+      "max_abs_gradient_change": 0.9442339278166727,
+      "mean_abs_gradient_change": 0.011370765116579484
+    },
+    {
+      "delta_m": 0.05,
+      "cases": 225,
+      "direction_changes": 6,
+      "level_changes": 8,
+      "max_abs_gradient_change": 1.1862993087636071,
+      "mean_abs_gradient_change": 0.030100137889341464
+    }
+  ],
+  "camera_or_gpu_used": false,
+  "field_data_used": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}

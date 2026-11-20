@@ -20,6 +20,35 @@
 
 [比較試験手順](ExperimentalResults/2026-11-20/bbox_tolerance_sweep_r01/README.md)：GPUPCで同一3枚・ROI270..350を`--tolerance-px 0`と`1`で各run。予測はf028980の元画像だけが数値化し、f044793は下辺接触のため変化しない。archive 2点を受領後に監査する。カメラ/走行/ROS/G923は不要。
 
+**結果（11/20）**：t0は11/18の判断を完全再現。t1で予測どおりf028980の元画像だけが保留→数値（元1.583417m / packet1.610815m、**差2.74cm**、`completion_reason=experiment_bbox_tolerance_applied`、10反復同一）。f044793は下辺接触のため保留のまま（gate反転2→1件）。5186の−3.02cmと合わせ、VP8再圧縮の距離差は**符号一定でない**（±3cm、1.58〜1.19mで約1.7〜2.5%）。単純バイアス補正は不可。原archiveはrecordings/2026-11-20/bbox_tolerance_intake_r01、[監査](ExperimentalResults/2026-11-20/bbox_tolerance_sweep_r01/audit_r01/audit.json)、[報告](ExperimentalResults/2026-11-20/bbox_tolerance_sweep_r01/results_r01.md)。**tolerance_harness.json未提出**のため許容値はrun名からの推定（サンプル内マーカーで適用自体は確認）。次は下辺接触の設計、N≥30、時間方向一致、codec選択（VP8 packet=2回圧縮 vs RTP frame+metadata=1回圧縮 vs ROI限定lossless）。
+
+### 11/20追記2：入力経路はA（VP8 packet）を本線と決定。±3cmよりリスク境界の不連続が支配的
+
+優先順を④入力経路→③時間方向一致→①下辺接触→②N≥30とし、④を実施。[決定文書](ExperimentalResults/2026-11-20/input_path_decision_r01/README.md)。3案（A: VP8 packet=2回圧縮・約4.5Mbps・実装/transport済み、B: RTP frame+metadata=1回圧縮・`SenderFrameMotion`未接続でframe同一性未解決、C: 固定ROI可逆=1回+ROI・未実装）を比較。
+
+既存`collision_risk.evaluate_candidate_steering()`で障害物距離を±1〜5cm動かすオフライン感度を実施（車幅0.354m、225格子）。+2.74〜3.02cmで**方向場が6/225、リスク段階が8/225変化**。ただし**+1cmでも4/225変化**し、例として速度0.4m/s・yaw−0.25・前方1.0m・左−0.2mで距離+1cmにより`g`が−0.186→+1.0へ反転。原因は`in_collision_corridor`の二値判定で、**境界不連続が支配的**。よってcodec精度だけでは方向安定性を保証できず、PNG/ROI可逆でも実運動で境界を跨げば同じ反転が起きる。
+
+決定：**Aを本線**（実装済み・実回線検証済み・4.5Mbpsで今月の期限に最短）。必須条件として、1frameの`g`を直接FFBへ出さず、M-of-N一致・保留優先・符号反転の追加確認を入れる。Bはframe同一性の研究課題、CはAで不足が実測された場合の次候補。感度はモデル計算でフィールド未検証、絶対精度/接地/元鮮度/FFB適格は未認定。
+
+### 11/20追記3：③方向の2-of-3一致を実装（追加遅延は遷移時最大0.4s、未接続）
+
+ユーザー指定で追加遅延上限**0.4s**（5Hzで2frame）を採用。[src/driver_risk_consistency.py](src/driver_risk_consistency.py)と[新11テスト](tests/test_driver_risk_consistency.py)。直近3 frameのうち2つが同じ方向（deadband0.1適用）なら確定。定常時は遅延0、遷移時のみ最大2frame。確定しないときは**保留**で前値保持しない。無効値はwindow clear、0.5s超はstale、時計逆行はclosed。確定値は一致した最新sampleの`gradient_normalized`（平均しない）。`added_latency_sec`を出力。**まだmotion bridge/FFBへ未接続**、全flags false。[仕様](ExperimentalResults/2026-11-20/risk_consistency_r01/README.md)。
+
+接続時の契約：motion bridgeの`gradient_normalized`/`risk_level`/`valid`を毎frame`offer`し、`confirmed=false`はFFB保留（effect停止/中立、前値再送なし）。既存`SteeringGradientFilter`（EMA/deadband）との二重平滑化を避けるため、最終段の役割分担を接続時に決める。関連**434 passed/0 failed/0 skipped/18.02秒**。
+
+次は①下辺接触の設計（f044793の下方向余白・完了条件）、②N≥30、そして③の実機接続。距離の絶対精度・接地・元鮮度・制御/FFB適格は引き続き未認定。
+
+### 11/20追記4：明日の実機実験用に①下辺フォールバックharnessと②N≥30 manifest手順を準備
+
+11/21はカメラ・実機が使えるため、[当日手順](ExperimentalResults/2026-11-21/README.md)を作成。GPUPCのpinned runner/srcは変更しない方針を維持し、manifestでallowlistを実行時拡張する。
+
+- [prepare_manifest.py](ExperimentalResults/2026-11-21/cones_vp8_suite_r01/prepare_manifest.py)：保存済み`decoded_*_f*.png`を列挙し、1280x720 BGR・重複・SHAを検査してmanifest化。ROIを固定記録。新3テスト。
+- [run_with_manifest.py](ExperimentalResults/2026-11-21/cones_vp8_suite_r01/run_with_manifest.py)：manifestのSHAを再検証し、`runner.KNOWN_IMAGES`をメモリ上だけ拡張してpinned runnerを実行。`--bottom-fallback`で11/10の`probe_bottom_extension`のguarded候補をobserverへ足す（元のlower support・点・bbox条件をそのまま要求し、適用時は`bottom_fallback_applied`を記録、全flags false）。
+- 採取は`theta_rtc_diagnostic.py receive`のSキー保存（未注釈1280x720、復号RTP frame）。コーンを従来画角（x≈290〜330）に置き、ROI270..350で端に触れない構図。3距離×10 frame。
+- 実行は同一manifestで`--bottom-fallback`なし/ありの2run。判定は「下辺接触だけが数値化」「元lower supportと点が保存」「距離差の中央値/最大」「gate反転率」「同一frame再現性」。接地・精度・FFB適格の認定には使わない。
+
+関連**437 passed/0 failed/0 skipped**。実カメラ・走行・ROS/G923は未使用。
+
 ## 11/18（訂正済み）：案A＝frame/motion packetの実回線transport probeを既定offで実装、372テスト成功
 
 ユーザーが「今月中に勾配FFBへ本格シフトしたい」ため案Aを選択。合成UDP（25Mbpsまで余裕、50Mbpsで0.2〜0.3%欠損）は足切りに過ぎず、SCTP/DTLS・PNG encode・fragment再構成・期限判定を含む実経路のframe到達率が必要と判断した。

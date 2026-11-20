@@ -44,7 +44,7 @@
 - **f037696**：元・packetとも下辺接触で保留。反転しない。
 - **packet側**：f028980/f044793はbaselineの4 px contextで接触が消え、そのまま数値。f037696は接触が残り保留。
 
-**重要な副産物：** 同じ理由でlossless PNGでも1〜2 px差で反転し得る。またf028980は**0.8 px**という人工的な境界差で保留になっており、gateの境界設計（許容・マージン・時間方向の一致）をcodecより先に整理する必要がある。この0.8 px差を許容する比較試験を[bbox_tolerance_sweep_r01](../bbox_tolerance_sweep_r01/README.md)として準備した。
+**重要な副産物：** 同じ理由でlossless PNGでも1〜2 px差で反転し得る。またf028980は**0.8 px**という人工的な境界差で保留になっており、gateの境界設計（許容・マージン・時間方向の一致）をcodecより先に整理する必要がある。この0.8 px差を許容する比較試験を[bbox_tolerance_sweep_r01](../bbox_tolerance_sweep_r01/README.md)として実施し、**許容1 pxでf028980の元画像が数値化（1.5834 m、packet 1.6108 m、差2.74 cm）**、f044793の下辺接触は残ることを確認した（[結果](../bbox_tolerance_sweep_r01/results_r01.md)）。
 
 ## 5. 案1の判定
 
