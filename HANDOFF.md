@@ -79,7 +79,13 @@
 
 `src/cone_colour_support_candidate.py`で`THETA_YELLOW_S_MIN`（既定なし=80、0..255）をimport時に読むようにした。**既定80は不変**。live UI/GPU subprocessへ環境変数が継承されるため、`THETA_YELLOW_S_MIN=170`でライブ距離表示を確認できる。新1テスト（reloadで170→80復帰）。
 
-次（学校で可能）：①`--motion-distance`で黄色コーン1.0/1.5mのライブ距離表示を確認（RTP→GPU距離、機体停止・FFBなし）、②横位置グリッド（距離×左右）を各2frame採取し、S=170でオフライン比較。別コーンは同一品のため実施しない。ライブは`export THETA_UI_PYTHON="$(command -v python3)"; export THETA_YELLOW_S_MIN=170; bash src/start_theta_receive_rtc.sh --motion-distance --motion-python .../yolo-env/bin/python3 --motion-weights ... --motion-profile Experimental_results/2026-11-09/cone_motion_evaluation_r01/prepared_r01/motion_profile_r01.json --motion-output-dir <新規> --motion-target-roi 270 0 350 720 --motion-experimental-rigid-mount`。送信は`start_theta_stream_rtc.sh --motion-native --receiver-ip 150.89.169.96`。全flags false、ROS/FFB出力なし。
+次（学校で可能）：①`--motion-distance`で黄色コーン1.0/1.5mのライブ距離表示を確認（RTP→GPU距離、機体停止・FFBなし）、②横位置グリッド（距離×左右）を各2frame採取し、S=170でオフライン比較。別コーンは同一品のため実施しない。
+
+**11/21横位置グリッド結果**：[解析](ExperimentalResults/2026-11-21/yellow_grid_analysis_r01/README.md)。狭いROI270..350では±25cmが2.0mでしか通らず（5/9）、**ROI150..450へ広げると9/10が数値**（1.0/1.5mの±25cmも通る）。中央距離は1.031/1.583/2.131mで不変。**横限界は色・床・codecではなくROI幅**と確定。残る1件は1.0m右25cmのみで、crop端の色領域（床/隣接物）により完了contextも拒否。横25cmで中央比+3〜6cmはradial距離の幾何。ライブUI r02は21,921frame中17,445数値（79.6%）、publish最大2.0ms。次はROI150..450でライブUI確認と、1.0m右の画像確認。
+
+**11/21ライブ確認**：ROI150..450・S=170で、左/中央は数値、1.0m右は背景の木製デスク（S高）と暗いコーン（V≈138）で保留。**機体の向きを変えて背景を中立にすると右も数値**（表示1.180m、receive-age 32ms）。ユーザー確認で1.0/1.5/2.0m×左右25cmすべて数値。右側の制約はパイプラインではなく背景と確定。
+
+**勾配ドライラン**：[結果](ExperimentalResults/2026-11-21/gradient_dry_run_r01/README.md)。広ROIの実測距離8位置×速度3×yaw5=120評価。デッドバンド内（|g|<0.15）が71/120（59%）、側期待と符号逆が13/120（11%、すべてコーン側へ切ったyaw）、±1cm揺れで方向変化4/120（1.5m右の境界、3連続一致で吸収可）。同じ側へ切ったときの符号反転は、計画書4.1の定義どおりの計算だが、制御則として意図通りかは要確認。次はΔ/予測時間の感度、連続リスク化、deadband見直し。実機/ROS/FFBなし。ライブは`export THETA_UI_PYTHON="$(command -v python3)"; export THETA_YELLOW_S_MIN=170; bash src/start_theta_receive_rtc.sh --motion-distance --motion-python .../yolo-env/bin/python3 --motion-weights ... --motion-profile Experimental_results/2026-11-09/cone_motion_evaluation_r01/prepared_r01/motion_profile_r01.json --motion-output-dir <新規> --motion-target-roi 270 0 350 720 --motion-experimental-rigid-mount`。送信は`start_theta_stream_rtc.sh --motion-native --receiver-ip 150.89.169.96`。全flags false、ROS/FFB出力なし。
 
 ## 11/18（訂正済み）：案A＝frame/motion packetの実回線transport probeを既定offで実装、372テスト成功
 
