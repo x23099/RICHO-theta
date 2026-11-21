@@ -19,6 +19,46 @@ ls -l Experimental_results/2026-11-21/cones_vp8_suite_r01/prepare_manifest.py \
 
 `True`でなければ実行しない（CPU fallbackなし）。重みは `/home/hsr/Downloads/cone_distance_v03.pt`。
 
+## 0.5 黄色コーンしかない場合（重要）
+
+**検出器は単一クラス`traffic_cone`で、赤・黄色の両方を学習対象にしている。** 色分離の支持点もHSVで赤・黄色の両方を扱い、seed領域で優勢な色（≥90%）を選ぶ。**赤専用ではない。**
+
+ただし、**距離・gate・完了処理の最近の検証はすべて赤コーン**（保存4枚も赤）。黄色には既知のリスクがある。
+
+- 黄色HSVの下限S=80は、ベージュ/木目床（実測Hue≈18, S≈81〜83）を拾い、床とコーンのmaskが連結する（10/30に発生）。
+- seedに赤と黄色が混在すると`ambiguous_upper_body_colour`（優勢率<90%）で保留になる。
+- 黄色で距離が数値化された実績が、現行gate条件では未確認。
+
+### 2 frame予備確認（30 frame採取の前に必ず）
+
+```bash
+cd /home/hsr/yopi_ws/RICHO-theta
+./yolo-env/bin/python3 Experimental_results/2026-11-21/cones_vp8_suite_r01/prepare_manifest.py \
+  --input-dir recordings/2026-11-21/yellow_precheck_frames_r01 \
+  --roi 270 0 350 720 \
+  --output recordings/2026-11-21/yellow_precheck_manifest_r01.json
+./yolo-env/bin/python3 Experimental_results/2026-11-21/cones_vp8_suite_r01/run_with_manifest.py \
+  --manifest recordings/2026-11-21/yellow_precheck_manifest_r01.json -- \
+  --weights /home/hsr/Downloads/cone_distance_v03.pt \
+  --experimental-rigid-mount --repetitions 1 --warmup 1 \
+  --output-dir recordings/2026-11-21/yellow_precheck_run_r01 \
+  --archive /home/hsr/Downloads/yellow_precheck_20261121_r01.tar.xz
+./yolo-env/bin/python3 Experimental_results/2026-11-21/cones_vp8_suite_r01/inspect_samples.py \
+  --samples /home/hsr/Downloads/yellow_precheck_20261121_r01.tar.xz
+```
+
+判定：
+
+| 表示 | 判断 |
+|---|---|
+| `colour=yellow`で`distance`が数値 | そのまま30 frame採取へ進む |
+| `colour=yellow`だが`colour_contour_reaches_roi_edge` | ROI/構図を調整（端に触れない）。下辺接触なら①フォールバックの対象 |
+| `ambiguous_upper_body_colour` | seedに他色が混入。背景・照明・コーン位置を変える |
+| `support_not_connected_to_body_seed` | 床や別物体とmaskが連結。ベージュ床を避ける／白・灰色の背景にする |
+| `colour=red`または`None` | 色選択が意図と違う。コーンと照明を確認 |
+
+黄色で予備確認が通らない場合、**無理に進めず**、赤コーンが使えるか、背景（ベージュ床を避ける）を変えるかを選ぶ。数値を出すためにHSV閾値やROIをその場で調整しない。
+
 ## 1. フレーム採取（カメラのみ・機体停止）
 
 コーンを**これまでと同じ画角**（front-left画像のx≈290〜330に写る位置）へ置く。ROIは`270 0 350 720`を使うため、**コンターがROI端に触れない**構図にする。

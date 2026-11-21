@@ -49,6 +49,8 @@
 
 関連**437 passed/0 failed/0 skipped**。実カメラ・走行・ROS/G923は未使用。
 
+**色の対応：** 検出器は単一クラス`traffic_cone`で赤・黄色の両方を学習対象、色分離支持点もHSVで両色を扱う（`src/cone_colour_support_candidate.py`）。赤専用ではない。ただし距離/gate/完了の最近の検証は**赤のみ**（保存4枚も赤）。黄色はS下限80がベージュ床（Hue≈18,S≈81〜83）を拾ってmaskが連結する既知リスクがあり、seed優勢率<90%で`ambiguous_upper_body_colour`になる。11/21は黄色の場合に**2 frame予備確認**（`inspect_samples.py`で`colour=yellow`と数値/理由を確認）を必須とし、通らなければ赤コーンか背景変更を選ぶ。閾値・ROIの場当たり調整はしない。
+
 ## 11/18（訂正済み）：案A＝frame/motion packetの実回線transport probeを既定offで実装、372テスト成功
 
 ユーザーが「今月中に勾配FFBへ本格シフトしたい」ため案Aを選択。合成UDP（25Mbpsまで余裕、50Mbpsで0.2〜0.3%欠損）は足切りに過ぎず、SCTP/DTLS・PNG encode・fragment再構成・期限判定を含む実経路のframe到達率が必要と判断した。
