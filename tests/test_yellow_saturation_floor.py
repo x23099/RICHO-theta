@@ -13,6 +13,7 @@ import cone_colour_support_candidate as colour_support
 from cone_colour_support_candidate import observe_separated_support
 from cone_distance_core import load_config
 from cone_support_completion_candidate import _context
+from cone_upper_support_candidate import _upper_context
 
 BOX = dict(x1=300., y1=300., x2=340., y2=420., class_id=0, confidence=.9)
 
@@ -61,6 +62,17 @@ class YellowFloorTests(unittest.TestCase):
         colour_support.YELLOW_SATURATION_MIN = 130
         info, pixels, label = _context(image, BOX, self.camera, 'yellow', seed, 4)
         self.assertIsNone(label)
+        self.assertEqual(info['reason'], 'seed_not_one_colour_component')
+
+    def test_upper_context_uses_the_same_constant(self):
+        image = yellow_image(100)
+        colour_support.YELLOW_SATURATION_MIN = 80
+        seed = observe_separated_support(image, BOX, self.camera)['seed_xyxy']
+        info, pixels = _upper_context(image, BOX, self.camera, 'yellow', seed, 4)
+        self.assertIsNotNone(pixels)
+        colour_support.YELLOW_SATURATION_MIN = 130
+        info, pixels = _upper_context(image, BOX, self.camera, 'yellow', seed, 4)
+        self.assertIsNone(pixels)
         self.assertEqual(info['reason'], 'seed_not_one_colour_component')
 
     def test_saturated_cone_is_kept_at_130(self):

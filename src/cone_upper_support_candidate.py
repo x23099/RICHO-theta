@@ -16,6 +16,7 @@ import numpy as np
 from angular_fisheye_geometry import pixels_in_domain
 from cone_distance_core import support_from_colour_mask
 from cone_observation import checked_bbox
+import cone_colour_support_candidate as colour_support
 from cone_support_completion_candidate import observe_lateral_completion
 from theta_rtc_frames import native_frame
 

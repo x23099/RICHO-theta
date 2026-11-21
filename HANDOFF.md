@@ -51,6 +51,18 @@
 
 **色の対応：** 検出器は単一クラス`traffic_cone`で赤・黄色の両方を学習対象、色分離支持点もHSVで両色を扱う（`src/cone_colour_support_candidate.py`）。赤専用ではない。ただし距離/gate/完了の最近の検証は**赤のみ**（保存4枚も赤）。黄色はS下限80がベージュ床（Hue≈18,S≈81〜83）を拾ってmaskが連結する既知リスクがあり、seed優勢率<90%で`ambiguous_upper_body_colour`になる。11/21は黄色の場合に**2 frame予備確認**（`inspect_samples.py`で`colour=yellow`と数値/理由を確認）を必須とし、通らなければ赤コーンか背景変更を選ぶ。閾値・ROIの場当たり調整はしない。
 
+### 11/21：黄色コーンのS下限スイープ（s80/130/150はこちらのimport漏れで失敗、s170は完走）
+
+実測（r03 f000441）で、コーンseedのSは235〜255、右側の床は34〜104（中央69）と分離可能。S≥130で床が0%になり支持点[309,385]が出た。S=130と150で支持点が3px変わるため、複数フレームでの安定性確認が必要と判断。
+
+**実装**：`YELLOW_SATURATION_MIN=80`を`src/cone_colour_support_candidate.py`へ追加し、`cone_support_completion_candidate.py`/`cone_upper_support_candidate.py`が同じ定数を動的参照。`run_with_manifest.py`に`--yellow-s-min`（既定80）を追加し、`manifest_run.json`へ記録。新5テスト（低彩度の床/コーン、completion/upperの動的参照）。
+
+**結果**：[解析](ExperimentalResults/2026-11-21/yellow_suite_analysis_r01/README.md)。s80/130/150は`NameError: colour_support`でfailed（`cone_upper_support_candidate.py`のimport追加漏れ。修正済み、`_upper_context`直接テストで再発検出）。**s170は30/30画像・300対すべて数値**、距離は約1.06/1.58/2.13m、元vs packetの差は中央値0、19/30が0cm、29/30が≤3cm、最大+5.15cm（f001982）。赤で起きたgate反転は黄色s170では発生せず。原archiveはrecordings/2026-11-21/yellow_suite_intake_r01、`manifest_run.json`は未提出のためS値はファイル名からの推定。
+
+**版ガードの状態**：v3（`frame_packet_gpu_recompression_r01/run.py`変更）で`test_frame_packet_saved_suite`の「previous verified runner changed」4件、今回の`cone_*`変更で`test_lossless_packet_gpu_submission`の「fixed manifest differs」1件が失敗。**いずれも版混在を防ぐガードの意図どおり**で、機能回帰ではない（関連134テストは成功）。実験終了後に新baselineを作るか、当時のcommitで旧検証を再実行するかを決める。
+
+次：修正をGPUPCへ反映し、s80/130/150を再実行。`manifest_run.json`も提出。4runで数値率・距離差・外れ値・支持点安定性を比較し、採用S下限を決める。`controlling_distance`/`physical_metric_verified`/`floor_contact_verified`/`usable_for_ffb`はfalseのまま。
+
 ## 11/18（訂正済み）：案A＝frame/motion packetの実回線transport probeを既定offで実装、372テスト成功
 
 ユーザーが「今月中に勾配FFBへ本格シフトしたい」ため案Aを選択。合成UDP（25Mbpsまで余裕、50Mbpsで0.2〜0.3%欠損）は足切りに過ぎず、SCTP/DTLS・PNG encode・fragment再構成・期限判定を含む実経路のframe到達率が必要と判断した。
