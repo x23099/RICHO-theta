@@ -77,13 +77,23 @@ def main(argv):
     parser.add_argument('--manifest', type=Path, required=True)
     parser.add_argument('--bottom-fallback', action='store_true')
     parser.add_argument('--provenance', type=Path)
+    parser.add_argument('--max-images', type=int, default=200)
+    parser.add_argument('--max-timeout-sec', type=float, default=900.0)
     args, rest = parser.parse_known_args(argv)
     if '--' in rest:
         rest = rest[rest.index('--') + 1:]
     if rest[:1] == ['--']:
         rest = rest[1:]
+    if args.max_images < 1 or args.max_timeout_sec <= 0:
+        raise SystemExit('positive max-images and max-timeout-sec required')
     paths, roi, manifest = read_manifest(args.manifest)
+    if len(paths) > args.max_images:
+        raise SystemExit(
+            f'manifest has {len(paths)} images; --max-images={args.max_images}'
+        )
     runner = load(RUNNER, 'pinned_gpu_runner')
+    runner.MAX_IMAGES = args.max_images
+    runner.MAX_TIMEOUT_SEC = args.max_timeout_sec
     for path, name, digest in paths:
         runner.KNOWN_IMAGES[name] = digest
     probe = None
@@ -103,6 +113,8 @@ def main(argv):
                           manifest_sha256=hashlib.sha256(Path(args.manifest).read_bytes()).hexdigest(),
                           images=len(paths), bottom_fallback=bool(args.bottom_fallback),
                           roi_native_xyxy=roi, runner_args=rest,
+                          max_images=args.max_images,
+                          max_timeout_sec=args.max_timeout_sec,
                           runner_and_src_unchanged=True, usable_for_ffb=False, published_to_ros=False)
             (output / 'manifest_run.json').write_text(json.dumps(record, indent=2) + '\n')
     return code

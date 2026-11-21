@@ -45,6 +45,10 @@ CODE = ('driver_frame_packet.py', 'driver_frame_motion.py', 'driver_odometry_obs
         'cone_support_completion_candidate.py', 'cone_support_quality.py',
         'angular_fisheye_geometry.py')
 MAX_LOG = 32 * 1024 * 1024
+# Defaults preserve the original 1..4 image audit.  The manifest harness may
+# override these before calling main() for a larger pre-registered suite.
+MAX_IMAGES = 4
+MAX_TIMEOUT_SEC = 180.0
 
 
 def sha_bytes(data):
@@ -66,8 +70,10 @@ def describe(values):
 
 
 def load_images(paths):
-    if not 1 <= len(paths) <= 4:
-        raise ValueError('1..4 explicit previously audited saved images required')
+    if not 1 <= len(paths) <= MAX_IMAGES:
+        raise ValueError(
+            f'1..{MAX_IMAGES} explicit previously audited saved images required'
+        )
     jobs, seen = [], set()
     for value in paths:
         path = Path(value).absolute()  # Do not hide a final symlink from bounded read.
@@ -235,7 +241,8 @@ def benchmark(jobs, predictor, engine_factory, *, repetitions=5, warmup=3,
               sync=lambda: None, memory=None, output=None, timeout_sec=180.):
     if (type(repetitions) is not int or not 1 <= repetitions <= 20
             or type(warmup) is not int or not 1 <= warmup <= 10
-            or not 1 <= len(jobs) <= 4 or not 0 < timeout_sec <= 180):
+            or not 1 <= len(jobs) <= MAX_IMAGES
+            or not 0 < timeout_sec <= MAX_TIMEOUT_SEC):
         raise ValueError('bounded jobs/repetitions/warmup/duration required')
     rows, pairs, sequence, used = [], [], 0, 0
     deadline = time.monotonic() + timeout_sec
@@ -309,6 +316,7 @@ def main(argv=None):
     parser.add_argument('--device', type=int, default=0)
     parser.add_argument('--repetitions', type=int, default=5)
     parser.add_argument('--warmup', type=int, default=3)
+    parser.add_argument('--timeout-sec', type=float, default=MAX_TIMEOUT_SEC)
     parser.add_argument('--experimental-rigid-mount', action='store_true')
     args = parser.parse_args(argv)
     output, created = args.output_dir.resolve(), False
@@ -319,8 +327,11 @@ def main(argv=None):
     try:
         if not args.experimental_rigid_mount:
             raise ValueError('--experimental-rigid-mount acknowledgement required')
-        if (not 1 <= args.repetitions <= 20 or not 1 <= args.warmup <= 10 or args.device < 0):
-            raise ValueError('bounded repetitions/warmup and CUDA device required')
+        if (not 1 <= args.repetitions <= 20 or not 1 <= args.warmup <= 10
+                or not 0 < args.timeout_sec <= MAX_TIMEOUT_SEC or args.device < 0):
+            raise ValueError(
+                'bounded repetitions/warmup/timeout and CUDA device required'
+            )
         checked_target_roi(args.target_roi)
         jobs = load_images(args.image)
         settings, camera, _, _ = load_config(args.config)
@@ -350,6 +361,7 @@ def main(argv=None):
             profile_sha256=profile_sha, config_sha256=digest(args.config),
             original_pngs=[{k:v for k,v in j.items() if k != 'image'} for j in jobs],
             image_count=len(jobs), single_image_preliminary=len(jobs) == 1,
+            max_images=MAX_IMAGES, timeout_sec=args.timeout_sec,
             repetitions=args.repetitions, warmup_calls_excluded=2*args.warmup*len(jobs),
             order='original/packet/packet/original per ABBA cycle',
             original_capture_or_odometry_metadata_reconstructed=False)
@@ -369,7 +381,8 @@ def main(argv=None):
                         peak_reserved=torch.cuda.max_memory_reserved(args.device))
         start, cpu = time.perf_counter(), time.process_time()
         rows, pairs, values = benchmark(jobs, predictor, factory, repetitions=args.repetitions,
-            warmup=args.warmup, sync=sync, memory=memory, output=output)
+            warmup=args.warmup, sync=sync, memory=memory, output=output,
+            timeout_sec=args.timeout_sec)
         wall, process_cpu = time.perf_counter()-start, time.process_time()-cpu
         if any(digest(p) != sha for p, sha in inputs.items()) or any(digest(ROOT/p) != sha for p, sha in code.items()):
             raise ValueError('input/code changed during probe')
