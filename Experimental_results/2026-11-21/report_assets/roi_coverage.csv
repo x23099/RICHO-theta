@@ -1,0 +1,7 @@
+roi,distance,images,numeric,withheld,numeric_rate
+narrow,1.0m,3,1,2,0.3333
+narrow,1.5m,3,1,2,0.3333
+narrow,2.0m,3,3,0,1.0
+wide,1.0m,3,2,1,0.6667
+wide,1.5m,3,3,0,1.0
+wide,2.0m,4,4,0,1.0
