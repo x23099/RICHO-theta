@@ -57,11 +57,29 @@
 
 **実装**：`YELLOW_SATURATION_MIN=80`を`src/cone_colour_support_candidate.py`へ追加し、`cone_support_completion_candidate.py`/`cone_upper_support_candidate.py`が同じ定数を動的参照。`run_with_manifest.py`に`--yellow-s-min`（既定80）を追加し、`manifest_run.json`へ記録。新5テスト（低彩度の床/コーン、completion/upperの動的参照）。
 
-**結果**：[解析](ExperimentalResults/2026-11-21/yellow_suite_analysis_r01/README.md)。s80/130/150は`NameError: colour_support`でfailed（`cone_upper_support_candidate.py`のimport追加漏れ。修正済み、`_upper_context`直接テストで再発検出）。**s170は30/30画像・300対すべて数値**、距離は約1.06/1.58/2.13m、元vs packetの差は中央値0、19/30が0cm、29/30が≤3cm、最大+5.15cm（f001982）。赤で起きたgate反転は黄色s170では発生せず。原archiveはrecordings/2026-11-21/yellow_suite_intake_r01、`manifest_run.json`は未提出のためS値はファイル名からの推定。
+**結果（r02で再取得、全run complete）**：[解析](ExperimentalResults/2026-11-21/yellow_suite_analysis_r01/README.md)。同一30frame（session 5d142cea）でSのみ変更。s80=4/30数値・gate反転4、s130=22/30・反転2（差最大0.49cm）、s150=23/30・反転7、**s170=30/30数値・反転0**（差中央値0、29/30が≤3cm）。S=80の保留は床のベージュ混入。S=150/170の最大差5.15cmはf001982で、**元画像側が同距離帯より約5cm近い外れ値**（packetは他frameと一致）。r01のs80/130/150は`NameError: colour_support`でfailed（`cone_upper_support_candidate.py`のimport追加漏れ。修正済み、`_upper_context`直接テストで再発検出）。原archiveとmanifest_runはrecordings/2026-11-21/yellow_suite_intake_r02、S値は`yellow_saturation_min`で確認済み。
+
+**判断：このシーンはS=170を採用候補**（30/30・反転0・中央値0）。床S最大≈104、コーンS235〜255で余裕がある。S=130は差が最も小さい（最大0.49cm）が8/30保留で連続性が劣る。
+
+**距離追加確認（約2.7m・10frame）**：S=170は10/10・反転0・差≤0.21cm（中央値0）、S=80は9/10・差≤0.20cm。**Sの差が効くのは近距離1.0〜2.0m**（コーンがcropを埋め床と連結）で、2.7mではS=80でもほぼ通る。原archiveは同intakeへ追加。これはスケールの確認で、別の床/コーン/色かぶりの確認は未実施。未確認のため既定80は変えず、`--yellow-s-min 170`の実験用上書きを継続する。
 
 **版ガードの状態**：v3（`frame_packet_gpu_recompression_r01/run.py`変更）で`test_frame_packet_saved_suite`の「previous verified runner changed」4件、今回の`cone_*`変更で`test_lossless_packet_gpu_submission`の「fixed manifest differs」1件が失敗。**いずれも版混在を防ぐガードの意図どおり**で、機能回帰ではない（関連134テストは成功）。実験終了後に新baselineを作るか、当時のcommitで旧検証を再実行するかを決める。
 
 次：修正をGPUPCへ反映し、s80/130/150を再実行。`manifest_run.json`も提出。4runで数値率・距離差・外れ値・支持点安定性を比較し、採用S下限を決める。`controlling_distance`/`physical_metric_verified`/`floor_contact_verified`/`usable_for_ffb`はfalseのまま。
+
+### 11/21追記：いつもの床でもS=170は5/5、方向の3連続一致へ修正
+
+**床の追加確認**：いつもの床で5 frame。S=80は5/5が`not_lateral_only_contact`で保留、**S=170は5/5数値・反転0・差≤0.23cm（中央値0）**。グレー床（30枚）と2.7m（10枚）に続き、いつもの床でもS=170が通った。原archiveはrecordings/2026-11-21/yellow_suite_intake_r02。別コーンは無いため、退色・汚れコーンでの確認は未実施。
+
+**方向一致性の欠陥修正**：初版2-of-3は(1)空白後も古い票で`confirmed=true`（2秒前の勾配）、(2)交互入力で毎frame符号反転、の2件を合成入力で再現した。`src/driver_risk_consistency.py`を**直近3件の連続一致**へ変更し、票を個別失効（`max_sample_age_sec`0.5s、`expired`フラグ）。空白後の古い票は使わず、交互入力は永久に確定しない。遅延上限は2frame=0.4sのまま（出力値は常に最新sample）。新12テスト（空白・交互・3連続・stale・時計逆行・deadband・既定3）で再現ケースを固定。関連**202 passed**。[仕様](ExperimentalResults/2026-11-20/risk_consistency_r01/README.md)。
+
+版ガード5件（runner変更4・cone変更1）は意図どおりで機能回帰ではない。次は①motion bridge/FFBへの接続設計、②黄色S=170の既定化判断（別コーン未確認のため保留）、③下辺フォールバックの回帰run。
+
+### 11/21追記2：ライブ確認用の環境変数と横位置グリッドの準備
+
+`src/cone_colour_support_candidate.py`で`THETA_YELLOW_S_MIN`（既定なし=80、0..255）をimport時に読むようにした。**既定80は不変**。live UI/GPU subprocessへ環境変数が継承されるため、`THETA_YELLOW_S_MIN=170`でライブ距離表示を確認できる。新1テスト（reloadで170→80復帰）。
+
+次（学校で可能）：①`--motion-distance`で黄色コーン1.0/1.5mのライブ距離表示を確認（RTP→GPU距離、機体停止・FFBなし）、②横位置グリッド（距離×左右）を各2frame採取し、S=170でオフライン比較。別コーンは同一品のため実施しない。ライブは`export THETA_UI_PYTHON="$(command -v python3)"; export THETA_YELLOW_S_MIN=170; bash src/start_theta_receive_rtc.sh --motion-distance --motion-python .../yolo-env/bin/python3 --motion-weights ... --motion-profile Experimental_results/2026-11-09/cone_motion_evaluation_r01/prepared_r01/motion_profile_r01.json --motion-output-dir <新規> --motion-target-roi 270 0 350 720 --motion-experimental-rigid-mount`。送信は`start_theta_stream_rtc.sh --motion-native --receiver-ip 150.89.169.96`。全flags false、ROS/FFB出力なし。
 
 ## 11/18（訂正済み）：案A＝frame/motion packetの実回線transport probeを既定offで実装、372テスト成功
 

@@ -1,9 +1,12 @@
 """Confirm a steering-risk direction with a 2-of-3 window; NOT wired to FFB.
 
 The consumer must treat ``confirmed=False`` as "withhold", never as "keep the
-previous direction". Steady agreement confirms immediately; only a change has
-to survive the window, so the worst added latency is (window-1) frames
-(0.4 s at 5 Hz for window=3). No ROS, camera, clock sync or command output.
+previous direction". Confirmation requires the LAST ``required`` samples to
+agree (a consecutive run, not a 2-of-3 majority): a majority filter cannot
+reject alternating signs, and it lets one new sample revive the old direction.
+Samples expire individually, so a long input gap cannot confirm an old value.
+Worst added latency is (required-1) frames (0.4 s at 5 Hz for required=3).
+No ROS, camera, clock sync or command output.
 """
 import collections
 import math
@@ -28,7 +31,7 @@ def _direction(value, deadband):
 
 
 class DirectionConsistency:
-    def __init__(self, *, window=3, required=2, deadband=0.1, max_sample_age_sec=0.5,
+    def __init__(self, *, window=3, required=3, deadband=0.1, max_sample_age_sec=0.5,
                  clock=time.monotonic):
         if type(window) is not int or not 1 <= window <= 9:
             raise ValueError('bounded odd window required')
@@ -45,13 +48,24 @@ class DirectionConsistency:
         self.samples = collections.deque(maxlen=window)
         self.last_attempt = None
         self.closed = False
+        self.expired = False
         self.reason = 'no_samples'
 
     def reset(self, reason='reset'):
         self.samples.clear()
         self.last_attempt = None
         self.closed = False
+        self.expired = False
         self.reason = reason
+
+    def _expire(self, now):
+        removed = False
+        while self.samples and now - self.samples[0]['at_sec'] > self.max_age:
+            self.samples.popleft()
+            removed = True
+        if removed:
+            self.expired = True
+        return removed
 
     def offer(self, gradient_normalized, *, risk_level='UNKNOWN', valid=True, at_sec=None):
         """One per-frame sample. Invalid samples break the window on purpose."""
@@ -63,6 +77,7 @@ class DirectionConsistency:
             self.closed = True
             return self.snapshot(reason='clock_reversed')
         self.last_attempt = now
+        self._expire(now)
         level = str(risk_level).strip().upper() if risk_level is not None else 'UNKNOWN'
         if level not in RISK_LEVELS:
             level = 'UNKNOWN'
@@ -79,18 +94,17 @@ class DirectionConsistency:
         now = self.clock()
         if self.closed:
             return self._result(False, None, None, reason or 'closed', None)
-        if len(self.samples) < self.window:
-            return self._result(False, None, None, reason or 'warming_up', None)
-        newest = self.samples[-1]
-        if now - newest['at_sec'] > self.max_age:
-            return self._result(False, None, None, 'stale', None)
-        counts = collections.Counter(sample['direction'] for sample in self.samples)
-        direction, count = counts.most_common(1)[0]
-        if count < self.required:
+        self._expire(now)
+        if len(self.samples) < self.required:
+            stale = self.expired and not self.samples
+            return self._result(False, None, None, 'stale' if stale else (reason or 'warming_up'), None)
+        recent = list(self.samples)[-self.required:]
+        directions = {sample['direction'] for sample in recent}
+        if len(directions) != 1:
             return self._result(False, None, None, 'disagreement', None)
-        matching = [sample for sample in self.samples if sample['direction'] == direction]
-        added = max(0., newest['at_sec'] - matching[-1]['at_sec'])
-        return self._result(True, direction, matching[-1]['gradient'],
+        newest = self.samples[-1]
+        added = max(0., newest['at_sec'] - recent[0]['at_sec'])
+        return self._result(True, recent[0]['direction'], newest['gradient'],
                             reason or 'confirmed', added, level=newest['level'])
 
     def _result(self, confirmed, direction, gradient, reason, added, level=None):

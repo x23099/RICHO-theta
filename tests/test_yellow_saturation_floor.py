@@ -1,8 +1,11 @@
 """Yellow saturation floor: default 80 preserved, experimental override applies."""
+import importlib
 import importlib.util
+import os
 from pathlib import Path
 import sys
 import unittest
+from unittest import mock
 
 import cv2
 import numpy as np
@@ -74,6 +77,14 @@ class YellowFloorTests(unittest.TestCase):
         info, pixels = _upper_context(image, BOX, self.camera, 'yellow', seed, 4)
         self.assertIsNone(pixels)
         self.assertEqual(info['reason'], 'seed_not_one_colour_component')
+
+    def test_environment_override_is_read_at_import_and_default_is_80(self):
+        with mock.patch.dict(os.environ, {'THETA_YELLOW_S_MIN': '170'}):
+            importlib.reload(colour_support)
+            self.assertEqual(colour_support.YELLOW_SATURATION_MIN, 170)
+        os.environ.pop('THETA_YELLOW_S_MIN', None)
+        importlib.reload(colour_support)
+        self.assertEqual(colour_support.YELLOW_SATURATION_MIN, 80)
 
     def test_saturated_cone_is_kept_at_130(self):
         image = yellow_image(240)

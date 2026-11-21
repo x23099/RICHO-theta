@@ -6,6 +6,7 @@ Seed settings are exploratory image association assumptions, not validation.
 """
 from dataclasses import dataclass
 import math
+import os
 
 import cv2
 import numpy as np
@@ -16,13 +17,16 @@ from theta_rtc_frames import native_frame
 from cone_distance_core import support_from_colour_mask
 
 
-YELLOW_SATURATION_MIN = 80
-
-
 def checked_yellow_saturation_min(value):
     if type(value) is not int or not 0 <= value <= 255:
         raise ValueError('yellow saturation minimum must be an integer in [0,255]')
     return value
+
+
+# Opt-in live override (THETA_YELLOW_S_MIN). Default 80 preserves old behaviour;
+# the bounded experiment harness sets this module attribute directly.
+YELLOW_SATURATION_MIN = checked_yellow_saturation_min(
+    int(os.environ['THETA_YELLOW_S_MIN'])) if 'THETA_YELLOW_S_MIN' in os.environ else 80
 
 
 @dataclass(frozen=True)
