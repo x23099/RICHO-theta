@@ -77,6 +77,8 @@ def main(argv):
     parser.add_argument('--manifest', type=Path, required=True)
     parser.add_argument('--bottom-fallback', action='store_true')
     parser.add_argument('--provenance', type=Path)
+    parser.add_argument('--yellow-s-min', type=int, default=80,
+                        help='experimental yellow saturation floor; 80 preserves the old behaviour')
     parser.add_argument('--max-images', type=int, default=200)
     parser.add_argument('--max-timeout-sec', type=float, default=900.0)
     args, rest = parser.parse_known_args(argv)
@@ -92,6 +94,8 @@ def main(argv):
             f'manifest has {len(paths)} images; --max-images={args.max_images}'
         )
     runner = load(RUNNER, 'pinned_gpu_runner')
+    import cone_colour_support_candidate as colour_support
+    colour_support.YELLOW_SATURATION_MIN = colour_support.checked_yellow_saturation_min(args.yellow_s_min)
     runner.MAX_IMAGES = args.max_images
     runner.MAX_TIMEOUT_SEC = args.max_timeout_sec
     for path, name, digest in paths:
@@ -113,6 +117,7 @@ def main(argv):
                           manifest_sha256=hashlib.sha256(Path(args.manifest).read_bytes()).hexdigest(),
                           images=len(paths), bottom_fallback=bool(args.bottom_fallback),
                           roi_native_xyxy=roi, runner_args=rest,
+                          yellow_saturation_min=args.yellow_s_min,
                           max_images=args.max_images,
                           max_timeout_sec=args.max_timeout_sec,
                           runner_and_src_unchanged=True, usable_for_ffb=False, published_to_ros=False)

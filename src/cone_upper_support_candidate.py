@@ -49,7 +49,7 @@ def _upper_context(image, box, camera, colour, seed, top_padding):
     if colour=="red":
         mask=cv2.inRange(hsv,(0,80,30),(10,255,255)) | cv2.inRange(hsv,(170,80,30),(179,255,255))
     elif colour=="yellow":
-        mask=cv2.inRange(hsv,(15,80,30),(40,255,255))
+        mask=cv2.inRange(hsv,(15,colour_support.checked_yellow_saturation_min(colour_support.YELLOW_SATURATION_MIN),30),(40,255,255))
     else:
         raise ValueError("original seed-selected red or yellow required")
     observation=support_from_colour_mask(mask,left,top)

@@ -16,6 +16,15 @@ from theta_rtc_frames import native_frame
 from cone_distance_core import support_from_colour_mask
 
 
+YELLOW_SATURATION_MIN = 80
+
+
+def checked_yellow_saturation_min(value):
+    if type(value) is not int or not 0 <= value <= 255:
+        raise ValueError('yellow saturation minimum must be an integer in [0,255]')
+    return value
+
+
 @dataclass(frozen=True)
 class ColourSeedSettings:
     central_width_fraction: float = .1
@@ -52,7 +61,7 @@ def observe_separated_support(image, box, camera, settings=None):
     hsv = cv2.cvtColor(image[top:bottom, left:right], cv2.COLOR_BGR2HSV)
     masks = dict(red=(cv2.inRange(hsv, (0, 80, 30), (10, 255, 255))
                       | cv2.inRange(hsv, (170, 80, 30), (179, 255, 255))),
-                 yellow=cv2.inRange(hsv, (15, 80, 30), (40, 255, 255)))
+                 yellow=cv2.inRange(hsv, (15, checked_yellow_saturation_min(YELLOW_SATURATION_MIN), 30), (40, 255, 255)))
     center = (x1+x2)/2
     half = (x2-x1)*settings.central_width_fraction/2
     a, c = math.floor(center-half), math.ceil(center+half)

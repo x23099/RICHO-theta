@@ -11,6 +11,7 @@ import cv2
 import numpy as np
 
 from angular_fisheye_geometry import pixels_in_domain
+import cone_colour_support_candidate as colour_support
 from cone_colour_support_candidate import observe_separated_support
 from cone_distance_core import support_from_colour_mask
 from cone_observation import checked_bbox
@@ -35,7 +36,7 @@ def _context(image, box, camera, colour, seed, lateral_padding):
     if colour == "red":
         mask = cv2.inRange(hsv, (0, 80, 30), (10, 255, 255)) | cv2.inRange(hsv, (170, 80, 30), (179, 255, 255))
     elif colour == "yellow":
-        mask = cv2.inRange(hsv, (15, 80, 30), (40, 255, 255))
+        mask = cv2.inRange(hsv, (15, colour_support.checked_yellow_saturation_min(colour_support.YELLOW_SATURATION_MIN), 30), (40, 255, 255))
     else:
         raise ValueError("original seed-selected red or yellow required")
     observation = support_from_colour_mask(mask, left, top)
