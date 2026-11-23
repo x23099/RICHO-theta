@@ -28,6 +28,8 @@ def gradient_params(**overrides):
         "collision_ffb_gradient_deadband": 0.1,
         "collision_ffb_gradient_prediction_time_sec": 3.5,
         "collision_ffb_gradient_step_sec": 0.05,
+        "collision_ffb_mapping_policy": "gradient_direction",
+        "collision_ffb_side_deadband_m": 0.05,
     }
     params.update(overrides)
     return params
@@ -96,6 +98,37 @@ class SteeringGradientWiringTest(unittest.TestCase):
         self.assertLess(result["gradient_raw"], 0.0)
         self.assertLess(result["gradient_filtered"], 0.0)
         self.assertEqual(result["direction"], 1)
+
+    def test_side_direction_policy_uses_the_obstacle_side_not_the_gradient(self):
+        window = make_window(collision_ffb_mapping_policy="side_direction")
+        # Left obstacle (x_m<0 -> left>0). The gradient direction would also be -1.
+        result = window.update_steering_gradient("WARNING", True)
+        self.assertEqual(result["direction"], -1)
+        self.assertEqual(result["mapping_policy"], "side_direction")
+        window.last_blue_track = {"z_m": 1.0, "x_m": 0.30}
+        result = window.update_steering_gradient("WARNING", True)
+        self.assertEqual(result["direction"], 1)
+
+    def test_side_direction_policy_is_centered_within_the_deadband(self):
+        window = make_window(collision_ffb_mapping_policy="side_direction")
+        window.last_blue_track = {"z_m": 1.0, "x_m": -0.01}
+        result = window.update_steering_gradient("WARNING", True)
+        self.assertEqual(result["direction"], 0)
+
+    def test_side_direction_keeps_side_when_gradient_inverts(self):
+        window = make_window(collision_ffb_mapping_policy="side_direction")
+        # Strong same-side yaw can invert the gradient; the side direction must stay.
+        window.last_prediction_angular_radps = 0.30
+        result = window.update_steering_gradient("WARNING", True)
+        self.assertEqual(result["direction"], -1)
+
+    def test_no_direction_policy_and_unknown_policy_fallback(self):
+        window = make_window(collision_ffb_mapping_policy="no_direction")
+        self.assertEqual(window.update_steering_gradient("WARNING", True)["direction"], 0)
+        window = make_window(collision_ffb_mapping_policy="not-a-policy")
+        result = window.update_steering_gradient("WARNING", True)
+        self.assertEqual(result["mapping_policy"], "gradient_direction")
+        self.assertEqual(result["direction"], -1)
 
     def test_direction_disabled_resets_state(self):
         window = make_window(collision_ffb_direction_enabled=0)

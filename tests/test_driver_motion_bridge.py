@@ -103,8 +103,12 @@ class MotionPipeProtocolTests(unittest.TestCase):
             with self.assertRaises(ValueError):checked_result(dict(result,**changes),self.frame)
 
     def test_compact_result_excludes_images_and_support_arrays(self):
-        result=dict(valid_result(self.frame),support_pixel=[320,400],support_observation=dict(support=[[1,2]]))
-        self.assertEqual(compact_result(result),valid_result(self.frame))
+        box=dict(image="a",prediction_index=0,class_id=0,confidence=0.9,x1=1.0,y1=2.0,x2=3.0,y2=4.0)
+        result=dict(valid_result(self.frame),support_pixel=[320,400],
+                    selected_detector_boxes=[box],support_observation=dict(support=[[1,2]]))
+        expected=dict(valid_result(self.frame),support_pixel=[320,400],selected_detector_boxes=[box])
+        self.assertEqual(compact_result(result),expected)
+        self.assertEqual(checked_result(compact_result(result),self.frame),expected)
 
 
 class DriverTapTests(unittest.TestCase):

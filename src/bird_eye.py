@@ -2564,12 +2564,40 @@ class CalibrationWindow(QWidget):
             valid=bool(result["valid"] and measurement_valid),
         )
         result["gradient_filtered"] = filtered
-        result["direction"] = gradient_to_direction(
-            filtered,
-            threshold=self.params.get(
-                "collision_ffb_gradient_deadband", 0.1
-            ),
-        )
+        policy = str(
+            self.params.get(
+                "collision_ffb_mapping_policy", "gradient_direction"
+            )
+        ).strip()
+        if policy not in (
+            "gradient_direction",
+            "side_direction",
+            "no_direction",
+        ):
+            policy = "gradient_direction"
+        if policy == "gradient_direction":
+            direction = gradient_to_direction(
+                filtered,
+                threshold=self.params.get(
+                    "collision_ffb_gradient_deadband", 0.1
+                ),
+            )
+        elif policy == "side_direction":
+            left_m = -float(self.last_blue_track["x_m"])
+            deadband_m = float(
+                self.params.get("collision_ffb_side_deadband_m", 0.05)
+            )
+            direction = (
+                -1
+                if left_m > deadband_m
+                else 1
+                if left_m < -deadband_m
+                else 0
+            )
+        else:
+            direction = 0
+        result["direction"] = direction
+        result["mapping_policy"] = policy
         self.last_steering_gradient = result
         return result
 

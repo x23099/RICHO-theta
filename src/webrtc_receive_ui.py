@@ -2190,6 +2190,7 @@ class ThetaDriverUI(QWidget):
         super().__init__()
         self.args = args
         self.motion = getattr(args, "motion_controller", None)
+        self.cone_ffb_intent = getattr(args, "cone_ffb_intent", None)
         self.telemetry_recorder = getattr(args, "telemetry_recorder", None)
         self.packet_probe = getattr(args, "packet_probe", None)
         self.packet_sink = getattr(args, "packet_sink", None)
@@ -2650,11 +2651,21 @@ class ThetaDriverUI(QWidget):
         return front_view
 
     def update_frame(self):
+        intent = getattr(self, "cone_ffb_intent", None)
         if self.motion is not None:
             from driver_motion_presentation import panel_text
             try:
-                self.motion_label.setText(panel_text(self.motion.snapshot(),
-                    target_roi=getattr(getattr(self, "args", None), "motion_target_roi", None)))
+                snapshot = self.motion.snapshot()
+                text = panel_text(snapshot,
+                    target_roi=getattr(getattr(self, "args", None), "motion_target_roi", None))
+                if intent is not None:
+                    try:
+                        intent.observe(snapshot, self.odom_node.linear_x,
+                                       self.odom_node.angular_z)
+                    except Exception as error:
+                        logger.warning("Cone FFB intent observation skipped: %s", error)
+                    text += "\n" + intent.last_text()
+                self.motion_label.setText(text)
             except Exception as error:
                 self.motion_label.setText("RANGE WITHHELD: " + str(error)[:200])
         # WebRTCスレッドから最新の画像フレームをスレッドセーフに取得する
@@ -2723,6 +2734,8 @@ class ThetaDriverUI(QWidget):
     def closeEvent(self, event):
         if self.telemetry_recorder is not None:
             self.telemetry_recorder.request_stop()  # Disk drain runs outside the UI/RTC callback.
+        if self.cone_ffb_intent is not None:
+            self.cone_ffb_intent.request_stop()  # Dry-run JSONL only; never ROS/FFB.
         if self.motion is not None:
             self.motion.request_stop()  # Only this inference subprocess; NOT a robot stop.
         if hasattr(self, "input_timer"):
@@ -2781,11 +2794,18 @@ def main():
 
     from driver_motion_bridge import add_motion_arguments, bridge_from_args
     from driver_telemetry_recording import add_recording_arguments, recorder_from_args
+    from driver_cone_ffb_intent_log import add_cone_intent_arguments, recorder_from_args as cone_intent_from_args
     add_motion_arguments(parser)
     add_recording_arguments(parser)
+    add_cone_intent_arguments(parser)
     args = parser.parse_args()
     args.motion_controller = bridge_from_args(args)  # Validate opt-in before ROS startup.
     args.telemetry_recorder = recorder_from_args(args)  # OFF by default; no files/threads here.
+    args.cone_ffb_intent = cone_intent_from_args(args)  # Dry-run JSONL only; no publisher.
+    if args.cone_ffb_intent is not None and args.motion_controller is None:
+        parser.error("--cone-ffb-intent-dir requires --motion-distance")
+    if args.cone_ffb_intent is not None:
+        args.cone_ffb_intent.start()  # Fail before ROS/Qt startup if the log cannot open.
     args.packet_probe = args.packet_sink = None
     if args.frame_packet_probe_dir:
         from driver_frame_packet_probe import ProbePacketSink, ProbeRecorder, probe_directory

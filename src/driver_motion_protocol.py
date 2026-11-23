@@ -69,13 +69,55 @@ def read_frame(stream):
     return NativeFrame(value["session"],value["sequence"],media,received,image)
 
 
+BOX_FIELDS = {"class_id","confidence","x1","y1","x2","y2"}
+BOX_IDENTITY_FIELDS = {"image","prediction_index"}
+
+
+def checked_boxes(value):
+    """Bounded detector boxes for the same-frame FFB intent; no images.
+
+    The engine always emits the six numeric fields. Detector provenance
+    (``image``, ``prediction_index``) is optional because not every predictor
+    returns it. Unsigned images and support arrays never cross the pipe.
+    """
+    if type(value) is not list or len(value) > 8:
+        raise ValueError("bounded detector box list required")
+    result = []
+    for box in value:
+        if (type(box) is not dict or not BOX_FIELDS <= set(box)
+                or set(box) - (BOX_FIELDS|BOX_IDENTITY_FIELDS)):
+            raise ValueError("bounded detector box fields required")
+        if "image" in box and (type(box["image"]) is not str or not 0 < len(box["image"]) <= 128):
+            raise ValueError("bounded detector box fields required")
+        if "prediction_index" in box and (type(box["prediction_index"]) is not int
+                                          or box["prediction_index"] < 0):
+            raise ValueError("bounded detector box fields required")
+        class_id, confidence = box["class_id"], box["confidence"]
+        if (type(class_id) not in (int, float) or not np.isfinite(class_id) or class_id < 0
+                or type(confidence) not in (int, float) or not np.isfinite(confidence)
+                or not 0.0 <= confidence <= 1.0):
+            raise ValueError("bounded detector box fields required")
+        coordinates = []
+        for name, limit in (("x1", 1280.0), ("y1", 720.0), ("x2", 1280.0), ("y2", 720.0)):
+            coordinate = box[name]
+            if type(coordinate) not in (int, float) or not np.isfinite(coordinate) or not 0.0 <= coordinate <= limit:
+                raise ValueError("bounded detector coordinates required")
+            coordinates.append(coordinate)
+        if not (coordinates[0] < coordinates[2] and coordinates[1] < coordinates[3]):
+            raise ValueError("ordered detector coordinates required")
+        result.append(dict(box))
+    return result
+
+
 def checked_result(value, frame):
     """Only bounded scalar metadata crosses back into the driver UI."""
     keys = {"session","frame","source_time_sec","distance_available",
             "horizontal_camera_foot_range_m","reason","primary_model"}
+    optional = {"selected_detector_boxes","support_pixel"}
     flags = ("physical_metric_verified","floor_contact_verified","controlling_distance",
              "usable_for_ffb","published_to_ros")
-    if (not isinstance(value,dict) or set(value) != keys|set(flags)
+    if (not isinstance(value,dict) or not keys|set(flags) <= set(value)
+            or set(value) - (keys|set(flags)|optional)
             or value.get("session") != frame.session or type(value.get("frame")) is not int
             or value["frame"] != frame.sequence or value.get("source_time_sec") != frame.received_at
             or any(value.get(k) is not False for k in flags)
@@ -89,11 +131,24 @@ def checked_result(value, frame):
             raise ValueError("finite positive motion range required")
     elif number is not None:
         raise ValueError("withheld result must not contain a range")
-    return dict(value)
+    result = dict(value)
+    if "selected_detector_boxes" in value:
+        result["selected_detector_boxes"] = checked_boxes(value["selected_detector_boxes"])
+    if "support_pixel" in value:
+        pixel = value["support_pixel"]
+        if pixel is not None and (type(pixel) is not list or len(pixel) != 2
+                                  or any(type(v) is not int for v in pixel)
+                                  or not 0 <= pixel[0] < 1280 or not 0 <= pixel[1] < 720):
+            raise ValueError("bounded support pixel required")
+        result["support_pixel"] = pixel
+    return result
 
 
 def compact_result(result):
     names = ("session","frame","source_time_sec","distance_available",
         "horizontal_camera_foot_range_m","reason","primary_model","physical_metric_verified",
         "floor_contact_verified","controlling_distance","usable_for_ffb","published_to_ros")
-    return {name:result[name] for name in names}
+    compact = {name: result[name] for name in names}
+    compact["selected_detector_boxes"] = [dict(b) for b in result.get("selected_detector_boxes", [])]
+    compact["support_pixel"] = result.get("support_pixel")
+    return compact

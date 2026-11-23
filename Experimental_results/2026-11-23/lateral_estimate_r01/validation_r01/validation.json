@@ -1,0 +1,201 @@
+{
+  "schema": "lateral_calibration_validation_v1",
+  "state": "in_sample_generalisation_check_NOT_field_validation",
+  "loocv": {
+    "rows": [
+      {
+        "nominal_m": 1.0,
+        "side": "L",
+        "known": 0.25,
+        "estimated": 0.2247,
+        "residual": -0.0253
+      },
+      {
+        "nominal_m": 1.0,
+        "side": "R",
+        "known": -0.25,
+        "estimated": -0.2579,
+        "residual": -0.0079
+      },
+      {
+        "nominal_m": 1.5,
+        "side": "L",
+        "known": 0.25,
+        "estimated": 0.2485,
+        "residual": -0.0015
+      },
+      {
+        "nominal_m": 1.5,
+        "side": "R",
+        "known": -0.25,
+        "estimated": -0.2715,
+        "residual": -0.0215
+      },
+      {
+        "nominal_m": 2.0,
+        "side": "L",
+        "known": 0.25,
+        "estimated": 0.2319,
+        "residual": -0.0181
+      },
+      {
+        "nominal_m": 2.0,
+        "side": "L",
+        "known": 0.25,
+        "estimated": 0.2319,
+        "residual": -0.0181
+      },
+      {
+        "nominal_m": 2.0,
+        "side": "R",
+        "known": -0.25,
+        "estimated": -0.2822,
+        "residual": -0.0322
+      }
+    ],
+    "summary": {
+      "count": 7,
+      "abs_max_m": 0.0322,
+      "rms_m": 0.0202
+    }
+  },
+  "cross_distance": {
+    "rows": [
+      {
+        "held_distance_m": 1.0,
+        "side": "L",
+        "known": 0.25,
+        "estimated": 0.2104,
+        "residual": -0.0396
+      },
+      {
+        "held_distance_m": 1.0,
+        "side": "R",
+        "known": -0.25,
+        "estimated": -0.2279,
+        "residual": 0.0221
+      },
+      {
+        "held_distance_m": 1.5,
+        "side": "L",
+        "known": 0.25,
+        "estimated": 0.252,
+        "residual": 0.002
+      },
+      {
+        "held_distance_m": 1.5,
+        "side": "R",
+        "known": -0.25,
+        "estimated": -0.2719,
+        "residual": -0.0219
+      },
+      {
+        "held_distance_m": 2.0,
+        "side": "L",
+        "known": 0.25,
+        "estimated": 0.2227,
+        "residual": -0.0273
+      },
+      {
+        "held_distance_m": 2.0,
+        "side": "L",
+        "known": 0.25,
+        "estimated": 0.2227,
+        "residual": -0.0273
+      },
+      {
+        "held_distance_m": 2.0,
+        "side": "R",
+        "known": -0.25,
+        "estimated": -0.2561,
+        "residual": -0.0061
+      }
+    ],
+    "summary": {
+      "count": 7,
+      "abs_max_m": 0.0396,
+      "rms_m": 0.0241
+    }
+  },
+  "side_specific": {
+    "fits": {
+      "L": {
+        "slope": 0.003574,
+        "intercept": 0.000584,
+        "points": 4
+      },
+      "R": {
+        "slope": 0.002834,
+        "intercept": 0.00109,
+        "points": 3
+      }
+    },
+    "rows": [
+      {
+        "nominal_m": 1.0,
+        "side": "L",
+        "known": 0.25,
+        "estimated": 0.2436,
+        "residual": -0.0064
+      },
+      {
+        "nominal_m": 1.0,
+        "side": "R",
+        "known": -0.25,
+        "estimated": -0.2491,
+        "residual": 0.0009
+      },
+      {
+        "nominal_m": 1.5,
+        "side": "L",
+        "known": 0.25,
+        "estimated": 0.2594,
+        "residual": 0.0094
+      },
+      {
+        "nominal_m": 1.5,
+        "side": "R",
+        "known": -0.25,
+        "estimated": -0.2514,
+        "residual": -0.0014
+      },
+      {
+        "nominal_m": 2.0,
+        "side": "L",
+        "known": 0.25,
+        "estimated": 0.2483,
+        "residual": -0.0017
+      },
+      {
+        "nominal_m": 2.0,
+        "side": "L",
+        "known": 0.25,
+        "estimated": 0.2482,
+        "residual": -0.0018
+      },
+      {
+        "nominal_m": 2.0,
+        "side": "R",
+        "known": -0.25,
+        "estimated": -0.2495,
+        "residual": 0.0005
+      }
+    ],
+    "summary": {
+      "count": 7,
+      "abs_max_m": 0.0094,
+      "rms_m": 0.0044
+    }
+  },
+  "common_fit_residuals": {
+    "abs_max_m": 0.0227,
+    "rms_m": 0.0119
+  },
+  "side_sign": {
+    "checks": 7,
+    "correct": 7
+  },
+  "camera_or_gpu_used": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}

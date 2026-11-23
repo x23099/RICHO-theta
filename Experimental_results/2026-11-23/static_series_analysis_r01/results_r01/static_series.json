@@ -1,0 +1,177 @@
+{
+  "100C": {
+    "frames": 768,
+    "numeric": 742,
+    "numeric_rate": 0.9661,
+    "run_frames": 742,
+    "run_seconds": 24.718,
+    "run_median_m": 1.02977,
+    "run_stdev_mm": 4.427,
+    "run_min_m": 1.00433,
+    "run_max_m": 1.03196,
+    "run_span_mm": 27.623,
+    "consecutive_diff_p95_mm": 1.636,
+    "gate_transitions": 1,
+    "reasons": [
+      "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+      "frame_processing_too_old",
+      "no_candidate"
+    ]
+  },
+  "100L": {
+    "frames": 1050,
+    "numeric": 1012,
+    "numeric_rate": 0.9638,
+    "run_frames": 1012,
+    "run_seconds": 33.677,
+    "run_median_m": 1.07997,
+    "run_stdev_mm": 13.957,
+    "run_min_m": 1.07307,
+    "run_max_m": 1.10741,
+    "run_span_mm": 34.336,
+    "consecutive_diff_p95_mm": 2.355,
+    "gate_transitions": 1,
+    "reasons": [
+      "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+      "frame_processing_too_old",
+      "no_candidate"
+    ]
+  },
+  "100R": {
+    "frames": 886,
+    "numeric": 866,
+    "numeric_rate": 0.9774,
+    "run_frames": 866,
+    "run_seconds": 28.853,
+    "run_median_m": 1.07913,
+    "run_stdev_mm": 13.43,
+    "run_min_m": 1.07706,
+    "run_max_m": 1.10799,
+    "run_span_mm": 30.925,
+    "consecutive_diff_p95_mm": 1.258,
+    "gate_transitions": 1,
+    "reasons": [
+      "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+      "frame_processing_too_old",
+      "no_candidate"
+    ]
+  },
+  "150C": {
+    "frames": 1082,
+    "numeric": 1080,
+    "numeric_rate": 0.9982,
+    "run_frames": 932,
+    "run_seconds": 31.033,
+    "run_median_m": 1.59038,
+    "run_stdev_mm": 10.597,
+    "run_min_m": 1.53494,
+    "run_max_m": 1.5934,
+    "run_span_mm": 58.468,
+    "consecutive_diff_p95_mm": 5.393,
+    "gate_transitions": 3,
+    "reasons": [
+      "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+      "frame_processing_too_old",
+      "no_candidate"
+    ]
+  },
+  "150L": {
+    "frames": 1169,
+    "numeric": 1022,
+    "numeric_rate": 0.8743,
+    "run_frames": 853,
+    "run_seconds": 28.387,
+    "run_median_m": 1.64263,
+    "run_stdev_mm": 8.894,
+    "run_min_m": 1.59415,
+    "run_max_m": 1.64747,
+    "run_span_mm": 53.32,
+    "consecutive_diff_p95_mm": 4.677,
+    "gate_transitions": 13,
+    "reasons": [
+      "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+      "ambiguous_front_cones",
+      "frame_processing_too_old",
+      "insufficient_upper_body_colour_evidence",
+      "no_candidate"
+    ]
+  },
+  "150R": {
+    "frames": 1881,
+    "numeric": 1837,
+    "numeric_rate": 0.9766,
+    "run_frames": 1300,
+    "run_seconds": 43.327,
+    "run_median_m": 1.61312,
+    "run_stdev_mm": 0.733,
+    "run_min_m": 1.61109,
+    "run_max_m": 1.61588,
+    "run_span_mm": 4.788,
+    "consecutive_diff_p95_mm": 0.857,
+    "gate_transitions": 9,
+    "reasons": [
+      "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+      "ambiguous_front_cones",
+      "colour_contour_reaches_roi_edge",
+      "frame_processing_too_old",
+      "no_candidate"
+    ]
+  },
+  "200C": {
+    "frames": 1206,
+    "numeric": 1195,
+    "numeric_rate": 0.9909,
+    "run_frames": 868,
+    "run_seconds": 28.903,
+    "run_median_m": 2.12354,
+    "run_stdev_mm": 4.667,
+    "run_min_m": 2.11773,
+    "run_max_m": 2.13108,
+    "run_span_mm": 13.351,
+    "consecutive_diff_p95_mm": 8.735,
+    "gate_transitions": 5,
+    "reasons": [
+      "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+      "frame_processing_too_old",
+      "no_candidate"
+    ]
+  },
+  "200L": {
+    "frames": 1191,
+    "numeric": 1166,
+    "numeric_rate": 0.979,
+    "run_frames": 1166,
+    "run_seconds": 38.827,
+    "run_median_m": 2.17662,
+    "run_stdev_mm": 23.47,
+    "run_min_m": 2.08609,
+    "run_max_m": 2.19202,
+    "run_span_mm": 105.921,
+    "consecutive_diff_p95_mm": 5.622,
+    "gate_transitions": 1,
+    "reasons": [
+      "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+      "frame_processing_too_old",
+      "no_candidate"
+    ]
+  },
+  "200R": {
+    "frames": 814,
+    "numeric": 809,
+    "numeric_rate": 0.9939,
+    "run_frames": 546,
+    "run_seconds": 18.156,
+    "run_median_m": 2.17818,
+    "run_stdev_mm": 5.424,
+    "run_min_m": 2.08885,
+    "run_max_m": 2.18207,
+    "run_span_mm": 93.221,
+    "consecutive_diff_p95_mm": 0.0,
+    "gate_transitions": 7,
+    "reasons": [
+      "EXPERIMENTAL_FIXED_MOUNT_NOT_VERIFIED_CONTACT",
+      "frame_processing_too_old",
+      "no_candidate"
+    ]
+  }
+}

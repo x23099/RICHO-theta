@@ -1,6 +1,40 @@
 # コーン測距・FFB開発 引き継ぎ資料
 
-最新作業枠: **ユーザー指定の2026-11-20扱い**（11/18の続き）。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
+最新作業枠: **2026-11-23（自宅・カメラなし）**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
+
+## 11/23最新：実距離系列で方向反転0、Δ=0.05が最も安定、予測時間は効かず
+
+11/21の静止9位置とライブr04を使ったオフライン解析。[日次まとめ](Experimental_results/2026-11-23/README.md)。
+
+**静止系列**（[結果](Experimental_results/2026-11-23/static_series_analysis_r01/results_r01/static_series.json)）：数値率87.4〜99.4%、最長連続区間のフレーム間差p95は0.9〜8.7mm。run全体では最大106mmのゆっくりしたドリフト（200L）があり、設置/架台の再現性は要確認。150Lは`ambiguous_front_cones`134で87.4%。
+
+**勾配＋3連続一致**（[結果](Experimental_results/2026-11-23/gradient_series_r01/results_r01/gradient_series.json)）：5Hz再サンプル、合成yaw±0.15/±0.3・速度0.2/0.4。生の方向反転は最大19（150L）、ライブr04で7。**3連続一致後の方向反転は全系列で0**、確定率96.7〜99.0%（150Lのみ76.7%）。
+
+**Δ・予測時間の感度**（[結果](Experimental_results/2026-11-23/delta_horizon_sensitivity_r01/results_r01/sensitivity.json)）：80評価/条件。Δ=0.05でデッドバンド内66（82.5%）・側と符号逆3・±1cm揺れ0、Δ=0.10で62/6/0、Δ=0.15で55/7/4。**Δ=0.05が最も安定**だが方向が出にくい。**予測時間1.5sと3.5sは同一結果**（経路が最低距離まで延長されるため）。
+
+**符号反転の機序**（[比較](Experimental_results/2026-11-23/continuous_risk_r01/results_r01/comparison.json)）：連続clearance、経路打ち切り、両者の併用を試したが、側と符号逆は6→8、6→8で**改善しなかった**。1.0m左25cm・0.4m/s・yaw+0.3でclearanceはω0.15=−0.154m、ω0.30=+0.014m、ω0.45=+0.182m。強い左旋回では予測経路がコーンの左側を回り込むため、**「さらに左が安全、戻すのが危険」は幾何的に正しい**。corridor二値のアーティファクトではなく、連続化でも消えない。ドライランの「側と符号逆」は単純な「コーン側＝危険」期待との不一致で、モデルの誤りではない。論点は制御則がこの感度をどう提示するか。
+
+結論：3連続一致は実系列の方向反転を完全に除去する。方向だけを送る方式はデッドバンドが多く、大きさのみ提示との併用を検討。**B案を採用**（ユーザー判断）：障害物の側で方向を決め、勾配は大きさの変調だけにする。[実装](src/driver_ffb_side_mapping.py)・[新8テスト](tests/test_driver_ffb_side_mapping.py)・[比較](Experimental_results/2026-11-23/side_mapping_r01/results_r01/comparison.json)。方向は`left_m`の符号（±0.05mデッドバンド）、大きさはrisk_level基礎値（WARNING0.25/CRITICAL0.40/UNKNOWN0.15）×（1+0.6|g|）、|g|≤0.1は変調なし。80評価でAの側不一致6件を**Bは0件**に。強い同側旋回の幾何反転は方向に出さない。中央は方向0で基礎大きさのみ。未接続・flags false。未決：risk_levelの出所、中央時の大きさ提示、側デッドバンド、変調上限。次は火曜G923で「大きさのみ」「A」「B」の比較。
+
+**方針切替をbird_eyeへ追加（既定はA）**：`collision_ffb_mapping_policy`（`gradient_direction`/`side_direction`/`no_direction`）と`collision_ffb_side_deadband_m`（既定0.05）。`update_steering_gradient`で方向だけ切替、大きさは従来どおり。未知値は`gradient_direction`へフォールバック。新4テストを含む関連76 passed。既定は従来と同一。**対象は既存のbird_eye FFB経路（青い障害物）で、コーン距離→FFBは未接続。**
+
+[火曜の手順](Experimental_results/2026-11-24/ffb_policy_comparison_r01/README.md)：M（direction_enabled=0）、A（gradient_direction）、B（side_direction、deadband0.05）を同じ軌道で比較。評定は危険側/逆側の重さ1〜5、方向逆の回数、中止回数。`constant_direction_sign`の事前校准が必須。1被験者・非盲検の探索。
+
+**火曜の記録・集計**：`record_template.csv`（条件×2run）とbird_eyeの記録CSV（FFB列入り）を使い、`analyse.py`で評定平均・方向逆合計・ログの方向/大きさ/リスク段階分布を集計（[手順](Experimental_results/2026-11-24/ffb_policy_comparison_r01/README.md)）。
+
+**火曜の実行準備（方針比較＋コーンdry-run）**：2026-11-23 21:44時点で`/dev/video*`とG923のUSBがなく、実機実施は不可。代わりに同日1セッションで回せる形へ手順を更新した。[make_condition_configs.py](Experimental_results/2026-11-24/ffb_policy_comparison_r01/make_condition_configs.py)は当日のFFB有効configからM/A/Bを生成し、`publish_enabled=1`とrelay/直接経路のtopicを必須にする（既定の`src/bird_eye_config.json`はpublish=0なので拒否）。[preflight.py](Experimental_results/2026-11-24/ffb_policy_comparison_r01/preflight.py)は`--cone-intent-dir`/`--cone-calibration`（新規・`recordings/`配下・校正schema・1.0–2.0m）に加え、publish/relay/topicと`magnitude_only`のpolicy非依存を検査。[analyse_cone_intent.py](Experimental_results/2026-11-24/ffb_policy_comparison_r01/analyse_cone_intent.py)はJSONLから確定遅延・側/出力反転・cadence・大きさ分布・`authority_free`を集計。[手順](Experimental_results/2026-11-24/ffb_policy_comparison_r01/README.md)に§5.5（コーンは**別セグメント**、publishなし）、§9（当日チェックリスト）を追加。新15テスト。v12のrelay configをbaseにした生成物は3条件ともプリフライト通過を確認したが、当日の実運用configが正で、固定はしない。r04の2000 frameリプレイで、cadence中央33.5ms/p90 40.6ms、確定遅延70-105ms、側エピソード2、`authority_free=true`を確認（ライブではない）。M/A/Bの評定とコーンログは別物として扱い、混ぜて解釈しない。
+
+**コーンFFB intentの試作**：[実装](src/driver_cone_ffb_intent.py)・[新9テスト](tests/test_driver_cone_ffb_intent.py)・[グリッド評価](Experimental_results/2026-11-23/cone_intent_eval_r01/README.md)。`left`校正→勾配→B案→3連続SideGate。左右別係数で1.5m右のリスク段階CLEAR落ちを改善。評価可能5点で**方向不一致0**、側のある3点は確定。予測ホライズン3.5s×0.5m/s=1.75mでは2.0mが経路外→intent内で`horizon=max(3.5,(forward+0.5)/max(|v|,0.1))`に延長。ただし2.0mは0.5m/sでTTC≈4.3s→PATH（非活動）で、方向の問題ではない。1.0m右は距離保留で評価不能。
+
+**火曜プリフライト**：[preflight.py](Experimental_results/2026-11-24/ffb_policy_comparison_r01/preflight.py)でconfigの`direction_enabled`/policy/deadband/horizonを検査。既存configはdirection無効のため警告。`--expect side_direction`等で条件一致を確認。
+
+**コーン→FFBの接続設計**：[設計](Experimental_results/2026-11-23/cone_ffb_integration_r01/README.md)。現状はコーン距離（webrtc_receive_ui）とFFB（bird_eye/青障害物）が分離。横位置が未算出で、box中心と魚眼モデルから方位→`left≈range·sin(bearing)`を推定する必要。推奨はコーンUI側で勾配まで計算し既存publisherへ渡す方式。段階は①横位置のオフライン検証、②勾配計算ログのみ、③dry-run publisher、④G923、⑤大きさ変調。
+
+**コーンintentのライブdry-run配線**：[driver_cone_ffb_intent_log.py](src/driver_cone_ffb_intent_log.py)・[11テスト](tests/test_driver_cone_ffb_intent_log.py)・[手順](Experimental_results/2026-11-23/cone_intent_eval_r01/README.md)・[校正表](Experimental_results/2026-11-23/cone_intent_eval_r01/live_calibration_r01.json)。`webrtc_receive_ui.py`へ`--cone-ffb-intent-dir`（新規・`recordings/`配下）と`--cone-ffb-calibration`を追加。`motion.snapshot()`の距離・`selected_detector_boxes`中心と`odom_node.linear_x/angular_z`から`ConeFfbIntent`を計算し、`cone_ffb_intent.jsonl`とsummaryへ記録。**publishなし・G923なし**。ゲートは同じ`(session,frame)`を再投入しないので、UIの24 Hz更新で同じ推論結果が3連続扱いになる誤確定を防ぐ。`motion_tap_busy`だけは保留、他の利用不可は1回記録してリセット。画面に`CONE INTENT (dry-run)`を併記。
+
+**プロトコル拡張**：[driver_motion_protocol.py](src/driver_motion_protocol.py)の`compact_result`/`checked_result`が`selected_detector_boxes`と`support_pixel`をUIへ渡す。`checked_boxes`は6つの数値field（`x1..y2`・`confidence`・`class_id`）を必須、`image`/`prediction_index`は任意（predictorにより有無が異なる）。画像・support配列は越えさせない。関連47テスト通過。
+
+**横位置の経験的校正と検証**：[結果](Experimental_results/2026-11-23/lateral_estimate_r01/README.md)。広ROIグリッド9点で`left≈k(d)·(cx_ref(d)−cx)`を拟合。`k(d)=0.000637+0.003376·d` m/px、基準`cx_ref`は1.0/1.5/2.0mで306.5/308.2/305.7px。in-sampleは最大22.7mm/RMS11.9mmだが、**leave-one-outで最大32.2mm/RMS20.2mm、cross-distanceで最大39.6mm/RMS24.1mm**。**側の符号は7/7正解**。判断：B案の方向（側）には使えるが、勾配の`left`値は±2〜3cmの誤差でVP8差と同程度、値の精度には不十分。改善には校正点の追加（±0.15/±0.35、距離1.2/1.8m）が必要。物理モデルではなく取付依存の校正。
 
 ## 11/20最新：probeはPNGではなくVP8_INTRAだったと訂正、保存4枚の評価で保留gateが2枚反転
 
@@ -18,13 +52,13 @@
 
 パイプライン本体（`src/`と既存GPU runner）は**変更しない**。過去のmanifest・回帰guardを保つため、許容は実験用harness `run_tolerance.py`で**後処理**として与える。元observerが`completion_reason=completed_point_outside_original_bbox`で失敗した場合に限り、既存の画素support・成分・2context一致をすべて通した後の最後のbbox比較だけを指定px緩める。他理由は不変。`tolerance_harness.json`へharness/runner SHAと引数を記録。**許容は距離採用権限ではない**（全flags false維持）。
 
-[比較試験手順](ExperimentalResults/2026-11-20/bbox_tolerance_sweep_r01/README.md)：GPUPCで同一3枚・ROI270..350を`--tolerance-px 0`と`1`で各run。予測はf028980の元画像だけが数値化し、f044793は下辺接触のため変化しない。archive 2点を受領後に監査する。カメラ/走行/ROS/G923は不要。
+[比較試験手順](Experimental_results/2026-11-20/bbox_tolerance_sweep_r01/README.md)：GPUPCで同一3枚・ROI270..350を`--tolerance-px 0`と`1`で各run。予測はf028980の元画像だけが数値化し、f044793は下辺接触のため変化しない。archive 2点を受領後に監査する。カメラ/走行/ROS/G923は不要。
 
-**結果（11/20）**：t0は11/18の判断を完全再現。t1で予測どおりf028980の元画像だけが保留→数値（元1.583417m / packet1.610815m、**差2.74cm**、`completion_reason=experiment_bbox_tolerance_applied`、10反復同一）。f044793は下辺接触のため保留のまま（gate反転2→1件）。5186の−3.02cmと合わせ、VP8再圧縮の距離差は**符号一定でない**（±3cm、1.58〜1.19mで約1.7〜2.5%）。単純バイアス補正は不可。原archiveはrecordings/2026-11-20/bbox_tolerance_intake_r01、[監査](ExperimentalResults/2026-11-20/bbox_tolerance_sweep_r01/audit_r01/audit.json)、[報告](ExperimentalResults/2026-11-20/bbox_tolerance_sweep_r01/results_r01.md)。**tolerance_harness.json未提出**のため許容値はrun名からの推定（サンプル内マーカーで適用自体は確認）。次は下辺接触の設計、N≥30、時間方向一致、codec選択（VP8 packet=2回圧縮 vs RTP frame+metadata=1回圧縮 vs ROI限定lossless）。
+**結果（11/20）**：t0は11/18の判断を完全再現。t1で予測どおりf028980の元画像だけが保留→数値（元1.583417m / packet1.610815m、**差2.74cm**、`completion_reason=experiment_bbox_tolerance_applied`、10反復同一）。f044793は下辺接触のため保留のまま（gate反転2→1件）。5186の−3.02cmと合わせ、VP8再圧縮の距離差は**符号一定でない**（±3cm、1.58〜1.19mで約1.7〜2.5%）。単純バイアス補正は不可。原archiveはrecordings/2026-11-20/bbox_tolerance_intake_r01、[監査](Experimental_results/2026-11-20/bbox_tolerance_sweep_r01/audit_r01/audit.json)、[報告](Experimental_results/2026-11-20/bbox_tolerance_sweep_r01/results_r01.md)。**tolerance_harness.json未提出**のため許容値はrun名からの推定（サンプル内マーカーで適用自体は確認）。次は下辺接触の設計、N≥30、時間方向一致、codec選択（VP8 packet=2回圧縮 vs RTP frame+metadata=1回圧縮 vs ROI限定lossless）。
 
 ### 11/20追記2：入力経路はA（VP8 packet）を本線と決定。±3cmよりリスク境界の不連続が支配的
 
-優先順を④入力経路→③時間方向一致→①下辺接触→②N≥30とし、④を実施。[決定文書](ExperimentalResults/2026-11-20/input_path_decision_r01/README.md)。3案（A: VP8 packet=2回圧縮・約4.5Mbps・実装/transport済み、B: RTP frame+metadata=1回圧縮・`SenderFrameMotion`未接続でframe同一性未解決、C: 固定ROI可逆=1回+ROI・未実装）を比較。
+優先順を④入力経路→③時間方向一致→①下辺接触→②N≥30とし、④を実施。[決定文書](Experimental_results/2026-11-20/input_path_decision_r01/README.md)。3案（A: VP8 packet=2回圧縮・約4.5Mbps・実装/transport済み、B: RTP frame+metadata=1回圧縮・`SenderFrameMotion`未接続でframe同一性未解決、C: 固定ROI可逆=1回+ROI・未実装）を比較。
 
 既存`collision_risk.evaluate_candidate_steering()`で障害物距離を±1〜5cm動かすオフライン感度を実施（車幅0.354m、225格子）。+2.74〜3.02cmで**方向場が6/225、リスク段階が8/225変化**。ただし**+1cmでも4/225変化**し、例として速度0.4m/s・yaw−0.25・前方1.0m・左−0.2mで距離+1cmにより`g`が−0.186→+1.0へ反転。原因は`in_collision_corridor`の二値判定で、**境界不連続が支配的**。よってcodec精度だけでは方向安定性を保証できず、PNG/ROI可逆でも実運動で境界を跨げば同じ反転が起きる。
 
@@ -32,7 +66,7 @@
 
 ### 11/20追記3：③方向の2-of-3一致を実装（追加遅延は遷移時最大0.4s、未接続）
 
-ユーザー指定で追加遅延上限**0.4s**（5Hzで2frame）を採用。[src/driver_risk_consistency.py](src/driver_risk_consistency.py)と[新11テスト](tests/test_driver_risk_consistency.py)。直近3 frameのうち2つが同じ方向（deadband0.1適用）なら確定。定常時は遅延0、遷移時のみ最大2frame。確定しないときは**保留**で前値保持しない。無効値はwindow clear、0.5s超はstale、時計逆行はclosed。確定値は一致した最新sampleの`gradient_normalized`（平均しない）。`added_latency_sec`を出力。**まだmotion bridge/FFBへ未接続**、全flags false。[仕様](ExperimentalResults/2026-11-20/risk_consistency_r01/README.md)。
+ユーザー指定で追加遅延上限**0.4s**（5Hzで2frame）を採用。[src/driver_risk_consistency.py](src/driver_risk_consistency.py)と[新11テスト](tests/test_driver_risk_consistency.py)。直近3 frameのうち2つが同じ方向（deadband0.1適用）なら確定。定常時は遅延0、遷移時のみ最大2frame。確定しないときは**保留**で前値保持しない。無効値はwindow clear、0.5s超はstale、時計逆行はclosed。確定値は一致した最新sampleの`gradient_normalized`（平均しない）。`added_latency_sec`を出力。**まだmotion bridge/FFBへ未接続**、全flags false。[仕様](Experimental_results/2026-11-20/risk_consistency_r01/README.md)。
 
 接続時の契約：motion bridgeの`gradient_normalized`/`risk_level`/`valid`を毎frame`offer`し、`confirmed=false`はFFB保留（effect停止/中立、前値再送なし）。既存`SteeringGradientFilter`（EMA/deadband）との二重平滑化を避けるため、最終段の役割分担を接続時に決める。関連**434 passed/0 failed/0 skipped/18.02秒**。
 
@@ -40,10 +74,10 @@
 
 ### 11/20追記4：明日の実機実験用に①下辺フォールバックharnessと②N≥30 manifest手順を準備
 
-11/21はカメラ・実機が使えるため、[当日手順](ExperimentalResults/2026-11-21/README.md)を作成。GPUPCのpinned runner/srcは変更しない方針を維持し、manifestでallowlistを実行時拡張する。
+11/21はカメラ・実機が使えるため、[当日手順](Experimental_results/2026-11-21/README.md)を作成。GPUPCのpinned runner/srcは変更しない方針を維持し、manifestでallowlistを実行時拡張する。
 
-- [prepare_manifest.py](ExperimentalResults/2026-11-21/cones_vp8_suite_r01/prepare_manifest.py)：保存済み`decoded_*_f*.png`を列挙し、1280x720 BGR・重複・SHAを検査してmanifest化。ROIを固定記録。新3テスト。
-- [run_with_manifest.py](ExperimentalResults/2026-11-21/cones_vp8_suite_r01/run_with_manifest.py)：manifestのSHAを再検証し、`runner.KNOWN_IMAGES`をメモリ上だけ拡張してpinned runnerを実行。`--bottom-fallback`で11/10の`probe_bottom_extension`のguarded候補をobserverへ足す（元のlower support・点・bbox条件をそのまま要求し、適用時は`bottom_fallback_applied`を記録、全flags false）。
+- [prepare_manifest.py](Experimental_results/2026-11-21/cones_vp8_suite_r01/prepare_manifest.py)：保存済み`decoded_*_f*.png`を列挙し、1280x720 BGR・重複・SHAを検査してmanifest化。ROIを固定記録。新3テスト。
+- [run_with_manifest.py](Experimental_results/2026-11-21/cones_vp8_suite_r01/run_with_manifest.py)：manifestのSHAを再検証し、`runner.KNOWN_IMAGES`をメモリ上だけ拡張してpinned runnerを実行。`--bottom-fallback`で11/10の`probe_bottom_extension`のguarded候補をobserverへ足す（元のlower support・点・bbox条件をそのまま要求し、適用時は`bottom_fallback_applied`を記録、全flags false）。
 - 採取は`theta_rtc_diagnostic.py receive`のSキー保存（未注釈1280x720、復号RTP frame）。コーンを従来画角（x≈290〜330）に置き、ROI270..350で端に触れない構図。3距離×10 frame。
 - 実行は同一manifestで`--bottom-fallback`なし/ありの2run。判定は「下辺接触だけが数値化」「元lower supportと点が保存」「距離差の中央値/最大」「gate反転率」「同一frame再現性」。接地・精度・FFB適格の認定には使わない。
 
@@ -57,7 +91,7 @@
 
 **実装**：`YELLOW_SATURATION_MIN=80`を`src/cone_colour_support_candidate.py`へ追加し、`cone_support_completion_candidate.py`/`cone_upper_support_candidate.py`が同じ定数を動的参照。`run_with_manifest.py`に`--yellow-s-min`（既定80）を追加し、`manifest_run.json`へ記録。新5テスト（低彩度の床/コーン、completion/upperの動的参照）。
 
-**結果（r02で再取得、全run complete）**：[解析](ExperimentalResults/2026-11-21/yellow_suite_analysis_r01/README.md)。同一30frame（session 5d142cea）でSのみ変更。s80=4/30数値・gate反転4、s130=22/30・反転2（差最大0.49cm）、s150=23/30・反転7、**s170=30/30数値・反転0**（差中央値0、29/30が≤3cm）。S=80の保留は床のベージュ混入。S=150/170の最大差5.15cmはf001982で、**元画像側が同距離帯より約5cm近い外れ値**（packetは他frameと一致）。r01のs80/130/150は`NameError: colour_support`でfailed（`cone_upper_support_candidate.py`のimport追加漏れ。修正済み、`_upper_context`直接テストで再発検出）。原archiveとmanifest_runはrecordings/2026-11-21/yellow_suite_intake_r02、S値は`yellow_saturation_min`で確認済み。
+**結果（r02で再取得、全run complete）**：[解析](Experimental_results/2026-11-21/yellow_suite_analysis_r01/README.md)。同一30frame（session 5d142cea）でSのみ変更。s80=4/30数値・gate反転4、s130=22/30・反転2（差最大0.49cm）、s150=23/30・反転7、**s170=30/30数値・反転0**（差中央値0、29/30が≤3cm）。S=80の保留は床のベージュ混入。S=150/170の最大差5.15cmはf001982で、**元画像側が同距離帯より約5cm近い外れ値**（packetは他frameと一致）。r01のs80/130/150は`NameError: colour_support`でfailed（`cone_upper_support_candidate.py`のimport追加漏れ。修正済み、`_upper_context`直接テストで再発検出）。原archiveとmanifest_runはrecordings/2026-11-21/yellow_suite_intake_r02、S値は`yellow_saturation_min`で確認済み。
 
 **判断：このシーンはS=170を採用候補**（30/30・反転0・中央値0）。床S最大≈104、コーンS235〜255で余裕がある。S=130は差が最も小さい（最大0.49cm）が8/30保留で連続性が劣る。
 
@@ -71,7 +105,7 @@
 
 **床の追加確認**：いつもの床で5 frame。S=80は5/5が`not_lateral_only_contact`で保留、**S=170は5/5数値・反転0・差≤0.23cm（中央値0）**。グレー床（30枚）と2.7m（10枚）に続き、いつもの床でもS=170が通った。原archiveはrecordings/2026-11-21/yellow_suite_intake_r02。別コーンは無いため、退色・汚れコーンでの確認は未実施。
 
-**方向一致性の欠陥修正**：初版2-of-3は(1)空白後も古い票で`confirmed=true`（2秒前の勾配）、(2)交互入力で毎frame符号反転、の2件を合成入力で再現した。`src/driver_risk_consistency.py`を**直近3件の連続一致**へ変更し、票を個別失効（`max_sample_age_sec`0.5s、`expired`フラグ）。空白後の古い票は使わず、交互入力は永久に確定しない。遅延上限は2frame=0.4sのまま（出力値は常に最新sample）。新12テスト（空白・交互・3連続・stale・時計逆行・deadband・既定3）で再現ケースを固定。関連**202 passed**。[仕様](ExperimentalResults/2026-11-20/risk_consistency_r01/README.md)。
+**方向一致性の欠陥修正**：初版2-of-3は(1)空白後も古い票で`confirmed=true`（2秒前の勾配）、(2)交互入力で毎frame符号反転、の2件を合成入力で再現した。`src/driver_risk_consistency.py`を**直近3件の連続一致**へ変更し、票を個別失効（`max_sample_age_sec`0.5s、`expired`フラグ）。空白後の古い票は使わず、交互入力は永久に確定しない。遅延上限は2frame=0.4sのまま（出力値は常に最新sample）。新12テスト（空白・交互・3連続・stale・時計逆行・deadband・既定3）で再現ケースを固定。関連**202 passed**。[仕様](Experimental_results/2026-11-20/risk_consistency_r01/README.md)。
 
 版ガード5件（runner変更4・cone変更1）は意図どおりで機能回帰ではない。次は①motion bridge/FFBへの接続設計、②黄色S=170の既定化判断（別コーン未確認のため保留）、③下辺フォールバックの回帰run。
 
@@ -81,11 +115,11 @@
 
 次（学校で可能）：①`--motion-distance`で黄色コーン1.0/1.5mのライブ距離表示を確認（RTP→GPU距離、機体停止・FFBなし）、②横位置グリッド（距離×左右）を各2frame採取し、S=170でオフライン比較。別コーンは同一品のため実施しない。
 
-**11/21横位置グリッド結果**：[解析](ExperimentalResults/2026-11-21/yellow_grid_analysis_r01/README.md)。狭いROI270..350では±25cmが2.0mでしか通らず（5/9）、**ROI150..450へ広げると9/10が数値**（1.0/1.5mの±25cmも通る）。中央距離は1.031/1.583/2.131mで不変。**横限界は色・床・codecではなくROI幅**と確定。残る1件は1.0m右25cmのみで、crop端の色領域（床/隣接物）により完了contextも拒否。横25cmで中央比+3〜6cmはradial距離の幾何。ライブUI r02は21,921frame中17,445数値（79.6%）、publish最大2.0ms。次はROI150..450でライブUI確認と、1.0m右の画像確認。
+**11/21横位置グリッド結果**：[解析](Experimental_results/2026-11-21/yellow_grid_analysis_r01/README.md)。狭いROI270..350では±25cmが2.0mでしか通らず（5/9）、**ROI150..450へ広げると9/10が数値**（1.0/1.5mの±25cmも通る）。中央距離は1.031/1.583/2.131mで不変。**横限界は色・床・codecではなくROI幅**と確定。残る1件は1.0m右25cmのみで、crop端の色領域（床/隣接物）により完了contextも拒否。横25cmで中央比+3〜6cmはradial距離の幾何。ライブUI r02は21,921frame中17,445数値（79.6%）、publish最大2.0ms。次はROI150..450でライブUI確認と、1.0m右の画像確認。
 
 **11/21ライブ確認**：ROI150..450・S=170で、左/中央は数値、1.0m右は背景の木製デスク（S高）と暗いコーン（V≈138）で保留。**機体の向きを変えて背景を中立にすると右も数値**（表示1.180m、receive-age 32ms）。ユーザー確認で1.0/1.5/2.0m×左右25cmすべて数値。右側の制約はパイプラインではなく背景と確定。
 
-**勾配ドライラン**：[結果](ExperimentalResults/2026-11-21/gradient_dry_run_r01/README.md)。広ROIの実測距離8位置×速度3×yaw5=120評価。デッドバンド内（|g|<0.15）が71/120（59%）、側期待と符号逆が13/120（11%、すべてコーン側へ切ったyaw）、±1cm揺れで方向変化4/120（1.5m右の境界、3連続一致で吸収可）。同じ側へ切ったときの符号反転は、計画書4.1の定義どおりの計算だが、制御則として意図通りかは要確認。次はΔ/予測時間の感度、連続リスク化、deadband見直し。実機/ROS/FFBなし。ライブは`export THETA_UI_PYTHON="$(command -v python3)"; export THETA_YELLOW_S_MIN=170; bash src/start_theta_receive_rtc.sh --motion-distance --motion-python .../yolo-env/bin/python3 --motion-weights ... --motion-profile Experimental_results/2026-11-09/cone_motion_evaluation_r01/prepared_r01/motion_profile_r01.json --motion-output-dir <新規> --motion-target-roi 270 0 350 720 --motion-experimental-rigid-mount`。送信は`start_theta_stream_rtc.sh --motion-native --receiver-ip 150.89.169.96`。全flags false、ROS/FFB出力なし。
+**勾配ドライラン**：[結果](Experimental_results/2026-11-21/gradient_dry_run_r01/README.md)。広ROIの実測距離8位置×速度3×yaw5=120評価。デッドバンド内（|g|<0.15）が71/120（59%）、側期待と符号逆が13/120（11%、すべてコーン側へ切ったyaw）、±1cm揺れで方向変化4/120（1.5m右の境界、3連続一致で吸収可）。同じ側へ切ったときの符号反転は、計画書4.1の定義どおりの計算だが、制御則として意図通りかは要確認。次はΔ/予測時間の感度、連続リスク化、deadband見直し。実機/ROS/FFBなし。ライブは`export THETA_UI_PYTHON="$(command -v python3)"; export THETA_YELLOW_S_MIN=170; bash src/start_theta_receive_rtc.sh --motion-distance --motion-python .../yolo-env/bin/python3 --motion-weights ... --motion-profile Experimental_results/2026-11-09/cone_motion_evaluation_r01/prepared_r01/motion_profile_r01.json --motion-output-dir <新規> --motion-target-roi 270 0 350 720 --motion-experimental-rigid-mount`。送信は`start_theta_stream_rtc.sh --motion-native --receiver-ip 150.89.169.96`。全flags false、ROS/FFB出力なし。
 
 ## 11/18（訂正済み）：案A＝frame/motion packetの実回線transport probeを既定offで実装、372テスト成功
 
@@ -107,7 +141,7 @@ sender_probe.json（SHA b48e1a95…）、receiver_probe.json（e8d5dcbd…）を
 
 ただしfragments/frame7.81×message上限16,384B＝payload上限37,863,424B（**4.539Mbps**）で、296frameでは約128KB/frame。**11/20訂正：これはPNGではなくVP8_INTRAの実測**（VP8の実測94〜101KBと同桁）。PNGの約1MB/frameとは別物で、**PNGの40.49Mbpsは未検証**。実効4.435〜4.464Hzで5Hz未満。frame offer4.54Hzの原因（capture間隔/odom対応）は未測定。`sequence_gaps=1,695`はcapture_sequenceの間引きによる正常でpacket lossではない（監査で`..._are_not_packet_loss=true`）。受信側`closed=false`（close前コピー、周期flush時点）だが送受296一致。replaced4の機序は未確定。映像fps/片方向遅延/測距精度/ROS/FFBは未測定。
 
-監査スクリプト修正後に[verification_r03](ExperimentalResults/2026-11-18/png_link_probe_r01/verification_r03/audit.json) **372 passed/16.74秒**。r01/r02は履歴。[報告](ExperimentalResults/2026-11-18/png_link_probe_r01/transport_report_r01.md)。
+監査スクリプト修正後に[verification_r03](Experimental_results/2026-11-18/png_link_probe_r01/verification_r03/audit.json) **372 passed/16.74秒**。r01/r02は履歴。[報告](Experimental_results/2026-11-18/png_link_probe_r01/transport_report_r01.md)。
 
 次は**オフラインで約1MB/frameだった代表シーン**（コーンが見えるテクスチャのある構図）で同じ30秒probeを再実行し、payload上限が約40Mbpsに近づいた状態でframe到達率を読む。今回の結果だけでPNG live採用や40Mbps共存を認定しない。
 

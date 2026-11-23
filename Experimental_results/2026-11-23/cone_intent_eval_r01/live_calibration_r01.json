@@ -1,0 +1,12 @@
+{
+  "schema": "lateral_calibration_table_v1",
+  "state": "single_mounting_calibration_NOT_mount_model",
+  "distances": [1.0, 1.5, 2.0],
+  "cx_ref": [306.5, 308.2, 305.7],
+  "k_left_m_per_px": [0.004158, 0.005945, 0.007732],
+  "k_right_m_per_px": [0.003924, 0.005341, 0.006758],
+  "source": "Experimental_results/2026-11-23/lateral_estimate_r01/validation_r01",
+  "camera_or_gpu_used": false,
+  "physical_metric_verified": false,
+  "usable_for_ffb": false
+}
