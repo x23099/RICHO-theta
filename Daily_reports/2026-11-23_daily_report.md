@@ -187,6 +187,8 @@
 5. **横位置は側判定用**。勾配の値は参考値。校正点の追加（±0.15/±0.35、1.2/1.8 m）が必要。
 6. **コーン→FFBのpublishはまだ接続しない**。火曜の方向比較を終えるまで経路を変えない。
 7. **2.0 mのPATHは設計どおり**。TTC閾値4 sに対する速度0.5 m/sの結果で、方向の問題ではない。
+8. **v12 relay configは最有力候補**。v10/v11/v12のFFB transportは同一で、v12はv11のstream/rearm問題を修正し、9/29にG923実機でWARNING/UNKNOWNを確認済み。公式preflightのconfig検査も0エラー。ただしrisk閾値は既定configと異なる（warning 4.6 s vs 4.0 s、exit 5.6 s vs 5.0 s、conservative vs visual、area 1450 vs 2503）。M/A/Bで同一baseを使い、方向比較のために閾値を変えない。
+9. **A/Bの比較は1.5 m**。2.0 mでは3.5 s×0.5 m/s＝1.75 mでAの勾配が経路外になる一方、BはTTCと側で発火し得るため、方向方針の比較条件にならない。
 
 ## 6. 未実施・課題
 
@@ -211,7 +213,7 @@
 - §6 評定・bird_eyeログ・コーンログの集計
 - §9 当日チェックリスト（G923、FFBモード、telemetry、新規ディレクトリ、安全）
 
-実行順：base config確認 → M/A/B生成 → 3条件＋コーン設定のpreflight → 実機確認 → M/A/B → コーンdry-run → 2つの集計。
+実行順：base config確認（v12 relayが最有力候補）→ M/A/B生成 → 3条件＋コーン設定のpreflight → 公式runnerで起動 → 実機確認 → M/A/B（**A/Bは1.5 m**）→ コーンdry-run → 2つの集計。
 
 ## 8. 成果物
 

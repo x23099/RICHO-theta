@@ -17,6 +17,8 @@
 
 対象は**既存のbird_eye FFB経路（青い障害物）**。コーン距離→FFBのpublishはまだ未接続で、コーンは**dry-runログのみ**（§5.5）。したがって、M/A/Bの操舵感の評定にコーンログを混ぜて解釈しない。青い障害物と黄色コーンは別の検出器・別の入力（bird_eyeはローカルカメラ、コーンは受信UIのWebRTC映像）である。
 
+**A/Bの比較は1.5 mで行う。** 2.0 mでは予測ホライズン3.5 s×0.5 m/s＝1.75 mでAの勾配が経路外になり、BだけがTTCと側で発火し得る。これは方向方針の比較条件にならない（§3.5）。
+
 ## 3. 前提
 
 - G923接続、FFBバックエンドがhardwareモードで動作（`direction_enabled`を条件ごとに設定）。
@@ -59,7 +61,7 @@ for spec in "M magnitude_only" "A gradient_direction" "B side_direction"; do
 done
 ```
 
-**ホライズン注意**：`collision_ffb_gradient_prediction_time_sec=3.5`は、0.5 m/sで**1.75 m**しか経路が届かない。障害物が2.0 mにあるとコーン/障害物が経路外になり、CLEAR/PATHで力が出ない。2.0 mで評価するなら速度を上げる（0.7 m/s以上）か、ホライズンを延ばす。**場当たりの閾値変更はしない**。
+**ホライズン注意**：`collision_ffb_gradient_prediction_time_sec=3.5`は、0.5 m/sで**1.75 m**しか経路が届かない。障害物が2.0 mにあるとAの勾配は経路外になり、CLEAR/PATHで方向が出ない。一方**Bは側ベースなので、勾配が経路外でもTTCがWARNINGなら方向を出し得る**。したがって2.0 mはA/B比較に使わない。2.0 mを見る場合は、Aが実際に非零勾配を出したかログで確認する。速度を上げる（0.7 m/s以上）かホライズンを延ばすのは別条件として扱い、**場当たりの閾値変更はしない**。
 
 ## 4. 設定（bird_eyeのconfig）
 
@@ -85,6 +87,8 @@ Bの追加パラメータ：`"collision_ffb_side_deadband_m": 0.05`。
 - relay有効なら`collision_ffb_intent_topic`、直接なら`collision_ffb_command_topic`が必要。
 - 生成されるのは`bird_eye_config_M/A/B.json`。**他のキーはbaseのまま**（risk閾値・cadence・ホライズンを勝手に変えない）。
 - relay経路の候補は`src/bird_eye_config_ttc_v12_ffb_reliability_20260929.json`（publish=1、relay=1、intent topicあり）。ただし**当日の実運用configが正**であり、これを機械的に固定しない。
+
+**v12の位置づけ**：v10/v11/v12はFFB transportの値が同一（triple 0.5 s、challenge、intent 0.1 s、challenge 0.06 s）。v12は最新で、v11のchallenge stream断とUNKNOWN再armの問題を修正し、9/29に**G923実機でWARNING/UNKNOWNを確認済み**。公式`preflight_field_experiment.py`のconfig検査も0エラー。したがって**relay経路の最有力候補**ではある。ただしv12のrisk閾値は既定configと異なる（warning 4.6 s vs 4.0 s、exit 5.6 s vs 5.0 s、`conservative` vs `visual`、area min 1450 vs 2503）。M/A/Bで同一baseを使い、方向比較のためにこれらの閾値をいじらない。当日のrelay/adapterがv12と違うなら、実運用configを優先する。
 - 生成後、3条件すべてを§3.5で検査する。Mは`direction_enabled=0`なのでpolicy値は問わない。
 
 - 未知のpolicyは`gradient_direction`へフォールバックする。設定後、ログの`mapping_policy`（gradient結果）で意図した値か確認する。
@@ -92,7 +96,25 @@ Bの追加パラメータ：`"collision_ffb_side_deadband_m": 0.05`。
 
 ## 5. 走行・操作
 
-1. 青い障害物を前方1.5〜2.0 mに置く。
+### 起動（公式runner）
+
+bird_eyeとrelayを同じconfigで起動する。preflightがPASSした場合だけbird_eyeが起動する。
+
+```bash
+/home/robo25/theta-env/bin/python3 src/run_field_experiment.py \
+  --config Experimental_results/2026-11-24/ffb_configs_r01/bird_eye_config_B.json \
+  --record-dir <新規ディレクトリ> --experiment-label ffb_B_r01 \
+  --camera-device <カメラ番号> --camera-width 1280 --camera-height 720 \
+  --camera-fps 30 --odom-topic /odom
+```
+
+- 条件ごとにconfigを替えて**再起動**する。
+- relay有効時はrunnerが`collision_ffb_relay.py`も起動する（9/30と同じ経路）。
+- G923側の`collision_ffb_node`/adapterは別PCでhardwareモード。`constant_direction_sign`を確認する。
+- `--dry-run`でpreflight/relay/bird_eyeのコマンドだけ確認できる。
+- §3.5の軽量preflightは、policy・publish・コーン設定の確認に併用する。
+
+1. 青い障害物を前方**1.5 m**に置く（A/B比較。2.0 mは§3.5の理由で使わない）。
 2. 低速で前進し、**障害物の側へ短く操舵** → 戻す、を3回。
 3. 各条件で同じ軌道・同じ速度を心がける。
 4. 各条件の後に評定：
@@ -190,6 +212,9 @@ pgrep -af 'collision_ffb_node|bird_eye|webrtc_receive_ui'
 
 - [ ] G923がUSBで見え、`collision_ffb_node`が**dry_runではない**モードで動く（11/23は`output_mode:=dry_run`が動いていた）。
 - [ ] `make_condition_configs.py`でM/A/Bを生成し、baseが`publish_enabled=1`。relay有効ならrelayノードも動作。
+- [ ] baseはv12 relay（または当日の実運用config）。**M/A/Bでrisk閾値を固定**し、方向比較のために変えない。
+- [ ] 公式runner（`src/run_field_experiment.py`）で起動し、preflight PASSとrelay起動を確認。`--dry-run`でコマンドも確認。
+- [ ] A/Bの比較は**1.5 m**。2.0 mはAの勾配が経路外になり、Bだけが発火し得るため使わない。
 - [ ] `constant_direction_sign`を実機で確認（+1/-1）。
 - [ ] telemetryの`linear_x`/`angular_z`が変化する（0固定でない）。
 - [ ] **新規**の`--motion-output-dir`と`--cone-ffb-intent-dir`を用意（既存・`recordings/`外は拒否）。
