@@ -1,5 +1,7 @@
 # G923でのFFB方針比較 r01（2026-11-24）
 
+> **実行コマンドの正は[RUNBOOK.md](RUNBOOK.md)。** このREADMEは背景・判定・理由。実行するときはRUNBOOKを上から順に。
+
 ## 1. 目的
 
 危険側へ操舵したとき、どの方針が「より危険」と感じられるかを、G923の実力覚で比較する。
@@ -21,7 +23,7 @@
 
 ## 3. 前提
 
-- G923接続、FFBバックエンドがhardwareモードで動作（`direction_enabled`を条件ごとに設定）。
+- G923接続、FFBバックエンドがhardwareモードで動作（`direction_enabled`を条件ごとに設定）。adapterの`max_magnitude`は**0.40以上**。9/30の初回hardware試験用`0.05`のままにすると、WARNING 0.25/CRITICAL 0.40がほとんど感じられない。
 - bird_eyeと衝突FFBパブリッシャ/リレーが動作。
 - 操縦者以外の安全確認者。低速・広い場所・接触しない軌道。
 - `constant_direction_sign`は事前に実機で校准（+1/-1）。方向が逆なら、この試験の意味が反転するため最初に確認する。
@@ -197,7 +199,7 @@ bash src/start_theta_receive_rtc.sh --motion-distance \
 
 - 接触しない軌道を最優先。速度は最低速。安全確認者が即停止できる状態。
 - 方向が逆に出た、または予期しない力が出た場合は即中止し、`constant_direction_sign`とpolicyの設定を確認する。
-- FFBの期限・強度上限・単一writerは変更しない。
+- FFBの期限・単一writer・システムの安全上限は変更しない。adapterの`max_magnitude`は9/30の初回試験用0.05から**0.40以上**へ設定する（今回の比較条件）。
 
 ## 9. 当日チェックリスト
 
@@ -211,6 +213,7 @@ pgrep -af 'collision_ffb_node|bird_eye|webrtc_receive_ui'
 ```
 
 - [ ] G923がUSBで見え、`collision_ffb_node`が**dry_runではない**モードで動く（11/23は`output_mode:=dry_run`が動いていた）。
+- [ ] adapterの`output_mode=hardware`、`max_magnitude>=0.40`、`/collision/ffb_status`のpublisherが1つ。
 - [ ] `make_condition_configs.py`でM/A/Bを生成し、baseが`publish_enabled=1`。relay有効ならrelayノードも動作。
 - [ ] baseはv12 relay（または当日の実運用config）。**M/A/Bでrisk閾値を固定**し、方向比較のために変えない。
 - [ ] 公式runner（`src/run_field_experiment.py`）で起動し、preflight PASSとrelay起動を確認。`--dry-run`でコマンドも確認。
