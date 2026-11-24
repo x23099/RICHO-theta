@@ -23,7 +23,7 @@
 
 ## 3. 前提
 
-- G923接続、FFBバックエンドがhardwareモードで動作（`direction_enabled`を条件ごとに設定）。adapterの`max_magnitude`は**0.40以上**。9/30の初回hardware試験用`0.05`のままにすると、WARNING 0.25/CRITICAL 0.40がほとんど感じられない。
+- G923接続、FFBバックエンドがhardwareモードで動作（`direction_enabled`を条件ごとに設定）。adapterの`max_magnitude`は**0.05（Phase 4の安全上限）**。0.40は起動拒否される。WARNING 0.25/CRITICAL 0.40は0.05にクリップされるため、この比較は**方向が主**で、大きさの差は参考扱い。
 - bird_eyeと衝突FFBパブリッシャ/リレーが動作。
 - 操縦者以外の安全確認者。低速・広い場所・接触しない軌道。
 - `constant_direction_sign`は事前に実機で校准（+1/-1）。方向が逆なら、この試験の意味が反転するため最初に確認する。
@@ -193,13 +193,14 @@ bash src/start_theta_receive_rtc.sh --motion-distance \
 - **Bで「危険側が重い」の評定がAより高いか。**
 - Aで「方向が逆」「戻すと重い」と感じた場面があるか（幾何逆転の体感）。
 - Mとの差（方向情報の有無が危険感に効くか）。
+- **大きさの上限**：adapterのPhase 4上限0.05により、WARNING 0.25/CRITICAL 0.40はクリップされる。方向の比較は成立するが、大きさの評定は参考。0.05で方向が感じられない場合は中止し、上限を上げない。
 - 1被験者・非盲検の探索であり、統計的な結論にはしない。
 
 ## 8. 安全
 
 - 接触しない軌道を最優先。速度は最低速。安全確認者が即停止できる状態。
 - 方向が逆に出た、または予期しない力が出た場合は即中止し、`constant_direction_sign`とpolicyの設定を確認する。
-- FFBの期限・単一writer・システムの安全上限は変更しない。adapterの`max_magnitude`は9/30の初回試験用0.05から**0.40以上**へ設定する（今回の比較条件）。
+- FFBの期限・単一writer・システムの安全上限は変更しない。Phase 4 hardwareの`max_magnitude`上限は**0.05**で、0.40は起動拒否される。今回の比較は0.05で行う。
 
 ## 9. 当日チェックリスト
 
@@ -213,7 +214,7 @@ pgrep -af 'collision_ffb_node|bird_eye|webrtc_receive_ui'
 ```
 
 - [ ] G923がUSBで見え、`collision_ffb_node`が**dry_runではない**モードで動く（11/23は`output_mode:=dry_run`が動いていた）。
-- [ ] adapterの`output_mode=hardware`、`max_magnitude>=0.40`、`/collision/ffb_status`のpublisherが1つ。
+- [ ] adapterの`output_mode=hardware`、`max_magnitude=0.05`、`/collision/ffb_status`のpublisherが1つ。
 - [ ] `make_condition_configs.py`でM/A/Bを生成し、baseが`publish_enabled=1`。relay有効ならrelayノードも動作。
 - [ ] baseはv12 relay（または当日の実運用config）。**M/A/Bでrisk閾値を固定**し、方向比較のために変えない。
 - [ ] 公式runner（`src/run_field_experiment.py`）で起動し、preflight PASSとrelay起動を確認。`--dry-run`でコマンドも確認。

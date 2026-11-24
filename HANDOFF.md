@@ -26,7 +26,7 @@
 
 **v12 relay configの位置づけ**：v10/v11/v12のFFB transport値は同一（triple 0.5s・challenge・intent 0.1s・challenge 0.06s）。v12は最新で、v11のstream断/UNKNOWN再armの問題を修正し、9/29にG923実機でWARNING/UNKNOWNを確認済み。公式`preflight_field_experiment.py`のconfig検査も0エラー。よって**relay経路の最有力候補**。ただしv12のrisk閾値は既定configと異なる（warning 4.6s vs 4.0s、exit 5.6s vs 5.0s、conservative vs visual、area 1450 vs 2503）。M/A/Bで同一baseを使い、方向比較のために閾値を変えない。当日のrelay/adapterが違えば実運用configを優先する。**A/Bは1.5mで比較**：2.0mでは3.5s×0.5m/s=1.75mでAの勾配が経路外になる一方、BはTTC/側で発火し得るため比較条件にならない。r04の2000 frameリプレイでcadence中央33.5ms/p90 40.6ms、確定遅延70-105ms、側エピソード2、`authority_free=true`を確認（ライブではない）。M/A/Bの評定とコーンログは別物として扱い、混ぜて解釈しない。
 
-**火曜RUNBOOK**：[RUNBOOK.md](Experimental_results/2026-11-24/ffb_policy_comparison_r01/RUNBOOK.md)を新設。カメラPC/ハンコンPC/送信PCの役割、config生成、preflight、公式runner、コーンdry-run、集計を上から順に実行できる形にした。A/Bは1.5m。adapterの`max_magnitude`は**0.40以上**（9/30の`0.05`は初回hardware試験用のcapで、そのままではWARNING 0.25/CRITICAL 0.40が感じられない）。READMEは背景・判定、RUNBOOKはコマンドの正。
+**火曜RUNBOOK**：[RUNBOOK.md](Experimental_results/2026-11-24/ffb_policy_comparison_r01/RUNBOOK.md)を新設。カメラPC/ハンコンPC/送信PCの役割、config生成、preflight、公式runner、コーンdry-run、集計を上から順に実行できる形にした。A/Bは1.5m。adapterの`max_magnitude`はPhase 4の安全上限**0.05**（0.40は起動拒否、11/24実測: ValueError）。0.05ではWARNING 0.25/CRITICAL 0.40がクリップされるため、方向の比較を主とし、大きさの評定は参考に留める。上限は変更しない。READMEは背景・判定、RUNBOOKはコマンドの正。
 
 **コーンFFB intentの試作**：[実装](src/driver_cone_ffb_intent.py)・[新9テスト](tests/test_driver_cone_ffb_intent.py)・[グリッド評価](Experimental_results/2026-11-23/cone_intent_eval_r01/README.md)。`left`校正→勾配→B案→3連続SideGate。左右別係数で1.5m右のリスク段階CLEAR落ちを改善。評価可能5点で**方向不一致0**、側のある3点は確定。予測ホライズン3.5s×0.5m/s=1.75mでは2.0mが経路外→intent内で`horizon=max(3.5,(forward+0.5)/max(|v|,0.1))`に延長。ただし2.0mは0.5m/sでTTC≈4.3s→PATH（非活動）で、方向の問題ではない。1.0m右は距離保留で評価不能。
 

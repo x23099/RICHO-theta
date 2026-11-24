@@ -213,7 +213,7 @@
 - §6 評定・bird_eyeログ・コーンログの集計
 - §9 当日チェックリスト（G923、FFBモード、telemetry、新規ディレクトリ、安全）
 
-**adapterの注意**：9/30のhardware起動は`max_magnitude:=0.05`だった。今回のWARNING 0.25/CRITICAL 0.40を感じるには**0.40以上**が必要。0.05は初回hardware試験用のcapで、システムの安全上限ではない。
+**adapterの注意**：Phase 4 hardwareの安全上限は`max_magnitude=0.05`。`0.40`は起動時に拒否される（11/24実測: `ValueError: Phase 4 hardware mode requires max_magnitude <= 0.05`）。WARNING 0.25/CRITICAL 0.40は0.05にクリップされるため、方向の比較を主とし、大きさの評定は参考扱い。上限は変更しない。
 
 実行順：base config確認（v12 relayが最有力候補）→ M/A/B生成 → 3条件＋コーン設定のpreflight → 公式runnerで起動 → 実機確認 → M/A/B（**A/Bは1.5 m**）→ コーンdry-run → 2つの集計。
 

@@ -11,7 +11,7 @@
 | **送信PC** | ロボットのカメラ送信（コーンdry-runのみ） | §6 |
 
 - G923の`collision_ffb_node`/adapterは、**通常のhardwareモードで別途起動しておく**。このファイルでは起動しない。
-- **adapterの`max_magnitude`**：[9/30手順 §5.1](../../2026-09-30/phase5_v12_low_speed_live_kobuki_procedure.md)のhardware起動をそのまま使うと`0.05`で、WARNING 0.25/CRITICAL 0.40がほとんど感じられない。今回の比較では**`max_magnitude:=0.40`以上**にする。`output_mode:=hardware`、`freshness_mode:=challenge`、`challenge_max_age_sec:=0.1`、`challenge_rate_hz:=50.0`、`watchdog_timeout_sec:=0.1`は9/30と同じ。`0.05`は初回hardware試験用のcapであり、システムの安全上限を変えるものではない。
+- **adapterの`max_magnitude`**：Phase 4 hardwareの安全上限は**0.05**。`0.40`は起動時に拒否される（実測: `ValueError: Phase 4 hardware mode requires max_magnitude <= 0.05`）。今回の比較は`0.05`で行う。WARNING 0.25/CRITICAL 0.40は0.05にクリップされるため、**方向の比較が主**で、大きさの評定は参考扱い。上限を回避しない。
 - カメラPCとハンコンPCが同じ場合は、同じPCで該当節を実行する。
 
 ## 1. 変数を決める（カメラPC）
@@ -124,7 +124,7 @@ ros2 topic info /collision/ffb_status -v
 ```
 
 - `output_mode = hardware`
-- `max_magnitude >= 0.40`（0.05のままならWARNING/CRITICALが弱すぎる）
+- `max_magnitude = 0.05`（Phase 4の安全上限。0.40は起動拒否）
 - `/collision/ffb_status`のpublisherが1つ
 
 ## 5. M/A/Bを実施（カメラPC）
@@ -272,6 +272,7 @@ printf 'M=%s\nA=%s\nB=%s\n' "$LOG_M" "$LOG_A" "$LOG_B"
 | runnerのpreflightがFAIL | カメラ/odom/空き容量/git dirty | 表示された項目を直す。`--allow-dirty-git`は意図があるときだけ |
 | 受信UIに`CONE INTENT`が出ない | motion/telemetryが来ていない | `--motion-distance`、送信の`--motion-native`、GPUプロセスを確認 |
 | Aで力が出ずBだけ出る | 2.0 mでAの勾配が経路外 | 1.5 mでやり直す。2.0 mはA/B比較に使わない |
+| `ValueError: Phase 4 hardware mode requires max_magnitude <= 0.05` | 0.40以上を指定した | 0.05に戻す。上限を回避しない |
 
 ## 9. やらないこと
 
