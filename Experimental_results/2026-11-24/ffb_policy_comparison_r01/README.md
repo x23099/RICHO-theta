@@ -1,6 +1,6 @@
 # G923でのFFB方針比較 r01（2026-11-24）
 
-> **実行コマンドの正は[RUNBOOK.md](RUNBOOK.md)。** このREADMEは背景・判定・理由。実行するときはRUNBOOKを上から順に。
+> **実行コマンドの正は[RUNBOOK.md](RUNBOOK.md)。** このREADMEは背景・判定・理由。実行するときはRUNBOOKを上から順に。`$PY`はRUNBOOK §1で設定する。
 
 ## 1. 目的
 
@@ -33,7 +33,7 @@
 条件ごとに、configの実効設定を確認する。
 
 ```bash
-/home/robo25/theta-env/bin/python3 Experimental_results/2026-11-24/ffb_policy_comparison_r01/preflight.py \
+"$PY" Experimental_results/2026-11-24/ffb_policy_comparison_r01/preflight.py \
   --config <bird_eyeのconfig> --expect side_direction
 ```
 
@@ -44,7 +44,7 @@
 コーンdry-runも同じ日に実施する場合は、新規ディレクトリと校正表も同時に検査する。
 
 ```bash
-/home/robo25/theta-env/bin/python3 Experimental_results/2026-11-24/ffb_policy_comparison_r01/preflight.py \
+"$PY" Experimental_results/2026-11-24/ffb_policy_comparison_r01/preflight.py \
   --config <bird_eyeのconfig> --expect side_direction \
   --cone-intent-dir recordings/2026-11-24/cone_intent_live_r01 \
   --cone-calibration Experimental_results/2026-11-23/cone_intent_eval_r01/live_calibration_r01.json
@@ -57,7 +57,7 @@
 ```bash
 for spec in "M magnitude_only" "A gradient_direction" "B side_direction"; do
   set -- $spec
-  /home/robo25/theta-env/bin/python3 Experimental_results/2026-11-24/ffb_policy_comparison_r01/preflight.py \
+  "$PY" Experimental_results/2026-11-24/ffb_policy_comparison_r01/preflight.py \
     --config Experimental_results/2026-11-24/ffb_configs_r01/bird_eye_config_$1.json \
     --expect $2 || exit 1
 done
@@ -80,7 +80,7 @@ Bの追加パラメータ：`"collision_ffb_side_deadband_m": 0.05`。
 条件別configは、**その日のFFB有効config**から生成する。表示専用の`src/bird_eye_config.json`は`collision_ffb_publish_enabled=0`なので、生成器が拒否する（11/23実測）。
 
 ```bash
-/home/robo25/theta-env/bin/python3 Experimental_results/2026-11-24/ffb_policy_comparison_r01/make_condition_configs.py \
+"$PY" Experimental_results/2026-11-24/ffb_policy_comparison_r01/make_condition_configs.py \
   --base <その日のFFB有効config> \
   --output-dir Experimental_results/2026-11-24/ffb_configs_r01
 ```
@@ -103,7 +103,7 @@ Bの追加パラメータ：`"collision_ffb_side_deadband_m": 0.05`。
 bird_eyeとrelayを同じconfigで起動する。preflightがPASSした場合だけbird_eyeが起動する。
 
 ```bash
-/home/robo25/theta-env/bin/python3 src/run_field_experiment.py \
+"$PY" src/run_field_experiment.py \
   --config Experimental_results/2026-11-24/ffb_configs_r01/bird_eye_config_B.json \
   --record-dir <新規ディレクトリ> --experiment-label ffb_B_r01 \
   --camera-device <カメラ番号> --camera-width 1280 --camera-height 720 \
@@ -164,7 +164,7 @@ bash src/start_theta_receive_rtc.sh --motion-distance \
 ### 集計
 
 ```bash
-/home/robo25/theta-env/bin/python3 Experimental_results/2026-11-24/ffb_policy_comparison_r01/analyse.py   --ratings <記入済みrecord.csv>   --log M=<Mの記録CSV> --log A=<Aの記録CSV> --log B=<Bの記録CSV>   --output-dir Experimental_results/2026-11-24/ffb_policy_comparison_r01/results_r01
+"$PY" Experimental_results/2026-11-24/ffb_policy_comparison_r01/analyse.py   --ratings <記入済みrecord.csv>   --log M=<Mの記録CSV> --log A=<Aの記録CSV> --log B=<Bの記録CSV>   --output-dir Experimental_results/2026-11-24/ffb_policy_comparison_r01/results_r01
 ```
 
 評定の平均、方向逆の合計、ログの方向/大きさ/リスク段階の分布をまとめる。**1被験者・非盲検の探索**として扱い、統計的結論にはしない。
@@ -172,7 +172,7 @@ bash src/start_theta_receive_rtc.sh --motion-distance \
 ### コーンintentログの集計
 
 ```bash
-/home/robo25/theta-env/bin/python3 Experimental_results/2026-11-24/ffb_policy_comparison_r01/analyse_cone_intent.py \
+"$PY" Experimental_results/2026-11-24/ffb_policy_comparison_r01/analyse_cone_intent.py \
   --intent recordings/2026-11-24/cone_intent_live_r01/cone_ffb_intent.jsonl \
   --output-dir Experimental_results/2026-11-24/cone_intent_live_analysis_r01
 ```

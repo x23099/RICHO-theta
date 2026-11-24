@@ -16,17 +16,32 @@
 
 ## 1. 変数を決める（カメラPC）
 
-```bash
-cd ~/theta_ws/RICHO-theta
+リポジトリrootは、`src/`と`Experimental_results/`があるディレクトリ。このマシンでは`~/theta_ws`。
 
-export PY=/home/robo25/theta-env/bin/python3   # 違う環境なら変更
+```bash
+cd ~/theta_ws
+pwd
+ls src/run_field_experiment.py
+
+export PY=~/theta_ws/theta-env/bin/python3   # PySide6/ultralyticsが入っているenv
 export DATE=2026-11-24
 export RUN=ffb_policy_r01          # 再実行するときは別名にする
 export ROOT=recordings/$DATE/$RUN
 export BASE=src/bird_eye_config_ttc_v12_ffb_reliability_20260929.json
 export CAM=0                       # カメラ番号
 export ODOM=/odom
+```
 
+`PY`とrepo rootを確認する。
+
+```bash
+ls -l "$PY"
+"$PY" -c "import PySide6, ultralytics; print('env ok')"
+```
+
+`env ok`が出ない場合は、`find ~ -maxdepth 4 -path '*/bin/python3'`で候補を探し、`PY`をそのパスに変える。`src/run_field_experiment.py`が無ければrepo rootが違う。
+
+```bash
 mkdir -p "$ROOT"
 cp Experimental_results/2026-11-24/ffb_policy_comparison_r01/record_template.csv "$ROOT/record.csv"
 ```
@@ -182,7 +197,7 @@ bash src/start_theta_stream_rtc.sh --motion-native --receiver-ip <RECEIVER_IP>
 ハンコンPCで受信UIを起動する。`<GPU_PY>`と`<WEIGHTS>`は前回のr04と同じパス。
 
 ```bash
-cd ~/theta_ws/RICHO-theta
+cd ~/theta_ws                      # このマシンのrepo root
 
 export THETA_UI_PYTHON="$(command -v python3)"
 export THETA_YELLOW_S_MIN=170
