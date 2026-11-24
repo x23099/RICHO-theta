@@ -23,7 +23,8 @@ cd ~/theta_ws
 pwd
 ls src/run_field_experiment.py
 
-export PY=~/theta_ws/theta-env/bin/python3   # PySide6/ultralyticsが入っているenv
+export PY=~/theta_ws/theta-env/bin/python3   # config/preflight/analysis用
+export RUN_PY=<PySide6/ultralytics/torchが入っているpython>  # runner/bird_eye用
 export DATE=2026-11-24
 export RUN=ffb_policy_r01          # 再実行するときは別名にする
 export ROOT=recordings/$DATE/$RUN
@@ -32,14 +33,22 @@ export CAM=0                       # カメラ番号
 export ODOM=/odom
 ```
 
-`PY`とrepo rootを確認する。
+`PY`と`RUN_PY`を確認する。`theta-env`がsystem pythonへのsymlinkで、`ultralytics`が無い場合がある。その場合は`RUN_PY`だけ別envにする。
 
 ```bash
-ls -l "$PY"
-"$PY" -c "import PySide6, ultralytics; print('env ok')"
+ls -l "$PY" "$RUN_PY"
+"$RUN_PY" -c "import PySide6, ultralytics, torch; print('runner env ok')"
 ```
 
-`env ok`が出ない場合は、`find ~ -maxdepth 4 -path '*/bin/python3'`で候補を探し、`PY`をそのパスに変える。`src/run_field_experiment.py`が無ければrepo rootが違う。
+`runner env ok`が出ない場合は、候補を探す。
+
+```bash
+for p in $(find ~ -maxdepth 4 -path '*/bin/python3' 2>/dev/null); do
+  "$p" -c "import PySide6, ultralytics, torch" 2>/dev/null && echo "OK: $p"
+done
+```
+
+`OK:`が付いたパスを`RUN_PY`に入れる。`src/run_field_experiment.py`が無ければrepo rootが違う。
 
 ```bash
 mkdir -p "$ROOT"
@@ -123,7 +132,7 @@ ros2 topic info /collision/ffb_status -v
 ### 5.1 まずドライランでコマンド確認
 
 ```bash
-"$PY" src/run_field_experiment.py \
+"$RUN_PY" src/run_field_experiment.py \
   --config "$ROOT/configs/bird_eye_config_B.json" \
   --record-dir "$ROOT/bird_eye_B" \
   --experiment-label ffb_B_r01 \
@@ -146,7 +155,7 @@ ros2 topic info /collision/ffb_status -v
 
 ```bash
 # M
-"$PY" src/run_field_experiment.py \
+"$RUN_PY" src/run_field_experiment.py \
   --config "$ROOT/configs/bird_eye_config_M.json" \
   --record-dir "$ROOT/bird_eye_M" \
   --experiment-label ffb_M_r01 \
@@ -164,14 +173,14 @@ ros2 topic info /collision/ffb_status -v
 
 ```bash
 # A
-"$PY" src/run_field_experiment.py \
+"$RUN_PY" src/run_field_experiment.py \
   --config "$ROOT/configs/bird_eye_config_A.json" \
   --record-dir "$ROOT/bird_eye_A" \
   --experiment-label ffb_A_r01 \
   --camera-device "$CAM" --odom-topic "$ODOM"
 
 # B
-"$PY" src/run_field_experiment.py \
+"$RUN_PY" src/run_field_experiment.py \
   --config "$ROOT/configs/bird_eye_config_B.json" \
   --record-dir "$ROOT/bird_eye_B" \
   --experiment-label ffb_B_r01 \
