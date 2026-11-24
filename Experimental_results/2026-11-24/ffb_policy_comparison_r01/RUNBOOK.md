@@ -12,6 +12,8 @@
 
 - G923の`collision_ffb_node`/adapterは、**通常のhardwareモードで別途起動しておく**。このファイルでは起動しない。
 - **adapterの`max_magnitude`**：Phase 4 hardwareの安全上限は**0.05**。`0.40`は起動時に拒否される（実測: `ValueError: Phase 4 hardware mode requires max_magnitude <= 0.05`）。今回の比較は`0.05`で行う。WARNING 0.25/CRITICAL 0.40は0.05にクリップされるため、**方向の比較が主**で、大きさの評定は参考扱い。上限を回避しない。
+- **Kobukiの駆動系**：`handle`単体では車体は動かない。`ros2 launch oit kobuki_launch.py`でmux/watchdogまで起動する。`/cmd_vel`のpublisherが1つ、`/odom`が流れることを確認する。
+- 応急relayを使った場合は、`kobuki_launch.py`の前に停止する（`/cmd_vel`の二重publisherを避ける）。
 - カメラPCとハンコンPCが同じ場合は、同じPCで該当節を実行する。
 
 ## 1. 変数を決める（カメラPC）
@@ -24,7 +26,7 @@ pwd
 ls src/run_field_experiment.py
 
 export PY=~/theta_ws/theta-env/bin/python3   # config/preflight/analysis用
-export RUN_PY=<PySide6/ultralytics/torchが入っているpython>  # runner/bird_eye用
+export RUN_PY=<PySide6/cv2/numpyが入っているpython>  # runner/bird_eye用
 export DATE=2026-11-24
 export RUN=ffb_policy_r01          # 再実行するときは別名にする
 export ROOT=recordings/$DATE/$RUN
@@ -33,22 +35,22 @@ export CAM=0                       # カメラ番号
 export ODOM=/odom
 ```
 
-`PY`と`RUN_PY`を確認する。`theta-env`がsystem pythonへのsymlinkで、`ultralytics`が無い場合がある。その場合は`RUN_PY`だけ別envにする。
+`PY`と`RUN_PY`を確認する。青障害物の検出はOpenCVのHSV経路なので、`ultralytics`/`torch`は必須ではない（`enable_ai=1`で無い場合はAIだけ無効）。必要なのは`PySide6, cv2, numpy`。
 
 ```bash
 ls -l "$PY" "$RUN_PY"
-"$RUN_PY" -c "import PySide6, ultralytics, torch; print('runner env ok')"
+"$RUN_PY" -c "import PySide6, cv2, numpy; print('bird_eye env ok')"
 ```
 
-`runner env ok`が出ない場合は、候補を探す。
+`bird_eye env ok`が出ない場合は、候補を探す。
 
 ```bash
 for p in $(find ~ -maxdepth 4 -path '*/bin/python3' 2>/dev/null); do
-  "$p" -c "import PySide6, ultralytics, torch" 2>/dev/null && echo "OK: $p"
+  "$p" -c "import PySide6, cv2, numpy" 2>/dev/null && echo "OK: $p"
 done
 ```
 
-`OK:`が付いたパスを`RUN_PY`に入れる。`src/run_field_experiment.py`が無ければrepo rootが違う。
+`OK:`が付いたパスを`RUN_PY`に入れる。runnerのpreflightがモジュール不足でFAILする場合だけ、`torch`/`ultralytics`入りのenvを探す。`src/run_field_experiment.py`が無ければrepo rootが違う。
 
 ```bash
 mkdir -p "$ROOT"
@@ -114,6 +116,24 @@ pgrep -af 'collision_ffb_node|bird_eye|webrtc_receive_ui'
 - `constant_direction_sign`が実機で+1/-1のどちらか確認済み。
 - telemetryの`linear_x`/`angular_z`が0固定でない。
 - 操縦者以外の安全確認者がいる。
+
+カメラPC（Kobuki）で駆動系を起動する。
+
+```bash
+ros2 launch oit kobuki_launch.py
+```
+
+別ターミナルで確認する。
+
+```bash
+ros2 topic info /cmd_vel -v   # publisherが1つ
+ros2 topic hz /odom
+ros2 topic echo /cmd_vel
+```
+
+- `/cmd_vel_joy` → mux → `/cmd_vel` がつながっている。
+- `/cmd_vel`のpublisherが1つ。
+- アクセルを少し踏むと`/cmd_vel`と車体が反応する。
 
 ハンコンPCでadapterの実効値を確認する。
 
@@ -273,6 +293,7 @@ printf 'M=%s\nA=%s\nB=%s\n' "$LOG_M" "$LOG_A" "$LOG_B"
 | 受信UIに`CONE INTENT`が出ない | motion/telemetryが来ていない | `--motion-distance`、送信の`--motion-native`、GPUプロセスを確認 |
 | Aで力が出ずBだけ出る | 2.0 mでAの勾配が経路外 | 1.5 mでやり直す。2.0 mはA/B比較に使わない |
 | `ValueError: Phase 4 hardware mode requires max_magnitude <= 0.05` | 0.40以上を指定した | 0.05に戻す。上限を回避しない |
+| 車体が動かない | `handle`単体で起動し、`/cmd_vel_joy`が`/cmd_vel`に接続されていない | `ros2 launch oit kobuki_launch.py`で起動。応急relayとは併用しない |
 
 ## 9. やらないこと
 
@@ -280,3 +301,4 @@ printf 'M=%s\nA=%s\nB=%s\n' "$LOG_M" "$LOG_A" "$LOG_B"
 - M/A/Bでrisk閾値・ホライズン・deadbandを変えない。
 - 2.0 mでA/Bを比較しない。
 - 既存の`recordings/`ディレクトリを上書きしない。
+- 応急relayと`kobuki_launch.py`を同時に使わない（`/cmd_vel`のpublisherが2つになる）。
