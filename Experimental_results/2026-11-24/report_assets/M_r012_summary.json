@@ -1,0 +1,76 @@
+{
+  "schema": "ffb_field_run_summary_v1",
+  "condition": "M",
+  "archive": "~/Downloads/ffb_M_r012_20261124_193913_440.tar.xz",
+  "rows": 1164,
+  "risk_levels": {
+    "CLEAR": 1034,
+    "PATH": 8,
+    "WARNING": 49,
+    "CRITICAL": 60,
+    "WARNING_HOLD": 13
+  },
+  "requested_magnitude": {
+    "0.0": 1121,
+    "0.25": 16,
+    "0.4": 27
+  },
+  "direction": {
+    "0": 1164
+  },
+  "active_frames": 109,
+  "first_active": {
+    "time_sec": "2.519631",
+    "distance_m": "1.2710",
+    "x_m": "0.0262",
+    "odom_linear_mps": "0.486165",
+    "ttc_sec": "2.6434341842915865",
+    "collision_risk_level": "WARNING",
+    "collision_ffb_requested_magnitude": "0.25",
+    "collision_ffb_direction": "0"
+  },
+  "last_active_time_sec": "34.584337",
+  "path_in_collision_corridor": {
+    "0": 1045,
+    "1": 119
+  },
+  "odom_linear_mps": {
+    "min": -0.2687,
+    "median": 0.0,
+    "max": 0.4926,
+    "n": 1164
+  },
+  "odom_angular_radps": {
+    "min": -0.1781,
+    "median": 0.0,
+    "max": 0.1943,
+    "n": 1164
+  },
+  "distance_m": {
+    "min": 0.8517,
+    "median": 1.2892,
+    "max": 2.4882,
+    "n": 1037
+  },
+  "x_m": {
+    "min": -0.1391,
+    "median": 0.0351,
+    "max": 0.0708,
+    "n": 1037
+  },
+  "ttc_sec": {
+    "min": 1.1918,
+    "median": 2.1613,
+    "max": 25.0285,
+    "n": 134
+  },
+  "rating": {
+    "vibration_1to5": 3,
+    "direction": "n/a (M: direction disabled)",
+    "felt": "vibration pattern 3; not weight"
+  },
+  "notes": "M is magnitude-only. Vibration was perceptible at applied 0.05; this is an alert pattern, not a steady steering weight.",
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}

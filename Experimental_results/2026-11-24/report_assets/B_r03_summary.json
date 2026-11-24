@@ -1,0 +1,78 @@
+{
+  "schema": "ffb_field_run_summary_v1",
+  "condition": "B",
+  "archive": "~/Downloads/ffb_B_r03_20261124_201259_417.tar.xz",
+  "rows": 1358,
+  "risk_levels": {
+    "CLEAR": 1223,
+    "PATH": 4,
+    "CRITICAL": 55,
+    "WARNING": 42,
+    "WARNING_HOLD": 34
+  },
+  "requested_magnitude": {
+    "0.0": 1329,
+    "0.4": 29
+  },
+  "direction": {
+    "0": 1329,
+    "-1": 29
+  },
+  "active_frames": 97,
+  "first_active": {
+    "time_sec": "5.253476",
+    "distance_m": "1.0766",
+    "x_m": "-0.2027",
+    "odom_linear_mps": "0.466974",
+    "ttc_sec": "1.6354879855011917",
+    "collision_risk_level": "CRITICAL",
+    "collision_ffb_requested_magnitude": "0.4",
+    "collision_ffb_direction": "-1"
+  },
+  "last_active_time_sec": "40.529753",
+  "path_in_collision_corridor": {
+    "0": 1248,
+    "1": 110
+  },
+  "odom_linear_mps": {
+    "min": -0.2751,
+    "median": 0.0,
+    "max": 0.4776,
+    "n": 1358
+  },
+  "odom_angular_radps": {
+    "min": -0.5991,
+    "median": 0.0,
+    "max": 0.4857,
+    "n": 1358
+  },
+  "distance_m": {
+    "min": 0.5694,
+    "median": 1.7848,
+    "max": 2.8627,
+    "n": 1099
+  },
+  "x_m": {
+    "min": -0.5417,
+    "median": -0.2917,
+    "max": -0.0536,
+    "n": 1099
+  },
+  "ttc_sec": {
+    "min": 1.2768,
+    "median": 2.2217,
+    "max": 28.9688,
+    "n": 159
+  },
+  "rating": {
+    "toward_1to5": 1,
+    "away_1to5": 1,
+    "wrong_direction_count": 0,
+    "abort_count": 0,
+    "felt": "direction not felt"
+  },
+  "notes": "Box on the left, direction=-1. applied 0.05 and pattern 1 were confirmed in a separate live status check; the directional weight was not perceptible.",
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}

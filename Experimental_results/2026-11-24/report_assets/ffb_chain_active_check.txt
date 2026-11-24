@@ -1,0 +1,61 @@
+# G923 FFB chain check (2026-11-24, live echo transcription)
+
+These are hand-transcribed active samples from `ros2 topic echo` during a B approach.
+They are not a rosbag; the raw files were on the two PCs and are not committed.
+The values show that the intent/command reached the hand-console adapter and that
+the adapter applied 0.05 with a directional pattern.
+
+## Active directional event (box on the right in this check)
+
+`/collision/ffb_command` (camera PC):
+
+```text
+header.stamp: 1795520381.110446075
+active: true
+normalized_magnitude: 0.4
+direction: 1
+reason: ttc_critical:cadence_triple
+receiver_session_id: 1367907620863660716
+receiver_token: 118379
+```
+
+`/collision/ffb_status` (hand-console PC):
+
+```text
+header.stamp: 1795520381.117358636
+output_mode: hardware
+action: apply
+command_active: true
+output_active: true
+requested_magnitude: 0.4
+applied_magnitude: 0.05
+pattern: 1
+direction: 1
+reason: ttc_critical:cadence_triple
+fault: false
+```
+
+## Active UNKNOWN event (direction 0, vibration pattern)
+
+```text
+header.stamp: 1795520353.355370272
+output_active: true
+requested_magnitude: 0.15
+applied_magnitude: 0.05
+pattern: 3
+direction: 0
+reason: invalid_or_unknown_perception:cadence_single
+fault: false
+```
+
+## Interpretation
+
+- The force path is working end to end: publisher -> relay -> `/collision/ffb_command`
+  -> adapter -> `applied_magnitude=0.05`.
+- `pattern=1` is the directional force; `direction=1` with the box on the right.
+  The B r03 archive had the box on the left and `direction=-1`; the sign follows the side.
+- `pattern=3` is a vibration/alert pattern (UNKNOWN). The M runs felt this vibration.
+- The directional `pattern=1` at 0.05 was not perceptible, while the vibration at 0.05 was.
+  This is the basis for the "0.05 directional weight is below perception" judgment.
+- The idle samples were `active:false / no_alert` and `applied_magnitude:0 /
+  inactive:clear`; those are normal when no WARNING/CRITICAL is present.

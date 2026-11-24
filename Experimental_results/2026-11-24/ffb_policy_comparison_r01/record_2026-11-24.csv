@@ -1,0 +1,8 @@
+condition,run,toward_1to5,away_1to5,wrong_direction_count,abort_count,notes
+M,1,3,3,0,0,vibration pattern3 not weight; r010; direction n/a
+M,2,3,3,0,0,vibration pattern3 not weight; r011; direction n/a
+M,3,3,3,0,0,vibration pattern3 not weight; r012; direction n/a
+B,1,1,1,0,0,invalid B: box centered direction0; r01; vibration only
+B,2,1,1,0,0,direction -1 applied0.05 pattern1 not felt; r02
+B,3,1,1,0,0,direction -1 applied0.05 pattern1 not felt; r03 representative
+A,1,,,,,not done; resume 2026-11-25
