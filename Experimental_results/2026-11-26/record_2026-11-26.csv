@@ -1,0 +1,10 @@
+condition,run,magnitude,toward_1to5,away_1to5,wrong_direction_count,abort_count,applied_confirmed,notes
+A,r01,0.4,1,1,0,0,no,"box left; direction +1 (A gradient inversion); 0.4 steady 36 frame not felt as weight; one vibration at direction 0 / 0.25"
+B bench,r01,0.075,1,1,0,0,no,"triple cadence; active 41; steady ON/OFF 3-4 frame; weak"
+B bench,r02,0.10,1,1,0,0,no,"triple cadence; active 33; 'doddo' pulses; not directional weight"
+B bench,r03,0.15,1,1,0,0,no,"triple cadence; active 47; direction +1 => A config likely"
+B continuous,r01,0.10,1,1,0,0,no,"box beside/path loss; not_approaching; UNKNOWN pulse; 'dododo'"
+B continuous,r02,0.15,1,1,0,0,no,"box beside/path loss; box x -0.479; z min 0.201"
+B continuous path,r01,0.15,1,1,0,0,no,"first CRITICAL in corridor 1.21 m direction -1 steady; last UNKNOWN pulse when box beside; stop at CRITICAL"
+B continuous autocenter,r01,0.15,1,1,0,0,no,"autocenter 15 baseline light; box left x -0.42; direction -1 61 frame; 0.15 steady not felt on left; right light is correct for left box; applied 0.15 unconfirmed"
+B continuous,planned,0.20,,,,,no,"not done; next run after BENCH_HARDWARE_MAX_MAGNITUDE=0.20"

@@ -1,0 +1,124 @@
+{
+  "schema": "ffb_field_run_summary_v1",
+  "date": "2026-11-26",
+  "condition": "B continuous 0.15 path",
+  "archive": "ffb_B_continuous_0.15_test_20261126_191349_683.tar.xz",
+  "autocenter": null,
+  "rows": 443,
+  "risk_levels": {
+    "CLEAR": 404,
+    "PATH": 2,
+    "WARNING": 1,
+    "CRITICAL": 18,
+    "WARNING_HOLD": 14,
+    "UNKNOWN": 4
+  },
+  "pattern": {
+    "off": 407,
+    "steady": 19,
+    "steady_hold": 14,
+    "pulse": 3
+  },
+  "active_frames": 36,
+  "requested": {
+    "0.0": 407,
+    "0.25": 15,
+    "0.4": 18,
+    "0.15": 3
+  },
+  "direction": {
+    "0": 420,
+    "-1": 23
+  },
+  "reason": {
+    "no_alert": 405,
+    "ttc_warning": 1,
+    "ttc_critical": 18,
+    "finite_warning_hold": 14,
+    "invalid_or_unknown_perception:cadence_single": 3,
+    "unknown_pulse_complete": 1,
+    "cadence_cancelled_by_clear": 1
+  },
+  "state": {
+    "instantaneous": 403,
+    "warning_entry_confirmation": 2,
+    "warning_entry_confirmed": 1,
+    "valid_critical": 18,
+    "finite_warning_hold": 13,
+    "not_approaching_confirmation": 3,
+    "warning_hold_expired": 2,
+    "not_approaching_confirmed": 1
+  },
+  "active_runs": [
+    36
+  ],
+  "risk_runs": [
+    39
+  ],
+  "path_in_collision_corridor": {
+    "0": 418,
+    "1": 25
+  },
+  "odom_linear_mps": {
+    "n": 443,
+    "min": -0.2772,
+    "median": 0.0,
+    "max": 0.5288
+  },
+  "x_m": {
+    "n": 318,
+    "min": -0.9451,
+    "median": -0.4856,
+    "max": -0.3419
+  },
+  "z_m": {
+    "n": 318,
+    "min": 0.3655,
+    "median": 1.2097,
+    "max": 3.5787
+  },
+  "distance_m": {
+    "n": 318,
+    "min": 0.6761,
+    "median": 1.2777,
+    "max": 3.6908
+  },
+  "path_clearance_m": {
+    "n": 74,
+    "min": -0.1766,
+    "median": 0.7262,
+    "max": 1.3122
+  },
+  "first_active": {
+    "time_sec": "14.359712",
+    "distance_m": "1.2102",
+    "x_m": "-0.4168",
+    "z_m": "1.1362",
+    "odom_linear_mps": "0.518149",
+    "odom_angular_radps": "0.501909",
+    "collision_risk_level": "WARNING",
+    "collision_ffb_pattern": "steady",
+    "collision_ffb_direction": "-1",
+    "collision_ffb_requested_magnitude": "0.25",
+    "collision_state_reason": "warning_entry_confirmed",
+    "path_in_collision_corridor": "1"
+  },
+  "last_active": {
+    "time_sec": "16.238236",
+    "distance_m": "",
+    "x_m": "",
+    "z_m": "",
+    "odom_linear_mps": "0.000000",
+    "odom_angular_radps": "0.000000",
+    "collision_risk_level": "UNKNOWN",
+    "collision_ffb_pattern": "pulse",
+    "collision_ffb_direction": "0",
+    "collision_ffb_requested_magnitude": "0.15",
+    "collision_state_reason": "not_approaching_confirmation",
+    "path_in_collision_corridor": "0"
+  },
+  "note": "最初のCRITICALは箱が青い経路内（1.21 m, direction -1, steady）。最後は箱が真横/経路外でUNKNOWN pulse 0.15。CRITICALで停止が正解。",
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}

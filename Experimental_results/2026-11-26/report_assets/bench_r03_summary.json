@@ -1,0 +1,136 @@
+{
+  "schema": "ffb_field_run_summary_v1",
+  "date": "2026-11-26",
+  "condition": "B bench 0.15",
+  "archive": "bench_r03_20261126_174048_545.tar.xz",
+  "autocenter": null,
+  "rows": 1928,
+  "risk_levels": {
+    "CLEAR": 1739,
+    "PATH": 8,
+    "WARNING": 36,
+    "CRITICAL": 91,
+    "WARNING_HOLD": 54
+  },
+  "pattern": {
+    "off": 1881,
+    "steady": 47
+  },
+  "active_frames": 47,
+  "requested": {
+    "0.0": 1881,
+    "0.25": 9,
+    "0.4": 38
+  },
+  "direction": {
+    "0": 1904,
+    "1": 24
+  },
+  "reason": {
+    "no_alert": 1743,
+    "ttc_warning:cadence_triple": 9,
+    "ttc_critical:cadence_triple": 38,
+    "cadence_gap:triple": 28,
+    "cadence_complete": 106,
+    "cadence_cancelled_by_clear": 4
+  },
+  "state": {
+    "instantaneous": 1735,
+    "warning_entry_confirmation": 8,
+    "warning_entry_confirmed": 3,
+    "valid_critical": 91,
+    "warning_reconfirmed": 27,
+    "outside_path_confirmation": 4,
+    "not_approaching_confirmation": 19,
+    "not_approaching_confirmed": 4,
+    "finite_warning_hold": 37
+  },
+  "active_runs": [
+    4,
+    3,
+    3,
+    4,
+    3,
+    3,
+    3,
+    4,
+    4,
+    3,
+    3,
+    4,
+    3,
+    3
+  ],
+  "risk_runs": [
+    45,
+    48,
+    47,
+    49
+  ],
+  "path_in_collision_corridor": {
+    "0": 1775,
+    "1": 153
+  },
+  "odom_linear_mps": {
+    "n": 1928,
+    "min": -0.2857,
+    "median": 0.0,
+    "max": 0.5373
+  },
+  "x_m": {
+    "n": 1507,
+    "min": -1.1201,
+    "median": -0.495,
+    "max": 0.689
+  },
+  "z_m": {
+    "n": 1507,
+    "min": 0.3915,
+    "median": 0.9382,
+    "max": 3.7237
+  },
+  "distance_m": {
+    "n": 1507,
+    "min": 0.6846,
+    "median": 1.0038,
+    "max": 3.8194
+  },
+  "path_clearance_m": {
+    "n": 457,
+    "min": -0.1769,
+    "median": 0.6482,
+    "max": 1.3431
+  },
+  "first_active": {
+    "time_sec": "8.490671",
+    "distance_m": "1.1600",
+    "x_m": "-0.3748",
+    "z_m": "1.0977",
+    "odom_linear_mps": "0.473371",
+    "odom_angular_radps": "0.453337",
+    "collision_risk_level": "WARNING",
+    "collision_ffb_pattern": "steady",
+    "collision_ffb_direction": "1",
+    "collision_ffb_requested_magnitude": "0.25",
+    "collision_state_reason": "warning_entry_confirmed",
+    "path_in_collision_corridor": "1"
+  },
+  "last_active": {
+    "time_sec": "58.986402",
+    "distance_m": "0.9028",
+    "x_m": "-0.3156",
+    "z_m": "0.8458",
+    "odom_linear_mps": "0.505356",
+    "odom_angular_radps": "0.534290",
+    "collision_risk_level": "CRITICAL",
+    "collision_ffb_pattern": "steady",
+    "collision_ffb_direction": "0",
+    "collision_ffb_requested_magnitude": "0.4",
+    "collision_state_reason": "valid_critical",
+    "path_in_collision_corridor": "1"
+  },
+  "note": "pattern steady、active 3-4 frame ON/OFF（cadence_gap:triple）。0.10/0.15で「ドッドッド」。箱左でdirection +1（A config相当の可能性）。",
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}

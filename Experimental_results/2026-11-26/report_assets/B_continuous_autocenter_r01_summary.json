@@ -1,0 +1,126 @@
+{
+  "schema": "ffb_field_run_summary_v1",
+  "date": "2026-11-26",
+  "condition": "B continuous 0.15 autocenter",
+  "archive": "ffb_B_continuous_0.15_test_20261126_202728_979.tar.xz",
+  "autocenter": 15,
+  "rows": 979,
+  "risk_levels": {
+    "CLEAR": 902,
+    "CRITICAL": 38,
+    "WARNING": 8,
+    "WARNING_HOLD": 26,
+    "PATH": 5
+  },
+  "pattern": {
+    "off": 907,
+    "steady": 46,
+    "steady_hold": 26
+  },
+  "active_frames": 72,
+  "requested": {
+    "0.0": 907,
+    "0.4": 38,
+    "0.25": 34
+  },
+  "direction": {
+    "0": 918,
+    "-1": 61
+  },
+  "reason": {
+    "no_alert": 907,
+    "ttc_critical": 38,
+    "ttc_warning": 8,
+    "finite_warning_hold": 26
+  },
+  "state": {
+    "instantaneous": 900,
+    "valid_critical": 36,
+    "warning_reconfirmed": 7,
+    "finite_warning_hold": 21,
+    "not_approaching_confirmation": 5,
+    "not_approaching_confirmed": 2,
+    "warning_entry_confirmation": 4,
+    "warning_entry_confirmed": 1,
+    "outside_path_confirmation": 2,
+    "outside_path_confirmed": 1
+  },
+  "active_runs": [
+    24,
+    12,
+    36
+  ],
+  "risk_runs": [
+    24,
+    14,
+    1,
+    1,
+    37
+  ],
+  "path_in_collision_corridor": {
+    "0": 916,
+    "1": 63
+  },
+  "odom_linear_mps": {
+    "n": 979,
+    "min": -0.2815,
+    "median": 0.0,
+    "max": 0.4968
+  },
+  "x_m": {
+    "n": 794,
+    "min": -0.7333,
+    "median": -0.4209,
+    "max": -0.2224
+  },
+  "z_m": {
+    "n": 794,
+    "min": 0.5622,
+    "median": 1.1168,
+    "max": 3.8719
+  },
+  "distance_m": {
+    "n": 794,
+    "min": 0.7271,
+    "median": 1.1575,
+    "max": 3.9117
+  },
+  "path_clearance_m": {
+    "n": 276,
+    "min": -0.1752,
+    "median": 0.6511,
+    "max": 1.2732
+  },
+  "first_active": {
+    "time_sec": "7.003550",
+    "distance_m": "1.1002",
+    "x_m": "-0.3033",
+    "z_m": "1.0576",
+    "odom_linear_mps": "0.466974",
+    "odom_angular_radps": "0.437146",
+    "collision_risk_level": "CRITICAL",
+    "collision_ffb_pattern": "steady",
+    "collision_ffb_direction": "-1",
+    "collision_ffb_requested_magnitude": "0.4",
+    "collision_state_reason": "valid_critical",
+    "path_in_collision_corridor": "1"
+  },
+  "last_active": {
+    "time_sec": "39.183107",
+    "distance_m": "0.7508",
+    "x_m": "-0.4517",
+    "z_m": "0.5997",
+    "odom_linear_mps": "0.000000",
+    "odom_angular_radps": "0.000000",
+    "collision_risk_level": "WARNING_HOLD",
+    "collision_ffb_pattern": "steady_hold",
+    "collision_ffb_direction": "0",
+    "collision_ffb_requested_magnitude": "0.25",
+    "collision_state_reason": "not_approaching_confirmation",
+    "path_in_collision_corridor": "0"
+  },
+  "note": "autocenter 15でベースライン軽量化。box左（x≈-0.42）、direction -1 61 frame、pattern steady 46/hold 26、corridor 63/72。0.15の方向定常は左でも感じず。右が軽いのは逆側なので正しい。",
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}

@@ -1,0 +1,141 @@
+{
+  "schema": "ffb_field_run_summary_v1",
+  "date": "2026-11-26",
+  "condition": "A",
+  "archive": "ffb_A_r01_20261126_153717_062.tar.xz",
+  "autocenter": null,
+  "rows": 2626,
+  "risk_levels": {
+    "CLEAR": 2452,
+    "PATH": 9,
+    "WARNING": 89,
+    "CRITICAL": 70,
+    "WARNING_HOLD": 6
+  },
+  "pattern": {
+    "off": 2578,
+    "steady": 48
+  },
+  "active_frames": 48,
+  "requested": {
+    "0.0": 2578,
+    "0.25": 12,
+    "0.4": 36
+  },
+  "direction": {
+    "0": 2590,
+    "1": 36
+  },
+  "reason": {
+    "no_alert": 2457,
+    "ttc_warning:cadence_triple": 12,
+    "ttc_critical:cadence_triple": 36,
+    "cadence_gap:triple": 29,
+    "cadence_complete": 88,
+    "cadence_cancelled_by_clear": 4
+  },
+  "state": {
+    "instantaneous": 2449,
+    "warning_entry_confirmation": 8,
+    "warning_entry_confirmed": 3,
+    "valid_critical": 69,
+    "warning_reconfirmed": 73,
+    "outside_path_confirmation": 12,
+    "outside_path_confirmed": 4,
+    "ttc_exit_hysteresis": 3,
+    "ttc_safe_confirmation": 1,
+    "finite_warning_hold": 4
+  },
+  "active_runs": [
+    4,
+    2,
+    3,
+    4,
+    3,
+    4,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    3,
+    3
+  ],
+  "risk_runs": [
+    1,
+    31,
+    1,
+    1,
+    45,
+    40,
+    55
+  ],
+  "path_in_collision_corridor": {
+    "0": 2467,
+    "1": 159
+  },
+  "odom_linear_mps": {
+    "n": 2626,
+    "min": -0.2687,
+    "median": 0.0,
+    "max": 0.4926
+  },
+  "x_m": {
+    "n": 2626,
+    "min": -0.468,
+    "median": -0.2785,
+    "max": -0.0898
+  },
+  "z_m": {
+    "n": 2626,
+    "min": 0.6778,
+    "median": 1.3693,
+    "max": 2.4758
+  },
+  "distance_m": {
+    "n": 2626,
+    "min": 0.7867,
+    "median": 1.4027,
+    "max": 2.5033
+  },
+  "path_clearance_m": {
+    "n": 1327,
+    "min": -0.1145,
+    "median": 0.7034,
+    "max": 1.276
+  },
+  "first_active": {
+    "time_sec": "14.713583",
+    "distance_m": "1.0530",
+    "x_m": "-0.2470",
+    "z_m": "1.0236",
+    "odom_linear_mps": "0.351830",
+    "odom_angular_radps": "0.307621",
+    "collision_risk_level": "WARNING",
+    "collision_ffb_pattern": "steady",
+    "collision_ffb_direction": "1",
+    "collision_ffb_requested_magnitude": "0.25",
+    "collision_state_reason": "warning_entry_confirmed",
+    "path_in_collision_corridor": "1"
+  },
+  "last_active": {
+    "time_sec": "73.315324",
+    "distance_m": "0.8938",
+    "x_m": "-0.1466",
+    "z_m": "0.8817",
+    "odom_linear_mps": "0.398741",
+    "odom_angular_radps": "0.275240",
+    "collision_risk_level": "CRITICAL",
+    "collision_ffb_pattern": "steady",
+    "collision_ffb_direction": "1",
+    "collision_ffb_requested_magnitude": "0.4",
+    "collision_state_reason": "valid_critical",
+    "path_in_collision_corridor": "1"
+  },
+  "note": "振動1回（direction 0 / 0.25）。direction +1 / 0.4 の定常は方向として感じず。箱左でA +1（勾配反転）。",
+  "physical_metric_verified": false,
+  "usable_for_ffb": false,
+  "published_to_ros": false
+}

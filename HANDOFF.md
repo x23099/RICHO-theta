@@ -1,8 +1,24 @@
 # コーン測距・FFB開発 引き継ぎ資料
 
-最新作業枠: **2026-11-23（自宅・カメラなし）**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
+最新作業枠: **2026-11-26（学校・カメラ/Kobuki/G923）**。対象リポジトリ: `RICHO-theta`。OS/Git時刻と過去の実験日時は変更していない。
 
-## 11/23最新：実距離系列で方向反転0、Δ=0.05が最も安定、予測時間は効かず
+## 11/26最新：A/Bベンチとcontinuous cadence、autocenter 15でベースライン軽量化、0.15の方向力は不足
+
+[日報](Daily_reports/2026-11-26_daily_report.md)・[実験索引](Experimental_results/2026-11-26/README.md)・[代表資料](Experimental_results/2026-11-26/report_assets/README.md)・[評定CSV](Experimental_results/2026-11-26/record_2026-11-26.csv)。前日commitは`842fe92`。
+
+**A r01**（[要約](Experimental_results/2026-11-26/report_assets/A_r01_summary.json)）：2,626 rows、risk active 159、FFB active 48、pattern steady 48。箱左で`direction=+1`36 frame（**Aの勾配反転**、Bなら-1）、`direction=0`12。requested 0.4が36、0.25が12。体感は振動1回のみで、0.4の定常は方向として感じず。
+
+**ベンチ0.075/0.10/0.15の「ドッドッド」はtriple cadence**（[要約](Experimental_results/2026-11-26/report_assets/bench_r03_summary.json)）：pattern steady・risk連続なのにactiveが3〜4 frame ON/OFFし、reasonが`ttc_critical:cadence_triple`→`cadence_gap:triple`→`cadence_complete`。riskの切替ではなく**定常力がcadenceでパルス化**していた。0.10/0.15で体感。r03は箱左で`direction=+1`のため**A config相当**（B連続runは-1）。
+
+**B continuous cadence**：0.1/0.15の初期runは箱が真横/青い経路外で`not_approaching`/`warning_hold_expired`、UNKNOWN pulseになり「ドドド」。**箱は青い予測経路（衝突corridor）に入れ、最初のCRITICALで停止**するのが正しい手順。19:13のpath runは最初のCRITICALが1.21 m・x-0.42・0.52 m/s・`direction=-1`・steadyで成功（[要約](Experimental_results/2026-11-26/report_assets/B_continuous_path_r01_summary.json)）。
+
+**autocenter 15**：`collision_ffb_node`に`autocenter`パラメータを追加し、起動時に`ffset <device> -a <n>`を実行。`ffb_follow`は`idle_autocenter=15`/`manual=60`/`failsafe=95`、`idle_spring_coeff=13500`を使っており、collision側は未設定だったためG923デフォルトの重いautocenterが残っていた。20:27のB 0.15は979 rows、active 72、steady 46/hold 26、`direction=-1`61、corridor 63/72、箱左x-0.42、最初のCRITICAL 1.10 m。**ベースラインは軽くなったが、箱左で左へ切っても0.15の方向定常は感じず**。右が軽いのは左箱に対する逆側で正しい（[要約](Experimental_results/2026-11-26/report_assets/B_continuous_autocenter_r01_summary.json)）。
+
+**駆動・interface**：`ffb_follow`と`collision_ffb_node`は同じ`/tmp/oit-g923-ffb-writer.lock`を奪い合うため排他。`kobuki_launch.py`は`ffb_follow`を無条件起動するので、collision実験は`kobuki_launch_no_ffb_follow.py`（`handle`/`twist_mux`/`cmd_vel_mirror`）で駆動。`oit_interfaces`は`int8 direction`付きへ再ビルド済み。`bench_mode`/`bench_max_magnitude`/`autocenter`のパッチ適用済み。
+
+**次（MAX 0.20から再開）**：`BENCH_HARDWARE_MAX_MAGNITUDE=0.20`にしてB 0.20を1回。箱左0.15〜0.2 m・前方1.2〜1.3 m・0.35〜0.4 m/s、青い経路内、**最初のCRITICALで停止**。感じなければ0.25→0.30を短いパルス・車輪浮かせ・e-stop・安全確認者で段階試験。**0.30で感じれば0.5は不要**。0.5は最後の手段（明示承認・50〜120 ms）。0.30でも感じない場合は`ffset`のgain、spring 13,500、autocenterの組合せを確認。箱左は左が重い/箱右は右が重い、逆なら`constant_direction_sign=-1.0`。**フィールドの`max_magnitude=0.05`は不変**。0.15の`applied_magnitude`は20:27に`ffb_status`で未確認（11/24 liveの0.05が基準）。
+
+## 11/23：実距離系列で方向反転0、Δ=0.05が最も安定、予測時間は効かず
 
 11/21の静止9位置とライブr04を使ったオフライン解析。[日次まとめ](Experimental_results/2026-11-23/README.md)。
 

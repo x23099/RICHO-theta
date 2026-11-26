@@ -49,3 +49,4 @@
 | 2026-11-21 | [黄色コーンのライブ距離・ROI幅・勾配ドライラン・時間一致修正の日報](2026-11-21_daily_report.md) |
 | 2026-11-23 | [B案FFB・横位置校正・コーンintentライブdry-run・火曜実験準備の日報](2026-11-23_daily_report.md) |
 | 2026-11-24 | [G923 M/B実機・force path確立・0.05方向トルクの知覚限界の日報](2026-11-24_daily_report.md) |
+| 2026-11-26 | [A/Bベンチ・continuous cadence・autocenter 15・0.15方向力不足の日報](2026-11-26_daily_report.md) |
